@@ -7,6 +7,7 @@
 #define OneSheeld_h
 
 #include "TwitterShield.h"
+#include "FacebookShield.h"
 // start and end of the packet sent 
 #define STX 0x02
 #define ETX 0x03
