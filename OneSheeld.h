@@ -8,7 +8,6 @@
 
 #include "TwitterShield.h"
 #include "FacebookShield.h"
-//#include "LiquidCrystalShield.h"
 
 // start and end of the packet sent 
 #define STX 0x02
@@ -22,10 +21,11 @@ class OneSheeldClass
 public:
 OneSheeldClass();
 void begin(long baudRate);
+void write(char shieldID,char functionCommand, char* data);
 void write(char* data);
 
 private:
-void write(char shieldID,char functionCommand, char* data);
+
 
 };
 // instantiate object for users

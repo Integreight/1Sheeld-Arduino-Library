@@ -19,7 +19,6 @@ void OneSheeldClass::write(char* data)
   write(GENERAL_DATA,NOT_FUNCTION,data);
 }
 
-// private functions 
 void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
 {
   int dataLength;
