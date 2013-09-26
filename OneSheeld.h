@@ -8,6 +8,8 @@
 
 #include "TwitterShield.h"
 #include "FacebookShield.h"
+#include "LiquidCrystalShield.h"
+
 
 // start and end of the packet sent 
 #define STX 0x02
