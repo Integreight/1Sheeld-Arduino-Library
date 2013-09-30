@@ -132,7 +132,16 @@ void LiquidCrystalShield::write(char value) {
  writePacket(WRITE,_write_packet); 
 
 }
-
+void LiquidCrystalShield::print (char* data)
+{
+int length=sizeof(data);
+char _print_packet[length];
+for (int i=0;i<length;i++)
+{
+_print_packet[i]=data[i];
+}
+writePacket(PRINT,_print_packet);
+}
 /************ low level data pushing commands **********/
 void LiquidCrystalShield::writePacket (char functionCommand , char* data)
 {

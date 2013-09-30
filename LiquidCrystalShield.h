@@ -8,7 +8,7 @@
 #define LCD_SHIELD_ID     0x64
 
 // Library functions commands---fayez
-#define INIT 0xA0
+#define PRINT 0xA0
 #define BEGIN 0xA1
 #define CLEAR 0xA2
 #define HOME 0xA3
@@ -119,9 +119,8 @@ public:
   void setCursor(char, char); 
   void write(char);
   void command(char);
-  
- // using Print::write;
-
+  void print (char* data);
+ 
  private:
   void writePacket (char functionCommand, char* data);
   char _data_pins[8];
@@ -131,6 +130,7 @@ public:
   char _createChar_packet[9];
   char _command_packet[1];
   char _write_packet[1];
+  
   
 };
  extern LiquidCrystalShield LCD;
