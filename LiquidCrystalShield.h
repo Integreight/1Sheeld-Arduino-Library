@@ -5,29 +5,29 @@
 #include <inttypes.h>
 
 
-#define LCD_SHIELD_ID     0x64
+#define LCD_SHIELD_ID     0x32
 
 // Library functions commands---fayez
-#define PRINT 0xA0
-#define BEGIN 0xA1
-#define CLEAR 0xA2
-#define HOME 0xA3
-#define NO_DISPLAY 0xA4
-#define DISPLAY_LCD 0xA5
-#define NO_BLINK 0xA6
-#define BLINK 0xA7
-#define NO_CURSOR 0xA8
-#define CURSOR 0xA9
-#define SCROLL_DISPLAY_LEFT 0xAA
-#define SCROLL_DISPLAY_RIGHT 0xAB
-#define LEFT_TO_RIGHT 0xAC
-#define RIGHT_TO_LEFT 0xAD
-#define CREATE_CHAR 0xAE
-#define SET_CURSOR 0xAF
-#define WRITE 0xB0
-#define COMMAND 0xB1
-#define NO_AUTO_SCROLL 0xB2
-#define AUTO_SCROLL 0xB3 
+#define INIT 0x01
+#define BEGIN 0x02
+#define CLEAR 0x03
+#define HOME 0x04
+#define NO_DISPLAY 0x05
+#define DISPLAY_LCD 0x06
+#define NO_BLINK 0x07
+#define BLINK 0x08
+#define NO_CURSOR 0x09
+#define CURSOR 0x0A
+#define SCROLL_DISPLAY_LEFT 0x0B
+#define SCROLL_DISPLAY_RIGHT 0x0C
+#define LEFT_TO_RIGHT 0x0D
+#define RIGHT_TO_LEFT 0x0E
+#define CREATE_CHAR 0x0F
+#define SET_CURSOR 0x10
+#define WRITE 0x11
+#define COMMAND 0x12
+#define NO_AUTO_SCROLL 0x13
+#define AUTO_SCROLL 0x14 
 
 // commands
 #define LCD_CLEARDISPLAY 0x01
@@ -70,26 +70,6 @@
 // baudrate for softwareSerial port
 #define BAUD_RATE 57600
 
-// Library functions commands---fayez
-#define begin_fn 0xA1
-#define clear_fn 0xA2
-#define home_fn 0xA3
-#define noDisplay_fn 0xA4
-#define display_fn 0xA5
-#define noBlink_fn 0xA6
-#define blink_fn 0xA7
-#define noCursor_fn 0xA8
-#define cursor_fn 0xA9
-#define scrollDisplayLeft_fn 0xAA
-#define scrollDisplayRight_fn 0xAB
-#define leftToRight_fn 0xAC
-#define rightToLeft_fn 0xAD
-#define createChar_fn 0xAE
-#define setCursor_fn 0xAF
-#define write_fn 0xB0
-#define command_fn 0xB1
-#define noAutoscroll_fn 0xB2
-#define autoscroll_fn 0xB3 
 
 class LiquidCrystalShield {
 
