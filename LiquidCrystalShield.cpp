@@ -122,10 +122,6 @@ void LiquidCrystalShield::createChar(char location, char charmap[]) {
 
 /*********** mid level commands, for sending data/cmds */
 
-//inline void LiquidCrystalShield::command(char value) {
-//  _command_packet[0]=value;
-//  writePacket(COMMAND,_command_packet); 
-//}
 
 void LiquidCrystalShield::write(char value) {
  _write_packet[0]=value;
@@ -134,12 +130,6 @@ void LiquidCrystalShield::write(char value) {
 }
 void LiquidCrystalShield::print (char* data)
 {
-//int length=sizeof(data);
-//char _print_packet[length];
-//for (int i=0;i<length;i++)
-//{
-//_print_packet[i]=data[i];
-//}
 writePacket(PRINT,data);
 }
 /************ low level data pushing commands **********/
