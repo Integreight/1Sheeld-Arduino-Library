@@ -33,7 +33,7 @@ void LiquidCrystalShield::begin(char cols, char lines, char dotsize) {
   // send the args with firmata protocol
   _begin_packet[0]=cols;
   _begin_packet[1]=lines;
-  _begin_packet[2]=lines;
+  _begin_packet[2]=dotsize;
  writePacket(BEGIN,_begin_packet); 
  
 }
