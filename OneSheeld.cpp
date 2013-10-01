@@ -38,5 +38,22 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
   Serial.write(ETX); // send ETX  to start the packet
   delay(1);
 }
+void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int length)
+{
+  int dataLength;
+  Serial.write(STX); // send STX  to start the packet
+  Serial.write(shieldID);
+  Serial.write(functionCommand);
+  if (length>140)
+  dataLength=140;
+  else 
+  dataLength=length;
+  for(int i=0; i<dataLength; i++) {
+    Serial.write(data[i]);        
+  }
+  
+  Serial.write(ETX); // send ETX  to start the packet
+  delay(1);
+}
 // instantiate object for users
 OneSheeldClass OneSheeld;

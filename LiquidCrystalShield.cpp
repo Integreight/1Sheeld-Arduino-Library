@@ -1,8 +1,6 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
-
 #include "HardwareSerial.h"
 #include "OneSheeld.h"
 #include "Arduino.h"
@@ -34,8 +32,7 @@ void LiquidCrystalShield::begin(char cols, char lines, char dotsize) {
   _begin_packet[0]=cols;
   _begin_packet[1]=lines;
   _begin_packet[2]=dotsize;
- writePacket(BEGIN,_begin_packet); 
- 
+ OneSheeld.write(LCD_SHIELD_ID,BEGIN,_begin_packet,3);
 }
 
 /********** high level commands, for the user! */
@@ -53,7 +50,7 @@ void LiquidCrystalShield::setCursor(char col, char row)
 {
   _setCursor_packet[0]=col;
   _setCursor_packet[1]=row;
-  writePacket(SET_CURSOR,_setCursor_packet); 
+  OneSheeld.write(LCD_SHIELD_ID,SET_CURSOR,_setCursor_packet,2);  
 }
 
 // Turn the display on/off (quickly)
@@ -117,16 +114,13 @@ void LiquidCrystalShield::createChar(char location, char charmap[]) {
   {
   _createChar_packet[i+1]=charmap[i];
   }
- writePacket(CREATE_CHAR,_createChar_packet); 
+ OneSheeld.write(LCD_SHIELD_ID,CREATE_CHAR,_createChar_packet,9);  
 }
 
 /*********** mid level commands, for sending data/cmds */
-
-
 void LiquidCrystalShield::write(char value) {
  _write_packet[0]=value;
- writePacket(WRITE,_write_packet); 
-
+OneSheeld.write(LCD_SHIELD_ID,WRITE,_write_packet,1);
 }
 void LiquidCrystalShield::print (char* data)
 {

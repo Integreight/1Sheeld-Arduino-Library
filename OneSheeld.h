@@ -25,7 +25,7 @@ OneSheeldClass();
 void begin(long baudRate);
 void write(char shieldID,char functionCommand, char* data);
 void write(char* data);
-
+void write(char shieldID,char functionCommand, char* data,int length);
 private:
 
 
