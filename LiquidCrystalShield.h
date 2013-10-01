@@ -97,7 +97,7 @@ public:
   void createChar(char, char[]);
   void setCursor(char, char); 
   void write(char);
-  void command(char);
+  //void command(char);
   void print (char* data);
  
  private:
@@ -107,7 +107,7 @@ public:
   char _begin_packet[3];
   char _setCursor_packet[2];
   char _createChar_packet[9];
-  char _command_packet[1];
+  //char _command_packet[1];
   char _write_packet[1];
   
   

@@ -122,10 +122,10 @@ void LiquidCrystalShield::createChar(char location, char charmap[]) {
 
 /*********** mid level commands, for sending data/cmds */
 
-inline void LiquidCrystalShield::command(char value) {
-  _command_packet[0]=value;
-  writePacket(COMMAND,_command_packet); 
-}
+//inline void LiquidCrystalShield::command(char value) {
+//  _command_packet[0]=value;
+//  writePacket(COMMAND,_command_packet); 
+//}
 
 void LiquidCrystalShield::write(char value) {
  _write_packet[0]=value;
