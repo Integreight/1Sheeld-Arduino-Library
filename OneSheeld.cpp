@@ -6,6 +6,7 @@
 
 #include "OneSheeld.h"
 #include "HardwareSerial.h"
+#include "Arduino.h"
 
 // public functions
 OneSheeldClass::OneSheeldClass() {}
@@ -17,6 +18,7 @@ void OneSheeldClass::begin(long baudRate)
 void OneSheeldClass::write(char* data)
 {
   write(GENERAL_DATA,NOT_FUNCTION,data);
+  delay(1);
 }
 
 void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
@@ -34,6 +36,7 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
   }
   
   Serial.write(ETX); // send ETX  to start the packet
+  delay(1);
 }
 // instantiate object for users
 OneSheeldClass OneSheeld;
