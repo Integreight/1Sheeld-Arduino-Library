@@ -8,7 +8,7 @@
 #define LCD_SHIELD_ID     0x32
 
 // Library functions commands---fayez
-#define INIT 0x01
+#define PRINT 0x01
 #define BEGIN 0x02
 #define CLEAR 0x03
 #define HOME 0x04
