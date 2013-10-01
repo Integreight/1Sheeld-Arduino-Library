@@ -25,9 +25,8 @@
 #define CREATE_CHAR 0x0F
 #define SET_CURSOR 0x10
 #define WRITE 0x11
-#define COMMAND 0x12
-#define NO_AUTO_SCROLL 0x13
-#define AUTO_SCROLL 0x14 
+#define NO_AUTO_SCROLL 0x12
+#define AUTO_SCROLL 0x13 
 
 // commands
 #define LCD_CLEARDISPLAY 0x01
