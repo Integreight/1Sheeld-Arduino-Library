@@ -13,6 +13,7 @@ class AccelerometerShieldClass
 {
 public:
     AccelerometerShieldClass();
+    unsigned int readValue(int pin);
 private:
 };
 // instantiate object for users
