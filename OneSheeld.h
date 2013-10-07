@@ -9,23 +9,25 @@
 #include "TwitterShield.h"
 #include "FacebookShield.h"
 #include "LiquidCrystalShield.h"
+#include "AccelerometerShield.h"
+#include "ConvertPWM.h"
 
 
-// start and end of the packet sent 
+// start and end of the packet sent
 #define STX 0x02
 #define ETX 0x03
-// for general data sending 
+// for general data sending
 #define GENERAL_DATA 0x29
 #define NOT_FUNCTION 0x00
 
-class OneSheeldClass 
+class OneSheeldClass
 {
 public:
-OneSheeldClass();
-void begin(long baudRate);
-void write(char shieldID,char functionCommand, char* data);
-void write(char* data);
-void write(char shieldID,char functionCommand, char* data,int length);
+    OneSheeldClass();
+    void begin(long baudRate);
+    void write(char shieldID, char functionCommand, char *data);
+    void write(char *data);
+    void write(char shieldID, char functionCommand, char *data, int length);
 private:
 
 
