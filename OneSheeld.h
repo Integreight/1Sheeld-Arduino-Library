@@ -9,9 +9,13 @@
 #include "TwitterShield.h"
 #include "FacebookShield.h"
 #include "LiquidCrystalShield.h"
+<<<<<<< Updated upstream
 #include "AccelerometerShield.h"
 #include "ConvertPWM.h"
 
+=======
+#include "KeypadShield.h"
+>>>>>>> Stashed changes
 
 // start and end of the packet sent
 #define STX 0x02
