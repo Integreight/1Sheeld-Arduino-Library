@@ -31,9 +31,6 @@
 #define LCD_5x10DOTS 0x04
 #define LCD_5x8DOTS 0x00
 
-// baudrate for softwareSerial port
-#define BAUD_RATE 57600
-
 
 class LiquidCrystalShield {
 

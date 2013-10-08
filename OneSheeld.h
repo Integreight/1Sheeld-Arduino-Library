@@ -11,7 +11,7 @@
 #include "LiquidCrystalShield.h"
 #include "AccelerometerShield.h"
 #include "ReadPWMClass.h"
-
+#include "KeypadShield.h"
 
 // start and end of the packet sent
 #define STX 0x02
