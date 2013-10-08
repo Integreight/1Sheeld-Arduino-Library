@@ -10,7 +10,7 @@
 #include "FacebookShield.h"
 #include "LiquidCrystalShield.h"
 #include "AccelerometerShield.h"
-#include "ConvertPWM.h"
+#include "ReadPWMClass.h"
 
 
 // start and end of the packet sent

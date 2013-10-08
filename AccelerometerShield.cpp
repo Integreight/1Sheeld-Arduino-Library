@@ -5,7 +5,7 @@
 
 #include "OneSheeld.h"
 #include "AccelerometerShield.h"
-#include "ConvertPWM.h"
+#include "ReadPWMClass.h"
 
 // public functions
 AccelerometerShieldClass::AccelerometerShieldClass() {}
