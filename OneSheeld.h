@@ -12,6 +12,7 @@
 #include "AccelerometerShield.h"
 #include "ReadPWMClass.h"
 #include "KeypadShield.h"
+#include "NotificationShield.h"
 
 // start and end of the packet sent
 #define STX 0x02
