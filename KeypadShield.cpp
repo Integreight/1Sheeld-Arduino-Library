@@ -34,6 +34,7 @@ void KeypadShieldClass::processData()
      row=(int)readPacket[3];
      col=(int)readPacket[4];
    }
+   (*buttonChangeCallback)(row,col);
 }
 
 void KeypadShieldClass::onSerialEvent(char dataByte)
@@ -56,9 +57,14 @@ void KeypadShieldClass::onSerialEvent(char dataByte)
   count=0;
   frameStart=0;
   processData();
+
  }
  
 } 
+void KeypadShieldClass::setOnButtonChange(void (*userFunction)(int,int))
+{
+  buttonChangeCallback=userFunction;
+}
 
 
 KeypadShieldClass Keypad;

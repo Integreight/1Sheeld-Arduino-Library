@@ -21,7 +21,7 @@ int getRow();
 int getCol();
 int getButton();
 void onSerialEvent(char);
-
+void setOnButtonChange(void (*userFunction)(int,int));
 
 
 private:
@@ -31,7 +31,9 @@ int col;
 int count;
 char readPacket[PACKET_SIZE];
 int frameStart;
-void processData();
+void (*buttonChangeCallback)(int,int);
+void processData(); 
+
 };
 // instantiate object for users
 extern KeypadShieldClass Keypad;
