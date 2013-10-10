@@ -1,0 +1,33 @@
+#######################################
+# Syntax Coloring Map For OneSheeld
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+OneSheeld	KEYWORD1
+Twitter 	KEYWORD1
+Facebook	KEYWORD1
+LCD	        KEYWORD1					
+Keypad	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+init	KEYWORD2
+getRow	KEYWORD2
+getCol	KEYWORD2
+getButton	KEYWORD2
+onSerialEvent	KEYWORD2
+setOnButtonChange	KEYWORD2
+updateStatus	KEYWORD2
+readValue	KEYWORD2
+clear	KEYWORD2
+noDisplay	KEYWORD2
+display	KEYWORD2
+noBlink	KEYWORD2
+blink	KEYWORD2
+noCursor	KEYWORD2
+cursor	KEYWORD2
+notifyPhone	KEYWORD2
