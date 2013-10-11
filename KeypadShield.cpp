@@ -8,8 +8,8 @@
 KeypadShieldClass::KeypadShieldClass()
 {
   frameStart=0;
-  row=0xf0;
-  col=0xf0;
+  row=0xff;
+  col=0xff;
   isCallbackAssigned=false;
 }
 
