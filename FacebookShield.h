@@ -6,7 +6,6 @@
 #define FacebookShield_h
 
 // library defintions
-#define FACEBOOK_ID 0x31  // twitter shield id 
 #define UPDATE_STATUS 0x01  // sendTweet function command
 
 class FacebookShieldClass 

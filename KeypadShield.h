@@ -1,8 +1,7 @@
 #ifndef KeypadShield_h
 #define KeypadShield_h
 
-// shield id
-#define KEYPAD_SHIELD_ID     0x33
+
 // function commands
 #define INIT 0x06
 #define GET_ROW 0x02

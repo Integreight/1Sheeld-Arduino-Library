@@ -6,7 +6,6 @@
 #define NotificationShield_h
 
 // library defintions
-#define NOTIFICATION_ID 0x34  // twitter shield id 
 #define NOTIFY_PHONE 0x01  // sendTweet function command
 
 class NotificationShieldClass 
