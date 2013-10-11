@@ -29,10 +29,10 @@ LiquidCrystalShield::LiquidCrystalShield(){}
 
 void LiquidCrystalShield::begin(char cols, char lines, char dotsize) {
   // send the args with firmata protocol
-  _begin_packet[0]=cols;
-  _begin_packet[1]=lines;
-  _begin_packet[2]=dotsize;
- OneSheeld.write(LCD_SHIELD_ID,BEGIN,_begin_packet,3);
+  sentPacket[0]=cols;
+  sentPacket[1]=lines;
+  sentPacket[2]=dotsize;
+ OneSheeld.write(LCD_SHIELD_ID,BEGIN,sentPacket,3);
 }
 
 /********** high level commands, for the user! */
@@ -48,9 +48,9 @@ void LiquidCrystalShield::home()
 
 void LiquidCrystalShield::setCursor(char col, char row)
 {
-  _setCursor_packet[0]=col;
-  _setCursor_packet[1]=row;
-  OneSheeld.write(LCD_SHIELD_ID,SET_CURSOR,_setCursor_packet,2);  
+  sentPacket[0]=col;
+  sentPacket[1]=row;
+  OneSheeld.write(LCD_SHIELD_ID,SET_CURSOR,sentPacket,2);  
 }
 
 // Turn the display on/off (quickly)
@@ -109,18 +109,18 @@ void LiquidCrystalShield::noAutoscroll(void) {
 // with custom characters
 void LiquidCrystalShield::createChar(char location, char charmap[]) {
   
-  _createChar_packet[0]=location;
+  sentPacket[0]=location;
   for (int i=0;i<8;i++)
   {
-  _createChar_packet[i+1]=charmap[i];
+  sentPacket[i+1]=charmap[i];
   }
- OneSheeld.write(LCD_SHIELD_ID,CREATE_CHAR,_createChar_packet,9);  
+ OneSheeld.write(LCD_SHIELD_ID,CREATE_CHAR,sentPacket,9);  
 }
 
 /*********** mid level commands, for sending data/cmds */
 void LiquidCrystalShield::write(char value) {
- _write_packet[0]=value;
-OneSheeld.write(LCD_SHIELD_ID,WRITE,_write_packet,1);
+ sentPacket[0]=value;
+OneSheeld.write(LCD_SHIELD_ID,WRITE,sentPacket,1);
 }
 void LiquidCrystalShield::print (char* data)
 {

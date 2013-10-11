@@ -63,10 +63,8 @@ public:
  
  private:
   void writePacket (char functionCommand, char* data);
-  char _begin_packet[3];
-  char _setCursor_packet[2];
-  char _createChar_packet[9];
-  char _write_packet[1];
+  char sentPacket[9];
+  
   
   
 };
