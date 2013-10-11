@@ -5,7 +5,13 @@
 
 
 
-KeypadShieldClass::KeypadShieldClass(){frameStart=0;row=0xf0;col=0xf0;}
+KeypadShieldClass::KeypadShieldClass()
+{
+  frameStart=0;
+  row=0xf0;
+  col=0xf0;
+  isCallbackAssigned=false;
+}
 
 void KeypadShieldClass::init()
 {}
@@ -34,6 +40,7 @@ void KeypadShieldClass::processData()
      row=(int)readPacket[3];
      col=(int)readPacket[4];
    }
+   if (isCallbackAssigned)
    (*buttonChangeCallback)(row,col);
 }
 
@@ -64,6 +71,7 @@ void KeypadShieldClass::onSerialEvent(char dataByte)
 void KeypadShieldClass::setOnButtonChange(void (*userFunction)(int,int))
 {
   buttonChangeCallback=userFunction;
+  isCallbackAssigned=true;
 }
 
 

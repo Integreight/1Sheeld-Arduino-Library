@@ -33,7 +33,7 @@ char readPacket[PACKET_SIZE];
 int frameStart;
 void (*buttonChangeCallback)(int,int);
 void processData(); 
-
+bool isCallbackAssigned;
 };
 // instantiate object for users
 extern KeypadShieldClass Keypad;
