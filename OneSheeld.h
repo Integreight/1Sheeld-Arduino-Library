@@ -24,6 +24,8 @@
 #define ACCELEROMETER_ID 0x35
 #define SMS_ID 0x36
 
+#define PACKET_SIZE 6
+
 // start and end of the packet sent
 #define STX 0x02
 #define ETX 0x03
@@ -39,8 +41,13 @@ public:
     void write(char shieldID, char functionCommand, char *data);
     void write(char *data);
     void write(char shieldID, char functionCommand, char *data, int length);
-private:
+    void onSerialEvent(char);
 
+private:
+int count;
+char readPacket[PACKET_SIZE];
+int frameStart;
+void sendToShields();
 
 };
 // instantiate object for users

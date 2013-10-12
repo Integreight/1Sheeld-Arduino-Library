@@ -7,7 +7,6 @@
 
 KeypadShieldClass::KeypadShieldClass()
 {
-  frameStart=0;
   row=0xff;
   col=0xff;
   isCallbackAssigned=false;
@@ -33,7 +32,7 @@ int KeypadShieldClass::getButton()
 return 1;
 }
 
-void KeypadShieldClass::processData()
+void KeypadShieldClass::processData( char * readPacket)
 {
   if (readPacket[2]==0x01)
    { 
@@ -44,30 +43,7 @@ void KeypadShieldClass::processData()
    (*buttonChangeCallback)(row,col);
 }
 
-void KeypadShieldClass::onSerialEvent(char dataByte)
-{
- if (!frameStart&&dataByte==STX)
- {
-   count=0;
-   readPacket[count]=dataByte;
-   frameStart=1;
-   count++;
- }
- else if (frameStart && (dataByte!=ETX))
- {
-  readPacket[count]=dataByte;
-  count++;
- }
- else if (frameStart && (dataByte==ETX))
- {
-  readPacket[count]=dataByte;
-  count=0;
-  frameStart=0;
-  processData();
 
- }
- 
-} 
 void KeypadShieldClass::setOnButtonChange(void (*userFunction)(int,int))
 {
   buttonChangeCallback=userFunction;
@@ -77,8 +53,3 @@ void KeypadShieldClass::setOnButtonChange(void (*userFunction)(int,int))
 
 KeypadShieldClass Keypad;
 
-void serialEvent()
-{
-char value=Serial.read();
-Keypad.onSerialEvent(value);
-}

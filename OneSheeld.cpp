@@ -9,7 +9,10 @@
 #include "Arduino.h"
 
 // public functions
-OneSheeldClass::OneSheeldClass() {}
+OneSheeldClass::OneSheeldClass() 
+{
+  frameStart=0;
+}
 void OneSheeldClass::begin(long baudRate)
 {
   Serial.begin(baudRate);
@@ -55,5 +58,43 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int l
   Serial.write(ETX); // send ETX  to start the packet
   delay(1);
 }
+void OneSheeldClass::onSerialEvent(char dataByte)
+{
+ if (!frameStart&&dataByte==STX)
+ {
+   count=0;
+   readPacket[count]=dataByte;
+   frameStart=1;
+   count++;
+ }
+ else if (frameStart && (dataByte!=ETX))
+ {
+  readPacket[count]=dataByte;
+  count++;
+ }
+ else if (frameStart && (dataByte==ETX))
+ {
+  readPacket[count]=dataByte;
+  count=0;
+  frameStart=0;
+  sendToShields();
+ }
+ 
+} 
+void OneSheeldClass::sendToShields()
+{
+  switch (readPacket[1])
+  {
+    case 0x33 : Keypad.processData(readPacket); break ;
+   
+
+  }
+}
 // instantiate object for users
 OneSheeldClass OneSheeld;
+
+void serialEvent()
+{
+char value=Serial.read();
+OneSheeld.onSerialEvent(value);
+}

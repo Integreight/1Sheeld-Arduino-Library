@@ -9,7 +9,7 @@
 #define SET_ON_CHANGE 0x04
 #define GET_NUM 0x05
 #define DATA_IN 0x01
-#define PACKET_SIZE 6
+
 
 class KeypadShieldClass 
 {
@@ -19,19 +19,15 @@ void init();
 int getRow();
 int getCol();
 int getButton();
-void onSerialEvent(char);
 void setOnButtonChange(void (*userFunction)(int,int));
-
+void processData(char *);
 
 private:
 
 int row;
 int col;
-int count;
-char readPacket[PACKET_SIZE];
-int frameStart;
 void (*buttonChangeCallback)(int,int);
-void processData(); 
+ 
 bool isCallbackAssigned;
 };
 // instantiate object for users
