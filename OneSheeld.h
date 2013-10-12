@@ -13,6 +13,7 @@
 #include "ReadPWMClass.h"
 #include "KeypadShield.h"
 #include "NotificationShield.h"
+#include "SMSShield.h"
 
 // shield ids
 #define TWITTER_ID       0x30 
@@ -21,6 +22,7 @@
 #define KEYPAD_SHIELD_ID 0x33
 #define NOTIFICATION_ID  0x34 
 #define ACCELEROMETER_ID 0x35
+#define SMS_ID 0x36
 
 // start and end of the packet sent
 #define STX 0x02
