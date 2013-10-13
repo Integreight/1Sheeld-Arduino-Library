@@ -8,9 +8,13 @@
 
 // public functions
 SMSShieldClass::SMSShieldClass(){}
-void send(char* number,char* text)
+void SMSShieldClass::send(char* number,char* text)
 {
-OneSheeld.write(SMS_ID,SEND_SMS,text);
+	char str[140];
+	strcat (str, number);
+	strcpy (str, "##");
+	strcat (str, text);
+	OneSheeld.write(SMS_ID,SEND_SMS,str);
 }
 
 // instantiate object for users
