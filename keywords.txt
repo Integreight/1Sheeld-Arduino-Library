@@ -11,6 +11,9 @@ Twitter 	KEYWORD1
 Facebook	KEYWORD1
 LCD	        KEYWORD1					
 Keypad	KEYWORD1
+Notification	KEYWORD1
+SMS	KEYWORD1
+Accelerometer	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
