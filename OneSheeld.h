@@ -23,6 +23,7 @@
 #define NOTIFICATION_ID  0x34 
 #define ACCELEROMETER_ID 0x35
 #define SMS_ID 0x36
+#define GAMEPAD_ID 0x37
 
 #define PACKET_SIZE 6
 
