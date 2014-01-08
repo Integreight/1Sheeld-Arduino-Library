@@ -14,12 +14,13 @@ Keypad	KEYWORD1
 Notification	KEYWORD1
 SMS	KEYWORD1
 Accelerometer	KEYWORD1
-Email	KEYWORD1
+Phone	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 init	KEYWORD2
+call 	KEYWORD2
 getRow	KEYWORD2
 getCol	KEYWORD2
 getButton	KEYWORD2
