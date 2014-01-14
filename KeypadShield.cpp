@@ -34,7 +34,7 @@ return 1;
 
 void KeypadShieldClass::processData( char * readPacket)
 {
-  if (readPacket[2]==0x01)
+  if (readPacket[2]==DATA_IN)
    { 
      row=(int)readPacket[3];
      col=(int)readPacket[4];

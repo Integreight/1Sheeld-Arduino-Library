@@ -31,7 +31,7 @@ void LiquidCrystalShield::begin(char cols, char lines, char dotsize) {
   // send the args with firmata protocol
   sentPacket[0]=cols;
   sentPacket[1]=lines;
-  sentPacket[2]=dotsize;
+  sentPacket[2]=dotsize;                    // dot size is the area displayed by the character 
  OneSheeld.write(LCD_SHIELD_ID,BEGIN,sentPacket,3);
 }
 

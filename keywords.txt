@@ -5,17 +5,16 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
-
 OneSheeld	KEYWORD1
 Twitter 	KEYWORD1
 Facebook	KEYWORD1
 LCD	        KEYWORD1					
-Keypad	KEYWORD1
+Keypad		KEYWORD1
 Notification	KEYWORD1
-SMS	KEYWORD1
+SMS			KEYWORD1
 Accelerometer	KEYWORD1
-Phone	KEYWORD1
-
+Phone		KEYWORD1
+GPS   		KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -36,3 +35,7 @@ blink	KEYWORD2
 noCursor	KEYWORD2
 cursor	KEYWORD2
 notifyPhone	KEYWORD2
+getLon 	KEYWORD2
+getLat	KEYWORD2
+islatitude		KEYWORD2
+islongitude		KEYWORD2

@@ -15,6 +15,7 @@
 #include "NotificationShield.h"
 #include "SMSShield.h"
 #include "PhoneShield.h"
+#include "GPSShield.h"
 
 // shield ids
 #define TWITTER_ID       0x30 
@@ -26,8 +27,9 @@
 #define SMS_ID 0x36
 #define GAMEPAD_ID 0x37
 #define PHONE_ID 0x38
+#define GPS_ID 0x39
 
-#define PACKET_SIZE 6
+#define PACKET_SIZE 12
 
 // start and end of the packet sent
 #define STX 0x02
@@ -45,7 +47,7 @@ public:
     void write(char *data);
     void write(char shieldID, char functionCommand, char *data, int length);
     void onSerialEvent(char);
-
+    
 private:
 int count;
 char readPacket[PACKET_SIZE];

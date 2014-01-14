@@ -86,7 +86,7 @@ void OneSheeldClass::sendToShields()
   switch (readPacket[1])
   {
     case 0x33 : Keypad.processData(readPacket); break ;
-   
+    case 0x39 : GPS.Proc(readPacket); break ;
 
   }
 }
