@@ -16,6 +16,7 @@
 #include "SMSShield.h"
 #include "PhoneShield.h"
 #include "GPSShield.h"
+#include "SevSegShield.h"
 
 // shield ids
 #define TWITTER_ID       0x30 
@@ -28,6 +29,7 @@
 #define GAMEPAD_ID 0x37
 #define PHONE_ID 0x38
 #define GPS_ID 0x39
+#define SEV_SEG_ID 0x40
 
 #define PACKET_SIZE 12
 
