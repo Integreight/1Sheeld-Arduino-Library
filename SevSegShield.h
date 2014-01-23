@@ -4,7 +4,7 @@
 
 #define OUT		0xff
 #define BLINK_SEG 0x01
-#define SET_SEG  0x05
+#define SET_SEG  0x02
 #define SET_CHAR 0x06 
 
 class SevSegShieldClass
