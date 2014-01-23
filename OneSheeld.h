@@ -40,6 +40,31 @@
 #define GENERAL_DATA 0x29
 #define NOT_FUNCTION 0x00
 
+//new function for the new packet frame 
+
+class FunctionArg
+{
+private:
+	int length;
+	byte * data;
+public:
+	FunctionArg(int l ,byte * d)
+	{
+		length=l;
+		data=d;
+	}
+	int getLength()
+	{
+		return length;
+	}
+	byte * getData()
+	{
+		return data;
+	}
+
+};
+
+
 class OneSheeldClass
 {
 public:
@@ -49,6 +74,7 @@ public:
     void write(char *data);
     void write(char shieldID, char functionCommand, char *data, int length);
     void onSerialEvent(char);
+   void sendPacket(byte shieldID,byte functionCommand, byte argNo, ...);
     
 private:
 int count;

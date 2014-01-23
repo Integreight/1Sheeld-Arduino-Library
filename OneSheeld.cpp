@@ -8,6 +8,7 @@
 #include "HardwareSerial.h"
 #include "Arduino.h"
 
+
 // public functions
 OneSheeldClass::OneSheeldClass() 
 {
@@ -24,6 +25,31 @@ void OneSheeldClass::write(char* data)
   delay(1);
 }
 
+void OneSheeldClass::sendPacket(byte shieldID, byte functionID, byte argNo, ...)
+{
+  va_list arguments ;
+  va_start (arguments,argNo);
+
+  Serial.write(STX);
+  Serial.write(shieldID);
+  Serial.write(functionID);
+
+  for (int i=0 ; i<argNo ; i++)
+  {
+    FunctionArg * temp = va_arg(arguments, FunctionArg *);
+    Serial.write(temp->getLength());
+
+      for (int j=0 ; j<temp->getLength() ; j++)
+      {
+        byte* tempData=temp->getData();
+        Serial.write(tempData[j]);
+      }
+
+ }
+    va_end(arguments);
+    Serial.write(ETX);
+}
+
 void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
 {
   int dataLength;
@@ -32,13 +58,13 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
   Serial.write(functionCommand);
   if (strlen(data)>140)
   dataLength=140;
-  else 
+  else   
   dataLength=strlen(data);
   for(int i=0; i<dataLength; i++) {
     Serial.write(data[i]);        
   }
   
-  Serial.write(ETX); // send ETX  to start the packet
+  Serial.write(ETX); // send ETX  to End the packet
   delay(1);
 }
 void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int length)
@@ -55,7 +81,7 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int l
     Serial.write(data[i]);        
   }
   
-  Serial.write(ETX); // send ETX  to start the packet
+  Serial.write(ETX); // send ETX  to End the packet
   delay(1);
 }
 void OneSheeldClass::onSerialEvent(char dataByte)
@@ -87,7 +113,7 @@ void OneSheeldClass::sendToShields()
   {
     case 0x33 : Keypad.processData(readPacket); break ;
     case 0x39 : GPS.Proc(readPacket); break ;
-
+   
   }
 }
 // instantiate object for users
