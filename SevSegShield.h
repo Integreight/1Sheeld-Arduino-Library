@@ -14,7 +14,7 @@ public:
 	SevSegShieldClass();
 	void blinkSeg ();
 	void setSeg(int x);
-	void setCustomChar(char  );
+	void setCustomChar(byte  );
 
 private:
 	char data ;
