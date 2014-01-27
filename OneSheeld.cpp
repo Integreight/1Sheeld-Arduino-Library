@@ -34,6 +34,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
   Serial.write(shieldID);
   Serial.write(instanceID);
   Serial.write(functionID);
+  Serial.write(argNo);
 
 
   for (int i=0 ; i<argNo ; i++)
