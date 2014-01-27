@@ -25,7 +25,7 @@ void OneSheeldClass::write(char* data)
   delay(1);
 }
 
-void OneSheeldClass::sendPacket(byte shieldID, byte functionID, byte argNo, ...)
+void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   va_list arguments ;
   va_start (arguments,argNo);
@@ -33,6 +33,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte functionID, byte argNo, ...)
   Serial.write(STX);
   Serial.write(shieldID);
   Serial.write(functionID);
+  Serial.write(instanceID);
 
   for (int i=0 ; i<argNo ; i++)
   {

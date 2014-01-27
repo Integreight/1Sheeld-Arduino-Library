@@ -74,7 +74,7 @@ public:
     void write(char *data);
     void write(char shieldID, char functionCommand, char *data, int length);
     void onSerialEvent(char);
-   void sendPacket(byte shieldID,byte functionCommand, byte argNo, ...);
+   void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
     
 private:
 int count;
