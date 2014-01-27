@@ -11,7 +11,7 @@ SMSShieldClass::SMSShieldClass(){}
 void SMSShieldClass::send(char* number,char* text)
 {
 	char str[140];
-	strcpy (str, "");
+	strcpy (str, ""); //inserting a null in the array because strcat search for null to concatenate the string comes after the first null str[0]='\0'
 	strcat (str, number);
 	strcat (str, "##");
 	strcat (str, text);
