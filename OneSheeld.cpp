@@ -30,7 +30,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
   va_list arguments ;
   va_start (arguments,argNo);
 
-  Serial.write(STX);
+  Serial.write(START_OF_FRAME);
   Serial.write(shieldID);
   Serial.write(functionID);
   Serial.write(instanceID);
@@ -48,7 +48,6 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 
  }
     va_end(arguments);
-    Serial.write(ETX);
 }
 
 void OneSheeldClass::write(char shieldID,char functionCommand, char* data)

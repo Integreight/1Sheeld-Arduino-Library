@@ -36,6 +36,7 @@
 // start and end of the packet sent
 #define STX 0x02
 #define ETX 0x03
+#define START_OF_FRAME 0xFF
 // for general data sending
 #define GENERAL_DATA 0x29
 #define NOT_FUNCTION 0x00
@@ -45,15 +46,15 @@
 class FunctionArg
 {
 private:
-	int length;
+	byte length;
 	byte * data;
 public:
 	FunctionArg(int l ,byte * d)
 	{
-		length=l;
+		length=(l>0xff)?0xff:l;
 		data=d;
 	}
-	int getLength()
+	byte getLength()
 	{
 		return length;
 	}
