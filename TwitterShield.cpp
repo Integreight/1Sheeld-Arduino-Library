@@ -6,26 +6,28 @@
 #include "OneSheeld.h"
 #include "TwitterShield.h"
 
+
 // public functions
 TwitterShieldClass::TwitterShieldClass(){}
-void TwitterShieldClass::updateStatus(char* data)
+void TwitterShieldClass::updateStatus( char *data)
 {
-OneSheeld.write(TWITTER_ID,SEND_TWEET,data);
+OneSheeld.sendPacket(TWITTER_ID,SEND_TWEET,0,1,new FunctionArg(strlen(data),(byte*)data));
 }
 void TwitterShieldClass::sendDirectMessage(char* username,char* message)
 {
-int length = sizeof(username)+sizeof(message);
+int length = strlen(username)+ strlen(message);
 char data[length];
-for (int i=0;i<(sizeof(username));i++)
+for (int i=0;i<( strlen(username));i++)
 {
 data[i]=username[i];
 }
-data[sizeof(username)]=0xff;
-for (int i=0;i<sizeof(message);i++)
+
+data[ strlen(username)]=0xff;
+for (int i=0;i<=strlen(message);i++)
 {
-data[i+sizeof(username)+1]=message[i];
+data[i+strlen(username)+1]=message[i];
 }
-OneSheeld.write(TWITTER_ID,SEND_DIRECT_MESSAGE,data);
+OneSheeld.sendPacket(TWITTER_ID,0,SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
 
 }
 // instantiate object for users
