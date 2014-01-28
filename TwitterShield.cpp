@@ -11,7 +11,7 @@
 TwitterShieldClass::TwitterShieldClass(){}
 void TwitterShieldClass::updateStatus( char *data)
 {
-OneSheeld.sendPacket(TWITTER_ID,SEND_TWEET,0,1,new FunctionArg(strlen(data),(byte*)data));
+OneSheeld.sendPacket(TWITTER_ID,0,SEND_TWEET,1,new FunctionArg(strlen(data),(byte*)data));
 }
 void TwitterShieldClass::sendDirectMessage(char* username,char* message)
 {
