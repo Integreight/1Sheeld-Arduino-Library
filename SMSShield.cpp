@@ -10,12 +10,14 @@
 SMSShieldClass::SMSShieldClass(){}
 void SMSShieldClass::send(char* number,char* text)
 {
+	/*
 	char str[140];
 	strcpy (str, ""); //inserting a null in the array because strcat search for null to concatenate the string comes after the first null str[0]='\0'
 	strcat (str, number);
 	strcat (str, "##");
 	strcat (str, text);
-	OneSheeld.write(SMS_ID,SEND_SMS,str);
+	*/
+	OneSheeld.sendPacket(SMS_ID,0,SEND_SMS,2,new FunctionArg(strlen(number),(byte*)number),new FunctionArg(strlen(text),(byte*)text));
 }
 
 // instantiate object for users
