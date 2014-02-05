@@ -10,7 +10,7 @@
 FacebookShieldClass::FacebookShieldClass(){}
 void FacebookShieldClass::updateStatus(char* data)
 {
-OneSheeld.write(FACEBOOK_ID,UPDATE_STATUS,data);
+OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(data),(byte*)data));
 }
 
 // instantiate object for users
