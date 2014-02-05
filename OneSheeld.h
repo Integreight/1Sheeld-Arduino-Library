@@ -22,6 +22,7 @@
 #include "EmailShield.h"
 #include "FoursquareShield.h"
 #include "CameraShield.h"
+#include "BuzzerShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 
@@ -41,6 +42,7 @@
 #define EMAIL_ID 0x1E
 #define FOURSQUARE_ID 0x1B
 #define CAMERA_ID 0x15
+#define BUZZER_ID 0x08
 
 #define PACKET_SIZE 12
 
