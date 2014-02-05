@@ -13,7 +13,7 @@ void PhoneShieldClass::call(char* phone)
 	char str[140];
 	strcpy (str, "");
 	strcat (str, phone);
-	OneSheeld.write(PHONE_ID,CALL_PHONE,str);
+	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(str),(byte *)str));
 }
 
 // instantiate object for users
