@@ -2,7 +2,7 @@
 #define LiquidCrystalShield_h
 
 
-#include <inttypes.h>
+#include <OneSheeld.h>
 
 // Library functions commands---fayez
 #define PRINT 0x01
@@ -35,7 +35,7 @@ public:
   LiquidCrystalShield();
  
     
-  void begin(char cols, char rows, char charsize = LCD_5x8DOTS);
+  //void begin(byte cols, byte rows);
 
   void clear();
   void home();
@@ -55,7 +55,7 @@ public:
 
   void createChar(char, char[]);
   void setCursor(char, char); 
-  void write(char);
+  void write(char value);
   void print (char* data);
  
  private:

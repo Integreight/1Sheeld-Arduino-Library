@@ -3,10 +3,11 @@
   Copyright (C) 2013 Integreight Inc  All rights reserved.
 */
 
-
-#include "OneSheeld.h"
-#include "HardwareSerial.h"
 #include "Arduino.h"
+#include "HardwareSerial.h"
+#include "OneSheeld.h"
+
+
 
 
 // public functions
@@ -18,12 +19,12 @@ void OneSheeldClass::begin(long baudRate)
 {
   Serial.begin(baudRate);
 }
-
+/*
 void OneSheeldClass::write(char* data)
 {
   write(GENERAL_DATA,NOT_FUNCTION,data);
   delay(1);
-}
+}*/
 
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
@@ -51,7 +52,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
  }
     va_end(arguments);
 }
-
+/*
 void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
 {
   int dataLength;
@@ -85,7 +86,7 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int l
   
   Serial.write(ETX); // send ETX  to End the packet
   delay(1);
-}
+}*/
 void OneSheeldClass::onSerialEvent(char dataByte)
 {
  if (!frameStart&&dataByte==STX)
@@ -115,6 +116,7 @@ void OneSheeldClass::sendToShields()
   {
     case 0x33 : Keypad.processData(readPacket); break ;
     case 0x39 : GPS.Proc(readPacket); break ;
+    //case 0x41 : Slider.processData(readPacket); break;
    
   }
 }

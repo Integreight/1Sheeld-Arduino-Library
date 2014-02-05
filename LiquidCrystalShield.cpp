@@ -1,9 +1,9 @@
-#include <stdio.h>
-#include <string.h>
-#include <inttypes.h>
-#include "HardwareSerial.h"
+//#include <stdio.h>
+//#include <string.h>
+//#include <inttypes.h>
+//#include "HardwareSerial.h"
 #include "OneSheeld.h"
-#include "Arduino.h"
+//#include "Arduino.h"
 #include "LiquidCrystalShield.h"
 
 // When the display powers up, it is configured as follows:
@@ -26,15 +26,12 @@
 // LiquidCrystal constructor is called).
 
 LiquidCrystalShield::LiquidCrystalShield(){}
-
-void LiquidCrystalShield::begin(char cols, char lines, char dotsize) {
-  // send the args with firmata protocol
-  sentPacket[0]=cols;
-  sentPacket[1]=lines;
-  sentPacket[2]=dotsize;                    // dot size is the area displayed by the character 
- OneSheeld.write(LCD_SHIELD_ID,BEGIN,sentPacket,3);
+/*
+void LiquidCrystalShield::begin(byte cols, byte rows)
+{                    
+ OneSheeld.sendPacket(LCD_SHIELD_ID,0,BEGIN,2,new FunctionArg(1,&cols),new FunctionArg(1,&rows));                // dot size is the area displayed by the character
 }
-
+*/
 /********** high level commands, for the user! */
 void LiquidCrystalShield::clear()
 {
@@ -45,13 +42,13 @@ void LiquidCrystalShield::home()
 {
  writePacket(HOME,0); 
 }
-
+/*
 void LiquidCrystalShield::setCursor(char col, char row)
 {
   sentPacket[0]=col;
   sentPacket[1]=row;
   OneSheeld.write(LCD_SHIELD_ID,SET_CURSOR,sentPacket,2);  
-}
+}*/
 
 // Turn the display on/off (quickly)
 void LiquidCrystalShield::noDisplay() {
@@ -107,6 +104,7 @@ void LiquidCrystalShield::noAutoscroll(void) {
 
 // Allows us to fill the first 8 CGRAM locations
 // with custom characters
+/*
 void LiquidCrystalShield::createChar(char location, char charmap[]) {
   
   sentPacket[0]=location;
@@ -116,21 +114,22 @@ void LiquidCrystalShield::createChar(char location, char charmap[]) {
   }
  OneSheeld.write(LCD_SHIELD_ID,CREATE_CHAR,sentPacket,9);  
 }
-
+*/
 /*********** mid level commands, for sending data/cmds */
-void LiquidCrystalShield::write(char value) {
- sentPacket[0]=value;
-OneSheeld.write(LCD_SHIELD_ID,WRITE,sentPacket,1);
+/*void LiquidCrystalShield::write(char value) {
+ //sentPacket[0]=value;
+OneSheeld.sendPacket(LCD_SHIELD_ID,0,WRITE,1,new FunctionArg(1,&value));
 }
 void LiquidCrystalShield::print (char* data)
 {
 writePacket(PRINT,data);
 }
 /************ low level data pushing commands **********/
+/*
 void LiquidCrystalShield::writePacket (char functionCommand , char* data)
 {
 
   OneSheeld.write(LCD_SHIELD_ID,functionCommand,data);
-}
+}*/
 
 LiquidCrystalShield LCD;
