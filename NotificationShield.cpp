@@ -10,7 +10,7 @@
 NotificationShieldClass::NotificationShieldClass(){}
 void NotificationShieldClass::notifyPhone(char* data)
 {
-OneSheeld.write(NOTIFICATION_ID,NOTIFY_PHONE,data);
+OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFY_PHONE,1,new FunctionArg(strlen(data),(byte*)data));
 }
 
 // instantiate object for users
