@@ -2,23 +2,22 @@
 #define SevSegShield_h 
 
 
-#define OUT		0xff
-#define BLINK_SEG 0x01
-#define SET_SEG  0x05
-#define SET_CHAR 0x06 
+
+//#define BLINK_SEG 0x01
+#define SET_NUMBER  0x01
+#define SET_VALUE 0x02 
 
 class SevSegShieldClass
 {
 
 public:
 	SevSegShieldClass();
-	void blinkSeg ();
-	void setSeg(int x);
-	void setCustomChar(byte  );
+	//void blinkSeg ();
+	void setNumber(byte x);
+	void setValue(byte  );
 
 private:
-	char data ;
-	char *dataptr;
+	
 
 };
 
