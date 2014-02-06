@@ -9,9 +9,9 @@ class FoursquareShieldClass
 {
 public:
 	FoursquareShieldClass();
-	void checkIn(char* placeName);
+	void checkIn(char* placeId, char* msg);
 private:
 
 };
-extern FoursquareShieldClass FSQ;
+extern FoursquareShieldClass Foursquare;
 #endif
