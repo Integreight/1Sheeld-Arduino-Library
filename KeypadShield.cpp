@@ -32,12 +32,14 @@ int KeypadShieldClass::getButton()
 return 1;
 }
 
-void KeypadShieldClass::processData( char * readPacket)
+void KeypadShieldClass::processData()
 {
-  if (readPacket[2]==DATA_IN)
+  byte function_Number=OneSheeld.getFunctionId();
+  //Serial.write(function_Number);
+  if (function_Number==DATA_IN)
    { 
-     row=(int)readPacket[3];
-     col=(int)readPacket[4];
+     row=OneSheeld.getArgumentData(0)[0];
+     col=OneSheeld.getArgumentData(1)[0];
    }
    if (isCallbackAssigned)
    (*buttonChangeCallback)(row,col);

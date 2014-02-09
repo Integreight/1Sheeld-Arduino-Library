@@ -20,7 +20,7 @@ int getRow();
 int getCol();
 int getButton();
 void setOnButtonChange(void (*userFunction)(int,int));
-void processData(char *);
+void processData();
 
 private:
 
