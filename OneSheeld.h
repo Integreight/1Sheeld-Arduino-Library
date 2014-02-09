@@ -28,6 +28,7 @@
 #include "Pushbuttonshield.h"
 #include "ToggleButtonShield.h"
 #include "GamePadShield.h"
+#include "FlashLightShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 
@@ -36,33 +37,32 @@
 #define KEYPAD_SHIELD_ID 0x09
 #define NOTIFICATION_ID  0x06
 #define ACCELEROMETER_ID 0x0B
-#define SMS_ID 0x0D
-#define GAMEPAD_ID 0x0C
-#define PHONE_ID 0x20
-#define GPS_ID 0x1C
-#define SEV_SEG_ID 0x07
-#define SLIDER_ID 0x01
-#define SKYPE_ID 0x1F
-#define MUSIC_PLAYER_ID 0x1D
-#define EMAIL_ID 0x1E
-#define FOURSQUARE_ID 0x1B
-#define CAMERA_ID 0x15
-#define BUZZER_ID 0x08
-#define LED_ID 0x02
-#define SLIDER_ID 0x01
-#define PUSH_BUTTON 0x03
-#define TOGGLE_BUTTON 0x04
+#define SMS_ID 			 0x0D
+#define GAMEPAD_ID 		 0x0C
+#define PHONE_ID 		 0x20
+#define GPS_ID 			 0x1C
+#define SEV_SEG_ID 		 0x07
+#define SKYPE_ID 		 0x1F
+#define MUSIC_PLAYER_ID  0x1D
+#define EMAIL_ID 		 0x1E
+#define FOURSQUARE_ID 	 0x1B
+#define CAMERA_ID 		 0x15
+#define BUZZER_ID 		 0x08
+#define LED_ID 		 	 0x02
+#define SLIDER_ID 		 0x01
+#define PUSH_BUTTON 	 0x03
+#define TOGGLE_BUTTON 	 0x04
+#define FLASH_ID		 0x05
 
-
-#define PACKET_SIZE 12
+//#define PACKET_SIZE 12
 
 // start and end of the packet sent
-#define STX 0x02
-#define ETX 0x03
-#define START_OF_FRAME 0xFF
+#define STX 			0x02
+#define ETX 			0x03
+#define START_OF_FRAME  0xFF
 // for general data sending
-#define GENERAL_DATA 0x29
-#define NOT_FUNCTION 0x00
+#define GENERAL_DATA 	0x29
+#define NOT_FUNCTION 	0x00
 
 //new function for the new packet frame 
 
@@ -92,10 +92,12 @@ public:
 class OneSheeldClass
 {
 	private:
+/*
 int count;
-char readPacket[PACKET_SIZE];
-int frameStart;
+//char readPacket[PACKET_SIZE];
+*/
 void sendToShields();
+int frameStart;
 byte shield;
 byte Start;
 byte instance;
@@ -111,9 +113,7 @@ byte framestart;
 public:
     
 OneSheeldClass();
-  
-
-  //Functions of the reciever 
+//Functions of the reciever 
 byte getShieldId();
 byte getInstanceId();
 byte getFunctionId();
@@ -122,7 +122,7 @@ byte getArgumentLength(byte x);
 byte * getArgumentData(byte x);
 void processInput();					//new Reciever function 
 void begin(long baudRate);
-void onSerialEvent(char);
+//void onSerialEvent(char);
 void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
     //void write(char shieldID, char functionCommand, char *data);
     //void write(char *data);
