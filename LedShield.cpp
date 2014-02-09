@@ -9,12 +9,12 @@ LedShield::LedShield()
 
 void LedShield::setLow()
 {
-	setValue(0x00);
+	setValue(SET_LOW);
 }
 
 void LedShield::setHigh()
 {
-	setValue(0x01);
+	setValue(SET_HIGH);
 }
 
 void LedShield::setValue(byte data)
