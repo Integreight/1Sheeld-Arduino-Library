@@ -4,8 +4,7 @@
 
 
 //#define BLINK_SEG 0x01
-#define SET_NUMBER  0x01
-#define SET_VALUE 0x02 
+#define SET_VALUE 0x01 
 
 class SevSegShieldClass
 {
