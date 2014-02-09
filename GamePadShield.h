@@ -1,6 +1,7 @@
 #ifndef GamePadShield_h
 #define GamePadShield_h
 
+//wroking on the GamePad buttons Bitwise 
 #define A 0
 #define B 1
 #define C 2 
@@ -26,8 +27,6 @@ public:
 	void processData();
 private:
 	byte value1;
-	byte value2;
-	byte argument_Number;
 };
 
 extern GamePadShield GamePad;

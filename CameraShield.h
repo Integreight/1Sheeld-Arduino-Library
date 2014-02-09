@@ -2,8 +2,8 @@
 #define CameraShield_h
 
 
-#define CAPTURE 0x01
-#define SET_FLASH 0x02
+#define CAPTURE 	0xFF
+#define SET_FLASH 	0x01
 
 class CameraShieldClass
 {
