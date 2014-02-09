@@ -33,11 +33,11 @@ public:
 	GPSCoordinate getLon();
 	bool islongitude();
 	bool islatitude();
-	void Proc (char *);
+	void Proc ();
 	
 private:
 	char Long[4],Latt[4];
-	char *readpacket[PACKET_SIZE]; 
+	//char *readpacket[PACKET_SIZE]; 
 	
 
 };
