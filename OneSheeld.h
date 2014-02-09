@@ -23,6 +23,11 @@
 #include "FoursquareShield.h"
 #include "CameraShield.h"
 #include "BuzzerShield.h"
+#include "LedShield.h"
+#include "SliderShield.h"
+#include "Pushbuttonshield.h"
+#include "ToggleButtonShield.h"
+#include "GamePadShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 
@@ -43,6 +48,11 @@
 #define FOURSQUARE_ID 0x1B
 #define CAMERA_ID 0x15
 #define BUZZER_ID 0x08
+#define LED_ID 0x02
+#define SLIDER_ID 0x01
+#define PUSH_BUTTON 0x03
+#define TOGGLE_BUTTON 0x04
+
 
 #define PACKET_SIZE 12
 
@@ -81,20 +91,42 @@ public:
 
 class OneSheeldClass
 {
-public:
-    OneSheeldClass();
-    void begin(long baudRate);
-    //void write(char shieldID, char functionCommand, char *data);
-    //void write(char *data);
-   // void write(char shieldID, char functionCommand, char *data, int length);
-    void onSerialEvent(char);
-   void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
-    
-private:
+	private:
 int count;
 char readPacket[PACKET_SIZE];
 int frameStart;
 void sendToShields();
+byte shield;
+byte Start;
+byte instance;
+byte functions;
+byte counter;
+byte argumentcounter;
+byte datalengthcounter;
+byte argumentnumber;
+byte **arguments;				 //pointer to an array of 2d
+byte *argumentL;            
+byte framestart;
+
+public:
+    
+OneSheeldClass();
+  
+
+  //Functions of the reciever 
+byte getShieldId();
+byte getInstanceId();
+byte getFunctionId();
+byte getArgumentNo();
+byte getArgumentLength(byte x);
+byte * getArgumentData(byte x);
+void processInput();					//new Reciever function 
+void begin(long baudRate);
+void onSerialEvent(char);
+void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+    //void write(char shieldID, char functionCommand, char *data);
+    //void write(char *data);
+   // void write(char shieldID, char functionCommand, char *data, int length); 
 
 };
 // instantiate object for users

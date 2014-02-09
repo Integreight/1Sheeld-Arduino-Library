@@ -13,7 +13,15 @@
 // public functions
 OneSheeldClass::OneSheeldClass() 
 {
-  frameStart=0;
+      frameStart=0;
+      shield=0;
+      Start=0;
+      instance=0;
+      functions=0;
+      counter=0;
+      argumentcounter=0;
+      datalengthcounter=0;
+      argumentnumber=0;
 }
 void OneSheeldClass::begin(long baudRate)
 {
@@ -87,6 +95,102 @@ void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int l
   Serial.write(ETX); // send ETX  to End the packet
   delay(1);
 }*/
+
+
+//Recieving Functions
+byte OneSheeldClass::getShieldId()
+{
+  return shield;
+} 
+
+byte OneSheeldClass::getInstanceId()
+{
+  return instance;
+} 
+
+byte OneSheeldClass::getFunctionId()
+{
+  return functions;
+}
+
+byte OneSheeldClass::getArgumentNo()
+{
+  return argumentnumber;
+} 
+
+byte OneSheeldClass::getArgumentLength(byte x)
+{
+  return argumentL[x];
+}
+
+byte * OneSheeldClass::getArgumentData(byte x)
+{
+  return arguments[x];
+} 
+
+void OneSheeldClass::processInput()
+{
+  int data=Serial.read();
+  if(data==-1)return;
+   if(!framestart&&data==0xFF)
+        {
+            counter=0;
+            Start=data;
+            framestart=1;
+            counter++;
+        }
+        else if(counter==4)                      //data is the no of arguments
+        {
+            datalengthcounter=0;
+            argumentcounter=0;
+            argumentnumber=data;
+            arguments=new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
+            argumentL=new byte [argumentnumber];
+            counter++;
+        }
+        else if (counter==5)                    // data is the first argument length
+        {
+            argumentL[argumentcounter]=data;
+            arguments[argumentcounter]=new byte [argumentL[argumentcounter]];         // assigning the second dimensional of the pointer
+            counter++;
+        }
+        else if (counter==6)
+        {
+            arguments[argumentcounter][datalengthcounter++]=data;
+            if (datalengthcounter==argumentL[argumentcounter])
+            {
+                datalengthcounter=0;
+                argumentcounter++;
+                counter=5;
+
+                if(argumentcounter==argumentnumber)
+                {
+                    framestart=0;
+                    sendToShields();
+                }
+
+            }
+
+        }
+        else{
+       switch(counter)
+       {
+                case 1 : shield=data;break;
+                case 2 : instance=data;break;
+                case 3 : functions=data;break;
+                default :               break;
+       }
+           counter++;
+        }
+        /*
+       Serial.write(shield);
+       Serial.write(functions);
+       Serial.write(argumentnumber);
+       */
+       
+    }
+
+/*
 void OneSheeldClass::onSerialEvent(char dataByte)
 {
  if (!frameStart&&dataByte==STX)
@@ -109,14 +213,22 @@ void OneSheeldClass::onSerialEvent(char dataByte)
   sendToShields();
  }
  
-} 
+}*/ 
 void OneSheeldClass::sendToShields()
 {
-  switch (readPacket[1])
+      
+  byte number_Of_Shield= OneSheeld.getShieldId();     //getting the shield number using the function we made
+
+  switch (number_Of_Shield)
   {
-    case 0x33 : Keypad.processData(readPacket); break ;
-    case 0x39 : GPS.Proc(readPacket); break ;
-    //case 0x41 : Slider.processData(readPacket); break;
+
+    case 0x09 : Keypad.processData(); break ;
+    case 0x1C : GPS.Proc();break ;
+    case 0x01 : Slider.processData(); break;
+    case 0x03 : PushButton.processData();break;
+    case 0x04 : ToggleButton.processData();break;
+    case 0x0C : GamePad.processData();break;
+
    
   }
 }
@@ -125,6 +237,7 @@ OneSheeldClass OneSheeld;
 
 void serialEvent()
 {
-char value=Serial.read();
-OneSheeld.onSerialEvent(value);
+//byte value=Serial.read();
+//OneSheeld.onSerialEvent(value);
+OneSheeld.processInput();
 }
