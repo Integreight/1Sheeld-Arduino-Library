@@ -1,9 +1,10 @@
 #ifndef BuzzerShield_h
 #define BuzzerShield_h
 
-#define BUZZ_ON 0x01
-#define BUZZ_OFF 0x02
-#define SET_VALUE 0x03
+
+#define BUZZ_ON 	0xFF
+#define BUZZ_OFF 	0x00
+#define SET_VALUE 	0x01
 
 class BuzzerShieldClass
 {

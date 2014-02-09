@@ -9,12 +9,12 @@ BuzzerShieldClass::BuzzerShieldClass()
 
 void BuzzerShieldClass::buzzOn()
 {
-	OneSheeld.sendPacket(BUZZER_ID,0,BUZZ_ON,0);
+	setValue(BUZZ_ON);
 }
 
 void BuzzerShieldClass::buzzOff()
 {
-	OneSheeld.sendPacket(BUZZER_ID,0,BUZZ_OFF,0);
+	setValue(BUZZ_OFF);
 }
 
 void BuzzerShieldClass::setValue(byte x)
