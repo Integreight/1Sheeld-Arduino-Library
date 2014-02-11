@@ -23,6 +23,7 @@ OneSheeldClass::OneSheeldClass()
       datalengthcounter=0;
       argumentnumber=0;
 }
+
 void OneSheeldClass::begin(long baudRate)
 {
   Serial.begin(baudRate);
@@ -182,38 +183,10 @@ void OneSheeldClass::processInput()
        }
            counter++;
         }
-        /*
-       Serial.write(shield);
-       Serial.write(functions);
-       Serial.write(argumentnumber);
-       */
+
        
     }
 
-/*
-void OneSheeldClass::onSerialEvent(char dataByte)
-{
- if (!frameStart&&dataByte==STX)
- {
-   count=0;
-   readPacket[count]=dataByte;
-   frameStart=1;
-   count++;
- }
- else if (frameStart && (dataByte!=ETX))
- {
-  readPacket[count]=dataByte;
-  count++;
- }
- else if (frameStart && (dataByte==ETX))
- {
-  readPacket[count]=dataByte;
-  count=0;
-  frameStart=0;
-  sendToShields();
- }
- 
-}*/ 
 void OneSheeldClass::sendToShields()
 {
       
@@ -221,15 +194,18 @@ void OneSheeldClass::sendToShields()
 
   switch (number_Of_Shield)
   {
-
     case 0x09 : Keypad.processData(); break ;
     case 0x1C : GPS.Proc();break ;
     case 0x01 : Slider.processData(); break;
     case 0x03 : PushButton.processData();break;
     case 0x04 : ToggleButton.processData();break;
     case 0x0C : GamePad.processData();break;
-
-   
+    case 0x13 : Prox.processData();break;
+    case 0x18 : Mic.processData();break;
+    case 0x12 : Temp.processData();break;
+    case 0x10 : Light.processData();break;
+    case 0x11 : Pressure.processData();break;
+    case 0x14 : Gravity.processData();break;
   }
 }
 // instantiate object for users

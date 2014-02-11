@@ -10,8 +10,11 @@ public:
 	PushButtonShield();
 	byte getValue();
 	void processData();
+	void setOnChange(void (*userFunction)(byte));
 public:
 	byte value;
+	bool callBack;
+	void (*changeCallBack)(byte);
 
 	
 };

@@ -29,6 +29,12 @@
 #include "ToggleButtonShield.h"
 #include "GamePadShield.h"
 #include "FlashLightShield.h"
+#include "ProximityShield.h"
+#include "MicShield.h"
+#include "TemperatureShield.h"
+#include "LightSensorShield.h"
+#include "PressureSensorShield.h"
+#include "GravitySensorShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 
@@ -53,6 +59,12 @@
 #define PUSH_BUTTON 	 0x03
 #define TOGGLE_BUTTON 	 0x04
 #define FLASH_ID		 0x05
+#define PROXIMITY_ID	 0x13
+#define MIC_ID 			 0x18
+#define TEMPERATURE_ID	 0x12
+#define LIGHT_ID 		 0x10
+#define PRESSURE_ID		 0x11
+#define GRAVITY_ID 		 0x14
 
 //#define PACKET_SIZE 12
 

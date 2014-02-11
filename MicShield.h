@@ -1,12 +1,12 @@
-#ifndef ToggleButtonShield_h
-#define ToggleButtonShield_h
+#ifndef MicShield_h
+#define MicShield_h
 
 
 
-class ToggleButtonShield
+class MicShield
 {
 public:
-	ToggleButtonShield();
+	MicShield();
 	byte getValue();
 	void processData();
 	void setOnChange(void (*userFunction)(byte));
@@ -15,6 +15,5 @@ private:
 	bool callBack;
 	void (*changeCallBack)(byte);
 };
-
-extern ToggleButtonShield ToggleButton;
+extern MicShield Mic;
 #endif

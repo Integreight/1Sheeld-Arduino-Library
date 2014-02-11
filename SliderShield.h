@@ -8,8 +8,11 @@ public:
 	SliderShield();
 	byte getValue();
 	void processData();
+	void setOnChange(void (*userFunction)(byte));
 private:
 byte value;
+bool callBack;
+void(*changeCallBack)(byte);
 
 
 
