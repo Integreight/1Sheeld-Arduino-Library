@@ -145,14 +145,14 @@ void OneSheeldClass::processInput()
             datalengthcounter=0;
             argumentcounter=0;
             argumentnumber=data;
-            arguments=new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
-            argumentL=new byte [argumentnumber];
+            arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
+            argumentL=(byte*)malloc(sizeof(byte)*argumentnumber);//new byte [argumentnumber];
             counter++;
         }
         else if (counter==5)                    // data is the first argument length
         {
             argumentL[argumentcounter]=data;
-            arguments[argumentcounter]=new byte [argumentL[argumentcounter]];         // assigning the second dimensional of the pointer
+            arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
             counter++;
         }
         else if (counter==6)
