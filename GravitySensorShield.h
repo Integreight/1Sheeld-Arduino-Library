@@ -14,7 +14,6 @@ public:
 	void processData();
 private:
 	float valueX ,valueY,valueZ;
-	int x,y;
 	union float_test
 	{
 		byte data[4];

@@ -10,9 +10,7 @@ GravitySensorShield::GravitySensorShield()
 	valueX=0;
 	valueY=0;
 	valueZ=0;
-	x=0;
-	y=0;
-	
+
 }
 
 
@@ -39,6 +37,7 @@ void GravitySensorShield::processData()
 	getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 	getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 	valueX=getfloat.num;
+	//Serial.println(valueX,10);
     //getting the float of second 4bytes
     getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
 	getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
