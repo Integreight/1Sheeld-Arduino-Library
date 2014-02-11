@@ -9,7 +9,6 @@
 #include "TwitterShield.h"
 #include "FacebookShield.h"
 #include "LiquidCrystalShield.h"
-#include "AccelerometerShield.h"
 #include "ReadPWMClass.h"
 #include "KeypadShield.h"
 #include "NotificationShield.h"
@@ -35,6 +34,7 @@
 #include "LightSensorShield.h"
 #include "PressureSensorShield.h"
 #include "GravitySensorShield.h"
+#include "AccelerometerSensorShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 

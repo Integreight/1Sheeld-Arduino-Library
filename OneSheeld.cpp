@@ -206,6 +206,7 @@ void OneSheeldClass::sendToShields()
     case 0x10 : Light.processData();break;
     case 0x11 : Pressure.processData();break;
     case 0x14 : Gravity.processData();break;
+    case 0x0B : Accelerometer.processData();break;
   }
 }
 // instantiate object for users
