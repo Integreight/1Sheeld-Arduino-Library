@@ -35,6 +35,9 @@
 #include "PressureSensorShield.h"
 #include "GravitySensorShield.h"
 #include "AccelerometerSensorShield.h"
+#include "GyroscopeSensorShield.h"
+#include "OrientationSensorShield.h"
+#include "MagnetometerSensorShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 
@@ -65,6 +68,9 @@
 #define LIGHT_ID 		 0x10
 #define PRESSURE_ID		 0x11
 #define GRAVITY_ID 		 0x14
+#define GYROSCOPE_ID	 0x0E
+#define ORIENTATION_ID	 0x0F
+#define MAGNETOMETER_ID  0x0A
 
 //#define PACKET_SIZE 12
 
