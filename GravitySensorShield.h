@@ -1,5 +1,5 @@
-#ifndef GravityShield_h
-#define GravityShield_h
+#ifndef GravitySensorShield_h
+#define GravitySensorShield_h
 
 
 
