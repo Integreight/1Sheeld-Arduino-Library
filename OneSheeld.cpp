@@ -217,7 +217,5 @@ OneSheeldClass OneSheeld;
 
 void serialEvent()
 {
-//byte value=Serial.read();
-//OneSheeld.onSerialEvent(value);
-OneSheeld.processInput();
+  while(Serial.available())OneSheeld.processInput();
 }
