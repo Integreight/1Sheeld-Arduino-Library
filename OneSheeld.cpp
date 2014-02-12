@@ -217,5 +217,5 @@ OneSheeldClass OneSheeld;
 
 void serialEvent()
 {
-  while(Serial.available())OneSheeld.processInput();
+  while(Serial.available())OneSheeld.processInput();      //takes all the bytes and save them in the buffer (buffer size = 64bits)
 }

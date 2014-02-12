@@ -8,7 +8,6 @@
 
 #include "TwitterShield.h"
 #include "FacebookShield.h"
-#include "LiquidCrystalShield.h"
 #include "ReadPWMClass.h"
 #include "KeypadShield.h"
 #include "NotificationShield.h"
@@ -38,11 +37,12 @@
 #include "GyroscopeSensorShield.h"
 #include "OrientationSensorShield.h"
 #include "MagnetometerSensorShield.h"
+#include "LCDShield.h"
 
 // shield ids
 #define TWITTER_ID       0x1A 
 #define FACEBOOK_ID      0x19 
-#define LCD_SHIELD_ID    0x17
+#define LCD_ID 		   	 0x17
 #define KEYPAD_SHIELD_ID 0x09
 #define NOTIFICATION_ID  0x06
 #define ACCELEROMETER_ID 0x0B
