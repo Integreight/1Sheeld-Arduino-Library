@@ -43,10 +43,7 @@ GPSShieldClass::GPSShieldClass ()
 //reading the packet and assigning the values to the long and the latit  
 void GPSShieldClass::Proc ()
 {
-	byte function_Number=OneSheeld.getFunctionId();
 	
-	if(function_Number==DATA_IN)
-	{
 	for (int i=0;i<4;i++)
 	{
 		
@@ -59,7 +56,7 @@ void GPSShieldClass::Proc ()
 	{
 		Latt[i]=OneSheeld.getArgumentData(1)[i];
 	}
-}
+
 
 }
 

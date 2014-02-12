@@ -1,10 +1,6 @@
 #ifndef GPSShield_h
 #define GPSShield_h
 
-//#define POS 0x01
-
-#define PACKET_SIZE 12
-#define DATA_IN 0x01 
 
 class GPSCoordinate {
 
@@ -37,7 +33,6 @@ public:
 	
 private:
 	char Long[4],Latt[4];
-	//char *readpacket[PACKET_SIZE]; 
 	
 
 };
