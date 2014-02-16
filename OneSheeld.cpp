@@ -59,6 +59,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
       }
 
  }
+    Serial.write(END_OF_FRAME);
     va_end(arguments);
 }
 /*

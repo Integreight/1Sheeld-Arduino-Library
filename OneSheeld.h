@@ -75,12 +75,8 @@
 //#define PACKET_SIZE 12
 
 // start and end of the packet sent
-#define STX 			0x02
-#define ETX 			0x03
 #define START_OF_FRAME  0xFF
-// for general data sending
-#define GENERAL_DATA 	0x29
-#define NOT_FUNCTION 	0x00
+#define END_OF_FRAME 	0x00
 
 //new function for the new packet frame 
 
