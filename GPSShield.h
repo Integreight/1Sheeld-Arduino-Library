@@ -7,10 +7,10 @@ class GPSCoordinate {
 public:
 
 GPSCoordinate (char deg,char min ,char sec,char side);
-char getDeg();
-char getMin();
-char getSec();
-char getChar();
+char getDegree();
+char getMinutes();
+char getSeconds();
+char getCharacter();
 
 
 private:

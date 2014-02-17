@@ -12,19 +12,19 @@ GPSCoordinate::GPSCoordinate(char deg,char min ,char sec,char side)
 		seconds=sec;
 		type=side;
 }
-char GPSCoordinate::getDeg()
+char GPSCoordinate::getDegree()
 {
 	return degree ;
 }
-char GPSCoordinate::getMin()
+char GPSCoordinate::getMinutes()
 {
 	return minutes;
 }
-char GPSCoordinate::getSec()
+char GPSCoordinate::getSeconds()
 {
 	return seconds;
 }
-char GPSCoordinate::getChar()
+char GPSCoordinate::getCharacter()
 {
 	return type;
 }
