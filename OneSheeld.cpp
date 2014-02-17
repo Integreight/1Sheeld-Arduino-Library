@@ -174,6 +174,12 @@ void OneSheeldClass::processInput()
                 {
                     framestart=0;
                     sendToShields();
+                    for(int i=0;i<argumentnumber;i++){
+                      free(arguments[i]);
+                    }
+                    free(argumentL);
+                    free(arguments);
+
                 }
 
             }
