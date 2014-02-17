@@ -27,8 +27,8 @@ public:
 	GPSShieldClass();
 	GPSCoordinate getLat();
 	GPSCoordinate getLon();
-	bool islongitude();
-	bool islatitude();
+	bool isLongitude();
+	bool isLatitude();
 	void Proc ();
 	
 private:

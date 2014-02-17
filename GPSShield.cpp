@@ -77,7 +77,7 @@ GPSCoordinate GPSShieldClass::getLat()
 
 
 //Confirmation for the longitude and the latitude used by the programmer
-bool GPSShieldClass::islongitude()
+bool GPSShieldClass::isLongitude()
 {
 	if (Long[3]=='W'||Long[3]=='E')
 		return true ;
@@ -85,7 +85,7 @@ bool GPSShieldClass::islongitude()
 		false;
 }
 
-bool GPSShieldClass::islatitude()
+bool GPSShieldClass::isLatitude()
 {
 	if (Latt[3]=='N'||Latt[3]=='S')
 		return true;
