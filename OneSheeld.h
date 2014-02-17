@@ -136,6 +136,7 @@ byte getArgumentLength(byte x);
 byte * getArgumentData(byte x);
 void processInput();					//new Reciever function 
 void begin(long baudRate);
+void begin();
 //void onSerialEvent(char);
 void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
     //void write(char shieldID, char functionCommand, char *data);

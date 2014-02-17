@@ -28,6 +28,11 @@ void OneSheeldClass::begin(long baudRate)
 {
   Serial.begin(baudRate);
 }
+
+void OneSheeldClass::begin()
+{
+  begin(57600);
+}
 /*
 void OneSheeldClass::write(char* data)
 {
