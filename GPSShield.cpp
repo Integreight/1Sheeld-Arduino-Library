@@ -43,7 +43,18 @@ GPSShieldClass::GPSShieldClass ()
 //reading the packet and assigning the values to the long and the latit  
 void GPSShieldClass::Proc ()
 {
-	
+	getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
+	getfloat.data[1]=OneSheeld.getArgumentData(0)[1];
+	getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
+	getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
+	LatValue=getfloat.num;
+
+	getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
+	getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
+	getfloat.data[2]=OneSheeld.getArgumentData(1)[2];
+	getfloat.data[3]=OneSheeld.getArgumentData(1)[3];
+	LonValue=getfloat.num;
+
 	for (int i=0;i<4;i++)
 	{
 		
@@ -60,6 +71,16 @@ void GPSShieldClass::Proc ()
 
 }
 
+float GPSShieldClass::getLattitude()
+{
+	return LatValue;
+}
+
+
+float GPSShieldClass::getLongitude()
+{
+	return LonValue;
+}
 //get the Longitude 
 GPSCoordinate GPSShieldClass::getLon()
 {

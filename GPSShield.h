@@ -27,13 +27,21 @@ public:
 	GPSShieldClass();
 	GPSCoordinate getLat();
 	GPSCoordinate getLon();
+	float getLattitude();
+	float getLongitude();
 	bool isLongitude();
 	bool isLatitude();
 	void Proc ();
 	
 private:
 	char Long[4],Latt[4];
-	
+	float LatValue,LonValue;
+	union float_test
+	{
+		byte data[4];
+		float num;
+
+	} getfloat;
 
 };
 
