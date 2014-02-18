@@ -105,3 +105,5 @@ videoCall	KEYWORD2
 message	KEYWORD2
 getDegree	KEYWORD2
 sendDirectMessage	KEYWORD2
+getLattitude	KEYWORD2
+getLongitude	KEYWORD2
