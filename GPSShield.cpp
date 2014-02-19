@@ -3,33 +3,6 @@
 #include "GPSShield.h"
 #include "HardwareSerial.h"
 
-
-//constructors to get the longitude and the latitude without the use of arrays 
-GPSCoordinate::GPSCoordinate(char deg,char min ,char sec,char side)
-{
-		degree=deg;
-		minutes=min;
-		seconds=sec;
-		type=side;
-}
-char GPSCoordinate::getDegree()
-{
-	return degree ;
-}
-char GPSCoordinate::getMinutes()
-{
-	return minutes;
-}
-char GPSCoordinate::getSeconds()
-{
-	return seconds;
-}
-char GPSCoordinate::getCharacter()
-{
-	return type;
-}
-
-
 //initializing the array of the Long and the Lati 
 GPSShieldClass::GPSShieldClass ()
 {
@@ -55,20 +28,6 @@ void GPSShieldClass::Proc ()
 	getfloat.data[3]=OneSheeld.getArgumentData(1)[3];
 	LonValue=getfloat.num;
 
-	for (int i=0;i<4;i++)
-	{
-		
-		Long[i]=OneSheeld.getArgumentData(0)[i];
-
-
-	}
-		
-	for (int i=0;i<4;i++)
-	{
-		Latt[i]=OneSheeld.getArgumentData(1)[i];
-	}
-
-
 }
 
 float GPSShieldClass::getLattitude()
@@ -81,21 +40,6 @@ float GPSShieldClass::getLongitude()
 {
 	return LonValue;
 }
-//get the Longitude 
-GPSCoordinate GPSShieldClass::getLon()
-{
-
-	return GPSCoordinate(Long[0],Long[1],Long[2],Long[3]);
-
-}
-
-//get the latitude 
-GPSCoordinate GPSShieldClass::getLat()
-{
-
-	 return GPSCoordinate(Latt[0],Latt[1],Latt[2],Latt[3]);
-}
-
 
 //Confirmation for the longitude and the latitude used by the programmer
 bool GPSShieldClass::isLongitude()

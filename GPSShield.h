@@ -2,31 +2,10 @@
 #define GPSShield_h
 
 
-class GPSCoordinate {
-
-public:
-
-GPSCoordinate (char deg,char min ,char sec,char side);
-char getDegree();
-char getMinutes();
-char getSeconds();
-char getCharacter();
-
-
-private:
-	unsigned char degree;
-	unsigned char minutes;
-	unsigned char seconds;
-	unsigned char type;
-
-};
-
 class GPSShieldClass 
 {
 public:
 	GPSShieldClass();
-	GPSCoordinate getLat();
-	GPSCoordinate getLon();
 	float getLattitude();
 	float getLongitude();
 	bool isLongitude();
