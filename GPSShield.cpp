@@ -47,7 +47,7 @@ bool GPSShieldClass::isLongitude()
 	if (Long[3]=='W'||Long[3]=='E')
 		return true ;
 	else 
-		false;
+		return false;
 }
 
 bool GPSShieldClass::isLatitude()
@@ -55,6 +55,27 @@ bool GPSShieldClass::isLatitude()
 	if (Latt[3]=='N'||Latt[3]=='S')
 		return true;
 	else 
-		false;
+		return false;
 }
+
+bool GPSShieldClass::isInRange(double usersValue1, double usersValue2 ,double range)
+{
+	double dLat=usersValue1-LatValue;
+	double dLon=usersValue2-LonValue;
+
+	double chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(LatValue)*cos(usersValue1);
+	double angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
+	double actualDsitance  = (R*angularDistance)*1000;											//getting the actuall distance in meters
+
+	if(actualDsitance>=0 && actualDsitance<range)
+	{
+			return true;		
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
 GPSShieldClass  GPS ;

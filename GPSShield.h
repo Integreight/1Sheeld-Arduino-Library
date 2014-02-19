@@ -1,5 +1,6 @@
 #ifndef GPSShield_h
 #define GPSShield_h
+#define R 6371
 
 
 class GPSShieldClass 
@@ -10,6 +11,7 @@ public:
 	float getLongitude();
 	bool isLongitude();
 	bool isLatitude();
+	bool isInRange(double , double , double );
 	void Proc ();
 	
 private:
