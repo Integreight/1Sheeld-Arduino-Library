@@ -9,9 +9,8 @@ public:
 	GPSShieldClass();
 	float getLattitude();
 	float getLongitude();
-	bool isLongitude();
-	bool isLatitude();
 	bool isInRange(float , float , float );
+	float getDistance(float  , float );
 	void Proc ();
 	
 private:

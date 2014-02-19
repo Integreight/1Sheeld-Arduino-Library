@@ -38,33 +38,9 @@ float GPSShieldClass::getLongitude()
 	return LonValue;
 }
 
-//Confirmation for the longitude and the latitude used by the programmer
-bool GPSShieldClass::isLongitude()
+bool GPSShieldClass::isInRange(float usersValue1 , float usersValue2,float range)
 {
-	if (Long[3]=='W'||Long[3]=='E')
-		return true ;
-	else 
-		return false;
-}
-
-bool GPSShieldClass::isLatitude()
-{
-	if (Latt[3]=='N'||Latt[3]=='S')
-		return true;
-	else 
-		return false;
-}
-
-bool GPSShieldClass::isInRange(float usersValue1, float usersValue2 ,float range)
-{
-	float dLat=usersValue1-LatValue;
-	float dLon=usersValue2-LonValue;
-
-	float chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(LatValue)*cos(usersValue1);
-	float angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
-	float actualDsitance  = (R*angularDistance)*1000;											//getting the actuall distance in meters
-
-	if(actualDsitance>=0 && actualDsitance<range)
+	if(getDistance(usersValue1 , usersValue2)>=0 && getDistance(usersValue1 , usersValue2)<range)
 	{
 			return true;		
 	}
@@ -73,6 +49,19 @@ bool GPSShieldClass::isInRange(float usersValue1, float usersValue2 ,float range
 		return false;
 	}
 
+}
+
+float GPSShieldClass::getDistance(float x , float y)
+{
+
+	float dLat=x-LatValue;
+	float dLon=y-LonValue;
+
+	float chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(LatValue)*cos(x);
+	float angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
+	float actualDsitance  = (R*angularDistance)*1000;			//getting the actuall distance in meters
+
+	return actualDsitance;											
 }
 
 GPSShieldClass  GPS ;
