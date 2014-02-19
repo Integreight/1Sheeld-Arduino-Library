@@ -107,3 +107,5 @@ getDegree	KEYWORD2
 sendDirectMessage	KEYWORD2
 getLattitude	KEYWORD2
 getLongitude	KEYWORD2
+isInRange	KEYWORD2
+getDistance	KEYWORD2
