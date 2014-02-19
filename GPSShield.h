@@ -11,7 +11,7 @@ public:
 	float getLongitude();
 	bool isLongitude();
 	bool isLatitude();
-	bool isInRange(double , double , double );
+	bool isInRange(float , float , float );
 	void Proc ();
 	
 private:

@@ -6,11 +6,8 @@
 //initializing the array of the Long and the Lati 
 GPSShieldClass::GPSShieldClass ()
 {
-	for (int i=0;i<4;i++)
-	{
-		Long[i]=0x00;
-		Latt[i]=0x00;
-	} 
+	LatValue=0;
+	LonValue=0;
 }
 
 //reading the packet and assigning the values to the long and the latit  
@@ -58,14 +55,14 @@ bool GPSShieldClass::isLatitude()
 		return false;
 }
 
-bool GPSShieldClass::isInRange(double usersValue1, double usersValue2 ,double range)
+bool GPSShieldClass::isInRange(float usersValue1, float usersValue2 ,float range)
 {
-	double dLat=usersValue1-LatValue;
-	double dLon=usersValue2-LonValue;
+	float dLat=usersValue1-LatValue;
+	float dLon=usersValue2-LonValue;
 
-	double chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(LatValue)*cos(usersValue1);
-	double angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
-	double actualDsitance  = (R*angularDistance)*1000;											//getting the actuall distance in meters
+	float chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(LatValue)*cos(usersValue1);
+	float angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
+	float actualDsitance  = (R*angularDistance)*1000;											//getting the actuall distance in meters
 
 	if(actualDsitance>=0 && actualDsitance<range)
 	{
