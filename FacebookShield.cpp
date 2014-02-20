@@ -8,9 +8,9 @@
 
 // public functions
 FacebookShieldClass::FacebookShieldClass(){}
-void FacebookShieldClass::updateStatus(char* data)
+void FacebookShieldClass::updateStatus(char* status)
 {
-OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(data),(byte*)data));
+OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
 }
 
 // instantiate object for users

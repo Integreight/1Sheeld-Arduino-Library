@@ -12,7 +12,7 @@ private:
 
 public:
 	EmailShieldClass();
-	void send(char *username,char* message);
+	void send(char* ,char* );
 };
 
 extern EmailShieldClass Email;

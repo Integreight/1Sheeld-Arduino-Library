@@ -26,7 +26,7 @@ public:
 	bool isDPressed();
 	void processData();
 private:
-	byte value1;
+	byte value;
 };
 
 extern GamePadShield GamePad;

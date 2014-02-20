@@ -8,8 +8,7 @@
 class FoursquareShieldClass
 {
 public:
-	FoursquareShieldClass();
-	void checkIn(char* placeId, char* msg);
+	void checkIn(char* , char* );
 private:
 
 };

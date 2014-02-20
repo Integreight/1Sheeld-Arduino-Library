@@ -1,8 +1,5 @@
 #include "OneSheeld.h"
 #include "PressureSensorShield.h"
-#include "HardwareSerial.h"
-
-
 
 PressureSensorShield::PressureSensorShield()
 {
@@ -25,4 +22,4 @@ void PressureSensorShield::processData()
 	value|=(unsigned long)(data[0]<<8);
 }
 
-PressureSensorShield Pressure;
+PressureSensorShield PressureSensor;

@@ -8,11 +8,11 @@ class GyroscopeSensorShield
 {
 public:
 	GyroscopeSensorShield();
-	float getX_Axis();
-	float getY_Axis();
-	float getZ_Axis();
-	void processData();
+	float getX();
+	float getY();
+	float getZ();
 private:
+	void processData();
 	float valueX ,valueY,valueZ;
 	union float_test
 	{
@@ -20,6 +20,7 @@ private:
 		float num;
 
 	} getfloat;
+	friend class OneSheeldClass;
 
 	
 };

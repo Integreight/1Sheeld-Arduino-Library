@@ -11,13 +11,8 @@
 class PhoneShieldClass 
 {
 public:
-PhoneShieldClass();
-void call(char* phone);
-
+void call(char* );
 private:
-
-
-
 };
 // instantiate object for users
 extern PhoneShieldClass Phone;

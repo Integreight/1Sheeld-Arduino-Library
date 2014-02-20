@@ -14,7 +14,7 @@
 #include "SMSShield.h"
 #include "PhoneShield.h"
 #include "GPSShield.h"
-#include "SevSegShield.h"
+#include "SevenSegmentShield.h"
 #include "SkypeShield.h"
 #include "MusicPlayerShield.h"
 #include "EmailShield.h"
@@ -27,9 +27,9 @@
 #include "ToggleButtonShield.h"
 #include "GamePadShield.h"
 #include "FlashLightShield.h"
-#include "ProximityShield.h"
+#include "ProximitySensorShield.h"
 #include "MicShield.h"
-#include "TemperatureShield.h"
+#include "TemperatureSensorShield.h"
 #include "LightSensorShield.h"
 #include "PressureSensorShield.h"
 #include "GravitySensorShield.h"
@@ -72,8 +72,6 @@
 #define ORIENTATION_ID	 0x0F
 #define MAGNETOMETER_ID  0x0A
 
-//#define PACKET_SIZE 12
-
 // start and end of the packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
@@ -106,10 +104,6 @@ public:
 class OneSheeldClass
 {
 	private:
-/*
-int count;
-//char readPacket[PACKET_SIZE];
-*/
 void sendToShields();
 int frameStart;
 byte shield;
@@ -137,11 +131,7 @@ byte * getArgumentData(byte x);
 void processInput();					//new Reciever function 
 void begin(long baudRate);
 void begin();
-//void onSerialEvent(char);
 void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
-    //void write(char shieldID, char functionCommand, char *data);
-    //void write(char *data);
-   // void write(char shieldID, char functionCommand, char *data, int length); 
 
 };
 // instantiate object for users

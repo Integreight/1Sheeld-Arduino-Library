@@ -8,12 +8,13 @@ class LightSensorShield
 public:
 	LightSensorShield();
 	unsigned long getValue();
-	void processData();
 private:
+	void processData();
 	unsigned long value;
 	 long data[3];
+	 friend class OneSheeldClass;
 
 };
 
-extern LightSensorShield Light;
+extern LightSensorShield LightSensor;
 #endif  

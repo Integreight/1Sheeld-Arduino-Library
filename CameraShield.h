@@ -13,7 +13,7 @@ class CameraShieldClass
 public:
 	CameraShieldClass();
 	void capture ();
-	void setFlash(byte value);
+	void setFlash(byte );
 private:
 	
 };

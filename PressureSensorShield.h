@@ -8,12 +8,13 @@ class PressureSensorShield
 public:
 	PressureSensorShield();
 	unsigned long getPressure();
-	void processData();
 private:
+	void processData();
 	unsigned long value;
 	 long data[3];
+	 friend class OneSheeldClass;
 
 };
 
-extern PressureSensorShield Pressure;
+extern PressureSensorShield PressureSensor;
 #endif  

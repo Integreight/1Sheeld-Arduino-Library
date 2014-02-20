@@ -1,8 +1,5 @@
 #include "OneSheeld.h"
 #include "SliderShield.h"
-#include "HardwareSerial.h"
-
-
 
 SliderShield::SliderShield()
 {

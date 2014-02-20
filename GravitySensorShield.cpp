@@ -1,6 +1,6 @@
 #include "OneSheeld.h"
 #include "GravitySensorShield.h"
-#include "HardwareSerial.h"
+
 
 
 
@@ -14,17 +14,17 @@ GravitySensorShield::GravitySensorShield()
 }
 
 
-float GravitySensorShield::getX_Axis()
+float GravitySensorShield::getX()
 {
 	return valueX;
 }
 
-float GravitySensorShield::getY_Axis()
+float GravitySensorShield::getY()
 {
 	return valueY;
 }
 
-float GravitySensorShield::getZ_Axis()
+float GravitySensorShield::getZ()
 {
 	return valueZ;
 }
@@ -37,7 +37,6 @@ void GravitySensorShield::processData()
 	getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 	getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 	valueX=getfloat.num;
-	//Serial.println(valueX,10);
     //getting the float of second 4bytes
     getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
 	getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
@@ -50,26 +49,7 @@ void GravitySensorShield::processData()
 	getfloat.data[2]=OneSheeld.getArgumentData(2)[2];
 	getfloat.data[3]=OneSheeld.getArgumentData(2)[3];
 	valueZ=getfloat.num;
-    
 
-/*
-	if(x==4){
-      if(y==1)
-      {
-        valueY=getfloat.num;
-        Serial.println(valueY,10);
-      }
-      if(y==2)
-      {
-        valueZ=getfloat.num;
-        Serial.println(valueZ,10);
-      }
-      valueX=getfloat.num;
-    Serial.println(valueX,10);
-    y++;
-    x=0;
-    }*/ 
 }
-
 
 GravitySensorShield Gravity ;

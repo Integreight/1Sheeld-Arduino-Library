@@ -1,7 +1,5 @@
 #include "OneSheeld.h"
 #include "LightSensorShield.h"
-#include "HardwareSerial.h"
-
 
 
 LightSensorShield::LightSensorShield()
@@ -27,4 +25,4 @@ void LightSensorShield::processData()
 	value|=(unsigned long)(data[0]<<16);
 }
 
-LightSensorShield Light;
+LightSensorShield LightSensor;

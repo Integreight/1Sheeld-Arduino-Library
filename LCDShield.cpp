@@ -2,11 +2,6 @@
 #include "LCDShield.h"
 
 
-
-
-LCDShield::LCDShield()
-{}
-
 void LCDShield::begin(byte x,byte y)
 { 
 	OneSheeld.sendPacket(LCD_ID,0,BEGIN,2,new FunctionArg(1,&x),new FunctionArg(1,&y));

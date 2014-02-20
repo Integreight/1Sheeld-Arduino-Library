@@ -2,10 +2,6 @@
 #include "FoursquareShield.h"
 
 
-FoursquareShieldClass::FoursquareShieldClass()
-{}
-
-
 
 void FoursquareShieldClass::checkIn(char* placeId, char* msg)
 {

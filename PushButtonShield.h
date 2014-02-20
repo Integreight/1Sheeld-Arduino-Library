@@ -9,13 +9,13 @@ class PushButtonShield
 public:
 	PushButtonShield();
 	byte getValue();
-	void processData();
 	void setOnChange(void (*userFunction)(byte));
 public:
+	void processData();
 	byte value;
 	bool callBack;
 	void (*changeCallBack)(byte);
-
+	friend class OneSheeldClass;
 	
 };
 

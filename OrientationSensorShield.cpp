@@ -1,9 +1,5 @@
 #include "OneSheeld.h"
 #include "OrientationSensorShield.h"
-#include "HardwareSerial.h"
-
-
-
 
 OrientationSensorShield::OrientationSensorShield()
 {
@@ -14,17 +10,17 @@ OrientationSensorShield::OrientationSensorShield()
 }
 
 
-float OrientationSensorShield::getX_Axis()
+float OrientationSensorShield::getX()
 {
 	return valueX;
 }
 
-float OrientationSensorShield::getY_Axis()
+float OrientationSensorShield::getY()
 {
 	return valueY;
 }
 
-float OrientationSensorShield::getZ_Axis()
+float OrientationSensorShield::getZ()
 {
 	return valueZ;
 }
@@ -37,7 +33,6 @@ void OrientationSensorShield::processData()
 	getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 	getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 	valueX=getfloat.num;
-	//Serial.println(valueX,10);
     //getting the float of second 4bytes
     getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
 	getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
@@ -53,4 +48,4 @@ void OrientationSensorShield::processData()
 }
 
 
-OrientationSensorShield Orientation ;
+OrientationSensorShield OrientationSensor;

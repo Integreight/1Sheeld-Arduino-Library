@@ -22,7 +22,6 @@
 class LCDShield
 {
 public:
-	LCDShield();
 	void begin(byte,byte);
 	void clear();
 	void home();

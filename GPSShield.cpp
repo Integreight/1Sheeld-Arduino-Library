@@ -1,7 +1,6 @@
 //GPS shield getting the langittude and the latittude from the  Android 
 #include "OneSheeld.h"
 #include "GPSShield.h"
-#include "HardwareSerial.h"
 
 //initializing the array of the Long and the Lati 
 GPSShieldClass::GPSShieldClass ()
@@ -12,7 +11,7 @@ GPSShieldClass::GPSShieldClass ()
 }
 
 //reading the packet and assigning the values to the long and the latit  
-void GPSShieldClass::Proc ()
+void GPSShieldClass::processData ()
 {
 	getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
 	getfloat.data[1]=OneSheeld.getArgumentData(0)[1];

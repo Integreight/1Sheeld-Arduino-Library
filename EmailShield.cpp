@@ -6,9 +6,9 @@ EmailShieldClass::EmailShieldClass()
 {}
 
 
-void EmailShieldClass::send(char *username,char* message)
+void EmailShieldClass::send(char *email ,char* message)
 {
-	OneSheeld.sendPacket(EMAIL_ID,0,SEND,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message));
+	OneSheeld.sendPacket(EMAIL_ID,0,SEND,2,new FunctionArg(strlen(email),(byte*)email),new FunctionArg(strlen(message),(byte*)message));
 }
 
 //instantiating object from the class 

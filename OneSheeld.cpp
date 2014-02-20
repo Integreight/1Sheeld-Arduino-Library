@@ -33,12 +33,6 @@ void OneSheeldClass::begin()
 {
   begin(57600);
 }
-/*
-void OneSheeldClass::write(char* data)
-{
-  write(GENERAL_DATA,NOT_FUNCTION,data);
-  delay(1);
-}*/
 
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
@@ -67,42 +61,6 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     Serial.write(END_OF_FRAME);
     va_end(arguments);
 }
-/*
-void OneSheeldClass::write(char shieldID,char functionCommand, char* data)
-{
-  int dataLength;
-  Serial.write(STX); // send STX  to start the packet
-  Serial.write(shieldID);
-  Serial.write(functionCommand);
-  if (strlen(data)>140)
-  dataLength=140;
-  else   
-  dataLength=strlen(data);
-  for(int i=0; i<dataLength; i++) {
-    Serial.write(data[i]);        
-  }
-  
-  Serial.write(ETX); // send ETX  to End the packet
-  delay(1);
-}
-void OneSheeldClass::write(char shieldID,char functionCommand, char* data, int length)
-{
-  int dataLength;
-  Serial.write(STX); // send STX  to start the packet
-  Serial.write(shieldID);
-  Serial.write(functionCommand);
-  if (length>140)
-  dataLength=140;
-  else 
-  dataLength=length;
-  for(int i=0; i<dataLength; i++) {
-    Serial.write(data[i]);        
-  }
-  
-  Serial.write(ETX); // send ETX  to End the packet
-  delay(1);
-}*/
-
 
 //Recieving Functions
 byte OneSheeldClass::getShieldId()
@@ -207,21 +165,21 @@ void OneSheeldClass::sendToShields()
   switch (number_Of_Shield)
   {
     case 0x09 : Keypad.processData(); break ;
-    case 0x1C : GPS.Proc();break ;
+    case 0x1C : GPS.processData();break ;
     case 0x01 : Slider.processData(); break;
     case 0x03 : PushButton.processData();break;
     case 0x04 : ToggleButton.processData();break;
     case 0x0C : GamePad.processData();break;
-    case 0x13 : Prox.processData();break;
+    case 0x13 : ProximitySensor.processData();break;
     case 0x18 : Mic.processData();break;
-    case 0x12 : Temp.processData();break;
-    case 0x10 : Light.processData();break;
-    case 0x11 : Pressure.processData();break;
+    case 0x12 : TemperatureSensor.processData();break;
+    case 0x10 : LightSensor.processData();break;
+    case 0x11 : PressureSensor.processData();break;
     case 0x14 : Gravity.processData();break;
     case 0x0B : Accelerometer.processData();break;
     case 0x0E : Gyroscope.processData();break;
-    case 0x0F : Orientation.processData();break;
-    case 0x0A : Magnet.processData();break;
+    case 0x0F : OrientationSensor.processData();break;
+    case 0x0A : Magnetometer.processData();break;
   }
 }
 // instantiate object for users

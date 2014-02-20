@@ -1,6 +1,6 @@
 #include "OneSheeld.h"
 #include "MagnetometerSensorShield.h"
-#include "HardwareSerial.h"
+
 
 
 
@@ -14,17 +14,17 @@ MagnetometerSensorShield::MagnetometerSensorShield()
 }
 
 
-float MagnetometerSensorShield::getX_Axis()
+float MagnetometerSensorShield::getX()
 {
 	return valueX;
 }
 
-float MagnetometerSensorShield::getY_Axis()
+float MagnetometerSensorShield::getY()
 {
 	return valueY;
 }
 
-float MagnetometerSensorShield::getZ_Axis()
+float MagnetometerSensorShield::getZ()
 {
 	return valueZ;
 }
@@ -37,7 +37,6 @@ void MagnetometerSensorShield::processData()
 	getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 	getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 	valueX=getfloat.num;
-	//Serial.println(valueX,10);
     //getting the float of second 4bytes
     getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
 	getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
@@ -53,4 +52,4 @@ void MagnetometerSensorShield::processData()
 }
 
 
-MagnetometerSensorShield Magnet;
+MagnetometerSensorShield Magnetometer;

@@ -1,12 +1,6 @@
 #include "OneSheeld.h"
 #include "LedShield.h"
 
-
-
-
-LedShield::LedShield()
-{}
-
 void LedShield::setLow()
 {
 	setValue(SET_LOW);

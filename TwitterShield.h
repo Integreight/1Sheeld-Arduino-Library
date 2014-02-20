@@ -13,9 +13,8 @@
 class TwitterShieldClass 
 {
 public:
-TwitterShieldClass();
-void updateStatus(char* data);
-void sendDirectMessage(char* username,char* message);
+void updateStatus(char* );
+void sendDirectMessage(char* ,char* );
 private:
 
 

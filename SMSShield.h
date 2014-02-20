@@ -4,20 +4,13 @@
 */
 #ifndef SMSShield_h
 #define SMSShield_h
-
 // library defintions
-#define SEND_SMS 0x01  // sendTweet function command
-
+#define SEND_SMS 0x01  
 class SMSShieldClass 
 {
 public:
-SMSShieldClass();
-void send(char* number,char* text);
-
+void send(char* ,char*);
 private:
-
-
-
 };
 // instantiate object for users
 extern SMSShieldClass SMS;

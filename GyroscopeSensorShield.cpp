@@ -1,8 +1,5 @@
 #include "OneSheeld.h"
 #include "GyroscopeSensorShield.h"
-#include "HardwareSerial.h"
-
-
 
 
 GyroscopeSensorShield::GyroscopeSensorShield()
@@ -14,17 +11,17 @@ GyroscopeSensorShield::GyroscopeSensorShield()
 }
 
 
-float GyroscopeSensorShield::getX_Axis()
+float GyroscopeSensorShield::getX()
 {
 	return valueX;
 }
 
-float GyroscopeSensorShield::getY_Axis()
+float GyroscopeSensorShield::getY()
 {
 	return valueY;
 }
 
-float GyroscopeSensorShield::getZ_Axis()
+float GyroscopeSensorShield::getZ()
 {
 	return valueZ;
 }
@@ -37,7 +34,6 @@ void GyroscopeSensorShield::processData()
 	getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 	getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 	valueX=getfloat.num;
-	//Serial.println(valueX,10);
     //getting the float of second 4bytes
     getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
 	getfloat.data[1]=OneSheeld.getArgumentData(1)[1];

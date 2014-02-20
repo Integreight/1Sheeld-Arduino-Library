@@ -12,9 +12,8 @@ public:
 	bool isInRange(float , float , float );
 	float getDistance(float  , float );
 	float radian(float);
-	void Proc ();
-	
 private:
+	void processData ();
 	float LatValue,LonValue;
 	bool isInit;
 	union float_test
@@ -23,6 +22,7 @@ private:
 		float num;
 
 	} getfloat;
+	friend class OneSheeldClass;
 
 };
 

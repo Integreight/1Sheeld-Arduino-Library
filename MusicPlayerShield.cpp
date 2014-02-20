@@ -1,10 +1,6 @@
 #include "OneSheeld.h"
 #include "MusicPlayerShield.h"
 
-
-MusicPlayerShieldClass::MusicPlayerShieldClass()
-{}
-
 void MusicPlayerShieldClass::stop()
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,STOP,0);

@@ -2,20 +2,19 @@
 #define FlashLightShield_h
 
 #define SET_LOW 	0x00
-#define SET_HIGH	0xFF
+#define SET_HIGH	0x01
 #define SET_VALUE	0x01
 
 class FlashLightShield
 {
 public:
-	FlashLightShield();
 	void setLow();
 	void setHigh();
-	void setValue(byte );
 private:
+	void setValue(byte );
 
 
 };
 
-extern FlashLightShield Flash;
+extern FlashLightShield FlashLight;
 #endif

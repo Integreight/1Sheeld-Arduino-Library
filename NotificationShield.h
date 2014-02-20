@@ -11,8 +11,7 @@
 class NotificationShieldClass 
 {
 public:
-NotificationShieldClass();
-void notifyPhone(char* data);
+void notifyPhone(char* );
 
 private:
 

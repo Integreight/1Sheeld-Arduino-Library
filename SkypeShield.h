@@ -9,11 +9,8 @@ class SkypeShieldClass
 private:
 	
 public:
-	SkypeShieldClass();
-	void call(char *username);
-	void videoCall(char *username);
-	void message(char * username, char *message);
-
+	void call(char *);
+	void videoCall(char *);
 };
 
 extern SkypeShieldClass Skype;

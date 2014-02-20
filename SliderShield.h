@@ -7,12 +7,13 @@ class SliderShield
 public:
 	SliderShield();
 	byte getValue();
-	void processData();
 	void setOnChange(void (*userFunction)(byte));
 private:
-byte value;
-bool callBack;
-void(*changeCallBack)(byte);
+	void processData();
+	byte value;	
+	bool callBack;
+	void(*changeCallBack)(byte);
+	friend class OneSheeldClass;
 
 
 

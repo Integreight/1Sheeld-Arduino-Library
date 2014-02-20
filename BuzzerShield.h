@@ -12,9 +12,9 @@ public:
 	BuzzerShieldClass();
 	void buzzOn();
 	void buzzOff();
+private:
 	void setValue(byte x);
 
-private:
 	
 };
 

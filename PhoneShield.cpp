@@ -2,18 +2,12 @@
   SMSShield.h - SMSShield library
   Copyright (C) 2013 Integreight Inc  All rights reserved.
 */
-
 #include "OneSheeld.h"
 #include "PhoneShield.h"
-
-// public functions
-PhoneShieldClass::PhoneShieldClass(){}
+// public function
 void PhoneShieldClass::call(char* phone)
 {
-	char str[140];
-	strcpy (str, "");
-	strcat (str, phone);
-	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(str),(byte *)str));
+	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(phone),(byte *)phone));
 }
 
 // instantiate object for users

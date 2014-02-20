@@ -1,8 +1,7 @@
 #include "OneSheeld.h"
 #include "FlashLightShield.h"
 
-FlashLightShield::FlashLightShield()
-{}
+
 
 void FlashLightShield::setLow()
 {
@@ -19,4 +18,4 @@ void FlashLightShield::setValue(byte x)
 	OneSheeld.sendPacket(FLASH_ID,0,SET_VALUE,1,new FunctionArg(1,&x));
 }
 
-FlashLightShield Flash;
+FlashLightShield FlashLight;

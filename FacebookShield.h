@@ -12,7 +12,7 @@ class FacebookShieldClass
 {
 public:
 FacebookShieldClass();
-void updateStatus(char* data);
+void updateStatus(char* );
 
 private:
 

@@ -14,7 +14,6 @@ class MusicPlayerShieldClass
 private:
 
 public:
-	MusicPlayerShieldClass();
 	void stop();
 	void play();
 	void pause();
