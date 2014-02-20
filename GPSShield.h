@@ -14,7 +14,6 @@ public:
 	void Proc ();
 	
 private:
-	char Long[4],Latt[4];
 	float LatValue,LonValue;
 	union float_test
 	{

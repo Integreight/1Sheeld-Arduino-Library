@@ -6,8 +6,8 @@
 //initializing the array of the Long and the Lati 
 GPSShieldClass::GPSShieldClass ()
 {
-	LatValue=0;
-	LonValue=0;
+	LatValue=0xFF;
+	LonValue=0xFF;
 }
 
 //reading the packet and assigning the values to the long and the latit  
@@ -51,11 +51,11 @@ bool GPSShieldClass::isInRange(float usersValue1 , float usersValue2,float range
 
 }
 
-float GPSShieldClass::getDistance(float x , float y)
+float GPSShieldClass::getDistance(float x , float y)			//x and y is the lattitude and the longitude inserted by the user 
 {
 
-	float dLat=x-LatValue;
-	float dLon=y-LonValue;
+	float dLat = x-LatValue;			//difference betwwen the two lattitude point  
+	float dLon = y-LonValue;			//difference betwwen the two longitude point  
 
 	float chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(LatValue)*cos(x);
 	float angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
