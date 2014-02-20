@@ -16,4 +16,4 @@ void CameraShieldClass::setFlash(byte x)
 	OneSheeld.sendPacket(CAMERA_ID,0,SET_FLASH,1,new FunctionArg(1,&x));
 }
 
-CameraShieldClass CAM;
+CameraShieldClass Camera;
