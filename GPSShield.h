@@ -11,10 +11,12 @@ public:
 	float getLongitude();
 	bool isInRange(float , float , float );
 	float getDistance(float  , float );
+	float radian(float);
 	void Proc ();
 	
 private:
 	float LatValue,LonValue;
+	bool isInit;
 	union float_test
 	{
 		byte data[4];

@@ -109,3 +109,4 @@ getLattitude	KEYWORD2
 getLongitude	KEYWORD2
 isInRange	KEYWORD2
 getDistance	KEYWORD2
+radian	KEYWORD2
