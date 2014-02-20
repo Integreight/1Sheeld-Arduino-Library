@@ -12,17 +12,17 @@ AccelerometerSensorShield::AccelerometerSensorShield()
 }
 
 
-float AccelerometerSensorShield::getX_Axis()
+float AccelerometerSensorShield::getX()
 {
 	return valueX;
 }
 
-float AccelerometerSensorShield::getY_Axis()
+float AccelerometerSensorShield::getY()
 {
 	return valueY;
 }
 
-float AccelerometerSensorShield::getZ_Axis()
+float AccelerometerSensorShield::getZ()
 {
 	return valueZ;
 }
