@@ -1,12 +1,6 @@
 #include "OneSheeld.h"
 #include "BuzzerShield.h"
 
-
-
-
-BuzzerShieldClass::BuzzerShieldClass()
-{}
-
 void BuzzerShieldClass::buzzOn()
 {
 	setValue(BUZZ_ON);

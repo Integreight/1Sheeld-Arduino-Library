@@ -9,7 +9,6 @@
 class BuzzerShieldClass
 {
 public:
-	BuzzerShieldClass();
 	void buzzOn();
 	void buzzOff();
 private:

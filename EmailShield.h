@@ -11,7 +11,6 @@ class EmailShieldClass
 private:
 
 public:
-	EmailShieldClass();
 	void send(char* ,char* );
 };
 
