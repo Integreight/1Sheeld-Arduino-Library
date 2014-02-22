@@ -7,13 +7,15 @@
 #define FLASH_OFF	0x00
 #define FLASH_ON    0x01
 #define FLASH_AUTO  0x02
+#define FRONT_CAPTURE 0x03
 
 class CameraShieldClass
 {
 public:
-	CameraShieldClass();
+	void frontCapture();
 	void capture ();
 	void setFlash(byte );
+
 private:
 	
 };
