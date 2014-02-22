@@ -7,10 +7,14 @@
 #include "FacebookShield.h"
 
 // public functions
-FacebookShieldClass::FacebookShieldClass(){}
 void FacebookShieldClass::updateStatus(char* status)
 {
-OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
+	OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
+}
+
+void FacebookShieldClass::sendDirectMessage(char * username,char * message)
+{
+	OneSheeld.sendPacket(FACEBOOK_ID,0,SEND_DIRECT_MESSAGE,2,new FunctionArg (strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message)); 
 }
 
 // instantiate object for users

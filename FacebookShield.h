@@ -6,13 +6,14 @@
 #define FacebookShield_h
 
 // library defintions
-#define UPDATE_STATUS 0x01  // sendTweet function command
+#define UPDATE_STATUS 0x01  
+#define SEND_DIRECT_MESSAGE 0x02
 
 class FacebookShieldClass 
 {
 public:
-FacebookShieldClass();
 void updateStatus(char* );
+void sendDirectMessage(char *,char* );
 
 private:
 

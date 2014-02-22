@@ -7,42 +7,42 @@
 #######################################
 Accelerometer	KEYWORD1
 Buzzer	KEYWORD1
-CAM	KEYWORD1
+Camera	KEYWORD1
 Email	KEYWORD1
 Facebook	KEYWORD1
-Flash	KEYWORD1
+FlashLight	KEYWORD1
 Foursquare	KEYWORD1
 GamePad	KEYWORD1
 GPS	KEYWORD1
-Gravity	KEYWORD1
-Gyroscope	KEYWORD1
+GravitySensor	KEYWORD1
+GyroscopeSensor	KEYWORD1
 Keypad	KEYWORD1
 LCD	KEYWORD1
 LED	KEYWORD1
-Light	KEYWORD1
-Magnet	KEYWORD1
+LightSensor	KEYWORD1
+Magnetometer	KEYWORD1
 Mic	KEYWORD1
 MusicPlayer	KEYWORD1
 Notification	KEYWORD1
 OneSheeld	KEYWORD1
-Orientation	KEYWORD1
+OrientationSensor	KEYWORD1
 Phone	KEYWORD1
-Pressure	KEYWORD1
-Proximity	KEYWORD1
+PressureSensor	KEYWORD1
+ProximitySensor	KEYWORD1
 PushButton	KEYWORD1
-SevSeg	KEYWORD1
+SevenSegment	KEYWORD1
 Skype	KEYWORD1
 Slider	KEYWORD1
 SMS	KEYWORD1
-Temp	KEYWORD1
+TemperatureSensor	KEYWORD1
 ToggleButton	KEYWORD1
 Twitter	KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-getX_Axis	KEYWORD2
-getY_Axis	KEYWORD2
-getZ_Axis	KEYWORD2
+getX	KEYWORD2
+getY	KEYWORD2
+getZ	KEYWORD2
 buzzOn	KEYWORD2
 buzzOff	KEYWORD2
 begin	KEYWORD2
