@@ -20,6 +20,7 @@ void MicShield::processData()
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==MIC_VALUE)
 	{
+		value=0;
 		value=OneSheeld.getArgumentData(0)[0];
 		if(callBack)
 			(*changeCallBack)(value);

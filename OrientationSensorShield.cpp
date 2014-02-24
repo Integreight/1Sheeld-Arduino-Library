@@ -30,6 +30,9 @@ void OrientationSensorShield::processData()
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==ORIENTATION_VALUE)
 	{
+		valueX=0;
+		valueY=0;
+		valueZ=0;
 		//getting the float of first 4bytes
 		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
 		getfloat.data[1]=OneSheeld.getArgumentData(0)[1];

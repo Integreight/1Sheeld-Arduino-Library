@@ -18,6 +18,7 @@ void PressureSensorShield::processData()
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==PRESSURE_VALUE)
 	{
+		value=0;
 		data[0]=OneSheeld.getArgumentData(0)[0];
 		data[1]=OneSheeld.getArgumentData(0)[1];
 		value|=(unsigned long)data[1];
