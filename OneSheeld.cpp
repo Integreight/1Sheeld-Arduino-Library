@@ -185,6 +185,7 @@ void OneSheeldClass::sendToShields()
     case 0x0F : OrientationSensor.processData();break;
     case 0x0A : Magnetometer.processData();break;
     case 0x20 : Phone.processData();break;
+    case 0x0D : SMS.processData();break;
   }
 }
 // instantiate object for users

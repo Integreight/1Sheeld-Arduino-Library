@@ -6,11 +6,17 @@
 #define SMSShield_h
 // library defintions
 #define SEND_SMS 0x01  
+#define GET_SMS 0x01
 class SMSShieldClass 
 {
 public:
-void send(char* ,char*);
+	SMSShieldClass();
+	void send(char* ,char*);
+	char * getSms();
 private:
+	void processData();
+	char * text;
+	friend class OneSheeldClass ;
 };
 // instantiate object for users
 extern SMSShieldClass SMS;
