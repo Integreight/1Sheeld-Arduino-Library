@@ -112,3 +112,9 @@ getDistance	KEYWORD2
 radian	KEYWORD2
 isRinging	KEYWORD2
 getNumber	KEYWORD2
+#######################################
+# Constants And Literals (KEYWORD2)
+#######################################
+FLASH_OFF	LITERAL1
+FLASH_AUTO	LITERAL1
+FLASH_ON	LITERAL1
