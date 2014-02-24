@@ -2,12 +2,7 @@
 #define KeypadShield_h
 
 
-// function commands
-#define INIT 0x06
-#define GET_ROW 0x02
-#define GET_COL 0x03
-#define SET_ON_CHANGE 0x04
-#define GET_NUM 0x05
+
 #define DATA_IN 0x01
 
 
@@ -15,32 +10,15 @@ class KeypadShieldClass
 {
 public:
 KeypadShieldClass();
-void init();
-int getRow();
-int getCol();
-int getButton();
-bool isOnePressed();
-bool isTwoPressed();
-bool isThreePressed();
-bool isFourPressed();
-bool isFivePressed();
-bool isSixPressed();
-bool isSevenPressed();
-bool isEightPressed();
-bool isNinePressed();
-bool isAPressed();
-bool isBPressed();
-bool isCPRessed();
-bool isDPressed();
-bool isEPressed();
-bool isFPressed();
+bool isRowPressed(byte x);
+bool isColumnPressed(byte x);
 void setOnButtonChange(void (*userFunction)(int,int));
 void processData();
 
 private:
 
-int row;
-int col;
+byte row;
+byte col;
 void (*buttonChangeCallback)(int,int);
  
 bool isCallbackAssigned;
