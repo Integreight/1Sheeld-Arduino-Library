@@ -24,16 +24,28 @@ void SMSShieldClass::processData()
 		{
 			free(text);
 		}
-		int length=OneSheeld.getArgumentLength(0);
-		
-		text=(char*)malloc(sizeof(char)*(length+1));
-
-		for(int i=0 ;i<length;i++)
+		int numberlength=OneSheeld.getArgumentLength(0);
+		number=(char*)malloc(sizeof(char)*(numberlength+1));
+		for (int j=0; j<numberlength; j++)
 		{
-			text[i]=OneSheeld.getArgumentData(0)[i];
+			number[j]=OneSheeld.getArgumentData(0)[j];
 		}
-			text[length]='\0';
+		number[numberlength]='\0';
+
+		int textlength=OneSheeld.getArgumentLength(1);
+		text=(char*)malloc(sizeof(char)*(textlength+1));
+
+		for(int i=0 ;i<textlength;i++)
+		{
+			text[i]=OneSheeld.getArgumentData(1)[i];
+		}
+			text[textlength]='\0';
 	}
+}
+
+char * SMSShieldClass::getNumber()
+{
+	return number;
 }
 
 char * SMSShieldClass::getSms()

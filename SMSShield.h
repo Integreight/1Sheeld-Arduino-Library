@@ -13,9 +13,11 @@ public:
 	SMSShieldClass();
 	void send(char* ,char*);
 	char * getSms();
+	char * getNumber();
 private:
 	void processData();
 	char * text;
+	char * number;
 	friend class OneSheeldClass ;
 };
 // instantiate object for users
