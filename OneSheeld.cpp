@@ -11,7 +11,7 @@
 
 
 // public functions
-OneSheeldClass::OneSheeldClass() 
+OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
       frameStart=0;
       shield=0;
@@ -26,7 +26,11 @@ OneSheeldClass::OneSheeldClass()
 
 void OneSheeldClass::begin(long baudRate)
 {
+  #if defined(__AVR_ATmega32U4__)
+  Serial1.begin(baudRate);
+  #else
   Serial.begin(baudRate);
+  #endif
 }
 
 void OneSheeldClass::begin()
@@ -39,26 +43,26 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
   va_list arguments ;
   va_start (arguments,argNo);
 
-  Serial.write(START_OF_FRAME);
-  Serial.write(shieldID);
-  Serial.write(instanceID);
-  Serial.write(functionID);
-  Serial.write(argNo);
+  OneSheeldSerial.write((byte)START_OF_FRAME);
+  OneSheeldSerial.write(shieldID);
+  OneSheeldSerial.write(instanceID);
+  OneSheeldSerial.write(functionID);
+  OneSheeldSerial.write(argNo);
 
 
   for (int i=0 ; i<argNo ; i++)
   {
     FunctionArg * temp = va_arg(arguments, FunctionArg *);
-    Serial.write(temp->getLength());
+    OneSheeldSerial.write(temp->getLength());
 
       for (int j=0 ; j<temp->getLength() ; j++)
       {
         byte* tempData=temp->getData();
-        Serial.write(tempData[j]);
+        OneSheeldSerial.write(tempData[j]);
       }
 
  }
-    Serial.write(END_OF_FRAME);
+    OneSheeldSerial.write((byte)END_OF_FRAME);
     va_end(arguments);
 }
 
@@ -95,7 +99,7 @@ byte * OneSheeldClass::getArgumentData(byte x)
 
 void OneSheeldClass::processInput()
 {
-  int data=Serial.read();
+  int data=OneSheeldSerial.read();
   if(data==-1)return;
    if(!framestart&&data==0xFF)
         {
@@ -184,9 +188,13 @@ void OneSheeldClass::sendToShields()
   }
 }
 // instantiate object for users
-OneSheeldClass OneSheeld;
-
+#if defined(__AVR_ATmega32U4__)
+OneSheeldClass OneSheeld(Serial1);
+void serialEvent1()
+#else
+OneSheeldClass OneSheeld(Serial);
 void serialEvent()
+#endif
 {
-  while(Serial.available())OneSheeld.processInput();      //takes all the bytes and save them in the buffer (buffer size = 64bits)
+  while(OneSheeld.OneSheeldSerial.available())OneSheeld.processInput();      //takes all the bytes and save them in the buffer (buffer size = 64bits)
 }

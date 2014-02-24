@@ -117,10 +117,10 @@ byte argumentnumber;
 byte **arguments;				 //pointer to an array of 2d
 byte *argumentL;            
 byte framestart;
-
+void begin(long baudRate);
 public:
     
-OneSheeldClass();
+OneSheeldClass(Stream &s);
 //Functions of the reciever 
 byte getShieldId();
 byte getInstanceId();
@@ -129,10 +129,9 @@ byte getArgumentNo();
 byte getArgumentLength(byte x);
 byte * getArgumentData(byte x);
 void processInput();					//new Reciever function 
-void begin(long baudRate);
 void begin();
 void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
-
+Stream & OneSheeldSerial;
 };
 // instantiate object for users
 extern OneSheeldClass OneSheeld;
