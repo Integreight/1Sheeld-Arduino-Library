@@ -16,9 +16,13 @@ byte ToggleButtonShield::getValue()
 
 void ToggleButtonShield::processData()
 {
-	value=OneSheeld.getArgumentData(0)[0];
-	if(callBack)
-		(*changeCallBack)(value);
+	byte functionId= OneSheeld.getFunctionId();
+	if(functionId==TOGGLE_VALUE)
+	{
+		value=OneSheeld.getArgumentData(0)[0];
+		if(callBack)
+			(*changeCallBack)(value);
+	}
 }
 void ToggleButtonShield::setOnChange(void (*userFunction)(byte))
 {

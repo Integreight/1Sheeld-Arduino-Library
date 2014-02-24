@@ -1,6 +1,7 @@
 #ifndef SliderShield_h
 #define SliderShield_h
 
+#define SLIDER_VALUE 0x01
 
 class SliderShield
 {

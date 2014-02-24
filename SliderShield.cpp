@@ -14,9 +14,13 @@ byte SliderShield::getValue()
 
 void SliderShield::processData()
 {
-	value= OneSheeld.getArgumentData(0)[0];
-	if(callBack)
-		(*changeCallBack)(value);
+	byte functionId= OneSheeld.getFunctionId();
+	if(functionId==SLIDER_VALUE)
+		{
+			value= OneSheeld.getArgumentData(0)[0];
+			if(callBack)
+				(*changeCallBack)(value);
+		}
 }
 
 void SliderShield::setOnChange(void (*userFunction)(byte))

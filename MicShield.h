@@ -1,7 +1,7 @@
 #ifndef MicShield_h
 #define MicShield_h
 
-
+#define MIC_VALUE 0x01
 
 class MicShield
 {

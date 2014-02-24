@@ -1,6 +1,8 @@
 #ifndef GamePadShield_h
 #define GamePadShield_h
 
+#define GAMEPAD_VALUE 0x01
+
 //wroking on the GamePad buttons Bitwise 
 #define A 0
 #define B 1

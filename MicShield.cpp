@@ -17,9 +17,13 @@ byte MicShield::getValue()
 
 void MicShield::processData()
 {
-	value=OneSheeld.getArgumentData(0)[0];
-	if(callBack)
-		(*changeCallBack)(value);
+	byte functionId =OneSheeld.getFunctionId();
+	if(functionId==MIC_VALUE)
+	{
+		value=OneSheeld.getArgumentData(0)[0];
+		if(callBack)
+			(*changeCallBack)(value);
+	}
 }
 
 void MicShield::setOnChange(void (*userFunction)(byte))

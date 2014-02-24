@@ -1,6 +1,8 @@
 #ifndef MagnetometerSensorShield_h
 #define MagnetometerSensorShield_h
 
+#define MAGNETOMETER_VALUE 0x01
+
 
 
 

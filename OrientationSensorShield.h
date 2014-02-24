@@ -2,7 +2,7 @@
 #define OrientationSensorShield_h
 
 
-
+#define ORIENTATION_VALUE 0x01
 
 class OrientationSensorShield
 {

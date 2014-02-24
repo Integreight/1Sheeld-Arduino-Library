@@ -17,9 +17,13 @@ byte PushButtonShield::getValue()
 
 void PushButtonShield::processData()
 {
-	value=OneSheeld.getArgumentData(0)[0];
-	if(callBack)
-		(*changeCallBack)(value);
+	byte functionId =OneSheeld.getFunctionId();
+	if(functionId==PUSHBUTTON_VALUE)
+	{
+		value=OneSheeld.getArgumentData(0)[0];
+		if(callBack)
+			(*changeCallBack)(value);
+	}
 }
 
 void PushButtonShield::setOnChange(void (*userFunction)(byte))

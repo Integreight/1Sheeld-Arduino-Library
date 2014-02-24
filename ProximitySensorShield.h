@@ -1,7 +1,7 @@
 #ifndef ProximitySensorShield_h
 #define ProximitySensorShield_h
 
-
+#define PROXIMITY_VALUE 0x01
 
 class ProximitySensorShield
 {

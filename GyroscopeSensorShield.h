@@ -1,8 +1,7 @@
 #ifndef GyroscopeSensorShield_h
 #define GyroscopeSensorShield_h
 
-
-
+#define GYROSCOPE_VALUE 0x01
 
 class GyroscopeSensorShield
 {

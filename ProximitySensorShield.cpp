@@ -18,9 +18,13 @@ byte ProximitySensorShield::getValue()
 
 void ProximitySensorShield::processData()
 {
-	value=OneSheeld.getArgumentData(0)[0];
-	if (callBack)
-	(*changeCallBack)(value);
+	byte functionId =OneSheeld.getFunctionId();
+	if(functionId==PROXIMITY_VALUE)
+	{
+		value=OneSheeld.getArgumentData(0)[0];
+		if (callBack)
+		(*changeCallBack)(value);
+	}
 }
 
 void ProximitySensorShield::setOnChange(void (*userFunction)(byte))

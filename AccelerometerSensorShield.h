@@ -1,6 +1,7 @@
 #ifndef AccelerometerSensorShield_h
 #define AccelerometerSensorShield_h
 
+#define ACCELEROMETER_VALUE 0x01
 
 
 

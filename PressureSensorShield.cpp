@@ -15,11 +15,14 @@ unsigned long PressureSensorShield::getPressure()
 //two bytes to be received 
 void PressureSensorShield::processData()
 {
-	
-	data[0]=OneSheeld.getArgumentData(0)[0];
-	data[1]=OneSheeld.getArgumentData(0)[1];
-	value|=(unsigned long)data[1];
-	value|=(unsigned long)(data[0]<<8);
+	byte functionId =OneSheeld.getFunctionId();
+	if(functionId==PRESSURE_VALUE)
+	{
+		data[0]=OneSheeld.getArgumentData(0)[0];
+		data[1]=OneSheeld.getArgumentData(0)[1];
+		value|=(unsigned long)data[1];
+		value|=(unsigned long)(data[0]<<8);
+	}
 }
 
 PressureSensorShield PressureSensor;

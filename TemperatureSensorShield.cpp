@@ -16,9 +16,13 @@ char TemperatureSensorShield::getDegree()
 
 void TemperatureSensorShield::processData()
 {
-	value=OneSheeld.getArgumentData(0)[0];
-	if(callBack)
-		(*changeOnCallBack)(value);
+	byte functionId =OneSheeld.getFunctionId();
+	if(functionId==TEMPERATURE_VALUE)
+	{
+		value=OneSheeld.getArgumentData(0)[0];
+		if(callBack)
+			(*changeOnCallBack)(value);
+	}
 }
 
 void TemperatureSensorShield::setOnChange(void(*userFunction)(char))

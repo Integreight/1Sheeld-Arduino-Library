@@ -1,7 +1,7 @@
 #ifndef PushButtonShield_h
 #define PushButtonShield_h
 
-
+#define PUSHBUTTON_VALUE 0x01
 
 
 class PushButtonShield

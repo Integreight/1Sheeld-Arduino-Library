@@ -1,7 +1,7 @@
 #ifndef PressureSensorShield_h
 #define PressureSensorShield_h
 
-
+#define PRESSURE_VALUE 0x01
 
 class PressureSensorShield
 {

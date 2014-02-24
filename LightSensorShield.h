@@ -1,7 +1,7 @@
 #ifndef LightSensorShield_h
 #define LightSensorShield_h
 
-
+#define LIGHT_VALUE 0x01
 
 class LightSensorShield
 {

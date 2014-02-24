@@ -60,7 +60,11 @@ bool GamePadShield::isDPressed()
 
 void GamePadShield::processData()
 {
-	value=OneSheeld.getArgumentData(0)[0];
+	byte functionId =OneSheeld.getFunctionId();
+	if(functionId==GAMEPAD_VALUE)
+	{
+		value=OneSheeld.getArgumentData(0)[0];
+	}
 }
 
 GamePadShield GamePad;
