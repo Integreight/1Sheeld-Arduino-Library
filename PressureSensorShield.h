@@ -11,7 +11,7 @@ public:
 private:
 	void processData();
 	unsigned long value;
-	 long data[3];
+	 long data[2];
 	 friend class OneSheeldClass;
 
 };
