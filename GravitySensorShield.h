@@ -1,7 +1,7 @@
 #ifndef GravitySensorShield_h
 #define GravitySensorShield_h
 
-
+#define GRAVITY_VALUE 0x01
 
 
 class GravitySensorShield

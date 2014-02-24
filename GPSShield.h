@@ -2,7 +2,7 @@
 #define GPSShield_h
 #define R 6371
 
-
+#define GPS_VALUE 0x01
 class GPSShieldClass 
 {
 public:
