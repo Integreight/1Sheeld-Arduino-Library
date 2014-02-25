@@ -22,6 +22,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       argumentcounter=0;
       datalengthcounter=0;
       argumentnumber=0;
+      endFrame!=0;
 }
 
 void OneSheeldClass::begin(long baudRate)
@@ -106,9 +107,11 @@ void OneSheeldClass::processInput()
             counter=0;
             Start=data;
             framestart=1;
+            arguments=0;
+            argumentL=0;
             counter++;
         }
-        else if(counter==4)                      //data is the no of arguments
+        else if(counter==4&&framestart)                      //data is the no of arguments
         {
             datalengthcounter=0;
             argumentcounter=0;
@@ -117,45 +120,72 @@ void OneSheeldClass::processInput()
             argumentL=(byte*)malloc(sizeof(byte)*argumentnumber);//new byte [argumentnumber];
             counter++;
         }
-        else if (counter==5)                    // data is the first argument length
+        else if (counter==5&&framestart)                    // data is the first argument length
         {
             argumentL[argumentcounter]=data;
             arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
             counter++;
         }
-        else if (counter==6)
+        else if (counter==6&&framestart)
         {
             arguments[argumentcounter][datalengthcounter++]=data;
             if (datalengthcounter==argumentL[argumentcounter])
             {
                 datalengthcounter=0;
                 argumentcounter++;
-                counter=5;
-
                 if(argumentcounter==argumentnumber)
                 {
-                    framestart=0;
-                    sendToShields();
-                    for(int i=0;i<argumentnumber;i++){
-                      free(arguments[i]);
-                    }
-                    free(argumentL);
-                    free(arguments);
+                  counter++;                                    //increment the counter to take the last byte which is the end of the frame
+
+                }
+                else
+                {
+                     counter=5;
 
                 }
 
             }
 
         }
-        else{
-       switch(counter)
-       {
-                case 1 : shield=data;break;
-                case 2 : instance=data;break;
-                case 3 : functions=data;break;
-                default :               break;
-       }
-           counter++;
+        else if(counter==7&&framestart)
+        {
+          endFrame=data;
+            if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
+            {
+                    framestart=0;
+                    sendToShields();
+                    if(arguments!=0){
+                      for(int i=0;i<argumentnumber;i++)
+                      {
+                        free(arguments[i]);
+                      }
+                      free(arguments);
+                    }
+                    if(argumentL!=0)free(argumentL);
+                    
+            }
+            else                                            //if endframe wasn't equal to zero make sure that the memory is free anyway
+            {
+              framestart=0;
+              if(arguments!=0){
+                      for(int i=0;i<argumentnumber;i++)
+                      {
+                        free(arguments[i]);
+                      }
+                      free(arguments);
+                    }
+                    if(argumentL!=0)free(argumentL);
+            }
+        }
+        else if(framestart){
+           switch(counter)
+           {
+                    case 1 : shield=data;break;
+                    case 2 : instance=data;break;
+                    case 3 : functions=data;break;
+                    default :               break;
+           }
+          counter++;
         }
 
        

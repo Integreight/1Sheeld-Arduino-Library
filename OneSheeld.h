@@ -117,6 +117,7 @@ byte argumentnumber;
 byte **arguments;				 //pointer to an array of 2d
 byte *argumentL;            
 byte framestart;
+byte endFrame;
 void begin(long baudRate);
 public:
     
