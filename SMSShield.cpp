@@ -9,6 +9,7 @@
   SMSShieldClass::SMSShieldClass()
   {
   	text=0;
+  	number=0;
   }
 void SMSShieldClass::send(char* number,char* text)
 {
@@ -20,6 +21,11 @@ void SMSShieldClass::processData()
 	byte x= OneSheeld.getFunctionId();
 	if(x==GET_SMS)
 	{
+
+		if(text!=0)
+		{
+			free(text);
+		}
 		if (number!=0)
 		{
 			free(number);
@@ -31,11 +37,6 @@ void SMSShieldClass::processData()
 			number[j]=OneSheeld.getArgumentData(0)[j];
 		}
 		number[numberlength]='\0';
-
-		if(text!=0)
-		{
-			free(text);
-		}
 		int textlength=OneSheeld.getArgumentLength(1);
 		text=(char*)malloc(sizeof(char)*(textlength+1));
 
