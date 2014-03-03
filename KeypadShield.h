@@ -17,7 +17,7 @@ void processData();
 
 private:
 
-byte row;
+byte  row;
 byte col;
 void (*buttonChangeCallback)(int,int);
  
