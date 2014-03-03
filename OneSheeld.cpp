@@ -45,6 +45,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
   va_start (arguments,argNo);
 
   OneSheeldSerial.write((byte)START_OF_FRAME);
+  OneSheeldSerial.write(LIBRARY_VERSION);
   OneSheeldSerial.write(shieldID);
   OneSheeldSerial.write(instanceID);
   OneSheeldSerial.write(functionID);

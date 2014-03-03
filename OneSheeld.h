@@ -75,6 +75,7 @@
 // start and end of the packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
+#define LIBRARY_VERSION 0x01
 
 //new function for the new packet frame 
 
