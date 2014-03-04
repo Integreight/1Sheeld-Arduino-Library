@@ -66,13 +66,13 @@ float GPSShieldClass::getDistance(float x , float y)			//x and y is the lattitud
 
 	float chordProcess    = sin(dLat/2)*sin(dLat/2)+sin(dLon/2)*sin(dLon/2)*cos(radian(LatValue))*cos(radian(x));
 	float angularDistance = 2*atan2(sqrt(chordProcess),sqrt(1-chordProcess));
-	float actualDsitance  = (R*angularDistance)*1000;			//getting the actuall distance in meters
+	float actualDsitance  = (RADUIS_OF_EARTH*angularDistance)*1000;			//getting the actuall distance in meters
 
 	return actualDsitance;											
 }
 float GPSShieldClass::radian(float value)
 {
-	float radianValue = value*(3.14159265359/180);
+	float radianValue = value*(PI/180);
 	return radianValue;
 }
 GPSShieldClass  GPS ;
