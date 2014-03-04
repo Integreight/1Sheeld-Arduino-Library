@@ -6,7 +6,7 @@ PressureSensorShield::PressureSensorShield()
 	value=0;
 }
 
-unsigned long PressureSensorShield::getPressure()
+unsigned long PressureSensorShield::getValue()
 {
 	
 	return value;

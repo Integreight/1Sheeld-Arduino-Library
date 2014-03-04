@@ -5,6 +5,9 @@
 
 #ifndef OneSheeld_h
 #define OneSheeld_h
+#include "Stream.h"
+
+typedef unsigned char byte;
 
 #include "TwitterShield.h"
 #include "FacebookShield.h"
@@ -59,8 +62,8 @@
 #define BUZZER_ID 		 0x08
 #define LED_ID 		 	 0x02
 #define SLIDER_ID 		 0x01
-#define PUSH_BUTTON 	 0x03
-#define TOGGLE_BUTTON 	 0x04
+#define PUSH_BUTTON_ID 	 0x03
+#define TOGGLE_BUTTON_ID 	 0x04
 #define FLASH_ID		 0x05
 #define PROXIMITY_ID	 0x13
 #define MIC_ID 			 0x18

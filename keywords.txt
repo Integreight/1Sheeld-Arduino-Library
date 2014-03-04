@@ -67,8 +67,8 @@ getLon	KEYOWRD2
 isLat	KEYWORD2
 isLon	KEYWORD2
 init	KEYWORD2
-getRow	KEYWORD2
-getCol	KEYWROD2
+isRowPressed	KEYWORD2
+isColumnPressed	KEYWROD2
 setOnButtonChange	KEYWORD2
 clear	KEYWORD2
 home	KEYWORD2
@@ -98,12 +98,9 @@ seekForward	KEYWORD2
 seekBackward	KEYWORD2
 notifyPhone	KEYWORD2
 call	KEYWORD2
-getPressure	KEYWORD2
-getProx	KEYWORD2
 setNumber	KEYWORD2
 videoCall	KEYWORD2
 message	KEYWORD2
-getDegree	KEYWORD2
 sendDirectMessage	KEYWORD2
 getLattitude	KEYWORD2
 getLongitude	KEYWORD2
@@ -112,9 +109,12 @@ getDistance	KEYWORD2
 radian	KEYWORD2
 isRinging	KEYWORD2
 getNumber	KEYWORD2
+getSms	KEYWORD2
+frontCapture	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
 FLASH_OFF	LITERAL1
 FLASH_AUTO	LITERAL1
 FLASH_ON	LITERAL1
+RADUIS_OF_EARTH	LITERAL1

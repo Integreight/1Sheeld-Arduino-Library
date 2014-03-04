@@ -9,7 +9,7 @@ TemperatureSensorShield::TemperatureSensorShield()
 	callBack=false;
 }
 
-char TemperatureSensorShield::getDegree()
+char TemperatureSensorShield::getValue()
 {
 	return value;
 }

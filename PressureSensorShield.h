@@ -7,7 +7,7 @@ class PressureSensorShield
 {
 public:
 	PressureSensorShield();
-	unsigned long getPressure();
+	unsigned long getValue();
 private:
 	void processData();
 	unsigned long value;

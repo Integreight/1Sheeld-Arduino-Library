@@ -2,10 +2,9 @@
   OneSheeld.h - OneSheeld library
   Copyright (C) 2013 Integreight Inc  All rights reserved.
 */
-
-#include "Arduino.h"
-#include "HardwareSerial.h"
 #include "OneSheeld.h"
+#include "HardwareSerial.h"
+
 
 
 
@@ -101,97 +100,97 @@ byte * OneSheeldClass::getArgumentData(byte x)
 
 void OneSheeldClass::processInput()
 {
-  int data=OneSheeldSerial.read();
-  if(data==-1)return;
-   if(!framestart&&data==0xFF)
-        {
-            counter=0;
-            Start=data;
-            framestart=1;
-            arguments=0;
-            argumentL=0;
-            counter++;
-        }
-        else if(counter==4&&framestart)                      //data is the no of arguments
-        {
-            datalengthcounter=0;
-            argumentcounter=0;
-            argumentnumber=data;
-            arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
-            argumentL=(byte*)malloc(sizeof(byte)*argumentnumber);//new byte [argumentnumber];
-            counter++;
-        }
-        else if (counter==5&&framestart)                    // data is the first argument length
-        {
-            argumentL[argumentcounter]=data;
-            arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
-            counter++;
-        }
-        else if (counter==6&&framestart)
-        {
-            arguments[argumentcounter][datalengthcounter++]=data;
-            if (datalengthcounter==argumentL[argumentcounter])
-            {
-                datalengthcounter=0;
-                argumentcounter++;
-                if(argumentcounter==argumentnumber)
-                {
-                  counter++;                                    //increment the counter to take the last byte which is the end of the frame
+  while(OneSheeld.OneSheeldSerial.available()){
+    int data=OneSheeldSerial.read();
+    if(data==-1)return;
+     if(!framestart&&data==0xFF)
+          {
+              counter=0;
+              Start=data;
+              framestart=1;
+              arguments=0;
+              argumentL=0;
+              counter++;
+          }
+          else if(counter==4&&framestart)                      //data is the no of arguments
+          {
+              datalengthcounter=0;
+              argumentcounter=0;
+              argumentnumber=data;
+              arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
+              argumentL=(byte*)malloc(sizeof(byte)*argumentnumber);//new byte [argumentnumber];
+              counter++;
+          }
+          else if (counter==5&&framestart)                    // data is the first argument length
+          {
+              argumentL[argumentcounter]=data;
+              arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
+              counter++;
+          }
+          else if (counter==6&&framestart)
+          {
+              arguments[argumentcounter][datalengthcounter++]=data;
+              if (datalengthcounter==argumentL[argumentcounter])
+              {
+                  datalengthcounter=0;
+                  argumentcounter++;
+                  if(argumentcounter==argumentnumber)
+                  {
+                    counter++;                                    //increment the counter to take the last byte which is the end of the frame
 
-                }
-                else
-                {
-                     counter=5;
+                  }
+                  else
+                  {
+                       counter=5;
 
-                }
+                  }
 
-            }
+              }
 
-        }
-        else if(counter==7&&framestart)
-        {
-          endFrame=data;
-            if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
-            {
-                    framestart=0;
-                    sendToShields();
-                    if(arguments!=0){
-                      for(int i=0;i<argumentnumber;i++)
-                      {
-                        free(arguments[i]);
+          }
+          else if(counter==7&&framestart)
+          {
+            endFrame=data;
+              if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
+              {
+                      framestart=0;
+                      //sendToShields();
+                      if(arguments!=0){
+                        for(int i=0;i<argumentnumber;i++)
+                        {
+                          free(arguments[i]);
+                        }
+                        free(arguments);
                       }
-                      free(arguments);
-                    }
-                    if(argumentL!=0)free(argumentL);
-                    
-            }
-            else                                            //if endframe wasn't equal to zero make sure that the memory is free anyway
-            {
-              framestart=0;
-              if(arguments!=0){
-                      for(int i=0;i<argumentnumber;i++)
-                      {
-                        free(arguments[i]);
+                      if(argumentL!=0)free(argumentL);
+                      
+              }
+              else                                            //if endframe wasn't equal to zero make sure that the memory is free anyway
+              {
+                framestart=0;
+                if(arguments!=0){
+                        for(int i=0;i<argumentnumber;i++)
+                        {
+                          free(arguments[i]);
+                        }
+                        free(arguments);
                       }
-                      free(arguments);
-                    }
-                    if(argumentL!=0)free(argumentL);
-            }
-        }
-        else if(framestart){
-           switch(counter)
-           {
-                    case 1 : shield=data;break;
-                    case 2 : instance=data;break;
-                    case 3 : functions=data;break;
-                    default :               break;
-           }
-          counter++;
-        }
-
+                      if(argumentL!=0)free(argumentL);
+              }
+          }
+          else if(framestart){
+             switch(counter)
+             {
+                      case 1 : shield=data;break;
+                      case 2 : instance=data;break;
+                      case 3 : functions=data;break;
+                      default :               break;
+             }
+            counter++;
+          }
+      }
        
     }
-
 void OneSheeldClass::sendToShields()
 {
       
@@ -199,24 +198,24 @@ void OneSheeldClass::sendToShields()
 
   switch (number_Of_Shield)
   {
-    case 0x09 : Keypad.processData(); break ;
-    case 0x1C : GPS.processData();break ;
-    case 0x01 : Slider.processData(); break;
-    case 0x03 : PushButton.processData();break;
-    case 0x04 : ToggleButton.processData();break;
-    case 0x0C : GamePad.processData();break;
-    case 0x13 : ProximitySensor.processData();break;
-    case 0x18 : Mic.processData();break;
-    case 0x12 : TemperatureSensor.processData();break;
-    case 0x10 : LightSensor.processData();break;
-    case 0x11 : PressureSensor.processData();break;
-    case 0x14 : Gravity.processData();break;
-    case 0x0B : Accelerometer.processData();break;
-    case 0x0E : Gyroscope.processData();break;
-    case 0x0F : OrientationSensor.processData();break;
-    case 0x0A : Magnetometer.processData();break;
-    case 0x20 : Phone.processData();break;
-    case 0x0D : SMS.processData();break;
+    case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
+    case GPS_ID                  : GPS.processData();break ;
+    case SLIDER_ID               : Slider.processData(); break;
+    case PUSH_BUTTON_ID          : PushButton.processData();break;
+    case TOGGLE_BUTTON_ID        : ToggleButton.processData();break;
+    case GAMEPAD_ID              : GamePad.processData();break;
+    case PROXIMITY_ID            : ProximitySensor.processData();break;
+    case MIC_ID                  : Mic.processData();break;
+    case TEMPERATURE_ID          : TemperatureSensor.processData();break;
+    case LIGHT_ID                : LightSensor.processData();break;
+    case PRESSURE_ID             : PressureSensor.processData();break;
+    case GRAVITY_ID              : Gravity.processData();break;
+    case ACCELEROMETER_ID        : Accelerometer.processData();break;
+    case GYROSCOPE_ID            : Gyroscope.processData();break;
+    case ORIENTATION_ID          : OrientationSensor.processData();break;
+    case MAGNETOMETER_ID         : Magnetometer.processData();break;
+    case PHONE_ID                : Phone.processData();break;
+    case SMS_ID                  : SMS.processData();break;
   }
 }
 // instantiate object for users
@@ -228,5 +227,5 @@ OneSheeldClass OneSheeld(Serial);
 void serialEvent()
 #endif
 {
-  while(OneSheeld.OneSheeldSerial.available())OneSheeld.processInput();      //takes all the bytes and save them in the buffer (buffer size = 64bits)
+  OneSheeld.processInput();      //takes all the bytes and save them in the buffer (buffer size = 64bits)
 }
