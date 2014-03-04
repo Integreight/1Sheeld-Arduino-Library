@@ -1,9 +1,15 @@
 #ifndef GPSShield_h
 #define GPSShield_h
 #include <math.h>
+
+
 #define RADUIS_OF_EARTH 6371
 #define PI 3.1415926535897932384626433832795
 #define GPS_VALUE 0x01
+
+
+
+
 class GPSShieldClass 
 {
 public:
