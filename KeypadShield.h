@@ -13,15 +13,15 @@ KeypadShieldClass();
 bool isRowPressed(byte x);
 bool isColumnPressed(byte x);
 void setOnButtonChange(void (*userFunction)(int,int));
-void processData();
 
 private:
-
+void processData();
 byte  row;
 byte col;
 void (*buttonChangeCallback)(int,int);
  
 bool isCallbackAssigned;
+friend class OneSheeldClass;
 };
 // instantiate object for users
 extern KeypadShieldClass Keypad;
