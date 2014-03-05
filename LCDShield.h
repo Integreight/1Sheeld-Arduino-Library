@@ -37,7 +37,7 @@ public:
 	void rightToLeft();
 	void autoScroll();
 	void noAutoScroll();
-	void createChar(byte ,char *);
+	void createChar(char * );
 	void setCursor(byte,byte);
 	void write(byte);
 	void print(char*);
