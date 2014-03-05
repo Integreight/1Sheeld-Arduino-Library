@@ -154,7 +154,7 @@ void OneSheeldClass::processInput()
               if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
               {
                       framestart=0;
-                      //sendToShields();
+                      sendToShields();
                       if(arguments!=0){
                         for(int i=0;i<argumentnumber;i++)
                         {
