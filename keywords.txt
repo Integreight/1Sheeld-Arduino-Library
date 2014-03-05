@@ -37,6 +37,7 @@ SMS	KEYWORD3
 TemperatureSensor	KEYWORD3
 ToggleButton	KEYWORD3
 Twitter	KEYWORD3
+Clock	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -111,6 +112,12 @@ isRinging	KEYWORD2
 getNumber	KEYWORD2
 getSms	KEYWORD2
 frontCapture	KEYWORD2
+getSeconds	KEYWORD2
+getMinutes	KEYWORD2
+getHours	KEYWORD2
+getDay	KEYWORD2
+getMonth	KEYWORD2
+getYear	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

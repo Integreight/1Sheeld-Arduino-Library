@@ -216,6 +216,7 @@ void OneSheeldClass::sendToShields()
     case MAGNETOMETER_ID         : Magnetometer.processData();break;
     case PHONE_ID                : Phone.processData();break;
     case SMS_ID                  : SMS.processData();break;
+    case CLOCK_ID                : Clock.processData();break;
   }
 }
 // instantiate object for users
