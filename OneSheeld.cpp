@@ -22,6 +22,8 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       datalengthcounter=0;
       argumentnumber=0;
       endFrame!=0;
+      lastTimeFrameSent=0;
+      isFirstFrame=false;
 }
 
 void OneSheeldClass::begin(long baudRate)
@@ -40,9 +42,12 @@ void OneSheeldClass::begin()
 
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
+  unsigned long mill=millis()+1;
+ if(isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+    delay(TIME_GAP-(mill-lastTimeFrameSent));
+  isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
-
   OneSheeldSerial.write((byte)START_OF_FRAME);
   OneSheeldSerial.write(LIBRARY_VERSION);
   OneSheeldSerial.write(shieldID);
@@ -65,6 +70,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
  }
     OneSheeldSerial.write((byte)END_OF_FRAME);
     va_end(arguments);
+    lastTimeFrameSent=millis()+1;
 }
 
 //Recieving Functions

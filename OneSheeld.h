@@ -80,6 +80,7 @@ typedef unsigned char byte;
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 #define LIBRARY_VERSION 0x01
+#define TIME_GAP		200UL
 
 //new function for the new packet frame 
 
@@ -123,6 +124,8 @@ byte **arguments;				 //pointer to an array of 2d
 byte *argumentL;            
 byte framestart;
 byte endFrame;
+unsigned long lastTimeFrameSent;
+bool isFirstFrame;
 void begin(long baudRate);
 public:
     
