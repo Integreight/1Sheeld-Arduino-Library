@@ -16,12 +16,19 @@ ClockShield::ClockShield()
 
 void ClockShield::begin()
 {
-	
 	OneSheeld.sendPacket(CLOCK_ID,0,BEGIN_CLOCK,0);
+	timeStart=millis();
 	isClockInit=false;
 	while(!isClockInit)
 	{
+		timeCheck=millis();
+		if(timeCheck-timeStart>=ONE_SECOND)
+		{
+			break;
+		}
+
 		OneSheeld.processInput();
+		
 	}
 }
 byte ClockShield::getSeconds()
