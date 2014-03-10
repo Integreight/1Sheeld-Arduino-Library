@@ -1,38 +1,37 @@
 /*
-Example illustrates the Seven Segment display in 1Sheeld making 
-displaying numbers from 0 up to 9
+Example illustrates Seven Segment incrementation from 0--->9 each 
+time a button pushed 
 */
 
-//including the Library OneSheeld 
+//Include OneSheeld Library 
 #include <OneSheeld.h>
 
-//reserving a variable to get the state of the push button 
-int state;
-//reserve a varaiable that holds the numbers from 0-->9 and declaring it first by zero
+//Reserve a variable for the incrementation value and initialize it by zero 
 int number=0;
 
-void setup()
+void setup () 
 {
-  //Starting the UART communication on baudrate 57600
+  //Start UART communication on baudrate 57600
   OneSheeld.begin();
-  //set pin 13 as INPUT
+  //Set pin 13 as INPUT
   pinMode(13,INPUT);
 }
 
 
-void loop()
+void loop () 
 {
-  //always check the state of pin 13
-  state=digitalRead(13);
-  //if it is high display numbers on the Seven Segment 
-  if(state==HIGH)
- {
-   //Display the number in Seven Segment
-   SevenSegment.setNumber(number);
-   //increment the number so as if button is pressed the next number is displayed 
-   number++;
-   //Check the number if it is bigger than 9 return the number to zero
-   if (number>9)  number=0;
- }
-   
+  if (digitalRead(13)==HIGH)
+  {
+    //Send the number to the Seven Segment 
+    SevenSegment.setNumber(number);
+    delay(1000);
+    //Increment the number
+    number++;
+    //Check the number if it reaches to 9 put it again to zero 
+    if(number==10)
+    {
+      //Initialize the number back agian by zero 
+      number=0;
+    }
+  }
 }
