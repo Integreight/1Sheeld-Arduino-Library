@@ -20,5 +20,5 @@ private:
     int _pin ;
 };
 
-extern ReadPWMClass PWM;
+extern ReadPWMClass PulseWidthModulation;
 #endif

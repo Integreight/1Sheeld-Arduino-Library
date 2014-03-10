@@ -23,4 +23,4 @@ unsigned long ReadPWMClass::readValue (int pin)
     return (PeriodCalculation(ReadPWM()));
 }
 
-ReadPWMClass PWM;
+ReadPWMClass PulseWidthModulation;

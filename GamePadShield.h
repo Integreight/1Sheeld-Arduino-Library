@@ -3,15 +3,14 @@
 
 #define GAMEPAD_VALUE 0x01
 
-//wroking on the GamePad buttons Bitwise 
-#define A 0
-#define B 1
-#define C 2 
-#define D 3 
-#define UP 4
-#define DOWN 5
-#define LEFT 6
-#define RIGHT 7
+#define UP_BIT 4
+#define DOWN_BIT 5
+#define LEFT_BIT 6
+#define RIGHT_BIT 7
+#define A_BIT 0
+#define B_BIT 1
+#define C_BIT 2 
+#define D_BIT 3 
 
 
 class GamePadShield
