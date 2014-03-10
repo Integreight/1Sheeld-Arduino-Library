@@ -66,6 +66,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
         byte* tempData=temp->getData();
         OneSheeldSerial.write(tempData[j]);
       }
+    delete(temp);
 
  }
     OneSheeldSerial.write((byte)END_OF_FRAME);
