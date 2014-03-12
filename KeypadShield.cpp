@@ -17,6 +17,16 @@ bool KeypadShieldClass::isRowPressed(byte x)
 return !!(row&(1<<x));
 }
 
+bool KeypadShieldClass::isAnyRowPressed()
+{
+return !!row;
+}
+
+bool KeypadShieldClass::isAnyColumnPressed()
+{
+return !!col;
+}
+
 bool KeypadShieldClass::isColumnPressed(byte x)
 {
   if(x>7)return false;
@@ -31,13 +41,13 @@ void KeypadShieldClass::processData()
      row=OneSheeld.getArgumentData(0)[0];
      col=OneSheeld.getArgumentData(1)[0];
      if (isCallbackAssigned)
-     (*buttonChangeCallback)(row,col);
+     (*buttonChangeCallback)();
    }
    
 }
 
 
-void KeypadShieldClass::setOnButtonChange(void (*userFunction)(int,int))
+void KeypadShieldClass::setOnButtonChange(void (*userFunction)())
 {
   buttonChangeCallback=userFunction;
   isCallbackAssigned=true;
