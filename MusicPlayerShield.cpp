@@ -31,4 +31,13 @@ void MusicPlayerShieldClass::seekBackward(byte x)
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,SEEK_BACKWARD,1,new FunctionArg(1,&x));
 }
 
+void MusicPlayerShieldClass::setVolume(byte x)
+{
+	if (x>10) 
+		{x=10;}
+	else if (x<0) 
+		{x=0;}
+	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,VOLUME,1,new FunctionArg(1,&x));
+}
+
 MusicPlayerShieldClass MusicPlayer;
