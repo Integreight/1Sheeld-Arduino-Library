@@ -23,5 +23,5 @@ private:
 
 	
 };
-extern GyroscopeSensorShield Gyroscope;
+extern GyroscopeSensorShield GyroscopeSensor;
 #endif 

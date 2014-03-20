@@ -56,4 +56,4 @@ void GyroscopeSensorShield::processData()
 }
 
 
-GyroscopeSensorShield Gyroscope ;
+GyroscopeSensorShield GyroscopeSensor ;
