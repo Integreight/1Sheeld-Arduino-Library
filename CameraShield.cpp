@@ -2,9 +2,9 @@
 #include "CameraShield.h"
 
 
-void CameraShieldClass::capture()
+void CameraShieldClass::rearCapture()
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,CAPTURE,0);
+	OneSheeld.sendPacket(CAMERA_ID,0,REAR_CAPTURE,0);
 }
 
 void CameraShieldClass::setFlash(byte x)

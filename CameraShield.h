@@ -2,7 +2,7 @@
 #define CameraShield_h
 
 
-#define CAPTURE 	0x01
+#define REAR_CAPTURE 	0x01
 #define SET_FLASH 	0x02
 #define FLASH_OFF	0x00
 #define FLASH_ON    0x01
@@ -13,7 +13,7 @@ class CameraShieldClass
 {
 public:
 	void frontCapture();
-	void capture ();
+	void rearCapture ();
 	void setFlash(byte );
 
 private:
