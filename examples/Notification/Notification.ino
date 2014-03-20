@@ -1,18 +1,32 @@
+/*
+Example illustrates sensing the tmperature of the room and sending 
+a Notification to your phone if it exceeded a certain value
+*/
+
+/*Inlcuding OneSheeld Library*/
 #include <OneSheeld.h>
 
-void setup(){
-	// Initialize 1Sheeld
-	OneSheeld.begin(57600);
-	// Call a specific function when a Keypad button is clicked
-	Keypad.setOnButtonChange(&onButtonChange);
+/*Reserve a variable to Notify Once*/
+boolean phoneNotified=false;
+void setup()
+{
+	/*Start UART communication on baudrate 57600*/
+	OneSheeld.begin();
 }
 
-void loop(){
-	//Do nothing
-}
-
-void onButtonChange(int row, int col){
-	//Notify The phone back when a button is pressed
-    String msg="Button cliked, row="+row;+", col="+col;
-	Notification.notifyPhone(msg);
+void loop()
+{
+	/*Always get the temperature*/
+	if(TemperatureSensor.getValue()>25)
+	{
+		/*Check if the Phone is Notified Once*/
+		if(phoneNotified==false)
+		{
+			/*Notify the Phone*/
+			Notification.notifyPhone("Room Temperature incereased");
+			/*Reset the variable*/
+			phoneNotified=true;
+		}
+		
+	}
 }
