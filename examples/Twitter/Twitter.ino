@@ -1,7 +1,7 @@
 #include <OneSheeld.h>
 
 void setup(){
-OneSheeld.begin(57600);
+OneSheeld.begin();
 Twitter.updateStatus("Hello @AmrooSaleh and @iSsO, nice to meet you!");
 }
 
