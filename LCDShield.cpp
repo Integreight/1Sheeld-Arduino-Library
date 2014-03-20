@@ -16,15 +16,6 @@ void LCDShield::home()
 	OneSheeld.sendPacket(LCD_ID,0,HOME,0);
 }
 
-void LCDShield::noDisplay()
-{
-	OneSheeld.sendPacket(LCD_ID,0,NODISPLAY,0);
-}
-
-void LCDShield::display()
-{
-	OneSheeld.sendPacket(LCD_ID,0,DISPLAY,0);
-}
 
 void LCDShield::noBlink()
 {

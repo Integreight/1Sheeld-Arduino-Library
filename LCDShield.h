@@ -25,8 +25,6 @@ public:
 	void begin(byte,byte);
 	void clear();
 	void home();
-	void noDisplay();
-	void display();
 	void noBlink();
 	void blink();
 	void noCursor();
