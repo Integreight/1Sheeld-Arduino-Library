@@ -6,30 +6,30 @@ certain value
 
 #include <OneSheeld.h>
 
-//reserving a varriable for the Temperature value and initiallizing it by zero
+/*Reserving a varriable for the Temperature value and initiallizing it by zero*/
 char tempvalue=0;
 
 void setup () 
 {
    
-  //Starting the UART communication on baud rate 57600
+  /*Starting the UART communication on baud rate 57600*/
    OneSheeld.begin(57600);
    
 }
 
-//Always get temperature values from the Temperature Sensor of the mobile 
+/*Always get temperature values from the Temperature Sensor of the mobile*/
 void loop()
 {
-    //storing the temperature value
+    /*Storing the temperature value*/
     tempvalue=Temp.getDegree();
-    //Buzz if the Temperature exceeds 20 degrees in Celsuis 
+    /*Buzz if the Temperature exceeds 20 degrees in Celsuis*/ 
     if (tempvalue>=20)
     {
-      //Buzzing
+      /*Buzzing*/
       Buzzer.buzzOn();
-      //delay 10 seconds
+      /*Delay 10 seconds*/
      delay(10000);
-      //Stop Buzzing  
+      /*Stop Buzzing*/  
       Buzzer.buzzOff();
     }
     
