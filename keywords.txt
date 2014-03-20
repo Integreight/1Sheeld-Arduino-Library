@@ -20,7 +20,7 @@ Keypad	KEYWORD3
 LCD	KEYWORD3
 LED	KEYWORD3
 LightSensor	KEYWORD3
-Magnetometer	KEYWORD3
+MagnetometerSensor	KEYWORD3
 Mic	KEYWORD3
 MusicPlayer	KEYWORD3
 Notification	KEYWORD3
@@ -47,7 +47,7 @@ getZ	KEYWORD2
 buzzOn	KEYWORD2
 buzzOff	KEYWORD2
 begin	KEYWORD2
-capture	KEYWORD2
+rearCapture	KEYWORD2
 setFlash	KEYWORD2
 send	KEYWORD2
 updateStatus	KEYWORD2
@@ -118,6 +118,9 @@ getHours	KEYWORD2
 getDay	KEYWORD2
 getMonth	KEYWORD2
 getYear	KEYWORD2
+setVolume	KEYWORD2
+isAnyRowPressed	KEYWORD2
+isAnyColumnPressed	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
