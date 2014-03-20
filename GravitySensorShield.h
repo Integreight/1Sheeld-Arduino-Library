@@ -26,5 +26,5 @@ private:
 
 	
 };
-extern GravitySensorShield Gravity;
+extern GravitySensorShield GravitySensor;
 #endif 

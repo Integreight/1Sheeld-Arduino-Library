@@ -60,4 +60,4 @@ void GravitySensorShield::processData()
 
 }
 
-GravitySensorShield Gravity ;
+GravitySensorShield GravitySensor ;
