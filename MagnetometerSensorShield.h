@@ -13,6 +13,7 @@ public:
 	float getX();
 	float getY();
 	float getZ();
+	float magneticStrength();
 private:
 	void processData();
 	float valueX ,valueY,valueZ;
@@ -26,5 +27,5 @@ private:
 
 	
 };
-extern MagnetometerSensorShield Magnetometer;
+extern MagnetometerSensorShield MagnetometerSensor;
 #endif 

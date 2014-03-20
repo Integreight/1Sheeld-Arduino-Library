@@ -58,5 +58,10 @@ void MagnetometerSensorShield::processData()
 	}
 }
 
+float MagnetometerSensorShield::magneticStrength()
+{
+	return sqrt((valueX*valueX)+(valueY*valueY)+(valueZ*valueZ));
+}
 
-MagnetometerSensorShield Magnetometer;
+
+MagnetometerSensorShield MagnetometerSensor;
