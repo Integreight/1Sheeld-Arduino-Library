@@ -50,7 +50,17 @@ void loop()
   /*process on the light value using the ratio calculated and take the diffrence of the value*/ 
   /*with 255*/
   ledValue=255-lightValue*ratio;
-  /*let the led ignite at the value calculated*/
-  analogWrite(10,ledValue);
+  
+  /*Accuracy*/
+  if(ledValue <10)
+  {
+    /*Led don't ignite if ledValue is less than 10 (accuracy)*/ 
+    analogWrite(10,0);
+  }
+  else
+  {
+    /*let the led ignite at the value calculated*/
+    analogWrite(10,ledValue);  
+  }
   
 }

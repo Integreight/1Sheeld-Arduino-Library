@@ -22,7 +22,7 @@ void loop ()
   
   /*Checkout if the magnetic strength exceeded certain value(normal magnetic field far away from
   devices and electronical and any object that conducts magnetic field)*/
-  if (Magnetometer.magneticStrength()>50.115)
+  if (MagnetometerSensor.magneticStrength()>50.115)
   {
         /*This assures that notification will be sent only one time in this loop*/ 
         if (notificationsent==false){

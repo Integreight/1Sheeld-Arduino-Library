@@ -23,7 +23,7 @@ void loop ()
   {
     /*Capture a picture*/
     Camera.rearCapture();
-    /*Wait a second to handle the next capturing*/
+    /*Adding a time delay  to handle the Capturing against the speed of loop*/
     delay(1000);
   }
   
