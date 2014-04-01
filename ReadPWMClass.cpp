@@ -7,20 +7,19 @@
 #include "Arduino.h"
 #include "ReadPWMClass.h"
 
-ReadPWMClass::ReadPWMClass() {}
-unsigned long ReadPWMClass::PeriodCalculation(unsigned long period)
+ReadPWMClass::ReadPWMClass() 
+{}
+
+unsigned long ReadPWMClass::getValue(int pin)
 {
-    return ((period / 7.8431372549019607843137254901961) + 1);
-}
-unsigned long ReadPWMClass::ReadPWM ()
-{
-    return (pulseIn(_pin, HIGH));
-}
-unsigned long ReadPWMClass::readValue (int pin)
-{
-    //pinMode(pin, INPUT);
-    _pin = pin;
-    return (PeriodCalculation(ReadPWM()));
+	period=0;
+	duty=0;
+	fraction=0;
+
+	period=(double)pulseIn(pin,HIGH)+(double)pulseIn(pin,LOW);
+	duty=(double)pulseIn(pin,HIGH);
+	fraction=duty/period;
+	return ((floor)(fraction)*(255));
 }
 
 ReadPWMClass PulseWidthModulation;

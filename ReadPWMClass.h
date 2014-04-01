@@ -13,11 +13,12 @@ class ReadPWMClass
 {
 public:
     ReadPWMClass();
-    unsigned long readValue(int pin);
+    unsigned long getValue(int );
 private:
-    unsigned long PeriodCalculation(unsigned long period);
-    unsigned long ReadPWM ();
-    int _pin ;
+    double period;
+    double duty;
+    double fraction;
+
 };
 
 extern ReadPWMClass PulseWidthModulation;
