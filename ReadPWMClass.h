@@ -13,8 +13,9 @@ class ReadPWMClass
 {
 public:
     ReadPWMClass();
-    unsigned long getValue(int );
+    unsigned char getValue(int );
 private:
+	unsigned char pwm_out;
     double period;
     double duty;
     double fraction;

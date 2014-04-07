@@ -38,6 +38,7 @@ TemperatureSensor	KEYWORD3
 ToggleButton	KEYWORD3
 Twitter	KEYWORD3
 Clock	KEYWORD3
+PulseWidthModulation	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
