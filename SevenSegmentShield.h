@@ -6,7 +6,7 @@ class SevenSegmentShieldClass
 {
 
 public:
-	void setNumber(byte x);
+	void setNumber(byte );
 	void setCharacter(byte  );
 
 private:
