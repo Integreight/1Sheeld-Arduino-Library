@@ -56,4 +56,4 @@ void AccelerometerSensorShield::processData()
 	}
 }
 
-AccelerometerSensorShield Accelerometer;
+AccelerometerSensorShield AccelerometerSensor;

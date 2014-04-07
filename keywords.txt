@@ -5,7 +5,7 @@
 #######################################
 # Datatypes (KEYWORD3)
 #######################################
-Accelerometer	KEYWORD3
+AccelerometerSensor	KEYWORD3
 Buzzer	KEYWORD3
 Camera	KEYWORD3
 Email	KEYWORD3

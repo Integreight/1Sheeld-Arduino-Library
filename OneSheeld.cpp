@@ -217,7 +217,7 @@ void OneSheeldClass::sendToShields()
     case LIGHT_ID                : LightSensor.processData();break;
     case PRESSURE_ID             : PressureSensor.processData();break;
     case GRAVITY_ID              : GravitySensor.processData();break;
-    case ACCELEROMETER_ID        : Accelerometer.processData();break;
+    case ACCELEROMETER_ID        : AccelerometerSensor.processData();break;
     case GYROSCOPE_ID            : GyroscopeSensor.processData();break;
     case ORIENTATION_ID          : OrientationSensor.processData();break;
     case MAGNETOMETER_ID         : MagnetometerSensor.processData();break;

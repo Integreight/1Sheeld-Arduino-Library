@@ -26,5 +26,5 @@ friend class OneSheeldClass;
 	
 };
 
-extern AccelerometerSensorShield Accelerometer;
+extern AccelerometerSensorShield AccelerometerSensor;
 #endif
