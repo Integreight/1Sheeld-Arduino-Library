@@ -7,7 +7,8 @@ or if there is someone at the place and check what's is going on with the help o
 /*Including OneSheeld Library*/
 #include <OneSheeld.h>
 
-
+/*Reserve a variable for prventing the excessive callings*/
+boolean called = false;
 void setup () 
 {
   /*Start UART communication on baudrate 57600*/
@@ -22,7 +23,14 @@ void loop ()
   /*At 3PM give me a call*/
   if (Clock.getSeconds()==00 && Clock.getMinutes()==00 && Clock.getHours()==15)
   {
-    /*Call my phone*/
-    Phone.call("+0201286077028");
+    /*Check if called don't call again*/
+    if (called = false)
+    {
+      /*Call my phone*/
+      Phone.call("+0201286077028");
+      /*Stop Calling*/
+      called = true;
+    }
+    
   }
 }
