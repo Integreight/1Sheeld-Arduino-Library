@@ -11,8 +11,11 @@ public:
 	float getX();
 	float getY();
 	float getZ();
+	void setOnChange(void (*)());
 private:
 	void processData();
+	void (*changeCallBack)();
+	bool isCallBackAssigned;
 	float valueX ,valueY,valueZ;
 	union float_test
 	{
