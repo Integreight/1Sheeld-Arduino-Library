@@ -77,6 +77,6 @@ boolean isFourPressed(){
 }
 /*Checking if Button pressed other than one or two or three or four*/
 boolean isOtherButtonPressed(){
-  return (Keypad.isAnyColumnPressed()||Keypad.isAnyColumnPressed())&&!isOnePressed()&&!isTwoPressed()&&!isThreePressed()&&!isFourPressed();
+  return ((Keypad.isAnyColumnPressed()||Keypad.isAnyColumnPressed())&&!isOnePressed()&&!isTwoPressed()&&!isThreePressed()&&!isFourPressed());
 }
 
