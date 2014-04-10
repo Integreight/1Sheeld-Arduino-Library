@@ -5,6 +5,7 @@
 LightSensorShield::LightSensorShield()
 {
 	value=0;
+	isCallBackAssigned=false;
 }
 
 unsigned long LightSensorShield::getValue()
@@ -26,7 +27,18 @@ void LightSensorShield::processData()
 		value|=(unsigned long)data[0];
 		value|=(unsigned long)(data[1]<<8);
 		value|=(unsigned long)(data[2]<<16);
+
+		if(isCallBackAssigned)
+		{
+			(*changeCallBack)();
+		}
 	}
+}
+
+void LightSensorShield::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
 }
 
 LightSensorShield LightSensor;

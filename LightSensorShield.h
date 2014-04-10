@@ -8,8 +8,11 @@ class LightSensorShield
 public:
 	LightSensorShield();
 	unsigned long getValue();
+	void setOnChange(void (*)());
 private:
 	void processData();
+	void (*changeCallBack)();
+	bool isCallBackAssigned;
 	unsigned long value;
 	 long data[3];
 	 friend class OneSheeldClass;
