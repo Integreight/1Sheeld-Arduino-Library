@@ -39,6 +39,7 @@ ToggleButton	KEYWORD3
 Twitter	KEYWORD3
 Clock	KEYWORD3
 PulseWidthModulation	KEYWORD3
+AsciiKeyboard	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -60,10 +61,10 @@ isUpPressed	KEYWORD2
 isDownPressed	KEYWORD2
 isLeftPressed	KEYWORD2
 isRightPressed	KEYWORD2
-isAPressed	KEYWORD2
-isBPressed	KEYWORD2
-isCPressed	KEYWORD2
-isDPressed	KEYWORD2
+isOrangePressed	KEYWORD2
+isRedPressed	KEYWORD2
+isGreenPressed	KEYWORD2
+isBluePressed	KEYWORD2
 getLat	KEYWORD2
 getLon	KEYOWRD2
 isLat	KEYWORD2
@@ -122,6 +123,8 @@ getYear	KEYWORD2
 setVolume	KEYWORD2
 isAnyRowPressed	KEYWORD2
 isAnyColumnPressed	KEYWORD2
+getCharacter	KEYWORD2
+setOnChange	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
