@@ -12,7 +12,7 @@ public:
 KeypadShieldClass();
 bool isRowPressed(byte x);
 bool isColumnPressed(byte x);
-void setOnButtonChange(void (*userFunction)());
+void setOnButtonChange(void (*)());
 bool isAnyRowPressed();
 bool isAnyColumnPressed();
 
