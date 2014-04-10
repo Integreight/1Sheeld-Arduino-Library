@@ -10,12 +10,12 @@ class ToggleButtonShield
 public:
 	ToggleButtonShield();
 	byte getValue();
-	void setOnChange(void (*userFunction)(byte));
+	void setOnChange(void (*userFunction)());
 private:
 	void processData();
 	byte value;
-	bool callBack;
-	void (*changeCallBack)(byte);
+	bool isCallBackAssigned;
+	void (*changeCallBack)();
 	friend class OneSheeldClass;
 };
 
