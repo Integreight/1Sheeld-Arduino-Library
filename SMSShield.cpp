@@ -10,6 +10,7 @@
   {
   	text=0;
   	number=0;
+  	isCallBackAssigned=false;
   }
 void SMSShieldClass::send(char* number,char* text)
 {
@@ -45,9 +46,18 @@ void SMSShieldClass::processData()
 			text[i]=OneSheeld.getArgumentData(1)[i];
 		}
 			text[textlength]='\0';
+
+		if(isCallBackAssigned)
+		{
+			(*changeCallBack)();
+		}
 	}
 }
-
+void SMSShieldClass::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
+}
 char * SMSShieldClass::getNumber()
 {
 	return number;

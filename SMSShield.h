@@ -14,8 +14,11 @@ public:
 	void send(char* ,char*);
 	char * getSms();
 	char * getNumber();
+	void setOnChange(void (*)());
 private:
 	void processData();
+	void (*changeCallBack)();
+	bool isCallBackAssigned;
 	char * text;
 	char * number;
 	friend class OneSheeldClass ;
