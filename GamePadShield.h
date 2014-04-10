@@ -3,10 +3,10 @@
 
 #define GAMEPAD_VALUE 0x01
 
-#define A_BIT 0
-#define B_BIT 1
-#define C_BIT 2 
-#define D_BIT 3 
+#define ORANGE_BIT 0
+#define RED_BIT 1
+#define GREEN_BIT 2 
+#define BLUE_BIT 3 
 #define UP_BIT 4
 #define DOWN_BIT 5
 #define LEFT_BIT 6
@@ -22,13 +22,17 @@ public:
 	bool isDownPressed();
 	bool isLeftPressed();
 	bool isRightPressed();
-	bool isAPressed();
-	bool isBPressed();
-	bool isCPressed();
-	bool isDPressed();
-	void processData();
+	bool isOrangePressed();
+	bool isRedPressed();
+	bool isGreenPressed();
+	bool isBluePressed();
+	void setOnButtonChange(void (*)());
 private:
+	void processData();
 	byte value;
+	bool isCallBackAssigned;
+	void (*buttonChangeCallBack)();
+	friend class OneSheeldClass ;
 };
 
 extern GamePadShield GamePad;
