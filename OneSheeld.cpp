@@ -224,6 +224,7 @@ void OneSheeldClass::sendToShields()
     case PHONE_ID                : Phone.processData();break;
     case SMS_ID                  : SMS.processData();break;
     case CLOCK_ID                : Clock.processData();break;
+    case KEYBOARD_ID             : AsciiKeyboard.processData();break;
   }
 }
 // instantiate object for users

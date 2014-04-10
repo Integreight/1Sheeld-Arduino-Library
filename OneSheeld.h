@@ -42,6 +42,7 @@ typedef unsigned char byte;
 #include "MagnetometerSensorShield.h"
 #include "LCDShield.h"
 #include "ClockShield.h"
+#include "KeyboardShield.h"
 
 // shield ids
 #define TWITTER_ID      	 0x1A 
@@ -76,11 +77,15 @@ typedef unsigned char byte;
 #define ORIENTATION_ID		 0x0F
 #define MAGNETOMETER_ID  	 0x0A
 #define CLOCK_ID		 	 0x21
+#define KEYBOARD_ID			 0x22
+#define ONE_SECOND 1000
+
 // start and end of the packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 #define LIBRARY_VERSION 0x01
-#define TIME_GAP		200UL
+#define TIME_GAP		500UL
+
 
 //new function for the new packet frame 
 
