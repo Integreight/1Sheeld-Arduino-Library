@@ -6,7 +6,7 @@
 TemperatureSensorShield::TemperatureSensorShield()
 {
 	value=0xff;
-	callBack=false;
+	isCallBackAssigned=false;
 }
 
 char TemperatureSensorShield::getValue()
@@ -20,15 +20,15 @@ void TemperatureSensorShield::processData()
 	if(functionId==TEMPERATURE_VALUE)
 	{
 		value=OneSheeld.getArgumentData(0)[0];
-		if(callBack)
-			(*changeOnCallBack)(value);
+		if(isCallBackAssigned)
+			(*changeOnCallBack)();
 	}
 }
 
-void TemperatureSensorShield::setOnChange(void(*userFunction)(char))
+void TemperatureSensorShield::setOnChange(void(*userFunction)())
 {
 	changeOnCallBack=userFunction;
-	callBack=true;
+	isCallBackAssigned=true;
 }
 
 TemperatureSensorShield TemperatureSensor;
