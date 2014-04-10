@@ -10,7 +10,7 @@ MagnetometerSensorShield::MagnetometerSensorShield()
 	valueX=0;
 	valueY=0;
 	valueZ=0;
-
+	isCallBackAssigned=false;
 }
 
 
@@ -55,7 +55,18 @@ void MagnetometerSensorShield::processData()
 		getfloat.data[2]=OneSheeld.getArgumentData(2)[2];
 		getfloat.data[3]=OneSheeld.getArgumentData(2)[3];
 		valueZ=getfloat.num;
+
+		if(isCallBackAssigned)
+		{
+			(*changeCallBack)();
+		}
 	}
+}
+
+void MagnetometerSensorShield::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
 }
 
 float MagnetometerSensorShield::magneticStrength()
