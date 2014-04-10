@@ -3,7 +3,6 @@
 
 #define BEGIN_CLOCK 0x01
 #define DATE_VALUE 0x01
-#define ONE_SECOND 1000
 
 
 class ClockShield
