@@ -7,7 +7,7 @@
 PushButtonShield::PushButtonShield()
 {
 	value=0x00;
-	callBack=false;
+	isCallBackAssigned=false;
 }
 
 byte PushButtonShield::getValue()
@@ -21,15 +21,15 @@ void PushButtonShield::processData()
 	if(functionId==PUSHBUTTON_VALUE)
 	{
 		value=OneSheeld.getArgumentData(0)[0];
-		if(callBack)
-			(*changeCallBack)(value);
+		if(isCallBackAssigned)
+			(*changeCallBack)();
 	}
 }
 
-void PushButtonShield::setOnChange(void (*userFunction)(byte))
+void PushButtonShield::setOnChange(void (*userFunction)())
 {
 	changeCallBack=userFunction;
-	callBack=true;
+	isCallBackAssigned=true;
 }
 
 
