@@ -17,8 +17,11 @@ PhoneShieldClass();
 void call(char* );
 bool isRinging();
 char * getNumber();
+void setOnChange(void (*)());
 private:
 	void processData();
+	void (*changeCallBack)();
+	bool isCallBackAssigned;
 	byte value ;
 	char * number;
 	friend class OneSheeldClass ;

@@ -10,7 +10,8 @@
 PhoneShieldClass::PhoneShieldClass()
 {
 	value=0;
-	number=0;	
+	number=0;
+	isCallBackAssigned=false;	
 }
 void PhoneShieldClass::call(char* phone)
 {
@@ -43,9 +44,18 @@ void PhoneShieldClass::processData()
 
 			number[length]='\0';
 	}
-	
+	if (isCallBackAssigned)
+	{
+		(*changeCallBack)();
+	}
 
 
+}
+
+void PhoneShieldClass::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
 }
 
 bool PhoneShieldClass::isRinging()
