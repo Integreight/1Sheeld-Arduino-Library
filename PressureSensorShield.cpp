@@ -4,6 +4,7 @@
 PressureSensorShield::PressureSensorShield()
 {
 	value=0;
+	isCallBackAssigned=false;
 }
 
 unsigned long PressureSensorShield::getValue()
@@ -23,7 +24,18 @@ void PressureSensorShield::processData()
 		data[1]=OneSheeld.getArgumentData(0)[1];
 		value|=(unsigned long)data[0];
 		value|=(unsigned long)(data[1]<<8);
+
+		if(isCallBackAssigned)
+		{
+			(*changeCallBack)();
+		}
 	}
+}
+
+void PressureSensorShield::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
 }
 
 PressureSensorShield PressureSensor;
