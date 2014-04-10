@@ -8,6 +8,7 @@ GPSShieldClass::GPSShieldClass ()
 	LatValue=0;
 	LonValue=0;
 	isInit=false;
+	isCallBackAssigned=false;
 }
 
 //reading the packet and assigning the values to the long and the latit  
@@ -74,5 +75,11 @@ float GPSShieldClass::radian(float value)
 {
 	float radianValue = value*(PI/180);
 	return radianValue;
+}
+
+void GPSShieldClass::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
 }
 GPSShieldClass  GPS ;
