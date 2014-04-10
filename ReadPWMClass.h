@@ -14,11 +14,14 @@ class ReadPWMClass
 public:
     ReadPWMClass();
     unsigned char getValue(int );
+    void setOnChange(void (*)());
 private:
 	unsigned char pwm_out;
     double period;
     double duty;
     double fraction;
+    bool isCallBackAssigned;
+    void (*changeCallBack)();
 
 };
 

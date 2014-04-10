@@ -9,7 +9,9 @@
 
 
 ReadPWMClass::ReadPWMClass() 
-{}
+{
+	isCallBackAssigned=false;
+}
 
 unsigned char ReadPWMClass::getValue(int pin)
 {
@@ -21,7 +23,16 @@ unsigned char ReadPWMClass::getValue(int pin)
 	duty=(double)pulseIn(pin,HIGH);
 	fraction=duty/period;
 	pwm_out=(unsigned char)(ceil)(fraction*255);
+	if(isCallBackAssigned)
+	{
+		(*changeCallBack)();
+	}
 	return (pwm_out);
 }
 
+void ReadPWMClass::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
+}
 ReadPWMClass PulseWidthModulation;
