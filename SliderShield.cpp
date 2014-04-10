@@ -4,7 +4,7 @@
 SliderShield::SliderShield()
 {
 	value=0x00;
-	callBack=false;
+	isCallBackAssigned=false;
 }
 byte SliderShield::getValue()
 {
@@ -18,15 +18,15 @@ void SliderShield::processData()
 	if(functionId==SLIDER_VALUE)
 		{
 			value= OneSheeld.getArgumentData(0)[0];
-			if(callBack)
-				(*changeCallBack)(value);
+			if(isCallBackAssigned)
+				(*changeCallBack)();
 		}
 }
 
-void SliderShield::setOnChange(void (*userFunction)(byte))
+void SliderShield::setOnChange(void (*userFunction)())
 {
 	changeCallBack=userFunction;
-	callBack=true;
+	isCallBackAssigned=true;
 }
 
 SliderShield Slider;
