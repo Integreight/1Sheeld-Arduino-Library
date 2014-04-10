@@ -40,7 +40,7 @@ void loop ()
     digitalWrite(11,LOW);
     digitalWrite(10,LOW);
   }
-  else if (GamePad.isUpPressed()&&GamePad.isAPressed())
+  else if (GamePad.isUpPressed()&&GamePad.isOrangePressed())
   {
     /*Ignite LED on pin 11 when Up and A is Pressed*/
     digitalWrite(11,HIGH);
@@ -48,7 +48,7 @@ void loop ()
     digitalWrite(12,LOW);
     digitalWrite(10,LOW);
   }
-  else if (GamePad.isDownPressed()&&GamePad.isBPressed())
+  else if (GamePad.isDownPressed()&&GamePad.isRedPressed())
   {
     /*Ignite LED on pin 10 when Down and B is Pressed*/
     digitalWrite(10,HIGH);
