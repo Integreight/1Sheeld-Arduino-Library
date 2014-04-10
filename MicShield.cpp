@@ -7,7 +7,7 @@
 MicShield::MicShield()
 {
 	value=0x00;
-	callBack=false;
+	isCallBackAssigned=false;
 }
 
 byte MicShield::getValue()
@@ -22,15 +22,15 @@ void MicShield::processData()
 	{
 		value=0;
 		value=OneSheeld.getArgumentData(0)[0];
-		if(callBack)
-			(*changeCallBack)(value);
+		if(isCallBackAssigned)
+			(*changeCallBack)();
 	}
 }
 
-void MicShield::setOnChange(void (*userFunction)(byte))
+void MicShield::setOnChange(void (*userFunction)())
 {
 	changeCallBack=userFunction;
-	callBack=true;
+	isCallBackAssigned=true;
 }
 
 MicShield Mic;

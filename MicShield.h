@@ -8,12 +8,12 @@ class MicShield
 public:
 	MicShield();
 	byte getValue();
-	void setOnChange(void (*userFunction)(byte));
+	void setOnChange(void (*)());
 private:
 	void processData();
+	void (*changeCallBack)();
 	byte value;
-	bool callBack;
-	void (*changeCallBack)(byte);
+	bool isCallBackAssigned;
 	friend class OneSheeldClass;
 };
 extern MicShield Mic;
