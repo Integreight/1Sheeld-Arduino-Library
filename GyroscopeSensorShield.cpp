@@ -7,7 +7,7 @@ GyroscopeSensorShield::GyroscopeSensorShield()
 	valueX=0;
 	valueY=0;
 	valueZ=0;
-
+	isCallBackAssigned=false;
 }
 
 
@@ -52,7 +52,18 @@ void GyroscopeSensorShield::processData()
 		getfloat.data[2]=OneSheeld.getArgumentData(2)[2];
 		getfloat.data[3]=OneSheeld.getArgumentData(2)[3];
 		valueZ=getfloat.num;
+
+		if (isCallBackAssigned)
+		{
+			(*changeCallBack)();
+		}
     }
+}
+
+void GyroscopeSensorShield::setOnChange(void (*userFunction)())
+{
+	changeCallBack=userFunction;
+	isCallBackAssigned=true;
 }
 
 
