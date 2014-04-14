@@ -37,7 +37,7 @@ void OneSheeldClass::begin(long baudRate)
 
 void OneSheeldClass::begin()
 {
-  begin(57600);
+  begin(115200);
 }
 
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
