@@ -21,11 +21,11 @@ void TemperatureSensorShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		if(isCallBackAssigned)
-			(*changeOnCallBack)();
+			(*changeOnCallBack)(value);
 	}
 }
 
-void TemperatureSensorShield::setOnChange(void(*userFunction)())
+void TemperatureSensorShield::setOnChange(void(*userFunction)(char temp))
 {
 	changeOnCallBack=userFunction;
 	isCallBackAssigned=true;

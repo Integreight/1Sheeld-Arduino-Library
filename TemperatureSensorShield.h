@@ -8,12 +8,12 @@ class TemperatureSensorShield
 public:
 	TemperatureSensorShield();
 	char getValue();
-	void setOnChange(void (*)());
+	void setOnChange(void (*)(char));
 private:
 	void processData();
 	char value;
 	bool isCallBackAssigned;
-	void(*changeOnCallBack)();
+	void(*changeOnCallBack)(char);
 	friend class OneSheeldClass;
 };
 extern TemperatureSensorShield TemperatureSensor;
