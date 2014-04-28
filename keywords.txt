@@ -125,6 +125,7 @@ isAnyRowPressed	KEYWORD2
 isAnyColumnPressed	KEYWORD2
 getCharacter	KEYWORD2
 setOnChange	KEYWORD2
+setResolution	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
@@ -132,3 +133,6 @@ FLASH_OFF	LITERAL1
 FLASH_AUTO	LITERAL1
 FLASH_ON	LITERAL1
 RADUIS_OF_EARTH	LITERAL1
+LOW_RESOLUTION	LITERAL1
+MID_RESOLUTION	LITERAL1
+HIG_RESOLUTION	LITERAL1

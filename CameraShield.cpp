@@ -17,4 +17,8 @@ void CameraShieldClass::frontCapture()
 	OneSheeld.sendPacket(CAMERA_ID,0,FRONT_CAPTURE,0);
 }
 
+void CameraShieldClass::setResolution(byte x)
+{
+	OneSheeld.sendPacket(CAMERA_ID,0,SET_RESOLUTION,1,new FunctionArg(1,&x));
+}
 CameraShieldClass Camera;
