@@ -19,10 +19,10 @@ public:
 	bool isInRange(float , float , float );
 	float getDistance(float  , float );
 	float radian(float);
-	void setOnChange(void (*)());
+	void setOnChange(void (*)(float ,float ));
 private:
 	void processData ();
-	void (*changeCallBack)();
+	void (*changeCallBack)(float ,float);
 	float LatValue,LonValue;
 	bool isInit;
 	bool isCallBackAssigned;

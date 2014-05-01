@@ -31,6 +31,11 @@ void GPSShieldClass::processData ()
 
 		isInit=true;  									//setting a flag 
 	}
+
+	if (isCallBackAssigned)
+	{
+		(*changeCallBack)(LatValue,LonValue);
+	}
 }
 
 float GPSShieldClass::getLattitude()
@@ -77,7 +82,7 @@ float GPSShieldClass::radian(float value)
 	return radianValue;
 }
 
-void GPSShieldClass::setOnChange(void (*userFunction)())
+void GPSShieldClass::setOnChange(void (*userFunction)(float lattitude ,float longitude))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
