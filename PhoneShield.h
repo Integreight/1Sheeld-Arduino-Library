@@ -17,10 +17,10 @@ PhoneShieldClass();
 void call(char* );
 bool isRinging();
 char * getNumber();
-void setOnChange(void (*)());
+void setOnChange(void (*)(bool , char *));
 private:
 	void processData();
-	void (*changeCallBack)();
+	void (*changeCallBack)(bool , char *);
 	bool isCallBackAssigned;
 	byte value ;
 	char * number;

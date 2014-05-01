@@ -46,13 +46,13 @@ void PhoneShieldClass::processData()
 	}
 	if (isCallBackAssigned)
 	{
-		(*changeCallBack)();
+		(*changeCallBack)(value,number);
 	}
 
 
 }
 
-void PhoneShieldClass::setOnChange(void (*userFunction)())
+void PhoneShieldClass::setOnChange(void (*userFunction)(bool isRinging, char * phoneNumber))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
