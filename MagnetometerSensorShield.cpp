@@ -58,12 +58,12 @@ void MagnetometerSensorShield::processData()
 
 		if(isCallBackAssigned)
 		{
-			(*changeCallBack)();
+			(*changeCallBack)(valueX,valueY,valueZ);
 		}
 	}
 }
 
-void MagnetometerSensorShield::setOnChange(void (*userFunction)())
+void MagnetometerSensorShield::setOnChange(void (*userFunction)(float valueX, float valueY ,float valueZ))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

@@ -14,10 +14,10 @@ public:
 	float getY();
 	float getZ();
 	float magneticStrength();
-	void setOnChange(void (*)());
+	void setOnChange(void (*)(float ,float ,float));
 private:
 	void processData();
-	void (*changeCallBack)();
+	void (*changeCallBack)(float ,float ,float );
 	bool isCallBackAssigned;
 	float valueX ,valueY,valueZ;
 	union float_test
