@@ -57,12 +57,12 @@ void AccelerometerSensorShield::processData()
 
 		if(isCallBackAssigned)
 		{
-			(*changeCallBack)();
+			(*changeCallBack)(valueX,valueY,valueZ);
 		}
 	}
 }
 
-void AccelerometerSensorShield::setOnChange(void (* usersFunction)())
+void AccelerometerSensorShield::setOnChange(void (* usersFunction)(float valueX,float valueY,float valueZ))
 {
 	changeCallBack=usersFunction;
 	isCallBackAssigned=true;
