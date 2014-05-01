@@ -8,11 +8,11 @@ class ProximitySensorShield
 public:
 	ProximitySensorShield();
 	byte getValue();
-	void setOnChange(void (*userFunction)());
+	void setOnChange(void (*userFunction)(byte));
 private:
 	void processData();
 	byte value;
-	void (* changeCallBack)();
+	void (* changeCallBack)(byte);
 	bool isCallBackAssigned;
 	friend class OneSheeldClass;
 };

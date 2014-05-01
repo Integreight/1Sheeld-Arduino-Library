@@ -23,11 +23,11 @@ void ProximitySensorShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		if (isCallBackAssigned)
-		(*changeCallBack)();
+		(*changeCallBack)(value);
 	}
 }
 
-void ProximitySensorShield::setOnChange(void (*userFunction)())
+void ProximitySensorShield::setOnChange(void (*userFunction)(byte proximityValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
