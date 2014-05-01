@@ -19,11 +19,11 @@ void SliderShield::processData()
 		{
 			value= OneSheeld.getArgumentData(0)[0];
 			if(isCallBackAssigned)
-				(*changeCallBack)();
+				(*changeCallBack)(value);
 		}
 }
 
-void SliderShield::setOnChange(void (*userFunction)())
+void SliderShield::setOnChange(void (*userFunction)(byte sliderValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

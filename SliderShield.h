@@ -8,12 +8,12 @@ class SliderShield
 public:
 	SliderShield();
 	byte getValue();
-	void setOnChange(void (*userFunction)());
+	void setOnChange(void (*userFunction)(byte));
 private:
 	void processData();
 	byte value;	
 	bool isCallBackAssigned;
-	void(*changeCallBack)();
+	void(*changeCallBack)(byte);
 	friend class OneSheeldClass;
 
 
