@@ -14,10 +14,10 @@ public:
 	void send(char* ,char*);
 	char * getSms();
 	char * getNumber();
-	void setOnChange(void (*)());
+	void setOnChange(void (*)(char*,char*));
 private:
 	void processData();
-	void (*changeCallBack)();
+	void (*changeCallBack)(char*,char*);
 	bool isCallBackAssigned;
 	char * text;
 	char * number;

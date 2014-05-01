@@ -49,11 +49,11 @@ void SMSShieldClass::processData()
 
 		if(isCallBackAssigned)
 		{
-			(*changeCallBack)();
+			(*changeCallBack)(number,text);
 		}
 	}
 }
-void SMSShieldClass::setOnChange(void (*userFunction)())
+void SMSShieldClass::setOnChange(void (*userFunction)(char * number ,char * text))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
