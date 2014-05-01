@@ -9,12 +9,12 @@ class PushButtonShield
 public:
 	PushButtonShield();
 	byte getValue();
-	void setOnChange(void (*userFunction)());
+	void setOnChange(void (*userFunction)(byte ));
 public:
 	void processData();
 	byte value;
 	bool isCallBackAssigned;
-	void (*changeCallBack)();
+	void (*changeCallBack)(byte);
 	friend class OneSheeldClass;
 	
 };

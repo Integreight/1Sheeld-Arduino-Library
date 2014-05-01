@@ -22,11 +22,11 @@ void PushButtonShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		if(isCallBackAssigned)
-			(*changeCallBack)();
+			(*changeCallBack)(value);
 	}
 }
 
-void PushButtonShield::setOnChange(void (*userFunction)())
+void PushButtonShield::setOnChange(void (*userFunction)(byte pushuttonValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
