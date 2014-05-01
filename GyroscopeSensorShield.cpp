@@ -55,12 +55,12 @@ void GyroscopeSensorShield::processData()
 
 		if (isCallBackAssigned)
 		{
-			(*changeCallBack)();
+			(*changeCallBack)(valueX,valueY,valueZ);
 		}
     }
 }
 
-void GyroscopeSensorShield::setOnChange(void (*userFunction)())
+void GyroscopeSensorShield::setOnChange(void (*userFunction)(float valueX, float valueY ,float valueZ))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
