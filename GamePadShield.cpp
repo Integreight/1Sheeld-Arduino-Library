@@ -12,51 +12,50 @@ GamePadShield::GamePadShield()
 	//Single Button Pressed 
 bool GamePadShield::isUpPressed()
 {
-	
-	return !!(value & (1<<UP_BIT));
-	
+	up = !!(value & (1<<UP_BIT));
+	return up ;
 }
 
 bool GamePadShield::isDownPressed()
 {
-	
-	return !!(value & (1<<DOWN_BIT));
+	down = !!(value & (1<<DOWN_BIT));
+	return down ;
 }
 
 bool GamePadShield::isLeftPressed()
 {
-	
-	return !!(value & (1<<LEFT_BIT));
+	left = !!(value & (1<<LEFT_BIT));
+	return left ;
 }
 
 bool GamePadShield::isRightPressed()
 {
-	
-	return !!(value & (1<<RIGHT_BIT));
+	right = !!(value & (1<<RIGHT_BIT));
+	return right ;
 }
 
 bool GamePadShield::isOrangePressed()
 {
-	
-	return !!(value & (1<<ORANGE_BIT));
+	orange = !!(value & (1<<ORANGE_BIT));
+	return orange ;
 }
 
 bool GamePadShield::isRedPressed()
 {
-	
-	return !!(value & (1<<RED_BIT));
+	red = !!(value & (1<<RED_BIT));
+	return red ;
 }
 
 bool GamePadShield::isGreenPressed()
 {
-	
-	return !!(value & (1<<GREEN_BIT));
+	green = !!(value & (1<<GREEN_BIT));
+	return green ;
 }
 
 bool GamePadShield::isBluePressed()
 {
-	
-	return !!(value & (1<<BLUE_BIT));
+	blue = !!(value & (1<<BLUE_BIT));
+	return blue ;
 }
 
 void GamePadShield::processData()
@@ -68,12 +67,12 @@ void GamePadShield::processData()
 
 		if(isCallBackAssigned)
 		{
-			(*buttonChangeCallBack)();
+			(*buttonChangeCallBack)(up , down , left , right , orange , red , green , blue);
 		}
 	}
 }
 
-void GamePadShield::setOnButtonChange(void (* userFunction)())
+void GamePadShield::setOnButtonChange(void (* userFunction)(bool up, bool down, bool left, bool right,bool orange , bool red,bool green, bool blue))
 {
 	buttonChangeCallBack=userFunction;
 	isCallBackAssigned=true;
