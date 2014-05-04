@@ -126,12 +126,13 @@ isAnyColumnPressed	KEYWORD2
 getCharacter	KEYWORD2
 setOnChange	KEYWORD2
 setQuality	KEYWORD2
+magneticStrength	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
-FLASH_OFF	LITERAL1
-FLASH_AUTO	LITERAL1
-FLASH_ON	LITERAL1
+OFF	LITERAL1
+AUTO	LITERAL1
+ON	LITERAL1
 RADUIS_OF_EARTH	LITERAL1
 LOW_QUALITY	LITERAL1
 MID_QUALITY	LITERAL1
