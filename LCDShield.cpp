@@ -88,6 +88,6 @@ void LCDShield::write(byte x)
 
 void LCDShield::print(char *message)
 {
-OneSheeld.sendPacket(LCD_ID,0,PRINT,1,new FunctionArg(strlen(message),(byte*) message));
+	OneSheeld.sendPacket(LCD_ID,0,PRINT,1,new FunctionArg(strlen(message),(byte*) message));
 }
 LCDShield LCD;
