@@ -21,10 +21,10 @@ void ToggleButtonShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		if(isCallBackAssigned)
-			(*changeCallBack)();
+			(*changeCallBack)(value);
 	}
 }
-void ToggleButtonShield::setOnChange(void (*userFunction)())
+void ToggleButtonShield::setOnChange(void (*userFunction)(byte toggleButtonValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
