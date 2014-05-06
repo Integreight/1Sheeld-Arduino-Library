@@ -9,12 +9,13 @@
 class BuzzerShieldClass
 {
 public:
+	BuzzerShieldClass();
 	void buzzOn();
 	void buzzOff();
 private:
+	bool buzzing;
 	void setValue(byte x);
 
-	
 };
 
 extern BuzzerShieldClass Buzzer;

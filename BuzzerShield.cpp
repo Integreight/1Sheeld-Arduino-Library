@@ -1,14 +1,30 @@
 #include "OneSheeld.h"
 #include "BuzzerShield.h"
 
+
+BuzzerShieldClass::BuzzerShieldClass()
+{
+	buzzing = false;
+}
+
 void BuzzerShieldClass::buzzOn()
 {
-	setValue(BUZZ_ON);
+	if(buzzing == false)
+	{
+		setValue(BUZZ_ON);
+		buzzing=true;
+	}
+	
 }
 
 void BuzzerShieldClass::buzzOff()
 {
-	setValue(BUZZ_OFF);
+	if(buzzing == true)
+	{
+		setValue(BUZZ_OFF);
+		buzzing=false;
+	}
+	
 }
 
 void BuzzerShieldClass::setValue(byte x)
