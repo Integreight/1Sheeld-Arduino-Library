@@ -225,6 +225,7 @@ void OneSheeldClass::sendToShields()
     case SMS_ID                  : SMS.processData();break;
     case CLOCK_ID                : Clock.processData();break;
     case KEYBOARD_ID             : AsciiKeyboard.processData();break;
+    case TWITTER_ID              : Twitter.processData();break;
   }
 }
 // instantiate object for users

@@ -9,13 +9,25 @@
 // library defintions
 #define SEND_TWEET 0x01  // sendTweet function command
 #define SEND_DIRECT_MESSAGE 0x02  // send direct message function command
+#define GET_TWEET	0x01
 
 class TwitterShieldClass 
 {
 public:
-void updateStatus(char* );
-void sendDirectMessage(char* ,char* );
+	TwitterShieldClass();
+	void updateStatus(char* );
+	void sendDirectMessage(char* ,char* );
+	char * getUserName();
+	char * getTweet();
+	void setOnChange(void (*)(char*,char*));
 private:
+	char * userName;
+	char * tweet;
+	bool isCallBackAssigned;
+	void processData();
+	void (*changeCallBack)(char*,char*);
+	friend class OneSheeldClass;
+
 
 
 
