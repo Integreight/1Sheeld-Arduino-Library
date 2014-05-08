@@ -6,15 +6,20 @@ Axis reach it's maximum gravity
 /*Including OneSheeld Library*/
 #include <OneSheeld.h>
 
-
+/*Led on 13*/
+int ledPin1 = 13;
+/*Led on 12*/
+int ledPin2 = 12;
+/*Led on 11*/
+int ledPin3 = 11;
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
-  /*Set pin 13/12/11 as OUTPUT*/
-  pinMode (13,OUTPUT);
-  pinMode (12,OUTPUT);
-  pinMode (11,OUTPUT); 
+  /*Leds 1,2,3 OUTPUT*/
+  pinMode (ledPin1,OUTPUT);
+  pinMode (ledPin2,OUTPUT);
+  pinMode (ledPin3,OUTPUT); 
 }
 
 
@@ -24,30 +29,30 @@ void loop ()
   if (GravitySensor.getX()>=9)
   {
     /*Red LED ignite*/
-    digitalWrite(13,HIGH);
+    digitalWrite(ledPin1,HIGH);
     /*The second two LED are off*/
-    digitalWrite(12,LOW);
-    digitalWrite(11,LOW);    
+    digitalWrite(ledPin2,LOW);
+    digitalWrite(ledPin3,LOW);    
   }
   
   /*Checking the Gravity on the Y-Axis*/
-  else if (GravitySensor.getY()>=9)
+  if (GravitySensor.getY()>=9)
   {
     /*Green LED ignite*/
-    digitalWrite(12,HIGH);
+    digitalWrite(ledPin2,HIGH);
     /*The second two LED are off*/
-    digitalWrite(13,LOW);
-    digitalWrite(11,LOW);    
+    digitalWrite(ledPin1,LOW);
+    digitalWrite(ledPin3,LOW);    
   }
   
   /*Checking the Gravity on the Z-Axis*/
-  else if (GravitySensor.getZ()>=9)
+  if (GravitySensor.getZ()>=9)
   {
     /*Yellow LED ignite*/
-    digitalWrite(11,HIGH);
+    digitalWrite(ledPin3,HIGH);
     /*The second two LED are off*/
-    digitalWrite(13,LOW);
-    digitalWrite(12,LOW);    
+    digitalWrite(ledPin1,LOW);
+    digitalWrite(ledPin2,LOW);    
   }
   
 }
