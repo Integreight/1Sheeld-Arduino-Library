@@ -3,7 +3,7 @@ Example illustrates the Slider shield to control the frequency of the Piezo Spea
 the PWM values comming from the application 
 */
 
-/*Incliding OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
 /*Reserve a value for the Slider*/

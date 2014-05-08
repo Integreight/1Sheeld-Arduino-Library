@@ -18,7 +18,7 @@ short year;
 
 void setup ()
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Start the Clock Shield*/
   Clock.begin();
@@ -41,6 +41,6 @@ void loop ()
     /*Send me SMS*/
     SMS.send("+201286077028","HappY BirTH daY :D from OneSheeld");
     /*Update my Facebook Status*/ 
-    Facebook.updateStatus("Today is My BirthDay :D ");
+    Facebook.updateStatus("iT's My BirthDay :D ");
   }
 } 

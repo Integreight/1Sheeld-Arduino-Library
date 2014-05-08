@@ -6,13 +6,13 @@ my phone X-Axis 0--->360 / Y-Axis -180--->180 / Z-Axis -90--->90
 so check out your phone axis
 */
 
-/*Including OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
 
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
 }
 

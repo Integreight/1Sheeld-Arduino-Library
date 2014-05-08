@@ -3,24 +3,26 @@ Example illustrates the Skype shield Application when you press the button you w
 a certain skype account you set in the sketch
 */
 
-/*Including OneSheeld Library*/ 
+/*Include OneSheeld Library*/ 
 #include <OneSheeld.h>
 
-/*Reserve a variable for not always calling in loop*/
+/*Reserve a boolean*/
 boolean called=false;
+/*Button on 12*/
+int buttonPin = 12;
 void setup () 
 {
-  /*Start UART communication on buadrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
-  /*Set pin 13 as INPUT*/
-  pinMode(13,INPUT);
+  /*buttonPin as INPUT*/
+  pinMode(buttonPin,INPUT);
 }
 
 
 void loop () 
 {
   /*Always check pin 13 if it's high Skype the account*/
-  if (digitalRead(13)==HIGH)
+  if (digitalRead(buttonPin) == HIGH)
   {
     /*To call only once and not go on calling while looping*/
     if(called=false)

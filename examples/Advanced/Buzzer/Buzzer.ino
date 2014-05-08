@@ -1,5 +1,5 @@
 /*
-Example Illustrates Buzzer buzze On each and every time you get near the 
+Example Illustrates Buzzer buzz On each and every time you get near the 
 Smart phone using the Proximity Sensor
 */
 
@@ -8,7 +8,7 @@ Smart phone using the Proximity Sensor
 
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
 }
 
@@ -23,7 +23,7 @@ void loop ()
   }
   else 
   {
-    /*Buzz off when nothing is near*/
+    /*Buzz off*/
     Buzzer.buzzOff();
   }
 }

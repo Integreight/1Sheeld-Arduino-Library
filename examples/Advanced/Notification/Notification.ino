@@ -3,14 +3,14 @@ Example illustrates sensing the tmperature of the room and sending
 a Notification to your phone if it exceeded a certain value
 */
 
-/*Inlcuding OneSheeld Library*/
+/*Inlcude OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserve a variable to Notify Once*/
+/*Reserve boolean*/
 boolean phoneNotified=false;
 void setup()
 {
-	/*Start UART communication on baudrate 57600*/
+	/*Start Communication on baudrate 57600*/
 	OneSheeld.begin();
 }
 

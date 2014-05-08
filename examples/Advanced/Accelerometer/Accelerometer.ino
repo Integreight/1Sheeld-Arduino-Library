@@ -11,13 +11,14 @@ see how much your strike is effective
 float x;
 float y;
 float z;
-
+/*Led on 13*/
+int ledPin = 13 ;
 void setup () 
 {
-  /*Start UART communication on Baud rate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Set pin 13 OUTPUT*/
-  pinMode(13,OUTPUT);
+  pinMode(ledPin,OUTPUT);
 }
 
 
@@ -31,12 +32,12 @@ void loop ()
   /*Check the Motion of the Smart phone when exceeded a limit ignite*/
   if (sqrt((x*x)+(y*y)+(z*z))>31)
   {
-    /*LED on*/
-    digitalWrite(13,HIGH);
+    /*Put on the LED */
+    digitalWrite(ledPin,HIGH);
   }
   else
   {
-    /*LED off*/
-    digitalWrite(13,LOW);
+    /*Put off the LED*/
+    digitalWrite(ledPin,LOW);
   }
 }

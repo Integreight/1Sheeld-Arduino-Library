@@ -10,13 +10,15 @@ in case used in real security system it will be under your responsibility
 
 /*Reserve an iterator*/ 
 int iterations=0;
+/*Led on 13*/
+int ledPin = 13;
 
 void setup () 
 {
   /*Start UART communication on baud rate 57600*/
   OneSheeld.begin();
-  /*Let pin 13 OUTPUT*/
-  pinMode(13,OUTPUT);
+  /*ledPin OUTPUT*/
+  pinMode(ledPin,OUTPUT);
 }
 
 void loop()
@@ -50,9 +52,9 @@ void loop()
      /*Check if the Number of iterations equal Four blink LED*/
      if(iterations==4)
      {    
-          digitalWrite(13,HIGH);
+          digitalWrite(ledPin,HIGH);
           delay(500);
-          digitalWrite(13,LOW);
+          digitalWrite(ledPin,LOW);
           /*Reset the iterator*/
           iterations=0;
      }

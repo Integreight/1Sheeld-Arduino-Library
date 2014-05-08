@@ -8,19 +8,21 @@ time a button pushed
 
 /*Reserve a variable for the incrementation value and initialize it by zero*/
 int number=0;
+/*Button on 12*/
+int ledPin = 12;
 
 void setup () 
 {
   /*Start UART communication on baudrate 57600*/
   OneSheeld.begin();
-  /*Set pin 13 as INPUT*/
-  pinMode(13,INPUT);
+  /*ButtonPin as INPUT*/
+  pinMode(buttonPin,INPUT);
 }
 
 
 void loop () 
 {
-  if (digitalRead(13)==HIGH)
+  if (digitalRead(buttonPin) == HIGH)
   {
     /*Send the number to the Seven Segment*/
     SevenSegment.setNumber(number);

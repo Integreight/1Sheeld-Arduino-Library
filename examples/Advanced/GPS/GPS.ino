@@ -8,15 +8,18 @@ comming from the GPS of the Smart Phone
 /*including the OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*reserving a float variable to get the distance*/
+/*Reserving a float variable to get the distance*/
 float distance;
-
+/*Led on 13*/
+int ledPin = 13;
+/*Reserving boolean*/
+boolean InRange = false;
 void setup() 
 {
-  /*Starting the UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
-  /*set pin 13 as OUTPUT*/
-  pinMode(13,OUTPUT);
+  /*LedPin OUTPUT*/
+  pinMode(ledPin,OUTPUT);
 }
 
 
@@ -29,12 +32,22 @@ void loop()
    /*isInRange(Fixed Longitude,Fixed Lattitude,Range"in meters")*/   
   if(GPS.isInRange(30.0831008,31.3242943,100))
   {
-    /*ignite the LED*/
-    digitalWrite(13,HIGH);
+    if(InRange == false)
+    {
+      /*ignite the LED*/
+      SMS.send("+201286077028","Object is In Range");
+      InRange = true;
+    }
+    
   }
   else 
   {
-    /*take off the LED*/ 
-    digitalWrite(13,LOW);
+    if(InRange == true)
+    {
+      /*take off the LED*/ 
+      SMS.send("+201286077028","Object is not In Range");
+      InRange = false;
+    }
+    
   }
 }

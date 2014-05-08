@@ -7,11 +7,11 @@ Shield Application and the GPS Shield
 #include <OneSheeld.h>
 
 /*Reserve a variable to check in once*/
-boolean checkedIn=true;
+boolean checkedIn= false;
 
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
 }
 
@@ -23,12 +23,12 @@ void loop ()
   if (GPS.getLongitude()==31.134358 && GPS.getLattitude()==29.979175)
   {
     /*Check only once*/
-    if (checkedIn==true)
+    if (checkedIn == false)
     {
       /*Check in at the Pyramids*/
       Foursquare.checkIn("4b9f7a50f964a520422537e3","WoW what a great Place");
       /*Reset the value of the variable*/
-      checkedIn=false;
+      checkedIn = true;
     }
   }  
 }

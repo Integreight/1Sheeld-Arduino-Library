@@ -3,7 +3,7 @@ Example Illustrates Controlling the Music Player using the timming Clock at a ce
 the Music Starts to Play
 */
 
-/*Includig OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
 /*Reserve variables for the Clock timer*/

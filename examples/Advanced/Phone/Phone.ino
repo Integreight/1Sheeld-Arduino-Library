@@ -4,14 +4,14 @@ or if there is someone at the place and check what's is going on with the help o
 */
 
 
-/*Including OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserve a variable for prventing the excessive callings*/
+/*Reserve a boolean*/
 boolean called = false;
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Start the Clock*/
   Clock.begin();

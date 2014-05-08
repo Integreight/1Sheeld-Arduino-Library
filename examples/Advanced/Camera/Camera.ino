@@ -9,7 +9,7 @@ Limit take a Picture
 
 void setup ()
 {
-  /*Start UART communication on buadrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Set the Flash of the Camera to be On while capturing*/
   Camera.setFlash(FLASH_ON);
@@ -19,7 +19,7 @@ void setup ()
 void loop ()
 {
   /*Always get the value of the Light Sensor*/
-  if(LightSensor.getValue()<100&&LightSensor.getValue()>0)
+  if(LightSensor.getValue()<100 && LightSensor.getValue()>0)
   {
     /*Capture a picture*/
     Camera.rearCapture();

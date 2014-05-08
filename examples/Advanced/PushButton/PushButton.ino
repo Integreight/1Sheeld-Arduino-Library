@@ -2,15 +2,15 @@
 Example illustrates the use of the Push button in 1Sheeld
 */
 
-/*including the OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*reserving an integer varaiable to get the state of the button*/
+/*Reserving an integer varaiable to get the state of the button*/
 int state;
 
 void setup()
 {
-  /*Starting the Uart communication on baudrate 57600*/
+  /*Starting Communication*/
   OneSheeld.begin();
   /*set pin 13 as input*/
   pinMode(13,OUTPUT);

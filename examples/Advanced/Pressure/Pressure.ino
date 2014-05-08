@@ -3,15 +3,15 @@ Example illustrates Sensing the Pressure using the Smart Phone Pressure Sensor a
 exceeded a limit sends an SMS to my phone
 */
 
-/*Includign OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserve variable for not letting the phone sends you always*/
+/*Reserve a boolean*/
 boolean messageSent=false;
 
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
 }
 
