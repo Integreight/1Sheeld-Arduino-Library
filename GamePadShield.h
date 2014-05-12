@@ -26,13 +26,13 @@ public:
 	bool isRedPressed();
 	bool isGreenPressed();
 	bool isBluePressed();
-	void setOnButtonChange(void (*)(bool , bool ,bool , bool ,bool , bool ,bool , bool ));
+	void setOnButtonChange(void (*)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char ));
 private:
 	void processData();
 	byte value;
 	bool isCallBackAssigned;
 	bool up ,down ,left ,right,orange ,red ,green, blue;
-	void (*buttonChangeCallBack)(bool , bool ,bool , bool ,bool , bool ,bool , bool );
+	void (*buttonChangeCallBack)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char );
 	friend class OneSheeldClass ;
 };
 

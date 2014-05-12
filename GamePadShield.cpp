@@ -72,7 +72,7 @@ void GamePadShield::processData()
 	}
 }
 
-void GamePadShield::setOnButtonChange(void (* userFunction)(bool up, bool down, bool left, bool right,bool orange , bool red,bool green, bool blue))
+void GamePadShield::setOnButtonChange(void (* userFunction)(unsigned char up,unsigned char down,unsigned char left,unsigned char right,unsigned char orange ,unsigned char red,unsigned char green,unsigned char blue))
 {
 	buttonChangeCallBack=userFunction;
 	isCallBackAssigned=true;
