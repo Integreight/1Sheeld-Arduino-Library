@@ -16,6 +16,7 @@ void setup ()
   pinMode(buttonPin,INPUT);
   pinMode(ledPin,OUTPUT);
 }
+/*solve bouncing issue to be sure the state is read once and right*/
 boolean debounce (boolean lastState)
 {
   boolean currentState = digitalRead(buttonPin);
@@ -35,7 +36,7 @@ void loop ()
   /*Always check pin 13*/
   if(lastState == LOW && buttonState == HIGH)
   {
-    /*Checking in at My Work INTEGRIEGHT*/
+    /*Checking in at My Work :INTEGRIEGHT*/
     Foursquare.checkIn("511759f2e4b0b0ae6ed91067","Back To Work");
     digitalWrite(ledPin,HIGH);
     delay(200);

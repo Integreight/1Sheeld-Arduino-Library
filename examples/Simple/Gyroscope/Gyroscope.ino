@@ -1,5 +1,5 @@
 /*
-Example illustrates the Gyroscope shield and sensing it's values on the Three directions
+Example illustrates the Gyroscope shield and sensing its values on the Three directions
 X/Y/Z-Axis 
 */
 
@@ -10,7 +10,7 @@ X/Y/Z-Axis
 
 void setup ()
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start communication*/
   OneSheeld.begin();
   /*Set some pins as OUTPUT*/
   pinMode(13,OUTPUT);
@@ -22,6 +22,7 @@ void setup ()
 void loop () 
 {
   /*Always get the values of the Gyroscope*/
+
   /*Check the X-Axis motion*/
   if(GyroscopeSensor.getX()>1)
   {

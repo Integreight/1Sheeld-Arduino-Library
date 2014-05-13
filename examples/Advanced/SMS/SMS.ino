@@ -11,7 +11,7 @@ boolean messageSent=true;
 
 void setup () 
 {
- /*Start UART communication on baudrate 57600*/
+ /*Start communication*/
  OneSheeld.begin(); 
 }
 

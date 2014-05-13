@@ -13,7 +13,7 @@ int ledPin = 12;
 
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start communication*/
   OneSheeld.begin();
   /*ButtonPin as INPUT*/
   pinMode(buttonPin,INPUT);

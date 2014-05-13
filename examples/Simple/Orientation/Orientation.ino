@@ -1,6 +1,6 @@
 /*
-Example illustrates the Orientation of your SmartPhone and Igniting a LED when the
-Orientation exceeds certain limimts in the 3Dimensions
+Example illustrates the Orientation of your SmartPhone and turning ON a LED when the
+Orientation exceeds certain limits in the 3 Dimensions
 */
 
 /*Include OneSheeld Library*/
@@ -15,7 +15,7 @@ int ledPin3 = 11 ;
 
 void setup () 
 {
-  /*Start the Communication*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Set the ledPin OUTPUT*/
   pinMode(ledPin1,OUTPUT);

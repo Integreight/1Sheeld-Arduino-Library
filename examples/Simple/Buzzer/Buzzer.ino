@@ -10,7 +10,7 @@ int buttonPin = 12;
 int ledPin = 13;
 void setup () 
 {
-  /*Start UART Communication*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Let pin 13 as INPUT*/
   pinMode(buttonPin,INPUT);

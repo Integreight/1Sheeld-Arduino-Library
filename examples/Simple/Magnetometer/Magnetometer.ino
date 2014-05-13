@@ -1,6 +1,6 @@
 /*
-Example illustrates calculating the magnetic field surronded and when exceede a certain
-Limit ignite the LED 
+Example illustrates calculating the surrounded magnetic field and when exceeds a certain
+Limit, turn ON the LED!
 */
 
 
@@ -12,7 +12,7 @@ int ledPin = 13 ;
 
 void setup () 
 {
-  /*Start the Communication*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Set the ledPin as OUTPUT*/
   pinMode(ledPin,OUTPUT);

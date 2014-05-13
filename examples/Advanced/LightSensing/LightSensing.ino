@@ -1,23 +1,18 @@
-/*
-Example illustrates the light intensity of the room using the Smart Phones 
-Light Sensor and then as when the light reaches it's maximum the LED is OFF
-when the light FADES OFF the LEDs FADES ON gradually
-i.e: put your phone on a clear place in the middle of the room so as to get the maximum 
-     room light intensity and make it still
-*/
+/*Example illustrates the light intensity of the room using your Smart Phone's Light Sensor, when the light reaches its maximum the LED is OFF
+when the light FADES OFF the LEDs FADES ON gradually (i.e: put your phone on a clear place in the middle of the room to get the maximum 
+room light intensity and make it still)*/
+
 
 /*Include OneSheeld Library*/ 
 #include<OneSheeld.h>
 
-/*Reserving a variable to get the maximum room light intensity*/ 
- long maxLightIntensity=0;
-/*Reserving a variable to get the maximum ratio of the maximum value 255(8bits) to be sent*/
-/*by arduino along with the maximum value got by the Ligh Sensor*/
+/*maximum room light intensity*/ 
+long maxLightIntensity=0;
+/*maximum ratio of the maximum value 255(8bits) to be sent by arduino along with the maximum value got by the Ligh Sensor*/
 float ratio=0;
-/*Reserving a variable to get the value of multiplication of current value got from the*/
-/*Light Sensor and the maximum ratio*/
+/*value of current value of the Light Sensor and the maximum ratio*/
 long ledValue=0;
-/*Reserving a varaible to get the current value from the Light Sensor*/
+/*current value from the Light Sensor*/
 unsigned long lightValue;
 /*Led on 10*/
 int ledPin = 10;
@@ -32,9 +27,8 @@ void setup ()
 
 void loop()
 {
-  /*Always get the Light Intensity and check out if it was the largest value or not*/
-  /*and if the value is larger take the larger (Don't put the phone on direct light*/
-  /*as it will be a large value which will not let the application work properlly only with*/
+  /*check out if it's the largest value or not, if the value is larger take the larger (Don't put the phone on direct light*/
+  /*as it will be a large value which will not let the application work properly only with*/
   /*the largest Light Intensity Value)*/
   if(LightSensor.getValue()>maxLightIntensity)
   {

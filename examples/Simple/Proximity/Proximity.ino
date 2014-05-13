@@ -1,6 +1,6 @@
 /*
-Example illustrates Igniting a LED each time an Object gets near the Smartphone 
-using the Proximity Sensor
+Example illustrates turning ON a LED each time an Object gets near your Smartphone 
+using its Proximity Sensor
 */
 
 /*Include OneSheeld Library*/
@@ -11,7 +11,7 @@ int ledPin = 13;
 
 void setup () 
 {
-  /*Start the Communcication*/
+  /*Start Communcication*/
   OneSheeld.begin();
   /*Set ledPin as OUTPUT*/
   pinMode(ledPin,OUTPUT);

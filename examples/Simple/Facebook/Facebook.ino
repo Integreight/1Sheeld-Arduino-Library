@@ -1,5 +1,5 @@
 /*
-Example illustrates updating status on Facebook by pressing a button when you get back Home
+Example illustrates updating status on Facebook by pressing a button 
 */
 
 /*Including OneSheeld Library*/
@@ -10,12 +10,13 @@ int buttonPin = 12;
 int ledPin = 13;
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start communication*/
   OneSheeld.begin();
   /*Let pin 13 as INPUT*/
   pinMode(buttonPin,INPUT);
   pinMode(ledPin,OUTPUT);
 }
+/*solve bouncing issue to be sure the state is read once and right*/
 boolean debounce (boolean lastState)
 {
   boolean currentState = digitalRead(buttonPin);

@@ -1,6 +1,6 @@
 /*
-Example illustrates Gravity sensor on 3 Axis (X-Y-Z) and igniting LED when a certain 
-Axis reach it's maximum gravity 
+Example illustrates Gravity sensor on 3 Axis (X-Y-Z) and turning ON an LED when a certain 
+Axis reaches its maximum gravity 
 */
 
 /*Including OneSheeld Library*/
@@ -28,9 +28,9 @@ void loop ()
   /*Checking the Gravity on the X-Axis*/
   if (GravitySensor.getX()>=9)
   {
-    /*Red LED ignite*/
+    /*Red LED turned ON*/
     digitalWrite(ledPin1,HIGH);
-    /*The second two LED are off*/
+    /*The other two LEDs are off*/
     digitalWrite(ledPin2,LOW);
     digitalWrite(ledPin3,LOW);    
   }
@@ -38,9 +38,9 @@ void loop ()
   /*Checking the Gravity on the Y-Axis*/
   if (GravitySensor.getY()>=9)
   {
-    /*Green LED ignite*/
+    /*Green LED turned ON*/
     digitalWrite(ledPin2,HIGH);
-    /*The second two LED are off*/
+    /*The other two LEDs are off*/
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin3,LOW);    
   }
@@ -48,9 +48,9 @@ void loop ()
   /*Checking the Gravity on the Z-Axis*/
   if (GravitySensor.getZ()>=9)
   {
-    /*Yellow LED ignite*/
+    /*Yellow LED turned ON*/
     digitalWrite(ledPin3,HIGH);
-    /*The second two LED are off*/
+    /*The other two LEDs are off*/
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin2,LOW);    
   }

@@ -10,7 +10,7 @@ a Notification to your phone if it exceeded a certain value
 boolean phoneNotified=false;
 void setup()
 {
-	/*Start Communication on baudrate 57600*/
+	/*Start Communication*/
 	OneSheeld.begin();
 }
 

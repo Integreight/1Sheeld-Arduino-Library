@@ -26,7 +26,7 @@ void loop ()
     if (messageSent==false)
     {
       /*Send the SMS to my mobile number*/
-      SMS.send("+0201286077028","Pressure is getting high in HERE");
+      SMS.send("+201286077028","Pressure is getting high in HERE");
       /*Reset the value of the messageSent so as not to always let the phone send you the SMS*/
       messageSent=true;
     }
