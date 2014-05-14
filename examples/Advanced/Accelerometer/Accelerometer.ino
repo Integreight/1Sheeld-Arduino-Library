@@ -1,13 +1,13 @@
 /*
 Example illustrates the strike speed of the racket from tennis player using the Accelerometer 
-Sensor in the Smart Phone which requires you to hold the Smart Phone carefully and strike to 
+Sensor in your SmartPhone that requires you to hold carefully and strike to 
 see how much your strike is effective
 */
 
 /*Inculde OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserving Variables for the Accelerometer Values in 3D*/
+/*Accelerometer Values in 3D*/
 float x;
 float y;
 float z;
@@ -29,7 +29,7 @@ void loop ()
   y=AccelerometerSensor.getY();
   z=AccelerometerSensor.getZ();
   
-  /*Check the Motion of the Smart phone when exceeded a limit ignite*/
+  /*Check the Motion of the Smart phone when exceeded a limit turn it ON*/
   if (sqrt((x*x)+(y*y)+(z*z))>31)
   {
     /*Put on the LED */

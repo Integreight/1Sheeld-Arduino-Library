@@ -1,5 +1,5 @@
 /*
-Example illustrates the Orientation shield using the Orientation Sensor of the Smart Phone
+Example illustrates the Orientation shield using the Orientation Sensor of the Smartphone
 to allign a portrait on the wall and when oriented properly the phone buzzes
 i.e:
 my phone X-Axis 0--->360 / Y-Axis -180--->180 / Z-Axis -90--->90 

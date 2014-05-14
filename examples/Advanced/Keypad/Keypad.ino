@@ -1,7 +1,7 @@
 /*
-Example illustrates the Passphrase from the Keypad and if it was a correct one 
-blink the Led twice if it was wrong led will not blink 
-DISCLAMER: This Example is for the FUN use not for REAL SECURITY SYSTEMS and 
+Example illustrates the Passphrase from the Keypad and if it's correct, 
+blink LED twice if it's wrong, LED will not blink! 
+DISCLAIMER: This Example is for FUN not for REAL SECURITY SYSTEMS and 
 in case used in real security system it will be under your responsibility 
 */
 
@@ -23,33 +23,33 @@ void setup ()
 
 void loop()
 {
-  /*Check if One is pressed and if pressed iterate one time*/ 
+  /*Check if One is pressed and if pressed, iterate one time*/ 
   if(iterations==0 && isOnePressed())
   {
      iterations++;
   }
-  /*Check if Two is pressed and if pressed iterate one time*/ 
+  /*Check if Two is pressed and if pressed, iterate one time*/ 
   else if (iterations==1 && isTwoPressed())
   {
      iterations++;
   }
-  /*Check if Three is pressed and if pressed iterate one time*/ 
+  /*Check if Three is pressed and if pressed, iterate one time*/ 
   else if (iterations==2 && isThreePressed())
   {
      iterations++;
   }
-  /*Check if Four is pressed and if pressed iterate one time*/
+  /*Check if Four is pressed and if pressed, iterate one time*/
   else if(iterations==3 && isFourPressed())
   {
      iterations++;
   }
-  /*Check if Another button pressed reset iterations*/
+  /*Check if any other button is pressed, reset iterations*/
   else if(isOtherButtonPressed())
   {
     iterations=0;
   }
      
-     /*Check if the Number of iterations equal Four blink LED*/
+     /*Check if the Number of iterations = 4, blink LED*/
      if(iterations==4)
      {    
           digitalWrite(ledPin,HIGH);

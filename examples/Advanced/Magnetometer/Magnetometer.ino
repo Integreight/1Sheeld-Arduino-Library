@@ -29,7 +29,7 @@ void loop ()
   {
         /*This assures that notification will be sent only one time in this loop*/ 
         if (notificationsent == false){
-        /*Notify the Smart Phone*/
+        /*Notify the SmartPhone*/
         Notification.notifyPhone("Danger: Magnetic field increased checkout what's the problem");
         /*Turn on the Red Lights*/
         digitalWrite(ledPin,HIGH);

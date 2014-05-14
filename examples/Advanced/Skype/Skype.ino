@@ -21,7 +21,7 @@ void setup ()
 
 void loop () 
 {
-  /*Always check pin 13 if it's high Skype the account*/
+  /*Always check buttonPin if it's high, Skype the account*/
   if (digitalRead(buttonPin) == HIGH)
   {
     /*To call only once and not go on calling while looping*/

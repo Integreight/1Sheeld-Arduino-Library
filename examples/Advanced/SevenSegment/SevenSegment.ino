@@ -6,7 +6,7 @@ time a button pushed
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserve a variable for the incrementation value and initialize it by zero*/
+/*Reserve a variable to increment value and initialize it by zero*/
 int number=0;
 /*Button on 12*/
 int ledPin = 12;

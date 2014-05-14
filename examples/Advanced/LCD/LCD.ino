@@ -5,12 +5,12 @@ Example illustrates the Liquid Crystal Display Shield
 /*including the OneSheeld Library*/ 
 #include <OneSheeld.h>
 
-/*button on 12*/
+/*button on pin 12*/
 int buttonPin = 12;
 
 void setup () 
 {
-  /*Starting the UART communication on baudrate 57600*/
+  /*Starting communication*/
   OneSheeld.begin();
   /*buttonPin INPUT*/
   pinMode(buttonPin,INPUT);  
@@ -19,7 +19,7 @@ void setup ()
 
 void loop ()
 {
-  /*always Check the button if it is it's pressed display texts on LCD*/
+  /*always Check the button if it's pressed, display texts on LCD*/
   if(digitalRead(buttonPin) == HIGH)
   {
    /*begin the LCD cursor at the first row and first column*/

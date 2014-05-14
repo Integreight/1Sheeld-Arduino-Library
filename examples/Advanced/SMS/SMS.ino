@@ -1,6 +1,6 @@
 /*
 Example illustrates sending SMS to my phone to notify me that the Temperature in my home 
-increased and exceeded certain limit 
+increased and exceeded a certain limit 
 */
 
 /*Including OneSheeld Library*/
