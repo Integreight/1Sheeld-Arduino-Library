@@ -1,6 +1,5 @@
 /*
-Example illustrates updating status on Facebook by pressing a button when you get back Home
-*/
+Example illustrates updating status on Twitter by pressing a button
 
 /*Including OneSheeld Library*/
 #include <OneSheeld.h>
@@ -10,12 +9,13 @@ int buttonPin = 12;
 int ledPin = 13;
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start communication*/
   OneSheeld.begin();
   /*Let pin 13 as INPUT*/
   pinMode(buttonPin,INPUT);
   pinMode(ledPin,OUTPUT);
 }
+/*solve bouncing issue to be sure the state is read once and right*/
 boolean debounce (boolean lastState)
 {
   boolean currentState = digitalRead(buttonPin);
@@ -36,7 +36,7 @@ void loop ()
   if(lastState == LOW && buttonState == HIGH)
   {
     /*Twitter also can be used instead of Facebook*/
-    /*Update your status on Facebbok*/
+    /*Update your status on Twitter*/
     Twitter.updateStatus("Home Sweet Home");
     digitalWrite(ledPin,HIGH);
     delay(200);

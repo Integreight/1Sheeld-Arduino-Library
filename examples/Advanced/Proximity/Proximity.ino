@@ -16,7 +16,7 @@ void setup ()
 
 void loop ()
 {
-  /*Always checking the proximity sensor if something got near capture and send me SMS*/
+  /*Always checking the proximity sensor if something goes near, capture and send me SMS*/
   if (ProximitySensor.getValue()==0)
   {
     Camera.rearCapture();

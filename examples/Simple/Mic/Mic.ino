@@ -1,7 +1,6 @@
 /*
 Example illustrates the noise level using the mic of your
-Smartphone and when exceeds certain limit LED on pin 13 goes 
-ON
+Smartphone and when exceeds certain limit, LED on pin 13 goes ON!
 */
 
 /*Include OneSheeld Library*/
@@ -10,7 +9,7 @@ ON
 
 void setup () 
 {
-  /*Start UART communication on baudrate 115200*/
+  /*Start communication*/
   OneSheeld.begin();
   /*Set pin 2 OUTPUT for the LED*/
   pinMode(2,OUTPUT);

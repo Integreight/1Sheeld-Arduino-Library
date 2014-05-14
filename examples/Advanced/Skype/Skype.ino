@@ -27,7 +27,7 @@ void loop ()
     /*To call only once and not go on calling while looping*/
     if(called=false)
     {
-      /*Call echo123*/
+      /*Call your callee*/
       Skype.call("echo123");  
       /*Reset the variable*/
       called=true;

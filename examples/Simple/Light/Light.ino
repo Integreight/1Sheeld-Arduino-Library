@@ -1,5 +1,5 @@
 /*
-Example illustrates sensing the Light and when it's beyond a Limit ignite the LED 
+Example illustrates sensing the Light and when it's beyond a Limit ,turn the LED ON! 
 */
 
 
@@ -11,7 +11,7 @@ int ledPin = 13 ;
 
 void setup () 
 {
-  /*Start the Communication*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*Set the ledPin as OUTPUT*/
   pinMode(ledPin,OUTPUT);

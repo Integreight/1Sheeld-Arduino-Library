@@ -13,7 +13,7 @@ byte hours;
 
 void setup ()
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start communication*/
   OneSheeld.begin();
   /*Start the Clock Shield*/
   Clock.begin();
@@ -26,7 +26,7 @@ void loop ()
   minutes=Clock.getMinutes();
   hours=Clock.getHours();
   
-  /*Play music at 8AM*/
+  /*Play music at 8 AM*/
   if (hours==8 && minutes==0 && seconds==00)
   {
     /*Play on the music*/
@@ -34,7 +34,7 @@ void loop ()
     /*Set the volume*/
     MusicPlayer.setVolume(5);
   }
-  /*Stop music at 9AM*/
+  /*Stop music at 9 AM*/
   else if(hours==9 && minutes==0 && seconds==00)
   {
     /*Turn the music Off*/

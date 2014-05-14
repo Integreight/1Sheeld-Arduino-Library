@@ -20,14 +20,14 @@ void setup ()
 
 void loop () 
 {
-  /*At 3PM give me a call*/
+  /*At 3 PM give me a call*/
   if (Clock.getSeconds()==00 && Clock.getMinutes()==00 && Clock.getHours()==15)
   {
     /*Check if called don't call again*/
     if (called = false)
     {
       /*Call my phone*/
-      Phone.call("+0201286077028");
+      Phone.call("+201286077028");
       /*Stop Calling*/
       called = true;
     }

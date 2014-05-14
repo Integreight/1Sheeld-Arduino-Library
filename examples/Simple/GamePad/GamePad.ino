@@ -1,5 +1,5 @@
 /*
-Example illustrates the GamePad Shield application by lighting some LEDs when pressing
+Example illustrates the GamePad Shield application by lightning some LEDs when pressing
 specific buttons or pressing multiple buttons at the same time
 */
 
@@ -10,7 +10,7 @@ specific buttons or pressing multiple buttons at the same time
 
 void setup () 
 {
-  /*Start UART communication on baudrate 57600*/
+  /*Start communication*/
   OneSheeld.begin();
   /*Set some pins OUTPUT*/
   pinMode(13,OUTPUT);
@@ -26,7 +26,7 @@ void loop ()
   /*Always check on the values comming from the GamePad application*/
   if (GamePad.isUpPressed())
   {
-    /*Ignite LED on pin 13 when Up is Pressed*/
+    /*turn ON LED on pin 13 when Up is Pressed*/
     digitalWrite(13,HIGH);
     digitalWrite(12,LOW);
     digitalWrite(11,LOW);
@@ -34,7 +34,7 @@ void loop ()
   }
  if(GamePad.isDownPressed())
   {
-    /*Ignite LED on pin 12 when Down is Pressed*/
+    /*turn ON LED on pin 12 when Down is Pressed*/
     digitalWrite(12,HIGH);
     digitalWrite(13,LOW);
     digitalWrite(11,LOW);
@@ -42,7 +42,7 @@ void loop ()
   }
  if (GamePad.isUpPressed()&&GamePad.isOrangePressed())
   {
-    /*Ignite LED on pin 11 when Up and A is Pressed*/
+    /*turn ON LED on pin 11 when Up and A is Pressed*/
     digitalWrite(11,HIGH);
     digitalWrite(13,LOW);
     digitalWrite(12,LOW);
@@ -50,7 +50,7 @@ void loop ()
   }
  if (GamePad.isDownPressed()&&GamePad.isRedPressed())
   {
-    /*Ignite LED on pin 10 when Down and B is Pressed*/
+    /*turn ON LED on pin 10 when Down and B is Pressed*/
     digitalWrite(10,HIGH);
     digitalWrite(13,LOW);
     digitalWrite(12,LOW);
