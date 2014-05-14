@@ -1,5 +1,5 @@
-/*Example illustrates the light intensity of the room using your Smart Phone's Light Sensor, when the light reaches its maximum the LED is OFF
-when the light FADES OFF the LEDs FADES ON gradually (i.e: put your phone on a clear place in the middle of the room to get the maximum 
+/*Example illustrates the light intensity of the room using your Smart Phone Light Sensor, when the light reaches its maximum, the LED is OFF
+when the light FADES OFF, the LEDs FADES ON gradually (i.e: put your phone on a clear place in the middle of the room to get the maximum 
 room light intensity and make it still)*/
 
 
@@ -27,9 +27,8 @@ void setup ()
 
 void loop()
 {
-  /*check out if it's the largest value or not, if the value is larger take the larger (Don't put the phone on direct light*/
-  /*as it will be a large value which will not let the application work properly only with*/
-  /*the largest Light Intensity Value)*/
+  /*if the sensor value is larger than maximum, make it maximum (Don't put the phone on direct light*/
+  /*as it will be a large value which will not let the application work properly*/
   if(LightSensor.getValue()>maxLightIntensity)
   {
     maxLightIntensity=LightSensor.getValue();

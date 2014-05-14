@@ -1,6 +1,6 @@
 /*
 Example illustrates the Accelerometer sensor and checking the acceleration 
-in the 3 dimensions and igniting LED 13 when reaches the gravity acceleration
+in the 3 dimensions and turning ON LED 13 when reaches the gravity acceleration
 in X-Y-Z Axis
 */
 

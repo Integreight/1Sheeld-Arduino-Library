@@ -1,6 +1,6 @@
 /*
-Example illustrates the use of the Smart Phones Mic checking out the sound 
-in a certain room and when the sound exceeded a certain limit send a tweet 
+Example illustrates the use of the Smartphone Mic checking out the sound 
+in a certain room when the sound exceeded a certain limit, tweet. 
 */
 
 /*Include OneSheeld Library*/

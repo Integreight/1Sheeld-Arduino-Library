@@ -1,5 +1,5 @@
 /*
-Example illustrates the Proximity Sensor of the Smart Phone if any object is near
+Example illustrates the Proximity Sensor of the Smartphone if any object is near
 it Capture a picture and send me a message!! 
 */
 

@@ -1,5 +1,5 @@
 /*
-Example illustrates sensing the tmperature of the room and sending 
+Example illustrates sensing the temperature of the room and sending 
 a Notification to your phone if it exceeded a certain value
 */
 

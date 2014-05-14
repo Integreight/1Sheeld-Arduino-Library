@@ -1,13 +1,13 @@
 /*
 Example illustrates Sensing the temperature of 
-a room and Buzzing if the temperature exceeded a 
+a room and Buzzing if the temperature exceeds a 
 certain value
 */
 
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserving a varriable for the Temperature value and initiallizing it by zero*/
+/*Temperature value initialized by zero*/
 char tempvalue=0;
 
 void setup () 

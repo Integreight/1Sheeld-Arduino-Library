@@ -1,5 +1,5 @@
 /*
-Example illustrates Sensing the Pressure using the Smart Phone Pressure Sensor and when 
+Example illustrates Sensing the Pressure using the Smartphone Pressure Sensor and when 
 exceeded a limit sends an SMS to my phone
 */
 
