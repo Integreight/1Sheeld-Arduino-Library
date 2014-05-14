@@ -3,22 +3,19 @@
 #define BEGIN 0x01
 #define CLEAR 0x02
 #define HOME  0x03
-#define NODISPLAY 0x04
-#define DISPLAY   0x05
-#define NOBLINK  0x06
-#define BLINK	  0x07
-#define NOCURSOR  0x08
-#define CURSOR    0x09
-#define SCROLLLEFT 0x0A
-#define SCROLLRIGHT 0x0B
-#define LEFT_RIGHT  0x0C
-#define RIGHT_LEFT  0x0D
-#define AUTOSCROLL	0x0E
-#define NOAUTOSCROLL 0x0F 
-#define CREATECHAR 	 0x10
-#define SETCURSOR 	 0x11
-#define WRITE 		 0x12
-#define PRINT 		 0x13
+#define NOBLINK  0x04
+#define BLINK	  0x05
+#define NOCURSOR  0x06
+#define CURSOR    0x07
+#define SCROLLLEFT 0x08
+#define SCROLLRIGHT 0x09
+#define LEFT_RIGHT  0x0A
+#define RIGHT_LEFT  0x0B
+#define AUTOSCROLL	0x0C
+#define NOAUTOSCROLL 0x0D 
+#define SETCURSOR 	 0x0E
+#define WRITE 		 0x0F
+#define PRINT 		 0x11
 class LCDShield
 {
 public:
@@ -35,7 +32,6 @@ public:
 	void rightToLeft();
 	void autoScroll();
 	void noAutoScroll();
-	void createChar(byte ,byte [] );
 	void setCursor(byte,byte);
 	void write(byte);
 	void print(char*);
