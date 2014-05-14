@@ -67,15 +67,6 @@ void LCDShield::noAutoScroll()
 	OneSheeld.sendPacket(LCD_ID,0,NOAUTOSCROLL,0);
 }
 
-void LCDShield::createChar(byte location , byte  x[])
-{
-	//takes the bytes from the user in an array 
-	
-	OneSheeld.sendPacket(LCD_ID,0,CREATECHAR,2,new FunctionArg(1,&location),new FunctionArg(8,x));	
-	
-	
-}
-
 void LCDShield::setCursor(byte x ,byte y)
 {
 	OneSheeld.sendPacket(LCD_ID,0,SETCURSOR,2,new FunctionArg(1,&x),new FunctionArg(1,&y));
