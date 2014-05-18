@@ -13,8 +13,13 @@ private:
 	void processData();
 	void (*changeCallBack)(unsigned long);
 	bool isCallBackAssigned;
+	union float_test
+	{
+		byte data[4];
+		unsigned long num;
+
+	} getfloat;
 	unsigned long value;
-	unsigned long data[3];
 	 friend class OneSheeldClass;
 
 };
