@@ -1,7 +1,7 @@
 /*
-Example illustrates the Clock Shield by always getting the date 
-and time and when it is similar to a certain date send me SMS 
-whishing me a HappYBirthdaY and update my status in FaceBook
+Example illustrates always getting the date and time and when 
+it is a certain date send a SMS whishing a HappYBirthdaY and 
+update status on FaceBook
 */
 
 /*Include OneSheeld Library*/
@@ -34,8 +34,8 @@ void loop ()
   month=Clock.getMonth();
   year=Clock.getYear();
   
-  /*Check if the date is similar to my birthday date send me a*/
-  /*whishing birthday SMS at 3PM that day*/
+  /*Check if the date is my birthday date send me the */
+  /*SMS at 3PM that day*/
   if(hours==15&&minutes==00&&seconds==00&&day==06&&month==02&&year==2014)
   {
     /*Send me SMS*/

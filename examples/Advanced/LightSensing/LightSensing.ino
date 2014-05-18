@@ -1,6 +1,6 @@
 /*Example illustrates the light intensity of the room using your Smart Phone Light Sensor, when the light reaches its maximum, the LED is OFF
-when the light FADES OFF, the LEDs FADES ON gradually (i.e: put your phone on a clear place in the middle of the room to get the maximum 
-room light intensity and make it still)*/
+when the light FADES OFF, the LEDs FADES ON gradually (i.e:for this example put your phone on a clear place in the middle of the room to get the maximum room light intensity and don't Move the Smartphone)
+*/
 
 
 /*Include OneSheeld Library*/ 

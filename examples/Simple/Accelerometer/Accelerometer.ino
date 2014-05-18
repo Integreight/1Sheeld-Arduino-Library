@@ -1,12 +1,13 @@
 /*
 Example illustrates the Accelerometer sensor and checking the acceleration 
-in the 3 dimensions and turning ON LED 13 when reaches the gravity acceleration
-in X-Y-Z Axis
+in the 3 dimensions and turning ON LED 13 when reaches the maximum gravity 
+acceleration in X-Y-Z Axis
 */
 
 /*Include OneSheeld library*/
 #include <OneSheeld.h>
 
+/*Led on pin 13*/
 int ledPin = 13 ;
 
 void setup ()

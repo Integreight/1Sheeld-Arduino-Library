@@ -5,11 +5,11 @@ Example illustrates taking pictures each time you press the pushbutton (hardware
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Variable to take the lastState of the button*/
+/*Variable for last state of the button*/
 boolean lastState = LOW ;
-/*Button pin on OneSheeld*/
+/*Button on pin 12*/
 int buttonPin = 12 ;
-/*Led pin on OneSheeld*/
+/*Led on pin 13*/
 int ledPin = 13;
 
 void setup ()
@@ -20,10 +20,33 @@ void setup ()
   pinMode(buttonPin,INPUT);
   /*Set the ledPin as OUTPUT*/
   pinMode(ledPin,OUTPUT);
-  /*Set the Flash in the Camera*/
-  Camera.setFlash(ON);
 }
-/*Debouncing Function for the pushButton problem*/
+
+void loop ()
+{
+    /*Checking the state of the button*/
+    boolean buttonState = debounce(lastState);
+
+    if(lastState == LOW && buttonState == HIGH)
+    {
+      /*Set the Flash in the Camera*/
+      Camera.setFlash(ON);
+      /*Take the Picture*/
+      Camera.rearCapture();
+      /*Turn on the LED*/
+      digitalWrite(ledPin,HIGH);
+      delay(1000);
+    }
+    else
+    {
+      /*Turn off the Led*/
+      digitalWrite(ledPin,LOW);
+    }
+    
+}
+
+
+/*This Function prevent the hardware pushButton from bouncing*/ 
 boolean debounce (boolean lastState)
 {
   boolean currentState = digitalRead(buttonPin);
@@ -35,27 +58,4 @@ boolean debounce (boolean lastState)
   }
   
   return currentState;
-}
-
-
-void loop ()
-{
-    /*Checking the state of the button*/
-    boolean buttonState = debounce(lastState);
-    /*if the State of the button was low and the became high
-    the pushbutton is pressed*/
-    if(lastState == LOW && buttonState == HIGH)
-    {
-      /*Take the Picture*/
-      Camera.rearCapture();
-      /*Ignite the LED*/
-      digitalWrite(ledPin,HIGH);
-      delay(300);
-    }
-    else
-    {
-      /*Put off the Led*/
-      digitalWrite(ledPin,LOW);
-    }
-    
 }

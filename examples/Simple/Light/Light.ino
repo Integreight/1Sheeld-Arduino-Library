@@ -1,5 +1,5 @@
 /*
-Example illustrates sensing the Light and when it's beyond a Limit ,turn the LED ON! 
+Example illustrates sensing the Light and when it's beyond a Limit ,turn the LED ON 
 */
 
 

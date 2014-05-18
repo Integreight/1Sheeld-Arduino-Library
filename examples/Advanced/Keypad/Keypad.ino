@@ -1,6 +1,6 @@
 /*
-Example illustrates the Passphrase from the Keypad and if it's correct, 
-blink LED twice if it's wrong, LED will not blink! 
+Example illustrates the Passphrase entered from the Keypad and if it's correct, 
+blink the LED and if it's wrong, LED will not blink! 
 DISCLAIMER: This Example is for FUN not for REAL SECURITY SYSTEMS and 
 in case used in real security system it will be under your responsibility 
 */
@@ -15,7 +15,7 @@ int ledPin = 13;
 
 void setup () 
 {
-  /*Start UART communication on baud rate 57600*/
+  /*Start Communication*/
   OneSheeld.begin();
   /*ledPin OUTPUT*/
   pinMode(ledPin,OUTPUT);

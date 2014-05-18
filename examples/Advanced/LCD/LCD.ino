@@ -2,17 +2,17 @@
 Example illustrates the Liquid Crystal Display Shield
 */
 
-/*including the OneSheeld Library*/ 
+/*Include OneSheeld Library*/ 
 #include <OneSheeld.h>
 
-/*button on pin 12*/
+/*Button on pin 12*/
 int buttonPin = 12;
 
 void setup () 
 {
   /*Starting communication*/
   OneSheeld.begin();
-  /*buttonPin INPUT*/
+  /*Set buttonPin as INPUT*/
   pinMode(buttonPin,INPUT);  
 }
 

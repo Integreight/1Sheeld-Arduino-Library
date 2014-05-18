@@ -1,35 +1,29 @@
-/*Example Illustrates Sending an Email using the Toggle Shield button 
+/*
+Example Illustrates Sending an Email using the Toggle Shield button 
 when pressed send the Email
 */
 
 /*Including OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Button Pin 13*/
-int buttonPin = 13;
-/*Reserve a boolean*/
-boolean isEmailSent = false;
 
 void setup () 
 {
   /*Start Communication*/
   OneSheeld.begin();
-  /*buttonPin INPUT*/
-  pinMode(buttonPin,INPUT);
+  /*Function to check the Change of the button*/
+  PushButton.setOnChange(& buttonChange);
 }
 
 void loop()
+{}
+
+
+void buttonChange(byte buttonValue)
 {
-  /*Check if buttonPin is High using the Toggle Button in the Application*/
-  if(digitalRead(buttonPin) == HIGH)
+  /*Check the buttons Value*/
+  if(buttonValue != 0)
   {
-    if(isEmailSent == false)
-    {
-      /*If the Button is High Send this Email with the email address and subject and
-      body of message*/
-      Email.send("islam@integreight.com","Greetings","hi From Integreight");
-      /*Reset the boolean value*/
-      isEmailSent = true;
-    }
+    Email.send("eslam.mohamed.fathy@gmail.com","Greetings","Hi Eslam, From Integreight");
   }
 }

@@ -2,26 +2,23 @@
 Example illustrates the use of the Global Positioning system 
 of the Smart Phone giving a Fixed location and calculating the 
 distance between the fixed coordinates and the new coordinates 
-comming from the GPS of the Smart Phone
+comming from the GPS of the Smart Phone and send an SMS 
 */
 
-/*including the OneSheeld Library*/
+/*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
 /*Reserving a float variable to get the distance*/
 float distance;
-/*Led on 13*/
-int ledPin = 13;
-/*Reserving boolean*/
+
+/*Reserving a boolean*/
 boolean InRange = false;
+
 void setup() 
 {
   /*Start Communication*/
   OneSheeld.begin();
-  /*LedPin OUTPUT*/
-  pinMode(ledPin,OUTPUT);
 }
-
 
 void loop()
 {
@@ -34,7 +31,7 @@ void loop()
   {
     if(InRange == false)
     {
-      /*ignite the LED*/
+      /*Send SMS*/
       SMS.send("+201286077028","Object is In Range");
       InRange = true;
     }
@@ -44,7 +41,7 @@ void loop()
   {
     if(InRange == true)
     {
-      /*take off the LED*/ 
+      /*Send SMS*/ 
       SMS.send("+201286077028","Object is not In Range");
       InRange = false;
     }

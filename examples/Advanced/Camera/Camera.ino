@@ -11,8 +11,6 @@ void setup ()
 {
   /*Start Communication*/
   OneSheeld.begin();
-  /*Set the Flash of the Camera to be On while capturing*/
-  Camera.setFlash(FLASH_ON);
 }
 
 
@@ -21,10 +19,12 @@ void loop ()
   /*Always get the value of the Light Sensor*/
   if(LightSensor.getValue()<100 && LightSensor.getValue()>0)
   {
+    /*Set the Flash of the Camera to be On while capturing*/
+    Camera.setFlash(ON);
     /*Capture a picture*/
     Camera.rearCapture();
-    /*Adding a time delay to handle the Capturing against the speed of loop*/
-    delay(1000);
+    /*Adding a time delay for 5 minutes*/
+    delay(50000);
   }
   
 }
