@@ -41,13 +41,13 @@ void KeypadShieldClass::processData()
      row=OneSheeld.getArgumentData(0)[0];
      col=OneSheeld.getArgumentData(1)[0];
      if (isCallbackAssigned)
-     (*buttonChangeCallback)();
+     (*buttonChangeCallback)(row,col);
    }
    
 }
 
 
-void KeypadShieldClass::setOnButtonChange(void (*userFunction)())
+void KeypadShieldClass::setOnButtonChange(void (*userFunction)(byte row ,byte column))
 {
   buttonChangeCallback=userFunction;
   isCallbackAssigned=true;
