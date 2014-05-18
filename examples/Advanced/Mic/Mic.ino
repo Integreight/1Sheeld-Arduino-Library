@@ -29,5 +29,11 @@ void loop()
   	}
     
   }
+
+  /*Reset the Boolean Flag*/
+  if(Mic.getValue()<100)
+  {
+    tweetSent = false;
+  }
   
 }
