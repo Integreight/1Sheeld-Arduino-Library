@@ -21,7 +21,7 @@ void setup ()
 
 void loop () 
 {
-  /*Always get the time to checkout on*/
+  /*Always get the time*/
   seconds=Clock.getSeconds();
   minutes=Clock.getMinutes();
   hours=Clock.getHours();
