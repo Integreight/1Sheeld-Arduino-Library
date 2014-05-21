@@ -21,7 +21,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       argumentcounter=0;
       datalengthcounter=0;
       argumentnumber=0;
-      endFrame!=0;
+      endFrame=0;
       lastTimeFrameSent=0;
       isFirstFrame=false;
 }
