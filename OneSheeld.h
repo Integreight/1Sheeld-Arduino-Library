@@ -111,14 +111,12 @@ public:
 
 };
 
-
 class OneSheeldClass
 {
 	private:
 void sendToShields();
-int frameStart;
+bool frameStart;
 byte shield;
-byte Start;
 byte instance;
 byte functions;
 byte counter;

@@ -6,15 +6,34 @@
 #include "HardwareSerial.h"
 #include "Arduino.h"
 
-
+PROGMEM byte inputShieldsList[]={KEYPAD_SHIELD_ID
+,GPS_ID
+,SLIDER_ID
+,PUSH_BUTTON_ID
+,TOGGLE_BUTTON_ID
+,GAMEPAD_ID
+,PROXIMITY_ID
+,MIC_ID
+,TEMPERATURE_ID
+,LIGHT_ID
+,PRESSURE_ID
+,GRAVITY_ID
+,ACCELEROMETER_ID
+,GYROSCOPE_ID
+,ORIENTATION_ID
+,MAGNETOMETER_ID
+,PHONE_ID
+,SMS_ID
+,CLOCK_ID
+,KEYBOARD_ID
+,TWITTER_ID};
 
 
 // public functions
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
-      frameStart=0;
+      frameStart=false;
       shield=0;
-      Start=0;
       instance=0;
       functions=0;
       counter=0;
@@ -113,8 +132,7 @@ void OneSheeldClass::processInput()
      if(!framestart&&data==0xFF)
           {
               counter=0;
-              Start=data;
-              framestart=1;
+              framestart=true;
               arguments=0;
               argumentL=0;
               counter++;
@@ -160,7 +178,7 @@ void OneSheeldClass::processInput()
             endFrame=data;
               if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
               {
-                      framestart=0;
+                      framestart=false;
                       sendToShields();
                       if(arguments!=0){
                         for(int i=0;i<argumentnumber;i++)
@@ -170,11 +188,12 @@ void OneSheeldClass::processInput()
                         free(arguments);
                       }
                       if(argumentL!=0)free(argumentL);
+                      Serial.println("Out2");
                       
               }
               else                                            //if endframe wasn't equal to zero make sure that the memory is free anyway
               {
-                framestart=0;
+                framestart=false;
                 if(arguments!=0){
                         for(int i=0;i<argumentnumber;i++)
                         {
@@ -184,15 +203,23 @@ void OneSheeldClass::processInput()
                       }
                       if(argumentL!=0)free(argumentL);
               }
+              Serial.print("7 ");
           }
           else if(framestart){
-             switch(counter)
-             {
-                      case 1 : shield=data;break;
-                      case 2 : instance=data;break;
-                      case 3 : functions=data;break;
-                      default :               break;
-             }
+                if(counter==1){
+                  shield=data;
+                  bool found = false;
+                  for (int i=0;i<21;i++) {
+                    if (shield == inputShieldsList[i])
+                      found = true;
+                  }
+                  // if (!found) {
+                  //   framestart=false;
+                  //   continue;
+                  // }
+                }
+                else if(counter==2)instance=data;
+                else if(counter==3)functions=data;
             counter++;
           }
       }
@@ -202,7 +229,6 @@ void OneSheeldClass::sendToShields()
 {
       
   byte number_Of_Shield= OneSheeld.getShieldId();     //getting the shield number using the function we made
-
   switch (number_Of_Shield)
   {
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
