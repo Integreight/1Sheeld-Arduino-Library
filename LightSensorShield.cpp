@@ -21,11 +21,12 @@ void LightSensorShield::processData()
 	if(functionId==LIGHT_VALUE)
 	{
 		value=0;
-		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
-		getfloat.data[1]=OneSheeld.getArgumentData(0)[1];
-		getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
-		getfloat.data[3]=0;
-		value=getfloat.num;
+		data[0]=OneSheeld.getArgumentData(0)[0];
+		data[1]=OneSheeld.getArgumentData(0)[1];
+		data[2]=OneSheeld.getArgumentData(0)[2];
+		value|=data[0];
+		value|=(data[1]<<8);
+		value|=(data[2]<<16);
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(value);
