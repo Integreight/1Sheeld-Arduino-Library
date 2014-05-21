@@ -20,7 +20,7 @@ void setup ()
 {
   /*Start Communication*/
   OneSheeld.begin();
-  /*Set ledPin OUTPUT or you could set any other PWM pins only(~3/~5/~6/~9/~10/~11)*/
+  /*Set ledPin OUTPUT*/
   pinMode(ledPin,OUTPUT);
 }
 
@@ -48,12 +48,12 @@ void loop()
   /*Accuracy*/
   if(ledValue <10)
   {
-    /*Led don't ignite if ledValue is less than 10 (accuracy)*/ 
+    /*Led goes Off if ledValue is less than 10 (accuracy)*/ 
     analogWrite(ledPin,0);
   }
   else
   {
-    /*Let the led ignite at the value calculated*/
+    /*Let the led On by certain Value*/
     analogWrite(ledPin,ledValue);  
   }
   
