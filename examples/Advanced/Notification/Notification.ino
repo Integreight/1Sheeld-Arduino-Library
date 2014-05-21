@@ -24,9 +24,14 @@ void loop()
 		{
 			/*Notify the Phone*/
 			Notification.notifyPhone("Room Temperature incereased");
-			/*Reset the variable*/
+			/*Reset the Boolean*/
 			phoneNotified=true;
 		}
 		
+	}
+	else
+	{
+		/*Set the Boolean*/
+		phoneNotified = false;
 	}
 }

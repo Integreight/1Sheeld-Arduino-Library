@@ -25,13 +25,18 @@ void loop ()
   if (digitalRead(buttonPin) == HIGH)
   {
     /*To call only once and not go on calling while looping*/
-    if(called=false)
+    if(called==false)
     {
       /*Call your callee*/
       Skype.call("echo123");  
       /*Reset the variable*/
       called=true;
     }
+  }
+  else
+  {
+    /*Set the boolean*/
+    called = false;
   }
 }
 

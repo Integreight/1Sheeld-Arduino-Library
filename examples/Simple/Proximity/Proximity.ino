@@ -1,6 +1,6 @@
 /*
-Example illustrates turning ON a LED each time an Object gets near your Smartphone 
-using its Proximity Sensor
+Example illustrates turning ON a LED each time you get your hand 
+near the Smartphone
 */
 
 /*Include OneSheeld Library*/

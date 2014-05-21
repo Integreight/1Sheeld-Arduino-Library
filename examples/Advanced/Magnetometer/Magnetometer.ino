@@ -32,15 +32,15 @@ void loop ()
         Notification.notifyPhone("Danger: Magnetic field increased checkout what's the problem");
         /*Turn on the LED*/
         digitalWrite(ledPin,HIGH);
-        /*Initialize the variable with true so as to not always send a notification and annoy you*/
+        /*Reset the boolean*/
         phoneNotified = true;
       }
   }
-
-  /*Reset the Flag*/
-  if(MagnetometerSensor.magneticStrength()<50)
+  else
   {
-    phoneNotified = false;
+    /*Set the boolean*/
+    phoneNotified = false ;
+    /*Turn Off the LED*/
     digitalWrite(ledPin,LOW);
   }
   

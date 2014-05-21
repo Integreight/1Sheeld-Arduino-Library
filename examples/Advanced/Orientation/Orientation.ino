@@ -22,8 +22,8 @@ void loop ()
   if (OrientationSensor.getY()>-1&&OrientationSensor.getY()<=0)
   {
     /*Check the Z-Axis if it's near the range from -1 to 0*/
-    if(OrientationSensor.getZ()>-1&&OrientationSensor.getZ()<=0)
-    {
+    if(OrientationSensor.getZ() >-1 && OrientationSensor.getZ() <1)
+    { 
       Buzzer.buzzOn();
     }
     /*Buzz off when the second condition of the Z-Axis is not right*/

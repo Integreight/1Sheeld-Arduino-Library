@@ -9,7 +9,7 @@ time a button pushed
 /*Reserve a variable to increment value and initialize it by zero*/
 int number=0;
 /*Button on 12*/
-int ledPin = 12;
+int buttonPin = 12;
 
 void setup () 
 {

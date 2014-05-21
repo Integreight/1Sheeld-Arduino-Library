@@ -11,10 +11,18 @@ void setup ()
 {
   /*Start Communication*/
   OneSheeld.begin();
+  /*Set the Flash of the Camera*/
+  Camera.setFlash(ON);
+  /*Invoke the Function if a change happend*/
+  ProximitySensor.setOnChange(& proximity);
 }
 
 
 void loop ()
+{}
+
+/*Function invoked once proximity value changed*/
+void proximity (byte value)
 {
   /*Always checking the proximity sensor if something goes near, capture and send me SMS*/
   if (ProximitySensor.getValue()==0)

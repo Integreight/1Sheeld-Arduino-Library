@@ -7,7 +7,7 @@ increased and exceeded a certain limit
 #include <OneSheeld.h>
 
 /*Reserve a variable for sending only one time*/
-boolean messageSent=true;
+boolean messageSent = false;
 
 void setup () 
 {
@@ -22,13 +22,17 @@ void loop ()
   if (TemperatureSensor.getValue()>30)
   {
     /*Check that the message sent only once and not annoy you by always sending in loop*/
-    if(messageSent)
+    if(messageSent== false)
     {   
         /*Send me the Message*/ 
         SMS.send("+01286077028","Room Temperature is Bigger than 30 Degree");
         /*Reset the variable with false as each time the condition is true don't send me again*/
-        messageSent=false;  
+        messageSent=true;  
     }
     
+  }
+  else
+  {
+    messageSent = false;
   }
 }

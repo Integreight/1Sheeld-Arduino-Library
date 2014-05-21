@@ -1,36 +1,42 @@
 /*
-Example illustrates Phone shield to check out if the music player at your place was playing
-or if there is someone at the place and check what's is going on with the help of Clock shield 
+Example illustartes Calling your Smartphone which is at your home to open the door 
+for your friend  
 */
-
 
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Reserve a boolean*/
-boolean called = false;
-void setup () 
+/*Phone Number to check On*/
+char arr[]= "01119611432";
+/*Led on pin 13*/
+int ledPin = 13;
+/*Relay on pin 12*/
+int relayPin = 12;
+
+void setup ()
 {
   /*Start Communication*/
   OneSheeld.begin();
-  /*Start the Clock*/
-  Clock.begin();
+  /*Set pin 13 as OUTPUT*/
+  pinMode(ledPin,OUTPUT);
+  /*Set pin 12 as OUTPUT*/
+  pinMode(relayPin,OUTPUT);
 }
 
 
 void loop () 
 {
-  /*At 3 PM give me a call*/
-  if (Clock.getSeconds()==00 && Clock.getMinutes()==00 && Clock.getHours()==15)
-  {
-    /*Check if called don't call again*/
-    if (called = false)
+    /*Check if the Phone is Ringing*/
+    if(Phone.isRinging())
     {
-      /*Call my phone*/
-      Phone.call("+201286077028");
-      /*Stop Calling*/
-      called = true;
+        /*Check on the Phone Number*/
+        if(strcmp(Phone.getNumber(),arr)==0)
+       {
+          /*Turn On the LED*/
+          digitalWrite(ledPin,HIGH);
+          /*Apply 5V to Relay to open the door*/
+          digitalWrite(relayPin,HIGH);
+       }  
     }
-    
-  }
+       
 }

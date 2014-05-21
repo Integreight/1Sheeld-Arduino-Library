@@ -31,4 +31,8 @@ void loop ()
       messageSent=true;
     }
   }
+  else
+  {
+    messageSent = false;
+  }
 }
