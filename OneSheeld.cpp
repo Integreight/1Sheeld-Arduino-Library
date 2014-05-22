@@ -72,12 +72,14 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
   OneSheeldSerial.write(instanceID);
   OneSheeldSerial.write(functionID);
   OneSheeldSerial.write(argNo);
+  OneSheeldSerial.write(255-argNo);
 
 
   for (int i=0 ; i<argNo ; i++)
   {
     FunctionArg * temp = va_arg(arguments, FunctionArg *);
     OneSheeldSerial.write(temp->getLength());
+    OneSheeldSerial.write(255-(temp->getLength()));
 
       for (int j=0 ; j<temp->getLength() ; j++)
       {
