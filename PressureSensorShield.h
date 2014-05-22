@@ -14,7 +14,7 @@ private:
 	void (*changeCallBack)(unsigned long);
 	bool isCallBackAssigned;
 	unsigned long value;
-	 long data[2];
+	 unsigned long data[2];
 	 friend class OneSheeldClass;
 
 };

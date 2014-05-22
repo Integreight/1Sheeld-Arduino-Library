@@ -22,8 +22,8 @@ void PressureSensorShield::processData()
 		value=0;
 		data[0]=OneSheeld.getArgumentData(0)[0];
 		data[1]=OneSheeld.getArgumentData(0)[1];
-		value|=(unsigned long)data[0];
-		value|=(unsigned long)(data[1]<<8);
+		value|=data[0];
+		value|=(data[1]<<8);
 
 		if(isCallBackAssigned)
 		{
