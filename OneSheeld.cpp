@@ -6,7 +6,7 @@
 #include "HardwareSerial.h"
 #include "Arduino.h"
 
-PROGMEM byte inputShieldsList[]={KEYPAD_SHIELD_ID
+byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,GPS_ID
 ,SLIDER_ID
 ,PUSH_BUTTON_ID
@@ -32,7 +32,6 @@ PROGMEM byte inputShieldsList[]={KEYPAD_SHIELD_ID
 // public functions
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
-      frameStart=false;
       shield=0;
       instance=0;
       functions=0;
@@ -142,17 +141,39 @@ void OneSheeldClass::processInput()
               datalengthcounter=0;
               argumentcounter=0;
               argumentnumber=data;
+              counter++;
+          }
+          else if(counter==5&&framestart)                      //data is the no of arguments
+          {
+              if((255-argumentnumber)==data){
               arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
               argumentL=(byte*)malloc(sizeof(byte)*argumentnumber);//new byte [argumentnumber];
               counter++;
+              }
+              else{
+                framestart=false;
+                continue;
+              }
+
+
           }
-          else if (counter==5&&framestart)                    // data is the first argument length
+          else if (counter==6&&framestart)                    // data is the first argument length
           {
               argumentL[argumentcounter]=data;
-              arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
               counter++;
           }
-          else if (counter==6&&framestart)
+          else if (counter==7&&framestart)                    // data is the first argument length
+          {
+            if((255-argumentL[argumentcounter])==data){
+              arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
+              counter++;
+            }
+            else{
+                framestart=false;
+                continue;
+              }
+          }
+          else if (counter==8&&framestart)
           {
               arguments[argumentcounter][datalengthcounter++]=data;
               if (datalengthcounter==argumentL[argumentcounter])
@@ -166,14 +187,14 @@ void OneSheeldClass::processInput()
                   }
                   else
                   {
-                       counter=5;
+                       counter=6;
 
                   }
 
               }
 
           }
-          else if(counter==7&&framestart)
+          else if(counter==9&&framestart)
           {
             endFrame=data;
               if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
@@ -188,7 +209,6 @@ void OneSheeldClass::processInput()
                         free(arguments);
                       }
                       if(argumentL!=0)free(argumentL);
-                      Serial.println("Out2");
                       
               }
               else                                            //if endframe wasn't equal to zero make sure that the memory is free anyway
@@ -203,20 +223,21 @@ void OneSheeldClass::processInput()
                       }
                       if(argumentL!=0)free(argumentL);
               }
-              Serial.print("7 ");
           }
           else if(framestart){
                 if(counter==1){
                   shield=data;
                   bool found = false;
                   for (int i=0;i<21;i++) {
-                    if (shield == inputShieldsList[i])
+                    if (shield == inputShieldsList[i]){
                       found = true;
+                      
+                    }
                   }
-                  // if (!found) {
-                  //   framestart=false;
-                  //   continue;
-                  // }
+                  if (!found) {
+                    framestart=false;
+                    continue;
+                  }
                 }
                 else if(counter==2)instance=data;
                 else if(counter==3)functions=data;

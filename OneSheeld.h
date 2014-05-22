@@ -111,11 +111,11 @@ public:
 
 };
 
+
 class OneSheeldClass
 {
 	private:
 void sendToShields();
-bool frameStart;
 byte shield;
 byte instance;
 byte functions;
@@ -125,7 +125,7 @@ byte datalengthcounter;
 byte argumentnumber;
 byte **arguments;				 //pointer to an array of 2d
 byte *argumentL;            
-byte framestart;
+bool framestart;
 byte endFrame;
 unsigned long lastTimeFrameSent;
 bool isFirstFrame;
