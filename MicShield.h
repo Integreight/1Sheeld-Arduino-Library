@@ -8,7 +8,7 @@ class MicShield
 public:
 	MicShield();
 	byte getValue();
-	void setOnChange(void (*)(byte));
+	void setOnValueChange(void (*)(byte));
 private:
 	void processData();
 	void (*changeCallBack)(byte);

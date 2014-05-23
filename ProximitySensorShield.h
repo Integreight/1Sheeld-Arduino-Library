@@ -8,7 +8,7 @@ class ProximitySensorShield
 public:
 	ProximitySensorShield();
 	byte getValue();
-	void setOnChange(void (*userFunction)(byte));
+	void setOnValueChange(void (*userFunction)(byte));
 private:
 	void processData();
 	byte value;

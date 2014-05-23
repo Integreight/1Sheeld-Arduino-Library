@@ -10,7 +10,7 @@ public:
 	float getX();
 	float getY();
 	float getZ();
-	void setOnChange(void (*)(float,float,float));
+	void setOnValueChange(void (*)(float,float,float));
 private:
 	void processData();
 	void (*changeCallBack)(float,float,float);

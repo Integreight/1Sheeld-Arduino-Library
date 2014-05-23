@@ -43,16 +43,17 @@ void PhoneShieldClass::processData()
 			}
 
 			number[length]='\0';
+			if (isCallBackAssigned)
+			{
+				(*changeCallBack)(value,number);
+			}
 	}
-	if (isCallBackAssigned)
-	{
-		(*changeCallBack)(value,number);
-	}
+	
 
 
 }
 
-void PhoneShieldClass::setOnChange(void (*userFunction)(bool isRinging, char * phoneNumber))
+void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging, char * phoneNumber))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

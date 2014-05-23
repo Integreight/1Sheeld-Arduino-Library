@@ -18,10 +18,10 @@ public:
 	float getLongitude();
 	bool isInRange(float , float , float );
 	float getDistance(float  , float );
-	float radian(float);
-	void setOnChange(void (*)(float ,float ));
+	void setOnValueChange(void (*)(float ,float ));
 private:
 	void processData ();
+	float radian(float);
 	void (*changeCallBack)(float ,float);
 	float LatValue,LonValue;
 	bool isInit;

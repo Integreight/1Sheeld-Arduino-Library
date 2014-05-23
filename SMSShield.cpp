@@ -53,7 +53,7 @@ void SMSShieldClass::processData()
 		}
 	}
 }
-void SMSShieldClass::setOnChange(void (*userFunction)(char * number ,char * text))
+void SMSShieldClass::setOnSmsReceive(void (*userFunction)(char * number ,char * text))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

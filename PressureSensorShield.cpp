@@ -32,7 +32,7 @@ void PressureSensorShield::processData()
 	}
 }
 
-void PressureSensorShield::setOnChange(void (*userFunction)(unsigned long pressureValue))
+void PressureSensorShield::setOnValueChange(void (*userFunction)(unsigned long pressureValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

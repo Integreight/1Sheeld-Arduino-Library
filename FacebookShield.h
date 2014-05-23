@@ -7,13 +7,13 @@
 
 // library defintions
 #define UPDATE_STATUS 0x01  
-#define SEND_DIRECT_MESSAGE 0x02
+#define SEND_MESSAGE 0x02
 
 class FacebookShieldClass 
 {
 public:
-void updateStatus(char* );
-void sendDirectMessage(char *,char* );
+void post(char* );
+void sendMessage(char *,char* );
 
 private:
 

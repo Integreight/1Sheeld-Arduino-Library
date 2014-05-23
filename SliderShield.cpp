@@ -23,7 +23,7 @@ void SliderShield::processData()
 		}
 }
 
-void SliderShield::setOnChange(void (*userFunction)(byte sliderValue))
+void SliderShield::setOnValueChange(void (*userFunction)(byte sliderValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

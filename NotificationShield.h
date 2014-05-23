@@ -6,7 +6,7 @@
 #define NotificationShield_h
 
 // library defintions
-#define NOTIFY_PHONE 0x01  // sendTweet function command
+#define NOTIFY_PHONE 0x01
 
 class NotificationShieldClass 
 {

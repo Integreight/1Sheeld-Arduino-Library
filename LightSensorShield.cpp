@@ -34,7 +34,7 @@ void LightSensorShield::processData()
 	}
 }
 
-void LightSensorShield::setOnChange(void (*userFunction)(unsigned long lightValue))
+void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long lightValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

@@ -11,7 +11,6 @@ typedef unsigned char byte;
 
 #include "TwitterShield.h"
 #include "FacebookShield.h"
-#include "ReadPWMClass.h"
 #include "KeypadShield.h"
 #include "NotificationShield.h"
 #include "SMSShield.h"
@@ -143,6 +142,7 @@ byte * getArgumentData(byte x);
 void processInput();					//new Reciever function 
 void begin();
 void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+unsigned char analogRead(int );
 Stream & OneSheeldSerial;
 };
 // instantiate object for users
