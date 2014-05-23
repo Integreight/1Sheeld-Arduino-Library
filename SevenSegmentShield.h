@@ -8,7 +8,7 @@ class SevenSegmentShieldClass
 
 public:
 	void setNumber(byte );
-	void setCharacter(byte  );
+	void setValue(byte  );
 	void setDot();
 
 
