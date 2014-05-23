@@ -22,7 +22,7 @@ public:
 	void next();
 	void seekForward(byte );
 	void seekBackward(byte );
-	void setVolume (byte );
+	void setVolume(byte );
 };
 
 extern MusicPlayerShieldClass MusicPlayer;

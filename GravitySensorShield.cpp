@@ -66,7 +66,7 @@ void GravitySensorShield::processData()
 }
 
 
-void GravitySensorShield::setOnChange(void (*userFunction)(float valueX,float valueY,float valueZ))
+void GravitySensorShield::setOnValueChange(void (*userFunction)(float valueX,float valueY,float valueZ))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

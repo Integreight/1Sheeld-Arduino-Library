@@ -11,6 +11,7 @@ public:
 	void setCharacter(byte  );
 	void setDot();
 
+
 private:
 	
 

@@ -15,14 +15,14 @@ class TwitterShieldClass
 {
 public:
 	TwitterShieldClass();
-	void updateStatus(char* );
+	void tweet(char* );
 	void sendDirectMessage(char* ,char* );
 	char * getUserName();
 	char * getTweet();
-	void setOnChange(void (*)(char*,char*));
+	void setOnNewTweet(void (*)(char*,char*));
 private:
 	char * userName;
-	char * tweet;
+	char * tweetText;
 	bool isCallBackAssigned;
 	void processData();
 	void (*changeCallBack)(char*,char*);

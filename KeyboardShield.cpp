@@ -17,7 +17,7 @@ char KeyboardShield::getCharacter()
 
 void KeyboardShield::processData()
 {
-	/*check the Function ID in the Frame*/
+	/*Check the Function ID in the Frame*/
 	byte functionId=OneSheeld.getFunctionId();
 	if (functionId==GET_CHAR)
 	{
@@ -37,5 +37,5 @@ void KeyboardShield::setOnButtonChange(void (*userFunction)())
 	isCallBackAssigned=true;
 }
 
-/*instantiate Object to user*/
+/*Instantiate object to user*/
 KeyboardShield AsciiKeyboard;

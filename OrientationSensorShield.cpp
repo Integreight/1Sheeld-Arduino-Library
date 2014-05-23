@@ -59,7 +59,7 @@ void OrientationSensorShield::processData()
 	}
 }
 
-void OrientationSensorShield::setOnChange(void (*userFunction)(float valueX,float valueY ,float valueZ))
+void OrientationSensorShield::setOnValueChange(void (*userFunction)(float valueX,float valueY ,float valueZ))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

@@ -277,6 +277,15 @@ void OneSheeldClass::sendToShields()
     case TWITTER_ID              : Twitter.processData();break;
   }
 }
+
+unsigned char OneSheeldClass::analogRead(int pin)
+{
+    double period=(double)pulseIn(pin,HIGH)+(double)pulseIn(pin,LOW);;
+    double duty=(double)pulseIn(pin,HIGH);
+    double fraction=duty/period;
+    unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
+    return pwm_out;
+}
 // instantiate object for users
 #if defined(__AVR_ATmega32U4__)
 OneSheeldClass OneSheeld(Serial1);

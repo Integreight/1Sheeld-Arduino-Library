@@ -27,7 +27,7 @@ void ProximitySensorShield::processData()
 	}
 }
 
-void ProximitySensorShield::setOnChange(void (*userFunction)(byte proximityValue))
+void ProximitySensorShield::setOnValueChange(void (*userFunction)(byte proximityValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

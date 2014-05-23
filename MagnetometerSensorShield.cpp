@@ -63,13 +63,13 @@ void MagnetometerSensorShield::processData()
 	}
 }
 
-void MagnetometerSensorShield::setOnChange(void (*userFunction)(float valueX, float valueY ,float valueZ))
+void MagnetometerSensorShield::setOnValueChange(void (*userFunction)(float valueX, float valueY ,float valueZ))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
 
-float MagnetometerSensorShield::magneticStrength()
+float MagnetometerSensorShield::getMagneticStrength()
 {
 	return sqrt((valueX*valueX)+(valueY*valueY)+(valueZ*valueZ));
 }

@@ -25,7 +25,7 @@ void TemperatureSensorShield::processData()
 	}
 }
 
-void TemperatureSensorShield::setOnChange(void(*userFunction)(char temp))
+void TemperatureSensorShield::setOnValueChange(void(*userFunction)(char temp))
 {
 	changeOnCallBack=userFunction;
 	isCallBackAssigned=true;

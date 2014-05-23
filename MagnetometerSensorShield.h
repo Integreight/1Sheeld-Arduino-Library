@@ -13,8 +13,8 @@ public:
 	float getX();
 	float getY();
 	float getZ();
-	float magneticStrength();
-	void setOnChange(void (*)(float ,float ,float));
+	float getMagneticStrength();
+	void setOnValueChange(void (*)(float ,float ,float));
 private:
 	void processData();
 	void (*changeCallBack)(float ,float ,float );

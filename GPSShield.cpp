@@ -82,7 +82,7 @@ float GPSShieldClass::radian(float value)
 	return radianValue;
 }
 
-void GPSShieldClass::setOnChange(void (*userFunction)(float lattitude ,float longitude))
+void GPSShieldClass::setOnValueChange(void (*userFunction)(float lattitude ,float longitude))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

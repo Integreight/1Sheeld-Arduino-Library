@@ -17,7 +17,7 @@ PhoneShieldClass();
 void call(char* );
 bool isRinging();
 char * getNumber();
-void setOnChange(void (*)(bool , char *));
+void setOnCallStatusChange(void (*)(bool , char *));
 private:
 	void processData();
 	void (*changeCallBack)(bool , char *);

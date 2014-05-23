@@ -9,9 +9,9 @@ ToggleButtonShield::ToggleButtonShield()
 	isCallBackAssigned=false;
 }
 
-byte ToggleButtonShield::getValue()
+bool ToggleButtonShield::isPressed()
 {
-	return value;
+	return !!value;
 }
 
 void ToggleButtonShield::processData()
@@ -21,10 +21,10 @@ void ToggleButtonShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		if(isCallBackAssigned)
-			(*changeCallBack)(value);
+			(*changeCallBack)(!!value);
 	}
 }
-void ToggleButtonShield::setOnChange(void (*userFunction)(byte toggleButtonValue))
+void ToggleButtonShield::setOnButtonStatusChange(void (*userFunction)(bool toggleButtonValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

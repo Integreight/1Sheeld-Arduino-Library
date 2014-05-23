@@ -14,7 +14,7 @@ public:
 	void send(char* ,char*);
 	char * getSms();
 	char * getNumber();
-	void setOnChange(void (*)(char*,char*));
+	void setOnSmsReceive(void (*)(char*,char*));
 private:
 	void processData();
 	void (*changeCallBack)(char*,char*);

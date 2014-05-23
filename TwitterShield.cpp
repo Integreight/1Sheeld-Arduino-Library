@@ -9,10 +9,10 @@
 TwitterShieldClass::TwitterShieldClass()
 {
  	userName = 0;
- 	tweet = 0;
+ 	tweetText = 0;
 }
 // public functions
-void TwitterShieldClass::updateStatus( char *data)
+void TwitterShieldClass::tweet( char *data)
 {
 OneSheeld.sendPacket(TWITTER_ID,0,SEND_TWEET,1,new FunctionArg(strlen(data),(byte*)data));
 }
@@ -30,7 +30,7 @@ char * TwitterShieldClass::getUserName()
 
 char * TwitterShieldClass::getTweet()
 {
-	return tweet;
+	return tweetText;
 }
 
 
@@ -43,9 +43,9 @@ void TwitterShieldClass::processData()
 		{
 			free(userName);
 		}
-		if (tweet!=0)
+		if (tweetText!=0)
 		{
-			free(tweet);
+			free(tweetText);
 		}
 		int userNameLength=OneSheeld.getArgumentLength(0);
 		userName = (char*)malloc(sizeof(char)*(userNameLength+1));
@@ -56,22 +56,22 @@ void TwitterShieldClass::processData()
 		userName[userNameLength]='\0';
 
 		int tweetLength=OneSheeld.getArgumentLength(1);
-		tweet = (char*)malloc(sizeof(char)*(tweetLength+1));
+		tweetText = (char*)malloc(sizeof(char)*(tweetLength+1));
 
 		for(int i=0 ;i<tweetLength;i++)
 		{
-			tweet[i]=OneSheeld.getArgumentData(1)[i];
+			tweetText[i]=OneSheeld.getArgumentData(1)[i];
 		}
-			tweet[tweetLength]='\0';
+			tweetText[tweetLength]='\0';
 
 		if(isCallBackAssigned)
 		{
-			(*changeCallBack)(userName,tweet);
+			(*changeCallBack)(userName,tweetText);
 		}
 	}
 }
 
-void TwitterShieldClass::setOnChange(void (*userFunction)(char * userName ,char * tweet))
+void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,char * tweetText))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

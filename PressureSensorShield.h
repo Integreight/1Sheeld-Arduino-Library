@@ -8,14 +8,15 @@ class PressureSensorShield
 public:
 	PressureSensorShield();
 	unsigned long getValue();
-	void setOnChange(void (*)(unsigned  long));
+	void setOnValueChange(void (*)(unsigned  long));
 private:
 	void processData();
 	void (*changeCallBack)(unsigned long);
 	bool isCallBackAssigned;
 	unsigned long value;
-	 unsigned long data[2];
-	 friend class OneSheeldClass;
+	unsigned long data[2];
+	friend class OneSheeldClass;
+
 
 };
 

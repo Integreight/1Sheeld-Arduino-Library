@@ -124,11 +124,16 @@ setVolume	KEYWORD2
 isAnyRowPressed	KEYWORD2
 isAnyColumnPressed	KEYWORD2
 getCharacter	KEYWORD2
-setOnChange	KEYWORD2
+setOnValueChange	KEYWORD2
 setQuality	KEYWORD2
-magneticStrength	KEYWORD2
-getDistance	KEYWORD2
-setDot	KEYWORD2
+getMagneticStrength	KEYWORD2
+setOnCallStatusChange	KEYWORD2
+setOnSmsReceive	KEYWORD2
+setOnButtonStatusChange	KEYWORD2
+sendMessage	KEYWORD2
+isPressed	KEYWORD2
+getUserName	KEYWORD2
+getTweet	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

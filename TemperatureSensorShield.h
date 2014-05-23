@@ -8,7 +8,7 @@ class TemperatureSensorShield
 public:
 	TemperatureSensorShield();
 	char getValue();
-	void setOnChange(void (*)(char));
+	void setOnValueChange(void (*)(char));
 private:
 	void processData();
 	char value;

@@ -27,7 +27,7 @@ void MicShield::processData()
 	}
 }
 
-void MicShield::setOnChange(void (*userFunction)(byte micValue))
+void MicShield::setOnValueChange(void (*userFunction)(byte micValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
