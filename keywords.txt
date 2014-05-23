@@ -127,6 +127,8 @@ getCharacter	KEYWORD2
 setOnChange	KEYWORD2
 setQuality	KEYWORD2
 magneticStrength	KEYWORD2
+getDistance	KEYWORD2
+setDot	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
