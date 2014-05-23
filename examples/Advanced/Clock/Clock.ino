@@ -36,7 +36,7 @@ void loop ()
   
   /*Check if the date is my birthday date send me the */
   /*SMS at 3PM that day*/
-  if(hours==15&&minutes==00&&seconds==00&&day==06&&month==02&&year==2014)
+  if(hours==15&&minutes==0&&seconds==0&&day==6&&month==2&&year==2014)
   {
     /*Send me SMS*/
     SMS.send("+201286077028","HappY BirTH daY :D from OneSheeld");
