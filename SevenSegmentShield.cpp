@@ -31,5 +31,13 @@ void SevenSegmentShieldClass::setCharacter(byte shape)
 
 }
 
+void SevenSegmentShieldClass::setDot()
+{
+
+	OneSheeld.sendPacket(SEV_SEG_ID,0,SET_DOT,0);
+
+}
+
+
 
 SevenSegmentShieldClass SevenSegment;
