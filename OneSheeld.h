@@ -84,7 +84,7 @@ typedef unsigned char byte;
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 #define LIBRARY_VERSION 0x01
-#define TIME_GAP		500UL
+#define TIME_GAP		300UL
 
 
 //new function for the new packet frame 
