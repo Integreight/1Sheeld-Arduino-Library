@@ -20,5 +20,5 @@ void loop ()
 {
   /*Always get the Values of the Slider and output it to pin 11*/
   value=Slider.getValue();
-  digitalWrite(11,value);
+  analogWrite(11,value);
 }
