@@ -1,25 +1,47 @@
 /*
-  SMSShield.h - SMSShield library
-  Copyright (C) 2013 Integreight Inc  All rights reserved.
+
+  Project:       1Sheeld Library 
+  File:          PhoneShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
 */
+
 #include "OneSheeld.h"
 #include "PhoneShield.h"
 
-// public function
-
+//Class Constructor
 PhoneShieldClass::PhoneShieldClass()
 {
 	value=0;
 	number=0;
 	isCallBackAssigned=false;	
 }
+//Setter 
 void PhoneShieldClass::call(char* phone)
 {
 	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(phone),(byte *)phone));
 }
-
-void PhoneShieldClass::processData()
+//Checker Function
+bool PhoneShieldClass::isRinging()
 {
+	return !!value;
+}
+//Phone Getter Function
+char * PhoneShieldClass::getNumber()
+{
+	return number;
+}
+//Phone Input Data Processing 
+void PhoneShieldClass::processData()
+{	
+	//Checking the Function-ID
 	byte x= OneSheeld.getFunctionId();
 
 	if (x==IS_RINGING_VALUE)
@@ -43,6 +65,7 @@ void PhoneShieldClass::processData()
 			}
 
 			number[length]='\0';
+			//Users Function Invocation
 			if (isCallBackAssigned)
 			{
 				(*changeCallBack)(value,number);
@@ -53,21 +76,13 @@ void PhoneShieldClass::processData()
 
 }
 
+//Users Function Setter
 void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging, char * phoneNumber))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
 
-bool PhoneShieldClass::isRinging()
-{
-	return !!value;
-}
 
-char * PhoneShieldClass::getNumber()
-{
-	return number;
-}
-
-// instantiate object for users
+//Instatntiating Object
 PhoneShieldClass Phone;
