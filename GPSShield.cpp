@@ -48,7 +48,7 @@ void GPSShieldClass::processData ()
 
 		isInit=true;  									//setting a flag 
 	}
-	//Users Function Invocation
+	//Users Function Invoked
 	if (isCallBackAssigned)
 	{
 		(*changeCallBack)(LatValue,LonValue);
