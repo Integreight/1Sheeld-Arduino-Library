@@ -56,7 +56,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isFirstFrame=false;
 }
 
-//Starter
+//Library Starter
 void OneSheeldClass::begin(long baudRate)
 {
   #if defined(__AVR_ATmega32U4__)
@@ -65,7 +65,7 @@ void OneSheeldClass::begin(long baudRate)
   Serial.begin(baudRate);
   #endif
 }
-//Starter
+//Library Starter
 void OneSheeldClass::begin()
 {
   begin(115200);
