@@ -1,5 +1,22 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          LCDShield.h
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
+*/
+
 #ifndef LCDShield_h
 #define LCDShield_h
+
+//Output Functions ID's  
 #define BEGIN 0x01
 #define CLEAR 0x02
 #define HOME  0x03
@@ -16,9 +33,11 @@
 #define SETCURSOR 	 0x0E
 #define WRITE 		 0x0F
 #define PRINT 		 0x11
+
 class LCDShield
 {
 public:
+	//Setters 
 	void begin(byte,byte);
 	void clear();
 	void home();
@@ -33,11 +52,13 @@ public:
 	void autoScroll();
 	void noAutoScroll();
 	void setCursor(byte,byte);
+	//Senders
 	void write(byte);
 	void print(char*);
 private:
 
 };
 
+//Extern Object
 extern LCDShield LCD;
 #endif
