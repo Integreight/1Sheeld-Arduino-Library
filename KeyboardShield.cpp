@@ -37,7 +37,7 @@ void KeyboardShield::processData()
 	{
 		
 		character=OneSheeld.getArgumentData(0)[0];
-		//Users Function Invocation
+		//Users Function Invoked
 		if(isCallBackAssigned)
 		{
 			(*buttonChangeCallBack)();
