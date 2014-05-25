@@ -38,7 +38,7 @@ void PushButtonShield::processData()
 	if(functionId==PUSHBUTTON_VALUE)
 	{
 		value=OneSheeld.getArgumentData(0)[0];
-		//Users Function Invocation
+		//Users Function Invoked
 		if(isCallBackAssigned)
 			(*changeCallBack)(!!value);
 	}
