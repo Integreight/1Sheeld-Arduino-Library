@@ -69,7 +69,7 @@ void SMSShieldClass::processData()
 			text[i]=OneSheeld.getArgumentData(1)[i];
 		}
 			text[textlength]='\0';
-		//Users Function Invocation
+		//Users Function Invoked
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(number,text);
