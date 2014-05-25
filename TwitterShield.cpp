@@ -75,7 +75,7 @@ void TwitterShieldClass::processData()
 			tweetText[i]=OneSheeld.getArgumentData(1)[i];
 		}
 			tweetText[tweetLength]='\0';
-		//Users Function Invocation
+		//Users Function Invoked
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(userName,tweetText);
