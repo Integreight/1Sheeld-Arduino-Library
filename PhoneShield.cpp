@@ -65,7 +65,7 @@ void PhoneShieldClass::processData()
 			}
 
 			number[length]='\0';
-			//Users Function Invocation
+			//Users Function Invoked
 			if (isCallBackAssigned)
 			{
 				(*changeCallBack)(value,number);
