@@ -81,7 +81,7 @@ void GamePadShield::processData()
 	if(functionId==GAMEPAD_VALUE)
 	{
 		value=OneSheeld.getArgumentData(0)[0];
-		//Users Function Ivocation
+		//Users Function Invoked
 		if(isCallBackAssigned)
 		{
 			(*buttonChangeCallBack)(up , down , left , right , orange , red , green , blue);
