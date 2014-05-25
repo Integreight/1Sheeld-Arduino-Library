@@ -43,7 +43,7 @@ void LightSensorShield::processData()
 		value|=data[0];
 		value|=(data[1]<<8);
 		value|=(data[2]<<16);
-		//Users Function Invocation
+		//Users Function Invoked
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(value);
