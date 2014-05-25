@@ -1,23 +1,34 @@
 /*
-  NotificationShield.h - NotificationShield library
-  Copyright (C) 2013 Integreight Inc  All rights reserved.
+
+  Project:       1Sheeld Library 
+  File:          NotificationShield.h
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
 */
+
 #ifndef NotificationShield_h
 #define NotificationShield_h
 
-// library defintions
+//Output Function ID
 #define NOTIFY_PHONE 0x01
 
 class NotificationShieldClass 
 {
 public:
-void notifyPhone(char* );
+	//Sender 
+	void notifyPhone(char* );
 
 private:
 
-
-
 };
-// instantiate object for users
+
+//Extern Object
 extern NotificationShieldClass Notification;
 #endif
