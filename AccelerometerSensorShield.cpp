@@ -78,7 +78,7 @@ void AccelerometerSensorShield::processData()
 		getfloat.data[3]=OneSheeld.getArgumentData(2)[3];
 		valueZ=getfloat.num;
 
-		//Users Function Invocation
+		//Users Function Invoked
 		if(isCallBackAssigned)									  
 		{
 			(*changeCallBack)(valueX,valueY,valueZ);
