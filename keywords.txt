@@ -52,7 +52,7 @@ begin	KEYWORD2
 rearCapture	KEYWORD2
 setFlash	KEYWORD2
 send	KEYWORD2
-updateStatus	KEYWORD2
+post	KEYWORD2
 setLow	KEYWORD2
 setHigh	KEYWORD2
 setValue	KEYWORD2
@@ -65,8 +65,8 @@ isOrangePressed	KEYWORD2
 isRedPressed	KEYWORD2
 isGreenPressed	KEYWORD2
 isBluePressed	KEYWORD2
-getLat	KEYWORD2
-getLon	KEYOWRD2
+getLattitude	KEYWORD2
+getLongitude	KEYOWRD2
 isLat	KEYWORD2
 isLon	KEYWORD2
 init	KEYWORD2
@@ -134,6 +134,9 @@ sendMessage	KEYWORD2
 isPressed	KEYWORD2
 getUserName	KEYWORD2
 getTweet	KEYWORD2
+setDot	KEYWORD2
+tweet	KEYWORD2
+setOnNewTweet	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
