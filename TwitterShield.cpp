@@ -1,41 +1,53 @@
 /*
-  TwitterShield.h - TwitterShield library
-  Copyright (C) 2013 Integreight Inc  All rights reserved.
+
+  Project:       1Sheeld Library 
+  File:          TwitterShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
 */
 
 #include "OneSheeld.h"
 #include "TwitterShield.h"
 
+//Class Constructor
 TwitterShieldClass::TwitterShieldClass()
 {
  	userName = 0;
  	tweetText = 0;
 }
-// public functions
+//Sender
 void TwitterShieldClass::tweet( char *data)
 {
 OneSheeld.sendPacket(TWITTER_ID,0,SEND_TWEET,1,new FunctionArg(strlen(data),(byte*)data));
 }
+//Sender
 void TwitterShieldClass::sendDirectMessage(char* username,char* message)
 {
 
 	OneSheeld.sendPacket(TWITTER_ID,0,SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
 
 }
-
+//Getter
 char * TwitterShieldClass::getUserName()
 {
 	return userName;
 }
-
+//Getter
 char * TwitterShieldClass::getTweet()
 {
 	return tweetText;
 }
-
-
+//Twitter Input Data Processing
 void TwitterShieldClass::processData()
 {
+	//Checking the Function-ID
 	byte functionId = OneSheeld.getFunctionId();
 	if( functionId == GET_TWEET)
 	{
@@ -63,18 +75,19 @@ void TwitterShieldClass::processData()
 			tweetText[i]=OneSheeld.getArgumentData(1)[i];
 		}
 			tweetText[tweetLength]='\0';
-
+		//Users Function Invocation
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(userName,tweetText);
 		}
 	}
 }
-
+//Users Function Setter
 void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,char * tweetText))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
-// instantiate object for users
+
+//Instantiating Object 
 TwitterShieldClass Twitter;
