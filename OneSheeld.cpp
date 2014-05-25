@@ -1,11 +1,23 @@
 /*
-  OneSheeld.h - OneSheeld library
-  Copyright (C) 2013 Integreight Inc  All rights reserved.
+
+  Project:       1Sheeld Library 
+  File:          OneSheeld.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
 */
+  
 #include "OneSheeld.h"
 #include "HardwareSerial.h"
 #include "Arduino.h"
 
+//Shields ID's
 byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,GPS_ID
 ,SLIDER_ID
@@ -29,7 +41,7 @@ byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,TWITTER_ID};
 
 
-// public functions
+//Class Constructor
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
       shield=0;
@@ -44,6 +56,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isFirstFrame=false;
 }
 
+//Library Starter
 void OneSheeldClass::begin(long baudRate)
 {
   #if defined(__AVR_ATmega32U4__)
@@ -52,12 +65,13 @@ void OneSheeldClass::begin(long baudRate)
   Serial.begin(baudRate);
   #endif
 }
-
+//Library Starter
 void OneSheeldClass::begin()
 {
   begin(115200);
 }
 
+//Frame Sender for Output Shields
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
@@ -94,37 +108,38 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     lastTimeFrameSent=millis()+1;
 }
 
-//Recieving Functions
+//Getter
 byte OneSheeldClass::getShieldId()
 {
   return shield;
 } 
-
+//Getter
 byte OneSheeldClass::getInstanceId()
 {
   return instance;
 } 
-
+//Getter
 byte OneSheeldClass::getFunctionId()
 {
   return functions;
 }
-
+//Getter
 byte OneSheeldClass::getArgumentNo()
 {
   return argumentnumber;
 } 
-
+//Getter
 byte OneSheeldClass::getArgumentLength(byte x)
 {
   return argumentL[x];
 }
-
+//Getter
 byte * OneSheeldClass::getArgumentData(byte x)
 {
   return arguments[x];
 } 
 
+//Incomming Frames processing 
 void OneSheeldClass::processInput()
 {
   while(OneSheeld.OneSheeldSerial.available()){
@@ -164,7 +179,7 @@ void OneSheeldClass::processInput()
               argumentL[argumentcounter]=data;
               counter++;
           }
-          else if (counter==7&&framestart)                    // data is the first argument length
+          else if (counter==7&&framestart)                    // data is the first argument Data information
           {
             if((255-argumentL[argumentcounter])==data){
               arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
@@ -248,10 +263,11 @@ void OneSheeldClass::processInput()
       }
        
     }
+//Data Sender to Input Shields
 void OneSheeldClass::sendToShields()
 {
-      
-  byte number_Of_Shield= OneSheeld.getShieldId();     //getting the shield number using the function we made
+  //Checking the Shield-ID    
+  byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
@@ -278,6 +294,7 @@ void OneSheeldClass::sendToShields()
   }
 }
 
+//PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)
 {
     double period=(double)pulseIn(pin,HIGH)+(double)pulseIn(pin,LOW);;
@@ -286,7 +303,7 @@ unsigned char OneSheeldClass::analogRead(int pin)
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
 }
-// instantiate object for users
+//Instantiating Object
 #if defined(__AVR_ATmega32U4__)
 OneSheeldClass OneSheeld(Serial1);
 void serialEvent1()
@@ -295,5 +312,5 @@ OneSheeldClass OneSheeld(Serial);
 void serialEvent()
 #endif
 {
-  OneSheeld.processInput();      //takes all the bytes and save them in the buffer (buffer size = 64bits)
+  OneSheeld.processInput();      
 }

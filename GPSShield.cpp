@@ -1,8 +1,22 @@
-//GPS shield getting the langittude and the latittude from the  Android 
+/*
+
+  Project:       1Sheeld Library 
+  File:          GPSShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
+*/
+
 #include "OneSheeld.h"
 #include "GPSShield.h"
 
-//initializing the array of the Long and the Lati 
+//Class Constructor 
 GPSShieldClass::GPSShieldClass ()
 {
 	LatValue=0;
@@ -11,18 +25,21 @@ GPSShieldClass::GPSShieldClass ()
 	isCallBackAssigned=false;
 }
 
-//reading the packet and assigning the values to the long and the latit  
+//GPS Input Data Processing 
 void GPSShieldClass::processData ()
 {
+	//Checking the Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==GPS_VALUE)
 	{
+		//Process Lattitude Value
 		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
 		getfloat.data[1]=OneSheeld.getArgumentData(0)[1];
 		getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 		getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 		LatValue=getfloat.num;
 
+		//Process Longitude Value
 		getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
 		getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
 		getfloat.data[2]=OneSheeld.getArgumentData(1)[2];
@@ -31,24 +48,26 @@ void GPSShieldClass::processData ()
 
 		isInit=true;  									//setting a flag 
 	}
-
+	//Users Function Invoked
 	if (isCallBackAssigned)
 	{
 		(*changeCallBack)(LatValue,LonValue);
 	}
 }
 
+//Getter 
 float GPSShieldClass::getLattitude()
 {
 	return LatValue;
 }
 
-
+//Getter
 float GPSShieldClass::getLongitude()
 {
 	return LonValue;
 }
 
+//Helper 
 bool GPSShieldClass::isInRange(float usersValue1 , float usersValue2,float range)
 {
 	if(!isInit)return false;
@@ -63,7 +82,7 @@ bool GPSShieldClass::isInRange(float usersValue1 , float usersValue2,float range
 	}
 
 }
-
+//Helper
 float GPSShieldClass::getDistance(float x , float y)			//x and y is the lattitude and the longitude inserted by the user 
 {
 	if(!isInit)return 0;
@@ -76,15 +95,20 @@ float GPSShieldClass::getDistance(float x , float y)			//x and y is the lattitud
 
 	return actualDsitance;											
 }
+
+//Helper
 float GPSShieldClass::radian(float value)
 {
 	float radianValue = value*(PI/180);
 	return radianValue;
 }
 
+//User Function Setter
 void GPSShieldClass::setOnValueChange(void (*userFunction)(float lattitude ,float longitude))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
+
+//Instantiating Object
 GPSShieldClass  GPS ;

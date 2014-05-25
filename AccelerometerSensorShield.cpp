@@ -1,10 +1,25 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          AccelerometerSensorShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
+*/
+
 #include "OneSheeld.h"
 #include "AccelerometerSensorShield.h"
 
 
 
-
-AccelerometerSensorShield::AccelerometerSensorShield()
+//Class Constructor
+AccelerometerSensorShield::AccelerometerSensorShield()			 
 {
 	valueX=0;
 	valueY=0;
@@ -12,60 +27,71 @@ AccelerometerSensorShield::AccelerometerSensorShield()
 	isCallBackAssigned=false;
 }
 
-
-float AccelerometerSensorShield::getX()
+//X-Axis getter function
+float AccelerometerSensorShield::getX()							 
 {
 	return valueX;
 }
 
-float AccelerometerSensorShield::getY()
+//Y-Axis getter function
+float AccelerometerSensorShield::getY()							
 {
 	return valueY;
 }
 
-float AccelerometerSensorShield::getZ()
+//Z-Axis getter function
+float AccelerometerSensorShield::getZ()							
 {
 	return valueZ;
 }
 
-void AccelerometerSensorShield::processData()
+//AccelerometerSensor Input Data processing 	
+void AccelerometerSensorShield::processData()					
 {
-	byte functionId= OneSheeld.getFunctionId();
+	//Checking the Function-ID 
+	byte functionId= OneSheeld.getFunctionId();					
+	
 	if(functionId==ACCELEROMETER_VALUE)
 	{
 		valueX=0;
 		valueY=0;
 		valueZ=0;
-		//getting the float of first 4 bytes
-		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
+
+		//Process X-Axis Value
+		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];		
 		getfloat.data[1]=OneSheeld.getArgumentData(0)[1];
 		getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
 		getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
 		valueX=getfloat.num;
-	    //getting the float of second 4 bytes
-	    getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
+
+	    //Process Y-Axis Value
+	    getfloat.data[0]=OneSheeld.getArgumentData(1)[0];		
 		getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
 		getfloat.data[2]=OneSheeld.getArgumentData(1)[2];
 		getfloat.data[3]=OneSheeld.getArgumentData(1)[3];
 		valueY=getfloat.num;
-	    //getting the float of third 4 bytes
-	    getfloat.data[0]=OneSheeld.getArgumentData(2)[0];
+
+	    //Process Z-Axis Value
+	    getfloat.data[0]=OneSheeld.getArgumentData(2)[0];		 
 		getfloat.data[1]=OneSheeld.getArgumentData(2)[1];
 		getfloat.data[2]=OneSheeld.getArgumentData(2)[2];
 		getfloat.data[3]=OneSheeld.getArgumentData(2)[3];
 		valueZ=getfloat.num;
 
-		if(isCallBackAssigned)
+		//Users Function Invoked
+		if(isCallBackAssigned)									  
 		{
 			(*changeCallBack)(valueX,valueY,valueZ);
 		}
 	}
 }
 
-void AccelerometerSensorShield::setOnValueChange(void (* usersFunction)(float valueX,float valueY,float valueZ))
+//Users Function Setter 
+void AccelerometerSensorShield::setOnValueChange(void (* usersFunction)(float valueX,float valueY,float valueZ))	
 {
 	changeCallBack=usersFunction;
 	isCallBackAssigned=true;
 }
 
-AccelerometerSensorShield AccelerometerSensor;
+//Instatntiating Object
+AccelerometerSensorShield AccelerometerSensor;					

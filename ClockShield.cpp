@@ -1,9 +1,24 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          ClockShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
+*/
+
 #include "OneSheeld.h"
 #include "ClockShield.h"
 #include "Arduino.h"
 
 
-
+//Class Constructor
 ClockShield::ClockShield()
 {
 	hours=0;
@@ -14,6 +29,7 @@ ClockShield::ClockShield()
 
 }
 
+//Blocking function 
 void ClockShield::begin()
 {
 	OneSheeld.sendPacket(CLOCK_ID,0,BEGIN_CLOCK,0);
@@ -31,37 +47,41 @@ void ClockShield::begin()
 		
 	}
 }
+//Seconds getter 
 byte ClockShield::getSeconds()
 {
 	return seconds;
 }
-byte ClockShield::getHours()
-{
-	return hours;
-}
 
+//Minutes getter 
 byte ClockShield::getMinutes()
 {
 	return minutes;
 }
-
+//Hours getter 
+byte ClockShield::getHours()
+{
+	return hours;
+}
+//Day getter 
 byte ClockShield::getDay()
 {
 	return day;
 }
-
+//Month getter 
 byte ClockShield::getMonth()
 {
 	return month;
 }
-
+//Year getter 
 short ClockShield::getYear()
 {
 	return year;
 }
-
+//Clock Input Data Processing 
 void ClockShield::processData()
 {
+	//Checking the Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==DATE_VALUE)
 	{
@@ -101,5 +121,6 @@ void ClockShield::processData()
 	}
 }
 
+//Intantiating Object
 ClockShield Clock;
 
