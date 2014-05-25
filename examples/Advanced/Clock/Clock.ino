@@ -1,46 +1,46 @@
 /*
-Example illustrates always getting the date and time and when 
-it is a certain date send a SMS whishing a HappYBirthdaY and 
-update status on FaceBook
+
+Clock Shield Example
+
+This example shows an application on 1Sheeld's clock shield.
+
+By using this example, you can send an SMS to a friend on his
+birthday and update your status on Facebook when the phone's
+time reaches a certain time you specify.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserving variables to get the time (hours-minutes-seconds)*/
-/*and the Date (day-month)*/
-byte hours;
-byte minutes;
-byte seconds;
-byte day;
-byte month;
-short year;
+/* Define some variables for the date and time. */
+int hour, minute, second, day, month, year;
 
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Start the Clock Shield*/
+  /* Start the clock shield. */
   Clock.begin();
 }
 
-void loop () 
+void loop() 
 {
-  /*Always get the Date and Time*/
-  hours=Clock.getHours();
-  minutes=Clock.getMinutes();
-  seconds=Clock.getSeconds();
-  day=Clock.getDay();
-  month=Clock.getMonth();
-  year=Clock.getYear();
+  /* Always get the date and time. */
+  hour = Clock.getHours();
+  minute = Clock.getMinutes();
+  second = Clock.getSeconds();
+  day = Clock.getDay();
+  month = Clock.getMonth();
+  year = Clock.getYear();
   
-  /*Check if the date is my birthday date send me the */
-  /*SMS at 3PM that day*/
-  if(hours==15&&minutes==0&&seconds==0&&day==6&&month==2&&year==2014)
+  /* If the date is my friends's birthday date send me 
+     SMS at 3 pm that day and post on Facebook. */
+  if(hour == 15 && minute == 0 && second == 0 && day == 6 && month == 2 && year == 2014)
   {
-    /*Send me SMS*/
-    SMS.send("+201286077028","HappY BirTH daY :D from OneSheeld");
-    /*Update my Facebook Status*/ 
-    Facebook.updateStatus("iT's My BirthDay :D ");
+    /* Send the SMS. */
+    SMS.send("+1234567890","Happy birthday buddy, sent from 1Sheeld.");
+    /* Update my Facebook status. */ 
+    Facebook.post("It is me friend birthday.");
   }
 } 
