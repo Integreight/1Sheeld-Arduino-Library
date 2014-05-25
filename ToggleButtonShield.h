@@ -27,7 +27,7 @@ public:
 	//Constructor
 	ToggleButtonShield();
 	//Checker
-	bool getStatus();
+	bool isPressed();
 	//setOnChange for Users Function
 	void setOnButtonStatusChange(void (*userFunction)(bool));
 private:
