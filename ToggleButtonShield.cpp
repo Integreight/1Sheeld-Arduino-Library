@@ -24,7 +24,7 @@ ToggleButtonShield::ToggleButtonShield()
 	isCallBackAssigned=false;
 }
 //Checker
-bool ToggleButtonShield::isPressed()
+bool ToggleButtonShield::getStatus()
 {
 	return !!value;
 }
