@@ -1,14 +1,26 @@
 /*
-  OneSheeld.h - OneSheeld library
-  Copyright (C) 2013 Integreight Inc  All rights reserved.
+
+  Project:       1Sheeld Library 
+  File:          OneSheeld.h
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
 */
 
 #ifndef OneSheeld_h
 #define OneSheeld_h
 #include "Stream.h"
 
+
 typedef unsigned char byte;
 
+//Inlcuding Shields Headers
 #include "TwitterShield.h"
 #include "FacebookShield.h"
 #include "KeypadShield.h"
@@ -43,7 +55,7 @@ typedef unsigned char byte;
 #include "ClockShield.h"
 #include "KeyboardShield.h"
 
-// shield ids
+//Shields ID's
 #define TWITTER_ID      	 0x1A 
 #define FACEBOOK_ID     	 0x19 
 #define LCD_ID 		   	 	 0x17
@@ -79,15 +91,16 @@ typedef unsigned char byte;
 #define KEYBOARD_ID			 0x22
 #define ONE_SECOND 1000
 
-// start and end of the packet sent
+//Start and End of packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
+//Library Version
 #define LIBRARY_VERSION 0x01
+//Time between sending Frames
 #define TIME_GAP		300UL
 
 
-//new function for the new packet frame 
-
+//Class for Datalength and Data
 class FunctionArg
 {
 private:
@@ -113,38 +126,46 @@ public:
 
 class OneSheeldClass
 {
-	private:
-void sendToShields();
-byte shield;
-byte instance;
-byte functions;
-byte counter;
-byte argumentcounter;
-byte datalengthcounter;
-byte argumentnumber;
-byte **arguments;				 //pointer to an array of 2d
-byte *argumentL;            
-bool framestart;
-byte endFrame;
-unsigned long lastTimeFrameSent;
-bool isFirstFrame;
-void begin(long baudRate);
+
+
 public:
     
-OneSheeldClass(Stream &s);
-//Functions of the reciever 
-byte getShieldId();
-byte getInstanceId();
-byte getFunctionId();
-byte getArgumentNo();
-byte getArgumentLength(byte x);
-byte * getArgumentData(byte x);
-void processInput();					//new Reciever function 
-void begin();
-void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
-unsigned char analogRead(int );
-Stream & OneSheeldSerial;
+	OneSheeldClass(Stream &s);
+	//Getters 
+	byte getShieldId();
+	byte getInstanceId();
+	byte getFunctionId();
+	byte getArgumentNo();
+	byte getArgumentLength(byte x);
+	byte * getArgumentData(byte x);
+	//Processing Incomming Frames
+	void processInput();		
+	//Library Starter
+	void begin();
+	//Frame Sender
+	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+	//PulseWidthModulation Getter 
+	unsigned char analogRead(int );
+	Stream & OneSheeldSerial;
+private:
+	//Reserve Variables
+	byte shield;
+	byte instance;
+	byte functions;
+	byte counter;
+	byte argumentcounter;
+	byte datalengthcounter;
+	byte argumentnumber;
+	byte **arguments;	
+	byte *argumentL;            
+	bool framestart;
+	byte endFrame;
+	unsigned long lastTimeFrameSent;
+	bool isFirstFrame;
+	//Send Incomming Data to shields
+	void sendToShields();
+	void begin(long baudRate);
 };
-// instantiate object for users
+//Extern Object
 extern OneSheeldClass OneSheeld;
 #endif
