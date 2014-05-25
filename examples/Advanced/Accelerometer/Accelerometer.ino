@@ -18,7 +18,7 @@ float z;
 
 /* A name for the led on pin 13. */
 int ledPin = 13 ;
-int magnitudeThreshold
+int magnitudeThreshold = 31;
 
 void setup () 
 {
@@ -38,7 +38,7 @@ void loop ()
   
   /* Check the motion of the smartphone, if it exceeded a limit, turn the LED on. */
   /* We do that by calcuating the magnitude of the 3D vectors. */
-  if (sqrt((x*x)+(y*y)+(z*z))>31)
+  if (sqrt((x*x)+(y*y)+(z*z)) > magnitudeThreshold)
   {
     /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
