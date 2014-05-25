@@ -1,22 +1,38 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          LightSensorShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.5
+
+*/
+
 #include "OneSheeld.h"
 #include "LightSensorShield.h"
 
-
+//Class Constructor
 LightSensorShield::LightSensorShield()
 {
 	value=0;
 	isCallBackAssigned=false;
 }
-
+//Getter 
 unsigned long LightSensorShield::getValue()
 {
 	
 	return value;
 	
 }
-
+//Light Input Data Processing
 void LightSensorShield::processData()
 {
+	//Checking the Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==LIGHT_VALUE)
 	{
@@ -27,17 +43,19 @@ void LightSensorShield::processData()
 		value|=data[0];
 		value|=(data[1]<<8);
 		value|=(data[2]<<16);
+		//Users Function Invocation
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(value);
 		}
 	}
 }
-
+//Users Function Setter 
 void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long lightValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
 
+//Instantiating Object
 LightSensorShield LightSensor;
