@@ -1,19 +1,25 @@
 /*
-Example illustrates the Toggle button controls a Seven Segment (Hardware) to start count from 0-->9
+
+ToggleButton Shield Example
+
+This example shows an application on 1Sheeld's ToggleButton shield.
+
+By using this example, you can make use of the ToggleButton in 1Sheeld
+application without Including our OneSheeld Library, which gives an 
+advantage to use our one Sheeld Basic I/O shields to handle actions 
+down at Arduino
+
 */
 
-/* Include 1Sheeld library. */
-#include <OneSheeld.h>
 
 /* Seven segment pins. */
-int pin1 = 2;
-int pin2 = 3;
-int pin3 = 4;
-int pin4 = 5;
-int pin5 = 6;
-int pin6 = 7;
-int pin7 = 8;
-int pin8 = 9;
+int segmentA = 2;
+int segmentB = 3;
+int segmentC = 4;
+int segmentD = 5;
+int segmentE = 6;
+int segmentF = 7;
+int segmentG = 8;
 
 /* A name for the button on pin 12. */
 int buttonPin = 12;
@@ -32,19 +38,16 @@ byte sevenSegmentDigits[10][7] = { { 1,1,1,1,1,1,0 },  // = 0
 
 void setup() 
 {
-  /* Start communication. */
-  OneSheeld.begin();
   /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);
   /* Set 7 pins of Arduino as output. (from 2 till 8) */
-  pinMode(pin1,OUTPUT);
-  pinMode(pin2,OUTPUT);
-  pinMode(pin3,OUTPUT);
-  pinMode(pin4,OUTPUT);
-  pinMode(pin5,OUTPUT);
-  pinMode(pin6,OUTPUT);
-  pinMode(pin7,OUTPUT);
-  pinMode(pin8,OUTPUT);
+  pinMode(segmentA,OUTPUT);
+  pinMode(segmentB,OUTPUT);
+  pinMode(segmentC,OUTPUT);
+  pinMode(segmentD,OUTPUT);
+  pinMode(segmentE,OUTPUT);
+  pinMode(segmentF,OUTPUT);
+  pinMode(segmentG,OUTPUT);
 }
 
 void loop() 
