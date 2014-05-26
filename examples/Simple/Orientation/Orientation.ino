@@ -1,6 +1,6 @@
 /*
 Example illustrates the Orientation of your SmartPhone and turning ON a LED when the
-Orientation exceeds certain limits in the 3 Dimensions
+Orientation exceeds certain limits on 3 Dimensions
 */
 
 /*Include OneSheeld Library*/
@@ -10,7 +10,7 @@ Orientation exceeds certain limits in the 3 Dimensions
 int ledPin1 = 13 ;
 /*LedPin on 12*/
 int ledPin2 = 12 ;
-/*LedPin on 13*/
+/*LedPin on 11*/
 int ledPin3 = 11 ;
 
 void setup () 
