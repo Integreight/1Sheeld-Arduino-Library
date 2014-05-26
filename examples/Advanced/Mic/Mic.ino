@@ -29,7 +29,7 @@ void loop()
   	if(!isTweetSent)
   	{
 	  	/*Send the tweet*/
-	    Twitter.updateStatus("We are making some noise! sent from @1Sheeld"); 
+	    Twitter.tweet("We are making some noise! sent from @1Sheeld"); 
       /* Set the flag. */
 	    isTweetSent = true;
   	}

@@ -30,7 +30,7 @@ void loop()
 {
   
   /* Check if the magnetic strength exceeded a certain value. */
-  if (MagnetometerSensor.magneticStrength() > 50)
+  if (MagnetometerSensor.getMagneticStrength() > 50)
   {
       /* This makes sure that the SMS will be sent only one time. */ 
       if (!isPhoneNotified)

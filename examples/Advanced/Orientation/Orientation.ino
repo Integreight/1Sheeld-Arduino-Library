@@ -30,7 +30,6 @@ void loop()
   {
     /* Turn on the buzzer. */
       Buzzer.buzzOn();
-    }
   }
   /* If they are not aligned, turn of the buzzer. */
   else
