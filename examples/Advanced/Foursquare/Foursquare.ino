@@ -23,8 +23,8 @@ void setup()
 
 void loop() 
 {
-  /* Always get the GPS coordinates and if it is near the coordinates of the pyramids then
-  make a check-in on Foursquare. */
+  /* Always check if the GPS coordinates is in a range of 100 meters from
+     the coordinates of the pyramids then make a check-in on Foursquare. */
   if (GPS.isInRange(31.134358,29.979175,100))
   {
     /* Check only once. */

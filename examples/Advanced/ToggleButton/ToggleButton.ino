@@ -1,13 +1,16 @@
 /*
 
-ToggleButton Shield Example
+Toggle Button Shield Example
 
-This example shows an application on 1Sheeld's ToggleButton shield.
+This example shows an application on 1Sheeld's toggle button shield.
 
-By using this example, you can make use of the ToggleButton in 1Sheeld
-application without Including our OneSheeld Library, which gives an 
-advantage to use our one Sheeld Basic I/O shields to handle actions 
-down at Arduino
+By using this example, you can display the numbers from
+0 till 9 on the hardware seven segment every time you press
+the button on pin 12.
+
+PS: This example doesn't require you to include our Arduino
+library. You can connect the toggle button directly from the
+shield screen on our app to any Arduino pin you want.
 
 */
 

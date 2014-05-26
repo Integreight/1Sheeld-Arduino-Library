@@ -25,13 +25,13 @@ void setup()
 
 void loop() 
 {
-  /* Always get the Y-axis and Z-axis values and check if they are equal to zero. */
-  if (OrientationSensor.getY() == 0 && OrientationSensor.getZ() == 0)
+  /* Always get the Y-axis and Z-axis values and check if they are near zero. */
+  if (OrientationSensor.getY() > -1 && OrientationSensor.getY() < 1 && OrientationSensor.getZ() > -1 && OrientationSensor.getZ() < 1)
   {
-    /* Turn on the buzzer. */
+      /* Turn on the buzzer. */
       Buzzer.buzzOn();
   }
-  /* If they are not aligned, turn of the buzzer. */
+  /* If they are not aligned, turn off the buzzer. */
   else
   {
     Buzzer.buzzOff();
