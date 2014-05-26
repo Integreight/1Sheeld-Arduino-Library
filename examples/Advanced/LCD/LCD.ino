@@ -55,8 +55,6 @@ void loop()
    LCD.print("Closing!");
    /* Wait for 2 seconds. */
    delay(10000);
-   /* Turn off the display. */
-   LCD.noDisplay();
   }
   
   
