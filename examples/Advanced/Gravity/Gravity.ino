@@ -5,7 +5,7 @@ Gravity Shield Example
 This example shows an application on 1Sheeld's gravity shield.
 
 By using this example, you can send a notification to your
-smartphone when you roll it three times.
+smartphone when you roll it three times left.
 
 */
 
