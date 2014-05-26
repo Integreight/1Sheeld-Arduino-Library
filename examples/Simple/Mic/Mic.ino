@@ -6,13 +6,13 @@ Smartphone and when exceeds certain limit, LED on pin 13 goes ON!
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-
+int ledPin = 13;
 void setup () 
 {
   /*Start communication*/
   OneSheeld.begin();
-  /*Set pin 2 OUTPUT for the LED*/
-  pinMode(2,OUTPUT);
+  /*Set ledPin OUTPUT*/
+  pinMode(ledPin,OUTPUT);
 }
 
 
@@ -22,11 +22,11 @@ void loop ()
   if(Mic.getValue()>80)
   {
     /*LED on*/
-    digitalWrite(2,HIGH);
+    digitalWrite(ledPin,HIGH);
   }
   else 
   {
     /*LED off*/
-    digitalWrite(2,LOW);
+    digitalWrite(ledPin,LOW);
   }
 }
