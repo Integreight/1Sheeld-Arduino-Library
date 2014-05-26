@@ -41,6 +41,6 @@ void loop()
     /* Send the SMS. */
     SMS.send("1234567890","Happy birthday buddy, sent from 1Sheeld.");
     /* Update my Facebook status. */ 
-    Facebook.post("It is me friend birthday.");
+    Facebook.post("It is my friend birthday.");
   }
 } 
