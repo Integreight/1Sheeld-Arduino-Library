@@ -25,7 +25,7 @@ void loop()
 {
   /* Always get the GPS coordinates and if it is near the coordinates of the pyramids then
   make a check-in on Foursquare. */
-  if (GPS.getLongitude() == 31.134358 && GPS.getLattitude() == 29.979175)
+  if (GPS.isInRange(31.134358,29.979175,100))
   {
     /* Check only once. */
     if (!didIcheckedIn)
