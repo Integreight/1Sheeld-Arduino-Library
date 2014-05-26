@@ -23,7 +23,7 @@ void loop()
   /* Check out if something is near the phone, buzz immediately. */
   if (ProximitySensor.getValue() == 0)
   {
-    /* Always buzz when the something is near the phone. */
+    /* Always buzz when there's something is near the phone. */
     Buzzer.buzzOn();
   }
   else 
