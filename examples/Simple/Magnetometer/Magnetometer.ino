@@ -27,6 +27,8 @@ void setup ()
   /*Set the Contrast of the LCD*/
   analogWrite(9,0);
   lcd.print("MagneticStrength");
+  lcd.setCursor(7,1);
+  lcd.print("Tesla");
   
 }
 
@@ -36,6 +38,6 @@ void loop ()
   /*Set the cursor*/
   lcd.setCursor(0,1);
   /*Display the Magnetic Strength*/
-  lcd.print(MagnetometerSensor.magneticStrength());
+  lcd.print(MagnetometerSensor.getMagneticStrength());
   delay(1000);
 }
