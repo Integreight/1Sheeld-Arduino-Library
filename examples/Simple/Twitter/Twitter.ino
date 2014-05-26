@@ -4,46 +4,34 @@ Example illustrates updating status on Twitter by pressing a button
 /*Including OneSheeld Library*/
 #include <OneSheeld.h>
 
-boolean lastState = LOW;
+/*button on pin12*/
 int buttonPin = 12;
+/*led on pin 13*/
 int ledPin = 13;
 void setup () 
 {
   /*Start communication*/
   OneSheeld.begin();
-  /*Let pin 13 as INPUT*/
+  /*Set buttonPin as INPUT*/
   pinMode(buttonPin,INPUT);
+  /*Set ledPin as OUTPUT*/
   pinMode(ledPin,OUTPUT);
-}
-/*solve bouncing issue to be sure the state is read once and right*/
-boolean debounce (boolean lastState)
-{
-  boolean currentState = digitalRead(buttonPin);
-  
-  if(currentState != lastState)
-  {
-    delay(10);
-    currentState = digitalRead(buttonPin);
-  }
-  
-  return currentState;
 }
 
 void loop ()
 {
-  boolean buttonState = debounce(lastState);
   /*Always check pin 13*/
-  if(lastState == LOW && buttonState == HIGH)
+  if(digitalRead(buttonPin)== HIGH)
   {
-    /*Twitter also can be used instead of Facebook*/
-    /*Update your status on Twitter*/
-    Twitter.updateStatus("Home Sweet Home");
+    /*Turn LED On*/
     digitalWrite(ledPin,HIGH);
-    delay(200);
+    /*Facebook also can be used instead of Twitter*/
+    /*Update your status on Twitter*/
+    Twitter.tweet("Home Sweet Home");
+    delay(300);
   }
   else
   {
     digitalWrite(ledPin,LOW);
   }
-  lastState = buttonState;
 }
