@@ -1,59 +1,74 @@
-/*Example illustrates the light intensity of the room using your Smart Phone Light Sensor, when the light reaches its maximum, the LED is OFF
-when the light FADES OFF, the LEDs FADES ON gradually (i.e:for this example put your phone on a clear place in the middle of the room to get the maximum room light intensity and don't Move the Smartphone)
+/*
+
+Light Shield Example
+
+This example shows an application on 1Sheeld's light shield.
+
+By using this example, you can control a LED with the light
+sensor on your smartphone. Simply, the LED value will fade
+depending on the intensity of the light in the room.
+
+PS: For the sake of this example, put your smartphone in
+place where it can detect the maximum light intensity in
+the room first as it use it to calibrate.
+
 */
 
 
-/*Include OneSheeld Library*/ 
-#include<OneSheeld.h>
+/* Include 1Sheeld library.*/ 
+#include <OneSheeld.h>
 
-/*maximum room light intensity*/ 
+/* Maximum light intensity. */ 
 long maxLightIntensity=0;
-/*maximum ratio of the maximum value 255(8bits) to be sent by arduino along with the maximum value got by the Ligh Sensor*/
-float ratio=0;
-/*value of current value of the Light Sensor and the maximum ratio*/
-long ledValue=0;
-/*current value from the Light Sensor*/
-unsigned long lightValue;
-/*Led on 10*/
+/* Ratio between the maximum value of fading and the maximum value got by the light sensor. */
+float ratio = 0;
+/* The current value of the LED. */
+long ledValue = 0;
+/* The current value from the light sensor. */
+long lightValue;
+/* A name for a LED on pin 10. */
 int ledPin = 10;
-void setup ()
+
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-
 void loop()
 {
-  /*if the sensor value is larger than maximum, make it maximum (Don't put the phone on direct light*/
-  /*as it will be a large value which will not let the application work properly*/
-  if(LightSensor.getValue()>maxLightIntensity)
+  /*
+  Don't put the phone on direct light as it will be a very large
+  value which will not let the example work properly.
+  */
+
+  /* If the sensor value is larger than maximum, make it the maximum. */
+  if(LightSensor.getValue() > maxLightIntensity)
   {
-    maxLightIntensity=LightSensor.getValue();
-    ratio=255/(float)maxLightIntensity;
+    maxLightIntensity = LightSensor.getValue();
+    ratio = 255 / (float) maxLightIntensity;
   }
-  /*Get the light values that will be processed*/
-  lightValue=LightSensor.getValue();
-  /*Check if the light value is too much bigger than the max then let the max*/
+  /* Get the light values that will be processed. */
+  lightValue = LightSensor.getValue();
+  /* If the light value is bigger than the maximum then let it be the maximum. */
   if(lightValue > maxLightIntensity)
   {
-    lightValue=maxLightIntensity;
+    lightValue = maxLightIntensity;
   }
-  /*Process on the light value using the ratio calculated and take the diffrence of the value*/ 
-  /*with 255*/
-  ledValue=255-lightValue*ratio;
+
+  /*Do some processing of the value of the led with the ratio calculated. */
+  ledValue= 255 - lightValue * ratio;
   
-  /*Accuracy*/
-  if(ledValue <10)
+  if(ledValue < 10)
   {
-    /*Led goes Off if ledValue is less than 10 (accuracy)*/ 
+    /* Turn off the LED if its value is less than 10. */ 
     analogWrite(ledPin,0);
   }
   else
   {
-    /*Let the led On by certain Value*/
+    /* Set the LED to a certain value. */
     analogWrite(ledPin,ledValue);  
   }
   

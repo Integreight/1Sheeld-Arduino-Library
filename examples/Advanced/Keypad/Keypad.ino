@@ -22,7 +22,7 @@ int iterations=0;
 /* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup () 
+void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();

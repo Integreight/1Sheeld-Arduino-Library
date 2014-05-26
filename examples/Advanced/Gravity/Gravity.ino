@@ -19,7 +19,7 @@ boolean isRolled = true;
 /* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup () 
+void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
@@ -27,7 +27,7 @@ void setup ()
   pinMode(ledPin,OUTPUT);
 }
 
-void loop () 
+void loop() 
 {
   /* Always check if the smartphone has been rolled on its X-axis. */
   if(GravitySensor.getX() > 9)
@@ -44,7 +44,7 @@ void loop ()
   else 
   {
     /* Set the boolean. */
-    isRolled =true;
+    isRolled = true;
   }
 
   /*Check if is has been rolled 3 times. */

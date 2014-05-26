@@ -1,53 +1,62 @@
 /*
-Example illustrates the Liquid Crystal Display Shield
+
+LCD Shield Example
+
+This example shows an application on 1Sheeld's LCD shield.
+
+By using this example, you can print some text on the
+LCD shield available in our app.
+
 */
 
-/*Include OneSheeld Library*/ 
+/* Include 1Sheeld library. */ 
 #include <OneSheeld.h>
 
-/*Button on pin 12*/
+/* A name for a button on pin 12. */
 int buttonPin = 12;
 
-void setup () 
+void setup() 
 {
-  /*Starting communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set buttonPin as INPUT*/
+  /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);  
 }
 
-
-void loop ()
+void loop()
 {
-  /*always Check the button if it's pressed, display texts on LCD*/
+  /* Always check the button pin if pressed. */
   if(digitalRead(buttonPin) == HIGH)
   {
-   /*begin the LCD cursor at the first row and first column*/
+   /* Begin the LCD cursor at the first row and first column. */
    LCD.begin(1,1);
-   /*blink the cursor and for 10 seconds*/
+   /* Blink the cursor and for 5 seconds. */
    LCD.blink();
-   delay(10000);
-   /*stop blinking*/
+   delay(5000);
+   /* Stop blinking. */
    LCD.noBlink();
-   /*write characters on LCD*/
+   /* Write some characters. */
    LCD.write('A');
    LCD.write('B');
    LCD.write('C');
-   /*clear the LCD*/ 
+   /* Wait for 2 seconds. */
+   delay(2000);
+   /* Clear the LCD. */
    LCD.clear();
-   /*print Hello World*/
-   LCD.print("Hello World");
-   /*set the cursor to begin writing from the second row and first column*/
+   /* Print "Hello, World!" */
+   LCD.print("Hello, World!");
+   /* Set the cursor to begin writing from the second row and first column. */
    LCD.setCursor(2,1);
-   /*print This is OneSheeld*/ 
+   /* Print "This is OneSheeld" */ 
    LCD.print("This is OneSheeld");
-   /*wait about 20 seconds*/  
-   delay(20000);
-   /*print Bye Bye*/
-   LCD.print("BYE BYE");
-   /*turn off the display*/
+   /* Wait 10 seconds. */  
+   delay(10000);
+   /* Print "Closing!" */
+   LCD.print("Closing!");
+   /* Wait for 2 seconds. */
+   delay(10000);
+   /* Turn off the display. */
    LCD.noDisplay();
-    
   }
   
   

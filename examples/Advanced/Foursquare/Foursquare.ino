@@ -13,7 +13,7 @@ of Giza (Egypt) using the Foursquare shield along with the GPS shield.
 #include <OneSheeld.h>
 
 /* Define a variable to check-in only once.*/
-boolean didIcheckedIn= false;
+boolean didIcheckedIn = false;
 
 void setup() 
 {

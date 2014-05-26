@@ -26,7 +26,7 @@ int motorBPin2 = 13;
 int motorASpeedPin = 9;
 int motorBSpeedPin = 10;
 
-void setup () 
+void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
@@ -41,7 +41,7 @@ void setup ()
   pinMode(motorBSpeedPin,OUTPUT); // Speed of Motor B
 }
 
-void loop () 
+void loop() 
 {
   
   /* Turn on the LED when the red button is pressed. */
