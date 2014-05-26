@@ -1,42 +1,46 @@
 /*
-Example illustrates the Skype shield Application when you press the button you will call 
-a certain skype account you set in the sketch
+
+Skype Shield Example
+
+This example shows an application on 1Sheeld's Skype shield.
+
+By using this example, you can call one of your Skype's
+contacts when you press the button on pin 12.
+
 */
 
-/*Include OneSheeld Library*/ 
+/* Include 1Sheeld library. */ 
 #include <OneSheeld.h>
 
-/*Reserve a boolean*/
-boolean called=false;
-/*Button on 12*/
+/* Define a boolean flag. */
+boolean didWeCall = false;
+/* A name for the button on pin 12. */
 int buttonPin = 12;
-void setup () 
+
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*buttonPin as INPUT*/
+  /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Always check buttonPin if it's high, Skype the account*/
   if (digitalRead(buttonPin) == HIGH)
   {
-    /*To call only once and not go on calling while looping*/
-    if(called==false)
+    if(!didWeCall)
     {
-      /*Call your callee*/
+      /* Call one of your Skype's contacts. */
       Skype.call("echo123");  
-      /*Reset the variable*/
-      called=true;
+      /* Set the flag. */
+      didWeCall = true;
     }
   }
   else
   {
-    /*Set the boolean*/
-    called = false;
+    /* Reset the flag. */
+    didWeCall = false;
   }
 }
 
