@@ -24,7 +24,7 @@ void setup ()
   /*Set the ledPin as OUTPUT*/
   pinMode(ledPin,OUTPUT);
   pinMode(9,OUTPUT);
-  /*Set the Contrast of the LCD*/
+  /*Set the Contrast of the LCD by using values 0(dark)-->255(bright)*/
   analogWrite(9,0);
   lcd.print("MagneticStrength");
   lcd.setCursor(7,1);
