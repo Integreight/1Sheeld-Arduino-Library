@@ -1,5 +1,5 @@
 /*
-Example illustrates Blinking the LED in the Application 
+Example illustrates Blinking the LED in 1Sheeld Application 
 */
 
 /*Include OneSheeld Library*/
