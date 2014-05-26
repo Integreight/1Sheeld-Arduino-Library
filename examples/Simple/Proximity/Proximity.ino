@@ -6,7 +6,7 @@ near the Smartphone
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Led on 13*/
+/*Led on pin 13*/
 int ledPin = 13;
 
 void setup () 
