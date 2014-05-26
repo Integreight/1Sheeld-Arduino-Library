@@ -1,59 +1,51 @@
 /*
-Example illustrates putting the MusicPlayer On/Pause when a Button pressed
+Example illustrates putting the MusicPlayer On/Pause when a Button pressed using 
+two Hardware pushButtons
 */
 
 
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Variable for last state of the button*/
-boolean lastState = LOW;
+
 /*Button on pin 12*/
-int buttonPin = 12;
-boolean musicPlayed = false;
+int buttonPin1 = 12;
+/*Button on pin 11*/
+int buttonPin2 = 11;
+/*Led on pin 13*/
+int ledPin = 13;
 
 
 void setup () 
 {
   /*Start Communication*/
   OneSheeld.begin();
-  pinMode(13,OUTPUT);
+  /*Set ledPin as OUTPUT*/
+  pinMode(ledPin,OUTPUT);
+  /*Set buttonPin1 and buttonPin2 as INPUT*/
+  pinMode(buttonPin1,INPUT);
+  pinMode(buttonPin2,INPUT);
   
 }
 
 void loop ()
 {
-  boolean buttonState = debounce(lastState);
-  /*Always check the button state*/
-  if(lastState == LOW && buttonState == HIGH)
+
+  /*Always check the buttonPin1 state*/
+  if(digitalRead(buttonPin1)==HIGH)
   { 
-     if(musicPlayed == false)
-     {
+       /*Turn LED On*/
+       digitalWrite(ledPin,HIGH);
+       /*Trun Music On*/
        MusicPlayer.play();
-       musicPlayed =true;
-       digitalWrite(13,HIGH);
-     }   
-     else
-     {
-       MusicPlayer.pause();
-       musicPlayed = false;
-       digitalWrite(13,LOW);
-     }
   }
-  lastState = buttonState;
-}
-
-
-/*This Function prevent the hardware pushButton from bouncing*/ 
-boolean debounce (boolean lastState)
-{
-  boolean currentState = digitalRead(buttonPin);
-  
-  if(currentState != lastState)
-  {
-    delay(10);
-    currentState = digitalRead(buttonPin);
+  /*Always check the buttonPin2 state*/
+  if(digitalRead(buttonPin2)==HIGH)
+  { 
+      /*Turn LED Off*/
+      digitalWrite(ledPin,LOW);
+      /*Turn Music Off*/
+      MusicPlayer.pause();
+      
   }
-  
-  return currentState;
 }
