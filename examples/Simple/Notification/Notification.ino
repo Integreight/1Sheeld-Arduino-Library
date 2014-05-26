@@ -5,8 +5,7 @@ Example illustrates sending Notifications by pressing a button
 /*Including OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Variable for last state of the button*/
-boolean lastState = LOW;
+
 /*Button on pin 12*/
 int buttonPin = 12;
 /*Led on pin 13*/
@@ -24,33 +23,17 @@ void setup ()
 
 void loop ()
 {
-  boolean buttonState = debounce(lastState);
   /*Always check the button state*/
-  if(lastState == LOW && buttonState == HIGH)
+  if(digitalRead(buttonPin)==HIGH)
   {
+    /*Turn LED On*/
+    digitalWrite(ledPin,HIGH);
     /*Send Notification to your Phone*/
     Notification.notifyPhone("we are Notifying the Phone");
-    /*Turn on the Led*/
-    digitalWrite(ledPin,HIGH);
-    delay(200);
   }
   else
   {
+    /*Turn LED Off*/
     digitalWrite(ledPin,LOW);
   }
-  lastState = buttonState;
-}
-
-/*This Function prevent the hardware pushButton from bouncing*/ 
-boolean debounce (boolean lastState)
-{
-  boolean currentState = digitalRead(buttonPin);
-  
-  if(currentState != lastState)
-  {
-    delay(10);
-    currentState = digitalRead(buttonPin);
-  }
-  
-  return currentState;
 }
