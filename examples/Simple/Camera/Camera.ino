@@ -5,8 +5,6 @@ Example illustrates taking pictures each time you press the pushbutton (hardware
 /*Include OneSheeld Library*/
 #include <OneSheeld.h>
 
-/*Variable for last state of the button*/
-boolean lastState = LOW ;
 /*Button on pin 12*/
 int buttonPin = 12 ;
 /*Led on pin 13*/
@@ -24,18 +22,15 @@ void setup ()
 
 void loop ()
 {
-    /*Checking the state of the button*/
-    boolean buttonState = debounce(lastState);
-
-    if(lastState == LOW && buttonState == HIGH)
+    /*Check the State of the Button*/
+    if(digitalRead(buttonPin)==HIGH)
     {
+      /*Turn on the LED*/
+      digitalWrite(ledPin,HIGH);
       /*Set the Flash in the Camera*/
       Camera.setFlash(ON);
       /*Take the Picture*/
       Camera.rearCapture();
-      /*Turn on the LED*/
-      digitalWrite(ledPin,HIGH);
-      delay(1000);
     }
     else
     {
@@ -43,19 +38,4 @@ void loop ()
       digitalWrite(ledPin,LOW);
     }
     
-}
-
-
-/*This Function prevent the hardware pushButton from bouncing*/ 
-boolean debounce (boolean lastState)
-{
-  boolean currentState = digitalRead(buttonPin);
-  
-  if(currentState != lastState)
-  {
-    delay(10);
-    currentState = digitalRead(buttonPin);
-  }
-  
-  return currentState;
 }
