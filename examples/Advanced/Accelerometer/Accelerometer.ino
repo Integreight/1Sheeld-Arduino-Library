@@ -5,7 +5,7 @@ Accelerometer Shield Example
 This example shows an application on 1Sheeld's accelerometer shield.
 
 By using this example, you can grab your smartphone and strike as if
-you are bowling so you can turn on the led on pin 13.
+you are bowling so you can turn on the LED on pin 13.
 
 */
 
@@ -17,7 +17,7 @@ float x;
 float y;
 float z;
 
-/* A name for the led on pin 13. */
+/* A name for the LED on pin 13. */
 int ledPin = 13 ;
 int magnitudeThreshold = 31;
 
@@ -25,7 +25,7 @@ void setup()
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* Set the led pin as output. */
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
