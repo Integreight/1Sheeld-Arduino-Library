@@ -1,6 +1,6 @@
 /*
 Example illustrates the Slider shield to control the frequency of the Piezo Speaker using 
-the PWM values comming from the application 
+the PWM values comming from the application Using Serial Communication
 */
 
 /*Include OneSheeld Library*/
