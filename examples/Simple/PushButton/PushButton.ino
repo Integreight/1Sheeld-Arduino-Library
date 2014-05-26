@@ -1,5 +1,5 @@
 /*
-Example illustrates the use of the Push button in 1Sheeld
+Example illustrates the use of the Push button in 1Sheeld using Serial Communication
 */
 
 /*Include OneSheeld Library*/
