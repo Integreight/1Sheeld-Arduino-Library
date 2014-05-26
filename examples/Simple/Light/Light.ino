@@ -1,5 +1,5 @@
 /*
-Example illustrates sensing the Light and when it's beyond a Limit ,turn the LED ON 
+Example illustrates sensing the Light intensity and when it's beyond a Limit ,turn the LED ON 
 */
 
 
@@ -21,7 +21,7 @@ void setup ()
 void loop () 
 {
   /*Always check on the Light intensity*/
-  if(LightSensor.getValue()<100)
+  if(LightSensor.getValue()<100 && LightSensor.getValue()>0)
   {
     /*Put On the LED*/
     digitalWrite(ledPin,HIGH);
