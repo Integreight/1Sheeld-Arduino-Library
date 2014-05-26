@@ -1,46 +1,53 @@
 /*
-Example illustrates the Magnetic field strength surrounded the Smartphone and when exceeds 
-a limit Send the phone a notification and Turn on a LED
+
+Magnetometer Shield Example
+
+This example shows an application on 1Sheeld's magnetometer shield.
+
+By using this example, you can send a SMS when the magnetic
+field strength read by the smartphone's magnetometer exceeds
+a certain value.
+
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library*/
 #include <OneSheeld.h>
 
-/*Reserve a boolean Flag*/
-boolean phoneNotified=false;
-/*Led on pin 13*/
+/* Define a boolean flag. */
+boolean isPhoneNotified = false;
+/* A name for a LED on pin 13. */
 int ledPin = 13;
 
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,HIGH);
 }
 
-void loop () 
+void loop() 
 {
   
-  /*Checkout if the magnetic strength exceeded certain value*/
-  if (MagnetometerSensor.magneticStrength()>50.115)
+  /* Check if the magnetic strength exceeded a certain value. */
+  if (MagnetometerSensor.getMagneticStrength() > 50)
   {
-      /*This assures that notification will be sent only one time in this loop*/ 
-      if (phoneNotified == false)
+      /* This makes sure that the SMS will be sent only one time. */ 
+      if (!isPhoneNotified)
       {
-        /*Notify the SmartPhone*/
-        Notification.notifyPhone("Danger: Magnetic field increased checkout what's the problem");
-        /*Turn on the LED*/
+        /* Send the SMS. */
+        SMS.send("1234567890","Danger: Magnetic field increased checkout what's the problem.");
+        /* Turn on the LED. */
         digitalWrite(ledPin,HIGH);
-        /*Reset the boolean*/
-        phoneNotified = true;
+        /* Reset the flag. */
+        isPhoneNotified = true;
       }
   }
   else
   {
-    /*Set the boolean*/
-    phoneNotified = false ;
-    /*Turn Off the LED*/
+    /* Set the flag. */
+    isPhoneNotified = false ;
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
   

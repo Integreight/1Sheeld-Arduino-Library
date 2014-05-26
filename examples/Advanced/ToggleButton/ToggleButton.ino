@@ -2,10 +2,10 @@
 Example illustrates the Toggle button controls a Seven Segment (Hardware) to start count from 0-->9
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Seven Segment pins*/
+/* Seven segment pins. */
 int pin1 = 2;
 int pin2 = 3;
 int pin3 = 4;
@@ -14,28 +14,29 @@ int pin5 = 6;
 int pin6 = 7;
 int pin7 = 8;
 int pin8 = 9;
-/*Button on 12*/
+
+/* A name for the button on pin 12. */
 int buttonPin = 12;
-/*Reserving a two dimensional array for the values of counting 0-->9*/
-byte seven_seg_digits[10][7] = { { 1,1,1,1,1,1,0 },  // = 0
-                                 { 0,1,1,0,0,0,0 },  // = 1
-                                 { 1,1,0,1,1,0,1 },  // = 2
-                                 { 1,1,1,1,0,0,1 },  // = 3
-                                 { 0,1,1,0,0,1,1 },  // = 4
-                                 { 1,0,1,1,0,1,1 },  // = 5
-                                 { 1,0,1,1,1,1,1 },  // = 6
-                                 { 1,1,1,0,0,0,0 },  // = 7
-                                 { 1,1,1,1,1,1,1 },  // = 8
-                                 { 1,1,1,1,0,1,1 }   // = 9
+/* Define a two dimensional array for the values of the numbers from 0 to 9. */
+byte sevenSegmentDigits[10][7] = { { 1,1,1,1,1,1,0 },  // = 0
+                                   { 0,1,1,0,0,0,0 },  // = 1
+                                   { 1,1,0,1,1,0,1 },  // = 2
+                                   { 1,1,1,1,0,0,1 },  // = 3
+                                   { 0,1,1,0,0,1,1 },  // = 4
+                                   { 1,0,1,1,0,1,1 },  // = 5
+                                   { 1,0,1,1,1,1,1 },  // = 6
+                                   { 1,1,1,0,0,0,0 },  // = 7
+                                   { 1,1,1,1,1,1,1 },  // = 8
+                                   { 1,1,1,1,0,1,1 }   // = 9
                                };
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*buttonPin as INPUT*/
+  /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);
-  /*Set 7 pins from 2-->8 as OUTPUT*/
+  /* Set 7 pins of Arduino as output. (from 2 till 8) */
   pinMode(pin1,OUTPUT);
   pinMode(pin2,OUTPUT);
   pinMode(pin3,OUTPUT);
@@ -46,21 +47,20 @@ void setup ()
   pinMode(pin8,OUTPUT);
 }
 
-void loop () 
+void loop() 
 {
   if (digitalRead(buttonPin) == HIGH)
-  {
-       
-      for (byte count=0; count<10;++count)
+  { 
+      for (int count = 0 ; count < 10 ; count++)
       {
         delay(1000);
-        byte pin = 2;
-        for (byte digit = 0; digit<7;digit++)
+        int pin = 2;
+        /* Output the digit to the seven segment. */
+        for (int digit = 0 ; digit < 7; digit++)
            {  
-              digitalWrite(pin,seven_seg_digits[count][digit]);
+              digitalWrite(pin,sevenSegmentDigits[count][digit]);
               pin++;
            } 
       }
-     delay(4000); 
   }
 }

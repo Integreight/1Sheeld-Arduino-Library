@@ -1,43 +1,47 @@
 /*
-Example Illustrates Controlling the Music Player using the timming Clock at a certain time 
-the Music Starts to Play
+
+Music Player Shield Example
+
+This example shows an application on 1Sheeld's music player shield.
+
+By using this example, you can play and stop music from
+your smartphone at certain times.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve variables for the Clock timer*/
-byte seconds;
-byte minutes;
-byte hours;
+/* Define some variables for the timer. */
+int seconds, minutes, hours;
 
-void setup ()
+void setup()
 {
-  /*Start communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Start the Clock Shield*/
+  /* Start the clock shield. */
   Clock.begin();
 }
 
-void loop () 
+void loop() 
 {
-  /*Always get the time*/
-  seconds=Clock.getSeconds();
-  minutes=Clock.getMinutes();
-  hours=Clock.getHours();
+  /* Always get the time. */
+  seconds = Clock.getSeconds();
+  minutes = Clock.getMinutes();
+  hours   = Clock.getHours();
   
-  /*Play music at 8 AM*/
-  if (hours==8 && minutes==0 && seconds==00)
+  /* Play music at 8 am. */
+  if (hours == 8 && minutes == 0 && seconds == 00)
   {
-    /*Play on the music*/
+    /* Play the music. */
     MusicPlayer.play();
-    /*Set the volume*/
+    /* Set the volume. */
     MusicPlayer.setVolume(5);
   }
-  /*Stop music at 9 AM*/
-  else if(hours==9 && minutes==0 && seconds==00)
+  /* Stop music at 9 am. */
+  else if(hours == 9 && minutes == 0 && seconds == 00)
   {
-    /*Turn the music Off*/
+    /* Turn off the music. */
     MusicPlayer.stop();
   }
   

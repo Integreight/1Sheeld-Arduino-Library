@@ -1,37 +1,45 @@
 /*
-Example illustrates sensing the temperature of the room and sending 
-a Notification to your phone if it exceeded a certain value
+
+Notification Shield Example
+
+This example shows an application on 1Sheeld's notification shield.
+
+By using this example, you can send a notification to
+your smartphone if the temperature of the room exceeds
+a certain value.
+
 */
 
-/*Inlcude OneSheeld Library*/
+/* Inlcude 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve boolean*/
-boolean phoneNotified=false;
+/* Define a boolean flag. */
+boolean isPhoneNotified = false;
+
 void setup()
 {
-	/*Start Communication*/
+	/* Start communication. */
 	OneSheeld.begin();
 }
 
 void loop()
 {
-	/*Always get the temperature*/
-	if(TemperatureSensor.getValue()>25)
+	/* Always get the temperature. */
+	if(TemperatureSensor.getValue() > 25)
 	{
-		/*Check if the Phone is Notified Once*/
-		if(phoneNotified==false)
+		/* Check if the phone has been notified once. */
+		if(!isPhoneNotified)
 		{
-			/*Notify the Phone*/
-			Notification.notifyPhone("Room Temperature incereased");
-			/*Reset the Boolean*/
-			phoneNotified=true;
+			/* Notify the phone. */
+			Notification.notifyPhone("Temperature increased!");
+			/* Set the flag. */
+			isPhoneNotified = true;
 		}
 		
 	}
 	else
 	{
-		/*Set the Boolean*/
-		phoneNotified = false;
+		/* Reset the flag. */
+		isPhoneNotified = false;
 	}
 }

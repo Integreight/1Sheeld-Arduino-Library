@@ -1,39 +1,45 @@
 /*
-Example illustrates the use of the Smartphone Mic checking out the sound 
-in a certain room when the sound exceeded a certain limit, tweet. 
+
+Mic Shield Example
+
+This example shows an application on 1Sheeld's mic shield.
+
+By using this example, you can tweet when the sound level in
+the room exceeds a certain threshold.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve a boolean*/
-boolean tweetSent = false;
+/* Define a boolean flag. */
+boolean isTweetSent = false;
 
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
 }
 
-
 void loop()
 {
-  /*Always get the noise level from the Mic and check if it exceeds a certain value*/
-  if(Mic.getValue()>100)
+  /* Always get the noise level from the mic and check if it exceeds a certain value. */
+  if(Mic.getValue() > 100)
   {
-  	if(tweetSent == false)
+  	if(!isTweetSent)
   	{
 	  	/*Send the tweet*/
-	    Twitter.updateStatus("We Are JAMMING ;)"); 
-	    tweetSent = true;
+	    Twitter.tweet("We are making some noise! sent from @1Sheeld"); 
+      /* Set the flag. */
+	    isTweetSent = true;
   	}
     
   }
 
-  /*Reset the Boolean Flag*/
-  if(Mic.getValue()<100)
+  /* Reset the flag. */
+  if(Mic.getValue() < 100)
   {
-    tweetSent = false;
+    isTweetSent = false;
   }
   
 }

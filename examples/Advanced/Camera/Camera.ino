@@ -1,30 +1,34 @@
 /*
-Example illustrates Sensing the Light and if its beyond a certain
-Limit take a Picture
+
+Camera Shield Example
+
+This example shows an application on 1Sheeld's camera shield.
+
+By using this example, you can take a photo using your phone's
+camera if the light sensor reads data above a certain threshold.
+
 */
 
-/*Include OneSheeld Library*/ 
+/* Include 1Sheeld library. */ 
 #include <OneSheeld.h>
 
-
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
 }
 
-
-void loop ()
+void loop()
 {
-  /*Always get the value of the Light Sensor*/
+  /* Always get the value of the light sensor and make sure it is in a certain range. */
   if(LightSensor.getValue()<100 && LightSensor.getValue()>0)
   {
-    /*Set the Flash of the Camera to be On while capturing*/
+    /* Turn on the camera's flash while capturing. */
     Camera.setFlash(ON);
-    /*Capture a picture*/
+    /* Take a photo using the phone's rear camera. */
     Camera.rearCapture();
-    /*Adding a time delay for 5 minutes*/
-    delay(50000);
+    /* Delay for 5 seconds. */
+    delay(5000);
   }
   
 }

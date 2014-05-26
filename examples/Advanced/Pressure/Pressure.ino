@@ -1,38 +1,43 @@
 /*
-Example illustrates Sensing the Pressure using the Smartphone Pressure Sensor and when 
-exceeded a limit sends an SMS to my phone
+
+Pressure Shield Example
+
+This example shows an application on 1Sheeld's pressure shield.
+
+By using this example, you can send a SMS when the value
+of the smartphone's pressure sensor exceeds a certain limit.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve a boolean*/
-boolean messageSent=false;
+/* Define a boolean flag. */
+boolean isMessageSent = false;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Always get the Value of the Pressure and if exceeded send the message*/
-  /*since 1008 was the value read from the sensor in the current state*/
-  if (PressureSensor.getValue()>1008)
+  /* Always read the pressure value and check if it exceeds a certain value. */
+  if (PressureSensor.getValue() > 1008)
   {
-    /*Checking so as the message is sent once and don't always annoy you*/
-    if (messageSent==false)
+    /* Check that we haven't sent the SMS already. */
+    if (!isMessageSent)
     {
-      /*Send the SMS to my mobile number*/
-      SMS.send("+201286077028","Pressure is getting high in HERE");
-      /*Reset the value of the messageSent so as not to always let the phone send you the SMS*/
-      messageSent=true;
+      /* Send the SMS. */
+      SMS.send("1234567890","Pressure is getting high in here!");
+      /* Set the flag. */
+      isMessageSent = true;
     }
   }
   else
   {
-    messageSent = false;
+    /* Reset the flag. */
+    isMessageSent = false;
   }
 }

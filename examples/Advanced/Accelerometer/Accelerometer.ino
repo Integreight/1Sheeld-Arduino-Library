@@ -1,45 +1,49 @@
 /*
-Example illustrates grabbing your Smartphone Carefully! and Strike as if you are bowling
-so you can turn on the led on pin 13 
+
+Accelerometer Shield Example
+
+This example shows an application on 1Sheeld's accelerometer shield.
+
+By using this example, you can grab your smartphone and strike as if
+you are bowling so you can turn on the LED on pin 13.
+
 */
 
-/*Inculde OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Accelerometer Values in 3D*/
-float x;
-float y;
-float z;
+/* Variables for the accelerometer's values in 3 dimensions. */
+float x, y, z;
 
-/*Led on pin 13*/
+/* A name for the LED on pin 13. */
 int ledPin = 13 ;
+int magnitudeThreshold = 31;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set pin ledPin OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Always get the values of the Accelerometer in the 3 Dimensions (X-Y-Z)*/
+  /* Always get the values of the accelerometer in the 3 dimensions (X, Y and Z). */
   x=AccelerometerSensor.getX();
   y=AccelerometerSensor.getY();
   z=AccelerometerSensor.getZ();
   
-  /*Check the Motion of the Smart phone when exceeded a limit turn the LED ON by calcuating the Magnitude
-  of the 3D vectors*/
-  if (sqrt((x*x)+(y*y)+(z*z))>31)
+  /* Check the motion of the smartphone, if it exceeded a limit, turn the LED on. */
+  /* We do that by calcuating the magnitude of the 3D vectors. */
+  if (sqrt((x*x) + (y*y) + (z*z)) > magnitudeThreshold)
   {
-    /*Turn on the LED */
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
   }
   else
   {
-    /*Turn off the LED*/
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
 }

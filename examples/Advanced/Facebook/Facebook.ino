@@ -1,49 +1,54 @@
 /*
-Example illustrates Updating status on Facebook everyday at 
-8 Am 
+
+Facebook Shield Example
+
+This example shows an application on 1Sheeld's Facebook shield.
+
+By using this example, you can update your Facebook status
+everyday at 8 am.
+
 */
 
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
-/*Include LiquidCrystal Library*/
+/* Include LiquidCrystal library. */
 #include <LiquidCrystal.h>
 
-/*Initialize the LCD interfacing pins*/
+/* Initialize the LCD interfacing pins. */
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-/*Variables for the Clock (Hour-minutes-seconds)*/
-byte Hours;
-byte Minutes;
-byte Seconds;
+/* Define some variables for the time. */
+int hours, minutes, seconds;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Start Clock Shield*/
+  /* Start clock shield. */
   Clock.begin();
-  /*Set up the LCD's number of columns and rows*/ 
+  /* Set up the LCD's columns and rows. */ 
   lcd.begin(16, 2);
   pinMode(9,OUTPUT);
   analogWrite(9,0);
 }
 
-
-void loop ()
+void loop()
 {
-  Hours   = Clock.getHours();
-  Minutes = Clock.getMinutes();
-  Seconds = Clock.getSeconds();
+  hours   = Clock.getHours();
+  minutes = Clock.getMinutes();
+  seconds = Clock.getSeconds();
 
-  /*Check the Clock*/
-  if(Hours == 8 && Minutes == 0 && Seconds == 0)
+  /* Check the clock. */
+  if(hours == 8 && minutes == 0 && seconds == 0)
   {
-    Facebook.updateStatus("Good Morning");
-    /*LCD indication*/
-    lcd.print("Status Updated");
-    /*Make a delay*/
+    /* Update my Facebook status. */ 
+    Facebook.post("Good morning!");
+    /* Update the LCD screen. */
+    lcd.print("Status updated!");
+    /* Delay for 2 seconds. */
     delay(2000);
+    /* Clear the LCD. */
     lcd.clear();
   }
 }

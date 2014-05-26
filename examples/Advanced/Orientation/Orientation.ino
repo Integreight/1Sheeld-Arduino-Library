@@ -1,42 +1,39 @@
 /*
-Example illustrates the Orientation shield using the Orientation Sensor of the Smartphone
-to allign a portrait on the wall and when oriented properly the phone buzzes
-i.e:
-my phone X-Axis 0--->360 / Y-Axis -180--->180 / Z-Axis -90--->90 
-so check out your phone axis
+
+Orientation Shield Example
+
+This example shows an application on 1Sheeld's orientation shield.
+
+By using this example, you can allign a portrait on
+the wall using your smartphone's orientation sensor
+along with the buzzer shield.
+
+PS: X-axis ranges from 0 to 360 degrees, Y-axis
+ranges from -180 to 180 degrees and Z-axis ranges
+from -90 to 90.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
 }
 
-void loop () 
+void loop() 
 {
-  /*Always get the Y-Axis and Z-Axis coordinations and if they equal or near zero buzzOn*/
-  if (OrientationSensor.getY()>-1&&OrientationSensor.getY()<=0)
+  /* Always get the Y-axis and Z-axis values and check if they are equal to zero. */
+  if (OrientationSensor.getY() == 0 && OrientationSensor.getZ() == 0)
   {
-    /*Check the Z-Axis if it's near the range from -1 to 0*/
-    if(OrientationSensor.getZ() >-1 && OrientationSensor.getZ() <1)
-    { 
+    /* Turn on the buzzer. */
       Buzzer.buzzOn();
-    }
-    /*Buzz off when the second condition of the Z-Axis is not right*/
-    else
-    {
-      Buzzer.buzzOff();
-    }
   }
-  /*Buzz off when the first condition of the Y-Axis is not right*/
+  /* If they are not aligned, turn of the buzzer. */
   else
   {
     Buzzer.buzzOff();
   }
-  
-  
 }

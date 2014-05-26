@@ -1,29 +1,36 @@
 /*
-Example Illustrates Sending an Email using the Toggle Shield button 
-when pressed send the Email
+
+Email Shield Example
+
+This example shows an application on 1Sheeld's email shield.
+
+By using this example, you can send an email when the app's
+toggle button is pressed.
+
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication.*/
   OneSheeld.begin();
-  /*Function to check the Change of the button*/
-  PushButton.setOnChange(& buttonChange);
+  /* Call a specific function when the push button is pressed or unpressed. */
+  PushButton.setOnButtonStatusChange(&onButtonStatusChanged);
 }
 
 void loop()
-{}
-
-
-void buttonChange(byte buttonValue)
 {
-  /*Check the buttons Value*/
-  if(buttonValue != 0)
+	/* Do nothing. */
+}
+
+void onButtonStatusChanged(bool isPressed)
+{
+  /* Check the buttons status. */
+  if(isPressed)
   {
-    Email.send("eslam.mohamed.fathy@gmail.com","Greetings","Hi Eslam, From Integreight");
+  	/* Send an email. */
+    Email.send("example@example.com","Button pressed!","Hi, someone pressed the button!");
   }
 }

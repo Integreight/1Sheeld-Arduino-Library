@@ -1,49 +1,47 @@
 /*
-Example illustrates the use of the Global Positioning system 
-of the Smart Phone giving a Fixed location and calculating the 
-distance between the fixed coordinates and the new coordinates 
-comming from the GPS of the Smart Phone and send an SMS 
+
+GPS Shield Example
+
+This example shows an application on 1Sheeld's GPS shield.
+
+By using this example, you can send an SMS when the smartphone
+is in a hundred meters distance from a fixed coordinates you
+provide.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library.*/
 #include <OneSheeld.h>
 
-/*Reserving a float variable to get the distance*/
-float distance;
-
-/*Reserving a boolean*/
-boolean InRange = false;
+/* Define a boolean flag. */
+boolean isInRange = false;
 
 void setup() 
 {
-  /*Start Communication*/
+  /* Start communication.*/
   OneSheeld.begin();
 }
 
 void loop()
 {
-  
-  /*always get the distance between the two coordinates getDistance(Fixed Longitude,Fixed Lattitude)*/
-  distance=GPS.getDistance(30.0831008,31.3242943);
-   /*always check if the new coordinate is in the range given by meters as*/ 
-   /*isInRange(Fixed Longitude,Fixed Lattitude,Range"in meters")*/   
+   /* Always check if the smartphone's GPS and a given longitude and latitude are in a range of 100 meters. */
   if(GPS.isInRange(30.0831008,31.3242943,100))
   {
-    if(InRange == false)
+    if(!isInRange)
     {
-      /*Send SMS*/
-      SMS.send("+201286077028","Object is In Range");
-      InRange = true;
+      /* Send SMS. */
+      SMS.send("+1234567890","Smartphone is In Range.");
+      isInRange = true;
     }
     
   }
   else 
   {
-    if(InRange == true)
+    if(isInRange)
     {
-      /*Send SMS*/ 
-      SMS.send("+201286077028","Object is not In Range");
-      InRange = false;
+      /* Send SMS. */ 
+      SMS.send("1234567890","Smartphone is not In Range.");
+      isInRange = false;
     }
     
   }

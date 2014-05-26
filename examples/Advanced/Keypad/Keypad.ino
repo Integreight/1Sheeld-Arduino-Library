@@ -1,84 +1,93 @@
 /*
-Example illustrates the Passphrase entered from the Keypad and if it's correct, 
-blink the LED and if it's wrong, LED will not blink! 
-DISCLAIMER: This Example is for FUN not for REAL SECURITY SYSTEMS and 
-in case used in real security system it will be under your responsibility 
+
+Keypad Shield Example
+
+This example shows an application on 1Sheeld's keypad shield.
+
+By using this example, you can use the app's keypad to enter
+a password (ex: 1234) to do an action, in this case blinking
+a LED.
+
+DISCLAIMER: This Example is not for REAL SECURITY SYSTEMS and
+we don't hold responsibility in case something went wrong. Use
+it at your own risk.
+
 */
 
-/*Including OneSheeld Library */
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve an iterator*/ 
-int iterations=0;
-/*Led on 13*/
+/* Define an iterator. */ 
+int iterations = 0;
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*ledPin OUTPUT*/
+  /* Set the LED as output. */
   pinMode(ledPin,OUTPUT);
 }
 
 void loop()
 {
-  /*Check if One is pressed and if pressed, iterate one time*/ 
-  if(iterations==0 && isOnePressed())
+  /* Check if "1" is pressed, iterate one time. */ 
+  if(iterations == 0 && isOnePressed())
   {
      iterations++;
   }
-  /*Check if Two is pressed and if pressed, iterate one time*/ 
-  else if (iterations==1 && isTwoPressed())
+  /* Check if "2" is pressed, iterate one time. */ 
+  else if (iterations == 1 && isTwoPressed())
   {
      iterations++;
   }
-  /*Check if Three is pressed and if pressed, iterate one time*/ 
-  else if (iterations==2 && isThreePressed())
+  /* Check if "3" is pressed, iterate one time. */ 
+  else if (iterations == 2 && isThreePressed())
   {
      iterations++;
   }
-  /*Check if Four is pressed and if pressed, iterate one time*/
-  else if(iterations==3 && isFourPressed())
+  /* Check if "4" is pressed, iterate one time. */
+  else if(iterations == 3 && isFourPressed())
   {
      iterations++;
   }
-  /*Check if any other button is pressed, reset iterations*/
+  /* Check if any other button is pressed, reset iterations. */
   else if(isOtherButtonPressed())
   {
-    iterations=0;
+    iterations = 0;
   }
      
-     /*Check if the Number of iterations = 4, blink LED*/
-     if(iterations==4)
-     {    
-          digitalWrite(ledPin,HIGH);
-          delay(500);
-          digitalWrite(ledPin,LOW);
-          /*Reset the iterator*/
-          iterations=0;
-     }
+   /* Check if the number of iterations is 4, blink the LED. */
+   if(iterations == 4)
+   {    
+        digitalWrite(ledPin,HIGH);
+        delay(500);
+        digitalWrite(ledPin,LOW);
+        /* Reset the iterator. */
+        iterations = 0;
+   }
 }
  
-/*Functions to return True or False if a Certain Button Pressed*/
-/*Checking on button One*/
+/* Helper functions check if a certain button is pressed by checking its row and column. */
+
 boolean isOnePressed(){
-  return Keypad.isRowPressed(0)&&Keypad.isColumnPressed(0);
+  return Keypad.isRowPressed(0) && Keypad.isColumnPressed(0);
 }
-/*Checking on button Two*/
+
 boolean isTwoPressed(){
-  return Keypad.isRowPressed(0)&&Keypad.isColumnPressed(1);
+  return Keypad.isRowPressed(0) && Keypad.isColumnPressed(1);
 }
-/*Checking on button Three*/
+
 boolean isThreePressed(){
-  return Keypad.isRowPressed(0)&&Keypad.isColumnPressed(2);
+  return Keypad.isRowPressed(0) && Keypad.isColumnPressed(2);
 }
-/*Checking on button Four*/
+
 boolean isFourPressed(){
-  return Keypad.isRowPressed(1)&&Keypad.isColumnPressed(0);
+  return Keypad.isRowPressed(1) && Keypad.isColumnPressed(0);
 }
-/*Checking if Button pressed other than one or two or three or four*/
+
 boolean isOtherButtonPressed(){
-  return ((Keypad.isAnyColumnPressed()||Keypad.isAnyColumnPressed())&&!isOnePressed()&&!isTwoPressed()&&!isThreePressed()&&!isFourPressed());
+  return ((Keypad.isAnyColumnPressed() || Keypad.isAnyColumnPressed()) && !isOnePressed() && !isTwoPressed() && !isThreePressed() && !isFourPressed());
 }
 

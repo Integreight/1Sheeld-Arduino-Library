@@ -1,38 +1,44 @@
 /*
-Example illustrates sending SMS to my phone to notify me that the Temperature in my home 
-increased and exceeded a certain limit 
+
+SMS Shield Example
+
+This example shows an application on 1Sheeld's SMS shield.
+
+By using this example, you can send a SMS when the value
+of the smartphone's temperature sensor exceeds a certain
+limit.
+
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve a variable for sending only one time*/
-boolean messageSent = false;
+/* Define a boolean flag. */
+boolean isMessageSent = false;
 
-void setup () 
+void setup() 
 {
- /*Start communication*/
+ /* Start communication. */
  OneSheeld.begin(); 
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Always check the Temperature in the House*/
-  if (TemperatureSensor.getValue()>30)
+  /* Always check if the temperature value is larger than a certain value. */
+  if (TemperatureSensor.getValue() > 30)
   {
-    /*Check that the message sent only once and not annoy you by always sending in loop*/
-    if(messageSent== false)
+    if(!isMessageSent)
     {   
-        /*Send me the Message*/ 
-        SMS.send("+01286077028","Room Temperature is Bigger than 30 Degree");
-        /*Reset the variable with false as each time the condition is true don't send me again*/
-        messageSent=true;  
+        /* Send the SMS. */ 
+        SMS.send("1234567890","Room Temperature is higher than 30 degree!");
+        /* Set the flag. */
+        isMessageSent = true;  
     }
     
   }
   else
   {
-    messageSent = false;
+    /* Reset the flag. */
+    isMessageSent = false;
   }
 }
