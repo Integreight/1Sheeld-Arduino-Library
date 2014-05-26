@@ -20,6 +20,8 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 /* Define some variables for the time. */
 int hours, minutes, seconds;
+/*LCD Contrast on pin 9. */
+int lcdContrast = 9;
 
 void setup() 
 {
@@ -29,7 +31,9 @@ void setup()
   Clock.begin();
   /* Set up the LCD's columns and rows. */ 
   lcd.begin(16, 2);
+  /*Set lcdContrast pin as OUTPUT. */ 
   pinMode(9,OUTPUT);
+  /*dark Contrast since (0) means dark and (255) is bright. */
   analogWrite(9,0);
 }
 
