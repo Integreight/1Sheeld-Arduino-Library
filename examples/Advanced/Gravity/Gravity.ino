@@ -1,60 +1,67 @@
 /*
-Example illustrates Rolling the Smartphone three times 
-and send me a notification 
+
+Gravity Shield Example
+
+This example shows an application on 1Sheeld's gravity shield.
+
+By using this example, you can send a notification to your
+smartphone when you roll it three times.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Reserve a counter*/
+/* Define a counter. */
 int counter = 0 ;
-/*Reserve a boolean*/
-boolean Rolled = true;
-/*Led on pin 13*/
+/* Define a boolean. */
+boolean isRolled = true;
+/* A name for the LED on pin 13. */
 int ledPin = 13;
+
 void setup () 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin as OUTPUT*/
+  /* Set the LED as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-
 void loop () 
 {
-  /*Check the Smartphone if rolled on its X-Axis*/
-  if(GravitySensor.getX()>9)
+  /* Always check if the smartphone has been rolled on its X-axis. */
+  if(GravitySensor.getX() > 9)
   {
-    /*Check if rolled*/
-    if(Rolled == true)
+    /* Check if is has been rolled. */
+    if(isRolled == true)
     {
-      /*Increment the counter*/
-      counter ++ ;
-      /*Reset the boolean*/
-      Rolled = false;  
+      /* Increment the counter. */
+      counter++;
+      /* Reset the boolean. */
+      isRolled = false;  
     }
   }
   else 
   {
-    /*Set the boolean*/
-    Rolled =true;
+    /* Set the boolean. */
+    isRolled =true;
   }
-  /*Check if Rolled 3 times*/
+
+  /*Check if is has been rolled 3 times. */
   if (counter == 3)
   {
-    /*Send me a notification*/
-    Notification.notifyPhone("SmartPhone Rolled Three times");
-    /*Turn On the LED*/
+    /* Send a notification. */
+    Notification.notifyPhone("SmartPhone has been rolled three times.");
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
-    /*Wait half a second*/
+    /* Wait half a second. */
     delay(500);
-    /*Reset the Counter*/
+    /* Reset the Counter. */
     counter =0;
   }
   else
   {
-    /*Turn Off the LED*/
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
   
