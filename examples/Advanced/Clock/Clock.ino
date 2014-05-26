@@ -39,7 +39,7 @@ void loop()
   if(hour == 15 && minute == 0 && second == 0 && day == 6 && month == 2 && year == 2014)
   {
     /* Send the SMS. */
-    SMS.send("+1234567890","Happy birthday buddy, sent from 1Sheeld.");
+    SMS.send("1234567890","Happy birthday buddy, sent from 1Sheeld.");
     /* Update my Facebook status. */ 
     Facebook.post("It is me friend birthday.");
   }

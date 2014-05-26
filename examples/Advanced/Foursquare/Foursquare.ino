@@ -28,7 +28,7 @@ void loop()
   if (GPS.getLongitude() == 31.134358 && GPS.getLattitude() == 29.979175)
   {
     /* Check only once. */
-    if (didIcheckedIn == false)
+    if (!didIcheckedIn)
     {
       /* Check-in at the pyramids. */
       Foursquare.checkIn("4b9f7a50f964a520422537e3","Whao! what a great place.");

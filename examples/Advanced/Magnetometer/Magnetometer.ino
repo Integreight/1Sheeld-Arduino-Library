@@ -36,16 +36,16 @@ void loop()
       if (!isPhoneNotified)
       {
         /* Send the SMS. */
-        SMS.send("+1234567890","Danger: Magnetic field increased checkout what's the problem.");
+        SMS.send("1234567890","Danger: Magnetic field increased checkout what's the problem.");
         /* Turn on the LED. */
         digitalWrite(ledPin,HIGH);
-        /* Reset the boolean. */
+        /* Reset the flag. */
         isPhoneNotified = true;
       }
   }
   else
   {
-    /* Set the boolean. */
+    /* Set the flag. */
     isPhoneNotified = false ;
     /* Turn off the LED. */
     digitalWrite(ledPin,LOW);

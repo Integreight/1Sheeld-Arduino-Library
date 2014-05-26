@@ -39,7 +39,7 @@ void loop()
   minutes = Clock.getMinutes();
   seconds = Clock.getSeconds();
 
-  /*Check the clock*/
+  /* Check the clock. */
   if(hours == 8 && minutes == 0 && seconds == 0)
   {
     /* Update my Facebook status. */ 

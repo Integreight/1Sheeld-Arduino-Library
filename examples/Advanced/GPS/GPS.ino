@@ -13,7 +13,7 @@ provide.
 /* Include 1Sheeld library.*/
 #include <OneSheeld.h>
 
-/* Define a boolean. */
+/* Define a boolean flag. */
 boolean isInRange = false;
 
 void setup() 
@@ -27,7 +27,7 @@ void loop()
    /* Always check if the smartphone's GPS and a given longitude and latitude are in a range of 100 meters. */
   if(GPS.isInRange(30.0831008,31.3242943,100))
   {
-    if(isInRange == false)
+    if(!isInRange)
     {
       /* Send SMS. */
       SMS.send("+1234567890","Smartphone is In Range.");
@@ -37,10 +37,10 @@ void loop()
   }
   else 
   {
-    if(isInRange == true)
+    if(isInRange)
     {
       /* Send SMS. */ 
-      SMS.send("+1234567890","Smartphone is not In Range.");
+      SMS.send("1234567890","Smartphone is not In Range.");
       isInRange = false;
     }
     

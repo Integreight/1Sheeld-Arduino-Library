@@ -18,7 +18,7 @@ it at your own risk.
 #include <OneSheeld.h>
 
 /* Define an iterator. */ 
-int iterations=0;
+int iterations = 0;
 /* A name for the LED on pin 13. */
 int ledPin = 13;
 
@@ -55,7 +55,7 @@ void loop()
   /* Check if any other button is pressed, reset iterations. */
   else if(isOtherButtonPressed())
   {
-    iterations=0;
+    iterations = 0;
   }
      
    /* Check if the number of iterations is 4, blink the LED. */
@@ -65,7 +65,7 @@ void loop()
         delay(500);
         digitalWrite(ledPin,LOW);
         /* Reset the iterator. */
-        iterations=0;
+        iterations = 0;
    }
 }
  

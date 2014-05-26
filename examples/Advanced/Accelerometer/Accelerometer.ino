@@ -13,9 +13,7 @@ you are bowling so you can turn on the LED on pin 13.
 #include <OneSheeld.h>
 
 /* Variables for the accelerometer's values in 3 dimensions. */
-float x;
-float y;
-float z;
+float x, y, z;
 
 /* A name for the LED on pin 13. */
 int ledPin = 13 ;

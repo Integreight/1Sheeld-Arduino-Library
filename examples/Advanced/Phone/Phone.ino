@@ -1,42 +1,47 @@
 /*
-Example illustartes Calling your Smartphone which is at your home to open the door 
-for your friend  
+
+Phone Shield Example
+
+This example shows an application on 1Sheeld's phone shield.
+
+By using this example, you can open your home's door
+for a friend by calling a smartphone connected to
+1Sheeld.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Phone Number to check On*/
-char arr[]= "01119611432";
-/*Led on pin 13*/
+/* Phone number to check if it called. */
+char callingNumber[]= "1234567890";
+/* A name for the LED on pin 13. */
 int ledPin = 13;
-/*Relay on pin 12*/
+/* A name for the relay on pin 12. */
 int relayPin = 12;
 
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set pin 13 as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
-  /*Set pin 12 as OUTPUT*/
+  /* Set the relay pin as output. */
   pinMode(relayPin,OUTPUT);
 }
 
-
-void loop () 
+void loop() 
 {
-    /*Check if the Phone is Ringing*/
+    /* Check if the phone is ringing. */
     if(Phone.isRinging())
     {
-        /*Check on the Phone Number*/
-        if(strcmp(Phone.getNumber(),arr)==0)
+        /* Check if the phone number calling is the same as our variable. */
+        if(strcmp(Phone.getNumber(),callingNumber) == 0)
        {
-          /*Turn On the LED*/
+          /* Turn on the LED. */
           digitalWrite(ledPin,HIGH);
-          /*Apply 5V to Relay to open the door*/
+          /* Turn on the relay to open the door. */
           digitalWrite(relayPin,HIGH);
        }  
-    }
-       
+    }    
 }

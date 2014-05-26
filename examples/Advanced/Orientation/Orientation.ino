@@ -32,7 +32,7 @@ void loop()
       Buzzer.buzzOn();
     }
   }
-  /*Buzz off*/
+  /* If they are not aligned, turn of the buzzer. */
   else
   {
     Buzzer.buzzOff();

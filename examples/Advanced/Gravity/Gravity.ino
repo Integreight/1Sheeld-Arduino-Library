@@ -14,7 +14,7 @@ smartphone when you roll it three times.
 
 /* Define a counter. */
 int counter = 0 ;
-/* Define a boolean. */
+/* Define a boolean flag. */
 boolean isRolled = true;
 /* A name for the LED on pin 13. */
 int ledPin = 13;
@@ -33,17 +33,17 @@ void loop()
   if(GravitySensor.getX() > 9)
   {
     /* Check if is has been rolled. */
-    if(isRolled == true)
+    if(isRolled)
     {
       /* Increment the counter. */
       counter++;
-      /* Reset the boolean. */
+      /* Reset the flag. */
       isRolled = false;  
     }
   }
   else 
   {
-    /* Set the boolean. */
+    /* Set the flag. */
     isRolled = true;
   }
 
@@ -57,7 +57,7 @@ void loop()
     /* Wait half a second. */
     delay(500);
     /* Reset the Counter. */
-    counter =0;
+    counter = 0;
   }
   else
   {

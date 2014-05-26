@@ -12,7 +12,7 @@ the room exceeds a certain threshold.
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Define a boolean. */
+/* Define a boolean flag. */
 boolean isTweetSent = false;
 
 void setup()
@@ -26,16 +26,17 @@ void loop()
   /* Always get the noise level from the mic and check if it exceeds a certain value. */
   if(Mic.getValue() > 100)
   {
-  	if(isTweetSent == false)
+  	if(!isTweetSent)
   	{
 	  	/*Send the tweet*/
 	    Twitter.updateStatus("We are making some noise! sent from @1Sheeld"); 
+      /* Set the flag. */
 	    isTweetSent = true;
   	}
     
   }
 
-  /*Reset the boolean Flag*/
+  /* Reset the flag. */
   if(Mic.getValue() < 100)
   {
     isTweetSent = false;

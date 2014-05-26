@@ -1,33 +1,41 @@
 /*
-Example illustrates the Proximity Sensor of the Smartphone if any object is near
-it Capture a picture and send me a message!! 
+
+Proximity Shield Example
+
+This example shows an application on 1Sheeld's proximity shield.
+
+By using this example, you can campture a picture and
+send a SMS when the value of the smartphone's proximity
+sensor exceeds a certain limit.
+
 */
 
-/*Include OnSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set the Flash of the Camera*/
-  Camera.setFlash(ON);
-  /*Invoke the Function if a change happend*/
-  ProximitySensor.setOnChange(& proximity);
+  /* Call a specific function when the proximity value change. */
+  ProximitySensor.setOnValueChange(&OnValueChange);
 }
 
-
-void loop ()
-{}
-
-/*Function invoked once proximity value changed*/
-void proximity (byte value)
+void loop()
 {
-  /*Always checking the proximity sensor if something goes near, capture and send me SMS*/
-  if (ProximitySensor.getValue()==0)
+  /* Do nothing. */
+}
+
+void OnValueChange(byte value)
+{
+  /* Always check if the proximity sensor value doesn't equal to zero cm. */
+  if (ProximitySensor.getValue() == 0)
   {
+    /* Set the flash of the Camera. */
+    Camera.setFlash(ON);
+    /* Take a photo. */
     Camera.rearCapture();
-    SMS.send("+0201286077028","Something or Someone Passed near the place");
+    /* Send the SMS. */
+    SMS.send("1234567890","Something or Someone passed near the place!");
   }
 }

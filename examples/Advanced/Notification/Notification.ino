@@ -13,7 +13,7 @@ a certain value.
 /* Inlcude 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Define a boolean. */
+/* Define a boolean flag. */
 boolean isPhoneNotified = false;
 
 void setup()
@@ -28,18 +28,18 @@ void loop()
 	if(TemperatureSensor.getValue() > 25)
 	{
 		/* Check if the phone has been notified once. */
-		if(isPhoneNotified == false)
+		if(!isPhoneNotified)
 		{
 			/* Notify the phone. */
 			Notification.notifyPhone("Temperature increased!");
-			/* Set the boolean. */
+			/* Set the flag. */
 			isPhoneNotified = true;
 		}
 		
 	}
 	else
 	{
-		/* Reset the boolean. */
+		/* Reset the flag. */
 		isPhoneNotified = false;
 	}
 }
