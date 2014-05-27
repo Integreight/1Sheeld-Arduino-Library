@@ -4,7 +4,7 @@ Twitter Shield Example
 
 This example shows an application on 1Sheeld's Twitter shield.
 
-By using this example, you can tweey eachtime you press
+By using this example, you can tweet each time you press
 the hardware push button placed on pin 12.
 
 */
