@@ -1,33 +1,39 @@
 /*
-Example illustrates turning ON a LED each time you get your hand 
-near the Smartphone
+
+Proximity Shield Example
+
+This example shows an application on 1Sheeld's proximity shield.
+
+By using this example, you can turn on the LED on pin 13 if the
+smartphone's proximity sensor reports a certain value.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Led on pin 13*/
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup () 
+void setup() 
 {
-  /*Start Communcication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-  /*Always check the proximity of the Smartphone*/
-  if(ProximitySensor.getValue()>0)
+  /* Always check the value of proximity sensor. */
+  if(ProximitySensor.getValue() > 0)
   {
-    /*Put the LED On*/
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
   }
   else
   {
-    /*Put the LED Off*/
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
 }

@@ -1,43 +1,52 @@
 /*
-Example illustrates calculating the Magnetic Stength and 
-display the Value on LCD
+
+Magnetometer Shield Example
+
+This example shows an application on 1Sheeld's magnetometer shield.
+
+By using this example, you can display the magnetic field
+strength read by the smartphone's on a hardware LCD.
+
 */
 
-
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
-/*Include Arduino's LCD Library*/
+/* Include LiquidCrystal library. */
 #include <LiquidCrystal.h>
 
-/*Initialize the library with the numbers of the interface pins*/
+/* Initialize the LCD interfacing pins. */
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-/*Led Pin on 13*/
+/* A name for the LED on pin 13. */
 int ledPin = 13 ;
+/* LCD contrast level on pin 9. */
+int lcdContrast = 9;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set up the LCD's number of columns and rows:*/
+  /* Set up the LCD's columns and rows. */ 
   lcd.begin(16, 2);
-  /*Set the ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
-  pinMode(9,OUTPUT);
-  /*Set the Contrast of the LCD by using values 0(dark)-->255(bright)*/
-  analogWrite(9,0);
+  /*Set lcd contrast pin as output. */ 
+  pinMode(lcdContrast,OUTPUT);
+  /* Use a range from 0 till 255 to control the contrast of the LCD. */
+  analogWrite(lcdContrast,0);
+  /* Print a title and a unit. */
   lcd.print("MagneticStrength");
+  /* Move the cursor. */
   lcd.setCursor(7,1);
   lcd.print("Tesla");
-  
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Set the cursor*/
+  /* Move the cursor. */
   lcd.setCursor(0,1);
-  /*Display the Magnetic Strength*/
+  /* Display the magnetic strength. */
   lcd.print(MagnetometerSensor.getMagneticStrength());
+  /* Wait for 1 second. */
   delay(1000);
 }

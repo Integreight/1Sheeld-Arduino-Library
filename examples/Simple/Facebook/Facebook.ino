@@ -1,39 +1,47 @@
 /*
-Example illustrates updating status on Facebook by pressing a button 
+
+Facebook Shield Example
+
+This example shows an application on 1Sheeld's Facebook shield.
+
+By using this example, you can update your Facebook status each
+time you press the hardware push button placed on pin 12.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Button on pin 12*/
+/* A name for the button on pin 12. */
 int buttonPin = 12;
-/*Led on pin 13*/
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set buttonPin as INPUT*/
+  /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);
-  /*Set ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-  /*Always check the button state*/
-  if(digitalRead(buttonPin)==HIGH)
+  /* Always check the button state. */
+  if(digitalRead(buttonPin) == HIGH)
   {
-    /*Turn on the Led*/
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
-    /*Twitter also can be used instead of Facebook*/
-    /*Update your status on Facebbok*/
-    Facebook.post("Home Sweet Home");
+    /* Update your status on Facebook. */
+    Facebook.post("I'm home folks!");
+    /* Wait for 300 ms. */
+    delay(300);
   }
   else
   {
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
-
 }

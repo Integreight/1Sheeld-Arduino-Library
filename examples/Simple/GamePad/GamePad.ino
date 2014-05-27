@@ -1,18 +1,22 @@
 /*
-Example illustrates the GamePad Shield application by lightning some LEDs when pressing
-specific buttons or pressing multiple buttons at the same time
+
+Gamepad Shield Example
+
+This example shows an application on 1Sheeld's gamepad shield.
+
+By using this example, you can light up some LEDs placed on
+different Arduino pins using the gamepad in our app.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-
-
-void setup () 
+void setup() 
 {
-  /*Start communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set some pins OUTPUT*/
+  /* Set some pins as output. */
   pinMode(13,OUTPUT);
   pinMode(12,OUTPUT);
   pinMode(11,OUTPUT);
@@ -20,38 +24,41 @@ void setup ()
   
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Always check on the values comming from the GamePad application*/
+  /* Always check the status of gamepad buttons. */
   if (GamePad.isUpPressed())
   {
-    /*turn ON LED on pin 13 when Up is Pressed*/
+    /* Turn on the LED on pin 13 when up is pressed. */
     digitalWrite(13,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(12,LOW);
     digitalWrite(11,LOW);
     digitalWrite(10,LOW);
   }
  if(GamePad.isDownPressed())
   {
-    /*turn ON LED on pin 12 when Down is Pressed*/
+    /* Turn on the LED on pin 12 when down is pressed. */
     digitalWrite(12,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(13,LOW);
     digitalWrite(11,LOW);
     digitalWrite(10,LOW);
   }
  if (GamePad.isUpPressed()&&GamePad.isOrangePressed())
   {
-    /*turn ON LED on pin 11 when Up and A is Pressed*/
+    /* Turn on the LED on pin 11 when up and orange are pressed. */
     digitalWrite(11,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(13,LOW);
     digitalWrite(12,LOW);
     digitalWrite(10,LOW);
   }
  if (GamePad.isDownPressed()&&GamePad.isRedPressed())
   {
-    /*turn ON LED on pin 10 when Down and B is Pressed*/
+    /* Turn on the LED on pin 10 when down and red are pressed. */
     digitalWrite(10,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(13,LOW);
     digitalWrite(12,LOW);
     digitalWrite(11,LOW);

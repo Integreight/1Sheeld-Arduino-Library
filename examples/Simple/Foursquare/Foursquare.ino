@@ -1,34 +1,47 @@
 /*
-Example illustrates cheking in using Foursquare by pressing a button 
+
+Foursquare Shield Example
+
+This example shows an application on 1Sheeld's Foursquare shield.
+
+By using this example, you can check-in at a place on Foursquare
+each time you press the hardware push button placed on pin 12.
+
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
+/* A name for the button on pin 12. */
 int buttonPin = 12;
+/* A name for the LED on pin 13. */
 int ledPin = 13;
-void setup () 
+
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set buttonPin INPUT*/
+  /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);
-  /*Set ledPin OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-  /*Always check button State*/
-  if(digitalRead(buttonPin)==HIGH)
+  /* Always check the button state. */
+  if(digitalRead(buttonPin) == HIGH)
   {
-    /*Turn LED On*/
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
-    /*Checking in at My Work :INTEGRIEGHT*/
-    Foursquare.checkIn("511759f2e4b0b0ae6ed91067","Back To Work");
+    /* Check-in at Integreight. */
+    Foursquare.checkIn("511759f2e4b0b0ae6ed91067","Back to work!");
+    /* Wait for 300 ms. */
+    delay(300);
   }
   else
   {
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
 }

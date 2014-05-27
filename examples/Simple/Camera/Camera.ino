@@ -1,41 +1,51 @@
 /*
-Example illustrates taking pictures each time you press the pushbutton (hardware)
+
+Camera Shield Example
+
+This example shows an application on 1Sheeld's camera shield.
+
+By using this example, you can take a photo using your phone's
+camera each time you press the hardware push button placed on
+pin 12.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Button on pin 12*/
-int buttonPin = 12 ;
-/*Led on pin 13*/
+/* A name for the button on pin 12. */
+int buttonPin = 12;
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup ()
+void setup()
 {
-  /*Start communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set the buttonPin as INPUT*/
+  /* Set the button pin as input. */
   pinMode(buttonPin,INPUT);
-  /*Set the ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-    /*Check the State of the Button*/
-    if(digitalRead(buttonPin)==HIGH)
-    {
-      /*Turn on the LED*/
-      digitalWrite(ledPin,HIGH);
-      /*Set the Flash in the Camera*/
-      Camera.setFlash(ON);
-      /*Take the Picture*/
-      Camera.rearCapture();
-    }
-    else
-    {
-      /*Turn off the Led*/
-      digitalWrite(ledPin,LOW);
-    }
+  /* Always check the button state. */
+  if(digitalRead(buttonPin) == HIGH)
+  {
+    /* Turn on the LED. */
+    digitalWrite(ledPin,HIGH);
+    /* Turn on the camera flash. */
+    Camera.setFlash(ON);
+    /* Take the picture. */
+    Camera.rearCapture();
+    /* Wait for 300 ms. */
+    delay(300);
+  }
+  else
+  {
+    /* Turn off the LED. */
+    digitalWrite(ledPin,LOW);
+  }
     
 }

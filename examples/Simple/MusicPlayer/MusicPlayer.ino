@@ -1,51 +1,57 @@
 /*
-Example illustrates putting the MusicPlayer On/Pause when a Button pressed using 
-two Hardware pushButtons
+
+Music Player Shield Example
+
+This example shows an application on 1Sheeld's music player shield.
+
+By using this example, you can play and stop music from
+your smartphone using 2 hardware push buttons.
+
 */
 
-
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-
-/*Button on pin 12*/
+/* A name for the button on pin 12. */
 int buttonPin1 = 12;
-/*Button on pin 11*/
+/* A name for the button on pin 11. */
 int buttonPin2 = 11;
-/*Led on pin 13*/
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
-
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
-  /*Set buttonPin1 and buttonPin2 as INPUT*/
+  /* Set the two buttons pins as input. */
   pinMode(buttonPin1,INPUT);
   pinMode(buttonPin2,INPUT);
   
 }
 
-void loop ()
+void loop()
 {
-
-  /*Always check the buttonPin1 state*/
-  if(digitalRead(buttonPin1)==HIGH)
+  /* Always check button 1 state. */
+  if(digitalRead(buttonPin1) == HIGH)
   { 
-       /*Turn LED On*/
+      /* Turn on the LED. */
        digitalWrite(ledPin,HIGH);
-       /*Trun Music On*/
+       /* Turn on the music. */
        MusicPlayer.play();
+       /* Wait for 300 ms. */
+       delay(300);
   }
-  /*Always check the buttonPin2 state*/
-  if(digitalRead(buttonPin2)==HIGH)
+  /* Always check button 2 state. */
+  if(digitalRead(buttonPin2) == HIGH)
   { 
-      /*Turn LED Off*/
+      /* Turn off the LED. */
       digitalWrite(ledPin,LOW);
-      /*Turn Music Off*/
+      /* Turn off the music. */
       MusicPlayer.pause();
+      /* Wait for 300 ms. */
+      delay(300);
       
   }
 }

@@ -1,47 +1,64 @@
 /*
-Example illustrates the Gyroscope shield and sensing its values on the Three directions
-X/Y/Z-Axis 
+
+Gyroscope Shield Example
+
+This example shows an application on 1Sheeld's gyroscope shield.
+
+By using this example, you can turn on some LEDs if the
+smartphone's gyroscope sensor moves in any of the x, y
+and z axises.
+
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
+/* A name for the LED on pin 13. */
+int ledPin1 = 13;
+/* A name for the LED on pin 12. */
+int ledPin2 = 12;
+/* A name for the LED on pin 11. */
+int ledPin3 = 11;
 
-
-void setup ()
+void setup()
 {
-  /*Start communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set some pins as OUTPUT*/
-  pinMode(13,OUTPUT);
-  pinMode(12,OUTPUT);
-  pinMode(11,OUTPUT);
+  /* Set LEDs 1, 2 and 3 as output. */
+  pinMode(ledPin1,OUTPUT);
+  pinMode(ledPin2,OUTPUT);
+  pinMode(ledPin3,OUTPUT);
 }
 
-
-void loop () 
+void loop() 
 {
-  /*Always get the values of the Gyroscope*/
-
-  /*Check the X-Axis motion*/
-  if(GyroscopeSensor.getX()>1)
+  /* Check X-axis motion value. */
+  if(GyroscopeSensor.getX() > 1)
   {
-    digitalWrite(13,HIGH);
-    digitalWrite(12,LOW);
-    digitalWrite(11,LOW);
+    /* Turn on the LED 1. */
+    digitalWrite(ledPin1,HIGH);
+    /* Turn off the other LEDs. */
+    digitalWrite(ledPin2,LOW);
+    digitalWrite(ledPin3,LOW); ;
   }
-  /*Check the Y-Axis motion*/
-  else if(GyroscopeSensor.getY()>1)
+
+  /* Check Y-axis motion value. */
+  if(GyroscopeSensor.getY() > 1)
   {
-    digitalWrite(12,HIGH);
-    digitalWrite(13,LOW);
-    digitalWrite(11,LOW);
+    /* Turn on the LED 2. */
+    digitalWrite(ledPin2,HIGH);
+    /* Turn off the other LEDs. */
+    digitalWrite(ledPin1,LOW);
+    digitalWrite(ledPin3,LOW);  
   } 
-  /*Check the Z-Axis motion*/
-  else if(GyroscopeSensor.getZ()>1)
+
+  /* Check Z-axis motion value. */
+  if(GyroscopeSensor.getZ() > 1)
   {
-    digitalWrite(11,HIGH);
-    digitalWrite(13,LOW);
-    digitalWrite(12,LOW);
+    /* Turn on the LED 3. */
+    digitalWrite(ledPin3,HIGH);
+    /* Turn off the other LEDs. */
+    digitalWrite(ledPin1,LOW);
+    digitalWrite(ledPin2,LOW); 
   }
 }

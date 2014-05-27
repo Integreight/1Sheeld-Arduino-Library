@@ -33,7 +33,7 @@ void setup()
   lcd.begin(16, 2);
   /*Set lcd contrast pin as output. */ 
   pinMode(lcdContrast,OUTPUT);
-  /* Use a range from 0 till 255 to control the contast of the LCD. */
+  /* Use a range from 0 till 255 to control the contrast of the LCD. */
   analogWrite(lcdContrast,0);
 }
 

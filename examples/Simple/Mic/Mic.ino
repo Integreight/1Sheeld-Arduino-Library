@@ -1,32 +1,39 @@
 /*
-Example illustrates the noise level using the mic of your
-Smartphone and when exceeds certain limit, LED on pin 13 goes ON!
+
+Mic Shield Example
+
+This example shows an application on 1Sheeld's mic shield.
+
+By using this example, you can turn on the LED on pin 13 if the
+smartphone's mic reports a certain noise level.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
+/* A name for the LED on pin 13. */
 int ledPin = 13;
-void setup () 
+
+void setup() 
 {
-  /*Start communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-
 void loop ()
 {
-  /*Always check the Noise level from your Smartphone mic*/
-  if(Mic.getValue()>80)
+  /* Always check the noise level. */
+  if(Mic.getValue() > 80)
   {
-    /*LED on*/
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
   }
   else 
   {
-    /*LED off*/
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
 }

@@ -1,27 +1,33 @@
 /*
-Example illustrates the Accelerometer sensor and checking the acceleration 
-in the 3 dimensions and turning ON LED 13 when reaches the maximum gravity 
-acceleration in X-Y-Z Axis
+
+Accelerometer Shield Example
+
+This example shows an application on 1Sheeld's accelerometer shield.
+
+By using this example, you can turn on the LED on pin 13 if the
+smartphone's accelerometer sensor reaches the maximum
+acceleration in any of the x, y and z axises.
+
 */
 
-/*Include OneSheeld library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Led on pin 13*/
-int ledPin = 13 ;
+/* A name for the LED on pin 13. */
+int ledPin = 13;
 
-void setup ()
+void setup()
 {
-  /*Start communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set LedPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-  /*Check X-Axis gravitational Acceleration*/
-  if(AccelerometerSensor.getX()>8)
+  /* Check X-axis acceleration. */
+  if(AccelerometerSensor.getX() > 8)
   {
     digitalWrite(ledPin,HIGH);
   }
@@ -29,8 +35,9 @@ void loop ()
   {  
     digitalWrite(ledPin,LOW);
   }
-  /*Check Y-Axis gravitational Acceleration*/
-  if(AccelerometerSensor.getY()>8)
+
+  /* Check Y-axis acceleration. */
+  if(AccelerometerSensor.getY() > 8)
   {
     digitalWrite(ledPin,HIGH);
   }
@@ -38,8 +45,9 @@ void loop ()
   {
     digitalWrite(ledPin,LOW);
   }
-  /*Check Z-Axis gravitational Acceleration*/  
-  if(AccelerometerSensor.getZ()>8)
+
+  /* Check z-Axis acceleration. */
+  if(AccelerometerSensor.getZ() > 8)
   {
     digitalWrite(ledPin,HIGH);
   }

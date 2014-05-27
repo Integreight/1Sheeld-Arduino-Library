@@ -1,24 +1,29 @@
 /*
-Example illustrates Blinking the LED in 1Sheeld Application 
+
+LED Shield Example
+
+This example shows an application on 1Sheeld's LED shield.
+
+By using this example, you can turn on control the app's
+LED shield.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-
-
-void setup ()
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
 }
 
-void loop () 
+void loop() 
 {
-  /*Turn On the LED*/
+  /* Turn on the LED. */
   LED.setHigh();
   delay(1000);
-  /*Turn Off the LED*/
+  /* Turn off the LED. */
   LED.setLow();
   delay(1000);
 }

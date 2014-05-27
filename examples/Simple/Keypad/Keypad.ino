@@ -1,67 +1,82 @@
 /*
-Example illustrates Turning ON some LEDs while pressing on certain Numbers
-on the Keypad 
+
+Keypad Shield Example
+
+This example shows an application on 1Sheeld's keypad shield.
+
+By using this example, you can turn on some LEDs if you
+pressed the first 4 buttons of our app's keypad shield.
+
 */
 
-
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Leds on pins 13,12,11,10*/
+/* A name for the LED on pin 13. */
 int ledPin1 = 13;
+/* A name for the LED on pin 12. */
 int ledPin2 = 12;
+/* A name for the LED on pin 11. */
 int ledPin3 = 11;
+/* A name for the LED on pin 10. */
 int ledPin4 = 10;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin1,2,3,4 as OUTPUT*/
+  /* Set LEDs 1, 2, 3 and 4 as output. */
   pinMode(ledPin1,OUTPUT);
   pinMode(ledPin2,OUTPUT);
   pinMode(ledPin3,OUTPUT);
   pinMode(ledPin4,OUTPUT);
-  
 }
 
-void loop ()
+void loop()
 {
-  /*LED1 On when press Number 1*/
-  if(Keypad.isRowPressed(0)&&Keypad.isColumnPressed(0))
+  /* If keypad's button 1 is pressed. */
+  if(Keypad.isRowPressed(0) && Keypad.isColumnPressed(0))
   {
+    /* Turn on the LED 1. */
     digitalWrite(ledPin1,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin2,LOW);
     digitalWrite(ledPin3,LOW);
     digitalWrite(ledPin4,LOW);
   }
-  /*LED2 On when press Numer 2*/
-  else if(Keypad.isRowPressed(0)&&Keypad.isColumnPressed(1))
+  /* If keypad's button 2 is pressed. */
+  else if(Keypad.isRowPressed(0) && Keypad.isColumnPressed(1))
   {
+    /* Turn on the LED 2. */
     digitalWrite(ledPin2,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin3,LOW);
     digitalWrite(ledPin4,LOW);
   }
-  /*LED3 On when press Number 3*/
-   else if(Keypad.isRowPressed(0)&&Keypad.isColumnPressed(2))
+  /* If keypad's button 3 is pressed. */
+   else if(Keypad.isRowPressed(0) && Keypad.isColumnPressed(2))
   {
+    /* Turn on the LED 3. */
     digitalWrite(ledPin3,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin2,LOW);
     digitalWrite(ledPin4,LOW);
   }
-  /*LED4 On when press Number 4*/
-   else if(Keypad.isRowPressed(1)&&Keypad.isColumnPressed(0))
+  /* If keypad's button 4 is pressed. */
+   else if(Keypad.isRowPressed(1) && Keypad.isColumnPressed(0))
   {
+    /* Turn on the LED 4. */
     digitalWrite(ledPin4,HIGH);
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin2,LOW);
     digitalWrite(ledPin3,LOW);
   }
   else
   {
-    /*Turn all the LEDs Off*/
+    /* Turn off all of LEDs. */
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin2,LOW);
     digitalWrite(ledPin3,LOW);

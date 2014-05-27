@@ -1,34 +1,39 @@
 /*
-Example illustrates checking the temperature and when it's beyond
-certain limit Turn On the LED
+
+Temperature Shield Example
+
+This example shows an application on 1Sheeld's temperature shield.
+
+By using this example, you can turn on the LED on pin 13 if the
+smartphone's temperature sensor reports a certain value.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Led on pin 13*/
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
-void setup ()
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set ledPin as OUTPUT*/
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
-
 void loop ()
 {
-  /*Check the Temperature*/
-  if(TemperatureSensor.getValue()<10)
+   /* Always check the value of temperature sensor. */
+  if(TemperatureSensor.getValue() < 10)
   {
-    /*Turn On LED*/
+    /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
   }
   else
   {
-    /*Turn Off LED*/
+    /* Turn off the LED. */
     digitalWrite(ledPin,LOW);
   }
 }

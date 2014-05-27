@@ -1,56 +1,63 @@
 /*
-Example illustrates Gravity sensor on 3 Axis (X-Y-Z) and turning ON an LED when a certain 
-Axis reaches its maximum gravity 
+
+Gravity Shield Example
+
+This example shows an application on 1Sheeld's gravity shield.
+
+By using this example, you can turn on some LEDs if the
+smartphone's gravity sensor reaches the maximum gravity
+acceleration in any of the x, y and z axises.
+
 */
 
-/*Including OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*Led on 13*/
+/* A name for the LED on pin 13. */
 int ledPin1 = 13;
-/*Led on 12*/
+/* A name for the LED on pin 12. */
 int ledPin2 = 12;
-/*Led on 11*/
+/* A name for the LED on pin 11. */
 int ledPin3 = 11;
-void setup () 
+
+void setup()
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Leds 1,2,3 OUTPUT*/
-  pinMode (ledPin1,OUTPUT);
-  pinMode (ledPin2,OUTPUT);
-  pinMode (ledPin3,OUTPUT); 
+  /* Set LEDs 1, 2 and 3 as output. */
+  pinMode(ledPin1,OUTPUT);
+  pinMode(ledPin2,OUTPUT);
+  pinMode(ledPin3,OUTPUT);
 }
 
-
-void loop () 
+void loop()
 {
-  /*Checking the Gravity on the X-Axis*/
-  if (GravitySensor.getX()>=9)
+  /* Check X-axis gravitational value. */
+  if(GravitySensor.getX() >= 9)
   {
-    /*Red LED turned ON*/
+    /* Turn on the LED 1. */
     digitalWrite(ledPin1,HIGH);
-    /*The other two LEDs are off*/
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin2,LOW);
     digitalWrite(ledPin3,LOW);    
   }
   
-  /*Checking the Gravity on the Y-Axis*/
-  if (GravitySensor.getY()>=9)
+  /* Check Y-axis gravitational value. */
+  if(GravitySensor.getY() >= 9)
   {
-    /*Green LED turned ON*/
+    /* Turn on the LED 2. */
     digitalWrite(ledPin2,HIGH);
-    /*The other two LEDs are off*/
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin3,LOW);    
   }
   
-  /*Checking the Gravity on the Z-Axis*/
-  if (GravitySensor.getZ()>=9)
+  /* Check Z-axis gravitational value. */
+  if(GravitySensor.getZ() >= 9)
   {
-    /*Yellow LED turned ON*/
+    /* Turn on the LED 3. */
     digitalWrite(ledPin3,HIGH);
-    /*The other two LEDs are off*/
+    /* Turn off the other LEDs. */
     digitalWrite(ledPin1,LOW);
     digitalWrite(ledPin2,LOW);    
   }

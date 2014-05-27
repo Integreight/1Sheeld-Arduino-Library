@@ -1,55 +1,70 @@
 /*
-Example illustrates the Orientation of your SmartPhone and turning ON a LED when the
-Orientation exceeds certain limits on 3 Dimensions
+
+Orientation Shield Example
+
+This example shows an application on 1Sheeld's orientation shield.
+
+By using this example, you can turn on some LEDs if the
+smartphone's orientation sensor moves in any of the x, y
+and z axises.
+
 */
 
-/*Include OneSheeld Library*/
+/* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/*LedPin on 13*/
-int ledPin1 = 13 ;
-/*LedPin on 12*/
-int ledPin2 = 12 ;
-/*LedPin on 11*/
-int ledPin3 = 11 ;
+/* A name for the LED on pin 13. */
+int ledPin1 = 13;
+/* A name for the LED on pin 12. */
+int ledPin2 = 12;
+/* A name for the LED on pin 11. */
+int ledPin3 = 11;
 
-void setup () 
+void setup() 
 {
-  /*Start Communication*/
+  /* Start communication. */
   OneSheeld.begin();
-  /*Set the ledPin OUTPUT*/
+  /* Set LEDs 1, 2 and 3 as output. */
   pinMode(ledPin1,OUTPUT);
   pinMode(ledPin2,OUTPUT);
   pinMode(ledPin3,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-  /*Check the X-Axis Orientation*/
-  if(OrientationSensor.getX()>350)
+  /* Check X-axis orientation. */
+  if(OrientationSensor.getX() > 350)
   {
+    /* Turn on the LED 1. */
     digitalWrite(ledPin1,HIGH);
   }
   else
   {
+    /* Turn on the LED 1. */
     digitalWrite(ledPin1,LOW);
   }
-  /*Check the Y-Axis Orientation*/
-  if(OrientationSensor.getY()>170)
+
+  /* Check Y-axis orientation. */
+  if(OrientationSensor.getY() > 170)
   {
+    /* Turn on the LED 2. */
     digitalWrite(ledPin2,HIGH);
   }
   else
   {
+    /* Turn off the LED 2. */
     digitalWrite(ledPin2,LOW);
   }
-  /*Check the Z-Axis Orientation*/
-  if(OrientationSensor.getZ()>80) 
+
+  /* Check Z-axis orientation. */
+  if(OrientationSensor.getZ() > 80) 
   {
+    /* Turn on the LED 3. */
     digitalWrite(ledPin3,HIGH);
   }
   else
   {
+    /* Turn off the LED 3. */
     digitalWrite(ledPin3,LOW);
   }
   
