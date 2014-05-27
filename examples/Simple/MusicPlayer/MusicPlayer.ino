@@ -4,7 +4,7 @@ Music Player Shield Example
 
 This example shows an application on 1Sheeld's music player shield.
 
-By using this example, you can play and stop music from
+By using this example, you can play and pause music from
 your smartphone using 2 hardware push buttons.
 
 */
@@ -38,6 +38,8 @@ void loop()
   { 
       /* Turn on the LED. */
        digitalWrite(ledPin,HIGH);
+       /* Set the Volume. */
+       MusicPlayer.setVolume(5);
        /* Turn on the music. */
        MusicPlayer.play();
        /* Wait for 300 ms. */
