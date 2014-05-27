@@ -17,7 +17,7 @@ float x, y, z;
 
 /* A name for the LED on pin 13. */
 int ledPin = 13 ;
-int magnitudeThreshold = 31;
+int magnitudeThreshold = 25;
 
 void setup() 
 {
