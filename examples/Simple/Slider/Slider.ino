@@ -14,18 +14,20 @@ of a piezo speaker using the app's slider.
 
 /* Define a variable to hold the value of the slider. */
 int value;
+/* A name for the Speaker on pin 11. */
+int speakerPin = 11;
 
 void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* Set pin 11 as output. */
-  pinMode(11,OUTPUT);
+  /* Set speakerPin as output. */
+  pinMode(speakerPin,OUTPUT);
 }
 
 void loop() 
 {
   /* Always get the value of the slider and output it as PWM to pin 11. */
   value = Slider.getValue();
-  analogWrite(11,value);
+  analogWrite(speakerPin,value);
 }
