@@ -23,17 +23,17 @@ PhoneShieldClass::PhoneShieldClass()
 	number=0;
 	isCallBackAssigned=false;	
 }
-//Setter 
+//Call Setter 
 void PhoneShieldClass::call(char* phone)
 {
 	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(phone),(byte *)phone));
 }
-//Checker Function
+//Ringing Checker 
 bool PhoneShieldClass::isRinging()
 {
 	return !!value;
 }
-//Phone Getter Function
+//Number Getter
 char * PhoneShieldClass::getNumber()
 {
 	return number;
@@ -41,7 +41,7 @@ char * PhoneShieldClass::getNumber()
 //Phone Input Data Processing 
 void PhoneShieldClass::processData()
 {	
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte x= OneSheeld.getFunctionId();
 
 	if (x==IS_RINGING_VALUE)
