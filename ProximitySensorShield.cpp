@@ -23,7 +23,7 @@ ProximitySensorShield::ProximitySensorShield()
 	value=0x00;
 	isCallBackAssigned=false;
 }
-//Getter 
+//Proximity Getter 
 byte ProximitySensorShield::getValue()
 {
 	return value;
@@ -31,7 +31,7 @@ byte ProximitySensorShield::getValue()
 //ProximitySensor Input Data Processing 
 void ProximitySensorShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==PROXIMITY_VALUE)
 	{
