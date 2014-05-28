@@ -43,7 +43,7 @@ float MagnetometerSensorShield::getZ()
 //MagnetometerSensor Data processing 	
 void MagnetometerSensorShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 	if(functionId==MAGNETOMETER_VALUE)
 	{
