@@ -16,42 +16,42 @@
 #include "OneSheeld.h"
 #include "MusicPlayerShield.h"
 
-//Setter
+//Stop Setter
 void MusicPlayerShieldClass::stop()
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,STOP,0);
 }
-//Setter
+//Play Setter
 void MusicPlayerShieldClass::play()
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,PLAY,0);
 }
-//Setter
+//Pause Setter
 void MusicPlayerShieldClass::pause()
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,PAUSE,0);
 }
-//Setter
+//Previous Setter
 void MusicPlayerShieldClass::previous()
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,PREVIOUS,0);
 }
-//Setter
+//Next Setter
 void MusicPlayerShieldClass::next()
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,NEXT,0);
 }
-//Setter
+//SeekForward Setter
 void MusicPlayerShieldClass::seekForward(byte x)
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,SEEK_FORWARD,1,new FunctionArg(1,&x));
 }
-//Setter
+//SeekBackward Setter
 void MusicPlayerShieldClass::seekBackward(byte x)
 {
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,SEEK_BACKWARD,1,new FunctionArg(1,&x));
 }
-//Setter
+//Volume Setter
 void MusicPlayerShieldClass::setVolume(byte x)
 {
 	if (x>10) 
