@@ -23,7 +23,7 @@ ToggleButtonShield::ToggleButtonShield()
 	value=0x00;
 	isCallBackAssigned=false;
 }
-//Checker
+//ToggleButton Checker
 bool ToggleButtonShield::getStatus()
 {
 	return !!value;
@@ -31,7 +31,7 @@ bool ToggleButtonShield::getStatus()
 //ToggleButton Input Data Processing
 void ToggleButtonShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 	if(functionId==TOGGLE_VALUE)
 	{
