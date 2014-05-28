@@ -81,7 +81,7 @@ short ClockShield::getYear()
 //Clock Input Data Processing 
 void ClockShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==DATE_VALUE)
 	{
