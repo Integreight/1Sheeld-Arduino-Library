@@ -25,33 +25,33 @@ KeypadShieldClass::KeypadShieldClass()
   col=0;
   isCallbackAssigned=false;
 }
-//Checker 
+//Row Checker 
 bool KeypadShieldClass::isRowPressed(byte x)
 {
   if(x>7)return false;
 return !!(row&(1<<x));
 }
-//Checker
+//Column Checker
 bool KeypadShieldClass::isColumnPressed(byte x)
 {
   if(x>7)return false;
 return !!(col&(1<<x));
 }
 
-//Checker
+//AnyRow Checker
 bool KeypadShieldClass::isAnyRowPressed()
 {
 return !!row;
 }
-//Checker
+//AnyColumn Checker
 bool KeypadShieldClass::isAnyColumnPressed()
 {
 return !!col;
 }
-//Keypad Data Processing
+//Keypad Input Data Processing
 void KeypadShieldClass::processData()
 {
-  //Checking the Function-ID
+  //Checking Function-ID
   byte function_Number=OneSheeld.getFunctionId();
   if (function_Number==DATA_IN)
    { 
