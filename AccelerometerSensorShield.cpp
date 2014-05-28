@@ -48,7 +48,7 @@ float AccelerometerSensorShield::getZ()
 //AccelerometerSensor Input Data processing 	
 void AccelerometerSensorShield::processData()					
 {
-	//Checking the Function-ID 
+	//Checking Function-ID 
 	byte functionId= OneSheeld.getFunctionId();					
 	
 	if(functionId==ACCELEROMETER_VALUE)
