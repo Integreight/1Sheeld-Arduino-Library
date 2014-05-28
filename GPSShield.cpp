@@ -28,7 +28,7 @@ GPSShieldClass::GPSShieldClass ()
 //GPS Input Data Processing 
 void GPSShieldClass::processData ()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==GPS_VALUE)
 	{
