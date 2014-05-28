@@ -44,7 +44,7 @@ float OrientationSensorShield::getZ()
 //AccelerometerSensor Data processing 
 void OrientationSensorShield::processData()
 {
-	//Checking the Function-ID 
+	//Checking Function-ID 
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==ORIENTATION_VALUE)
 	{
