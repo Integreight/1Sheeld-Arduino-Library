@@ -14,14 +14,14 @@ of a piezo speaker using the app's slider.
 
 /* Define a variable to hold the value of the slider. */
 int value;
-/* A name for the Speaker on pin 11. */
+/* A name for the speaker on pin 11. */
 int speakerPin = 11;
 
 void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* Set speakerPin as output. */
+  /* Set the speaker pin as output. */
   pinMode(speakerPin,OUTPUT);
 }
 
