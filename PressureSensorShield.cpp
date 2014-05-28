@@ -22,7 +22,7 @@ PressureSensorShield::PressureSensorShield()
 	value=0;
 	isCallBackAssigned=false;
 }
-//Getter
+//Pressure Getter
 unsigned long PressureSensorShield::getValue()
 {
 	
@@ -32,7 +32,7 @@ unsigned long PressureSensorShield::getValue()
 //PressureSensor Input Data Processing 
 void PressureSensorShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==PRESSURE_VALUE)
 	{
