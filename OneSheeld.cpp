@@ -108,32 +108,32 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     lastTimeFrameSent=millis()+1;
 }
 
-//Getter
+//Shield_ID Getter
 byte OneSheeldClass::getShieldId()
 {
   return shield;
 } 
-//Getter
+//Instance_ID Getter
 byte OneSheeldClass::getInstanceId()
 {
   return instance;
 } 
-//Getter
+//Funtcion_ID Getter
 byte OneSheeldClass::getFunctionId()
 {
   return functions;
 }
-//Getter
+//ArgumentsNumber Getter
 byte OneSheeldClass::getArgumentNo()
 {
   return argumentnumber;
 } 
-//Getter
+//ArgumentLength Getter
 byte OneSheeldClass::getArgumentLength(byte x)
 {
   return argumentL[x];
 }
-//Getter
+//Data Getter
 byte * OneSheeldClass::getArgumentData(byte x)
 {
   return arguments[x];
