@@ -17,7 +17,7 @@
 #define GPSShield_h
 #include <math.h>
 
-//Letiral Constants 
+//Literal Constants 
 #define RADUIS_OF_EARTH 6371
 #define PI 3.1415926535897932384626433832795
 //Input Function ID 
@@ -43,7 +43,7 @@ public:
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float ,float ));
 private:
-	//REserving Variables
+	//Reserving Variables
 	float LatValue,LonValue;
 	//Boolean checkers
 	bool isInit;
