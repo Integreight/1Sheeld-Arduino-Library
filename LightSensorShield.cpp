@@ -22,7 +22,7 @@ LightSensorShield::LightSensorShield()
 	value=0;
 	isCallBackAssigned=false;
 }
-//Getter 
+//Light Getter 
 unsigned long LightSensorShield::getValue()
 {
 	
@@ -32,7 +32,7 @@ unsigned long LightSensorShield::getValue()
 //Light Input Data Processing
 void LightSensorShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==LIGHT_VALUE)
 	{
