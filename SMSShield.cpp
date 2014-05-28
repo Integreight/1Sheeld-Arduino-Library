@@ -23,17 +23,17 @@
   	number=0;
   	isCallBackAssigned=false;
   }
-//Sender
+//SMS Sender
 void SMSShieldClass::send(char* number,char* text)
   {
 	OneSheeld.sendPacket(SMS_ID,0,SEND_SMS,2,new FunctionArg(strlen(number),(byte*)number),new FunctionArg(strlen(text),(byte*)text));
   }
-  //Getter
+  //Number Getter
 char * SMSShieldClass::getNumber()
 {
 	return number;
 }
-//Getter
+//SMS Getter
 char * SMSShieldClass::getSms()
 {
 	return text;
@@ -41,7 +41,7 @@ char * SMSShieldClass::getSms()
 //SMS Input Data Processing
 void SMSShieldClass::processData()
   {
-  	//Checking the Function-ID
+  	//Checking Function-ID
 	byte x= OneSheeld.getFunctionId();
 	if(x==GET_SMS)
 	{
