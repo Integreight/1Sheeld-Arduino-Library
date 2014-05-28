@@ -16,7 +16,7 @@
 #include "OneSheeld.h"
 #include "NotificationShield.h"
 
-//Sender
+//Notification Sender
 void NotificationShieldClass::notifyPhone(char* data)
 {
 OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFY_PHONE,1,new FunctionArg(strlen(data),(byte*)data));
