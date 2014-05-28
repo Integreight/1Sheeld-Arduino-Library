@@ -23,7 +23,7 @@ TemperatureSensorShield::TemperatureSensorShield()
 	value=0xff;
 	isCallBackAssigned=false;
 }
-//Getter 
+//Temperature Getter 
 char TemperatureSensorShield::getValue()
 {
 	return value;
@@ -31,7 +31,7 @@ char TemperatureSensorShield::getValue()
 //TemperatureSensor Input Data Processing
 void TemperatureSensorShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 
 	if(functionId==TEMPERATURE_VALUE)
