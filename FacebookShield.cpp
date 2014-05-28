@@ -16,12 +16,12 @@
 #include "OneSheeld.h"
 #include "FacebookShield.h"
 
-//Sender
+//Post Sender
 void FacebookShieldClass::post(char* status)
 {
 	OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
 }
-//Sender
+//Message Sender
 void FacebookShieldClass::sendMessage(char * username,char * message)
 {
 	OneSheeld.sendPacket(FACEBOOK_ID,0,SEND_MESSAGE,2,new FunctionArg (strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message)); 
