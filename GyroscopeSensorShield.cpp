@@ -43,7 +43,7 @@ float GyroscopeSensorShield::getZ()
 //GyroscopeSensor Input Data processing 	
 void GyroscopeSensorShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==GYROSCOPE_VALUE)
 	{
