@@ -21,77 +21,77 @@ void LCDShield::begin(byte x,byte y)
 { 
 	OneSheeld.sendPacket(LCD_ID,0,BEGIN,2,new FunctionArg(1,&x),new FunctionArg(1,&y));
 }
-//Setter
+//Clear Setter
 void LCDShield::clear()
 {
 	OneSheeld.sendPacket(LCD_ID,0,CLEAR,0);
 }
-//Setter
+//Home Setter
 void LCDShield::home()
 {
 	OneSheeld.sendPacket(LCD_ID,0,HOME,0);
 }
-//Setter
+//NoBlink Setter
 void LCDShield::noBlink()
 {
 	OneSheeld.sendPacket(LCD_ID,0,NOBLINK,0);
 }
-//Setter
+//Blink Setter
 void LCDShield::blink()
 {
 	OneSheeld.sendPacket(LCD_ID,0,BLINK,0);
 }
-//Setter
+//NoCursor Setter
 void LCDShield::noCursor()
 {
 	OneSheeld.sendPacket(LCD_ID,0,NOCURSOR,0);
 }
-//Setter
+//Display Cursor Setter
 void LCDShield::cursor()
 {
 	OneSheeld.sendPacket(LCD_ID,0,CURSOR,0);
 }
-//Setter
+//Scrolling Setter
 void LCDShield::scrollDisplayLeft()
 {
 	OneSheeld.sendPacket(LCD_ID,0,SCROLLLEFT,0);
 }
-//Setter
+//Scrolling Setter
 void LCDShield::scrollDisplayRight()
 {
 	OneSheeld.sendPacket(LCD_ID,0,SCROLLRIGHT,0);
 }
-//Setter
+//left-Right Setter
 void LCDShield::leftToRight()
 {
 	OneSheeld.sendPacket(LCD_ID,0,LEFT_RIGHT,0);
 }
-//Setter
+//Right-left Setter
 void LCDShield::rightToLeft()
 {
 	OneSheeld.sendPacket(LCD_ID,0,RIGHT_LEFT,0);
 }
-//Setter
+//AutoScroll Setter
 void LCDShield::autoScroll()
 {
 	OneSheeld.sendPacket(LCD_ID,0,AUTOSCROLL,0);
 }
-//Setter
+//NoAutoScroll Setter
 void LCDShield::noAutoScroll()
 {
 	OneSheeld.sendPacket(LCD_ID,0,NOAUTOSCROLL,0);
 }
-//Setter
+//Cursor Setter
 void LCDShield::setCursor(byte x ,byte y)
 {
 	OneSheeld.sendPacket(LCD_ID,0,SETCURSOR,2,new FunctionArg(1,&x),new FunctionArg(1,&y));
 }
-//Sender
+//Character Sender
 void LCDShield::write(byte x)
 {
 	OneSheeld.sendPacket(LCD_ID,0,WRITE,1,new FunctionArg(1,&x));
 }
-//Sender
+//Text Sender
 void LCDShield::print(char *message)
 {
 	OneSheeld.sendPacket(LCD_ID,0,PRINT,1,new FunctionArg(strlen(message),(byte*) message));
