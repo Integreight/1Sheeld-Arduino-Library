@@ -25,49 +25,49 @@ GamePadShield::GamePadShield()
 	isCallBackAssigned=false;
 }
 
-//Checker
+//Up ArrowChecker
 bool GamePadShield::isUpPressed()
 {
 	up = !!(value & (1<<UP_BIT));
 	return up ;
 }
-//Checker 
+//Down Arrow Checker 
 bool GamePadShield::isDownPressed()
 {
 	down = !!(value & (1<<DOWN_BIT));
 	return down ;
 }
-//Checker
+//Left Arrow Checker
 bool GamePadShield::isLeftPressed()
 {
 	left = !!(value & (1<<LEFT_BIT));
 	return left ;
 }
-//Checker
+//Right Arrow Checker
 bool GamePadShield::isRightPressed()
 {
 	right = !!(value & (1<<RIGHT_BIT));
 	return right ;
 }
-//Checker
+//Orange Button Checker
 bool GamePadShield::isOrangePressed()
 {
 	orange = !!(value & (1<<ORANGE_BIT));
 	return orange ;
 }
-//Checker 
+//Red Button Checker 
 bool GamePadShield::isRedPressed()
 {
 	red = !!(value & (1<<RED_BIT));
 	return red ;
 }
-//Checker 
+//Green Button Checker 
 bool GamePadShield::isGreenPressed()
 {
 	green = !!(value & (1<<GREEN_BIT));
 	return green ;
 }
-//Checker
+//Blue Button Checker
 bool GamePadShield::isBluePressed()
 {
 	blue = !!(value & (1<<BLUE_BIT));
@@ -76,7 +76,7 @@ bool GamePadShield::isBluePressed()
 //GamePad Input Data Processing  
 void GamePadShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==GAMEPAD_VALUE)
 	{
