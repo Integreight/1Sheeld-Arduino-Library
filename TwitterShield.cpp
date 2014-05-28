@@ -22,24 +22,24 @@ TwitterShieldClass::TwitterShieldClass()
  	userName = 0;
  	tweetText = 0;
 }
-//Sender
+//Tweet Sender
 void TwitterShieldClass::tweet( char *data)
 {
 OneSheeld.sendPacket(TWITTER_ID,0,SEND_TWEET,1,new FunctionArg(strlen(data),(byte*)data));
 }
-//Sender
+//Message Sender
 void TwitterShieldClass::sendDirectMessage(char* username,char* message)
 {
 
 	OneSheeld.sendPacket(TWITTER_ID,0,SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
 
 }
-//Getter
+//UserName Getter
 char * TwitterShieldClass::getUserName()
 {
 	return userName;
 }
-//Getter
+//Tweet Getter
 char * TwitterShieldClass::getTweet()
 {
 	return tweetText;
@@ -47,7 +47,7 @@ char * TwitterShieldClass::getTweet()
 //Twitter Input Data Processing
 void TwitterShieldClass::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId = OneSheeld.getFunctionId();
 	if( functionId == GET_TWEET)
 	{
