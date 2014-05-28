@@ -22,7 +22,7 @@ SliderShield::SliderShield()
 	value=0x00;
 	isCallBackAssigned=false;
 }
-//Getter
+//Slider Getter
 byte SliderShield::getValue()
 {
 	return value;
@@ -30,7 +30,7 @@ byte SliderShield::getValue()
 //Phone Input Data Processing 
 void SliderShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 
 	if(functionId==SLIDER_VALUE)
