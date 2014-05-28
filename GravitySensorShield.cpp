@@ -45,7 +45,7 @@ float GravitySensorShield::getZ()
 //Gravity Input Data Processing 
 void GravitySensorShield::processData()
 {
-	
+	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==GRAVITY_VALUE)
 	{
