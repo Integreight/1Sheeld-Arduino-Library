@@ -23,7 +23,7 @@ MicShield::MicShield()
 	value=0x00;
 	isCallBackAssigned=false;
 }
-//Getter
+//Mic Getter
 byte MicShield::getValue()
 {
 	return value;
@@ -31,7 +31,7 @@ byte MicShield::getValue()
 //Mic Input Data processing 	
 void MicShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==MIC_VALUE)
 	{
