@@ -40,7 +40,6 @@ typedef unsigned char byte;
 #include "PushButtonShield.h"
 #include "ToggleButtonShield.h"
 #include "GamePadShield.h"
-#include "FlashLightShield.h"
 #include "ProximitySensorShield.h"
 #include "MicShield.h"
 #include "TemperatureSensorShield.h"
