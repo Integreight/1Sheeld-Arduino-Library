@@ -24,7 +24,7 @@ PushButtonShield::PushButtonShield()
 	value=0x00;
 	isCallBackAssigned=false;
 }
-//Checker 
+//PushButton Checker 
 bool PushButtonShield::isPressed()
 {
 	return !!value;
@@ -32,7 +32,7 @@ bool PushButtonShield::isPressed()
 //Phone Input Data Processing 
 void PushButtonShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 
 	if(functionId==PUSHBUTTON_VALUE)
