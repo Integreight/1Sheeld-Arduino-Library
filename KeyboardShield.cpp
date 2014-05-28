@@ -31,7 +31,7 @@ char KeyboardShield::getCharacter()
 //Keyboard Input Data Processing 
 void KeyboardShield::processData()
 {
-	//Checking the Function-ID
+	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if (functionId==GET_CHAR)
 	{
