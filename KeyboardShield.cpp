@@ -40,12 +40,12 @@ void KeyboardShield::processData()
 		//Users Function Invoked
 		if(isCallBackAssigned)
 		{
-			(*buttonChangeCallBack)();
+			(*buttonChangeCallBack)(character);
 		}
 	}
 }
 //Users Function Setter
-void KeyboardShield::setOnButtonChange(void (*userFunction)())
+void KeyboardShield::setOnButtonChange(void (*userFunction)(char data))
 {
 	buttonChangeCallBack=userFunction;
 	isCallBackAssigned=true;

@@ -28,7 +28,7 @@ public:
 	//Getter 
 	char getCharacter();
 	//setOnChange Function for User Function
-	void setOnButtonChange(void (*)());
+	void setOnButtonChange(void (*)(char));
 private:
 	//Reserve Variable
 	char character;
@@ -36,7 +36,7 @@ private:
 	bool isCallBackAssigned;
 	//Process Input Data  
 	void processData();
-	void (*buttonChangeCallBack)();
+	void (*buttonChangeCallBack)(char);
 	
 	friend class OneSheeldClass ;
 
