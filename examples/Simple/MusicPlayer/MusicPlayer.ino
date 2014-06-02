@@ -38,7 +38,7 @@ void loop()
   { 
       /* Turn on the LED. */
        digitalWrite(ledPin,HIGH);
-       /* Set the Volume. */
+       /* Set the volume. */
        MusicPlayer.setVolume(5);
        /* Turn on the music. */
        MusicPlayer.play();
