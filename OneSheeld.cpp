@@ -16,6 +16,7 @@
 #include "OneSheeld.h"
 #include "HardwareSerial.h"
 #include "Arduino.h"
+#include "stdarg.h"
 
 //Shields ID's
 byte inputShieldsList[]={KEYPAD_SHIELD_ID
@@ -293,7 +294,7 @@ void OneSheeldClass::sendToShields()
     case TWITTER_ID              : Twitter.processData();break;
   }
 }
-
+/*
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)
 {
@@ -302,7 +303,8 @@ unsigned char OneSheeldClass::analogRead(int pin)
     double fraction=duty/period;
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
-}
+}*/
+    
 //Instantiating Object
 #if defined(__AVR_ATmega32U4__)
 OneSheeldClass OneSheeld(Serial1);
