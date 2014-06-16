@@ -294,7 +294,8 @@ void OneSheeldClass::sendToShields()
     case TWITTER_ID              : Twitter.processData();break;
   }
 }
-/*
+
+#ifndef (PLATFORM_ID==0x06 || PLATFORM_ID==0x03)
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)
 {
@@ -303,7 +304,8 @@ unsigned char OneSheeldClass::analogRead(int pin)
     double fraction=duty/period;
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
-}*/
+}
+#endif
     
 //Instantiating Object
 #if defined(__AVR_ATmega32U4__)
