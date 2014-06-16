@@ -295,7 +295,7 @@ void OneSheeldClass::sendToShields()
   }
 }
 
-#ifndef (PLATFORM_ID==0x06 || PLATFORM_ID==0x03)
+#if !defined(ARDUINO_LINUX) && (PLATFORM_ID!=0x06 || PLATFORM_ID!=0x03)
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)
 {

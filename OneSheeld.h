@@ -143,8 +143,10 @@ public:
 	void begin();
 	//Frame Sender
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+	#if !defined(ARDUINO_LINUX) && (PLATFORM_ID!=0x06 || PLATFORM_ID!=0x03)
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
+	#endif
 	Stream & OneSheeldSerial;
 private:
 	//Reserve Variables
