@@ -49,5 +49,11 @@ void TemperatureSensorShield::setOnValueChange(void(*userFunction)(char temp))
 	isCallBackAssigned=true;
 }
 
+float TemperatureSensorShield::getAsFahrenheit()
+{
+	float fahrenheit;
+	fahrenheit = (float)value*(1.8)+32;
+	return value;
+}
 //Instatntiating Object
 TemperatureSensorShield TemperatureSensor;

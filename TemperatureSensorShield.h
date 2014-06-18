@@ -28,6 +28,8 @@ public:
 	char getValue();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(char));
+	//Helper Function 
+	float getAsFahrenheit();
 private:
 	//Reserve Variable
 	char value;

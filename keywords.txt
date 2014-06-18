@@ -137,6 +137,7 @@ getTweet	KEYWORD2
 setDot	KEYWORD2
 tweet	KEYWORD2
 setOnNewTweet	KEYWORD2
+getAsFahrenheit	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
