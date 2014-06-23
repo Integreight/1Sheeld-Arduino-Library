@@ -17,9 +17,10 @@
 #include "LCDShield.h"
 
 //Setter
-void LCDShield::begin(byte x,byte y)
+void LCDShield::begin()
 { 
-	OneSheeld.sendPacket(LCD_ID,0,BEGIN,2,new FunctionArg(1,&x),new FunctionArg(1,&y));
+	clear();
+	setCursor(0,0);
 }
 //Clear Setter
 void LCDShield::clear()

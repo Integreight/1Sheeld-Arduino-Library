@@ -38,7 +38,7 @@ class LCDShield
 {
 public:
 	//Setters 
-	void begin(byte,byte);
+	void begin();
 	void clear();
 	void home();
 	void noBlink();

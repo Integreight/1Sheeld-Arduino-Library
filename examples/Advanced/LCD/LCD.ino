@@ -29,7 +29,7 @@ void loop()
   if(digitalRead(buttonPin) == HIGH)
   {
    /* Begin the LCD cursor at the first row and first column. */
-   LCD.begin(1,1);
+   LCD.begin();
    /* Blink the cursor and for 5 seconds. */
    LCD.blink();
    delay(5000);
@@ -46,7 +46,7 @@ void loop()
    /* Print "Hello, World!" */
    LCD.print("Hello, World!");
    /* Set the cursor to begin writing from the second row and first column. */
-   LCD.setCursor(2,1);
+   LCD.setCursor(1,0);
    /* Print "This is OneSheeld" */ 
    LCD.print("This is OneSheeld");
    /* Wait 10 seconds. */  
