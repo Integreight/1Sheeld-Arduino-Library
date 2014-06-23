@@ -60,7 +60,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 //Library Starter
 void OneSheeldClass::begin(long baudRate)
 {
-  #if defined(__AVR_ATmega32U4__) || !(ARDUINO_GALILEO)
+  #if defined(__AVR_ATmega32U4__) || ARDUINO_GALILEO
   Serial1.begin(baudRate);
   #else
   Serial.begin(baudRate);
@@ -295,7 +295,7 @@ void OneSheeldClass::sendToShields()
   }
 }
 
-#if ARDUINO_GALILEO
+#if !ARDUINO_GALILEO
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)
 {
@@ -308,7 +308,7 @@ unsigned char OneSheeldClass::analogRead(int pin)
 #endif
     
 //Instantiating Object
-#if defined(__AVR_ATmega32U4__) || !(ARDUINO_GALILEO)
+#if defined(__AVR_ATmega32U4__) || ARDUINO_GALILEO
 OneSheeldClass OneSheeld(Serial1);
 void serialEvent1()
 #else
