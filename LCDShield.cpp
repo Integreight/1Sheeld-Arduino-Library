@@ -21,6 +21,9 @@ void LCDShield::begin()
 { 
 	clear();
 	setCursor(0,0);
+	noAutoScroll();
+	noCursor();
+	noBlink();
 }
 //Clear Setter
 void LCDShield::clear()
