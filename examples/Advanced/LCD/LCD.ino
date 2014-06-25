@@ -47,8 +47,8 @@ void loop()
    LCD.print("Hello, World!");
    /* Set the cursor to begin writing from the second row and first column. */
    LCD.setCursor(1,0);
-   /* Print "This is OneSheeld" */ 
-   LCD.print("This is OneSheeld");
+   /* Print "This is 1Sheeld" */ 
+   LCD.print("This is 1Sheeld");
    /* Wait 10 seconds. */  
    delay(10000);
    /* Print "Closing!" */
