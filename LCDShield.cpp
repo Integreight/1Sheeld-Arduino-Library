@@ -20,8 +20,8 @@
 void LCDShield::begin()
 { 
 	clear();
-	setCursor(0,0);
 	noAutoScroll();
+	setCursor(0,0);
 	noCursor();
 	noBlink();
 }
