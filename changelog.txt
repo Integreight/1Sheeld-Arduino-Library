@@ -1,0 +1,7 @@
+--------- Version 1.1(002) -----------
++ Added support for Intel Galileo board.
++ Added a getAsFahrenheit() Helper Function.
+= Refactored the LCD shield example.
+
+--------- Version 1.0(001) -----------
+= Initial Release
