@@ -17,7 +17,7 @@
 #define OneSheeld_h
 #include "Stream.h"
 
-
+#define ARDUINO_GALILEO (defined(ARDUINO_LINUX) && (PLATFORM_ID==0x06 || PLATFORM_ID==0x03))
 typedef unsigned char byte;
 
 //Inlcuding Shields Headers
@@ -94,7 +94,7 @@ typedef unsigned char byte;
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 //Library Version
-#define LIBRARY_VERSION 0x01
+#define LIBRARY_VERSION 2
 //Time between sending Frames
 #define TIME_GAP		300UL
 
@@ -143,8 +143,10 @@ public:
 	void begin();
 	//Frame Sender
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+	#if !ARDUINO_GALILEO
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
+	#endif
 	Stream & OneSheeldSerial;
 private:
 	//Reserve Variables
