@@ -32,7 +32,7 @@ public:
 	//Constructor
 	GPSShieldClass();
 	//Getters
-	float getLattitude();
+	float getLatitude();
 	float getLongitude();
 	//Checkers
 	bool isInRange(float , float , float );

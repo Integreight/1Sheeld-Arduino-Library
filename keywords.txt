@@ -65,7 +65,7 @@ isOrangePressed	KEYWORD2
 isRedPressed	KEYWORD2
 isGreenPressed	KEYWORD2
 isBluePressed	KEYWORD2
-getLattitude	KEYWORD2
+getLatitude	KEYWORD2
 getLongitude	KEYOWRD2
 isLat	KEYWORD2
 isLon	KEYWORD2

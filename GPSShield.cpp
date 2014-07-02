@@ -56,7 +56,7 @@ void GPSShieldClass::processData ()
 }
 
 //Getter 
-float GPSShieldClass::getLattitude()
+float GPSShieldClass::getLatitude()
 {
 	return LatValue;
 }
