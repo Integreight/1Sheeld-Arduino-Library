@@ -67,8 +67,6 @@ isGreenPressed	KEYWORD2
 isBluePressed	KEYWORD2
 getLatitude	KEYWORD2
 getLongitude	KEYOWRD2
-isLat	KEYWORD2
-isLon	KEYWORD2
 init	KEYWORD2
 isRowPressed	KEYWORD2
 isColumnPressed	KEYWROD2
@@ -105,8 +103,6 @@ setNumber	KEYWORD2
 videoCall	KEYWORD2
 message	KEYWORD2
 sendDirectMessage	KEYWORD2
-getLattitude	KEYWORD2
-getLongitude	KEYWORD2
 isInRange	KEYWORD2
 getDistance	KEYWORD2
 radian	KEYWORD2
