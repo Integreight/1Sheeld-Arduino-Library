@@ -102,7 +102,7 @@ typedef unsigned char byte;
 //Library Version
 #define LIBRARY_VERSION 2
 //Time between sending Frames
-#define TIME_GAP		300UL
+#define TIME_GAP		200UL
 
 
 //Class for Datalength and Data
