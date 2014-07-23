@@ -40,6 +40,9 @@ Twitter	KEYWORD3
 Clock	KEYWORD3
 PulseWidthModulation	KEYWORD3
 AsciiKeyboard	KEYWORD3
+TextToSpeech	KEYWORD3
+VoiceRecognition	KEYWORD3
+Logger	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -134,6 +137,15 @@ setDot	KEYWORD2
 tweet	KEYWORD2
 setOnNewTweet	KEYWORD2
 getAsFahrenheit	KEYWORD2
+say	KEYWORD2
+startListening	KEYWORD2
+getLastCommand	KEYWORD2
+isNewCommandReceived	KEYWORD2
+setOnNewCommand	KEYWORD2
+startLogging	KEYWORD2
+stopLogging	KEYWORD2
+setFileFormat	KEYWORD2
+add	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

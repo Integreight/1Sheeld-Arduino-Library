@@ -53,6 +53,9 @@ typedef unsigned char byte;
 #include "LCDShield.h"
 #include "ClockShield.h"
 #include "KeyboardShield.h"
+#include "TTSShield.h"
+#include "VoiceRecognitionShield.h"
+#include "DataLoggerShield.h"
 
 //Shields ID's
 #define SLIDER_ID 		 	 0x01
@@ -88,6 +91,9 @@ typedef unsigned char byte;
 #define PHONE_ID 			 0x20
 #define CLOCK_ID		 	 0x21
 #define KEYBOARD_ID			 0x22
+#define TTS_ID				 0x23
+#define VOICE_RECOGNITION_ID 0x24
+#define DATA_LOGGER_ID	  	 0x25
 #define ONE_SECOND 1000
 
 //Start and End of packet sent

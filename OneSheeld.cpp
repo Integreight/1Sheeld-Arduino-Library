@@ -39,7 +39,8 @@ byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,SMS_ID
 ,CLOCK_ID
 ,KEYBOARD_ID
-,TWITTER_ID};
+,TWITTER_ID
+,VOICE_RECOGNITION_ID};
 
 
 //Class Constructor
@@ -246,7 +247,7 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<21;i++) {
+                  for (int i=0;i<22;i++) {
                     if (shield == inputShieldsList[i]){
                       found = true;
                       
@@ -292,6 +293,7 @@ void OneSheeldClass::sendToShields()
     case CLOCK_ID                : Clock.processData();break;
     case KEYBOARD_ID             : AsciiKeyboard.processData();break;
     case TWITTER_ID              : Twitter.processData();break;
+    case VOICE_RECOGNITION_ID    : VoiceRecognition.processData();break;
   }
 }
 
