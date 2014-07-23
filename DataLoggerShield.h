@@ -20,7 +20,6 @@ public:
 	void stopLogging();
 	void setFileFormat(byte);
 	void add(int ,float,int);
-	void add(byte,float,int);
 	void add(char * ,float,int);
 	//void log();
 	//void graph(int ,int);
