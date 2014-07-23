@@ -51,6 +51,8 @@ void loop()
    LCD.print("This is 1Sheeld");
    /* Wait 10 seconds. */  
    delay(10000);
+   /*Clear LCD*/
+   LCD.clear();
    /* Print "Closing!" */
    LCD.print("Closing!");
    /* Wait for 2 seconds. */
