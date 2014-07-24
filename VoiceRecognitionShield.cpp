@@ -3,23 +3,20 @@
   Project:       1Sheeld Library 
   File:          VoiceRecognitionShield.cpp
                  
-  Version:       1.0
+  Version:       1.0.1
 
   Compiler:      Arduino avr-gcc 4.3.2
 
   Author:        Integreight
                  
-  Date:          2014.5
+  Date:          2014.7
 
 */
-
-
-
 #include "OneSheeld.h"
 #include "VoiceRecognitionShield.h"
 
 
-
+//Constructor 
 VoiceRecognitionShield::VoiceRecognitionShield()
 {
 	voice =0;
@@ -27,22 +24,23 @@ VoiceRecognitionShield::VoiceRecognitionShield()
 	newCommand=false;
 	errorAssigned=false;
 }
-
+//Start Listen the voice command  
 void VoiceRecognitionShield::startListening()
 {
 	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,START_LISTENING,0);
 }
-
+//Get and save the voice command
 char * VoiceRecognitionShield::getLastCommand()
 {
 	return voice;
 	newCommand=false;
 }
-
+//Check if new voice command received
 bool VoiceRecognitionShield::isNewCommandReceived()
 {
 	return newCommand;
 }
+//Process Input Data
 void VoiceRecognitionShield::processData()
 {
 	byte functionID = OneSheeld.getFunctionId();
@@ -65,18 +63,19 @@ void VoiceRecognitionShield::processData()
 		
 		newCommand=true;
 
+		//Invoke Users function
 		if(isCallBackAssigned)
 		{
 			(*changeCallBack)(voice);
 		}
-
+		//Invoke User Function
 		if(errorAssigned)
 		{
 			(*errorCallBack)(errorNumber);
 		}
 	}
 }
-
+//Users Function Setter 
 void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(char * voice))
 {
 	changeCallBack=userFunction;
