@@ -9,7 +9,7 @@
 
   Author:        Integreight
                  
-  Date:          2014.5
+  Date:          2014.7
 
 */
 
@@ -18,11 +18,11 @@
 
 
 
-
+//Give text to be said by the phone
 void TTSShield::say(char * text)
 {
 	OneSheeld.sendPacket(TTS_ID,0,SEND_TEXT,1,new FunctionArg(strlen(text),(byte*)text));
 }
 
-
+//Instantiaing Object
 TTSShield TextToSpeech;

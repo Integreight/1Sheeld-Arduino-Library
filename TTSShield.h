@@ -3,13 +3,13 @@
   Project:       1Sheeld Library 
   File:          TTSShield.h
                  
-  Version:       1.0
+  Version:       1.0.1
 
   Compiler:      Arduino avr-gcc 4.3.2
 
   Author:        Integreight
                  
-  Date:          2014.5
+  Date:          2014.7
 
 */
 
@@ -22,12 +22,13 @@
   class TTSShield
   {
   public:
+    //Process
   	void say(char *);
-  	
 
   private:
 
   };
 
+  //Extern Object
   extern TTSShield TextToSpeech ;
   #endif
