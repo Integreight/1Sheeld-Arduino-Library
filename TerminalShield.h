@@ -36,8 +36,8 @@ public:
 	void println(char *);
 	void println(double);
 
-	char readChar();
-	char * readString();
+	char getData();
+	char * getString();
 	
 private:
 	void printNumber(unsigned long ,byte);

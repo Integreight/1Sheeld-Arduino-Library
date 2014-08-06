@@ -1,10 +1,9 @@
 #include "OneSheeld.h"
 #include "TerminalShield.h"
 
-
 TerminalShield::TerminalShield()
 {
-	data = -1;
+	data = 0;
 	string = NULL;
 	signFlag=0;
 	newLineFlag=0;
@@ -50,6 +49,7 @@ void TerminalShield::print(unsigned int data ,byte base)
 
 void TerminalShield::print(long data,byte base)
 {
+	//Serial.print("processed");
 	if (base == 0) 
 	{
 		write(data);
@@ -154,5 +154,41 @@ void TerminalShield::print(double data)
 	char buffer[32];
 	dtostrf(data,1,3,buffer);
 	OneSheeld.sendPacket(TERMINAL_ID,0,PRINT_TERMINAL,1,new FunctionArg(strlen(buffer),(byte *) buffer));
+}
+
+char TerminalShield::getData()
+{
+	return data;
+}
+
+char * TerminalShield::getString()
+{
+	return string;
+}
+
+void TerminalShield::processData()
+{
+	byte functionID = OneSheeld.getFunctionId();
+	byte dataLength = OneSheeld.getArgumentLength(0);
+	if(functionID == READ)
+	{
+		if(dataLength>1)
+		{
+			if (string!=0)
+			{
+				free(string);
+			}	
+			string = (char*)malloc(sizeof(char)*(dataLength+1));
+			for (int j=0; j<dataLength; j++)
+			{
+				string[j]=OneSheeld.getArgumentData(0)[j];
+			}
+			string[dataLength]='\0';
+		}
+		else
+		{
+			data = OneSheeld.getArgumentData(0)[0];
+		}
+	}
 }
 TerminalShield Terminal;
