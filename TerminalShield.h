@@ -20,7 +20,7 @@ public:
 	TerminalShield();
 	void write(byte);
 	//printing 
-	void print(byte);
+	void print(char);
 	void print(int , byte = DEC);
 	void print(unsigned int ,byte =DEC);
 	void print(long,byte=DEC);
@@ -28,7 +28,7 @@ public:
 	void print(char *);
 	void print(double);
 	//print in new line
-	void println(byte);
+	void println(char);
 	void println(int , byte = DEC);
 	void println(unsigned int ,byte =DEC);
 	void println(long,byte=DEC);

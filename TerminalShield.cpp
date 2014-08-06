@@ -12,7 +12,19 @@ TerminalShield::TerminalShield()
 
 void TerminalShield::write(byte data)
 {
-	OneSheeld.sendPacket(TERMINAL_ID,0,WRITE_TERMINAL,1,new FunctionArg (1,&data));
+	char buff[2]={data};
+	if(newLineFlag>0)
+	{
+		char newLine[2]={'\n','\0'};
+		strcat(buff,newLine);
+		newLineFlag=0;
+	}
+	OneSheeld.sendPacket(TERMINAL_ID,0,WRITE_TERMINAL,1,new FunctionArg (strlen(buff),(byte *)buff));
+}
+
+void TerminalShield::print(char data)
+{
+	write(data);
 }
 
 void TerminalShield::print(char * string)
@@ -24,11 +36,6 @@ void TerminalShield::print(char * string)
 		newLineFlag=0;
 	}
 	OneSheeld.sendPacket(TERMINAL_ID,0,PRINT_TERMINAL,1,new FunctionArg (strlen(string),(byte *)string));
-}
-
-void TerminalShield::print(byte data)
-{
-	write(data);
 }
 
 void TerminalShield::print(int data ,byte base)
@@ -73,10 +80,10 @@ void TerminalShield::print(unsigned long data , byte base)
 }
 
 
-void TerminalShield::println(byte data)
+void TerminalShield::println(char data)
 {
-	byte newline= '\n';
-	OneSheeld.sendPacket(TERMINAL_ID,0,PRINTLN_TERMINAL,2,new FunctionArg(1,&data),new FunctionArg(1,&newline));
+	newLineFlag=1;
+	write(data);
 }
 
 void TerminalShield::println(int data ,byte base)
