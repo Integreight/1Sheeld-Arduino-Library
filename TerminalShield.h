@@ -4,7 +4,6 @@
 //Output Function ID's
 #define WRITE_TERMINAL 0x01			//conflicts with #define of LCD 
 #define PRINT_TERMINAL 0x02
-#define PRINTLN_TERMINAL 0x03
 #define DISPLAY 0x03
 #define ASCII 0x01
 #define HEX	  0x02
