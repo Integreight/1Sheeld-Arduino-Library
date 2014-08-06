@@ -57,6 +57,7 @@ typedef unsigned char byte;
 #include "VoiceRecognitionShield.h"
 #include "DataLoggerShield.h"
 #include "TerminalShield.h"
+#include "InternetShield.h"
 
 //Shields ID's
 #define SLIDER_ID 		 	 0x01
@@ -96,6 +97,7 @@ typedef unsigned char byte;
 #define VOICE_RECOGNITION_ID 0x24
 #define DATA_LOGGER_ID	  	 0x25
 #define TERMINAL_ID			 0x26
+#define INTERNET_ID			 0x27
 #define ONE_SECOND 1000
 
 //Start and End of packet sent
