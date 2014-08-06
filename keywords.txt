@@ -43,6 +43,7 @@ AsciiKeyboard	KEYWORD3
 TextToSpeech	KEYWORD3
 VoiceRecognition	KEYWORD3
 Logger	KEYWORD3
+Terminal	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
