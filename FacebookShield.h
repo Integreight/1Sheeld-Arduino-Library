@@ -18,7 +18,9 @@
 
 //Output Functions ID's
 #define UPDATE_STATUS 0x01  
-#define SEND_MESSAGE 0x02
+#define SEND_MESSAGE  0x02
+#define POST_PICTURE  0x03
+#define POST_LAST_PIC 0x04
 
 class FacebookShieldClass 
 {
@@ -26,7 +28,8 @@ public:
 	//Senders
 	void post(char* );
 	void sendMessage(char *,char* );
-
+	void postPicture(char*,char*);
+	void postLastPicture();
 private:
 
 
