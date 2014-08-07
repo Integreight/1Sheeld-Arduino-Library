@@ -44,9 +44,11 @@ TextToSpeech	KEYWORD3
 VoiceRecognition	KEYWORD3
 Logger	KEYWORD3
 Terminal	KEYWORD3
+Internet	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
+open	KEYWORD2
 getX	KEYWORD2
 getY	KEYWORD2
 getZ	KEYWORD2
@@ -147,6 +149,8 @@ startLogging	KEYWORD2
 stopLogging	KEYWORD2
 setFileFormat	KEYWORD2
 add	KEYWORD2
+search	KEYWORD2
+getStatus	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
