@@ -151,6 +151,14 @@ setFileFormat	KEYWORD2
 add	KEYWORD2
 search	KEYWORD2
 getStatus	KEYWORD2
+recordVideo	KEYWORD2
+stopRecord	KEYWORD2
+detectMotion	KEYOWRD2
+stopMotionDetection	KEYWORD2
+recordAudio	KEYWORD2
+stopRecording	KEYWORD2
+postPicture		KEYWORD2
+postLastPiture	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
