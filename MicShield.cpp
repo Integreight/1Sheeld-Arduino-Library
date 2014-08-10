@@ -23,6 +23,16 @@ MicShield::MicShield()
 	value=0x00;
 	isCallBackAssigned=false;
 }
+//Record Setter
+void MicShield::recordAudio()
+{
+	OneSheeld.sendPacket(MIC_ID,0,RECORD_AUDIO,0);
+}
+//Record Setter
+void MicShield::stopRecording()
+{
+	OneSheeld.sendPacket(MIC_ID,0,STOP_RECORD,0);
+}
 //Mic Getter
 byte MicShield::getValue()
 {

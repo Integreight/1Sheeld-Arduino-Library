@@ -18,6 +18,9 @@
 
 //Input Function ID 
 #define MIC_VALUE 0x01
+//Output Function ID
+#define RECORD_AUDIO 0x01
+#define STOP_RECORD	 0x02
 
 class MicShield
 {
@@ -28,6 +31,9 @@ public:
 	byte getValue();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(byte));
+	//Setters
+	void recordAudio();
+	void stopRecording();
 private:
 	//Reserve Variable
 	byte value;
