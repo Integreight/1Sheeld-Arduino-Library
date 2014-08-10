@@ -37,6 +37,7 @@
 class LCDShield
 {
 public:
+	LCDShield();
 	//Setters 
 	void begin();
 	void clear();
@@ -54,9 +55,20 @@ public:
 	void setCursor(byte,byte);
 	//Senders
 	void write(byte);
-	void print(char*);
-private:
+	//printing 
+	void print(char);
+	void print(int , byte = DEC);
+	void print(unsigned int ,byte =DEC);
+	void print(long,byte=DEC);
+	void print(unsigned long,byte =DEC);
+	void print(char *);
+	void print(double);
 
+private:
+	bool signFlag;
+
+	void printNumber(unsigned long ,byte);
+	void printFloat(double,byte);
 };
 
 //Extern Object
