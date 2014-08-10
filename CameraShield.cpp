@@ -16,6 +16,12 @@
 #include "OneSheeld.h"
 #include "CameraShield.h"
 
+
+CameraShieldClass::CameraShieldClass()
+{
+  motionFlag = 0;
+  detectFrameSent = false;
+}
 //Rear Capture   
 void CameraShieldClass::rearCapture()
 {
@@ -37,5 +43,41 @@ void CameraShieldClass::setQuality(byte x)
 	OneSheeld.sendPacket(CAMERA_ID,0,SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
+void CameraShieldClass::recordVideo()
+{
+  OneSheeld.sendPacket(CAMERA_ID,0,VIDEO,0);
+}
+
+void CameraShieldClass::stopRecord()
+{
+  OneSheeld.sendPacket(CAMERA_ID,0,STOP_VIDEO,0);
+}
+
+bool CameraShieldClass::detectMotion()
+{
+  if(!detectFrameSent)
+  {
+    OneSheeld.sendPacket(CAMERA_ID,0,MOTION_DETECT,0);  
+    detectFrameSent =true;
+  }
+
+  return motionFlag;
+}
+
+void CameraShieldClass::stopMotionDetection()
+{
+  detectFrameSent = false;
+  OneSheeld.sendPacket(CAMERA_ID,0,STOP_MOTION,0);
+}
+
+void CameraShieldClass::processData()
+{
+  byte functionId = OneSheeld.getFunctionId();
+
+  if(functionId == MOTION_DETECT)
+  {
+    motionFlag = OneSheeld.getArgumentData(0)[0];
+  }
+}
 //Instantiating Object
 CameraShieldClass Camera;
