@@ -32,8 +32,8 @@ void VoiceRecognitionShield::startListening()
 //Get and save the voice command
 char * VoiceRecognitionShield::getLastCommand()
 {
-	return voice;
 	newCommand=false;
+	return voice;
 }
 //Check if new voice command received
 bool VoiceRecognitionShield::isNewCommandReceived()
@@ -59,7 +59,6 @@ void VoiceRecognitionShield::processData()
 		}
 		voice[voicetextLength]='\0';
 
-		errorNumber=OneSheeld.getArgumentData(1)[0];
 		
 		newCommand=true;
 
@@ -68,6 +67,12 @@ void VoiceRecognitionShield::processData()
 		{
 			(*changeCallBack)(voice);
 		}
+
+	}
+	else if(functionID==GET_ERROR)
+	{
+		errorNumber=OneSheeld.getArgumentData(1)[0];
+
 		//Invoke User Function
 		if(errorAssigned)
 		{

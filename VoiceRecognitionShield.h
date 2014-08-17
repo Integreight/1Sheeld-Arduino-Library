@@ -16,8 +16,9 @@
 #define VoiceRecognitionShield_h
 
 //Input Function ID's 
-#define GET_VOICE 0x01
+#define GET_VOICE 		0x01
 #define START_LISTENING	0x01
+#define GET_ERROR		0x02
 
 
 class VoiceRecognitionShield
