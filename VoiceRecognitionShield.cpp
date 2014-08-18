@@ -23,6 +23,7 @@ VoiceRecognitionShield::VoiceRecognitionShield()
 	isCallBackAssigned=false;
 	newCommand=false;
 	errorAssigned=false;
+	errorNumber='\0';
 }
 //Start Listen the voice command  
 void VoiceRecognitionShield::startListening()
@@ -71,8 +72,7 @@ void VoiceRecognitionShield::processData()
 	}
 	else if(functionID==GET_ERROR)
 	{
-		errorNumber=OneSheeld.getArgumentData(1)[0];
-
+		errorNumber=OneSheeld.getArgumentData(0)[0];
 		//Invoke User Function
 		if(errorAssigned)
 		{
