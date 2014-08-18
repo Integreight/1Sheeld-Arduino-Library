@@ -40,22 +40,28 @@ void DataLoggerShield::setFileFormat(byte format)
 }
 
 //Log Data
-void DataLoggerShield::log(int key,float value,int decimalAfterPoint)
+void DataLoggerShield::add(int key,float value,int decimalAfterPoint =0)
 {
 	char floattostring[10]={0};
 	char inttostring [5]={0};
 	dtostrf(value,10,decimalAfterPoint,floattostring);
 	itoa(key,inttostring,10);
 
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOG_DATA,2,new FunctionArg(5,(byte *)inttostring),new FunctionArg(10,(byte*)floattostring));
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,ADD_NUM,2,new FunctionArg(5,(byte *)inttostring),new FunctionArg(10,(byte*)floattostring));
 }
 //Log Data
-void DataLoggerShield::log(char * key,float value,int decimalAfterPoint)
+void DataLoggerShield::add(char * key,float value,int decimalAfterPoint =0)
 {
 	char floattostring[10]={0};
 	dtostrf(value,10,decimalAfterPoint,floattostring);
 
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOG_DATA,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(10,(byte*)floattostring));
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,ADD_STRING,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(10,(byte*)floattostring));
+}
+
+//Save data 
+void DataLoggerShield::log()
+{
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOG_DATA,0);
 }
 //Instantiating Object
 DataLoggerShield Logger;

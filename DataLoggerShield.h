@@ -19,8 +19,9 @@
 #define SET_FORMAT 	   0x01
 #define START_LOG  	   0x02
 #define STOP_LOG	   0x03
-#define LOG_DATA	   0x04
-#define PLOT_GRAPH	   0x05
+#define ADD_NUM		   0x04
+#define ADD_STRING	   0x05
+#define LOG_DATA	   0x06
 #define CSV_FORMAT	   0x01
 #define JSON_FORMAT    0x02
 
@@ -36,8 +37,10 @@ public:
 	//Setter
 	void setFileFormat(byte);
 	//Process 
-	void log(int ,float,int);
-	void log(char * ,float,int);
+	void add(int ,float,int);
+	void add(char * ,float,int);
+	//Save data
+	void log();
 private:
 
 
