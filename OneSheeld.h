@@ -147,8 +147,9 @@ public:
 	byte getInstanceId();
 	byte getFunctionId();
 	byte getArgumentNo();
-	byte getArgumentLength(byte x);
-	byte * getArgumentData(byte x);
+	byte getArgumentLength(byte );
+	byte * getArgumentData(byte );
+	char *convertFloat(float );
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter

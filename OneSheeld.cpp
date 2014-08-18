@@ -143,6 +143,28 @@ byte OneSheeldClass::getArgumentLength(byte x)
 byte * OneSheeldClass::getArgumentData(byte x)
 {
   return arguments[x];
+}
+
+//Convert float to array of bytes
+char *OneSheeldClass::convertFloat(float data)
+{
+  int i, j;
+  char * pointer;
+  union Float{
+    float number;
+    char floatBytes[sizeof(float)+1];
+  }convertFloat;
+  convertFloat.number = data;
+  pointer=convertFloat.floatBytes;
+  
+  for (i = 0, j = sizeof (float) - 1; i < j; ++i, --j)
+  {
+     char temp = convertFloat.floatBytes[i];
+     convertFloat.floatBytes[i] = convertFloat.floatBytes[j];
+     convertFloat.floatBytes[j] = temp;
+  }
+  convertFloat.floatBytes[4]='\0';
+  return pointer;
 } 
 
 //Incomming Frames processing 
