@@ -4,86 +4,87 @@
 
 
 
-PrintClass::PrintClass()
+PrintClass::PrintClass(byte shid,byte fnidofsset)
 {
-
+	shieldId=shid;
+	functionsIdOffset=fnidofsset;
 }
 
-void PrintClass::write(byte shieldId , char data)
+void PrintClass::write(char data)
 {
-	OneSheeld.sendPacket(shieldId,0,WRITE,1,new FunctionArg(1,(byte *)&data));
+	OneSheeld.sendPacket(shieldId,0,WRITE+functionsIdOffset,1,new FunctionArg(1,(byte *)&data));
 }
 
-void PrintClass::print(byte shieldId , char data)
+void PrintClass::print(char data)
 {
-	OneSheeld.sendPacket(shieldId,0,PRINT,1,new FunctionArg(1,(byte *)&data));
+	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(1,(byte *)&data));
 }
 
-void PrintClass::print(byte shieldId , long data, byte base)
-{
-	char stringPointer[10];
-	itoa(data,stringPointer,base);
-
-	OneSheeld.sendPacket(shieldId,0,PRINT,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));
-}
-
-void PrintClass::print(byte shieldId,unsigned long data , byte base)
+void PrintClass::print(long data, byte base)
 {
 	char stringPointer[10];
 	itoa(data,stringPointer,base);
 
-	OneSheeld.sendPacket(shieldId,0,PRINT,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));	
+	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));
 }
 
-void PrintClass::print(byte shieldId, char * stringData)
+void PrintClass::print(unsigned long data , byte base)
 {
-	OneSheeld.sendPacket(shieldId,0,PRINT,1,new FunctionArg(strlen(stringData),(byte*)stringData));	
+	char stringPointer[10];
+	itoa(data,stringPointer,base);
+
+	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));	
 }
 
-void PrintClass::print(byte shieldId,double data , int precesion)
+void PrintClass::print(char * stringData)
+{
+	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(stringData),(byte*)stringData));	
+}
+
+void PrintClass::print(double data , int precesion)
 {
 	char buffer[32];
 	dtostrf(data,1,precesion,buffer);
-	OneSheeld.sendPacket(TERMINAL_ID,0,PRINT_TERMINAL,1,new FunctionArg(strlen(buffer),(byte *) buffer));
+	OneSheeld.sendPacket(TERMINAL_ID,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(buffer),(byte *) buffer));
 }
 
-void PrintClass::println(byte shieldId,char data)
+void PrintClass::println(char data)
 {
 	char buffer[2];
 	buffer[0]=data;
 	buffer[1]='\n';
 
-	print(shieldId,buffer);
+	print(buffer);
 }
 
-void PrintClass::println(byte shieldId,long data ,byte base)
+void PrintClass::println(long data ,byte base)
 {
 	char stringPointer[12];
 	itoa(data,stringPointer,base);
 	strcat(stringPointer,"\r\n");
 
-	print(shieldId,stringPointer);
+	print(stringPointer);
 }
 
-void PrintClass::println(byte shieldId, unsigned long data , byte base)
+void PrintClass::println(unsigned long data , byte base)
 {
 	char stringPointer[12];
 	itoa(data,stringPointer,base);
 	strcat(stringPointer,"\r\n");
 
-	print(shieldId,stringPointer);
+	print(stringPointer);
 }
 
-void PrintClass::println(byte shieldId , char * stringData)
+void PrintClass::println(char * stringData)
 {
 	char stringNewLine[strlen(stringData)+2];
 	strcat(stringNewLine,stringData);
 	strcat(stringNewLine,"\r\n");
 
-	print(shieldId,stringNewLine);
+	print(stringNewLine);
 }
 
-void PrintClass::println(byte shieldId,double data, int precesion)
+void PrintClass::println(double data, int precesion)
 {
 	int i=0;
 	char buffer[32]={'\0'};
@@ -98,6 +99,6 @@ void PrintClass::println(byte shieldId,double data, int precesion)
 	buffer[i-2]='\r';
 	buffer[i-1]='\n';
 
-	print(shieldId,buffer);
+	print(buffer);
 
 }

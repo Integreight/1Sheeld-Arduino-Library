@@ -8,23 +8,24 @@
 class PrintClass
 {
 public:
-	PrintClass();
+	PrintClass(byte, byte);
 	//Write
-	void write(byte ,char);
+	void write(char);
 	//Printing functions
-	void print(byte ,char);
-	void print(byte , long,byte = DEC);
-	void print(byte , unsigned long,byte =DEC);
-	void print(byte , char *);
-	void print(byte , double ,int = 3 );
+	void print(char);
+	void print(long,byte = DEC);
+	void print(unsigned long,byte =DEC);
+	void print(char *);
+	void print(double ,int = 3 );
 	//Printing in new line 
-	void println(byte ,char);
-	void println(byte , long,byte = DEC);
-	void println(byte , unsigned long,byte =DEC);
-	void println(byte , char *);
-	void println(byte , double , int = 3);
+	void println(char);
+	void println(long,byte = DEC);
+	void println(unsigned long,byte =DEC);
+	void println(char *);
+	void println(double , int = 3);
 private:
-
+	byte shieldId;
+	byte functionsIdOffset;
 };
 
 #endif
