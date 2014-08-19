@@ -59,6 +59,7 @@ typedef unsigned char byte;
 #include "TerminalShield.h"
 #include "InternetShield.h"
 #include "PatternShield.h"
+#include "GraphShield.h"
 
 //Shields ID's
 #define SLIDER_ID 		 	 0x01
@@ -100,6 +101,7 @@ typedef unsigned char byte;
 #define TERMINAL_ID			 0x26
 #define INTERNET_ID			 0x27
 #define PATTERN_ID			 0x28
+#define GRAPH_ID			 0x29
 #define ONE_SECOND 1000
 
 //Start and End of packet sent

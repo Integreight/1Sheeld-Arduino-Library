@@ -45,6 +45,7 @@ VoiceRecognition	KEYWORD3
 Logger	KEYWORD3
 Terminal	KEYWORD3
 Internet	KEYWORD3
+Graph		KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -159,6 +160,10 @@ recordAudio	KEYWORD2
 stopRecording	KEYWORD2
 postPicture		KEYWORD2
 postLastPiture	KEYWORD2
+setOnError		KEYWORD2
+reset			KEYWORD2
+plot				KEYWORD2
+
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
