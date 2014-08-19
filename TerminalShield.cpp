@@ -49,7 +49,6 @@ void TerminalShield::print(unsigned int data ,byte base)
 
 void TerminalShield::print(long data,byte base)
 {
-	//Serial.print("processed");
 	if (base == 0) 
 	{
 		write(data);
