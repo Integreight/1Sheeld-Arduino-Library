@@ -4,12 +4,9 @@
 
 
 //Log Data
-void GraphShield::add(char * key,float value,int decimalAfterPoint =0)
+void GraphShield::add(char * key,float value)
 {
-	char floattostring[10]={0};
-	dtostrf(value,10,decimalAfterPoint,floattostring);
-
-	OneSheeld.sendPacket(GRAPH_ID,0,GRAPH_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(10,(byte*)floattostring));
+	OneSheeld.sendPacket(GRAPH_ID,0,GRAPH_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloat(value)));
 }
 
 void GraphShield::plot()

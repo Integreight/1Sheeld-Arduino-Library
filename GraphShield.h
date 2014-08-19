@@ -11,7 +11,7 @@ class GraphShield
 {
 public:
 	
-	void add(char * ,float,int);
+	void add(char * ,float);
 	void reset();
 	void plot();
 private:
