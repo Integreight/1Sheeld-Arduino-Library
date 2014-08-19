@@ -1,14 +1,14 @@
 #ifndef PrintClass_h
 #define PrintClass_h
 
-#define WRITE 0x01
-#define PRINT 0x02
+#define WRITE_ID 0x01
+#define PRINT_ID 0x02
 #define DEC	  10
 
 class PrintClass
 {
 public:
-	Print();
+	PrintClass();
 	//Write
 	void write(byte ,char);
 	//Printing functions
@@ -27,5 +27,4 @@ private:
 
 };
 
-extern PrintClass Print;
 #endif
