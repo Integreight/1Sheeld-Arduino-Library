@@ -148,12 +148,8 @@ byte * OneSheeldClass::getArgumentData(byte x)
 //Convert float to array of bytes
 byte *OneSheeldClass::convertFloat(float data)
 {
-  union Float{
-    float number;
-    byte floatBytes[sizeof(float)];
-  }convertFloat;
-  convertFloat.number = data;
-  return convertFloat.floatBytes;
+  convertFloatUnion.number = data;
+  return convertFloatUnion.floatBytes;
 } 
 
 //Incomming Frames processing 

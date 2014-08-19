@@ -40,12 +40,9 @@ void DataLoggerShield::setFileFormat(byte format)
 }
 
 //Log Data
-void DataLoggerShield::add(char * key,float value,int decimalAfterPoint =0)
+void DataLoggerShield::add(char * key,float value)
 {
-	char floattostring[10]={0};
-	dtostrf(value,10,decimalAfterPoint,floattostring);
-
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(10,(byte*)floattostring));
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloat(value)));
 }
 
 void DataLoggerShield::add(char * key, char * data)

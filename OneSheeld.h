@@ -136,6 +136,10 @@ public:
 
 };
 
+union FloatUnion{
+	    float number;
+	    byte floatBytes[sizeof(float)];
+	  };
 
 class OneSheeldClass
 {
@@ -151,7 +155,7 @@ public:
 	byte getArgumentNo();
 	byte getArgumentLength(byte );
 	byte * getArgumentData(byte );
-	char *convertFloat(float );
+	byte *convertFloat(float );
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -165,6 +169,7 @@ public:
 	Stream & OneSheeldSerial;
 private:
 	//Reserve Variables
+	FloatUnion convertFloatUnion;
 	byte shield;
 	byte instance;
 	byte functions;

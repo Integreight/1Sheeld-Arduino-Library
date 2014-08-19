@@ -40,7 +40,7 @@ public:
 	//Setter
 	void setFileFormat(byte);
 	//Process 
-	void add(char * ,float,int);
+	void add(char * ,float);
 	void add(char*,char*);
 	//Save data
 	void log();
