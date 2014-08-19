@@ -45,14 +45,15 @@ void PrintClass::print(double data , int precesion)
 {
 	char buffer[32];
 	dtostrf(data,1,precesion,buffer);
-	OneSheeld.sendPacket(TERMINAL_ID,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(buffer),(byte *) buffer));
+	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(buffer),(byte *) buffer));
 }
 
 void PrintClass::println(char data)
 {
-	char buffer[2];
+	char buffer[3];
 	buffer[0]=data;
-	buffer[1]='\n';
+	buffer[1]='\r';
+	buffer[2]='\n';
 
 	print(buffer);
 }
