@@ -146,9 +146,8 @@ byte * OneSheeldClass::getArgumentData(byte x)
 }
 
 //Convert float to array of bytes
-char *OneSheeldClass::convertFloat(float data)
+byte *OneSheeldClass::convertFloat(float data)
 {
-  int i, j;
   union Float{
     float number;
     byte floatBytes[sizeof(float)];
