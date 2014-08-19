@@ -16,12 +16,15 @@
 #define DataLogger_h
 
 //Ouput Function ID's
-#define SET_FORMAT 	   0x01
-#define START_LOG  	   0x02
+#define START_LOG 	   0x01
+#define START_LOG_NAME 0x02
 #define STOP_LOG	   0x03
-#define ADD_NUM		   0x04
-#define ADD_STRING	   0x05
-#define LOG_DATA	   0x06
+#define SET_FORMAT 	   0x04
+#define ADD_FLOAT	   0x05
+#define ADD_STRING	   0x06
+#define LOG_DATA	   0x07
+
+//Future Use
 #define CSV_FORMAT	   0x01
 #define JSON_FORMAT    0x02
 
@@ -37,8 +40,8 @@ public:
 	//Setter
 	void setFileFormat(byte);
 	//Process 
-	void add(int ,float,int);
 	void add(char * ,float,int);
+	void add(char*,char*);
 	//Save data
 	void log();
 private:
