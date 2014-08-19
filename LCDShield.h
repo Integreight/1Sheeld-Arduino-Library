@@ -16,6 +16,8 @@
 #ifndef LCDShield_h
 #define LCDShield_h
 
+#include "OneSheeldPrint.h"
+
 //Output Functions ID's  
 #define BEGIN 0x01
 #define CLEAR 0x02
@@ -34,7 +36,7 @@
 #define WRITE 		 0x0F
 #define PRINT 		 0x11
 
-class LCDShield
+class LCDShield : public PrintClass
 {
 public:
 	LCDShield();
@@ -53,16 +55,16 @@ public:
 	void autoScroll();
 	void noAutoScroll();
 	void setCursor(byte,byte);
-	//Senders
-	void write(byte);
-	//printing 
-	void print(char);
-	void print(int , byte = DEC);
-	void print(unsigned int ,byte =DEC);
-	void print(long,byte=DEC);
-	void print(unsigned long,byte =DEC);
-	void print(char *);
-	void print(double);
+	// //Senders
+	// void write(byte);
+	// //printing 
+	// void print(char);
+	// void print(int , byte = DEC);
+	// void print(unsigned int ,byte =DEC);
+	// void print(long,byte=DEC);
+	// void print(unsigned long,byte =DEC);
+	// void print(char *);
+	// void print(double);
 
 private:
 	bool signFlag;
