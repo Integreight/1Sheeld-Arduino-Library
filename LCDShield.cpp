@@ -16,7 +16,7 @@
 #include "OneSheeld.h"
 #include "LCDShield.h"
 
-LCDShield::LCDShield():PrintClass(LCD_ID,0)
+LCDShield::LCDShield():PrintClass(LCD_ID,WRITE,PRINT)
 {
 	//signFlag=0;
 }

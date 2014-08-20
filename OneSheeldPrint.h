@@ -1,14 +1,12 @@
 #ifndef PrintClass_h
 #define PrintClass_h
 
-#define WRITE_ID 0x01
-#define PRINT_ID 0x02
 #define DEC	  10
 
 class PrintClass
 {
 public:
-	PrintClass(byte, byte);
+	PrintClass(byte, byte, byte);
 	//Write
 	void write(char);
 	//Printing functions
@@ -28,8 +26,9 @@ public:
 	void println(char *);
 	void println(double , int = 3);
 private:
+	byte print_fn_id;
+	byte write_fn_id;
 	byte shieldId;
-	byte functionsIdOffset;
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "OneSheeld.h"
 #include "TerminalShield.h"
 
-TerminalShield::TerminalShield():PrintClass(TERMINAL_ID,0)
+TerminalShield::TerminalShield():PrintClass(TERMINAL_ID,WRITE_TERMINAL,PRINT_TERMINAL)
 {
 	// data = 0;
 	// string = NULL;
