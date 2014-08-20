@@ -13,12 +13,16 @@ public:
 	void write(char);
 	//Printing functions
 	void print(char);
+	void print(int,byte = DEC);
+	void print(unsigned int,byte =DEC);
 	void print(long,byte = DEC);
 	void print(unsigned long,byte =DEC);
 	void print(char *);
 	void print(double ,int = 3 );
 	//Printing in new line 
 	void println(char);
+	void println(int,byte = DEC);
+	void println(unsigned int,byte =DEC);
 	void println(long,byte = DEC);
 	void println(unsigned long,byte =DEC);
 	void println(char *);
