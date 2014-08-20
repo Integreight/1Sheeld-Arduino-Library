@@ -67,10 +67,10 @@ public:
 	// void print(double);
 
 private:
-	bool signFlag;
+	// bool signFlag;
 
-	void printNumber(unsigned long ,byte);
-	void printFloat(double,byte);
+	// void printNumber(unsigned long ,byte);
+	// void printFloat(double,byte);
 };
 
 //Extern Object

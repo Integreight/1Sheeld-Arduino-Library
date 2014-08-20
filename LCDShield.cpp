@@ -18,7 +18,7 @@
 
 LCDShield::LCDShield():PrintClass(LCD_ID,0)
 {
-	signFlag=0;
+	//signFlag=0;
 }
 //Setter
 void LCDShield::begin()
