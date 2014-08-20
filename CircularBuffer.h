@@ -29,12 +29,6 @@
 template <typename T, uint16_t Size>
 class CircularBuffer {
 public:
-  enum {
-    Empty = 0,
-    Half = Size / 2,
-    Full = Size,
-  };
-
   CircularBuffer() :
     wp_(buf_), rp_(buf_), tail_(buf_+Size),  remain_(0) {}
   ~CircularBuffer() {}
