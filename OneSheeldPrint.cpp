@@ -4,7 +4,7 @@
 
 
 
-PrintClass::PrintClass(byte shid,byte fnidofsset)
+PrintClass::PrintClass(byte shid,byte fnidofsset=0)
 {
 	shieldId=shid;
 	functionsIdOffset=fnidofsset;
