@@ -2,7 +2,7 @@
 #define TerminalShield_h
 
 #include "OneSheeldPrint.h"
-
+#include "CircularBuffer.h"
 //Output Function ID's
 #define WRITE_TERMINAL 0x01			//conflicts with #define of LCD 
 #define PRINT_TERMINAL 0x02
@@ -32,15 +32,17 @@ public:
 	// void println(unsigned long,byte =DEC);
 	// void println(char *);
 	// void println(double);
-
-	char getData();
-	char * getString();
+	int available();
+	char read();
+	int readBytes(char *, int);
+	void flush();
 	
 private:
 	// void printNumber(unsigned long ,byte);
 	// void printFloat(double,byte);
-	char data;
-	char * string;
+	CircularBuffer<char,64> buffer;
+	// char data;
+	// char * string;
 	void processData();
 	// bool signFlag;
 	// bool newLineFlag;

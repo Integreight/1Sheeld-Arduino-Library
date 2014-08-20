@@ -155,15 +155,33 @@ TerminalShield::TerminalShield():PrintClass(TERMINAL_ID,0)
 // 	OneSheeld.sendPacket(TERMINAL_ID,0,PRINT_TERMINAL,1,new FunctionArg(strlen(buffer),(byte *) buffer));
 // }
 
-// char TerminalShield::getData()
-// {
-// 	return data;
-// }
+char TerminalShield::read()
+{
+	if(buffer.remain()<=0)return -1;
+	return buffer.pop();
+}
 
-// char * TerminalShield::getString()
-// {
-// 	return string;
-// }
+void TerminalShield::flush()
+{
+	while(read()!=-1);
+}
+
+int TerminalShield::available()
+{
+	return buffer.remain();
+}
+
+int TerminalShield::readBytes(char *arr, int length)
+{
+	int count = 0;
+	 	while (count < length) {
+	    int c = read();
+	    if (c < 0) break;
+	    *arr++ = (char)c;
+	    count++;
+ 	}
+  return count;
+}
 
 void TerminalShield::processData()
 {
@@ -171,23 +189,24 @@ void TerminalShield::processData()
 	byte dataLength = OneSheeld.getArgumentLength(0);
 	if(functionID == READ)
 	{
-		if(dataLength>1)
-		{
-			if (string!=0)
-			{
-				free(string);
-			}	
-			string = (char*)malloc(sizeof(char)*(dataLength+1));
+		// if(dataLength>1)
+		// {
+		// 	// if (string!=0)
+			// {
+			// 	free(string);
+			// }	
+			//string = (char*)malloc(sizeof(char)*(dataLength+1));
 			for (int j=0; j<dataLength; j++)
 			{
-				string[j]=OneSheeld.getArgumentData(0)[j];
+				// string[j]=OneSheeld.getArgumentData(0)[j];
+				buffer.push(OneSheeld.getArgumentData(0)[j]);
 			}
-			string[dataLength]='\0';
-		}
-		else
-		{
-			data = OneSheeld.getArgumentData(0)[0];
-		}
+			// string[dataLength]='\0';
+		// }
+		// else
+		// {
+		// 	data = OneSheeld.getArgumentData(0)[0];
+		// }
 	}
 }
 TerminalShield Terminal;
