@@ -4,6 +4,7 @@
 
 
 
+
 PrintClass::PrintClass(byte shid,byte writefnid, byte printfnid)
 {
 	shieldId=shid;
@@ -68,10 +69,11 @@ void PrintClass::print(double data , int precesion)
 
 void PrintClass::println(char data)
 {
-	char buffer[3];
+	char buffer[4];
 	buffer[0]=data;
 	buffer[1]='\r';
 	buffer[2]='\n';
+	buffer[3]='\0';
 	
 	print(buffer);
 }
