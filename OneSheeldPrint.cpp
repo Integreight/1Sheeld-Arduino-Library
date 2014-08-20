@@ -59,7 +59,7 @@ void PrintClass::print(char * stringData)
 
 void PrintClass::print(double data , int precesion)
 {
-	char buffer[32]={'\0'};;
+	char buffer[32]={'\0'};
 	dtostrf(data,1,precesion,buffer);
 	
 	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(buffer),(byte *) buffer));
@@ -77,7 +77,7 @@ void PrintClass::println(char data)
 
 void PrintClass::println(int data ,byte base)
 {
-	char stringPointer[9]={'\0'};;
+	char stringPointer[9]={'\0'};
 	itoa(data,stringPointer,base);
 	strcat(stringPointer,"\r\n");
 	
