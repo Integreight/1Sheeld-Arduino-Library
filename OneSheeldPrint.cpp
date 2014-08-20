@@ -22,7 +22,7 @@ void PrintClass::print(char data)
 
 void PrintClass::print(long data, byte base)
 {
-	char stringPointer[10];
+	char stringPointer[11];
 	itoa(data,stringPointer,base);
 
 	OneSheeld.sendPacket(shieldId,0,PRINT+functionsIdOffset,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));
@@ -60,7 +60,7 @@ void PrintClass::println(char data)
 
 void PrintClass::println(long data ,byte base)
 {
-	char stringPointer[12];
+	char stringPointer[13];
 	itoa(data,stringPointer,base);
 	strcat(stringPointer,"\r\n");
 
