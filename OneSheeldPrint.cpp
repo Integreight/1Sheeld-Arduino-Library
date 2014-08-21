@@ -1,6 +1,6 @@
 #include "OneSheeld.h"
 #include "OneSheeldPrint.h"
-#include "HardwareSerial.h"
+
 
 
 
@@ -128,7 +128,7 @@ void PrintClass::println(double data, int precesion)
 	int i=0;
 	char buffer[32]={'\0'};
 	dtostrf(data,1,precesion,buffer);
-	//Serial.print(buffer);
+
 	while(buffer[i]!='\0' && i<32)i++;
 
 	if(i+2>32)return;
