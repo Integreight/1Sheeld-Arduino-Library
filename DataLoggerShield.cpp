@@ -17,26 +17,20 @@
 
 
 //Start Logging Data
-void DataLoggerShield::startLogging()
+void DataLoggerShield::start()
 {
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,START_LOG,0);
 }
 //Start Logging Data giving name to file created 
-void DataLoggerShield::startLogging(char * fileName)
+void DataLoggerShield::start(char * fileName)
 {
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,START_LOG_NAME,1,new FunctionArg(strlen(fileName),(byte *)fileName));
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,START_LOG,1,new FunctionArg(strlen(fileName),(byte *)fileName));
 }
 
 //Stop Logging Data
-void DataLoggerShield::stopLogging()
+void DataLoggerShield::stop()
 {
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,STOP_LOG,0);
-}
-
-//Set File Format whether JSON or CSV
-void DataLoggerShield::setFileFormat(byte format)
-{
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,SET_FORMAT,1,new FunctionArg(1,&format));
 }
 
 //Log Data

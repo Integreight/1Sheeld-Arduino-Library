@@ -27,7 +27,7 @@ public:
 	//Constructor 
 	VoiceRecognitionShield();
 	//Listener
-	void startListening();
+	void start();
 	//Getter
 	char * getLastCommand();
 	//Checker 

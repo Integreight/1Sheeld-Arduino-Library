@@ -26,7 +26,7 @@ VoiceRecognitionShield::VoiceRecognitionShield()
 	errorNumber='\0';
 }
 //Start Listen the voice command  
-void VoiceRecognitionShield::startListening()
+void VoiceRecognitionShield::start()
 {
 	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,START_LISTENING,0);
 }
