@@ -18,10 +18,9 @@
 //Ouput Function ID's
 #define START_LOG 	   0x01
 #define STOP_LOG	   0x02
-#define SET_FORMAT 	   0x03
-#define ADD_FLOAT	   0x04
-#define ADD_STRING	   0x05
-#define LOG_DATA	   0x06
+#define ADD_FLOAT	   0x03
+#define ADD_STRING	   0x04
+#define LOG_DATA	   0x05
 
 
 class DataLoggerShield
