@@ -116,6 +116,7 @@ void PrintClass::println(unsigned long data , byte base)
 void PrintClass::println(char * stringData)
 {
 	char stringNewLine[strlen(stringData)+2];
+	stringNewLine[0]='\0';
 	strcat(stringNewLine,stringData);
 	strcat(stringNewLine,"\r\n");
 
