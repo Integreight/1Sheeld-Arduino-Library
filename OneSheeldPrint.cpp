@@ -132,8 +132,8 @@ void PrintClass::println(double data, int precesion)
 	while(buffer[i]!='\0' && i<32)i++;
 
 	if(i<3)return;
-	buffer[i-2]='\r';
-	buffer[i-1]='\n';
+	buffer[i]='\r';
+	buffer[i+1]='\n';
 
 	print(buffer);
 
