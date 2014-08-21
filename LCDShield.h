@@ -55,22 +55,9 @@ public:
 	void autoScroll();
 	void noAutoScroll();
 	void setCursor(byte,byte);
-	// //Senders
-	// void write(byte);
-	// //printing 
-	// void print(char);
-	// void print(int , byte = DEC);
-	// void print(unsigned int ,byte =DEC);
-	// void print(long,byte=DEC);
-	// void print(unsigned long,byte =DEC);
-	// void print(char *);
-	// void print(double);
 
 private:
-	// bool signFlag;
 
-	// void printNumber(unsigned long ,byte);
-	// void printFloat(double,byte);
 };
 
 //Extern Object
