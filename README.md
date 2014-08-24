@@ -13,3 +13,6 @@ If you need more help, don't hesitate posting a question on our [website's forum
 
 If you want to contribute, please discuss you proposed feature on our forum first so that you can coordinate with the other developers working on the library.
 
+This library
+
+1Sheeld Arduino Library by Integreight, Inc. is licensed under GNU Lesser General Public License v3.0 (GNU LGPL v3.0).
