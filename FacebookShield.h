@@ -26,7 +26,7 @@ class FacebookShieldClass
 {
 public:
 	//Senders
-	void post(char* );
+	void post(const char* );
 	void sendMessage(char *,char* );
 	void postPicture(char*,char*);
 	void postLastPicture();

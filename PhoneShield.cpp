@@ -24,7 +24,7 @@ PhoneShieldClass::PhoneShieldClass()
 	isCallBackAssigned=false;	
 }
 //Call Setter 
-void PhoneShieldClass::call(char* phone)
+void PhoneShieldClass::call(const char* phone)
 {
 	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(phone),(byte *)phone));
 }
@@ -77,7 +77,7 @@ void PhoneShieldClass::processData()
 }
 
 //Users Function Setter
-void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging, char * phoneNumber))
+void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,const char * phoneNumber))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

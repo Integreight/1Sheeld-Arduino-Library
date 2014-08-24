@@ -23,7 +23,7 @@ class NotificationShieldClass
 {
 public:
 	//Sender 
-	void notifyPhone(char* );
+	void notifyPhone(const char* );
 
 private:
 

@@ -4,7 +4,7 @@
 
 
 //Log Data
-void GraphShield::add(char * key,float value)
+void GraphShield::add(const char * key,float value)
 {
 	OneSheeld.sendPacket(GRAPH_ID,0,GRAPH_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloat(value)));
 }

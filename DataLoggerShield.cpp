@@ -34,12 +34,12 @@ void DataLoggerShield::stop()
 }
 
 //Log Data
-void DataLoggerShield::add(char * key,float value)
+void DataLoggerShield::add(const char * key,float value)
 {
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloat(value)));
 }
 
-void DataLoggerShield::add(char * key, char * data)
+void DataLoggerShield::add(const char * key,const char * data)
 {
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,ADD_STRING,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(strlen(data),(byte*)data));
 }

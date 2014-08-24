@@ -27,12 +27,12 @@ public:
 	//Constructor
 	SMSShieldClass();
 	//Sender
-	void send(char* ,char*);
+	void send(const char* ,const char*);
 	//Getter
 	char * getSms();
 	char * getNumber();
 	//setOnChange for Users Function
-	void setOnSmsReceive(void (*)(char*,char*));
+	void setOnSmsReceive(void (*)(const char*,const char*));
 private:
 	//Reserve Variable
 	char * text;
@@ -41,7 +41,7 @@ private:
 	bool isCallBackAssigned;
 	//Process Input Data 
 	void processData();
-	void (*changeCallBack)(char*,char*);
+	void (*changeCallBack)(const char*,const char*);
 	
 	
 	friend class OneSheeldClass ;

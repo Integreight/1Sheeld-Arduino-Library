@@ -15,7 +15,7 @@ public:
 	void print(unsigned int,byte =DEC);
 	void print(long,byte = DEC);
 	void print(unsigned long,byte =DEC);
-	void print(char *);
+	void print(const char *);
 	void print(double ,int = 3 );
 	//Printing in new line 
 	void println(char);
@@ -23,7 +23,7 @@ public:
 	void println(unsigned int,byte =DEC);
 	void println(long,byte = DEC);
 	void println(unsigned long,byte =DEC);
-	void println(char *);
+	void println(const char *);
 	void println(double , int = 3);
 private:
 	byte print_fn_id;

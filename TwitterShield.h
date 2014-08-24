@@ -31,7 +31,7 @@ public:
 	//Constructor
 	TwitterShieldClass();
 	//Send tweet
-	void tweet(char* );
+	void tweet(const char* );
 	//Send Direct Message
 	void sendMessage(char* ,char* );
 	//Getters 

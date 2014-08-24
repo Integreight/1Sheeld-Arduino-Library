@@ -24,7 +24,7 @@
   	isCallBackAssigned=false;
   }
 //SMS Sender
-void SMSShieldClass::send(char* number,char* text)
+void SMSShieldClass::send(const char* number,const char* text)
   {
 	OneSheeld.sendPacket(SMS_ID,0,SEND_SMS,2,new FunctionArg(strlen(number),(byte*)number),new FunctionArg(strlen(text),(byte*)text));
   }
@@ -77,7 +77,7 @@ void SMSShieldClass::processData()
 	}
 }
 //Users Function Setter
-void SMSShieldClass::setOnSmsReceive(void (*userFunction)(char * number ,char * text))
+void SMSShieldClass::setOnSmsReceive(void (*userFunction)(const char * number ,const char * text))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

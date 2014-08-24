@@ -18,7 +18,7 @@
 
 
 //Checking-In Sender
-void FoursquareShieldClass::checkIn(char* placeId, char* msg)
+void FoursquareShieldClass::checkIn(const char* placeId,const char* msg)
 {
 	OneSheeld.sendPacket(FOURSQUARE_ID,0,CHECK_IN,2,new FunctionArg(strlen(placeId),(byte*)placeId),new FunctionArg(strlen(msg),(byte*)msg));
 }

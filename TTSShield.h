@@ -23,7 +23,7 @@
   {
   public:
     //Process
-  	void say(char *);
+  	void say(const char *);
 
   private:
 

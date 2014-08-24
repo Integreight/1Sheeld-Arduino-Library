@@ -17,7 +17,7 @@
 #include "FacebookShield.h"
 
 //Post Sender
-void FacebookShieldClass::post(char* status)
+void FacebookShieldClass::post(const char* status)
 {
 	OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
 }
