@@ -1,7 +1,7 @@
 #include "OneSheeld.h"
 #include "TerminalShield.h"
 
-TerminalShield::TerminalShield():PrintClass(TERMINAL_ID,WRITE_TERMINAL,PRINT_TERMINAL)
+TerminalShield::TerminalShield():PrintlnClass(TERMINAL_ID,WRITE_TERMINAL,PRINT_TERMINAL)
 {}
 
 char TerminalShield::read()
