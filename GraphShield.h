@@ -10,7 +10,7 @@ class GraphShield
 {
 public:
 	
-	void add(char * ,float);
+	void add(const char * ,float);
 	void reset();
 	void plot();
 private:

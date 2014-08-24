@@ -19,7 +19,7 @@
 
 
 //Give text to be said by the phone
-void TTSShield::say(char * text)
+void TTSShield::say(const char * text)
 {
 	OneSheeld.sendPacket(TTS_ID,0,SEND_TEXT,1,new FunctionArg(strlen(text),(byte*)text));
 }

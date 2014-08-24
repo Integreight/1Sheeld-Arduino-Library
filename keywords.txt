@@ -163,7 +163,7 @@ postLastPiture	KEYWORD2
 setOnError		KEYWORD2
 reset			KEYWORD2
 plot				KEYWORD2
-
+start	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

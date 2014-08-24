@@ -26,7 +26,7 @@ class EmailShieldClass
 
 public:
 	//Sender 
-	void send(char* ,char*,char* );
+	void send(const char* ,const char*,const char* );
 
 private:
 

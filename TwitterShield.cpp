@@ -23,7 +23,7 @@ TwitterShieldClass::TwitterShieldClass()
  	tweetText = 0;
 }
 //Tweet Sender
-void TwitterShieldClass::tweet( char *data)
+void TwitterShieldClass::tweet(const char *data)
 {
 OneSheeld.sendPacket(TWITTER_ID,0,SEND_TWEET,1,new FunctionArg(strlen(data),(byte*)data));
 }

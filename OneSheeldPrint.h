@@ -15,7 +15,7 @@ public:
 	void print(unsigned int,byte =DEC);
 	void print(long,byte = DEC);
 	void print(unsigned long,byte =DEC);
-	void print(char *);
+	void print(const char *);
 	void print(double ,int = 3 );
 private:
 	byte print_fn_id;

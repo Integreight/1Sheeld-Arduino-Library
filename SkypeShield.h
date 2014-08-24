@@ -26,8 +26,8 @@ class SkypeShieldClass
 
 public:
 	//Setters 
-	void call(char *);
-	void videoCall(char *);	
+	void call(const char *);
+	void videoCall(const char *);	
 
 private:
 

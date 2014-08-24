@@ -32,8 +32,8 @@ public:
 	//Stopper
 	void stop();
 	//Process 
-	void add(char * , float);
-	void add(char * , char*);
+	void add(const char * , float);
+	void add(const char * ,const char*);
 	//Save data
 	void log();
 private:

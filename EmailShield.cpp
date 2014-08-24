@@ -17,7 +17,7 @@
 #include "EmailShield.h"
 
 //Email Sender
-void EmailShieldClass::send(char *email ,char* subject,char* message)
+void EmailShieldClass::send(const char *email ,const char* subject,const char* message)
 {
 	OneSheeld.sendPacket(EMAIL_ID,0,SEND,3,new FunctionArg(strlen(email),(byte*)email),new FunctionArg(strlen(subject),(byte*)subject),new FunctionArg(strlen(message),(byte*)message));
 }

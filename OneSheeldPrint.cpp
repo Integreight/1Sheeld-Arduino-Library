@@ -54,7 +54,7 @@ void PrintClass::print(unsigned long data , byte base)
 	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));	
 }
 
-void PrintClass::print(char * stringData)
+void PrintClass::print(const char * stringData)
 {
 	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringData),(byte*)stringData));	
 }
@@ -66,4 +66,3 @@ void PrintClass::print(double data , int precesion)
 	
 	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(strlen(buffer),(byte *) buffer));
 }
-

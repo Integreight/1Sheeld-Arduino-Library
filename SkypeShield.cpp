@@ -17,12 +17,12 @@
 #include "SkypeShield.h"
 
 //Call Setter
-void SkypeShieldClass::call(char *username)
+void SkypeShieldClass::call(const char *username)
 {
 	OneSheeld.sendPacket(SKYPE_ID,0,CALL,1,new FunctionArg(strlen(username),(byte *)username));
 }
 //VideoCall Setter
-void SkypeShieldClass::videoCall(char * username)
+void SkypeShieldClass::videoCall(const char * username)
 {
 	OneSheeld.sendPacket(SKYPE_ID,0,VIDEO_CALL,1,new FunctionArg(strlen(username),(byte *)username));
 }
