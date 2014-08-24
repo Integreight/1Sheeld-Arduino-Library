@@ -1,5 +1,7 @@
 How to install:
+
 Clone the library into a new folder in the libraries folder of your Arduino installation.
+
 (ex: C:\Program Files\Arduino\libraries\OneSheeld)
 ```
 git clone https://github.com/Integreight/1Sheeld-Arduino-Library.git ./OneSheeld
