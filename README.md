@@ -13,4 +13,16 @@ If you need more help, don't hesitate posting a question on our [website's forum
 
 If you want to contribute, please discuss you proposed feature on our forum first so that you can coordinate with the other developers working on the library.
 
+Change Log:
+
+--------- Version 1.1(002) -----------
+
+- Added support for Intel Galileo board.
+- Added a getAsFahrenheit() Helper Function.
+- Refactored the LCD shield example.
+
+--------- Version 1.0(001) -----------
+
+- Initial Release
+
 1Sheeld Arduino Library by Integreight, Inc. is licensed under GNU Lesser General Public License v3.0 (GNU LGPL v3.0).
