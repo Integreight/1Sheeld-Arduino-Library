@@ -1,4 +1,4 @@
-#How to install:
+How to install:
 Clone the library into a new folder in the libraries folder of your Arduino installation.
 (ex: C:\Program Files\Arduino\libraries\OneSheeld)
 ```
