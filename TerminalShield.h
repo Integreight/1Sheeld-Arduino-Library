@@ -1,7 +1,7 @@
 #ifndef TerminalShield_h
 #define TerminalShield_h
 
-#include "OneSheeldPrint.h"
+#include "OneSheeldPrintln.h"
 #include "CircularBuffer.h"
 //Output Function ID's
 #define WRITE_TERMINAL 0x01		
@@ -11,7 +11,7 @@
 #define READ  0x01
 
 
-class TerminalShield : public PrintClass
+class TerminalShield : public PrintlnClass
 {
 public:
 	TerminalShield();
