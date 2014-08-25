@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          TTSShield.h
                  
-  Version:       1.0.1
+  Version:       3.0
 
   Compiler:      Arduino avr-gcc 4.3.2
 
@@ -17,7 +17,7 @@
 #define TTSShield_h
 
 
-#define SEND_TEXT 0x01
+#define TTS_SAY 0x01
 
   class TTSShield
   {
