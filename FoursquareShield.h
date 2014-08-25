@@ -18,7 +18,7 @@
 
 
 //Output Function ID
-#define CHECK_IN 0x01
+#define FOURSQUARE_CHECK_IN 0x01
 
 class FoursquareShieldClass
 {
