@@ -17,14 +17,14 @@
 #define MusicPlayerShield_h
 
 //Output Functions ID's
-#define STOP 			0x01
-#define PLAY 			0x02
-#define PAUSE 			0x03
-#define PREVIOUS 		0x04
-#define NEXT 			0x05
-#define SEEK_FORWARD 	0x06
-#define SEEK_BACKWARD 	0x07
-#define VOLUME 		  	0x08
+#define MUSIC_STOP 			0x01
+#define MUSIC_PLAY 			0x02
+#define MUSIC_PAUSE 			0x03
+#define MUSIC_PREVIOUS 		0x04
+#define MUSIC_NEXT 			0x05
+#define MUSIC_SEEK_FORWARD 	0x06
+#define MUSIC_SEEK_BACKWARD 	0x07
+#define MUSIC_VOLUME 		  	0x08
 
 class MusicPlayerShieldClass 
 {
