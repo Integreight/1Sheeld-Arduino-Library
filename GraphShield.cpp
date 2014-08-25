@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          GraphShield.cpp
+                 
+  Version:       3.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.8
+
+*/
+
 #include "OneSheeld.h"
 #include "GraphShield.h"
 
@@ -11,12 +26,12 @@ void GraphShield::add(const char * key,float value)
 
 void GraphShield::plot()
 {
-	OneSheeld.sendPacket(GRAPH_ID,0,PLOT,0);
+	OneSheeld.sendPacket(GRAPH_ID,0,GRAPH_PLOT,0);
 }
 
 //Reset 
 void GraphShield::reset()
 {
-	OneSheeld.sendPacket(GRAPH_ID,0,RESET,0);
+	OneSheeld.sendPacket(GRAPH_ID,0,GRAPH_RESET,0);
 }
 GraphShield Graph;
