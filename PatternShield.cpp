@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          PatternShield.cpp
+                 
+  Version:       3.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.8
+
+*/
+
 #include "OneSheeld.h"
 #include "PatternShield.h"
 
@@ -22,7 +37,7 @@ char PatternShield::patternLength()
 void PatternShield::processData()
 {
 	byte functioId = OneSheeld.getFunctionId();
-	if(functioId == GET_PATTERN)
+	if(functioId == PATTERN_VALUE)
 	{
 		if (patternData!=0)
 		{

@@ -1,7 +1,22 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          PatternShield.h
+                 
+  Version:       3.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.8
+
+*/
+
 #ifndef PatternShield_h
 #define PatternShield_h
 
-#define GET_PATTERN 0x01
+#define PATTERN_VALUE 0x01
 
 
 
