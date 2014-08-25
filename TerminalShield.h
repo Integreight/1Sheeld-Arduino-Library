@@ -1,14 +1,28 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          TerminalShield.h
+                 
+  Version:       3.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.8
+
+*/
+
 #ifndef TerminalShield_h
 #define TerminalShield_h
 
 #include "OneSheeldPrintln.h"
 #include "CircularBuffer.h"
 //Output Function ID's
-#define WRITE_TERMINAL 0x01		
-#define PRINT_TERMINAL 0x02
-#define DEC   10
+#define TERMINAL_WRITE 0x01		
+#define TERMINAL_PRINT 0x02
 //Input Function ID
-#define READ  0x01
+#define TERMINAL_READ  0x01
 
 
 class TerminalShield : public PrintlnClass
