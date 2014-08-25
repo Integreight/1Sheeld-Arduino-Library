@@ -32,7 +32,7 @@ ClockShield::ClockShield()
 //Blocking function 
 void ClockShield::begin()
 {
-	OneSheeld.sendPacket(CLOCK_ID,0,BEGIN_CLOCK,0);
+	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_BEGIN,0);
 	timeStart=millis();
 	isClockInit=false;
 	while(!isClockInit)
@@ -83,7 +83,7 @@ void ClockShield::processData()
 {
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
-	if(functionId==DATE_VALUE)
+	if(functionId==CLOCK_DATE_VALUE)
 	{
 		byte argumentNumber=OneSheeld.getArgumentNo();
 		switch(argumentNumber)

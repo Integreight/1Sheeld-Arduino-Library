@@ -17,9 +17,9 @@
 #define ClockShield_h
 
 //Output Function ID
-#define BEGIN_CLOCK 0x01
+#define CLOCK_BEGIN 0x01
 //Input Function ID
-#define DATE_VALUE 0x01
+#define CLOCK_DATE_VALUE 0x01
 
 
 class ClockShield
