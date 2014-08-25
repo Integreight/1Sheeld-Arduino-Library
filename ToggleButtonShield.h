@@ -17,7 +17,7 @@
 #define ToggleButtonShield_h
 
 //Input Function ID
-#define TOGGLE_VALUE 0x01
+#define TOGGLEBUTTON_VALUE 0x01
 
 
 

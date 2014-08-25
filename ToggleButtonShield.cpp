@@ -33,7 +33,7 @@ void ToggleButtonShield::processData()
 {
 	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
-	if(functionId==TOGGLE_VALUE)
+	if(functionId==TOGGLEBUTTON_VALUE)
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
