@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          OneSheeldPrintln.cpp
+                 
+  Version:       3.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.8
+
+*/
+
 #include "OneSheeld.h"
 #include "OneSheeldPrintln.h"
 
