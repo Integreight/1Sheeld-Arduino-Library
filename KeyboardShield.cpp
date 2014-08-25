@@ -33,7 +33,7 @@ void KeyboardShield::processData()
 {
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
-	if (functionId==GET_CHAR)
+	if (functionId==KEYBOARD_GET_CHAR)
 	{
 		
 		character=OneSheeld.getArgumentData(0)[0];

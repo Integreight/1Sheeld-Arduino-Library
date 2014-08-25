@@ -17,7 +17,7 @@
 #define KEYBOARD_H_
 
 //Input Function ID 
-#define GET_CHAR	0x01
+#define KEYBOARD_GET_CHAR	0x01
 
 
 class KeyboardShield
