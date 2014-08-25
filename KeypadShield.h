@@ -17,7 +17,7 @@
 #define KeypadShield_h
 
 //Input Function ID 
-#define DATA_IN 0x01
+#define KEYPAD_VALUE 0x01
 
 
 class KeypadShieldClass 

@@ -53,7 +53,7 @@ void KeypadShieldClass::processData()
 {
   //Checking Function-ID
   byte function_Number=OneSheeld.getFunctionId();
-  if (function_Number==DATA_IN)
+  if (function_Number==KEYPAD_VALUE)
    { 
      row=OneSheeld.getArgumentData(0)[0];
      col=OneSheeld.getArgumentData(1)[0];
