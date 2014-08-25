@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          VoiceRecognitionShield.cpp
                  
-  Version:       1.0.1
+  Version:       3.0
 
   Compiler:      Arduino avr-gcc 4.3.2
 
@@ -28,7 +28,7 @@ VoiceRecognitionShield::VoiceRecognitionShield()
 //Start Listen the voice command  
 void VoiceRecognitionShield::start()
 {
-	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,START_LISTENING,0);
+	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,VOICE_START_LISTENING,0);
 }
 //Get and save the voice command
 char * VoiceRecognitionShield::getLastCommand()
@@ -46,7 +46,7 @@ void VoiceRecognitionShield::processData()
 {
 	byte functionID = OneSheeld.getFunctionId();
 
-	if(functionID==GET_VOICE)
+	if(functionID==VOICE_GET)
 	{
 		if (voice!=0)
 		{
@@ -70,7 +70,7 @@ void VoiceRecognitionShield::processData()
 		}
 
 	}
-	else if(functionID==GET_ERROR)
+	else if(functionID==VOICE_GET_ERROR)
 	{
 		errorNumber=OneSheeld.getArgumentData(0)[0];
 		//Invoke User Function

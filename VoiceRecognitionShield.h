@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          VoiceRecognitionShield.h
                  
-  Version:       1.0
+  Version:       3.0
 
   Compiler:      Arduino avr-gcc 4.3.2
 
@@ -16,9 +16,9 @@
 #define VoiceRecognitionShield_h
 
 //Input Function ID's 
-#define GET_VOICE 		0x01
-#define START_LISTENING	0x01
-#define GET_ERROR		0x02
+#define VOICE_GET 		0x01
+#define VOICE_START_LISTENING	0x01
+#define VOICE_GET_ERROR		0x02
 
 
 class VoiceRecognitionShield
