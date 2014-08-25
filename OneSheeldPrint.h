@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          OneSheeldPrint.h
+                 
+  Version:       3.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.8
+
+*/
+
 #ifndef PrintClass_h
 #define PrintClass_h
 
