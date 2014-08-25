@@ -25,24 +25,24 @@ TwitterShieldClass::TwitterShieldClass()
 //Tweet Sender
 void TwitterShieldClass::tweet(const char *data)
 {
-OneSheeld.sendPacket(TWITTER_ID,0,SEND_TWEET,1,new FunctionArg(strlen(data),(byte*)data));
+OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(strlen(data),(byte*)data));
 }
 //Message Sender
 void TwitterShieldClass::sendMessage(char* username,char* message)
 {
 
-	OneSheeld.sendPacket(TWITTER_ID,0,SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
 
 }
 
 void TwitterShieldClass::postPicture(char * folderName, char * pictureName)
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,POST_PICTURE,2,new FunctionArg (strlen(folderName),(byte*)folderName),new FunctionArg(strlen(pictureName),(byte*)pictureName)); 
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_PICTURE,2,new FunctionArg (strlen(folderName),(byte*)folderName),new FunctionArg(strlen(pictureName),(byte*)pictureName)); 
 }
 
 void TwitterShieldClass::postLastPicture()
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,POST_LAST_PIC,0);
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,0);
 }
 //UserName Getter
 char * TwitterShieldClass::getUserName()
@@ -59,7 +59,7 @@ void TwitterShieldClass::processData()
 {
 	//Checking Function-ID
 	byte functionId = OneSheeld.getFunctionId();
-	if( functionId == GET_TWEET)
+	if( functionId == TWITTER_GET_TWEET)
 	{
 		if(userName!=0)
 		{

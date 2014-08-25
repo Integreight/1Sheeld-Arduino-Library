@@ -17,12 +17,12 @@
 #define TwitterShield_h
 
 //Output Function ID
-#define SEND_TWEET 0x01  
-#define SEND_DIRECT_MESSAGE 0x02
-  #define POST_PICTURE  0x03
-#define POST_LAST_PIC 0x04
+#define TWITTER_SEND 0x01  
+#define TWITTER_SEND_DIRECT_MESSAGE 0x02
+  #define TWITTER_POST_PICTURE  0x03
+#define TWITTER_POST_LAST_PIC 0x04
 //Input Functions ID's
-#define GET_TWEET	0x01
+#define TWITTER_GET_TWEET	0x01
 
 
 class TwitterShieldClass 
