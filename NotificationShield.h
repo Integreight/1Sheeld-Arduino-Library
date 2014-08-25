@@ -17,7 +17,7 @@
 #define NotificationShield_h
 
 //Output Function ID
-#define NOTIFY_PHONE 0x01
+#define NOTIFICATION_NOTIFY_PHONE 0x01
 
 class NotificationShieldClass 
 {
