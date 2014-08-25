@@ -19,17 +19,17 @@
 //LedOff Setter
 void LedShield::setLow()
 {
-	setValue(SET_LOW);
+	setValue(LED_SET_LOW);
 }
 //LedOn Setter
 void LedShield::setHigh()
 {
-	setValue(SET_HIGH);
+	setValue(LED_SET_HIGH);
 }
 //Setter 
 void LedShield::setValue(byte data)
 {
-	OneSheeld.sendPacket(LED_ID,0,SET_VALUE,1,new FunctionArg(1,&data));
+	OneSheeld.sendPacket(LED_ID,0,LED_SET_VALUE,1,new FunctionArg(1,&data));
 }
 
 //Instantiating Object

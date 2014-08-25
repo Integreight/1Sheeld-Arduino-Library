@@ -17,9 +17,9 @@
 #define LedShield_h
 
 //Output Functions ID's
-#define SET_VALUE 0x01
-#define SET_LOW	  0x00
-#define SET_HIGH  0x01
+#define LED_SET_HIGH  0x01
+#define LED_SET_LOW   0x00
+#define LED_SET_VALUE 0x01
 
 class LedShield
 {
