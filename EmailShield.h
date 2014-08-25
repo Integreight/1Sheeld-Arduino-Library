@@ -17,7 +17,7 @@
 #define EmailShield_h
 
 //Output Function ID
-#define SEND 0x01
+#define EMAIL_SEND 0x01
 
 
 
