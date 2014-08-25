@@ -17,10 +17,10 @@
 #define FacebookShield_h
 
 //Output Functions ID's
-#define UPDATE_STATUS 0x01  
-#define SEND_MESSAGE  0x02
-#define POST_PICTURE  0x03
-#define POST_LAST_PIC 0x04
+#define FACEBOOK_UPDATE_STATUS 0x01  
+#define FACEBOOK_SEND_MESSAGE  0x02
+#define FACEBOOK_POST_PICTURE  0x03
+#define FACEBOOK_POST_LAST_PIC 0x04
 
 class FacebookShieldClass 
 {

@@ -19,22 +19,22 @@
 //Post Sender
 void FacebookShieldClass::post(const char* status)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
 }
 //Message Sender
 void FacebookShieldClass::sendMessage(char * username,char * message)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,SEND_MESSAGE,2,new FunctionArg (strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message)); 
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_SEND_MESSAGE,2,new FunctionArg (strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message)); 
 }
 
 void FacebookShieldClass::postPicture(char * folderName, char * pictureName)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,POST_PICTURE,2,new FunctionArg (strlen(folderName),(byte*)folderName),new FunctionArg(strlen(pictureName),(byte*)pictureName)); 
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_POST_PICTURE,2,new FunctionArg (strlen(folderName),(byte*)folderName),new FunctionArg(strlen(pictureName),(byte*)pictureName)); 
 }
 
 void FacebookShieldClass::postLastPicture()
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,POST_LAST_PIC,0);
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_POST_LAST_PIC,0);
 }
 //Instantiating Object
 FacebookShieldClass Facebook;
