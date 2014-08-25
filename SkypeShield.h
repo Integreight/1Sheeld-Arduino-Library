@@ -17,9 +17,8 @@
 #define SkypeShield_h
 
 //Output Function ID's
-#define CALL 		0x01
-#define VIDEO_CALL  0x02
-#define MESSAGE 	0x03
+#define SKYPE_CALL 		0x01
+#define SKYPE_VIDEO_CALL  0x02
 
 class SkypeShieldClass 
 {
