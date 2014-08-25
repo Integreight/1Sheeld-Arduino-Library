@@ -16,11 +16,11 @@
 #define DataLogger_h
 
 //Ouput Function ID's
-#define START_LOG 	   0x01
-#define STOP_LOG	   0x02
-#define ADD_FLOAT	   0x03
-#define ADD_STRING	   0x04
-#define LOG_DATA	   0x05
+#define LOGGER_START_LOG 	   0x01
+#define LOGGER_STOP_LOG	   	   0x02
+#define LOGGER_ADD_FLOAT	   0x03
+#define LOGGER_ADD_STRING	   0x04
+#define LOGGER_LOG_DATA	   	   0x05
 
 
 class DataLoggerShield
