@@ -18,10 +18,10 @@
 
 
 //Output Function ID
-#define CALL_PHONE 0x01
+#define PHONE_CALL 0x01
 //Input Function ID's
-#define IS_RINGING_VALUE 0x01
-#define GET_NUMBER_VALUE 0x02
+#define PHONE_IS_RINGING 0x01
+#define PHONE_GET_NUMBER 0x02
 
 
 class PhoneShieldClass 

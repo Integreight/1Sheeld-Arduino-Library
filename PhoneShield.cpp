@@ -26,7 +26,7 @@ PhoneShieldClass::PhoneShieldClass()
 //Call Setter 
 void PhoneShieldClass::call(const char* phone)
 {
-	OneSheeld.sendPacket(PHONE_ID,0,CALL_PHONE,1,new FunctionArg(strlen(phone),(byte *)phone));
+	OneSheeld.sendPacket(PHONE_ID,0,PHONE_CALL,1,new FunctionArg(strlen(phone),(byte *)phone));
 }
 //Ringing Checker 
 bool PhoneShieldClass::isRinging()
@@ -44,11 +44,11 @@ void PhoneShieldClass::processData()
 	//Checking Function-ID
 	byte x= OneSheeld.getFunctionId();
 
-	if (x==IS_RINGING_VALUE)
+	if (x==PHONE_IS_RINGING)
 	{
 		value =OneSheeld.getArgumentData(0)[0];
 	}
-	else if (x==GET_NUMBER_VALUE)
+	else if (x==PHONE_GET_NUMBER)
 	{
 		if(number!=0)
 		{
