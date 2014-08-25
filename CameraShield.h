@@ -17,19 +17,19 @@
 #define CameraShield_h
 
 //Output Functions ID's
-#define REAR_CAPTURE 	0x01
-#define SET_FLASH 		0x02
-#define FRONT_CAPTURE 	0x03
-#define SET_QUALITY 	0x04
-#define VIDEO			0x05
-#define STOP_VIDEO		0x06
-#define MOTION_DETECT	0x07
-#define STOP_MOTION 	0x08
+#define CAMERA_REAR_CAPTURE 		0x01
+#define CAMERA_SET_FLASH 			0x02
+#define CAMERA_FRONT_CAPTURE 		0x03
+#define CAMERA_SET_QUALITY 			0x04
+#define CAMERA_START_VIDEO			0x05
+#define CAMERA_STOP_VIDEO			0x06
+#define CAMERA_START_MOTION_DETECT	0x07
+#define CAMERA_STOP_MOTION_DETECT 	0x08
 //Quality Control 
-#define LOW_QUALITY 	0x01
-#define MID_QUALITY 	0x02
-#define HIG_QUALITY 	0x03
-//Setting Flash 
+#define CAMERA_LOW_QUALITY 	0x01
+#define CAMERA_MID_QUALITY 	0x02
+#define CAMERA_HIG_QUALITY 	0x03
+//Setting Flash (Literals)
 #define OFF				0x00
 #define ON    			0x01
 #define AUTO  			0x02

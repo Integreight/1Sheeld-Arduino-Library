@@ -25,39 +25,39 @@ CameraShieldClass::CameraShieldClass()
 //Rear Capture   
 void CameraShieldClass::rearCapture()
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,REAR_CAPTURE,0);
+	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_REAR_CAPTURE,0);
 }
 //Camera Flash   
 void CameraShieldClass::setFlash(byte x)
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,SET_FLASH,1,new FunctionArg(1,&x));
+	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_FLASH,1,new FunctionArg(1,&x));
 }
 //Front Capture 
 void CameraShieldClass::frontCapture()
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,FRONT_CAPTURE,0);
+	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_FRONT_CAPTURE,0);
 }
 //Quality Set 
 void CameraShieldClass::setQuality(byte x)
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,SET_QUALITY,1,new FunctionArg(1,&x));
+	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
 void CameraShieldClass::recordVideo()
 {
-  OneSheeld.sendPacket(CAMERA_ID,0,VIDEO,0);
+  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_START_VIDEO,0);
 }
 
 void CameraShieldClass::stopRecord()
 {
-  OneSheeld.sendPacket(CAMERA_ID,0,STOP_VIDEO,0);
+  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_STOP_VIDEO,0);
 }
 
 bool CameraShieldClass::detectMotion()
 {
   if(!detectFrameSent)
   {
-    OneSheeld.sendPacket(CAMERA_ID,0,MOTION_DETECT,0);  
+    OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_START_MOTION_DETECT,0);  
     detectFrameSent =true;
   }
 
@@ -67,14 +67,14 @@ bool CameraShieldClass::detectMotion()
 void CameraShieldClass::stopMotionDetection()
 {
   detectFrameSent = false;
-  OneSheeld.sendPacket(CAMERA_ID,0,STOP_MOTION,0);
+  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_STOP_MOTION_DETECT,0);
 }
 
 void CameraShieldClass::processData()
 {
   byte functionId = OneSheeld.getFunctionId();
 
-  if(functionId == MOTION_DETECT)
+  if(functionId == CAMERA_START_MOTION_DETECT)
   {
     motionFlag = OneSheeld.getArgumentData(0)[0];
   }
