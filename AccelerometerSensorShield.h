@@ -23,7 +23,7 @@
 
 class AccelerometerSensorShield
 {
-
+friend class OneSheeldClass;
 public:
 	//Constructor 
 	AccelerometerSensorShield(); 
@@ -50,7 +50,7 @@ private:
 
 	} getfloat;
 
-friend class OneSheeldClass;
+
 	
 };
 
