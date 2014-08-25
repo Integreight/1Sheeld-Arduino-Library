@@ -26,7 +26,7 @@
 //SMS Sender
 void SMSShieldClass::send(const char* number,const char* text)
   {
-	OneSheeld.sendPacket(SMS_ID,0,SEND_SMS,2,new FunctionArg(strlen(number),(byte*)number),new FunctionArg(strlen(text),(byte*)text));
+	OneSheeld.sendPacket(SMS_ID,0,SMS_SEND,2,new FunctionArg(strlen(number),(byte*)number),new FunctionArg(strlen(text),(byte*)text));
   }
   //Number Getter
 char * SMSShieldClass::getNumber()
@@ -43,7 +43,7 @@ void SMSShieldClass::processData()
   {
   	//Checking Function-ID
 	byte x= OneSheeld.getFunctionId();
-	if(x==GET_SMS)
+	if(x==SMS_GET)
 	{
 
 		if(text!=0)
