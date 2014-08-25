@@ -41,14 +41,14 @@ void SevenSegmentShieldClass::setNumber(byte x)
 void SevenSegmentShieldClass::setValue(byte shape)
 {
 
-	OneSheeld.sendPacket(SEV_SEG_ID,0,SET_VALUE,1,new FunctionArg(1,&shape));
+	OneSheeld.sendPacket(SEV_SEG_ID,0,SEVENSEGMENT_SET_VALUE,1,new FunctionArg(1,&shape));
 
 }
 //Dot Setter
 void SevenSegmentShieldClass::setDot()
 {
 
-	OneSheeld.sendPacket(SEV_SEG_ID,0,SET_DOT,0);
+	OneSheeld.sendPacket(SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT,0);
 
 }
 

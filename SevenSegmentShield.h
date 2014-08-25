@@ -17,8 +17,8 @@
 #define SevenSegmentShield_h 
 
 //Output Function ID's
-#define SET_VALUE 0x01 
-#define SET_DOT	0x02
+#define SEVENSEGMENT_SET_VALUE 0x01 
+#define SEVENSEGMENT_SET_DOT	 0x02
 
 class SevenSegmentShieldClass
 {
