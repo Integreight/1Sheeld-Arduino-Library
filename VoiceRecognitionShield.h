@@ -16,9 +16,17 @@
 #define VoiceRecognitionShield_h
 
 //Input Function ID's 
-#define VOICE_GET 		0x01
+#define VOICE_GET 				0x01
 #define VOICE_START_LISTENING	0x01
-#define VOICE_GET_ERROR		0x02
+#define VOICE_GET_ERROR		    0x02
+//Errors messages 
+#define NETWORK_TIMEOUT_ERROR	0x01
+#define NETWORK_ERROR 			0x02
+#define AUDIO_ERROR 			0x03
+#define SERVER_ERROR 			0x04
+#define SPEECH_TIMEOUT_ERROR	0x06
+#define NO_MATCH_ERROR			0x07
+#define RECOGNIZER_BUSY_ERROR	0x08
 
 
 class VoiceRecognitionShield
