@@ -60,6 +60,9 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       endFrame=0;
       lastTimeFrameSent=0;
       isFirstFrame=false;
+      isArgumentsNumberMalloced=false;
+      isArgumentLengthMalloced=false;
+      numberOfDataMalloced=0;
 }
 
 //Library Starter
@@ -160,14 +163,21 @@ void OneSheeldClass::processInput()
     if(data==-1)return;
      if(!framestart&&data==0xFF)
           {
+              freeMemoryAllocated();
               counter=0;
               framestart=true;
               arguments=0;
               argumentL=0;
               counter++;
+              #ifdef DEBUG
+              Serial.print("C1 ");
+              #endif
           }
           else if(counter==4&&framestart)                      //data is the no of arguments
           {
+              #ifdef DEBUG
+              Serial.print("C4 ");
+              #endif
               datalengthcounter=0;
               argumentcounter=0;
               argumentnumber=data;
@@ -175,9 +185,20 @@ void OneSheeldClass::processInput()
           }
           else if(counter==5&&framestart)                      //data is the no of arguments
           {
+              #ifdef DEBUG
+              Serial.print("C5 ");
+              #endif
               if((255-argumentnumber)==data){
               arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
+              #ifdef DEBUG
+              Serial.print("M1 ");
+              #endif
+              isArgumentsNumberMalloced=true;
               argumentL=(byte*)malloc(sizeof(byte)*argumentnumber);//new byte [argumentnumber];
+              #ifdef DEBUG
+              Serial.print("M2 ");
+              #endif
+              isArgumentLengthMalloced=true;
               counter++;
               }
               else{
@@ -189,13 +210,23 @@ void OneSheeldClass::processInput()
           }
           else if (counter==6&&framestart)                    // data is the first argument length
           {
+              #ifdef DEBUG
+              Serial.print("C6 ");
+              #endif
               argumentL[argumentcounter]=data;
               counter++;
           }
           else if (counter==7&&framestart)                    // data is the first argument Data information
           {
+            #ifdef DEBUG
+            Serial.print("C7 ");
+            #endif
             if((255-argumentL[argumentcounter])==data){
               arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
+              #ifdef DEBUG
+              Serial.print("M3 ");
+              #endif
+              numberOfDataMalloced++;
               counter++;
             }
             else{
@@ -205,6 +236,9 @@ void OneSheeldClass::processInput()
           }
           else if (counter==8&&framestart)
           {
+              #ifdef DEBUG
+              Serial.print("C8 ");
+              #endif
               arguments[argumentcounter][datalengthcounter++]=data;
               if (datalengthcounter==argumentL[argumentcounter])
               {
@@ -226,32 +260,19 @@ void OneSheeldClass::processInput()
           }
           else if(counter==9&&framestart)
           {
+              #ifdef DEBUG
+              Serial.print("C9 ");
+              #endif
             endFrame=data;
               if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
               {
-                      framestart=false;
                       sendToShields();
-                      if(arguments!=0){
-                        for(int i=0;i<argumentnumber;i++)
-                        {
-                          free(arguments[i]);
-                        }
-                        free(arguments);
-                      }
-                      if(argumentL!=0)free(argumentL);
+                      freeMemoryAllocated();
                       
               }
               else                                            //if endframe wasn't equal to zero make sure that the memory is free anyway
               {
-                framestart=false;
-                if(arguments!=0){
-                        for(int i=0;i<argumentnumber;i++)
-                        {
-                          free(arguments[i]);
-                        }
-                        free(arguments);
-                      }
-                      if(argumentL!=0)free(argumentL);
+                freeMemoryAllocated();
               }
           }
           else if(framestart){
@@ -269,13 +290,49 @@ void OneSheeldClass::processInput()
                     continue;
                   }
                 }
-                else if(counter==2)instance=data;
-                else if(counter==3)functions=data;
+                else if(counter==2){
+                  instance=data;
+                  #ifdef DEBUG
+                  Serial.print("C2 ");
+                  #endif
+                }
+                else if(counter==3){
+                  functions=data;
+                  #ifdef DEBUG
+                  Serial.print("C3 ");
+                  #endif
+                }
             counter++;
           }
       }
        
     }
+
+void OneSheeldClass::freeMemoryAllocated(){
+  framestart=false;
+  if(isArgumentsNumberMalloced){
+          for(int i=0;i<numberOfDataMalloced;i++)
+          {
+            free(arguments[i]);
+            #ifdef DEBUG
+            Serial.print("F3 ");
+            #endif
+          }
+          numberOfDataMalloced=0;
+          free(arguments);
+          #ifdef DEBUG
+          Serial.print("F1 ");
+          #endif
+          isArgumentsNumberMalloced=false;
+        }
+        if(isArgumentLengthMalloced){
+          free(argumentL);
+          #ifdef DEBUG
+          Serial.println("F2 ");
+          #endif
+          isArgumentLengthMalloced=false;
+        }
+}
 //Data Sender to Input Shields
 void OneSheeldClass::sendToShields()
 {

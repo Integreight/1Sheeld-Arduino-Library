@@ -112,6 +112,8 @@ typedef unsigned char byte;
 //Time between sending Frames
 #define TIME_GAP		200UL
 
+//#define DEBUG
+
 
 //Class for Datalength and Data
 class FunctionArg
@@ -170,6 +172,9 @@ public:
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
+	bool isArgumentsNumberMalloced;
+	bool isArgumentLengthMalloced;
+	byte numberOfDataMalloced;
 	byte shield;
 	byte instance;
 	byte functions;
@@ -186,6 +191,7 @@ private:
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);
+	void freeMemoryAllocated();
 };
 //Extern Object
 extern OneSheeldClass OneSheeld;
