@@ -23,8 +23,6 @@
 #define CAMERA_SET_QUALITY 			0x04
 #define CAMERA_START_VIDEO			0x05
 #define CAMERA_STOP_VIDEO			0x06
-#define CAMERA_START_MOTION_DETECT	0x07
-#define CAMERA_STOP_MOTION_DETECT 	0x08
 //Quality Control 
 #define CAMERA_LOW_QUALITY 	0x01
 #define CAMERA_MID_QUALITY 	0x02
@@ -37,7 +35,6 @@
 class CameraShieldClass
 {
 public:
-	CameraShieldClass();
 	//Setters 
 	void frontCapture();
 	void rearCapture ();
@@ -45,14 +42,6 @@ public:
 	void setQuality(byte);
 	void recordVideo();
 	void stopRecord();
-	bool detectMotion();
-	void stopMotionDetection();
-
-private:
-	bool detectFrameSent;
-	bool motionFlag;
-	void processData();
-	friend class OneSheeldClass;
 };
 
 //Extern Object

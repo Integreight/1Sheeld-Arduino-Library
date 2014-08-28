@@ -15,6 +15,7 @@
 
 #include "OneSheeld.h"
 #include "MagnetometerSensorShield.h"
+#include <math.h>
 
 
 //Class Constructor
