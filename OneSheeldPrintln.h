@@ -23,6 +23,7 @@ class PrintlnClass: public PrintClass
 public:
 	PrintlnClass(byte, byte, byte);
 	//Printing in new line 
+	void println();
 	void println(char);
 	void println(int,byte = DEC);
 	void println(unsigned int,byte =DEC);

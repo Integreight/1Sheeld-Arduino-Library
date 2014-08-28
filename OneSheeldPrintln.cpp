@@ -20,7 +20,15 @@
 PrintlnClass::PrintlnClass(byte shid,byte writefnid, byte printfnid):PrintClass(shid,writefnid,printfnid)
 {
 }
+void PrintlnClass::println()
+{
+	char buffer[3];
+	buffer[0]='\r';
+	buffer[1]='\n';
+	buffer[2]='\0';
 
+	print(buffer);
+}
 void PrintlnClass::println(char data)
 {
 	char buffer[4];
