@@ -339,31 +339,81 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
+    #ifdef KEYPAD_SHIELD
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
+    #endif
+    #ifdef GPS_SHIELD
     case GPS_ID                  : GPS.processData();break ;
+    #endif
+    #ifdef SLIDER_SHIELD
     case SLIDER_ID               : Slider.processData(); break;
+    #endif
+    #ifdef PUSH_BUTTON_SHIELD
     case PUSH_BUTTON_ID          : PushButton.processData();break;
+    #endif
+    #ifdef TOGGLE_BUTTON_SHIELD
     case TOGGLE_BUTTON_ID        : ToggleButton.processData();break;
+    #endif
+    #ifdef GAMEPAD_SHIELD
     case GAMEPAD_ID              : GamePad.processData();break;
+    #endif
+    #ifdef PROXIMITY_SHIELD
     case PROXIMITY_ID            : ProximitySensor.processData();break;
+    #endif
+    #ifdef MIC_SHIELD
     case MIC_ID                  : Mic.processData();break;
+    #endif
+    #ifdef TEMPERATURE_SHIELD
     case TEMPERATURE_ID          : TemperatureSensor.processData();break;
+    #endif
+    #ifdef LIGHT_SHIELD
     case LIGHT_ID                : LightSensor.processData();break;
+    #endif
+    #ifdef PRESSURE_SHIELD
     case PRESSURE_ID             : PressureSensor.processData();break;
+    #endif
+    #ifdef GRAVITY_SHIELD
     case GRAVITY_ID              : GravitySensor.processData();break;
+    #endif
+    #ifdef ACCELEROMETER_SHIELD
     case ACCELEROMETER_ID        : AccelerometerSensor.processData();break;
+    #endif
+    #ifdef GYROSCOPE_SHIELD
     case GYROSCOPE_ID            : GyroscopeSensor.processData();break;
+    #endif
+    #ifdef ORIENTATION_SHIELD
     case ORIENTATION_ID          : OrientationSensor.processData();break;
+    #endif
+    #ifdef MAGNETOMETER_SHIELD
     case MAGNETOMETER_ID         : MagnetometerSensor.processData();break;
+    #endif
+    #ifdef PHONE_SHIELD
     case PHONE_ID                : Phone.processData();break;
+    #endif
+    #ifdef SMS_SHIELD
     case SMS_ID                  : SMS.processData();break;
+    #endif
+    #ifdef CLOCK_SHIELD
     case CLOCK_ID                : Clock.processData();break;
+    #endif
+    #ifdef KEYBOARD_SHIELD
     case KEYBOARD_ID             : AsciiKeyboard.processData();break;
+    #endif
+    #ifdef TWITTER_SHIELD
     case TWITTER_ID              : Twitter.processData();break;
+    #endif
+    #ifdef VOICE_RECOGNITION_SHIELD
     case VOICE_RECOGNITION_ID    : VoiceRecognition.processData();break;
+    #endif
+    #ifdef TERMINAL_SHIELD
     case TERMINAL_ID             : Terminal.processData();break;
+    #endif
+    #ifdef INTERNET_SHIELD
     case INTERNET_ID             : Internet.processData();break;
+    #endif
+    #ifdef PATTERN_SHIELD
     case PATTERN_ID              : Pattern.processData();break;
+    #endif
   }
 }
 
