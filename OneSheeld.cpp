@@ -160,7 +160,7 @@ void OneSheeldClass::processInput()
   while(OneSheeld.OneSheeldSerial.available()){
     int data=OneSheeldSerial.read();
     if(data==-1)return;
-     if(!framestart&&data==0xFF)
+     if(!framestart&&data==START_OF_FRAME)
           {
               freeMemoryAllocated();
               counter=0;
@@ -263,7 +263,7 @@ void OneSheeldClass::processInput()
               Serial.print("C9 ");
               #endif
             endFrame=data;
-              if(endFrame==0)                                   //if the endframe is equal to zero send to shields and free memory
+              if(endFrame==END_OF_FRAME)                                   //if the endframe is equal to zero send to shields and free memory
               {
                       sendToShields();
                       freeMemoryAllocated();
