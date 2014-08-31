@@ -31,9 +31,6 @@ public:
 	byte getValue();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(byte));
-	//Setters
-	void recordAudio();
-	void stopRecording();
 private:
 	//Reserve Variable
 	byte value;
