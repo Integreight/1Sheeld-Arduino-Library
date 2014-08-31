@@ -21,8 +21,6 @@
 #define CAMERA_SET_FLASH 			0x02
 #define CAMERA_FRONT_CAPTURE 		0x03
 #define CAMERA_SET_QUALITY 			0x04
-#define CAMERA_START_VIDEO			0x05
-#define CAMERA_STOP_VIDEO			0x06
 //Quality Control 
 #define CAMERA_LOW_QUALITY 	0x01
 #define CAMERA_MID_QUALITY 	0x02
@@ -40,8 +38,6 @@ public:
 	void rearCapture ();
 	void setFlash(byte );
 	void setQuality(byte);
-	void recordVideo();
-	void stopRecord();
 };
 
 //Extern Object

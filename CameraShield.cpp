@@ -38,15 +38,6 @@ void CameraShieldClass::setQuality(byte x)
 	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
-void CameraShieldClass::recordVideo()
-{
-  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_START_VIDEO,0);
-}
-
-void CameraShieldClass::stopRecord()
-{
-  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_STOP_VIDEO,0);
-}
 
 //Instantiating Object
 CameraShieldClass Camera;
