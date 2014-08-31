@@ -107,12 +107,3 @@
 #ifdef TERMINAL_SHIELD
 #include "TerminalShield.h"
 #endif
-#ifdef INTERNET_SHIELD
-#include "InternetShield.h"
-#endif
-#ifdef PATTERN_SHIELD
-#include "PatternShield.h"
-#endif
-#ifdef GRAPH_SHIELD
-#include "GraphShield.h"
-#endif

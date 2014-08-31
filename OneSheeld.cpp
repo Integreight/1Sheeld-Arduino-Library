@@ -42,8 +42,7 @@ byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,TWITTER_ID
 ,VOICE_RECOGNITION_ID,
 TERMINAL_ID,
-INTERNET_ID,
-PATTERN_ID};
+};
 
 
 //Class Constructor
@@ -407,12 +406,6 @@ void OneSheeldClass::sendToShields()
     #endif
     #ifdef TERMINAL_SHIELD
     case TERMINAL_ID             : Terminal.processData();break;
-    #endif
-    #ifdef INTERNET_SHIELD
-    case INTERNET_ID             : Internet.processData();break;
-    #endif
-    #ifdef PATTERN_SHIELD
-    case PATTERN_ID              : Pattern.processData();break;
     #endif
   }
 }
