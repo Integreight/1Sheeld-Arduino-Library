@@ -38,6 +38,8 @@ public:
 	void start();
 	//Getter
 	char * getLastCommand();
+	//Getter
+	int getLastCommandLength();
 	//Checker 
 	bool isNewCommandReceived();
 	//Setter
@@ -47,6 +49,8 @@ public:
 private:
 	//Pointer to voice data in memory 
 	char * voice;
+	//Voice length
+	int voicetextLength;
 	//Boolean for Users function
 	bool isCallBackAssigned;
 	//Boolean for Users function

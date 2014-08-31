@@ -20,6 +20,7 @@
 VoiceRecognitionShield::VoiceRecognitionShield()
 {
 	voice =0;
+	voicetextLength=-1;
 	isCallBackAssigned=false;
 	newCommand=false;
 	errorAssigned=false;
@@ -36,6 +37,11 @@ char * VoiceRecognitionShield::getLastCommand()
 	newCommand=false;
 	return voice;
 }
+//Get length of last voice command
+int VoiceRecognitionShield::getLastCommandLength()
+{
+	return voicetextLength;
+} 
 //Check if new voice command received
 bool VoiceRecognitionShield::isNewCommandReceived()
 {
@@ -52,7 +58,8 @@ void VoiceRecognitionShield::processData()
 		{
 			free(voice);
 		}
-		int voicetextLength=OneSheeld.getArgumentLength(0);
+		
+		voicetextLength=OneSheeld.getArgumentLength(0);
 		voice = (char*)malloc(sizeof(char)*(voicetextLength+1));
 		for (int j=0; j<voicetextLength; j++)
 		{
