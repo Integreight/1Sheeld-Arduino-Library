@@ -35,7 +35,7 @@ void loop()
     /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
     /* Tweet. */
-    Twitter.tweet("Someone pressed the button!");
+    Twitter.tweet("I'm tweeting from @Arduino via @1Sheeld!");
     /* Wait for 300 ms. */
     delay(300);
   }
