@@ -42,8 +42,8 @@ void PrintlnClass::println(char data)
 
 void PrintlnClass::println(int data ,byte base)
 {
-	char stringPointer[9]={'\0'};
-	itoa(data,stringPointer,base);
+	char stringPointer[9];
+	snprintf(stringPointer,9,"%d",data);
 	strcat(stringPointer,"\r\n");
 	
 	print(stringPointer);
@@ -51,16 +51,16 @@ void PrintlnClass::println(int data ,byte base)
 
 void PrintlnClass::println(unsigned int data , byte base)
 {
-	char stringPointer[8]={'\0'};
-	itoa(data,stringPointer,base);
+	char stringPointer[8];
+	snprintf(stringPointer,8,"%d",data);
 	strcat(stringPointer,"\r\n");
 	
 	print(stringPointer);
 }
 void PrintlnClass::println(long data ,byte base)
 {
-	char stringPointer[14]={'\0'};
-	ltoa(data,stringPointer,base);
+	char stringPointer[14];
+	snprintf(stringPointer,14,"%ld",data);
 	strcat(stringPointer,"\r\n");
 	
 	print(stringPointer);
@@ -68,8 +68,8 @@ void PrintlnClass::println(long data ,byte base)
 
 void PrintlnClass::println(unsigned long data , byte base)
 {
-	char stringPointer[13]={'\0'};
-	ultoa(data,stringPointer,base);
+	char stringPointer[13];
+	snprintf(stringPointer,13,"%lu",data);
 	strcat(stringPointer,"\r\n");
 	
 	print(stringPointer);
