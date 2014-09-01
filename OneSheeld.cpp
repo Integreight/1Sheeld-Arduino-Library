@@ -15,7 +15,6 @@
   
 #include "OneSheeld.h"
 #include "HardwareSerial.h"
-#include "Arduino.h"
 #include "stdarg.h"
 
 //Shields ID's
@@ -410,7 +409,6 @@ void OneSheeldClass::sendToShields()
   }
 }
 
-#if !ARDUINO_GALILEO
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)
 {
@@ -420,8 +418,7 @@ unsigned char OneSheeldClass::analogRead(int pin)
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
 }
-#endif
-    
+ 
 //Instantiating Object
 #if defined(__AVR_ATmega32U4__) || ARDUINO_GALILEO
 OneSheeldClass OneSheeld(Serial1);

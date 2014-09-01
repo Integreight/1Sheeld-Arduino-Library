@@ -31,7 +31,11 @@ public:
 	void print(long,byte = DEC);
 	void print(unsigned long,byte =DEC);
 	void print(const char *);
+	#ifndef ARDUINO_LINUX
+		#if PLATFORM_ID != 0x06
 	void print(double ,int = 3 );
+		#endif
+	#endif
 private:
 	byte print_fn_id;
 	byte write_fn_id;

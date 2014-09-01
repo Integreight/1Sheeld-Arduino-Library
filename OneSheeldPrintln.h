@@ -30,7 +30,11 @@ public:
 	void println(long,byte = DEC);
 	void println(unsigned long,byte =DEC);
 	void println(char *);
+	#ifndef ARDUINO_LINUX
+		#if PLATFORM_ID != 0x06
 	void println(double , int = 3);
+		#endif
+    #endif
 };
 
 #endif

@@ -16,6 +16,7 @@
 #ifndef OneSheeld_h
 #define OneSheeld_h
 #include "Stream.h"
+#include "Arduino.h"
 
 #define ARDUINO_GALILEO (defined(ARDUINO_LINUX) && (PLATFORM_ID==0x06 || PLATFORM_ID==0x03))
 typedef unsigned char byte;

@@ -85,6 +85,8 @@ void PrintlnClass::println(char * stringData)
 	print(stringNewLine);
 }
 
+#ifndef ARDUINO_LINUX
+	#if PLATFORM_ID != 0x06
 void PrintlnClass::println(double data, int precesion)
 {
 	int i=0;
@@ -101,4 +103,5 @@ void PrintlnClass::println(double data, int precesion)
 	print(buffer);
 
 }
-
+	#endif
+#endif
