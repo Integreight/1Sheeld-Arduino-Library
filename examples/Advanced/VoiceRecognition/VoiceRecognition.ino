@@ -74,7 +74,6 @@ void loop ()
   {
     /* Decrease new value. */
     lastValue=oldValue-value;
-    Terminal.println(lastValue);
     oldValue=lastValue;
     if(lastValue < 0)
     {
