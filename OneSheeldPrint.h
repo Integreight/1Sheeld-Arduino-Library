@@ -31,8 +31,9 @@ public:
 	void print(long,byte = DEC);
 	void print(unsigned long,byte =DEC);
 	void print(const char *);
-	#ifndef ARDUINO_LINUX
-		#if PLATFORM_ID != 0x06
+	
+	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
+		#if (PLATFORM_ID != 0x06)
 	void print(double ,int = 3 );
 		#endif
 	#endif

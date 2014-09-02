@@ -73,8 +73,8 @@ void PrintClass::print(const char * stringData)
 {
 	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringData),(byte*)stringData));	
 }
-#ifndef ARDUINO_LINUX
-	#if PLATFORM_ID != 0x06
+	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
+		#if (PLATFORM_ID != 0x06)
 void PrintClass::print(double data , int precesion)
 {
 	char buffer[32]={'\0'};
