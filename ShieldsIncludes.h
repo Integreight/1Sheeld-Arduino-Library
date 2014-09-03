@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          ShieldsIncludes.h
+                 
+  Version:       1.2
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.9
+
+*/
+
 //Inlcuding Shields Headers
 #ifdef TWITTER_SHIELD
 #include "TwitterShield.h"
