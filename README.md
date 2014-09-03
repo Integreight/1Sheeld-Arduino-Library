@@ -15,6 +15,20 @@ If you want to contribute, please discuss you proposed feature on our forum firs
 
 Change Log:
 
+--------- Version 1.2(003) -----------
+- Added the data logger shield
+- Added the terminal shield
+- Added the text to speech shield
+- Added the pattern shield
+- Added the voice recognition shield
+- Added posting photos from Facebook
+- Fixed a typo in the GPS shield
+- Added a way to decrease the size occupied by the library by disabling some shield from compilation
+- Added more printing functions to the LCD shield
+- Fixed a major bug that made the sketches hang after a couple of minutes
+- Decreased the forced delay between frames to 200ms instead of 300ms
+- Added examples for the new shields
+
 --------- Version 1.1(002) -----------
 
 - Added support for Intel Galileo board.
