@@ -3,13 +3,13 @@
   Project:       1Sheeld Library 
   File:          TerminalShield.h
                  
-  Version:       3.0
+  Version:       1.2
 
   Compiler:      Arduino avr-gcc 4.3.2
 
   Author:        Integreight
                  
-  Date:          2014.8
+  Date:          2014.9
 
 */
 
@@ -18,6 +18,7 @@
 
 #include "OneSheeldPrintln.h"
 #include "CircularBuffer.h"
+
 //Output Function ID's
 #define TERMINAL_WRITE 0x01		
 #define TERMINAL_PRINT 0x02
@@ -28,18 +29,25 @@
 class TerminalShield : public PrintlnClass
 {
 public:
+	//Constructor
 	TerminalShield();
+	//Checker
 	int available();
+	//Getter
 	char read();
+	//Getter
 	int readBytes(char *, int);
+	//Setter
 	void flush();
 	
 private:
+	//Instatiate Object from class CircularBuffer
 	CircularBuffer<char,64> buffer;
+	//Process Input data
 	void processData();
 
 	friend class OneSheeldClass;
 };
-
+//Extern Object
 extern TerminalShield Terminal;
 #endif
