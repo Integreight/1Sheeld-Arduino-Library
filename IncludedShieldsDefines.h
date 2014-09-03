@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          IncludedShieldsDefines.h
+                 
+  Version:       1.2
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.9
+
+*/
+
 #define KEYPAD_SHIELD
 #define GPS_SHIELD
 #define SLIDER_SHIELD
