@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          LCDShield.cpp
                  
-  Version:       1.0
+  Version:       1.2
 
   Compiler:      Arduino avr-gcc 4.3.2
 
