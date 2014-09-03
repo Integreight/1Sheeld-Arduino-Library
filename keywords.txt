@@ -144,14 +144,15 @@ startListening	KEYWORD2
 getLastCommand	KEYWORD2
 isNewCommandReceived	KEYWORD2
 setOnNewCommand	KEYWORD2
-startLogging	KEYWORD2
-stopLogging	KEYWORD2
+log	KEYWORD2
 setFileFormat	KEYWORD2
 add	KEYWORD2
 postPicture		KEYWORD2
 postLastPiture	KEYWORD2
 setOnError		KEYWORD2
 start	KEYWORD2
+getStatus	KEYOWRD2
+getLastCommandLength	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
