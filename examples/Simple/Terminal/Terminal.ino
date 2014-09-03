@@ -2,10 +2,10 @@
 
 Terminal Shield Example
 
-This example shows an application on 1Sheeld's Terminal shield.
+This example shows an application on 1Sheeld's terminal shield.
 
-By using this example, you can Debug easily on Temperature sensor
-and check the values in runtime.
+By using this example, you can debug your Arduino code easily and send
+temperature sensor data and check the values on our app.
 
 */
 
@@ -15,7 +15,7 @@ and check the values in runtime.
 /* Fan on Pin 13. */
 int fanPin = 13;
 /* Reserve a byte for Temperature value. */
-byte tempValue = 0 ;
+int tempValue = 0;
 
 void setup()
 {
@@ -25,23 +25,23 @@ void setup()
   pinMode(fanPin,OUTPUT);
 }
 
-void loop ()
+void loop()
 {
-  /* Always get TemperatureSensor value. */
+  /* Always get Temperature sensor value. */
   tempValue = TemperatureSensor.getValue();
-  /* Check Temperature in the Room */
+  /* Check the temperature in the room. */
   if(tempValue > 30)
   {
     /* Turn on the fan. */
     digitalWrite(fanPin,HIGH);
-    /* Display the value on Terminal. */
+    /* Display the value on the terminal. */
     Terminal.println(tempValue);
   }
   else
   {
     /* Turn off the fan. */
     digitalWrite(fanPin,LOW);
-    /* Display the value on Terminal. */
+    /* Display the value on the terminal. */
     Terminal.println(tempValue);
   }
 }

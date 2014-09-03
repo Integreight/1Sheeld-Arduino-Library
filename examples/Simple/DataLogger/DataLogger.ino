@@ -2,9 +2,9 @@
 
 Data-Logger Shield Example
 
-This example shows an application on 1Sheeld's Data-Logger shield.
+This example shows an application on 1Sheeld's data logger shield.
 
-By using this example, you can check the variation of the temperature 
+By using this example, you can check the variation of the room's temperature 
 at your place by logging the data for 24 hours.
 
 */
@@ -13,11 +13,11 @@ at your place by logging the data for 24 hours.
 #include <OneSheeld.h>
 
 /* Variable for the hours. */
-byte hour=0;
+int hour = 0;
 /* Boolean to stop logging. */
-bool stopped=false;
+bool stopped = false;
 
-void setup () 
+void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
@@ -27,13 +27,13 @@ void setup ()
   Clock.begin();
 }
 
-void loop ()
+void loop()
 {
   /* Always get hours. */
-  hour=Clock.getHours();
-  /* Add temperature values as column in file. */
-  Logger.add("Temperature Celsuis",TemperatureSensor.getValue());
-  /* Log the data in rows in file. */
+  hour = Clock.getHours();
+  /* Add temperature values as a column in the file. */
+  Logger.add("Temperature in celsuis",TemperatureSensor.getValue());
+  /* Log the row in the file. */
   Logger.log();
   /* Once the day ends stop logging and generate the file. */
   if(hour==0 && !stopped)

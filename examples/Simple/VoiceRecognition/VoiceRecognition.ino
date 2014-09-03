@@ -2,23 +2,23 @@
 
 Voice Recognition Shield Example
 
-This example shows an application on 1Sheeld's Voice Recognition shield.
+This example shows an application on 1Sheeld's voice recognition shield.
 
-By using this example, you can play pause and stop your music shield using
-voice commands.
+By using this example, you can play, pause and stop your smartphone's 
+music using voice commands.
 
 */
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Voice commands set by the user */
-const char *pointer0 = "play";
-const char *pointer1 = "pause";
-const char *pointer2 = "stop";
-const char *pointer3 = "next";
+/* Voice commands set by the user. */
+const char playCommand[] = "play";
+const char pauseCommand[] = "pause";
+const char stopCommand[] = "stop";
+const char nextCommand[] = "next";
 
-void setup ()
+void setup()
 {
   /* Start Communication. */
   OneSheeld.begin();
@@ -34,25 +34,25 @@ void loop ()
   if(VoiceRecognition.isNewCommandReceived())
   {
     /* Compare the play command. */
-    if(!strcmp(pointer0,VoiceRecognition.getLastCommand()))
+    if(!strcmp(playCommand,VoiceRecognition.getLastCommand()))
     {
       /* Play the track. */
       MusicPlayer.play();
     }
     /* Compare the pause command. */
-    else if (!strcmp(pointer1,VoiceRecognition.getLastCommand()))
+    else if (!strcmp(pauseCommand,VoiceRecognition.getLastCommand()))
     {
       /* Pause the track. */
       MusicPlayer.pause();
     }
     /* Compare the stop command. */
-    else if (!strcmp(pointer2,VoiceRecognition.getLastCommand()))
+    else if (!strcmp(stopCommand,VoiceRecognition.getLastCommand()))
     {
       /* Stop the track. */
       MusicPlayer.stop();
     }
     /* Compare the next command. */
-    else if (!strcmp(pointer3,VoiceRecognition.getLastCommand()))
+    else if (!strcmp(nextCommand,VoiceRecognition.getLastCommand()))
     {
       /* Next track. */
       MusicPlayer.next();
@@ -60,10 +60,10 @@ void loop ()
   }
 }
 
-/* Error checking Function. */
+/* Error checking function. */
 void error(byte errorData)
 {
-  /* Switch on Error. */
+  /* Switch on error and print it on the terminal. */
   switch(errorData)
   {
     case NETWORK_TIMEOUT_ERROR: Terminal.println("Network timeout");break;
@@ -72,6 +72,6 @@ void error(byte errorData)
     case SERVER_ERROR: Terminal.println("No Server");break;
     case SPEECH_TIMEOUT_ERROR: Terminal.println("Speech timeout");break;
     case NO_MATCH_ERROR: Terminal.println("No match");break;
-    case RECOGNIZER_BUSY_ERROR: Terminal.println("busy");break;
+    case RECOGNIZER_BUSY_ERROR: Terminal.println("Busy");break;
   }
 }
