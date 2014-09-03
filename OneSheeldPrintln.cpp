@@ -86,7 +86,6 @@ void PrintlnClass::println(char * stringData)
 }
 
 	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
-		#if (PLATFORM_ID != 0x06)
 void PrintlnClass::println(double data, int precesion)
 {
 	int i=0;
@@ -103,5 +102,4 @@ void PrintlnClass::println(double data, int precesion)
 	print(buffer);
 
 }
-	#endif
 #endif

@@ -32,9 +32,7 @@ public:
 	void println(char *);
 	
 	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
-		#if (PLATFORM_ID != 0x06)
 	void println(double , int = 3);
-		#endif
     #endif
 };
 

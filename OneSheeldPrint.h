@@ -33,10 +33,8 @@ public:
 	void print(const char *);
 	
 	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
-		#if (PLATFORM_ID != 0x06)
 	void print(double ,int = 3 );
 		#endif
-	#endif
 private:
 	byte print_fn_id;
 	byte write_fn_id;
