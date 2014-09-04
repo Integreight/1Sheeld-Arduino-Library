@@ -24,7 +24,7 @@ void FacebookShieldClass::post(const char* status)
 //Message Sender
 void FacebookShieldClass::sendMessage(char * username,char * message)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_SEND_MESSAGE,2,new FunctionArg (strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message)); 
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_SEND_DIRECT_MESSAGE,2,new FunctionArg (strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*)message)); 
 }
 
 void FacebookShieldClass::postLastPicture(char * pictureText)
