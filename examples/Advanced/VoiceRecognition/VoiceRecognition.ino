@@ -19,8 +19,8 @@ int ledPin = 11;
 /* Value from voice command. */
 int speechValue = 0;
 /* Parsing values. */
-unsigned int newLedValue = 0;
-unsigned int oldLedValue = 0;
+int newLedValue = 0;
+int oldLedValue = 0;
 /* String holders. */
 char *voiceCommand;
 char integerString[4];
@@ -59,11 +59,10 @@ void loop()
   {
     /* Increase new value. */
     newLedValue=oldLedValue+newLedValue;
-    /* Check if value exceeded biggest limit. */
+    /* Set resolution. */
     if(newLedValue > 250)
     {
       newLedValue= 255;
-      oldLedValue = 255;
     }
     /* Terminal shield used for debugging. */
     Terminal.print("increased=");
@@ -83,7 +82,7 @@ void loop()
     /* Decrease new value. */
     newLedValue=oldLedValue-newLedValue;
     /* Set resolution. */
-    if(newLedValue < 0 || newLedValue < 5)
+    if(newLedValue < 5)
     {
       newLedValue = 0 ;
     }
