@@ -20,7 +20,7 @@
 #define TWITTER_SEND 0x01  
 #define TWITTER_SEND_DIRECT_MESSAGE 0x02
 #define TWITTER_POST_LAST_PIC 0x03
-  #define TWITTER_POST_PICTURE  0x04
+
 //Input Functions ID's
 #define TWITTER_GET_TWEET	0x01
 
@@ -40,7 +40,6 @@ public:
 	//setOnChange for Users Function
 	void setOnNewTweet(void (*)(char*,char*));
 	//Posting Pictures
-	void postPicture(char*,char*);
 	void postLastPicture(char *);
 private:
 	//Reserve Variables
