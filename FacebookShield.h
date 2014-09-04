@@ -19,7 +19,6 @@
 //Output Functions ID's
 #define FACEBOOK_UPDATE_STATUS 0x01  
 #define FACEBOOK_SEND_DIRECT_MESSAGE  0x02
-#define FACEBOOK_POST_PICTURE  0x04
 #define FACEBOOK_POST_LAST_PIC 0x03
 
 class FacebookShieldClass 
@@ -28,7 +27,6 @@ public:
 	//Senders
 	void post(const char* );
 	void sendMessage(char *,char* );
-	void postPicture(char*,char*);
 	void postLastPicture(char *);
 private:
 
