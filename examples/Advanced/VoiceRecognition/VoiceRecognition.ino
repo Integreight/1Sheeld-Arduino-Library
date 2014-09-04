@@ -18,11 +18,9 @@ int counter = 0;
 int ledPin = 11;
 /* Value from voice command. */
 int speechValue = 0;
-/* ConvertedValue. */
-int value = 0;
 /* Parsing values. */
-int lastValue = 0;
-int oldValue = 0;
+unsigned int newLedValue = 0;
+unsigned int oldLedValue = 0;
 /* String holders. */
 char *voiceCommand;
 char integerString[4];
@@ -44,43 +42,57 @@ void setup()
 void loop() 
 {
   getCommand();
-  /* Convert number from string to integer. */ 
-  speechValue=atoi(integerString);
+    /* Convert number from string to integer. */ 
+    speechValue=atoi(integerString);  
   /* Map the value 0 --> 100 to 0 --> 255. */
-  value = map(speechValue,0,100,0,255);
+  newLedValue = map(speechValue,0,100,0,255);
   /* Check flags. */
-  if(makeFlag)
+  if(makeFlag && counter!=0)
   {
     /* Set the value to ledPin. */
-    analogWrite(ledPin,value);
+    analogWrite(ledPin,newLedValue);
     makeFlag=false;
-    lastValue=0;
-    oldValue=value;
+    oldLedValue=newLedValue;
+    newLedValue=0;
   }
-  else if(increaseFlag)
+  else if(increaseFlag && counter!=0)
   {
     /* Increase new value. */
-    lastValue=oldValue+value;
-    oldValue=lastValue;
-    if(lastValue > 255)
+    newLedValue=oldLedValue+newLedValue;
+    /* Check if value exceeded biggest limit. */
+    if(newLedValue > 250)
     {
-      lastValue= 255;
-      oldValue = 255;
+      newLedValue= 255;
+      oldLedValue = 255;
     }
-    analogWrite(ledPin,lastValue);
+    /* Terminal shield used for debugging. */
+    Terminal.print("increased=");
+    Terminal.println(newLedValue);
+    
+    oldLedValue=newLedValue;
+    analogWrite(ledPin,newLedValue);
     increaseFlag=false;
   }
-  else if(decreaseFlag)
+  else if(decreaseFlag && counter!=0)
   {
-    /* Decrease new value. */
-    lastValue=oldValue-value;
-    oldValue=lastValue;
-    if(lastValue < 0)
+    /* Prevent underflowing if oldLedValue is zero. */
+    if(oldLedValue==0)
     {
-      lastValue = 0 ;
-      oldValue = 0 ;
+      newLedValue=0;
     }
-    analogWrite(ledPin,lastValue);
+    /* Decrease new value. */
+    newLedValue=oldLedValue-newLedValue;
+    /* Set resolution. */
+    if(newLedValue < 0 || newLedValue < 5)
+    {
+      newLedValue = 0 ;
+    }
+    /* Terminal shield used for debugging. */ 
+    Terminal.print("decreased=");
+    Terminal.println(newLedValue);
+    
+    oldLedValue=newLedValue;
+    analogWrite(ledPin,newLedValue);
     decreaseFlag=false;
   }
   /* Reset counters and iterators. */
@@ -134,4 +146,3 @@ void getCommand()
     integerString[counter]='\0';
   }
 }
-
