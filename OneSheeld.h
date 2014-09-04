@@ -66,6 +66,8 @@ union FloatUnion{
 	    byte floatBytes[sizeof(float)];
 	  };
 
+
+
 class OneSheeldClass
 {
 
@@ -90,6 +92,13 @@ public:
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	Stream & OneSheeldSerial;
+
+	union {
+	
+	byte sensorsData[4];
+	float number;
+
+}SensorsFloat;
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
@@ -114,6 +123,8 @@ private:
 	void begin(long baudRate);
 	void freeMemoryAllocated();
 };
+
+
 //Extern Object
 extern OneSheeldClass OneSheeld;
 #endif
