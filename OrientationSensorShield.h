@@ -39,13 +39,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*changeCallBack)(float,float,float);
-	//Processing Float Numbers
-	union 
-	{
-		byte data[4];
-		float num;
-
-	} getfloat;
 
 	friend class OneSheeldClass;
 
