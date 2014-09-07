@@ -4,7 +4,8 @@ Voice Recognition Shield Example
 
 This example shows an application on 1Sheeld's voice recognition shield.
 
-By using this example, control the light intensity of a LED using your voice commands.
+By using this example, you can control the light intensity of a LED using
+voice commands.
 
 */
 
@@ -42,8 +43,8 @@ void setup()
 void loop() 
 {
   getCommand();
-    /* Convert number from string to integer. */ 
-    speechValue=atoi(integerString);  
+  /* Convert number from string to integer. */ 
+  speechValue=atoi(integerString);  
   /* Map the value 0 --> 100 to 0 --> 255. */
   newLedValue = map(speechValue,0,100,0,255);
   /* Check flags. */
@@ -64,7 +65,7 @@ void loop()
     {
       newLedValue= 255;
     }
-    /* Terminal shield used for debugging. */
+    /* Terminal shield is used for debugging. */
     Terminal.print("increased=");
     Terminal.println(newLedValue);
     
@@ -86,7 +87,7 @@ void loop()
     {
       newLedValue = 0 ;
     }
-    /* Terminal shield used for debugging. */ 
+    /* Terminal shield is used for debugging. */ 
     Terminal.print("decreased=");
     Terminal.println(newLedValue);
     
@@ -99,9 +100,9 @@ void loop()
   counter=0;
 }
 
-/************ Functions *******************/
+/************ Functions ************/
 
-/* Command getter function. */
+/* Command processing function. */
 void getCommand()
 {
    /* Check if new command received. */
@@ -126,10 +127,10 @@ void getCommand()
     }
     /* Loop on the command string. */
     while(voiceCommand[stringIterator]!='\0')
-    {    /* Extract first number from the string. */
+    {    /* Extract the first number from the string. */
          if(voiceCommand[stringIterator]>='0' && voiceCommand[stringIterator]<='9')
         {
-          /* Save the number in an array. */
+          /* Save that number in an array. */
           integerString[counter]=voiceCommand[stringIterator];
           counter++;
         }
