@@ -18,7 +18,7 @@
 
 //Output Functions ID's
 #define FACEBOOK_UPDATE_STATUS 0x01  
-#define FACEBOOK_POST_LAST_PIC 0x03
+#define FACEBOOK_POST_LAST_PIC 0x02
 
 class FacebookShieldClass 
 {
