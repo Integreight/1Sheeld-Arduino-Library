@@ -152,6 +152,7 @@ setOnError		KEYWORD2
 start	KEYWORD2
 getStatus	KEYOWRD2
 getLastCommandLength	KEYWORD2
+tweetLastPicture	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

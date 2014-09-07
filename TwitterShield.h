@@ -40,7 +40,7 @@ public:
 	//setOnChange for Users Function
 	void setOnNewTweet(void (*)(char*,char*));
 	//Posting Pictures
-	void postLastPicture(char *);
+	void tweetLastPicture(char *);
 private:
 	//Reserve Variables
 	char * userName;
