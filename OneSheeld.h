@@ -82,7 +82,8 @@ public:
 	byte getArgumentNo();
 	byte getArgumentLength(byte );
 	byte * getArgumentData(byte );
-	byte *convertFloat(float );
+	byte * convertFloatToBytes(float );
+	float convertBytesToFloat(byte * );
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -92,13 +93,6 @@ public:
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	Stream & OneSheeldSerial;
-
-	union {
-	
-	byte sensorsData[4];
-	float number;
-
-}SensorsFloat;
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;

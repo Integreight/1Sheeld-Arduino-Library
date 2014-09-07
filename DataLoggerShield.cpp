@@ -36,7 +36,7 @@ void DataLoggerShield::stop()
 //Log Data
 void DataLoggerShield::add(const char * key,float value)
 {
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloat(value)));
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 
 void DataLoggerShield::add(const char * key,const char * data)

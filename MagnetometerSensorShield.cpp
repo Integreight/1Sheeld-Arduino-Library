@@ -50,29 +50,13 @@ void MagnetometerSensorShield::processData()
 	
 		if(functionId==MAGNETOMETER_VALUE)
 		{
-			valueX=0;
-			valueY=0;
-			valueZ=0;
+			//Process X-Axis Value
+			valueX=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(0));
+			//Process Y-Axis Value
+			valueY=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(1));
+			//Process Z-Axis Value
+			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 			
-			OneSheeld.SensorsFloat.sensorsData[0]=OneSheeld.getArgumentData(0)[0];		
-			OneSheeld.SensorsFloat.sensorsData[1]=OneSheeld.getArgumentData(0)[1];
-			OneSheeld.SensorsFloat.sensorsData[2]=OneSheeld.getArgumentData(0)[2];
-			OneSheeld.SensorsFloat.sensorsData[3]=OneSheeld.getArgumentData(0)[3];
-			valueX=OneSheeld.SensorsFloat.number;
-
-		    //Process Y-Axis Value
-		    OneSheeld.SensorsFloat.sensorsData[0]=OneSheeld.getArgumentData(1)[0];		
-			OneSheeld.SensorsFloat.sensorsData[1]=OneSheeld.getArgumentData(1)[1];
-			OneSheeld.SensorsFloat.sensorsData[2]=OneSheeld.getArgumentData(1)[2];
-			OneSheeld.SensorsFloat.sensorsData[3]=OneSheeld.getArgumentData(1)[3];
-			valueY=OneSheeld.SensorsFloat.number;
-
-		    //Process Z-Axis Value
-		    OneSheeld.SensorsFloat.sensorsData[0]=OneSheeld.getArgumentData(2)[0];		 
-			OneSheeld.SensorsFloat.sensorsData[1]=OneSheeld.getArgumentData(2)[1];
-			OneSheeld.SensorsFloat.sensorsData[2]=OneSheeld.getArgumentData(2)[2];
-			OneSheeld.SensorsFloat.sensorsData[3]=OneSheeld.getArgumentData(2)[3];
-			valueZ=OneSheeld.SensorsFloat.number;
 			//User Function Invoked
 			if(isCallBackAssigned)
 			{

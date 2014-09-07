@@ -146,10 +146,20 @@ byte * OneSheeldClass::getArgumentData(byte x)
 }
 
 //Convert float to array of bytes
-byte *OneSheeldClass::convertFloat(float data)
+byte * OneSheeldClass::convertFloatToBytes(float data)
 {
   convertFloatUnion.number = data;
   return convertFloatUnion.floatBytes;
+} 
+
+//Convert array of bytes to float
+float OneSheeldClass::convertBytesToFloat(byte * data)
+{
+  convertFloatUnion.floatBytes[0] = data[0];
+  convertFloatUnion.floatBytes[1] = data[1];
+  convertFloatUnion.floatBytes[2] = data[2];
+  convertFloatUnion.floatBytes[3] = data[3];
+  return convertFloatUnion.number;
 } 
 
 //Incomming Frames processing 
