@@ -107,7 +107,6 @@ call	KEYWORD2
 setNumber	KEYWORD2
 videoCall	KEYWORD2
 message	KEYWORD2
-sendDirectMessage	KEYWORD2
 isInRange	KEYWORD2
 getDistance	KEYWORD2
 radian	KEYWORD2
@@ -148,7 +147,7 @@ log	KEYWORD2
 setFileFormat	KEYWORD2
 add	KEYWORD2
 postPicture		KEYWORD2
-postLastPiture	KEYWORD2
+postLastPicture	KEYWORD2
 setOnError		KEYWORD2
 start	KEYWORD2
 getStatus	KEYOWRD2
