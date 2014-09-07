@@ -52,8 +52,6 @@ void AccelerometerSensorShield::processData()
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
-	if(shieldId==ACCELEROMETER_ID)
-	{
 		if(functionId==ACCELEROMETER_VALUE)
 		{
 			valueX=0;
@@ -84,9 +82,7 @@ void AccelerometerSensorShield::processData()
 			{
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
-		}
-	}
-	
+		}	
 }
 
 //Users Function Setter 

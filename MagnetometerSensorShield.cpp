@@ -48,8 +48,6 @@ void MagnetometerSensorShield::processData()
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
-	if(shieldId==MAGNETOMETER_ID)
-	{
 		if(functionId==MAGNETOMETER_VALUE)
 		{
 			valueX=0;
@@ -81,7 +79,6 @@ void MagnetometerSensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
-	}
 }
 
 //Users Function Setter 

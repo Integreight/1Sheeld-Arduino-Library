@@ -48,8 +48,6 @@ void OrientationSensorShield::processData()
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
-	if(shieldId==ORIENTATION_ID)
-	{
 		if(functionId==ORIENTATION_VALUE)
 		{
 			valueX=0;
@@ -81,7 +79,6 @@ void OrientationSensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
-	}
 }
 
 //Users Function Setter

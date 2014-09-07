@@ -49,8 +49,6 @@ void GravitySensorShield::processData()
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
-	if(shieldId==GRAVITY_ID)
-	{
 		if(functionId==GRAVITY_VALUE)
 		{
 			valueX=0;
@@ -82,9 +80,6 @@ void GravitySensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
-	}
-	
-
 }
 
 //User Function Setter 

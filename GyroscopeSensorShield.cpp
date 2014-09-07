@@ -47,8 +47,6 @@ void GyroscopeSensorShield::processData()
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
-	if(shieldId==GYROSCOPE_ID)
-	{
 		if(functionId==GYROSCOPE_VALUE)
 		{
 			valueX=0;
@@ -80,7 +78,6 @@ void GyroscopeSensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
-	}
 }
 
 //Users Function Setter 
