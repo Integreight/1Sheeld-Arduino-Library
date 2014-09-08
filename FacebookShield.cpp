@@ -22,9 +22,9 @@ void FacebookShieldClass::post(const char* status)
 	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
 }
 
-void FacebookShieldClass::postLastPicture(char * pictureText)
+void FacebookShieldClass::postLastPicture(char * pictureText, byte imageSource)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_POST_LAST_PIC,1,new FunctionArg(strlen(pictureText),(byte*)pictureText));
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_POST_LAST_PIC,1,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
 }
 
 //Instantiating Object
