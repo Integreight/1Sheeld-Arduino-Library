@@ -24,6 +24,9 @@
 //Input Functions ID's
 #define TWITTER_GET_TWEET	0x01
 
+//Define Literals
+#define FROM_ONESHEELD_FOLDER 0x00
+#define FROM_CAMERA_FOLDER	  0x01
 
 class TwitterShieldClass 
 {
@@ -40,7 +43,7 @@ public:
 	//setOnChange for Users Function
 	void setOnNewTweet(void (*)(char*,char*));
 	//Posting Pictures
-	void tweetLastPicture(char *);
+	void tweetLastPicture(char *,byte =0);
 private:
 	//Reserve Variables
 	char * userName;

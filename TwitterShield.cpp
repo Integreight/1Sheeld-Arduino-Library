@@ -35,9 +35,9 @@ void TwitterShieldClass::sendMessage(char* username,char* message)
 
 }
 
-void TwitterShieldClass::tweetLastPicture(char * pictureText)
+void TwitterShieldClass::tweetLastPicture(char * pictureText , byte imageSource)
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,1,new FunctionArg(strlen(pictureText),(byte*)pictureText));
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
 }
 //UserName Getter
 char * TwitterShieldClass::getUserName()
