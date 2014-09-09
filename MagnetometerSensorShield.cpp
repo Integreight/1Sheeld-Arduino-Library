@@ -44,40 +44,25 @@ float MagnetometerSensorShield::getZ()
 //MagnetometerSensor Data processing 	
 void MagnetometerSensorShield::processData()
 {
-	//Checking Function-ID
-	byte functionId= OneSheeld.getFunctionId();
-	if(functionId==MAGNETOMETER_VALUE)
-	{
-		valueX=0;
-		valueY=0;
-		valueZ=0;
-		//Process X-Axis Value
-		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
-		getfloat.data[1]=OneSheeld.getArgumentData(0)[1];
-		getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
-		getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
-		valueX=getfloat.num;
-
-	    //Process Y-Axis Value
-	    getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
-		getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
-		getfloat.data[2]=OneSheeld.getArgumentData(1)[2];
-		getfloat.data[3]=OneSheeld.getArgumentData(1)[3];
-		valueY=getfloat.num;
-
-	    //Process Z-Axis Value
-	    getfloat.data[0]=OneSheeld.getArgumentData(2)[0];
-		getfloat.data[1]=OneSheeld.getArgumentData(2)[1];
-		getfloat.data[2]=OneSheeld.getArgumentData(2)[2];
-		getfloat.data[3]=OneSheeld.getArgumentData(2)[3];
-		valueZ=getfloat.num;
-
-		//Users Function Invoked
-		if(isCallBackAssigned)
+	byte shieldId=OneSheeld.getShieldId();
+	//Check Function-ID
+	byte functionId=OneSheeld.getFunctionId();
+	
+		if(functionId==MAGNETOMETER_VALUE)
 		{
-			(*changeCallBack)(valueX,valueY,valueZ);
+			//Process X-Axis Value
+			valueX=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(0));
+			//Process Y-Axis Value
+			valueY=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(1));
+			//Process Z-Axis Value
+			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
+			
+			//User Function Invoked
+			if(isCallBackAssigned)
+			{
+				(*changeCallBack)(valueX,valueY,valueZ);
+			}
 		}
-	}
 }
 
 //Users Function Setter 

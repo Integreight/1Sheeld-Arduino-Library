@@ -39,10 +39,10 @@ void loop()
     Camera.setFlash(ON);
     /* Take the picture. */
     Camera.rearCapture();
-    /* Wait for 10000 ms. */
+    /* Wait for 10 seconds. */
     delay(10000);
     /* Post the picture on Facebook. */
-    Facebook.postLastPicture("Posted by 1Sheeld");
+    Twitter.tweetLastPicture("Posted by @1Sheeld");
   }
   else
   {

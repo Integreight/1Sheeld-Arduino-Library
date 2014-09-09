@@ -66,6 +66,8 @@ union FloatUnion{
 	    byte floatBytes[sizeof(float)];
 	  };
 
+
+
 class OneSheeldClass
 {
 
@@ -80,7 +82,8 @@ public:
 	byte getArgumentNo();
 	byte getArgumentLength(byte );
 	byte * getArgumentData(byte );
-	byte *convertFloat(float );
+	byte * convertFloatToBytes(float );
+	float convertBytesToFloat(byte * );
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -114,6 +117,8 @@ private:
 	void begin(long baudRate);
 	void freeMemoryAllocated();
 };
+
+
 //Extern Object
 extern OneSheeldClass OneSheeld;
 #endif
