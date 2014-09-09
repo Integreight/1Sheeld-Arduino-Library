@@ -107,7 +107,6 @@ call	KEYWORD2
 setNumber	KEYWORD2
 videoCall	KEYWORD2
 message	KEYWORD2
-sendDirectMessage	KEYWORD2
 isInRange	KEYWORD2
 getDistance	KEYWORD2
 radian	KEYWORD2
@@ -148,11 +147,12 @@ log	KEYWORD2
 setFileFormat	KEYWORD2
 add	KEYWORD2
 postPicture		KEYWORD2
-postLastPiture	KEYWORD2
+postLastPicture	KEYWORD2
 setOnError		KEYWORD2
 start	KEYWORD2
 getStatus	KEYOWRD2
 getLastCommandLength	KEYWORD2
+tweetLastPicture	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
@@ -170,3 +170,5 @@ SERVER_ERROR	LITERAL1
 SPEECH_TIMEOUT_ERROR	LITERAL1
 NO_MATCH_ERROR	LITERAL1
 RECOGNIZER_BUSY_ERROR	LITERAL1
+FROM_ONESHEELD_FOLDER	LITERAL1
+FROM_CAMERA_FOLDER	LITERAL1
