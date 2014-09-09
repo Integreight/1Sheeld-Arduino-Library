@@ -36,14 +36,14 @@ public:
 	//Send tweet
 	void tweet(const char* );
 	//Send Direct Message
-	void sendMessage(char* ,char* );
+	void sendMessage(const char* ,const char* );
 	//Getters 
 	char * getUserName();
 	char * getTweet();
 	//setOnChange for Users Function
 	void setOnNewTweet(void (*)(char*,char*));
 	//Posting Pictures
-	void tweetLastPicture(char *,byte =0);
+	void tweetLastPicture(const char *,byte =0);
 private:
 	//Reserve Variables
 	char * userName;
