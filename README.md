@@ -18,7 +18,7 @@ Change Log:
 --------- Version 1.2(003) -----------
 - Added four new shields with examples (Data logger, voice recognition, text to speech and terminal)
 - Added methods to post photos to Facebook and Twitter shields
-- Added a mathod to send direct messages from Twitter shield
+- Added a method to send direct messages from Twitter shield
 - Added a way to decrease the size occupied by the library by disabling some shields from compilation
 - Added more printing functions to the LCD shield
 - Fixed a major bug that made the sketches hang after a couple of minutes
