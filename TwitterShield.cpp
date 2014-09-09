@@ -28,14 +28,14 @@ void TwitterShieldClass::tweet(const char *data)
 OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(strlen(data),(byte*)data));
 }
 //Message Sender
-void TwitterShieldClass::sendMessage(char* username,char* message)
+void TwitterShieldClass::sendMessage(const char* username,const char* message)
 {
 
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
 
 }
 
-void TwitterShieldClass::tweetLastPicture(char * pictureText , byte imageSource)
+void TwitterShieldClass::tweetLastPicture(const char * pictureText , byte imageSource)
 {
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
 }
