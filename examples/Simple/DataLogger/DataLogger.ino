@@ -56,7 +56,7 @@ void loop()
     /* Increment counter. */
     counter++;
     /* Once the half day ends stop logging and generate the file(12 hours=12*60*60 seconds ). */
-    if(counter==12*60*60)
+    if(counter==20)
     {
       /* Stop logging. */
       Logger.stop();
