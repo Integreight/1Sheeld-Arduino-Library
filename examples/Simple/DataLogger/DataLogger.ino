@@ -27,8 +27,6 @@ void setup()
   Logger.stop();
   /* Set buttonPin as input. */
   pinMode(buttonPin,INPUT);
-  pinMode(13,OUTPUT);
-  digitalWrite(13,HIGH);
 }
 
 void loop()
@@ -40,7 +38,7 @@ void loop()
     /* Set a Delay. */
     delay(500);
     /* Start Logging. */
-    Logger.start();
+    Logger.start("Mic values");
     /* Set startFlag. */
     startFlag = true;
     
@@ -57,15 +55,18 @@ void loop()
     delay(1000);
     /* Increment counter. */
     counter++;
-
+    Terminal.println(counter);
+    /* Once the half day ends stop logging and generate the file(12 hours=12*60*60 seconds ). */
+    if(counter==12*60*60)
+    {
+      Terminal.println("Stopped");
+      /* Stop logging. */
+      Logger.stop();
+      /* Reset counter. */
+      counter=0;
+      /* Start Logging again. */
+      Logger.start("Mic values");
+    }
   }
   
-  /* Once the half day ends stop logging and generate the file(12 hours=12*60*60 seconds ). */
-  if(counter==12*60*60)
-  {
-    /* Stop logging. */
-    Logger.stop();
-    /* Reset counter. */
-    counter=0;
-  }
 }
