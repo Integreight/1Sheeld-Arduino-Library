@@ -55,11 +55,9 @@ void loop()
     delay(1000);
     /* Increment counter. */
     counter++;
-    Terminal.println(counter);
     /* Once the half day ends stop logging and generate the file(12 hours=12*60*60 seconds ). */
     if(counter==12*60*60)
     {
-      Terminal.println("Stopped");
       /* Stop logging. */
       Logger.stop();
       /* Reset counter. */
