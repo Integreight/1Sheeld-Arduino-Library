@@ -30,7 +30,7 @@ public:
 	void println(long,byte = DEC);
 	void println(unsigned long,byte =DEC);
 	void println(char *);
-	
+	//Unsupported by Intel Galileo board and Arduino Due
 	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
 	void println(double , int = 3);
     #endif

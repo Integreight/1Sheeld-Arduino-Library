@@ -99,6 +99,5 @@ void VoiceRecognitionShield::setOnError(void (*userFunction)(byte error))
 	errorCallBack=userFunction;
 	errorAssigned=true;
 }
-
-
+//Instantiating object 
 VoiceRecognitionShield VoiceRecognition;

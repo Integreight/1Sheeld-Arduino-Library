@@ -16,10 +16,11 @@
 #include "OneSheeld.h"
 #include "OneSheeldPrintln.h"
 
-
+//Constructor
 PrintlnClass::PrintlnClass(byte shid,byte writefnid, byte printfnid):PrintClass(shid,writefnid,printfnid)
 {
 }
+//Print newline 
 void PrintlnClass::println()
 {
 	char buffer[3];
@@ -29,6 +30,7 @@ void PrintlnClass::println()
 
 	print(buffer);
 }
+//Print character with newline
 void PrintlnClass::println(char data)
 {
 	char buffer[4];
@@ -39,7 +41,7 @@ void PrintlnClass::println(char data)
 	
 	print(buffer);
 }
-
+//Print integers with newline 
 void PrintlnClass::println(int data ,byte base)
 {
 	char stringPointer[9];
@@ -48,7 +50,7 @@ void PrintlnClass::println(int data ,byte base)
 	
 	print(stringPointer);
 }
-
+//Print unsigned integers with newline
 void PrintlnClass::println(unsigned int data , byte base)
 {
 	char stringPointer[8];
@@ -57,6 +59,7 @@ void PrintlnClass::println(unsigned int data , byte base)
 	
 	print(stringPointer);
 }
+//Print long with newline
 void PrintlnClass::println(long data ,byte base)
 {
 	char stringPointer[14];
@@ -65,7 +68,7 @@ void PrintlnClass::println(long data ,byte base)
 	
 	print(stringPointer);
 }
-
+//Print unsigned long with newline
 void PrintlnClass::println(unsigned long data , byte base)
 {
 	char stringPointer[13];
@@ -74,7 +77,7 @@ void PrintlnClass::println(unsigned long data , byte base)
 	
 	print(stringPointer);
 }
-
+//Print string with newline
 void PrintlnClass::println(char * stringData)
 {
 	char stringNewLine[strlen(stringData)+2];
@@ -84,8 +87,8 @@ void PrintlnClass::println(char * stringData)
 
 	print(stringNewLine);
 }
-
-	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
+//Unsupported by Intel Galileo board and Arduino Due
+#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
 void PrintlnClass::println(double data, int precesion)
 {
 	int i=0;
