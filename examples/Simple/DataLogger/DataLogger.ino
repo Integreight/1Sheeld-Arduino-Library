@@ -5,7 +5,7 @@ Data-Logger Shield Example
 This example shows an application on 1Sheeld's data logger shield.
 
 By using this example, you can check the variation of the room's temperature 
-at your place by logging the data for 12 hours.
+at your place by logging each 20 successive readings in separate files.
 
 */
 
@@ -23,7 +23,7 @@ void setup()
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* Start logger shield. */
+  /* Save any previous logged values. */
   Logger.stop();
   /* Set buttonPin as input. */
   pinMode(buttonPin,INPUT);
@@ -31,34 +31,33 @@ void setup()
 
 void loop()
 {
-  if(digitalRead(buttonPin)== HIGH)
+  if(digitalRead(buttonPin) == HIGH)
   {
-    /* First insure to stop last logged data. */
+    /* First insure to save previous logged values. */
     Logger.stop();
-    /* Set a Delay. */
+    /* Set a delay. */
     delay(500);
-    /* Start Logging. */
+    /* Start logging in a new file. */
     Logger.start("Mic values");
     /* Set startFlag. */
     startFlag = true;
-    
   }
 
-  /* Check Logging started. */
+  /* Check logging started. */
   if(startFlag)
   {
     /* Add temperature values as a column in the file. */
     Logger.add("Decibles",Mic.getValue());
     /* Log the row in the file. */
     Logger.log();  
-    /* Delay 1000 msec. */
+    /* Delay for 1 second. */
     delay(1000);
     /* Increment counter. */
     counter++;
-    /* Once the half day ends stop logging and generate the file(12 hours=12*60*60 seconds ). */
+    /* Stop logging after 20 readings and save the file. */
     if(counter==20)
     {
-      /* Stop logging. */
+      /* Save the logging file. */
       Logger.stop();
       /* Reset counter. */
       counter=0;
