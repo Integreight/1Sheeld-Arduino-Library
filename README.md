@@ -16,6 +16,7 @@ If you want to contribute, please discuss you proposed feature on our forum firs
 Change Log:
 
 --------- Version 1.2(003) -----------
+
 - Added four new shields with examples (Data logger, voice recognition, text to speech and terminal)
 - Added methods to post photos to Facebook and Twitter shields
 - Added a method to send direct messages from Twitter shield
