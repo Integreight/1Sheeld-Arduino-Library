@@ -4,15 +4,15 @@ Data-Logger Shield Example
 
 This example shows an application on 1Sheeld's data logger shield.
 
-By using this example, you can check the variation of the room's temperature 
-at your place by logging each 20 successive readings in separate files.
+By using this example, you can check the variation of noise level using 
+Mic shield by logging each 20 successive readings in separate files.
 
 */
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Variable for the hours. */
+/* Reserve a counter. */
 int counter = 0;
 /* Button on pin 12. */
 int buttonPin = 12;
@@ -31,6 +31,7 @@ void setup()
 
 void loop()
 {
+  /* Check if button pressed. */
   if(digitalRead(buttonPin) == HIGH)
   {
     /* First insure to save previous logged values. */
@@ -46,7 +47,7 @@ void loop()
   /* Check logging started. */
   if(startFlag)
   {
-    /* Add temperature values as a column in the file. */
+    /* Add noise level values as a column in the file. */
     Logger.add("Decibles",Mic.getValue());
     /* Log the row in the file. */
     Logger.log();  
