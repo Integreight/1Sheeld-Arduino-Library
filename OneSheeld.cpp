@@ -165,7 +165,7 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 //Incomming Frames processing 
 void OneSheeldClass::processInput()
 {
-  while(OneSheeld.OneSheeldSerial.available()){
+  while(OneSheeldSerial.available()){
     int data=OneSheeldSerial.read();
     if(data==-1)return;
      if(!framestart&&data==START_OF_FRAME)
