@@ -5,7 +5,7 @@ Data-Logger Shield Example
 This example shows an application on 1Sheeld's data logger shield.
 
 By using this example, you can check the variation of noise level using 
-Mic shield by logging each 20 successive readings in separate files.
+Mic shield by logging each 20 successive readings in separate CSV files.
 
 */
 
@@ -38,7 +38,7 @@ void loop()
     Logger.stop();
     /* Set a delay. */
     delay(500);
-    /* Start logging in a new file. */
+    /* Start logging in a new CSV file. */
     Logger.start("Mic values");
     /* Set startFlag. */
     startFlag = true;
@@ -47,7 +47,7 @@ void loop()
   /* Check logging started. */
   if(startFlag)
   {
-    /* Add noise level values as a column in the file. */
+    /* Add noise level values as a column in the CSV file. */
     Logger.add("Decibles",Mic.getValue());
     /* Log the row in the file. */
     Logger.log();  
@@ -55,10 +55,10 @@ void loop()
     delay(1000);
     /* Increment counter. */
     counter++;
-    /* Stop logging after 20 readings and save the file. */
+    /* Stop logging after 20 readings and save the CSV file. */
     if(counter==20)
     {
-      /* Save the logging file. */
+      /* Save the logging CSV file. */
       Logger.stop();
       /* Reset counter. */
       counter=0;
