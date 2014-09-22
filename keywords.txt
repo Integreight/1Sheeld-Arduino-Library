@@ -44,6 +44,7 @@ TextToSpeech	KEYWORD3
 VoiceRecognition	KEYWORD3
 Logger	KEYWORD3
 Terminal	KEYWORD3
+Color	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -153,6 +154,11 @@ start	KEYWORD2
 getStatus	KEYOWRD2
 getLastCommandLength	KEYWORD2
 tweetLastPicture	KEYWORD2
+getColor	KEYWORD2
+getRedComponent	KEYWORD2
+getBlueComponent	KEYWORD2
+getGreenComponent	KEYWORD2
+setOnColorChange	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

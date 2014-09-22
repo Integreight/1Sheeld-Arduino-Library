@@ -122,3 +122,6 @@
 #ifdef TERMINAL_SHIELD
 #include "TerminalShield.h"
 #endif
+#ifdef COLOR_SHIELD
+#include "ColorShield.h"
+#endif

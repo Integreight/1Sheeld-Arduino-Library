@@ -41,6 +41,7 @@ byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,TWITTER_ID
 ,VOICE_RECOGNITION_ID,
 TERMINAL_ID,
+COLOR_ID,
 };
 
 
@@ -286,7 +287,7 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<26;i++) {
+                  for (int i=0;i<27;i++) {
                     if (shield == inputShieldsList[i]){
                       found = true;
                       
@@ -415,6 +416,9 @@ void OneSheeldClass::sendToShields()
     #endif
     #ifdef TERMINAL_SHIELD
     case TERMINAL_ID             : Terminal.processData();break;
+    #endif
+    #ifdef COLOR_SHIELD
+    case COLOR_ID                : Color.processData();break;
     #endif
   }
 }
