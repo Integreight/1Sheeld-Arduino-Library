@@ -43,6 +43,8 @@ private:
 	int redComponent;
 	int blueComponent;
 	int greenComponent;
+	bool isCallBackAssigned;
+	long colorValue;
 	//Process Input data
 	void processData();
 	void (*changeCallBack)(long);

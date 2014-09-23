@@ -23,12 +23,14 @@ ColorShield::ColorShield()
 	redComponent=-1;
 	blueComponent=-1;
 	greenComponent=-1;
+	colorValue=-1;
+	isCallBackAssigned=false;
 }
 
 //Get color value
 long ColorShield::getColor()
 {
-	long colorValue=-1;
+	
 	if(redComponent==-1 || blueComponent==-1 || greenComponent==-1)
 	{
 		return colorValue;
@@ -72,7 +74,7 @@ void ColorShield::processData()
 		//User Function Invoked
 			if(isCallBackAssigned)
 			{
-				(*changeCallBack)(color);
+				(*changeCallBack)(colorValue);
 			}
 	} 
 }
