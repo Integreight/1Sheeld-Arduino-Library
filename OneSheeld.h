@@ -34,7 +34,8 @@ typedef unsigned char byte;
 #define LIBRARY_VERSION 3
 //Time between sending Frames
 #define TIME_GAP		200UL
-
+//Maximum number of remote connections
+#define MAX_REMOTE_CONNECTIONS 10
 //#define DEBUG
 
 
@@ -84,6 +85,7 @@ public:
 	byte * getArgumentData(byte );
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
+	void listenToRemoteOneSheeld(RemoteOneSheeld *);
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -112,10 +114,14 @@ private:
 	byte endFrame;
 	unsigned long lastTimeFrameSent;
 	bool isFirstFrame;
+	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
+	int remoteOneSheeldsCounter;
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
+
+
 };
 
 

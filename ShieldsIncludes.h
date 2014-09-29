@@ -125,3 +125,6 @@
 #ifdef COLOR_SHIELD
 #include "ColorShield.h"
 #endif
+#ifdef REMOTE_SHIELD
+#include "RemoteOneSheeld.h"
+#endif

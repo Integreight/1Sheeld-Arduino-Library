@@ -42,6 +42,7 @@ byte inputShieldsList[]={KEYPAD_SHIELD_ID
 ,VOICE_RECOGNITION_ID,
 TERMINAL_ID,
 COLOR_ID,
+REMOTE_SHEELD_ID,
 };
 
 
@@ -61,6 +62,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
       numberOfDataMalloced=0;
+      remoteOneSheeldsCounter=0;
 }
 
 //Library Starter
@@ -287,7 +289,7 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<27;i++) {
+                  for (int i=0;i<28;i++) {
                     if (shield == inputShieldsList[i]){
                       found = true;
                       
@@ -341,6 +343,11 @@ void OneSheeldClass::freeMemoryAllocated(){
           isArgumentLengthMalloced=false;
         }
 }
+void OneSheeldClass::listenToRemoteOneSheeld(RemoteOneSheeld * oneSheeld)
+{
+  if(remoteOneSheeldsCounter<MAX_REMOTE_CONNECTIONS)
+  listOfRemoteOneSheelds[remoteOneSheeldsCounter++]=oneSheeld;
+} 
 //Data Sender to Input Shields
 void OneSheeldClass::sendToShields()
 {
@@ -420,6 +427,13 @@ void OneSheeldClass::sendToShields()
     #ifdef COLOR_SHIELD
     case COLOR_ID                : Color.processData();break;
     #endif
+    #ifdef REMOTE_SHIELD
+    case REMOTE_SHEELD_ID        :{
+                                      for(int i=0;i<remoteOneSheeldsCounter;i++)
+                                        listOfRemoteOneSheelds[i]->processData();
+                                        break;
+              }
+    #endif
   }
 }
 
@@ -432,7 +446,7 @@ unsigned char OneSheeldClass::analogRead(int pin)
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
 }
- 
+
 //Instantiating Object
 #if defined(__AVR_ATmega32U4__) || defined(ARDUINO_LINUX)
 OneSheeldClass OneSheeld(Serial1);
