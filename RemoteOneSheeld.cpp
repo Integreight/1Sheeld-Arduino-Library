@@ -321,7 +321,7 @@ void RemoteOneSheeld::processData()
 		byte pinNo;
 		bool pinValue;
 
-		for (int i=1 ; i <argumentNo-1;i++)
+		for (int i=1 ; i <argumentNo;i++)
 		{
 			pinData = OneSheeld.getArgumentData(i)[0];
 			pinNo = pinData & 0x7F;
