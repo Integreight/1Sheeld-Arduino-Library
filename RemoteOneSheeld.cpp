@@ -8,7 +8,6 @@
 
 RemoteOneSheeld::RemoteOneSheeld(const char * address):remoteOneSheeldAddress(address)
 {
-	isCallBackAssigned=false;
 	isFloatMessageAssigned=false;
 	isStringMessageAssigned=false;
 	isSubscribeAssigned=false;
@@ -61,14 +60,12 @@ void RemoteOneSheeld::analogWrite(byte pinNumber,int pinValue)
 	}
 }
 
-void RemoteOneSheeld::digitalRead(byte pinNumber , void (* userFunction)(byte incommingPinNumber,bool incommingPinValue))
+void RemoteOneSheeld::digitalRead(byte pinNumber)
 {
 	OneSheeld.sendPacket(REMOTE_SHEELD_ID,0,REMOTEONESHEELD_READ,2,
 						new FunctionArg(strlen(remoteOneSheeldAddress),(byte*)remoteOneSheeldAddress),
 						new FunctionArg(1,&pinNumber));
 
-	changeDigitalCallBack=userFunction;
-	isCallBackAssigned=true;
 }
 
 void RemoteOneSheeld::sendMessage(const char * key , float value)
@@ -99,9 +96,9 @@ void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(char* key, char* s
 	isStringMessageAssigned = true;
 }
 
-void RemoteOneSheeld::setOnSubscribeChange(void (* userFunction)(byte incommingPinNumber,bool incommingPinValue))
+void RemoteOneSheeld::setOnSubscribeOrDigitalChange(void (* userFunction)(byte incommingPinNumber,bool incommingPinValue))
 {
-	changeSubscribeCallBack=userFunction;
+	changeSubscribeOrDigitalCallBack=userFunction;
 	isSubscribeAssigned=true;
 }
 
@@ -241,20 +238,21 @@ void RemoteOneSheeld::processData()
 
 	byte functionId = OneSheeld.getFunctionId();
 
-	if(functionId == DIGITAL_READ_VALUE)
+	if(functionId == DIGITAL_SUBSCRIBE_VALUE)
 	{
-		byte inputPinNumber;
-		byte inputPinValue;
+		int argumentNo = OneSheeld.getArgumentNo();
+		byte pinData;
+		byte pinNo;
+		bool pinValue;
 
-		inputPinNumber = OneSheeld.getArgumentData(1)[0];
-
-		inputPinValue = OneSheeld.getArgumentData(2)[0];
-
-		if(isCallBackAssigned)
+		for (int i=1 ; i <argumentNo;i++)
 		{
-			(*changeDigitalCallBack)(inputPinNumber,!!(inputPinValue));
-		}
+			pinData = OneSheeld.getArgumentData(i)[0];
+			pinNo = pinData & 0x7F;
+			pinValue = !!(pinData >> 7);
 
+			(*changeSubscribeOrDigitalCallBack)(pinNo,pinValue);
+		}
 	}
 	else if(functionId == READ_MESSAGE_FLOAT)
 	{
@@ -313,22 +311,6 @@ void RemoteOneSheeld::processData()
 			(*changeStringCallBack)(stringKey,incommingStringData);
 		}
 
-	}
-	else if(functionId == SUBSCRIBE_VALUE)
-	{
-		int argumentNo = OneSheeld.getArgumentNo();
-		byte pinData;
-		byte pinNo;
-		bool pinValue;
-
-		for (int i=1 ; i <argumentNo;i++)
-		{
-			pinData = OneSheeld.getArgumentData(i)[0];
-			pinNo = pinData & 0x7F;
-			pinValue = !!(pinData >> 7);
-
-			(*changeSubscribeCallBack)(pinNo,pinValue);
-		}
 	}
 }
 

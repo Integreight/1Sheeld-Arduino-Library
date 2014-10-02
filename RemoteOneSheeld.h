@@ -12,10 +12,10 @@
 #define REMOTEONESHEELD_UNSUBSCRIBE 0x08
 
 //Input function ID's
-#define DIGITAL_READ_VALUE 0x01
+#define DIGITAL_SUBSCRIBE_VALUE	 0x01
 #define READ_MESSAGE_FLOAT 0x02
 #define READ_MESSAGE_STRING 0x03
-#define SUBSCRIBE_VALUE	 	0x04
+
 
 class RemoteOneSheeld
 {
@@ -24,13 +24,13 @@ public:
 	RemoteOneSheeld(const char*);
 	void pinMode(byte ,byte);
 	void digitalWrite(byte ,byte);
-	void digitalRead(byte ,void (*)(byte , bool));
+	void digitalRead(byte);
 	void analogWrite(byte ,int);
 	void sendMessage(const char* ,float);
 	void sendMessage(const char* ,const char*);
 	void setOnFloatMessage(void (*)(char*,float));
 	void setOnStringMessage(void(*)(char* , char*));
-	void setOnSubscribeChange(void (*)(byte , bool));
+	void setOnSubscribeOrDigitalChange(void (*)(byte , bool));
 
 	void subscribeToChanges(byte);
 	void subscribeToChanges(byte ,byte);
@@ -46,7 +46,6 @@ public:
 
 private:
 	const char * remoteOneSheeldAddress;
-	bool isCallBackAssigned;
 	bool isFloatMessageAssigned;
 	bool isStringMessageAssigned;
 	bool isSubscribeAssigned;
@@ -58,10 +57,9 @@ private:
 	float incommingFloatValue;
 
 	void processData();
-	void (*changeDigitalCallBack)(byte , bool);
 	void (*changeFloatCallBack)(char*, float);
 	void (*changeStringCallBack)(char*, char*);
-	void (*changeSubscribeCallBack)(byte ,bool);
+	void (*changeSubscribeOrDigitalCallBack)(byte ,bool);
 	byte checkAnalogPinNumbers(byte);
 
 };
