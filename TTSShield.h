@@ -24,6 +24,7 @@
   public:
     //Process
   	void say(const char *);
+    void say(String );
 
   private:
 

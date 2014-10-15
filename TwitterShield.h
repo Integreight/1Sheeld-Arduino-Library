@@ -35,8 +35,10 @@ public:
 	TwitterShieldClass();
 	//Send tweet
 	void tweet(const char* );
+	void tweet(String );
 	//Send Direct Message
 	void sendMessage(const char* ,const char* );
+	void sendMessage(String , String);
 	//Getters 
 	char * getUserName();
 	char * getTweet();
@@ -44,6 +46,7 @@ public:
 	void setOnNewTweet(void (*)(char*,char*));
 	//Posting Pictures
 	void tweetLastPicture(const char *,byte =0);
+	void tweetLastPicture(String , byte =0);
 private:
 	//Reserve Variables
 	char * userName;

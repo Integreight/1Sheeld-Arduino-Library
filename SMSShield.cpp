@@ -25,10 +25,46 @@
   }
 //SMS Sender
 void SMSShieldClass::send(const char* number,const char* text)
-  {
+{
 	OneSheeld.sendPacket(SMS_ID,0,SMS_SEND,2,new FunctionArg(strlen(number),(byte*)number),new FunctionArg(strlen(text),(byte*)text));
-  }
-  //Number Getter
+}
+//Support string for Arduino 
+#if !defined(ARDUINO_LINUX)
+void SMSShieldClass::send(String number ,String text)
+{
+	const char * cTypeNumber = number.c_str();
+	const char * cTypeText = text.c_str();
+
+	send(cTypeNumber,cTypeText);
+}
+#endif
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void SMSShieldClass::send(String number,String text)
+{
+	int numberLength = number.length();
+	int textLength = text.length();
+
+	char cTypeNumber[numberLength+1];
+	char cTypeText[textLength+1];
+
+	for (int i = 0; i < numberLength; i++)
+	{
+		cTypeNumber[i]=number[i];
+	}
+	cTypeNumber[numberLength]='\0';
+
+	for (int j = 0; j <textLength; j++)
+	{
+		cTypeText[j]=text[j];
+	}
+	cTypeText[textLength]='\0';
+
+	send(cTypeNumber,cTypeText);
+}
+#endif
+
+//Number Getter
 char * SMSShieldClass::getNumber()
 {
 	return number;
@@ -77,7 +113,7 @@ void SMSShieldClass::processData()
 	}
 }
 //Users Function Setter
-void SMSShieldClass::setOnSmsReceive(void (*userFunction)(const char * number ,const char * text))
+void SMSShieldClass::setOnSmsReceive(void (*userFunction)(char * number ,char * text))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

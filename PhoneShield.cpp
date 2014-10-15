@@ -28,6 +28,34 @@ void PhoneShieldClass::call(const char* phone)
 {
 	OneSheeld.sendPacket(PHONE_ID,0,PHONE_CALL,1,new FunctionArg(strlen(phone),(byte *)phone));
 }
+
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void PhoneShieldClass::call(String phone)
+{
+	const char * cTypePhone = phone.c_str();
+
+	call(cTypePhone);
+}
+#endif
+
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void PhoneShieldClass::call(String phone)
+{
+	int phoneLength = phone.length();
+
+	char cTypePhone[phoneLength+1];
+
+	for(int i=0; i<phoneLength ;i++)
+	{
+		cTypePhone[i]=phone[i];
+	}
+	cTypePhone[phoneLength]='\0';
+
+	call(cTypePhone);
+}
+#endif
 //Ringing Checker 
 bool PhoneShieldClass::isRinging()
 {
@@ -77,7 +105,7 @@ void PhoneShieldClass::processData()
 }
 
 //Users Function Setter
-void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,const char * phoneNumber))
+void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,char * phoneNumber))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

@@ -31,12 +31,13 @@ public:
 	PhoneShieldClass();
 	//Setter
 	void call(const char* );
+	void call(String);
 	//Checker
 	bool isRinging();
 	//Getter
 	char * getNumber();
 	//setOnChange for Users Function
-	void setOnCallStatusChange(void (*)(bool ,const char *));
+	void setOnCallStatusChange(void (*)(bool ,char *));
 private:
 	//Reserve Variable
 	byte value ;
@@ -45,7 +46,7 @@ private:
 	bool isCallBackAssigned;
 	//Process Input Data 
 	void processData();
-	void (*changeCallBack)(bool ,const char *);
+	void (*changeCallBack)(bool ,char *);
 	
 	friend class OneSheeldClass ;
 };

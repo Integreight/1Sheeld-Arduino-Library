@@ -25,8 +25,36 @@ TwitterShieldClass::TwitterShieldClass()
 //Tweet Sender
 void TwitterShieldClass::tweet(const char *data)
 {
-OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(strlen(data),(byte*)data));
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(strlen(data),(byte*)data));
 }
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void TwitterShieldClass::tweet(String data)
+{
+	const char * cTypeData = data.c_str();
+
+	tweet(cTypeData);
+}
+#endif
+
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void TwitterShieldClass::tweet(String data)
+{
+	int dataLength = data.length();
+
+	char cTypeData[dataLength+1];
+
+	for (int i = 0; i <dataLength; i++)
+	{
+		cTypeData[i]=data[i];
+	}
+	cTypeData[dataLength]='\0';
+
+	tweet(cTypeData);
+}
+#endif 
+
 //Message Sender
 void TwitterShieldClass::sendMessage(const char* username,const char* message)
 {
@@ -35,10 +63,75 @@ void TwitterShieldClass::sendMessage(const char* username,const char* message)
 
 }
 
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void TwitterShieldClass::sendMessage(String username, String message)
+{
+	const char * cTypeUsername = username.c_str();
+	const char * cTypeMessage = message.c_str();
+
+	sendMessage(cTypeUsername,cTypeMessage);
+}
+#endif
+
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void TwitterShieldClass::sendMessage(String username , String message)
+{
+	int usernameLength = username.length();
+	int messageLength = message.length();
+
+	char cTypeUsername[usernameLength+1];
+	char cTypeMessage[messageLength+1];
+
+	for (int i = 0; i <usernameLength; i++)
+	{
+		cTypeUsername[i]=username[i];
+	}
+	cTypeUsername[usernameLength]='\0';
+
+	for (int j = 0; j <messageLength; j++)
+	{
+		cTypeMessage[j]=message[j];
+	}
+	cTypeMessage[messageLength]='\0';
+
+	sendMessage(cTypeUsername,cTypeMessage);
+}
+#endif
+
 void TwitterShieldClass::tweetLastPicture(const char * pictureText , byte imageSource)
 {
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
 }
+
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void TwitterShieldClass::tweetLastPicture(String pictureText , byte imageSource)
+{
+	const char * cTypePictureText = pictureText.c_str();
+
+	tweetLastPicture(cTypePictureText,imageSource);
+}
+#endif
+
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void TwitterShieldClass::tweetLastPicture(String pictureText ,byte imageSource)
+{
+	int pictureTextLength = pictureText.length();
+
+	char cTypePictureText[pictureTextLength+1];
+
+	for (int i = 0; i <pictureTextLength; i++)
+	{
+		cTypePictureText[i]=pictureText[i];
+	}
+	cTypePictureText[pictureTextLength]='\0';
+
+	tweetLastPicture(cTypePictureText,imageSource);
+}
+#endif 
 //UserName Getter
 char * TwitterShieldClass::getUserName()
 {

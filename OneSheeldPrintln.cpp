@@ -87,6 +87,25 @@ void PrintlnClass::println(char * stringData)
 
 	print(stringNewLine);
 }
+
+//Support strings
+void PrintlnClass::println(String stringData)
+{
+	int stringDataLength = stringData.length();
+
+	char cTypeStringData[stringDataLength+3];
+
+	for(int i=0 ;i<stringDataLength ;i++)
+	{
+		cTypeStringData[i]=stringData[i];
+	}
+	cTypeStringData[stringDataLength]='\r';
+	cTypeStringData[stringDataLength+1]='\n';
+	cTypeStringData[stringDataLength+2]='\0';
+
+	print(cTypeStringData);
+}
+
 //Unsupported by Intel Galileo board and Arduino Due
 #if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
 void PrintlnClass::println(double data, int precesion)

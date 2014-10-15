@@ -32,6 +32,7 @@ public:
 	void print(long,byte = DEC);
 	void print(unsigned long,byte =DEC);
 	void print(const char *);
+	void print(String );
 	//Unsupported by Intel Galileo board and Arduino Due
 	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)
 	void print(double ,int = 3 );

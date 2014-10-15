@@ -33,7 +33,9 @@ public:
 	void stop();
 	//Process 
 	void add(const char * , float);
+	void add(String , float);
 	void add(const char * ,const char*);
+	void add(String , String);
 	//Save data
 	void log();
 private:
