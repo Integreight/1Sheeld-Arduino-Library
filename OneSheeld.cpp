@@ -431,8 +431,8 @@ void OneSheeldClass::sendToShields()
     case REMOTE_SHEELD_ID        :{
                                       for(int i=0;i<remoteOneSheeldsCounter;i++)
                                         listOfRemoteOneSheelds[i]->processData();
-                                        break;
               }
+              break;
     #endif
   }
 }
