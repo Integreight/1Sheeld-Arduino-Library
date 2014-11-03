@@ -27,6 +27,8 @@ typedef unsigned char byte;
 
 #define ONE_SECOND 1000
 
+#define ONESHEELD_BEGIN 0x01
+
 //Start and End of packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
@@ -75,6 +77,8 @@ class OneSheeldClass
 public:
     
 	OneSheeldClass(Stream &s);
+	//Blocking function
+	void waitForConnection();
 	//Getters 
 	byte getShieldId();
 	byte getInstanceId();
@@ -98,6 +102,7 @@ private:
 	FloatUnion convertFloatUnion;
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
+	bool isOneSheeldConnected;
 	byte numberOfDataMalloced;
 	byte shield;
 	byte instance;

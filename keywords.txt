@@ -159,6 +159,7 @@ getRedComponent	KEYWORD2
 getBlueComponent	KEYWORD2
 getGreenComponent	KEYWORD2
 setOnColorChange	KEYWORD2
+waitForConnection	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
