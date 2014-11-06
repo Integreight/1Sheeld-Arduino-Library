@@ -428,14 +428,67 @@ void OneSheeldClass::sendToShields()
     case COLOR_ID                : Color.processData();break;
     #endif
     #ifdef REMOTE_SHIELD
-    case REMOTE_SHEELD_ID        :{
-                                      for(int i=0;i<remoteOneSheeldsCounter;i++)
-                                        listOfRemoteOneSheelds[i]->processData();
-              }
-              break;
+    case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
+                                    listOfRemoteOneSheelds[i]->processData();
+                                    processRemoteData();
+                                    break;
     #endif
   }
 }
+#ifdef REMOTE_SHIELD
+void OneSheeldClass::setOnFloatMessage(void (*userFunction)(char * address, char * key, float value))
+{
+  changeFloatCallBack = userFunction;
+  isSetOnFloatMessageInvoked = true;
+}
+
+void OneSheeldClass::setOnStringMessage(void (*userFunction)(char * address, char * key, char * value))
+{
+  changeStringCallBack = userFunction;
+  isSetOnStringMessageInvoked = true;
+}
+
+void OneSheeldClass::processRemoteData()
+{
+  byte functionId = getFunctionId();
+
+  if(functionId == READ_MESSAGE_FLOAT && isSetOnFloatMessageInvoked)
+  {
+    char remoteAddress[37];
+    memcpy(remoteAddress,getArgumentData(0),36);
+    remoteAddress[36]='\0';  // processed the remote address 
+
+    int keyLength = getArgumentLength(1);
+    char key[keyLength+1];
+    memcpy(key,getArgumentData(1),keyLength);
+    key[keyLength]='\0';
+
+    float incomingValue = convertBytesToFloat(getArgumentData(2));
+
+    (*changeFloatCallBack)(remoteAddress,key,incomingValue);
+
+  }
+  else if(functionId == READ_MESSAGE_STRING && isSetOnStringMessageInvoked)
+  {
+    char remoteAddress[37];
+    memcpy(remoteAddress,getArgumentData(0),36);
+    remoteAddress[36]='\0';  // processed the remote address 
+
+    int keyLength = getArgumentLength(1);
+    char key[keyLength+1];
+    memcpy(key,getArgumentData(1),keyLength);
+    key[keyLength]='\0';
+    
+    int stringDataLength = getArgumentLength(2);
+    char stringData[stringDataLength+2];
+    memcpy(stringData,getArgumentData(2),stringDataLength);
+    stringData[stringDataLength]='\0';
+
+    (*changeStringCallBack)(remoteAddress,key,stringData);
+
+  }
+}
+#endif
 
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)

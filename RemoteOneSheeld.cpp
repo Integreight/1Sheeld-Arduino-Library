@@ -254,62 +254,31 @@ void RemoteOneSheeld::processData()
 			(*changeSubscribeOrDigitalCallBack)(pinNo,pinValue);
 		}
 	}
-	else if(functionId == READ_MESSAGE_FLOAT)
+	else if(functionId == READ_MESSAGE_FLOAT && isFloatMessageAssigned)
 	{
-		if(floatKey!=0)
-		{
-			free(floatKey);
-		}
+    	int floatKeyLength = OneSheeld.getArgumentLength(1);
+    	char floatKey[floatKeyLength+1];
+    	memcpy(floatKey,OneSheeld.getArgumentData(1),floatKeyLength);
+    	floatKey[floatKeyLength]='\0';
 
-		int floatKeyLength=OneSheeld.getArgumentLength(1);
-		floatKey = (char*)malloc(sizeof(char)*(floatKeyLength+1));
-		for (int j=0; j<floatKeyLength; j++)
-		{
-			floatKey[j]=OneSheeld.getArgumentData(1)[j];
-		}
-		floatKey[floatKeyLength]='\0';
+    	float incommingFloatValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 
-		incommingFloatValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
-
-		if(isFloatMessageAssigned)
-		{
-			(*changeFloatCallBack)(floatKey,incommingFloatValue);
-		}
+		(*changeFloatCallBack)(floatKey,incommingFloatValue);
 
 	}
-	else if(functionId == READ_MESSAGE_STRING)
+	else if(functionId == READ_MESSAGE_STRING && isStringMessageAssigned)
 	{
-		if(stringKey!=0)
-		{
-			free(stringKey);
-		}
+		int stringKeyLength = OneSheeld.getArgumentLength(1);
+    	char stringKey[stringKeyLength+1];
+    	memcpy(stringKey,OneSheeld.getArgumentData(1),stringKeyLength);
+    	stringKey[stringKeyLength]='\0';
 
-		if(incommingStringData!=0)
-		{
-			free(incommingStringData);
-		}
+    	int stringDataLength=OneSheeld.getArgumentLength(2);
+    	char incommingStringData[stringDataLength+1];
+    	memcpy(incommingStringData,OneSheeld.getArgumentData(2),stringDataLength);
+   	 	incommingStringData[stringDataLength]='\0';
 
-		int stringKeyLength=OneSheeld.getArgumentLength(1);
-		stringKey = (char*)malloc(sizeof(char)*(stringKeyLength+1));
-		for (int j=0; j<stringKeyLength; j++)
-		{
-			stringKey[j]=OneSheeld.getArgumentData(1)[j];
-		}
-		stringKey[stringKeyLength]='\0';
-
-		int stringDataLength=OneSheeld.getArgumentLength(2);
-		incommingStringData = (char*)malloc(sizeof(char)*(stringDataLength+1));
-		for (int i=0; i<stringDataLength; i++)
-		{
-			incommingStringData[i]=OneSheeld.getArgumentData(2)[i];
-		}
-		incommingStringData[stringDataLength]='\0';
-
-
-		if(isStringMessageAssigned)
-		{
-			(*changeStringCallBack)(stringKey,incommingStringData);
-		}
+		(*changeStringCallBack)(stringKey,incommingStringData);
 
 	}
 }

@@ -94,6 +94,10 @@ public:
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
+	//Remote OneSheeld fucntions
+	void processRemoteData();
+	void setOnFloatMessage(void (*)(char * ,char * ,float));
+	void setOnStringMessage(void (*)(char * ,char * ,char *));
 	Stream & OneSheeldSerial;
 private:
 	//Reserve Variables
@@ -120,6 +124,12 @@ private:
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
+	//Remote OneSheeld fnuctions
+	bool isSetOnFloatMessageInvoked;
+	bool isSetOnStringMessageInvoked;
+
+	void (*changeFloatCallBack)(char*,char*, float);
+	void (*changeStringCallBack)(char*,char*, char*);
 
 
 };
