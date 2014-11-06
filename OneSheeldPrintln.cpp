@@ -44,7 +44,7 @@ void PrintlnClass::println(char data)
 //Print integers with newline 
 void PrintlnClass::println(int data ,byte base)
 {
-	char stringPointer[9];
+	char stringPointer[10];
 	snprintf(stringPointer,9,"%d",data);
 	strcat(stringPointer,"\r\n");
 	
@@ -53,7 +53,7 @@ void PrintlnClass::println(int data ,byte base)
 //Print unsigned integers with newline
 void PrintlnClass::println(unsigned int data , byte base)
 {
-	char stringPointer[8];
+	char stringPointer[9];
 	snprintf(stringPointer,8,"%d",data);
 	strcat(stringPointer,"\r\n");
 	
@@ -62,7 +62,7 @@ void PrintlnClass::println(unsigned int data , byte base)
 //Print long with newline
 void PrintlnClass::println(long data ,byte base)
 {
-	char stringPointer[14];
+	char stringPointer[15];
 	snprintf(stringPointer,14,"%ld",data);
 	strcat(stringPointer,"\r\n");
 	
@@ -71,7 +71,7 @@ void PrintlnClass::println(long data ,byte base)
 //Print unsigned long with newline
 void PrintlnClass::println(unsigned long data , byte base)
 {
-	char stringPointer[13];
+	char stringPointer[14];
 	snprintf(stringPointer,13,"%lu",data);
 	strcat(stringPointer,"\r\n");
 	
@@ -80,7 +80,7 @@ void PrintlnClass::println(unsigned long data , byte base)
 //Print string with newline
 void PrintlnClass::println(char * stringData)
 {
-	char stringNewLine[strlen(stringData)+2];
+	char stringNewLine[strlen(stringData)+3];
 	stringNewLine[0]='\0';
 	strcat(stringNewLine,stringData);
 	strcat(stringNewLine,"\r\n");
