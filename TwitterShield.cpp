@@ -39,6 +39,17 @@ void TwitterShieldClass::tweetLastPicture(const char * pictureText , byte imageS
 {
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
 }
+
+void TwitterShieldClass::trackKeyword(const char * keyword)
+{
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
+}
+
+void TwitterShieldClass::untrackKeyword(const char * keyword)
+{
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
+}
+
 //UserName Getter
 char * TwitterShieldClass::getUserName()
 {
