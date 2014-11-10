@@ -39,6 +39,8 @@ typedef unsigned char byte;
 
 //#define DEBUG
 
+#define CONNECTION_CHECK_FUNCTION 0x01
+
 
 //Class for Datalength and Data
 class FunctionArg
@@ -117,10 +119,14 @@ private:
 	byte endFrame;
 	unsigned long lastTimeFrameSent;
 	bool isFirstFrame;
+	unsigned long lastTimeConnectionSent;
+	bool didAppRespondToConnectionQuery;
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
+	void checkAppConnection();
+	void processData();
 };
 
 

@@ -62,6 +62,8 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
       numberOfDataMalloced=0;
+      didAppRespondToConnectionQuery=false;
+      lastTimeConnectionSent=0;
 }
 
 //Library Starter
@@ -94,7 +96,7 @@ void OneSheeldClass::begin()
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
- if(isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
     delay(TIME_GAP-(mill-lastTimeFrameSent));
   isFirstFrame=true;
   va_list arguments ;
@@ -329,7 +331,7 @@ void OneSheeldClass::processInput()
             counter++;
           }
       }
-       
+       checkAppConnection();
     }
 
 void OneSheeldClass::freeMemoryAllocated(){
@@ -364,7 +366,7 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
-    case ONESHEELD_ID            :isOneSheeldConnected=true;break;
+    case ONESHEELD_ID            :processData();break;
     #ifdef KEYPAD_SHIELD
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
     #endif
@@ -437,6 +439,33 @@ void OneSheeldClass::sendToShields()
     #ifdef COLOR_SHIELD
     case COLOR_ID                : Color.processData();break;
     #endif
+  }
+}
+
+void OneSheeldClass::processData(){
+  byte functionId = getFunctionId();
+  //Check  the function ID 
+  if(functionId == CONNECTION_CHECK_FUNCTION)
+  {
+      isOneSheeldConnected=true;
+  } 
+}
+
+void OneSheeldClass::checkAppConnection()
+{
+  if(isOneSheeldConnected)
+  {
+    unsigned long mill=millis()+1;
+    if(mill-lastTimeConnectionSent>500) {
+        if(didAppRespondToConnectionQuery){
+          OneSheeld.sendPacket(ONESHEELD_ID,0,CONNECTION_CHECK_FUNCTION,0);
+          lastTimeConnectionSent=mill;
+          didAppRespondToConnectionQuery=false;
+        }
+        else{
+          isOneSheeldConnected=false;
+        }
+    }
   }
 }
 
