@@ -25,6 +25,7 @@
 
 //Input Functions ID's
 #define TWITTER_GET_TWEET	0x01
+#define TWITTER_CHECK_SELECTED 0x02
 
 //Define Literals
 #define FROM_ONESHEELD_FOLDER 0x00
@@ -49,15 +50,20 @@ public:
 	//Track certain words
 	void trackKeyword(const char * );
 	void untrackKeyword(const char *);
+	//Check if shield selected
+	void setOnSelected(void(*)(void));
 private:
 	//Reserve Variables
 	char * userName;
 	char * tweetText;
 	//Boolean for setOnChange Function
 	bool isCallBackAssigned;
+	//Boolean for checking selection
+	bool isCheckingTriggered;
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(char*,char*);
+	void (*selectedCallBack)(void);
 
 	friend class OneSheeldClass;
 
