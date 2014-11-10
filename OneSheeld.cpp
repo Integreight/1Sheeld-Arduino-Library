@@ -18,7 +18,8 @@
 #include "stdarg.h"
 
 //Shields ID's
-byte inputShieldsList[]={KEYPAD_SHIELD_ID
+byte inputShieldsList[]={ONESHEELD_ID
+,KEYPAD_SHIELD_ID
 ,GPS_ID
 ,SLIDER_ID
 ,PUSH_BUTTON_ID
@@ -71,6 +72,17 @@ void OneSheeldClass::begin(long baudRate)
   #else
   Serial.begin(baudRate);
   #endif
+}
+//Blocking function 
+void OneSheeldClass::waitForConnection()
+{
+  isOneSheeldConnected = false;
+
+  while(!isOneSheeldConnected)
+  {
+    OneSheeld.processInput();
+  }
+
 }
 //Library Starter
 void OneSheeldClass::begin()
@@ -196,7 +208,11 @@ void OneSheeldClass::processInput()
               #ifdef DEBUG
               Serial.print("C5 ");
               #endif
-              if((255-argumentnumber)==data){
+              if((255-argumentnumber)==data&&argumentnumber==0){
+                counter=9;
+                continue;
+              }
+              else if((255-argumentnumber)==data){
               arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
               #ifdef DEBUG
               Serial.print("M1 ");
@@ -287,7 +303,7 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<27;i++) {
+                  for (int i=0;i<28;i++) {
                     if (shield == inputShieldsList[i]){
                       found = true;
                       
@@ -348,6 +364,7 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
+    case ONESHEELD_ID            :isOneSheeldConnected=true;break;
     #ifdef KEYPAD_SHIELD
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
     #endif

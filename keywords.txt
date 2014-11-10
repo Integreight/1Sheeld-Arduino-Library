@@ -159,9 +159,13 @@ getRedComponent	KEYWORD2
 getBlueComponent	KEYWORD2
 getGreenComponent	KEYWORD2
 setOnColorChange	KEYWORD2
+<<<<<<< HEAD
 trackKeyword	KEYWORD2
 untrackKeyword	KEYWORD2
 setOnSelected	KEYWORD2
+=======
+waitForConnection	KEYWORD2
+>>>>>>> 98315b989fd20081ce718ae0c3a6a3a9873f5d4b
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
