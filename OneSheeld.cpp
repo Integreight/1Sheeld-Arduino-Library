@@ -128,7 +128,10 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     va_end(arguments);
     lastTimeFrameSent=millis()+1;
 }
-
+bool OneSheeldClass::isAppConnected()
+{
+  return isOneSheeldConnected;
+}
 //Shield_ID Getter
 byte OneSheeldClass::getShieldId()
 {
@@ -448,6 +451,7 @@ void OneSheeldClass::processData(){
   if(functionId == CONNECTION_CHECK_FUNCTION)
   {
       isOneSheeldConnected=true;
+      didAppRespondToConnectionQuery=true;
   } 
 }
 
@@ -459,7 +463,7 @@ void OneSheeldClass::checkAppConnection()
     if(mill-lastTimeConnectionSent>500) {
         if(didAppRespondToConnectionQuery){
           OneSheeld.sendPacket(ONESHEELD_ID,0,CONNECTION_CHECK_FUNCTION,0);
-          lastTimeConnectionSent=mill;
+          lastTimeConnectionSent=millis()+1;
           didAppRespondToConnectionQuery=false;
         }
         else{

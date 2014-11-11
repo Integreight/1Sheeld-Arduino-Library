@@ -90,15 +90,18 @@ public:
 	byte * getArgumentData(byte );
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
+	bool isAppConnected();
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
 	void begin();
+	void checkAppConnection();
 	//Frame Sender
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	Stream & OneSheeldSerial;
+
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
@@ -125,7 +128,6 @@ private:
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
-	void checkAppConnection();
 	void processData();
 };
 
