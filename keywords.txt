@@ -163,6 +163,7 @@ trackKeyword	KEYWORD2
 untrackKeyword	KEYWORD2
 setOnSelected	KEYWORD2
 waitForConnection	KEYWORD2
+setOnTwitterSelected	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

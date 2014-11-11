@@ -51,7 +51,7 @@ public:
 	void trackKeyword(const char * );
 	void untrackKeyword(const char *);
 	//Check if shield selected
-	void setOnSelected(void(*)(void));
+	void setOnTwitterSelected(void(*)(void));
 private:
 	//Reserve Variables
 	char * userName;

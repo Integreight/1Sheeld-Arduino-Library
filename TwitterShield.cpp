@@ -111,7 +111,7 @@ void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,cha
 	isCallBackAssigned=true;
 }
 //Checking Twitter selected
-void TwitterShieldClass::setOnSelected(void (*userFunction)(void))
+void TwitterShieldClass::setOnTwitterSelected(void (*userFunction)(void))
 {
 	selectedCallBack=userFunction;
 	isCheckingTriggered=true;
