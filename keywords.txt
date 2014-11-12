@@ -164,6 +164,7 @@ untrackKeyword	KEYWORD2
 setOnSelected	KEYWORD2
 waitForConnection	KEYWORD2
 setOnTwitterSelected	KEYWORD2
+attatchLastPicture	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

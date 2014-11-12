@@ -18,6 +18,7 @@
 
 //Output Function ID
 #define EMAIL_SEND 0x01
+#define EMAIL_ATTATCH_PICTURE	0x02
 
 
 
@@ -27,6 +28,7 @@ class EmailShieldClass
 public:
 	//Sender 
 	void send(const char* ,const char*,const char* );
+	void attatchLastPicture(const char* ,const char*,const char*,byte =0);
 
 private:
 
