@@ -62,8 +62,6 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
       numberOfDataMalloced=0;
-      didAppRespondToConnectionQuery=false;
-      lastTimeConnectionSent=0;
 }
 
 //Library Starter
@@ -334,7 +332,6 @@ void OneSheeldClass::processInput()
             counter++;
           }
       }
-       checkAppConnection();
     }
 
 void OneSheeldClass::freeMemoryAllocated(){
@@ -448,28 +445,13 @@ void OneSheeldClass::sendToShields()
 void OneSheeldClass::processData(){
   byte functionId = getFunctionId();
   //Check  the function ID 
-  if(functionId == CONNECTION_CHECK_FUNCTION)
+  if(functionId == DISCONNECTION_CHECK_FUNCTION)
+  {
+      isOneSheeldConnected=false;
+  }
+  else if(functionId == CONNECTION_CHECK_FUNCTION)
   {
       isOneSheeldConnected=true;
-      didAppRespondToConnectionQuery=true;
-  } 
-}
-
-void OneSheeldClass::checkAppConnection()
-{
-  if(isOneSheeldConnected)
-  {
-    unsigned long mill=millis()+1;
-    if(mill-lastTimeConnectionSent>500) {
-        if(didAppRespondToConnectionQuery){
-          OneSheeld.sendPacket(ONESHEELD_ID,0,CONNECTION_CHECK_FUNCTION,0);
-          lastTimeConnectionSent=millis()+1;
-          didAppRespondToConnectionQuery=false;
-        }
-        else{
-          isOneSheeldConnected=false;
-        }
-    }
   }
 }
 
