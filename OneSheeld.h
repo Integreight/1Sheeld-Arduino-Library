@@ -27,6 +27,8 @@ typedef unsigned char byte;
 
 #define ONE_SECOND 1000
 
+#define ONESHEELD_BEGIN 0x01
+
 //Start and End of packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
@@ -35,8 +37,14 @@ typedef unsigned char byte;
 //Time between sending Frames
 #define TIME_GAP		200UL
 
+//Selecting picture from folder
+#define FROM_ONESHEELD_FOLDER 0x00
+#define FROM_CAMERA_FOLDER	  0x01
+
 //#define DEBUG
 
+#define CONNECTION_CHECK_FUNCTION 0x01
+#define DISCONNECTION_CHECK_FUNCTION 0x02
 
 //Class for Datalength and Data
 class FunctionArg
@@ -75,6 +83,8 @@ class OneSheeldClass
 public:
     
 	OneSheeldClass(Stream &s);
+	//Blocking function
+	void waitForConnection();
 	//Getters 
 	byte getShieldId();
 	byte getInstanceId();
@@ -84,6 +94,7 @@ public:
 	byte * getArgumentData(byte );
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
+	bool isAppConnected();
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -93,11 +104,13 @@ public:
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	Stream & OneSheeldSerial;
+
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
+	bool isOneSheeldConnected;
 	byte numberOfDataMalloced;
 	byte shield;
 	byte instance;
@@ -116,6 +129,7 @@ private:
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
+	void processData();
 };
 
 

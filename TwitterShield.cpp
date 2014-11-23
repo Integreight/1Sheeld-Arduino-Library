@@ -21,6 +21,8 @@ TwitterShieldClass::TwitterShieldClass()
 {
  	userName = 0;
  	tweetText = 0;
+ 	isCallBackAssigned=false;
+ 	isCheckingTriggered=false;
 }
 //Tweet Sender
 void TwitterShieldClass::tweet(const char *data)
@@ -132,6 +134,17 @@ void TwitterShieldClass::tweetLastPicture(String pictureText ,byte imageSource)
 	tweetLastPicture(cTypePictureText,imageSource);
 }
 #endif 
+
+void TwitterShieldClass::trackKeyword(const char * keyword)
+{
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
+}
+
+void TwitterShieldClass::untrackKeyword(const char * keyword)
+{
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
+}
+
 //UserName Getter
 char * TwitterShieldClass::getUserName()
 {
@@ -179,12 +192,22 @@ void TwitterShieldClass::processData()
 			(*changeCallBack)(userName,tweetText);
 		}
 	}
+	else if(functionId == TWITTER_CHECK_SELECTED) //called when twitter shield is selected
+	{
+		(*selectedCallBack)();
+	}
 }
 //Users Function Setter
 void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,char * tweetText))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+//Checking Twitter selected
+void TwitterShieldClass::setOnTwitterSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+	isCheckingTriggered=true;
 }
 
 //Instantiating Object 

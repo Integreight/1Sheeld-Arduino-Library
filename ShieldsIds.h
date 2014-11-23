@@ -14,6 +14,7 @@
 */
 
 //Shields ID's
+#define ONESHEELD_ID		 0x00
 #define SLIDER_ID 		 	 0x01
 #define LED_ID 		 	 	 0x02
 #define PUSH_BUTTON_ID 	 	 0x03
