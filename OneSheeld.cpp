@@ -94,7 +94,7 @@ void OneSheeldClass::begin()
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
- if(isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
     delay(TIME_GAP-(mill-lastTimeFrameSent));
   isFirstFrame=true;
   va_list arguments ;
@@ -126,7 +126,10 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     va_end(arguments);
     lastTimeFrameSent=millis()+1;
 }
-
+bool OneSheeldClass::isAppConnected()
+{
+  return isOneSheeldConnected;
+}
 //Shield_ID Getter
 byte OneSheeldClass::getShieldId()
 {
@@ -329,7 +332,6 @@ void OneSheeldClass::processInput()
             counter++;
           }
       }
-       
     }
 
 void OneSheeldClass::freeMemoryAllocated(){
@@ -364,7 +366,7 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
-    case ONESHEELD_ID            :isOneSheeldConnected=true;break;
+    case ONESHEELD_ID            :processData();break;
     #ifdef KEYPAD_SHIELD
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
     #endif
@@ -437,6 +439,19 @@ void OneSheeldClass::sendToShields()
     #ifdef COLOR_SHIELD
     case COLOR_ID                : Color.processData();break;
     #endif
+  }
+}
+
+void OneSheeldClass::processData(){
+  byte functionId = getFunctionId();
+  //Check  the function ID 
+  if(functionId == DISCONNECTION_CHECK_FUNCTION)
+  {
+      isOneSheeldConnected=false;
+  }
+  else if(functionId == CONNECTION_CHECK_FUNCTION)
+  {
+      isOneSheeldConnected=true;
   }
 }
 

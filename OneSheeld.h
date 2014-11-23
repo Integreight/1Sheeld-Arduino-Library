@@ -39,6 +39,8 @@ typedef unsigned char byte;
 
 //#define DEBUG
 
+#define CONNECTION_CHECK_FUNCTION 0x01
+#define DISCONNECTION_CHECK_FUNCTION 0x02
 
 //Class for Datalength and Data
 class FunctionArg
@@ -88,6 +90,7 @@ public:
 	byte * getArgumentData(byte );
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
+	bool isAppConnected();
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -97,6 +100,7 @@ public:
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	Stream & OneSheeldSerial;
+
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
@@ -121,6 +125,7 @@ private:
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
+	void processData();
 };
 
 
