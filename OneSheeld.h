@@ -37,6 +37,10 @@ typedef unsigned char byte;
 //Time between sending Frames
 #define TIME_GAP		200UL
 
+//Selecting picture from folder
+#define FROM_ONESHEELD_FOLDER 0x00
+#define FROM_CAMERA_FOLDER	  0x01
+
 //#define DEBUG
 
 #define CONNECTION_CHECK_FUNCTION 0x01

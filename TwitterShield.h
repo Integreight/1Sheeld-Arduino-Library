@@ -27,9 +27,7 @@
 #define TWITTER_GET_TWEET	0x01
 #define TWITTER_CHECK_SELECTED 0x02
 
-//Define Literals
-#define FROM_ONESHEELD_FOLDER 0x00
-#define FROM_CAMERA_FOLDER	  0x01
+
 
 class TwitterShieldClass 
 {
