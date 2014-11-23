@@ -18,7 +18,8 @@
 #include "stdarg.h"
 
 //Shields ID's
-byte inputShieldsList[]={KEYPAD_SHIELD_ID
+byte inputShieldsList[]={ONESHEELD_ID
+,KEYPAD_SHIELD_ID
 ,GPS_ID
 ,SLIDER_ID
 ,PUSH_BUTTON_ID
@@ -74,6 +75,17 @@ void OneSheeldClass::begin(long baudRate)
   Serial.begin(baudRate);
   #endif
 }
+//Blocking function 
+void OneSheeldClass::waitForConnection()
+{
+  isOneSheeldConnected = false;
+
+  while(!isOneSheeldConnected)
+  {
+    OneSheeld.processInput();
+  }
+
+}
 //Library Starter
 void OneSheeldClass::begin()
 {
@@ -84,7 +96,7 @@ void OneSheeldClass::begin()
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
- if(isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
     delay(TIME_GAP-(mill-lastTimeFrameSent));
   isFirstFrame=true;
   va_list arguments ;
@@ -116,7 +128,10 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     va_end(arguments);
     lastTimeFrameSent=millis()+1;
 }
-
+bool OneSheeldClass::isAppConnected()
+{
+  return isOneSheeldConnected;
+}
 //Shield_ID Getter
 byte OneSheeldClass::getShieldId()
 {
@@ -198,7 +213,11 @@ void OneSheeldClass::processInput()
               #ifdef DEBUG
               Serial.print("C5 ");
               #endif
-              if((255-argumentnumber)==data){
+              if((255-argumentnumber)==data&&argumentnumber==0){
+                counter=9;
+                continue;
+              }
+              else if((255-argumentnumber)==data){
               arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
               #ifdef DEBUG
               Serial.print("M1 ");
@@ -315,7 +334,6 @@ void OneSheeldClass::processInput()
             counter++;
           }
       }
-       
     }
 
 void OneSheeldClass::freeMemoryAllocated(){
@@ -355,6 +373,7 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
+    case ONESHEELD_ID            :processData();break;
     #ifdef KEYPAD_SHIELD
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
     #endif
@@ -489,6 +508,19 @@ void OneSheeldClass::processRemoteData()
   }
 }
 #endif
+
+void OneSheeldClass::processData(){
+  byte functionId = getFunctionId();
+  //Check  the function ID 
+  if(functionId == DISCONNECTION_CHECK_FUNCTION)
+  {
+      isOneSheeldConnected=false;
+  }
+  else if(functionId == CONNECTION_CHECK_FUNCTION)
+  {
+      isOneSheeldConnected=true;
+  }
+}
 
 //PulseWidthModulation Getter 
 unsigned char OneSheeldClass::analogRead(int pin)

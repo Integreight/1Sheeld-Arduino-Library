@@ -18,10 +18,46 @@
 
 
 //Checking-In Sender
-void FoursquareShieldClass::checkIn(const char* placeId,const char* msg)
+void FoursquareShieldClass::checkIn(const char* placeId,const char* message)
 {
-	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_CHECK_IN,2,new FunctionArg(strlen(placeId),(byte*)placeId),new FunctionArg(strlen(msg),(byte*)msg));
+	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_CHECK_IN,2,new FunctionArg(strlen(placeId),(byte*)placeId),new FunctionArg(strlen(message),(byte*)message));
 }
 
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void FoursquareShieldClass::checkIn(String placeId , String message)
+{
+	const char * cTypePlaceId = placeId.c_str();
+	const char * cTypeMessage = message.c_str();
+
+	checkIn(cTypePlaceId,cTypeMessage);
+}
+#endif
+
+//Support string for galielo
+#if defined(ARDUINO_LINUX)
+void FoursquareShieldClass::checkIn(String placeId , String message)
+{
+	int placeIdLength = placeId.length();
+	int messageLegnth = message.length();
+
+	char cTypePlaceId [placeIdLength+1];
+	char cTypeMessage [messageLegnth+1];
+
+	for (int i=0 ;i <placeIdLength ;i++)
+	{
+		cTypePlaceId[i] = placeId [i];
+	}
+	cTypePlaceId[placeIdLength]='\0';
+
+	for(int j=0 ;j<messageLegnth ;j++)
+	{
+		cTypeMessage[j] = message[j];
+	}
+	cTypeMessage[messageLegnth]='\0';
+
+	checkIn(cTypePlaceId,cTypeMessage);
+}
+#endif
 //Instantiating Object
 FoursquareShieldClass Foursquare;

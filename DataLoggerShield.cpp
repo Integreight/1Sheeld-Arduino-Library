@@ -14,6 +14,8 @@
 */
 #include "OneSheeld.h"
 #include "DataLoggerShield.h"
+#include "HardwareSerial.h"
+
 
 
 //Start Logging Data
@@ -39,10 +41,74 @@ void DataLoggerShield::add(const char * key,float value)
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 
+//Support strings for Arduino
+#if !defined(ARDUINO_LINUX)
+void DataLoggerShield::add(String key ,float value)
+{
+	const char * cTypeStringKey = key.c_str();
+
+	add(cTypeStringKey,value);
+}
+#endif
+
+//Supporting strings for galileo
+#if defined(ARDUINO_LINUX) 
+void DataLoggerShield::add(String key , float value)
+{
+	int keyStringLength = key.length();
+	char cTypeKey [keyStringLength+1];
+
+	for (int i=0 ;i<keyStringLength;i++)
+	{
+		cTypeKey [i]= key[i];
+	}
+
+	cTypeKey [keyStringLength]='\0';	
+	add(cTypeKey,value);
+}
+#endif
+
 void DataLoggerShield::add(const char * key,const char * data)
 {
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_STRING,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(strlen(data),(byte*)data));
 }
+
+//Support strings for Arduino
+#if !defined(ARDUINO_LINUX)
+void DataLoggerShield::add(String key ,String data)
+{
+	const char * cTypeStringKey = key.c_str();
+	const char * cTypesStringData = data.c_str();
+
+	add(cTypeStringKey,cTypesStringData);
+}
+#endif
+
+//Supporting strings for galileo 
+#if defined(ARDUINO_LINUX)
+void DataLoggerShield::add(String key , String data)
+{
+	int keyStringLength = key.length();
+	int dataStringLength = data.length();
+
+	char cTypeKey [keyStringLength+1];
+	char cTypeData [dataStringLength+1];
+
+	for (int i=0 ;i<keyStringLength;i++)
+	{
+		cTypeKey [i]= key[i];
+	}
+	cTypeKey [keyStringLength]='\0';
+
+	for (int j=0 ;j<dataStringLength;j++)
+	{
+		cTypeData [j]= data[j];
+	}
+	cTypeData [dataStringLength]='\0';
+
+	add(cTypeKey,cTypeData);
+}
+#endif
 //Save data 
 void DataLoggerShield::log()
 {

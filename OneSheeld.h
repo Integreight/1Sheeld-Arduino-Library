@@ -27,6 +27,8 @@ typedef unsigned char byte;
 
 #define ONE_SECOND 1000
 
+#define ONESHEELD_BEGIN 0x01
+
 //Start and End of packet sent
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
@@ -36,8 +38,15 @@ typedef unsigned char byte;
 #define TIME_GAP		200UL
 //Maximum number of remote connections
 #define MAX_REMOTE_CONNECTIONS 10
+
+//Selecting picture from folder
+#define FROM_ONESHEELD_FOLDER 0x00
+#define FROM_CAMERA_FOLDER	  0x01
+
 //#define DEBUG
 
+#define CONNECTION_CHECK_FUNCTION 0x01
+#define DISCONNECTION_CHECK_FUNCTION 0x02
 
 //Class for Datalength and Data
 class FunctionArg
@@ -76,6 +85,8 @@ class OneSheeldClass
 public:
     
 	OneSheeldClass(Stream &s);
+	//Blocking function
+	void waitForConnection();
 	//Getters 
 	byte getShieldId();
 	byte getInstanceId();
@@ -86,6 +97,7 @@ public:
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
 	void listenToRemoteOneSheeld(RemoteOneSheeld *);
+	bool isAppConnected();
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -99,11 +111,13 @@ public:
 	void setOnFloatMessage(void (*)(char * ,char * ,float));
 	void setOnStringMessage(void (*)(char * ,char * ,char *));
 	Stream & OneSheeldSerial;
+
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
+	bool isOneSheeldConnected;
 	byte numberOfDataMalloced;
 	byte shield;
 	byte instance;
@@ -130,8 +144,7 @@ private:
 
 	void (*changeFloatCallBack)(char*,char*, float);
 	void (*changeStringCallBack)(char*,char*, char*);
-
-
+	void processData();
 };
 
 

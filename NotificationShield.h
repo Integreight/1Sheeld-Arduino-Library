@@ -24,6 +24,7 @@ class NotificationShieldClass
 public:
 	//Sender 
 	void notifyPhone(const char* );
+	void notifyPhone(String );
 
 private:
 

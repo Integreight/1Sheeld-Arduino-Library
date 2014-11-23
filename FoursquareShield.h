@@ -25,6 +25,7 @@ class FoursquareShieldClass
 public:
 	//Sender
 	void checkIn(const char* ,const char* );
+	void checkIn(String , String );
 private:
 
 };
