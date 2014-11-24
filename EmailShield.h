@@ -18,7 +18,7 @@
 
 //Output Function ID
 #define EMAIL_SEND 0x01
-#define EMAIL_ATTATCH_PICTURE	0x02
+#define EMAIL_ATTACH_PICTURE	0x02
 
 
 
@@ -29,8 +29,8 @@ public:
 	//Sender 
 	void send(const char* ,const char*,const char* );
 	void send(String , String ,String );
-	void attatchLastPicture(const char* ,const char*,const char*,byte =0);
-  void attatchLastPicture(String , String , String , byte );
+	void attachLastPicture(const char* ,const char*,const char*,byte =0);
+  void attachLastPicture(String , String , String , byte =0);
 
 private:
 

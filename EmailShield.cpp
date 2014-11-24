@@ -23,9 +23,9 @@ void EmailShieldClass::send(const char *email ,const char* subject,const char* m
 }
 
 //Attaching picture
-void EmailShieldClass::attatchLastPicture(const char *email ,const char* subject,const char* message , byte imageSource)
+void EmailShieldClass::attachLastPicture(const char *email ,const char* subject,const char* message , byte imageSource)
 {
-	OneSheeld.sendPacket(EMAIL_ID,0,EMAIL_ATTATCH_PICTURE,4,new FunctionArg(strlen(email),(byte*)email),new FunctionArg(strlen(subject),(byte*)subject),new FunctionArg(strlen(message),(byte*)message),new FunctionArg(1,&imageSource));
+	OneSheeld.sendPacket(EMAIL_ID,0,EMAIL_ATTACH_PICTURE,4,new FunctionArg(strlen(email),(byte*)email),new FunctionArg(strlen(subject),(byte*)subject),new FunctionArg(strlen(message),(byte*)message),new FunctionArg(1,&imageSource));
 }
 
 //Support strings Arduino
@@ -61,13 +61,13 @@ void EmailShieldClass::send(String email, String subject , String message)
 	{
 		cTypeSubject[j]=subject[j];
 	}
-	cTypeEmail[subjectLength]='\0';
+	cTypeSubject[subjectLength]='\0';
 
-	for(int k=0 ;k<emailLength ;k++)
+	for(int k=0 ;k<messageLength ;k++)
 	{
 		cTypeMessage[k]=message[k];
 	}
-	cTypeEmail[messageLength]='\0';
+	cTypeMessage[messageLength]='\0';
 
 	send(cTypeEmail,cTypeSubject,cTypeMessage);
 }
@@ -75,18 +75,18 @@ void EmailShieldClass::send(String email, String subject , String message)
 
 //Support strings Arduino
 #if !defined(ARDUINO_LINUX)
-void EmailShieldClass::attatchLastPicture(String email, String subject , String message , byte imageSource)
+void EmailShieldClass::attachLastPicture(String email, String subject , String message , byte imageSource)
 {
 	const char * cTypeEmail = email.c_str();
 	const char * cTypeSubject = subject.c_str();
 	const char * cTypeMessage = message.c_str();
 
-	attatchLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
+	attachLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
 }
 #endif
 //Support strings galielo 
 #if defined(ARDUINO_LINUX)
-void EmailShieldClass::attatchLastPicture(String email, String subject , String message , byte imageSource)
+void EmailShieldClass::attachLastPicture(String email, String subject , String message , byte imageSource)
 {
 	int emailLength = email.length();
 	int subjectLength = subject.length();
@@ -106,15 +106,15 @@ void EmailShieldClass::attatchLastPicture(String email, String subject , String 
 	{
 		cTypeSubject[j]=subject[j];
 	}
-	cTypeEmail[subjectLength]='\0';
+	cTypeSubject[subjectLength]='\0';
 
-	for(int k=0 ;k<emailLength ;k++)
+	for(int k=0 ;k<messageLength ;k++)
 	{
 		cTypeMessage[k]=message[k];
 	}
-	cTypeEmail[messageLength]='\0';
+	cTypeMessage[messageLength]='\0';
 
-	attatchLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
+	attachLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
 }
 #endif
 //Instantiating object 

@@ -133,7 +133,7 @@ void TwitterShieldClass::tweetLastPicture(String pictureText ,byte imageSource)
 
 	tweetLastPicture(cTypePictureText,imageSource);
 }
-#endif 
+#endif
 
 void TwitterShieldClass::trackKeyword(const char * keyword)
 {
