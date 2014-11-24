@@ -145,6 +145,62 @@ void TwitterShieldClass::untrackKeyword(const char * keyword)
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
 }
 
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void TwitterShieldClass::trackKeyword(String keyword )
+{
+	const char * cTypeKeyword = keyword.c_str();
+
+	trackKeyword(cTypeKeyword);
+}
+#endif
+
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void TwitterShieldClass::trackKeyword(String keyword )
+{
+	int keywordLength = keyword.length();
+
+	char cTypeKeyword[keywordLength+1];
+
+	for (int i = 0; i <keywordLength; i++)
+	{
+		cTypeKeyword[i]=keyword[i];
+	}
+	cTypeKeyword[keywordLength]='\0';
+
+	trackKeyword(cTypeKeyword);
+}
+#endif 
+
+
+//Support string for Arduino
+#if !defined(ARDUINO_LINUX)
+void TwitterShieldClass::untrackKeyword(String keyword )
+{
+	const char * cTypeKeyword = keyword.c_str();
+
+	untrackKeyword(cTypeKeyword);
+}
+#endif
+
+//Support string for galileo
+#if defined(ARDUINO_LINUX)
+void TwitterShieldClass::untrackKeyword(String keyword )
+{
+	int keywordLength = keyword.length();
+
+	char cTypeKeyword[keywordLength+1];
+
+	for (int i = 0; i <keywordLength; i++)
+	{
+		cTypeKeyword[i]=keyword[i];
+	}
+	cTypeKeyword[keywordLength]='\0';
+
+	untrackKeyword(cTypeKeyword);
+}
+#endif 
 //UserName Getter
 char * TwitterShieldClass::getUserName()
 {

@@ -51,6 +51,8 @@ public:
 	//Track certain words
 	void trackKeyword(const char * );
 	void untrackKeyword(const char *);
+	void trackKeyword(String );
+	void untrackKeyword(String);
 	//Check if shield selected
 	void setOnTwitterSelected(void(*)(void));
 private:
