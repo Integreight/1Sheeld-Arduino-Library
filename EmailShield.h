@@ -30,6 +30,7 @@ public:
 	void send(const char* ,const char*,const char* );
 	void send(String , String ,String );
 	void attatchLastPicture(const char* ,const char*,const char*,byte =0);
+  void attatchLastPicture(String , String , String , byte );
 
 private:
 
