@@ -29,7 +29,11 @@
 #define OFF				0x00
 #define ON    			0x01
 #define AUTO  			0x02
-
+//Literals used by users
+#define LOW_QUALITY  0x01
+#define MID_QUALITY  0x02
+#define HIG_QUALITY  0x03
+  
 class CameraShieldClass
 {
 public:
