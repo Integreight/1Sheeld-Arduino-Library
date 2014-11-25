@@ -38,12 +38,16 @@ public:
 	void start();
 	//Getter
 	char * getLastCommand();
+
+	String getVoiceAsStringObject();
 	//Getter
 	int getLastCommandLength();
 	//Checker 
 	bool isNewCommandReceived();
 	//Setter
 	void setOnNewCommand(void (*)(char*));
+	//Setter using Strings 
+	void setOnNewCommand(void (*)(String));
 	//Setter
 	void setOnError(void (*)(byte));
 private:
@@ -55,6 +59,8 @@ private:
 	bool isCallBackAssigned;
 	//Boolean for Users function
 	bool errorAssigned;
+	bool didDataCame;
+	bool usedSetOnWithString;
 	//Error number for user function 
 	byte errorNumber;
 	//Boolean for newCommand function
@@ -63,6 +69,8 @@ private:
 	void processData();
 	//Setter 
 	void (*changeCallBack)(char*);
+	//Setter 
+	void (*changeCallBackString)(String);
 	//Setter
 	void (*errorCallBack)(byte);
 	//Friend Class to OneSheeld Class
