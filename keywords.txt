@@ -59,6 +59,7 @@ rearCapture	KEYWORD2
 setFlash	KEYWORD2
 send	KEYWORD2
 post	KEYWORD2
+postLastPicutre	KEYWORD2
 setLow	KEYWORD2
 setHigh	KEYWORD2
 setValue	KEYWORD2
@@ -162,10 +163,17 @@ setOnColorChange	KEYWORD2
 setOnSelected	KEYWORD2
 waitForConnection	KEYWORD2
 setOnTwitterSelected	KEYWORD2
-attatchLastPicture	KEYWORD2
+attachLastPicture	KEYWORD2
 isAppConnected	KEYWORD2
 trackKeyword	KEYWORD2
 untrackKeyword	KEYWORD2
+listenToRemoteOneSheeld	KEYWORD2
+setOnFloatMessage	KEYWORD2
+setOnStringMessage	KEYWORD2
+setOnSubscribeOrDigitalChange	KEYWORD2
+subscribeToChanges	KEYWORD2
+unsubscribeToChanges	KEYWORD2
+getOnButtonStatusChange	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
