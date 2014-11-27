@@ -36,17 +36,21 @@ public:
 	bool isRinging();
 	//Getter
 	char * getNumber();
+	String getNumberAsString();
 	//setOnChange for Users Function
 	void setOnCallStatusChange(void (*)(bool ,char *));
+	void setOnCallStatusChange(void (*)(bool , String));
 private:
 	//Reserve Variable
 	byte value ;
 	char * number;
 	//Boolean For the setOnChange Function
 	bool isCallBackAssigned;
+	bool usedSetOnString;
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(bool ,char *);
+	void (*changeCallBackString)(bool , String);
 	
 	friend class OneSheeldClass ;
 };

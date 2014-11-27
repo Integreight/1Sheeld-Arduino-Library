@@ -21,7 +21,8 @@ PhoneShieldClass::PhoneShieldClass()
 {
 	value=0;
 	number=0;
-	isCallBackAssigned=false;	
+	isCallBackAssigned=false;
+	usedSetOnString=false;	
 }
 //Call Setter 
 void PhoneShieldClass::call(const char* phone)
@@ -64,7 +65,14 @@ bool PhoneShieldClass::isRinging()
 //Number Getter
 char * PhoneShieldClass::getNumber()
 {
+	value=!!value;
 	return number;
+}
+
+String PhoneShieldClass::getNumberAsString()
+{
+	String phoneNumberAsString(number);
+	return phoneNumberAsString;
 }
 //Phone Input Data Processing 
 void PhoneShieldClass::processData()
@@ -98,6 +106,11 @@ void PhoneShieldClass::processData()
 			{
 				(*changeCallBack)(value,number);
 			}
+			if(usedSetOnString)
+			{
+				String phoneNumberAsString(number);
+				(*changeCallBackString)(value,phoneNumberAsString);
+			}
 	}
 	
 
@@ -111,6 +124,11 @@ void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging
 	isCallBackAssigned=true;
 }
 
+void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,String phoneNumber))
+{
+	changeCallBackString=userFunction;
+	usedSetOnString=true;
+}
 
 //Instatntiating Object
 PhoneShieldClass Phone;
