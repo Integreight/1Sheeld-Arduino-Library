@@ -49,13 +49,10 @@ bool VoiceRecognitionShield::isNewCommandReceived()
 {
 	return newCommand;
 }
-String VoiceRecognitionShield::getVoiceAsStringObject()
+String VoiceRecognitionShield::getCommandAsStringObject()
 {
-	if(didDataCame)
-	{
 		String dataInString (voice);
 		return dataInString;
-	}
 }
 
 //Process Input Data
@@ -65,7 +62,6 @@ void VoiceRecognitionShield::processData()
 
 	if(functionID==VOICE_GET)
 	{
-		didDataCame=true;
 		if (voice!=0)
 		{
 			free(voice);
@@ -87,7 +83,7 @@ void VoiceRecognitionShield::processData()
 		{
 			(*changeCallBack)(voice);
 		}
-		
+		//Invoke Users function
 		if (usedSetOnWithString)
 		{
 			String convertedIncomingVoice (voice);
@@ -113,7 +109,7 @@ void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(char * voice))
 	isCallBackAssigned=true;
 }
 
-//Users Function Setter 
+//Users Function Setter return String data 
 void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(String voice))
 {
 	changeCallBackString=userFunction;

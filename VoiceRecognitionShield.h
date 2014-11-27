@@ -38,8 +38,8 @@ public:
 	void start();
 	//Getter
 	char * getLastCommand();
-
-	String getVoiceAsStringObject();
+	//Getter
+	String getCommandAsStringObject();
 	//Getter
 	int getLastCommandLength();
 	//Checker 
@@ -57,14 +57,12 @@ private:
 	int voicetextLength;
 	//Boolean for Users function
 	bool isCallBackAssigned;
-	//Boolean for Users function
 	bool errorAssigned;
 	bool didDataCame;
 	bool usedSetOnWithString;
+	bool newCommand; 
 	//Error number for user function 
 	byte errorNumber;
-	//Boolean for newCommand function
-	bool newCommand; 
 	//Process Input Data
 	void processData();
 	//Setter 
