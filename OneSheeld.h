@@ -109,7 +109,9 @@ public:
 	//Remote OneSheeld fucntions
 	void processRemoteData();
 	void setOnFloatMessage(void (*)(char * ,char * ,float));
+	void setOnFloatMessage(void (*)(String ,String ,float));
 	void setOnStringMessage(void (*)(char * ,char * ,char *));
+	void setOnStringMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
 
 private:
@@ -141,9 +143,14 @@ private:
 	//Remote OneSheeld fnuctions
 	bool isSetOnFloatMessageInvoked;
 	bool isSetOnStringMessageInvoked;
+	bool usedSetOnFloatWithString;
+	bool usedSetOnStringWithString;
+	bool isOneSheeldRemoteDataUsed;
 
 	void (*changeFloatCallBack)(char*,char*, float);
+	void (*changeFloatCallBackWithString)(String ,String , float);
 	void (*changeStringCallBack)(char*,char*, char*);
+	void (*changeStringCallBackWithString)(String ,String ,String );
 	void processData();
 };
 

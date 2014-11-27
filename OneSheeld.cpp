@@ -59,11 +59,14 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       argumentnumber=0;
       endFrame=0;
       lastTimeFrameSent=0;
+      numberOfDataMalloced=0;
+      remoteOneSheeldsCounter=0;
       isFirstFrame=false;
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
-      numberOfDataMalloced=0;
-      remoteOneSheeldsCounter=0;
+      usedSetOnFloatWithString=false;
+      usedSetOnStringWithString=false;
+      isOneSheeldRemoteDataUsed=false;
 }
 
 //Library Starter
@@ -449,6 +452,7 @@ void OneSheeldClass::sendToShields()
     #ifdef REMOTE_SHIELD
     case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
                                     listOfRemoteOneSheelds[i]->processData();
+                                    if(isOneSheeldRemoteDataUsed)
                                     processRemoteData();
                                     break;
     #endif
@@ -459,19 +463,36 @@ void OneSheeldClass::setOnFloatMessage(void (*userFunction)(char * address, char
 {
   changeFloatCallBack = userFunction;
   isSetOnFloatMessageInvoked = true;
+  isOneSheeldRemoteDataUsed=true;
 }
+
+void OneSheeldClass::setOnFloatMessage(void (*userFunction)(String address, String key, float value))
+{
+  changeFloatCallBackWithString = userFunction;
+  usedSetOnFloatWithString = true;
+  isOneSheeldRemoteDataUsed=true;
+}
+
 
 void OneSheeldClass::setOnStringMessage(void (*userFunction)(char * address, char * key, char * value))
 {
   changeStringCallBack = userFunction;
   isSetOnStringMessageInvoked = true;
+  isOneSheeldRemoteDataUsed=true;
+}
+
+void OneSheeldClass::setOnStringMessage(void (*userFunction)(String address, String key, String value))
+{
+  changeStringCallBackWithString = userFunction;
+  usedSetOnStringWithString = true;
+  isOneSheeldRemoteDataUsed=true;
 }
 
 void OneSheeldClass::processRemoteData()
 {
   byte functionId = getFunctionId();
 
-  if(functionId == READ_MESSAGE_FLOAT && isSetOnFloatMessageInvoked)
+  if(functionId == READ_MESSAGE_FLOAT)
   {
     char remoteAddress[37];
     memcpy(remoteAddress,getArgumentData(0),36);
@@ -484,10 +505,18 @@ void OneSheeldClass::processRemoteData()
 
     float incomingValue = convertBytesToFloat(getArgumentData(2));
 
+    if(isSetOnFloatMessageInvoked)
     (*changeFloatCallBack)(remoteAddress,key,incomingValue);
 
+    if(usedSetOnFloatWithString)
+    {
+      String remoteAddressInString(remoteAddress);
+      String keyInString(key);
+      (*changeFloatCallBackWithString)(remoteAddressInString,keyInString,incomingValue);
+    }
+
   }
-  else if(functionId == READ_MESSAGE_STRING && isSetOnStringMessageInvoked)
+  else if(functionId == READ_MESSAGE_STRING)
   {
     char remoteAddress[37];
     memcpy(remoteAddress,getArgumentData(0),36);
@@ -503,7 +532,16 @@ void OneSheeldClass::processRemoteData()
     memcpy(stringData,getArgumentData(2),stringDataLength);
     stringData[stringDataLength]='\0';
 
+    if(isSetOnStringMessageInvoked)
     (*changeStringCallBack)(remoteAddress,key,stringData);
+
+    if(usedSetOnStringWithString)
+    {
+      String remoteAddressInString(remoteAddress);
+      String keyInString(key);
+      String stringDataInString(stringData);
+      (*changeStringCallBackWithString)(remoteAddressInString,keyInString,stringDataInString);
+    }
 
   }
 }
