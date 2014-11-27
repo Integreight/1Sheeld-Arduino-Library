@@ -11,6 +11,8 @@ RemoteOneSheeld::RemoteOneSheeld(const char * address):remoteOneSheeldAddress(ad
 	isFloatMessageAssigned=false;
 	isStringMessageAssigned=false;
 	isSubscribeAssigned=false;
+	usedSetOnFloatWithString=false;
+	usedSetOnStringWithString=false;
 }
 
 void RemoteOneSheeld::pinMode(byte pinNumber, byte pinDirection)
@@ -75,6 +77,63 @@ void RemoteOneSheeld::sendMessage(const char * key , float value)
 						new FunctionArg(strlen(key),(byte*)key),
 						new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
 }
+//Supporting Strings for arduino
+#if !defined(ARDUINO_LINUX) 
+void RemoteOneSheeld::sendMessage(String key , float value)
+{
+	const char * ctypeKey = key.c_str();
+
+	sendMessage(ctypeKey,value);
+}
+
+void RemoteOneSheeld::sendMessage(String key , String stringData)
+{
+	const char * ctypeKey = key.c_str();
+	const char * ctypeData = stringData.c_str();
+
+	sendMessage(ctypeKey,ctypeData);
+}
+#endif
+
+#if defined(ARDUINO_LINUX)
+void RemoteOneSheeld::sendMessage(String key , float value)
+{
+	int keyLength = key.length();
+
+	char ctypeKey[keyLength+1];
+
+	for(int i= 0 ;<keyLength;i++)
+	{
+		ctypeKey[i]=key[i];
+	}
+	ctypeKey[keyLength]='\0';
+
+	sendMessage(ctypeKey,value);
+}
+
+void RemoteOneSheeld::sendMessage(String key , String stringData)
+{
+	int keyLength = key.length();
+	int stringDataLength = stringData.length();
+
+	char ctypeKey[keyLength+1];
+	char ctypeStringData[stringDataLength+1];
+
+	for(int i= 0 ;i<keyLength;i++)
+	{
+		ctypeKey[i]=key[i];
+	}
+	ctypeKey[keyLength]='\0';
+
+	for(int j= 0 ;j<stringDataLength;j++)
+	{
+		ctypeStringData[j]=stringData[i];
+	}
+	ctypeStringData[stringDataLength]='\0';
+
+	sendMessage(ctypeKey,ctypeStringData);
+}
+#endif
 
 void RemoteOneSheeld::sendMessage(const char * key , const char * stringData)
 {
@@ -90,10 +149,21 @@ void RemoteOneSheeld::setOnFloatMessage(void (*userFunction)(char* key, float va
 	isFloatMessageAssigned = true;
 }
 
+void RemoteOneSheeld::setOnFloatMessage(void (*userFunction)(String key, float value))
+{
+	changeFloatCallBackString=userFunction;
+	usedSetOnFloatWithString= true;
+}
 void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(char* key, char* stringData))
 {
 	changeStringCallBack=userFunction;
 	isStringMessageAssigned = true;
+}
+
+void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(String key, String stringData))
+{
+	changeStringCallBackString=userFunction;
+	usedSetOnStringWithString = true;
 }
 
 void RemoteOneSheeld::setOnSubscribeOrDigitalChange(void (* userFunction)(byte incommingPinNumber,bool incommingPinValue))
@@ -254,7 +324,7 @@ void RemoteOneSheeld::processData()
 			(*changeSubscribeOrDigitalCallBack)(pinNo,pinValue);
 		}
 	}
-	else if(functionId == READ_MESSAGE_FLOAT && isFloatMessageAssigned)
+	else if(functionId == READ_MESSAGE_FLOAT)
 	{
     	int floatKeyLength = OneSheeld.getArgumentLength(1);
     	char floatKey[floatKeyLength+1];
@@ -263,10 +333,19 @@ void RemoteOneSheeld::processData()
 
     	float incommingFloatValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 
-		(*changeFloatCallBack)(floatKey,incommingFloatValue);
+    	if(usedSetOnFloatWithString)
+    	{
+    		String floatKeyInString(floatKey);
+    		(*changeFloatCallBackString)(floatKeyInString,incommingFloatValue);
+    	}
+    	if(isFloatMessageAssigned)
+    	{
+    		(*changeFloatCallBack)(floatKey,incommingFloatValue);	
+    	}
+		
 
 	}
-	else if(functionId == READ_MESSAGE_STRING && isStringMessageAssigned)
+	else if(functionId == READ_MESSAGE_STRING )
 	{
 		int stringKeyLength = OneSheeld.getArgumentLength(1);
     	char stringKey[stringKeyLength+1];
@@ -278,7 +357,17 @@ void RemoteOneSheeld::processData()
     	memcpy(incommingStringData,OneSheeld.getArgumentData(2),stringDataLength);
    	 	incommingStringData[stringDataLength]='\0';
 
-		(*changeStringCallBack)(stringKey,incommingStringData);
+   	 	if(usedSetOnStringWithString)
+    	{
+    		String stringKeyInString(stringKey);
+    		String incommingStringDataInString(incommingStringData);
+    		(*changeStringCallBackString)(stringKeyInString,incommingStringDataInString);
+    	}
+    	if(isStringMessageAssigned)
+    	{
+    		(*changeStringCallBack)(stringKey,incommingStringData);	
+    	}
+		
 
 	}
 }

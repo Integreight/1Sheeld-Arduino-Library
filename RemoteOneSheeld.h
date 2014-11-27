@@ -27,9 +27,13 @@ public:
 	void digitalRead(byte);
 	void analogWrite(byte ,int);
 	void sendMessage(const char* ,float);
+	void sendMessage(String , float);
 	void sendMessage(const char* ,const char*);
+	void sendMessage(String ,String );
 	void setOnFloatMessage(void (*)(char*,float));
+	void setOnFloatMessage(void (*)(String , float));
 	void setOnStringMessage(void(*)(char* , char*));
+	void setOnStringMessage(void(*)(String , String));
 	void setOnSubscribeOrDigitalChange(void (*)(byte , bool));
 
 	void subscribeToChanges(byte);
@@ -49,7 +53,8 @@ private:
 	bool isFloatMessageAssigned;
 	bool isStringMessageAssigned;
 	bool isSubscribeAssigned;
-	
+	bool usedSetOnFloatWithString;
+	bool usedSetOnStringWithString;
 	char * floatKey;
 	char * stringKey;
 	char * incommingStringData;
@@ -58,7 +63,9 @@ private:
 
 	void processData();
 	void (*changeFloatCallBack)(char*, float);
+	void (*changeFloatCallBackString)(String ,float);
 	void (*changeStringCallBack)(char*, char*);
+	void (*changeStringCallBackString)(String ,String);
 	void (*changeSubscribeOrDigitalCallBack)(byte ,bool);
 	byte checkAnalogPinNumbers(byte);
 
