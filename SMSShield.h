@@ -29,20 +29,29 @@ public:
 	//Sender
 	void send(const char* ,const char*);
 	void send(String , String );
+	bool isNewSms();
 	//Getter
 	char * getSms();
+	String getSmsAsString();
 	char * getNumber();
+	String getNumberAsString();
 	//setOnChange for Users Function
 	void setOnSmsReceive(void (*)(char*,char*));
+	void setOnSmsReceive(void (*)(String ,String ));
 private:
 	//Reserve Variable
 	char * text;
 	char * number;
 	//Boolean For the setOnChange Function
 	bool isCallBackAssigned;
+	//Boolean to check if new SMS arrived
+	bool isItNewSms;
+	//Boolean for setOnSmsString
+	bool usedSetOnWithString;
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(char*,char*);
+	void (*changeCallBackString)(String ,String);
 	
 	
 	friend class OneSheeldClass ;
