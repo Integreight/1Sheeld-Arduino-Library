@@ -40,11 +40,17 @@ public:
 	//Send Direct Message
 	void sendMessage(const char* ,const char* );
 	void sendMessage(String , String);
+	//Checkers
+	bool isNewTweet();
 	//Getters 
 	char * getUserName();
+	String getUserNameAsString();
+	//Getters
 	char * getTweet();
+	String getTweetAsString();
 	//setOnChange for Users Function
 	void setOnNewTweet(void (*)(char*,char*));
+	void setOnNewTweet(void (*)(String , String ));
 	//Posting Pictures
 	void tweetLastPicture(const char *,byte =0);
 	void tweetLastPicture(String , byte =0);
@@ -63,9 +69,14 @@ private:
 	bool isCallBackAssigned;
 	//Boolean for checking selection
 	bool isCheckingTriggered;
+	//Boolean for incoming String support
+	bool usedSetOnWithString;
+	//Boolean to check if a new tweet 
+	bool isItNewTweet;
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(char*,char*);
+	void (*changeCallBackString)(String , String);
 	void (*selectedCallBack)(void);
 
 	friend class OneSheeldClass;

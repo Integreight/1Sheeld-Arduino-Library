@@ -23,6 +23,8 @@ TwitterShieldClass::TwitterShieldClass()
  	tweetText = 0;
  	isCallBackAssigned=false;
  	isCheckingTriggered=false;
+ 	usedSetOnWithString=false;
+ 	isItNewTweet=false;
 }
 //Tweet Sender
 void TwitterShieldClass::tweet(const char *data)
@@ -134,7 +136,11 @@ void TwitterShieldClass::tweetLastPicture(String pictureText ,byte imageSource)
 	tweetLastPicture(cTypePictureText,imageSource);
 }
 #endif
-
+//Check if new tweet 
+bool TwitterShieldClass::isNewTweet()
+{
+	return isItNewTweet;
+}
 void TwitterShieldClass::trackKeyword(const char * keyword)
 {
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
@@ -204,12 +210,27 @@ void TwitterShieldClass::untrackKeyword(String keyword )
 //UserName Getter
 char * TwitterShieldClass::getUserName()
 {
+	isItNewTweet=false;
 	return userName;
+}
+
+String TwitterShieldClass::getUserNameAsString()
+{
+	isItNewTweet=false;
+	String userNameInString (userName);
+	return userNameInString;
 }
 //Tweet Getter
 char * TwitterShieldClass::getTweet()
 {
 	return tweetText;
+}
+
+String TwitterShieldClass::getTweetAsString()
+{
+	isItNewTweet=false;
+	String tweetInString (tweetText);
+	return tweetInString;
 }
 //Twitter Input Data Processing
 void TwitterShieldClass::processData()
@@ -217,7 +238,8 @@ void TwitterShieldClass::processData()
 	//Checking Function-ID
 	byte functionId = OneSheeld.getFunctionId();
 	if( functionId == TWITTER_GET_TWEET)
-	{
+	{	
+		isItNewTweet = true;
 		if(userName!=0)
 		{
 			free(userName);
@@ -247,6 +269,14 @@ void TwitterShieldClass::processData()
 		{
 			(*changeCallBack)(userName,tweetText);
 		}
+
+		if(usedSetOnWithString)
+		{
+			String usernameString(userName);
+			String tweetTextString(tweetText);
+
+			(*changeCallBackString)(usernameString,tweetTextString);
+		}
 	}
 	else if(functionId == TWITTER_CHECK_SELECTED) //called when twitter shield is selected
 	{
@@ -258,6 +288,13 @@ void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,cha
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+
+//Users Function Setter
+void TwitterShieldClass::setOnNewTweet(void (*userFunction)(String userName ,String tweetText))
+{
+	changeCallBackString=userFunction;
+	usedSetOnWithString=true;
 }
 //Checking Twitter selected
 void TwitterShieldClass::setOnTwitterSelected(void (*userFunction)(void))
