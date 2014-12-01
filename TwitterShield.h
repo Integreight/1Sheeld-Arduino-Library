@@ -56,8 +56,8 @@ public:
 	void tweetLastPicture(String , byte =0);
 	//Track certain words
 	void trackKeyword(const char * );
-	void untrackKeyword(const char *);
 	void trackKeyword(String );
+	void untrackKeyword(const char *);
 	void untrackKeyword(String);
 	//Check if shield selected
 	void setOnTwitterSelected(void(*)(void));
