@@ -49,7 +49,7 @@ bool VoiceRecognitionShield::isNewCommandReceived()
 {
 	return newCommand;
 }
-String VoiceRecognitionShield::getCommandAsStringObject()
+String VoiceRecognitionShield::getCommandAsString()
 {
 		String dataInString (voice);
 		return dataInString;

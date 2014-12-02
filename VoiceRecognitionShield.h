@@ -39,7 +39,7 @@ public:
 	//Getter
 	char * getLastCommand();
 	//Getter
-	String getCommandAsStringObject();
+	String getCommandAsString();
 	//Getter
 	int getLastCommandLength();
 	//Checker 
