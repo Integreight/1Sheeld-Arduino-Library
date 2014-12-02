@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          RemoteOneSheeld.h
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.12
+
+*/
+
 #ifndef RemoteOneSheeld_h
 #define RemoteOneSheeld_h
 
@@ -20,28 +35,33 @@
 class RemoteOneSheeld
 {
 friend class OneSheeldClass;
+
 public:
+	//Constructor
 	RemoteOneSheeld(const char*);
+	//Setters
 	void pinMode(byte ,byte);
 	void digitalWrite(byte ,byte);
 	void digitalRead(byte);
 	void analogWrite(byte ,int);
+	//Senders
 	void sendMessage(const char* ,float);
 	void sendMessage(String , float);
 	void sendMessage(const char* ,const char*);
 	void sendMessage(String ,String );
+	//Getters
 	void setOnFloatMessage(void (*)(char*,float));
 	void setOnFloatMessage(void (*)(String , float));
 	void setOnStringMessage(void(*)(char* , char*));
 	void setOnStringMessage(void(*)(String , String));
 	void setOnSubscribeOrDigitalChange(void (*)(byte , bool));
-
+	//Subscribers
 	void subscribeToChanges(byte);
 	void subscribeToChanges(byte ,byte);
 	void subscribeToChanges(byte ,byte ,byte);
 	void subscribeToChanges(byte ,byte ,byte , byte);
 	void subscribeToChanges(byte ,byte ,byte , byte, byte);
-
+	//Unsubscribers
 	void unSubscribeToChanges(byte);
 	void unSubscribeToChanges(byte ,byte);
 	void unSubscribeToChanges(byte ,byte ,byte);
@@ -49,24 +69,27 @@ public:
 	void unSubscribeToChanges(byte ,byte ,byte , byte, byte);
 
 private:
+	//Reserved for Data
 	const char * remoteOneSheeldAddress;
+	char * floatKey;
+	char * stringKey;
+	char * incommingStringData;
+	float incommingFloatValue;
+	//Booleans
 	bool isFloatMessageAssigned;
 	bool isStringMessageAssigned;
 	bool isSubscribeAssigned;
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
-	char * floatKey;
-	char * stringKey;
-	char * incommingStringData;
-
-	float incommingFloatValue;
-
+	//Functions
 	void processData();
+	//Set On Change for user functions
 	void (*changeFloatCallBack)(char*, float);
 	void (*changeFloatCallBackString)(String ,float);
 	void (*changeStringCallBack)(char*, char*);
 	void (*changeStringCallBackString)(String ,String);
 	void (*changeSubscribeOrDigitalCallBack)(byte ,bool);
+	//Checker
 	byte checkAnalogPinNumbers(byte);
 
 };

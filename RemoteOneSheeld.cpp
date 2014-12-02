@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          RemoteOneSheeld.cpp
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2014.12
+
+*/
+
 #include "OneSheeld.h"
 #include "RemoteOneSheeld.h"
 
@@ -5,7 +20,7 @@
 
 
 
-
+//Constructor
 RemoteOneSheeld::RemoteOneSheeld(const char * address):remoteOneSheeldAddress(address)
 {
 	isFloatMessageAssigned=false;
@@ -14,7 +29,7 @@ RemoteOneSheeld::RemoteOneSheeld(const char * address):remoteOneSheeldAddress(ad
 	usedSetOnFloatWithString=false;
 	usedSetOnStringWithString=false;
 }
-
+//Setting Pins mode
 void RemoteOneSheeld::pinMode(byte pinNumber, byte pinDirection)
 {
 	pinNumber =checkAnalogPinNumbers(pinNumber);
@@ -28,7 +43,7 @@ void RemoteOneSheeld::pinMode(byte pinNumber, byte pinDirection)
 	}
 	
 }
-
+//Setting digital pin state
 void RemoteOneSheeld::digitalWrite(byte pinNumber,byte pinValue)
 {
 	pinNumber =checkAnalogPinNumbers(pinNumber);
@@ -42,7 +57,7 @@ void RemoteOneSheeld::digitalWrite(byte pinNumber,byte pinValue)
 	}
 
 }
-
+//Setting analog pin status
 void RemoteOneSheeld::analogWrite(byte pinNumber,int pinValue)
 {
 	byte tempValue ;
@@ -61,7 +76,7 @@ void RemoteOneSheeld::analogWrite(byte pinNumber,int pinValue)
 						new FunctionArg(1,&tempValue));
 	}
 }
-
+//Getting digital/analog pin status 
 void RemoteOneSheeld::digitalRead(byte pinNumber)
 {
 	OneSheeld.sendPacket(REMOTE_SHEELD_ID,0,REMOTEONESHEELD_READ,2,
@@ -69,7 +84,7 @@ void RemoteOneSheeld::digitalRead(byte pinNumber)
 						new FunctionArg(1,&pinNumber));
 
 }
-
+//Sending message remotely 
 void RemoteOneSheeld::sendMessage(const char * key , float value)
 {
 	OneSheeld.sendPacket(REMOTE_SHEELD_ID,0,REMOTEONESHEELD_SEND_FLOAT,3,
@@ -94,7 +109,7 @@ void RemoteOneSheeld::sendMessage(String key , String stringData)
 	sendMessage(ctypeKey,ctypeData);
 }
 #endif
-
+//Supporting Strings for Arduino 
 #if defined(ARDUINO_LINUX)
 void RemoteOneSheeld::sendMessage(String key , float value)
 {
@@ -134,7 +149,7 @@ void RemoteOneSheeld::sendMessage(String key , String stringData)
 	sendMessage(ctypeKey,ctypeStringData);
 }
 #endif
-
+//Sending message remotely 
 void RemoteOneSheeld::sendMessage(const char * key , const char * stringData)
 {
 	OneSheeld.sendPacket(REMOTE_SHEELD_ID,0,REMOTEONESHEELD_SEND_STRING,3,
@@ -142,36 +157,37 @@ void RemoteOneSheeld::sendMessage(const char * key , const char * stringData)
 						new FunctionArg(strlen(key),(byte*)key),
 						new FunctionArg(strlen(stringData),(byte*)stringData));
 }
-
+//Getting Data from remote 1Sheeld
 void RemoteOneSheeld::setOnFloatMessage(void (*userFunction)(char* key, float value))
 {
 	changeFloatCallBack=userFunction;
 	isFloatMessageAssigned = true;
 }
-
+//Getting Data from remote 1Sheeld 
 void RemoteOneSheeld::setOnFloatMessage(void (*userFunction)(String key, float value))
 {
 	changeFloatCallBackString=userFunction;
 	usedSetOnFloatWithString= true;
 }
+//Getting Data from remote 1Sheeld
 void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(char* key, char* stringData))
 {
 	changeStringCallBack=userFunction;
 	isStringMessageAssigned = true;
 }
-
+//Getting Data from remote 1Sheeld
 void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(String key, String stringData))
 {
 	changeStringCallBackString=userFunction;
 	usedSetOnStringWithString = true;
 }
-
+//Getting Data from remote 1Sheeld
 void RemoteOneSheeld::setOnSubscribeOrDigitalChange(void (* userFunction)(byte incommingPinNumber,bool incommingPinValue))
 {
 	changeSubscribeOrDigitalCallBack=userFunction;
 	isSubscribeAssigned=true;
 }
-
+//Subscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::subscribeToChanges(byte pin0)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -181,6 +197,7 @@ void RemoteOneSheeld::subscribeToChanges(byte pin0)
 						 new FunctionArg(1,&pin0));
 }
 
+//Subscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -192,6 +209,7 @@ void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1)
 						 new FunctionArg(1,&pin1));
 }
 
+//Subscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1,byte pin2)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -205,6 +223,7 @@ void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1,byte pin2)
 						 new FunctionArg(1,&pin2));
 }
 
+//Subscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte pin3)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -220,6 +239,7 @@ void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte pin
 						 new FunctionArg(1,&pin3));
 }
 
+//Subscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte pin3 ,byte pin4)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -237,6 +257,7 @@ void RemoteOneSheeld::subscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte pin
 						 new FunctionArg(1,&pin4));
 }
 
+//unSubscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::unSubscribeToChanges(byte pin0)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -246,6 +267,7 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0)
 						 new FunctionArg(1,&pin0));
 }
 
+//unSubscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -257,6 +279,7 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1)
 						 new FunctionArg(1,&pin1));
 }
 
+//unSubscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -270,6 +293,7 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2)
 						 new FunctionArg(1,&pin2));
 }
 
+//unSubscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte pin3)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -285,6 +309,7 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte p
 						 new FunctionArg(1,&pin3));
 }
 
+//unSubscribe to a certain pin on remote arduino 
 void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte pin3 ,byte pin4)
 {
 	pin0 = checkAnalogPinNumbers(pin0);
@@ -301,7 +326,7 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte p
 						 new FunctionArg(1,&pin3),
 						 new FunctionArg(1,&pin4));
 }
-
+//Process Input data from remote 1Sheeld
 void RemoteOneSheeld::processData()
 {
 	if(memcmp (remoteOneSheeldAddress,OneSheeld.getArgumentData(0),36))return;
@@ -371,7 +396,7 @@ void RemoteOneSheeld::processData()
 
 	}
 }
-
+//Check analog pins low level number 
 byte RemoteOneSheeld::checkAnalogPinNumbers(byte pinNumber)
 {
 	switch(pinNumber)
