@@ -114,7 +114,11 @@ getDistance	KEYWORD2
 radian	KEYWORD2
 isRinging	KEYWORD2
 getNumber	KEYWORD2
+getNumberAsString	KEYWORD2
 getSms	KEYWORD2
+getSmsAsString	KEYWORD2
+getNumberAsString	KEYWORD2
+isNewSms	KEYWORD2
 frontCapture	KEYWORD2
 getSeconds	KEYWORD2
 getMinutes	KEYWORD2
@@ -136,6 +140,9 @@ sendMessage	KEYWORD2
 isPressed	KEYWORD2
 getUserName	KEYWORD2
 getTweet	KEYWORD2
+getTweetAsString	KEYWORD2
+isNewTweet	KEYWORD2
+getUserNameAsString	KEYWORD2
 setDot	KEYWORD2
 tweet	KEYWORD2
 setOnNewTweet	KEYWORD2
@@ -143,6 +150,7 @@ getAsFahrenheit	KEYWORD2
 say	KEYWORD2
 startListening	KEYWORD2
 getLastCommand	KEYWORD2
+getCommandAsString	KEYWORD2
 isNewCommandReceived	KEYWORD2
 setOnNewCommand	KEYWORD2
 log	KEYWORD2
