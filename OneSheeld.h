@@ -87,6 +87,8 @@ public:
 	OneSheeldClass(Stream &s);
 	//Blocking function
 	void waitForConnection();
+	//Check connection
+	bool isAppConnected();
 	//Getters 
 	byte getShieldId();
 	byte getInstanceId();
@@ -97,7 +99,6 @@ public:
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
 	void listenToRemoteOneSheeld(RemoteOneSheeld *);
-	bool isAppConnected();
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -106,8 +107,7 @@ public:
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
-	//Remote OneSheeld fucntions
-	void processRemoteData();
+	//Set on change for users function
 	void setOnFloatMessage(void (*)(char * ,char * ,float));
 	void setOnFloatMessage(void (*)(String ,String ,float));
 	void setOnStringMessage(void (*)(char * ,char * ,char *));
@@ -120,6 +120,15 @@ private:
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
+	bool isFirstFrame;
+	bool framestart;
+	//Remote OneSheeld fnuctions
+	bool isSetOnFloatMessageInvoked;
+	bool isSetOnStringMessageInvoked;
+	bool usedSetOnFloatWithString;
+	bool usedSetOnStringWithString;
+	bool isOneSheeldRemoteDataUsed;
+	//Data bytes
 	byte numberOfDataMalloced;
 	byte shield;
 	byte instance;
@@ -130,28 +139,24 @@ private:
 	byte argumentnumber;
 	byte **arguments;	
 	byte *argumentL;            
-	bool framestart;
 	byte endFrame;
+	//Checker variable 
 	unsigned long lastTimeFrameSent;
-	bool isFirstFrame;
-	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
+	//Number of connected Remote 1Sheelds
 	int remoteOneSheeldsCounter;
+	//Array of remote 1Sheelds
+	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
-	//Remote OneSheeld fnuctions
-	bool isSetOnFloatMessageInvoked;
-	bool isSetOnStringMessageInvoked;
-	bool usedSetOnFloatWithString;
-	bool usedSetOnStringWithString;
-	bool isOneSheeldRemoteDataUsed;
-
+	void processData();
+	//Remote OneSheeld fucntions
+	void processRemoteData();
 	void (*changeFloatCallBack)(char*,char*, float);
 	void (*changeFloatCallBackWithString)(String ,String , float);
 	void (*changeStringCallBack)(char*,char*, char*);
 	void (*changeStringCallBackWithString)(String ,String ,String );
-	void processData();
 };
 
 
