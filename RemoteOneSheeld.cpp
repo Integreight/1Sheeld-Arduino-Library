@@ -142,7 +142,7 @@ void RemoteOneSheeld::sendMessage(String key , String stringData)
 
 	for(int j= 0 ;j<stringDataLength;j++)
 	{
-		ctypeStringData[j]=stringData[i];
+		ctypeStringData[j]=stringData[j];
 	}
 	ctypeStringData[stringDataLength]='\0';
 
