@@ -117,7 +117,7 @@ void RemoteOneSheeld::sendMessage(String key , float value)
 
 	char ctypeKey[keyLength+1];
 
-	for(int i= 0 ;<keyLength;i++)
+	for(int i= 0 ; i<keyLength ;i++)
 	{
 		ctypeKey[i]=key[i];
 	}
