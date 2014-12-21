@@ -558,6 +558,11 @@ void OneSheeldClass::processData(){
   {
       isOneSheeldConnected=true;
   }
+  else if(functionId == LIBRARY_VERSION_REQUEST)
+  {
+    byte libraryVersion = LIBRARY_VERSION;
+    sendPacket(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0x01,new FunctionArg(1,&libraryVersion));
+  }
 }
 
 //PulseWidthModulation Getter 

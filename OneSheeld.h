@@ -27,7 +27,7 @@ typedef unsigned char byte;
 
 #define ONE_SECOND 1000
 
-#define ONESHEELD_BEGIN 0x01
+//#define ONESHEELD_BEGIN 0x01
 
 //Start and End of packet sent
 #define START_OF_FRAME  0xFF
@@ -45,8 +45,15 @@ typedef unsigned char byte;
 
 //#define DEBUG
 
+//Output function ID's
+#define SEND_LIBRARY_VERSION	0x01
+//Input function ID's 
+//Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
+#define LIBRARY_VERSION_REQUEST	0x03
+
+
 
 //Class for Datalength and Data
 class FunctionArg
