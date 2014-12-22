@@ -50,5 +50,31 @@ void BuzzerShieldClass::setValue(byte x)
 	OneSheeld.sendPacket(BUZZER_ID,0,BUZZER_SET,1,new FunctionArg(1,&x));
 }
 
+void BuzzerShieldClass::select()
+{
+	OneSheeld.sendPacket(BUZZER_ID,0,BUZZER_SELECT_SHIELD,0);
+}
+
+void BuzzerShieldClass::unselect()
+{
+	OneSheeld.sendPacket(BUZZER_ID,0,BUZZER_UNSELECT_SHIELD,0);
+}
+
+void BuzzerShieldClass::processData()
+{
+	byte functionId = OneSheeld.getFunctionId();
+
+	if(functionId == BUZZER_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void BuzzerShieldClass::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
+
+
 //instantiating Object
 BuzzerShieldClass Buzzer;

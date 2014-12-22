@@ -74,17 +74,28 @@ String PhoneShieldClass::getNumberAsString()
 	String phoneNumberAsString(number);
 	return phoneNumberAsString;
 }
+
+void PhoneShieldClass::select()
+{
+	OneSheeld.sendPacket(PHONE_ID,0,PHONE_SELECT_SHIELD,0);
+}
+
+void PhoneShieldClass::unselect()
+{
+	OneSheeld.sendPacket(PHONE_ID,0,PHONE_UNSELECT_SHIELD,0);
+}
+
 //Phone Input Data Processing 
 void PhoneShieldClass::processData()
 {	
 	//Checking Function-ID
-	byte x= OneSheeld.getFunctionId();
+	byte functionId= OneSheeld.getFunctionId();
 
-	if (x==PHONE_IS_RINGING)
+	if (functionId==PHONE_IS_RINGING)
 	{
 		value =OneSheeld.getArgumentData(0)[0];
 	}
-	else if (x==PHONE_GET_NUMBER)
+	else if (functionId==PHONE_GET_NUMBER)
 	{
 		if(number!=0)
 		{
@@ -112,6 +123,10 @@ void PhoneShieldClass::processData()
 				(*changeCallBackString)(value,phoneNumberAsString);
 			}
 	}
+	else if(functionId == PHONE_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 	
 
 
@@ -122,6 +137,11 @@ void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+
+void PhoneShieldClass::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
 }
 
 void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,String phoneNumber))

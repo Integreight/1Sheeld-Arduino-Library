@@ -29,6 +29,16 @@ unsigned long LightSensorShield::getValue()
 	return value;
 	
 }
+
+void LightSensorShield::select()
+{
+	OneSheeld.sendPacket(LIGHT_ID,0,LIGHT_SELECT_SHIELD,0);	
+}
+
+void LightSensorShield::unselect()
+{
+	OneSheeld.sendPacket(LIGHT_ID,0,LIGHT_UNSELECT_SHIELD,0);	
+}
 //Light Input Data Processing
 void LightSensorShield::processData()
 {
@@ -49,6 +59,10 @@ void LightSensorShield::processData()
 			(*changeCallBack)(value);
 		}
 	}
+	else if (functionId == LIGHT_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 //Users Function Setter 
 void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long lightValue))
@@ -57,5 +71,9 @@ void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long ligh
 	isCallBackAssigned=true;
 }
 
+void LightSensorShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating Object
 LightSensorShield LightSensor;

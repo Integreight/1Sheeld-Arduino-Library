@@ -16,8 +16,12 @@
 #ifndef MagnetometerSensorShield_h
 #define MagnetometerSensorShield_h
 
+//Output Function ID
+#define MAGNETOMETER_SELECT_SHIELD	0x01
+#define MAGNETOMETER_UNSELECT_SHIELD	0x02  
 //Input Function ID 
 #define MAGNETOMETER_VALUE 0x01
+#define MAGNETOMETER_CHECK_SELECTED	0x02  
 
 
 class MagnetometerSensorShield
@@ -30,9 +34,12 @@ public:
 	float getY();
 	float getZ();
 	float getMagneticStrength();
+	//Selection 
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float ,float ,float));
-
+	void setOnSelected(void(*)(void));
 private:
 	//Reserve Variables 
 	float valueX ,valueY,valueZ;
@@ -41,7 +48,7 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(float ,float ,float );
-
+	void (*selectedCallBack)(void);
 	friend class OneSheeldClass;
 
 	

@@ -19,6 +19,11 @@
 
 //Output Function ID
 #define FOURSQUARE_CHECK_IN 0x01
+#define FOURSQUARE_SELECT_SHIELD	0x02
+#define FOURSQUARE_UNSELECT_SHIELD	0x03  
+
+//Input Function ID
+#define FOURSQUARE_CHECK_SELECTED	0x01
 
 class FoursquareShieldClass
 {
@@ -26,7 +31,16 @@ public:
 	//Sender
 	void checkIn(const char* ,const char* );
 	void checkIn(String , String );
+	//Selection
+	void select();
+	void unselect();
+	//Set On when selected
+	void setOnSelected(void(*)(void));
 private:
+	void processData();
+	void (*selectedCallBack)(void);
+
+	friend class OneSheeldClass;
 
 };
 

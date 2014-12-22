@@ -19,31 +19,44 @@
 
 //Shields ID's
 byte inputShieldsList[]={ONESHEELD_ID
-,KEYPAD_SHIELD_ID
-,GPS_ID
 ,SLIDER_ID
+,LED_ID
 ,PUSH_BUTTON_ID
 ,TOGGLE_BUTTON_ID
-,GAMEPAD_ID
-,PROXIMITY_ID
-,MIC_ID
-,TEMPERATURE_ID
-,LIGHT_ID
-,PRESSURE_ID
-,GRAVITY_ID
+,NOTIFICATION_ID
+,SEV_SEG_ID
+,BUZZER_ID
+,KEYPAD_SHIELD_ID
+,MAGNETOMETER_ID
 ,ACCELEROMETER_ID
+,GAMEPAD_ID
+,SMS_ID
 ,GYROSCOPE_ID
 ,ORIENTATION_ID
-,MAGNETOMETER_ID
+,LIGHT_ID
+,PRESSURE_ID
+,TEMPERATURE_ID
+,PROXIMITY_ID
+,GRAVITY_ID
+,CAMERA_ID
+,LCD_ID
+,MIC_ID
+,FACEBOOK_ID
+,TWITTER_ID
+,FOURSQUARE_ID
+,GPS_ID
+,MUSIC_PLAYER_ID
+,EMAIL_ID
+,SKYPE_ID
 ,PHONE_ID
-,SMS_ID
 ,CLOCK_ID
 ,KEYBOARD_ID
-,TWITTER_ID
-,VOICE_RECOGNITION_ID,
-TERMINAL_ID,
-COLOR_ID,
-REMOTE_SHEELD_ID,
+,TTS_ID
+,VOICE_RECOGNITION_ID
+,DATA_LOGGER_ID
+,TERMINAL_ID
+,COLOR_ID
+,REMOTE_SHEELD_ID
 };
 
 
@@ -311,7 +324,7 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<28;i++) {
+                  for (int i=0;i<39;i++) {
                     if (shield == inputShieldsList[i]){
                       found = true;
                       
@@ -377,6 +390,45 @@ void OneSheeldClass::sendToShields()
   switch (number_Of_Shield)
   {
     case ONESHEELD_ID            :processData();break;
+    #ifdef TEXTTOSPEECH_SHIELD
+    case TTS_ID                  : TextToSpeech.processData(); break ;
+    #endif
+    #ifdef SEVEN_SEGMENT_SHIELD
+    case SEV_SEG_ID              : SevenSegment.processData(); break ;
+    #endif
+    #ifdef NOTIFICATION_SHIELD
+    case NOTIFICATION_ID         : Notification.processData(); break ;
+    #endif
+    #ifdef MUSIC_PLAYER_SHIELD
+    case MUSIC_PLAYER_ID         : MusicPlayer.processData(); break ;
+    #endif
+    #ifdef LED_SHIELD
+    case LED_ID                  : LED.processData(); break ;
+    #endif
+    #ifdef LCD_SHIELD
+    case LCD_ID                  : LCD.processData(); break ;
+    #endif
+    #ifdef FOURSQUARE_SHIELD
+    case FACEBOOK_ID             : Facebook.processData(); break ;
+    #endif
+    #ifdef FACEBOOK_SHIELD
+    case FOURSQUARE_ID           : Foursquare.processData(); break ;
+    #endif.
+    #ifdef EMAIL_SHIELD
+    case EMAIL_ID                : Email.processData(); break ;
+    #endif
+    #ifdef DATA_LOGGER_SHIELD
+    case DATA_LOGGER_ID          : Logger.processData(); break ;
+    #endif
+    #ifdef CAMERA_SHIELD
+    case CAMERA_ID               : Camera.processData(); break ;
+    #endif
+    #ifdef BUZZER_SHIELD
+    case BUZZER_ID               : Buzzer.processData(); break ;
+    #endif
+    #ifdef SKYPE_SHIELD
+    case SKYPE_ID                : Skype.processData(); break ;
+    #endif
     #ifdef KEYPAD_SHIELD
     case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
     #endif

@@ -18,6 +18,11 @@
 
 //Output Function ID
 #define TTS_SAY 0x01
+#define TTS_SELECT_SHIELD 0x02
+#define TTS_UNSELECT_SHIELD 0x03
+
+//Input Function ID's
+#define TTS_CHECK_SELECTED  0x01
 
   class TTSShield
   {
@@ -25,9 +30,18 @@
     //Process
   	void say(const char *);
     void say(String );
-
+    //Check selection
+    void setOnSelected(void(*)());
+    //Selection
+    void select();
+    void unselect();
   private:
+    bool isCheckSelectedTriggered;
 
+    void processData();
+    void (*selectedCallBack)(void);
+
+    friend class OneSheeldClass;
   };
 
   //Extern Object

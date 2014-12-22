@@ -93,5 +93,29 @@ void LCDShield::setCursor(byte x ,byte y)
 	OneSheeld.sendPacket(LCD_ID,0,LCD_SETCURSOR,2,new FunctionArg(1,&x),new FunctionArg(1,&y));
 }
 
+void LCDShield::select()
+{
+	OneSheeld.sendPacket(LCD_ID,0,LCD_SELECT_SHIELD,0);
+}
+
+void LCDShield::unselect()
+{
+	OneSheeld.sendPacket(LCD_ID,0,LCD_UNSELECT_SHIELD,0);
+}
+
+void LCDShield::processData()
+{
+	byte functionId = OneSheeld.getFunctionId();
+
+	if(functionId == LCD_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void LCDShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating Object
 LCDShield LCD;

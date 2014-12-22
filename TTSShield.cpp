@@ -23,6 +23,17 @@ void TTSShield::say(const char * text)
 {
 	OneSheeld.sendPacket(TTS_ID,0,TTS_SAY,1,new FunctionArg(strlen(text),(byte*)text));
 }
+
+void TTSShield::select()
+{
+	OneSheeld.sendPacket(TTS_ID,0,TTS_SELECT_SHIELD,0);
+}
+
+void TTSShield::unselect()
+{
+	OneSheeld.sendPacket(TTS_ID,0,TTS_UNSELECT_SHIELD,0);
+}
+
 //Support string for Arduino
 #if !defined(ARDUINO_LINUX)
 void TTSShield::say(String text)
@@ -50,5 +61,20 @@ void TTSShield::say(String text)
 	say(cTypeText);
 }
 #endif
+
+void TTSShield::processData()
+{
+	byte functionID = OneSheeld.getFunctionId();
+
+	if(functionID == TTS_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void TTSShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiaing Object
 TTSShield TextToSpeech;

@@ -48,6 +48,16 @@ int TerminalShield::readBytes(char *arr, int length)
  	}
   return count;
 }
+
+void TerminalShield::select()
+{
+	OneSheeld.sendPacket(TERMINAL_ID,0,TERMINAL_SELECT_SHIELD,0);
+}
+
+void TerminalShield::unselect()
+{
+	OneSheeld.sendPacket(TERMINAL_ID,0,TERMINAL_UNSELECT_SHIELD,0);
+}
 //Terminal Incomming Data processing
 void TerminalShield::processData()
 {
@@ -60,6 +70,15 @@ void TerminalShield::processData()
 				buffer.push(OneSheeld.getArgumentData(0)[j]);
 			}
 	}
+	else if(functionID == TERMINAL_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void TerminalShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack= userFunction;
 }
 //instantiating Object 
 TerminalShield Terminal;

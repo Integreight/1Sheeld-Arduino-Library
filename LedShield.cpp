@@ -32,5 +32,29 @@ void LedShield::setValue(byte data)
 	OneSheeld.sendPacket(LED_ID,0,LED_SET_VALUE,1,new FunctionArg(1,&data));
 }
 
+void LedShield::select()
+{
+	OneSheeld.sendPacket(LED_ID,0,LED_SELECT_SHIELD,0);
+}
+
+void LedShield::unselect()
+{
+	OneSheeld.sendPacket(LED_ID,0,LED_UNSELECT_SHIELD,0);
+}
+
+void LedShield::processData()
+{
+	byte functionId = OneSheeld.getFunctionId();
+
+	if(functionId == LED_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void LedShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating Object
 LedShield LED;

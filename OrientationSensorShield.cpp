@@ -41,6 +41,16 @@ float OrientationSensorShield::getZ()
 {
 	return valueZ;
 }
+
+void OrientationSensorShield::select()
+{
+	OneSheeld.sendPacket(ORIENTATION_ID,0,OREINTATION_SELECT_SHIELD,0);
+}
+
+void OrientationSensorShield::unselect()
+{
+	OneSheeld.sendPacket(ORIENTATION_ID,0,OREINTATION_UNSELECT_SHIELD,0);
+}
 //AccelerometerSensor Data processing 
 void OrientationSensorShield::processData()
 {
@@ -61,6 +71,10 @@ void OrientationSensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
+		else if(functionId == ORIENTATION_CHECK_SELECTED)
+		{
+			(*selectedCallBack)();
+		}
 }
 
 //Users Function Setter
@@ -70,5 +84,9 @@ void OrientationSensorShield::setOnValueChange(void (*userFunction)(float valueX
 	isCallBackAssigned=true;
 }
 
+void OrientationSensorShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instatntiating Object
 OrientationSensorShield OrientationSensor;

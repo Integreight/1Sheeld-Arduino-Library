@@ -55,6 +55,16 @@ String VoiceRecognitionShield::getCommandAsString()
 		return dataInString;
 }
 
+void VoiceRecognitionShield::select()
+{
+	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,VOICE_SELECT_SHIELD,0);
+}
+
+void VoiceRecognitionShield::unselect()
+{
+	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,VOICE_UNSELECT_SHIELD,0);
+}
+
 //Process Input Data
 void VoiceRecognitionShield::processData()
 {
@@ -101,6 +111,10 @@ void VoiceRecognitionShield::processData()
 			(*errorCallBack)(errorNumber);
 		}
 	}
+	else if(functionID==VOICE_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 //Users Function Setter 
 void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(char * voice))
@@ -120,6 +134,12 @@ void VoiceRecognitionShield::setOnError(void (*userFunction)(byte error))
 {
 	errorCallBack=userFunction;
 	errorAssigned=true;
+}
+
+void VoiceRecognitionShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack= userFunction;
+	isCheckingSelectedTriggered=true;
 }
 //Instantiating object 
 VoiceRecognitionShield VoiceRecognition;

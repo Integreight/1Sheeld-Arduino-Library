@@ -42,6 +42,17 @@ float GravitySensorShield::getZ()
 {
 	return valueZ;
 }
+
+void GravitySensorShield::select()
+{
+	OneSheeld.sendPacket(GRAVITY_ID,0,GRAVITY_SELECT_SHIELD,0);
+}
+
+void GravitySensorShield::unselect()
+{
+	OneSheeld.sendPacket(GRAVITY_ID,0,GRAVITY_UNSELECT_SHIELD,0);
+}
+
 //Gravity Input Data Processing 
 void GravitySensorShield::processData()
 {
@@ -63,6 +74,10 @@ void GravitySensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
+		else if(functionId == GRAVITY_CHECK_SELECTED)
+		{
+			(*selectedCallBack)();
+		}
 }
 
 //User Function Setter 
@@ -72,5 +87,9 @@ void GravitySensorShield::setOnValueChange(void (*userFunction)(float valueX,flo
 	isCallBackAssigned=true;
 }
 
+void GravitySensorShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating Object
 GravitySensorShield GravitySensor ;

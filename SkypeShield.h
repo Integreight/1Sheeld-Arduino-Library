@@ -19,6 +19,11 @@
 //Output Function ID's
 #define SKYPE_CALL 		0x01
 #define SKYPE_VIDEO_CALL  0x02
+#define SKYPE_SELECT_SHIELD 0x03
+#define SKYPE_UNSELECT_SHIELD 0x04
+
+//Input Function ID
+#define SKYPE_CHECK_SELECTED  0x01
 
 class SkypeShieldClass 
 {
@@ -29,9 +34,17 @@ public:
 	void call(String );
 	void videoCall(const char *);	
 	void videoCall(String );
+  //Selection
+  void select();
+  void unselect();
+  //Set on when selected
+  void setOnSelected(void(*)(void));
 
 private:
+  void processData();
+  void (*selectedCallBack)(void);
 
+  friend class OneSheeldClass;
 };
 
 //Extern Object

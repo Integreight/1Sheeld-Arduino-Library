@@ -117,5 +117,30 @@ void EmailShieldClass::attachLastPicture(String email, String subject , String m
 	attachLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
 }
 #endif
+
+void EmailShieldClass::select()
+{
+	OneSheeld.sendPacket(EMAIL_ID,0,EMAIL_SELECT_SHIELD,0);
+}
+
+void EmailShieldClass::unselect()
+{
+	OneSheeld.sendPacket(EMAIL_ID,0,EMAIL_UNSELECT_SHIELD,0);
+}
+
+void EmailShieldClass::processData()
+{
+	byte functionId =OneSheeld.getFunctionId();
+
+	if(functionId == EMAIL_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void EmailShieldClass::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating object 
 EmailShieldClass Email;

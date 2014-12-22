@@ -21,6 +21,11 @@
 #define LOGGER_ADD_FLOAT	   0x03
 #define LOGGER_ADD_STRING	   0x04
 #define LOGGER_LOG_DATA	   	   0x05
+#define LOGGER_SELECT_SHIELD   0x06
+#define LOGGER_UNSELECT_SHIELD   0x07
+
+//Input Function ID
+#define LOGGER_CHECK_SELECTED	0x01
 
 
 class DataLoggerShield
@@ -38,7 +43,16 @@ public:
 	void add(String , String);
 	//Save data
 	void log();
+	//Selection
+	void select();
+	void unselect();
+	//Set on when selected
+	void setOnSelected(void(*)(void));
 private:
+	void processData();
+	void (*selectedCallBack)(void);
+
+	friend class OneSheeldClass;
 
 
 };

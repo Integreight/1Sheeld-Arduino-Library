@@ -28,6 +28,17 @@ char TemperatureSensorShield::getValue()
 {
 	return value;
 }
+
+void TemperatureSensorShield::select()
+{
+	OneSheeld.sendPacket(TEMPERATURE_ID,0,TEMPERATURE_SELECT_SHIELD,0);
+}
+
+void TemperatureSensorShield::unselect()
+{
+	OneSheeld.sendPacket(TEMPERATURE_ID,0,TEMPERATURE_UNSELECT_SHIELD,0);
+}
+
 //TemperatureSensor Input Data Processing
 void TemperatureSensorShield::processData()
 {
@@ -41,6 +52,10 @@ void TemperatureSensorShield::processData()
 		if(isCallBackAssigned)
 			(*changeOnCallBack)(value);
 	}
+	else if(functionId == TEMPERATURE_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 //Users Function Setter
 void TemperatureSensorShield::setOnValueChange(void(*userFunction)(char temp))
@@ -49,6 +64,10 @@ void TemperatureSensorShield::setOnValueChange(void(*userFunction)(char temp))
 	isCallBackAssigned=true;
 }
 
+void TemperatureSensorShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack= userFunction;
+}
 float TemperatureSensorShield::getAsFahrenheit()
 {
 	float fahrenheit;

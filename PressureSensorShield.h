@@ -16,8 +16,12 @@
 #ifndef PressureSensorShield_h
 #define PressureSensorShield_h
 
+//Output Function ID's
+#define PRESSURE_SELECT_SHIELD	0x01
+#define PRESSURE_UNSELECT_SHIELD	0x02
 //Input Function ID
 #define PRESSURE_VALUE 0x01
+#define PRESSURE_CHECK_SELECTED	0x02
 
 class PressureSensorShield
 {
@@ -26,8 +30,12 @@ public:
 	PressureSensorShield();
 	//Getter
 	unsigned long getValue();
+	//Selection
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(unsigned  long));
+	void setOnSelected(void (*)(void));
 private:
 	//Reserve Variables
 	unsigned long value;
@@ -37,6 +45,7 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(unsigned long);
+	void (*selectedCallBack)(void);
 		
 	friend class OneSheeldClass;
 

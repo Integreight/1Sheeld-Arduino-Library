@@ -28,6 +28,17 @@ byte MicShield::getValue()
 {
 	return value;
 }
+
+void MicShield::select()
+{
+	OneSheeld.sendPacket(MIC_ID,0,MIC_SELECT_SHIELD,0);
+}
+
+void MicShield::unselect()
+{
+	OneSheeld.sendPacket(MIC_ID,0,MIC_UNSELECT_SHIELD,0);
+}
+
 //Mic Input Data processing 	
 void MicShield::processData()
 {
@@ -42,6 +53,10 @@ void MicShield::processData()
 		if(isCallBackAssigned)
 			(*changeCallBack)(value);
 	}
+	else if(functionId == MIC_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 
 //Users Function Setter 
@@ -51,5 +66,9 @@ void MicShield::setOnValueChange(void (*userFunction)(byte micValue))
 	isCallBackAssigned=true;
 }
 
+void MicShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instatntiating Object
 MicShield Mic;

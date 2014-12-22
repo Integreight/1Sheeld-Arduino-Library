@@ -15,8 +15,14 @@
 
 #ifndef LightSensorShield_h
 #define LightSensorShield_h
+
+//Output Function ID 
+#define LIGHT_SELECT_SHIELD	0x01
+#define LIGHT_UNSELECT_SHIELD	0x02
+
 //Input Function ID 
 #define LIGHT_VALUE 0x01
+#define LIGHT_CHECK_SELECTED 0x02
 
 class LightSensorShield
 {
@@ -25,8 +31,12 @@ public:
 	LightSensorShield();
 	//Getter
 	unsigned long getValue();
+	//Selection
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(unsigned long));
+	void setOnSelected(void (*)(void));
 private:
 	//Reserve Variables
 	unsigned long value;
@@ -36,6 +46,7 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(unsigned long);
+	void (*selectedCallBack)(void);
 	
 	friend class OneSheeldClass;
 

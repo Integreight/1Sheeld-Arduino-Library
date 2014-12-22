@@ -35,6 +35,11 @@
 #define LCD_SETCURSOR 	 0x0E
 #define LCD_WRITE 		 0x0F
 #define LCD_PRINT 		 0x11
+#define LCD_SELECT_SHIELD	0x012
+#define LCD_UNSELECT_SHIELD	0x013
+
+//Input Function ID
+#define LCD_CHECK_SELECTED	0x01
 
 class LCDShield : public PrintClass
 {
@@ -55,9 +60,17 @@ public:
 	void autoScroll();
 	void noAutoScroll();
 	void setCursor(byte,byte);
+	//Selection
+	void select();
+	void unselect();
+	//Set on Selected
+	void setOnSelected(void (*)(void));
 
 private:
+	void processData();
+	void (*selectedCallBack)(void);
 
+	friend class OneSheeldClass;
 };
 
 //Extern Object

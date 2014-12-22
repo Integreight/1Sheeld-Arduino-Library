@@ -16,9 +16,13 @@
 #ifndef SMSShield_h
 #define SMSShield_h
 
-//Input Functions ID's
-#define SMS_SEND 0x01  
+//Outputs Functions ID's
+#define SMS_SEND 0x01
+#define SMS_SELECT_SHIELD 0x02
+#define SMS_UNSELECT_SHIELD 0x03 
+//Input Functions ID's 
 #define SMS_GET  0x01
+#define SMS_CHECK_SELECTED	0x02
 
 
 class SMSShieldClass 
@@ -35,9 +39,14 @@ public:
 	String getSmsAsString();
 	char * getNumber();
 	String getNumberAsString();
+	//Selection
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnSmsReceive(void (*)(char*,char*));
 	void setOnSmsReceive(void (*)(String ,String ));
+	void setOnSelected(void (*)(void));
+
 private:
 	//Reserve Variable
 	char * text;
@@ -52,7 +61,7 @@ private:
 	void processData();
 	void (*changeCallBack)(char*,char*);
 	void (*changeCallBackString)(String ,String);
-	
+	void (*selectedCallBack)(void);	
 	
 	friend class OneSheeldClass ;
 };

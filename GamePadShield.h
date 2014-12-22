@@ -16,9 +16,12 @@
 #ifndef GamePadShield_h
 #define GamePadShield_h
 
+//Output Function ID
+#define GAMEPAD_SELECT_SHIELD	0x01
+#define GAMEPAD_UNSELECT_SHIELD	0x02  
 //Input Function ID
 #define GAMEPAD_VALUE 0x01
-
+#define GAMEPAD_CHECK_SELECTED	0x02
 //GamePad Bit Reference 
 #define ORANGE_BIT 0
 #define RED_BIT 1
@@ -45,8 +48,12 @@ public:
 	bool isRedPressed();
 	bool isGreenPressed();
 	bool isBluePressed();
+	//Selection
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnButtonChange(void (*)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char ));
+	void setOnSelected(void (*)(void));
 private:
 	//Reserve Variables
 	byte value;
@@ -55,7 +62,7 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallBack)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char );
-	
+	void (*selectedCallBack)(void);
 	friend class OneSheeldClass ;
 };
 

@@ -78,6 +78,16 @@ short ClockShield::getYear()
 {
 	return year;
 }
+
+void ClockShield::select()
+{
+	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_SELECT_SHIELD,0);
+}
+
+void ClockShield::unselect()
+{
+	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_UNSELECT_SHIELD,0);
+}
 //Clock Input Data Processing 
 void ClockShield::processData()
 {
@@ -119,8 +129,16 @@ void ClockShield::processData()
 
 		}
 	}
+	else if(functionId == CLOCK_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 
+void ClockShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Intantiating Object
 ClockShield Clock;
 

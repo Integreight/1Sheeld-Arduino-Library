@@ -50,5 +50,29 @@ void NotificationShieldClass::notifyPhone(String data)
 }
 #endif
 
+void NotificationShieldClass::select()
+{
+	OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFICATION_SELECT_SHIELD,0);
+}
+
+void NotificationShieldClass::unselect()
+{
+	OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFICATION_UNSELECT_SHIELD,0);
+}
+
+void NotificationShieldClass::processData()
+{
+	byte functionId = OneSheeld.getFunctionId();
+
+	if(functionId == NOTIFICATION_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void NotificationShieldClass::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating Object
 NotificationShieldClass Notification;

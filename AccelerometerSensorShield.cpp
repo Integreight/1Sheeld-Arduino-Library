@@ -45,6 +45,15 @@ float AccelerometerSensorShield::getZ()
 	return valueZ;
 }
 
+void AccelerometerSensorShield::select()
+{
+	OneSheeld.sendPacket(ACCELEROMETER_ID,0,ACCELEROMETER_SELECT_SHIELD,0);
+}
+
+void AccelerometerSensorShield::unselect()
+{
+	OneSheeld.sendPacket(ACCELEROMETER_ID,0,ACCELEROMETER_UNSELECT_SHIELD,0);
+}
 //AccelerometerSensor Input Data processing 	
 void AccelerometerSensorShield::processData()					
 {
@@ -65,6 +74,10 @@ void AccelerometerSensorShield::processData()
 			{
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
+		}
+		else if(functionId == ACCELEROMETER_CHECK_SELECTED)
+		{
+			(*selectedCallBack)();
 		}	
 }
 
@@ -73,6 +86,11 @@ void AccelerometerSensorShield::setOnValueChange(void (* usersFunction)(float va
 {
 	changeCallBack=usersFunction;
 	isCallBackAssigned=true;
+}
+
+void AccelerometerSensorShield::setOnSelected(void (* usersFunction)(void))	
+{
+	selectedCallBack=usersFunction;
 }
 
 //Instatntiating Object

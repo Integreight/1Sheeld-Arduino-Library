@@ -73,6 +73,16 @@ bool GamePadShield::isBluePressed()
 	blue = !!(value & (1<<BLUE_BIT));
 	return blue ;
 }
+
+void GamePadShield::select()
+{
+	OneSheeld.sendPacket(GAMEPAD_ID,0,GAMEPAD_SELECT_SHIELD,0);
+}
+
+void GamePadShield::unselect()
+{
+	OneSheeld.sendPacket(GAMEPAD_ID,0,GAMEPAD_UNSELECT_SHIELD,0);
+}
 //GamePad Input Data Processing  
 void GamePadShield::processData()
 {
@@ -87,6 +97,10 @@ void GamePadShield::processData()
 			(*buttonChangeCallBack)(up , down , left , right , orange , red , green , blue);
 		}
 	}
+	else if(functionId==GAMEPAD_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 
 //Users Function Setter 
@@ -94,6 +108,11 @@ void GamePadShield::setOnButtonChange(void (* userFunction)(unsigned char up,uns
 {
 	buttonChangeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+
+void GamePadShield::setOnSelected(void (* userFunction)(void))
+{
+	selectedCallBack=userFunction;
 }
 
 //Instantiating Object

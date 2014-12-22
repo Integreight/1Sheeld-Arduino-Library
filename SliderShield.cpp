@@ -27,6 +27,16 @@ byte SliderShield::getValue()
 {
 	return value;
 }
+
+void SliderShield::select()
+{
+	OneSheeld.sendPacket(SLIDER_ID,0,SLIDER_SELECT_SHIELD,0);
+}
+
+void SliderShield::unselect()
+{
+	OneSheeld.sendPacket(SLIDER_ID,0,SLIDER_UNSELECT_SHIELD,0);
+}
 //Phone Input Data Processing 
 void SliderShield::processData()
 {
@@ -40,12 +50,21 @@ void SliderShield::processData()
 			if(isCallBackAssigned)
 				(*changeCallBack)(value);
 		}
+		else if(functionId == SLIDER_CHECK_SELECTED)
+		{
+			(*selectedCallBack)();
+		}
 }
 //Users Function Setter
 void SliderShield::setOnValueChange(void (*userFunction)(byte sliderValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+
+void SliderShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
 }
 
 //Instatntiating Object

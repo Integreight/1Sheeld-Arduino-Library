@@ -38,6 +38,31 @@ void CameraShieldClass::setQuality(byte x)
 	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
+void CameraShieldClass::select()
+{
+  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SELECT_SHIELD,0);
+}
+
+void CameraShieldClass::unselect()
+{
+  OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_UNSELECT_SHIELD,0);
+}
+
+void CameraShieldClass::processData()
+{
+  byte functionId = OneSheeld.getFunctionId();
+
+  if(functionId == CAMERA_CHECK_SELECTED)
+  {
+    (*selectedCallBack)();
+  }
+}
+
+void CameraShieldClass::setOnSelected(void (*userFunction)(void))
+{
+  selectedCallBack=userFunction;
+}
+
 
 //Instantiating Object
 CameraShieldClass Camera;

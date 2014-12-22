@@ -20,8 +20,13 @@
 //Literal Constants 
 #define RADUIS_OF_EARTH 6371
 #define PI 3.1415926535897932384626433832795
+
+//Output Function ID
+#define GPS_SELECT_SHIELD	0x01
+#define GPS_UNSELECT_SHIELD	0x02  
 //Input Function ID 
 #define GPS_VALUE 0x01
+#define GPS_CHECK_SELECTED	0x02
 
 
 
@@ -40,8 +45,12 @@ public:
 	float getDistance(float  , float );
 	//Radian Calculator
 	float radian(float);
+	//Selection 
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float ,float ));
+	void setOnSelected(void(*)(void));
 private:
 	//Reserving Variables
 	float LatValue,LonValue;
@@ -51,6 +60,7 @@ private:
 	//Processing Input Data
 	void processData ();
 	void (*changeCallBack)(float ,float);
+	void (*selectedCallBack)(void);
 	//Processing Float Numbers
 	union 
 	{

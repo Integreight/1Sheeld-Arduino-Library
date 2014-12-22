@@ -16,8 +16,12 @@
 #ifndef PushButtonShield_h
 #define PushButtonShield_h
 
+//Output Function ID's
+#define PUSHBUTTON_SELECT_SHIELD	0x01
+#define PUSHBUTTON_UNSELECT_SHIELD	0x02
 //Input Function ID
 #define PUSHBUTTON_VALUE 0x01
+#define PUSHBUTTON_CHECK_SELECTED	0x02
 
 
 class PushButtonShield
@@ -27,8 +31,12 @@ public:
 	PushButtonShield();
 	//Checker
 	bool isPressed();
+	//Selection
+	void select();
+	void unselect();
 	//setOnChange for Users Function
 	void setOnButtonStatusChange(void (*userFunction)(bool ));
+	void setOnSelected(void (*)(void));
 public:
 	//Reserve Variable
 	byte value;
@@ -37,6 +45,7 @@ public:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(bool);
+	void (*selectedCallBack)(void);
 
 	friend class OneSheeldClass;
 	

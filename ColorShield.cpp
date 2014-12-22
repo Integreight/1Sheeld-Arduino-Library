@@ -58,6 +58,16 @@ int ColorShield::getGreenComponent()
 	return greenComponent;
 }
 
+void ColorShield::select()
+{
+	OneSheeld.sendPacket(COLOR_ID,0,COLOR_SELECT_SHIELD,0);
+}
+
+void ColorShield::unselect()
+{
+	OneSheeld.sendPacket(COLOR_ID,0,COLOR_UNSELECT_SHIELD,0);
+}
+
 //Color input data processing
 void ColorShield::processData()
 {
@@ -76,6 +86,10 @@ void ColorShield::processData()
 			{
 				(*changeCallBack)(colorValue);
 			}
+	}
+	else if(functionId == COLOR_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
 	} 
 }
 
@@ -84,6 +98,11 @@ void ColorShield::setOnColorChange(void (* usersFunction)(long colorValue))
 {
 	changeCallBack=usersFunction;
 	isCallBackAssigned=true;
+}
+
+void ColorShield::setOnSelected(void (* usersFunction)(void))	
+{
+	selectedCallBack=usersFunction;
 }
 //Instantiate Object
 ColorShield Color;

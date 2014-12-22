@@ -16,8 +16,12 @@
 #ifndef GyroscopeSensorShield_h
 #define GyroscopeSensorShield_h
 
+//Output Function ID
+#define GYROSCOPE_SELECT_SHIELD	0x01
+#define GYROSCOPE_UNSELECT_SHIELD	0x02
 //Input Function ID 
 #define GYROSCOPE_VALUE 0x01
+#define GYROSCOPE_CHECK_SELECTED 0x02
 
 class GyroscopeSensorShield
 {
@@ -28,8 +32,12 @@ public:
 	float getX();
 	float getY();
 	float getZ();
+	//Selection
+	void select();
+	void unselect();
 	//setOnChange for Users Fucntion 
 	void setOnValueChange(void (*)(float,float,float));
+	void setOnSelected(void (*)(void));
 private:
 	//Reserve Variables
 	float valueX ,valueY,valueZ;
@@ -38,6 +46,7 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(float,float,float);
+	void (*selectedCallBack)(void);
 
 	friend class OneSheeldClass;
 

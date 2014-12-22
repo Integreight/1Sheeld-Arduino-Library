@@ -15,10 +15,15 @@
 #ifndef	VoiceRecognitionShield_h
 #define VoiceRecognitionShield_h
 
+//Output  function ID's
+#define VOICE_START_LISTENING	0x01
+#define VOICE_SELECT_SHIELD		0x02
+#define VOICE_UNSELECT_SHIELD	0x03
 //Input Function ID's 
 #define VOICE_GET 				0x01
-#define VOICE_START_LISTENING	0x01
 #define VOICE_GET_ERROR		    0x02
+#define VOICE_CHECK_SELECTED	0x03
+
 //Errors messages 
 #define NETWORK_TIMEOUT_ERROR	0x01
 #define NETWORK_ERROR 			0x02
@@ -48,8 +53,12 @@ public:
 	void setOnNewCommand(void (*)(char*));
 	//Setter using Strings 
 	void setOnNewCommand(void (*)(String));
+	//Selection
+	void select();
+	void unselect();
 	//Setter
 	void setOnError(void (*)(byte));
+	void setOnSelected(void (*)());
 private:
 	//Pointer to voice data in memory 
 	char * voice;
@@ -61,6 +70,7 @@ private:
 	bool didDataCame;
 	bool usedSetOnWithString;
 	bool newCommand; 
+	bool isCheckingSelectedTriggered;
 	//Error number for user function 
 	byte errorNumber;
 	//Process Input Data
@@ -71,6 +81,8 @@ private:
 	void (*changeCallBackString)(String);
 	//Setter
 	void (*errorCallBack)(byte);
+	//Selected
+	void (*selectedCallBack)(void);
 	//Friend Class to OneSheeld Class
 	friend class OneSheeldClass;
 };

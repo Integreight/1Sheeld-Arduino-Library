@@ -25,6 +25,11 @@
 #define MUSIC_SEEK_FORWARD 	0x06
 #define MUSIC_SEEK_BACKWARD 	0x07
 #define MUSIC_VOLUME 		  	0x08
+#define MUSIC_SELECT_SHEILD		0x09
+#define MUSIC_UNSELECT_SHIELD	0x0A
+
+//Input Function ID
+#define MUSIC_CHECK_SELECTED	0x01
 
 class MusicPlayerShieldClass 
 {
@@ -39,9 +44,16 @@ public:
 	void seekForward(byte );
 	void seekBackward(byte );
 	void setVolume(byte );
-
+	//Selection
+	void select();
+	void unselect();
+	//Set On Selected
+	void setOnSelected(void (*)(void));
 private:
+	void processData();
+	void (*selectedCallBack)(void);
 
+	friend class OneSheeldClass;
 };
 
 //Extern Object

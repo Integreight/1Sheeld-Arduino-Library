@@ -81,5 +81,30 @@ void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
 	postLastPicture(cTypePictureText,imageSource);
 }
 #endif
+
+void FacebookShieldClass::select()
+{
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_SELECT_SHIELD,0);
+}
+
+void FacebookShieldClass::unselect()
+{
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_UNSELECT_SHIELD,0);
+}
+
+void FacebookShieldClass::processData()
+{
+	byte functionId = OneSheeld.getFunctionId();
+
+	if(functionId == FACEBOOK_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
+}
+
+void FacebookShieldClass::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
+}
 //Instantiating Object
 FacebookShieldClass Facebook;

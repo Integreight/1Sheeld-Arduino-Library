@@ -18,8 +18,11 @@
 
 //Output Function ID
 #define CLOCK_BEGIN 0x01
+#define CLOCK_SELECT_SHIELD	0x02
+#define CLOCK_UNSELECT_SHIELD	0x03
 //Input Function ID
 #define CLOCK_DATE_VALUE 0x01
+#define CLOCK_CHECK_SELECTED	0x02
 
 
 class ClockShield
@@ -36,6 +39,11 @@ public:
 	byte getDay();
 	byte getMonth();
 	short getYear();
+	//Selection
+	void select();
+	void unselect();
+	//Set on when selected
+	void setOnSelected(void(*)(void));
 private:
 	//Reserve Variables
 	byte seconds;
@@ -51,7 +59,8 @@ private:
 	unsigned long timeCheck;
 	//Process Input Data 
 	void processData();
-
+	void (*selectedCallBack)(void);
+	
 	friend class OneSheeldClass;
 
 };

@@ -48,18 +48,33 @@ bool KeypadShieldClass::isAnyColumnPressed()
 {
 return !!col;
 }
+
+void KeypadShieldClass::select()
+{
+  OneSheeld.sendPacket(KEYPAD_SHIELD_ID,0,KEYPAD_SELECT_SHIELD,0);
+}
+
+void KeypadShieldClass::unselect()
+{
+  OneSheeld.sendPacket(KEYPAD_SHIELD_ID,0,KEYPAD_UNSELECT_SHIELD,0);
+}
+
 //Keypad Input Data Processing
 void KeypadShieldClass::processData()
 {
   //Checking Function-ID
-  byte function_Number=OneSheeld.getFunctionId();
-  if (function_Number==KEYPAD_VALUE)
+  byte functionId=OneSheeld.getFunctionId();
+  if (functionId==KEYPAD_VALUE)
    { 
      row=OneSheeld.getArgumentData(0)[0];
      col=OneSheeld.getArgumentData(1)[0];
      //Users Function Invoked
      if (isCallbackAssigned)
      (*buttonChangeCallback)(row,col);
+   }
+   else if(functionId == KEYPAD_CHECK_SELECTED)
+   {
+      (*selectedCallBack)();
    }
    
 }
@@ -69,6 +84,11 @@ void KeypadShieldClass::setOnButtonChange(void (*userFunction)(byte row ,byte co
 {
   buttonChangeCallback=userFunction;
   isCallbackAssigned=true;
+}
+
+void KeypadShieldClass::setOnSelected(void (*userFunction)(void))
+{
+  selectedCallBack=userFunction;
 }
 
 //Instatntiating Object

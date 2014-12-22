@@ -29,6 +29,17 @@ bool PushButtonShield::isPressed()
 {
 	return !!value;
 }
+
+void PushButtonShield::select()
+{
+	OneSheeld.sendPacket(PUSH_BUTTON_ID,0,PUSHBUTTON_SELECT_SHIELD,0);
+}
+
+void PushButtonShield::unselect()
+{
+	OneSheeld.sendPacket(PUSH_BUTTON_ID,0,PUSHBUTTON_UNSELECT_SHIELD,0);
+}
+
 //Phone Input Data Processing 
 void PushButtonShield::processData()
 {
@@ -42,12 +53,21 @@ void PushButtonShield::processData()
 		if(isCallBackAssigned)
 			(*changeCallBack)(!!value);
 	}
+	else if(functionId == PUSHBUTTON_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 //Users Function Setter
 void PushButtonShield::setOnButtonStatusChange(void (*userFunction)(bool pushButtonValue))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+
+void PushButtonShield::setOnSelected(void (*userFunction)(void))
+{
+	selectedCallBack=userFunction;
 }
 
 //Instatntiating Object

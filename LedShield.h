@@ -18,8 +18,14 @@
 
 //Output Functions ID's
 #define LED_SET_HIGH  0x01
+#define LED_SELECT_SHIELD 0x02
+#define LED_UNSELECT_SHIELD 0x03
+//Parameters
 #define LED_SET_LOW   0x00
 #define LED_SET_VALUE 0x01
+//Input Function ID
+#define LED_CHECK_SELECTED  0x01
+
 
 class LedShield
 {
@@ -27,8 +33,17 @@ public:
 	//Setters
 	void setLow();
 	void setHigh();
+  //Selection 
+  void select();
+  void unselect();
+  //Set On when Selected
+  void setOnSelected(void (*)(void));
 private:
 	void setValue(byte );
+  void processData();
+  void (*selectedCallBack)(void);
+
+  friend class OneSheeldClass;
 
 };
 

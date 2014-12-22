@@ -28,6 +28,16 @@ char KeyboardShield::getCharacter()
 {
 	return character;
 }
+
+void KeyboardShield::select()
+{
+	OneSheeld.sendPacket(KEYBOARD_ID,0,KEYBPARD_SELECT_SHIELD,0);
+}
+
+void KeyboardShield::unselect()
+{
+	OneSheeld.sendPacket(KEYBOARD_ID,0,KEYBPARD_UNSELECT_SHIELD,0);
+}
 //Keyboard Input Data Processing 
 void KeyboardShield::processData()
 {
@@ -43,12 +53,21 @@ void KeyboardShield::processData()
 			(*buttonChangeCallBack)(character);
 		}
 	}
+	else if(functionId == KEYBOARD_CHECK_SELECTED)
+	{
+		(*selectedCallBack)();
+	}
 }
 //Users Function Setter
 void KeyboardShield::setOnButtonChange(void (*userFunction)(char data))
 {
 	buttonChangeCallBack=userFunction;
 	isCallBackAssigned=true;
+}
+
+void KeyboardShield::setOnSelected(void (*userFunction)())
+{
+	selectedCallBack=userFunction;
 }
 
 /*Instantiate object to user*/

@@ -22,8 +22,11 @@
 //Output Function ID's
 #define TERMINAL_WRITE 0x01		
 #define TERMINAL_PRINT 0x02
+#define TERMINAL_SELECT_SHIELD	0x03
+#define TERMINAL_UNSELECT_SHIELD	0x04
 //Input Function ID
 #define TERMINAL_READ  0x01
+#define TERMINAL_CHECK_SELECTED	0x02
 
 
 class TerminalShield : public PrintlnClass
@@ -39,12 +42,18 @@ public:
 	int readBytes(char *, int);
 	//Setter
 	void flush();
+	//Selections
+	void select();
+	void unselect();
+	//check if selected
+	void setOnSelected(void (*)(void));
 	
 private:
 	//Instatiate Object from class CircularBuffer
 	CircularBuffer<char,64> buffer;
 	//Process Input data
 	void processData();
+	void (*selectedCallBack)(void);
 
 	friend class OneSheeldClass;
 };

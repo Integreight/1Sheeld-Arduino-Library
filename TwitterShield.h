@@ -22,7 +22,8 @@
 #define TWITTER_POST_LAST_PIC 0x03
 #define TWITTER_TRACK_KEYWORD	0x04
 #define TWITTER_UNTRACK_KEYWORD	0x05
-
+#define TWITTER_SELECT_SHEILD	0x06
+#define TWITTER_UNSELECT_SHEILD	0x07
 //Input Functions ID's
 #define TWITTER_GET_TWEET	0x01
 #define TWITTER_CHECK_SELECTED 0x02
@@ -59,16 +60,17 @@ public:
 	void trackKeyword(String );
 	void untrackKeyword(const char *);
 	void untrackKeyword(String);
+	//Selecting and Unselecting the shields
+	void select();
+	void unselect();
 	//Check if shield selected
-	void setOnTwitterSelected(void(*)(void));
+	void setOnSelected(void(*)(void));
 private:
 	//Reserve Variables
 	char * userName;
 	char * tweetText;
 	//Boolean for setOnChange Function
 	bool isCallBackAssigned;
-	//Boolean for checking selection
-	bool isCheckingTriggered;
 	//Boolean for incoming String support
 	bool usedSetOnWithString;
 	//Boolean to check if a new tweet 
