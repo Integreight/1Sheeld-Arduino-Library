@@ -33,7 +33,7 @@ typedef unsigned char byte;
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 //Library Version
-#define LIBRARY_VERSION 3
+#define LIBRARY_VERSION 4
 //Time between sending Frames
 #define TIME_GAP		200UL
 //Maximum number of remote connections

@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          RemoteOneSheeld.cpp
                  
-  Version:       1.4
+  Version:       1.3
 
   Compiler:      Arduino avr-gcc 4.3.2
 
