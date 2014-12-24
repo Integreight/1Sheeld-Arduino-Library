@@ -122,9 +122,6 @@
 #ifdef TERMINAL_SHIELD
 #include "TerminalShield.h"
 #endif
-#ifdef COLOR_SHIELD
-#include "ColorShield.h"
-#endif
 #ifdef REMOTE_SHIELD
 #include "RemoteOneSheeld.h"
 #endif

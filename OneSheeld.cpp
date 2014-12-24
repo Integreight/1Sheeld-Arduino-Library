@@ -42,7 +42,6 @@ byte inputShieldsList[]={ONESHEELD_ID
 ,TWITTER_ID
 ,VOICE_RECOGNITION_ID,
 TERMINAL_ID,
-COLOR_ID,
 REMOTE_SHEELD_ID,
 };
 
@@ -445,9 +444,6 @@ void OneSheeldClass::sendToShields()
     #endif
     #ifdef TERMINAL_SHIELD
     case TERMINAL_ID             : Terminal.processData();break;
-    #endif
-    #ifdef COLOR_SHIELD
-    case COLOR_ID                : Color.processData();break;
     #endif
     #ifdef REMOTE_SHIELD
     case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
