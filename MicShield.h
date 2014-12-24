@@ -18,9 +18,7 @@
 
 //Input Function ID 
 #define MIC_VALUE 0x01
-//Output Function ID
-#define RECORD_AUDIO 0x01
-#define STOP_RECORD	 0x02
+
 
 class MicShield
 {
