@@ -17,9 +17,10 @@
 #define BuzzerShield_h
 
 //Ouput Functions ID's 
-#define BUZZER_ON 	0x01
-#define BUZZER_OFF 	0x00
 #define BUZZER_SET 	0x01
+//Parameters
+#define BUZZER_OFF 	0x00
+#define BUZZER_ON 	0x01
 
 class BuzzerShieldClass
 {

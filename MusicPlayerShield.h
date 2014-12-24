@@ -19,12 +19,12 @@
 //Output Functions ID's
 #define MUSIC_STOP 			0x01
 #define MUSIC_PLAY 			0x02
-#define MUSIC_PAUSE 			0x03
+#define MUSIC_PAUSE 		0x03
 #define MUSIC_PREVIOUS 		0x04
 #define MUSIC_NEXT 			0x05
 #define MUSIC_SEEK_FORWARD 	0x06
-#define MUSIC_SEEK_BACKWARD 	0x07
-#define MUSIC_VOLUME 		  	0x08
+#define MUSIC_SEEK_BACKWARD 0x07
+#define MUSIC_VOLUME 		0x08
 
 class MusicPlayerShieldClass 
 {

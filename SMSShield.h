@@ -16,8 +16,9 @@
 #ifndef SMSShield_h
 #define SMSShield_h
 
-//Input Functions ID's
-#define SMS_SEND 0x01  
+//Output Function ID
+#define SMS_SEND 0x01
+//Input Functions ID's  
 #define SMS_GET  0x01
 
 
