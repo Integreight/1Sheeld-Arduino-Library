@@ -36,8 +36,6 @@ void loop()
     Buzzer.buzzOn();
     /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
-    /* Wait for 300 ms. */
-    delay(300);
   }
   else
   {
