@@ -28,7 +28,7 @@
 //Literals used by users
 #define LOW_QUALITY  0x01
 #define MID_QUALITY  0x02
-#define HIG_QUALITY  0x03
+#define HIGH_QUALITY  0x03
   
 class CameraShieldClass
 {

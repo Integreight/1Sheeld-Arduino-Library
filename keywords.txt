@@ -163,15 +163,14 @@ getStatus	KEYOWRD2
 getLastCommandLength	KEYWORD2
 tweetLastPicture	KEYWORD2
 setOnSelected	KEYWORD2
-waitForConnection	KEYWORD2
+waitForAppConnection	KEYWORD2
 setOnTwitterSelected	KEYWORD2
 attachLastPicture	KEYWORD2
 isAppConnected	KEYWORD2
 trackKeyword	KEYWORD2
 untrackKeyword	KEYWORD2
 listenToRemoteOneSheeld	KEYWORD2
-setOnFloatMessage	KEYWORD2
-setOnStringMessage	KEYWORD2
+setOnNewMessage	KEYWORD2
 setOnSubscribeOrDigitalChange	KEYWORD2
 subscribeToChanges	KEYWORD2
 unsubscribeToChanges	KEYWORD2
@@ -185,7 +184,7 @@ ON	LITERAL1
 RADUIS_OF_EARTH	LITERAL1
 LOW_QUALITY	LITERAL1
 MID_QUALITY	LITERAL1
-HIG_QUALITY	LITERAL1
+HIGH_QUALITY	LITERAL1
 NETWORK_TIMEOUT_ERROR	LITERAL1
 NETWORK_ERROR	LITERAL1
 AUDIO_ERROR	LITERAL1

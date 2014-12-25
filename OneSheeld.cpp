@@ -78,7 +78,7 @@ void OneSheeldClass::begin(long baudRate)
   #endif
 }
 //Blocking function 
-void OneSheeldClass::waitForConnection()
+void OneSheeldClass::waitForAppConnection()
 {
   isOneSheeldConnected = false;
 
@@ -455,14 +455,14 @@ void OneSheeldClass::sendToShields()
   }
 }
 #ifdef REMOTE_SHIELD
-void OneSheeldClass::setOnFloatMessage(void (*userFunction)(char * address, char * key, float value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(char * address, char * key, float value))
 {
   changeFloatCallBack = userFunction;
   isSetOnFloatMessageInvoked = true;
   isOneSheeldRemoteDataUsed=true;
 }
 
-void OneSheeldClass::setOnFloatMessage(void (*userFunction)(String address, String key, float value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String key, float value))
 {
   changeFloatCallBackWithString = userFunction;
   usedSetOnFloatWithString = true;
@@ -470,14 +470,14 @@ void OneSheeldClass::setOnFloatMessage(void (*userFunction)(String address, Stri
 }
 
 
-void OneSheeldClass::setOnStringMessage(void (*userFunction)(char * address, char * key, char * value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(char * address, char * key, char * value))
 {
   changeStringCallBack = userFunction;
   isSetOnStringMessageInvoked = true;
   isOneSheeldRemoteDataUsed=true;
 }
 
-void OneSheeldClass::setOnStringMessage(void (*userFunction)(String address, String key, String value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String key, String value))
 {
   changeStringCallBackWithString = userFunction;
   usedSetOnStringWithString = true;

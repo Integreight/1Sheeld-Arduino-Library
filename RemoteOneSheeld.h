@@ -50,10 +50,10 @@ public:
 	void sendMessage(const char* ,const char*);
 	void sendMessage(String ,String );
 	//Getters
-	void setOnFloatMessage(void (*)(char*,float));
-	void setOnFloatMessage(void (*)(String , float));
-	void setOnStringMessage(void(*)(char* , char*));
-	void setOnStringMessage(void(*)(String , String));
+	void setOnNewMessage(void (*)(char*,float));
+	void setOnNewMessage(void (*)(String , float));
+	void setOnNewMessage(void(*)(char* , char*));
+	void setOnNewMessage(void(*)(String , String));
 	void setOnSubscribeOrDigitalChange(void (*)(byte , bool));
 	//Subscribers
 	void subscribeToChanges(byte);
