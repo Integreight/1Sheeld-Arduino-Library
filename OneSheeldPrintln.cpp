@@ -78,7 +78,7 @@ void PrintlnClass::println(unsigned long data , byte base)
 	print(stringPointer);
 }
 //Print string with newline
-void PrintlnClass::println(char * stringData)
+void PrintlnClass::println(const char * stringData)
 {
 	char stringNewLine[strlen(stringData)+3];
 	stringNewLine[0]='\0';

@@ -556,7 +556,6 @@ void OneSheeldClass::processData(){
   }
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
-    byte libraryVersion = LIBRARY_VERSION;
     sendPacket(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0);
   }
 }
