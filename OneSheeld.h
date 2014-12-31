@@ -47,6 +47,7 @@ typedef unsigned char byte;
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
+#define WAIT_RESET_APPLICATION	0x02
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01

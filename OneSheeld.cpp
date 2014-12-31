@@ -82,6 +82,8 @@ void OneSheeldClass::waitForAppConnection()
 {
   isOneSheeldConnected = false;
 
+  sendPacket(ONESHEELD_ID,0,WAIT_RESET_APPLICATION,0);
+
   while(!isOneSheeldConnected)
   {
     OneSheeld.processInput();
