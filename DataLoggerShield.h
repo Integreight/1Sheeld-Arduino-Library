@@ -28,7 +28,8 @@ class DataLoggerShield
 public:
 	//Starters
 	void start();
-	void start(char *);
+	void start(const char *);
+	void start(String );
 	//Stopper
 	void stop();
 	//Process 
