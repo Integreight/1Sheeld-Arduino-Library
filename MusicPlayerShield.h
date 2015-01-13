@@ -25,11 +25,11 @@
 #define MUSIC_SEEK_FORWARD 	0x06
 #define MUSIC_SEEK_BACKWARD 	0x07
 #define MUSIC_VOLUME 		  	0x08
-#define MUSIC_SELECT_SHEILD		0x09
-#define MUSIC_UNSELECT_SHIELD	0x0A
+#define MUSIC_SELECT_SHEILD		0xFE
+#define MUSIC_UNSELECT_SHIELD	0xFD
 
 //Input Function ID
-#define MUSIC_CHECK_SELECTED	0x01
+#define MUSIC_CHECK_SELECTED	0xFF
 
 class MusicPlayerShieldClass 
 {

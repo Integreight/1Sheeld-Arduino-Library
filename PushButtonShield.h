@@ -17,11 +17,11 @@
 #define PushButtonShield_h
 
 //Output Function ID's
-#define PUSHBUTTON_SELECT_SHIELD	0x01
-#define PUSHBUTTON_UNSELECT_SHIELD	0x02
+#define PUSHBUTTON_SELECT_SHIELD	0xFE
+#define PUSHBUTTON_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define PUSHBUTTON_VALUE 0x01
-#define PUSHBUTTON_CHECK_SELECTED	0x02
+#define PUSHBUTTON_CHECK_SELECTED	0xFF
 
 
 class PushButtonShield

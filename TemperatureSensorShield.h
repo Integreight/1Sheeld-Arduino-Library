@@ -17,12 +17,12 @@
 #define TemperatureSensorShield_h
 
 //Output Function ID's
-#define TEMPERATURE_SELECT_SHIELD 0x01
-#define TEMPERATURE_UNSELECT_SHIELD	0x02
+#define TEMPERATURE_SELECT_SHIELD 0xFE
+#define TEMPERATURE_UNSELECT_SHIELD	0xFD
 
 //Input Function ID
 #define TEMPERATURE_VALUE 0x01
-#define TEMPERATURE_CHECK_SELECTED	0x02
+#define TEMPERATURE_CHECK_SELECTED	0xFF
 
 class TemperatureSensorShield
 {

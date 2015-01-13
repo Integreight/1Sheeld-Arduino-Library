@@ -17,12 +17,12 @@
 #define LightSensorShield_h
 
 //Output Function ID 
-#define LIGHT_SELECT_SHIELD	0x01
-#define LIGHT_UNSELECT_SHIELD	0x02
+#define LIGHT_SELECT_SHIELD	0xFE
+#define LIGHT_UNSELECT_SHIELD	0xFD
 
 //Input Function ID 
 #define LIGHT_VALUE 0x01
-#define LIGHT_CHECK_SELECTED 0x02
+#define LIGHT_CHECK_SELECTED 0xFF
 
 class LightSensorShield
 {

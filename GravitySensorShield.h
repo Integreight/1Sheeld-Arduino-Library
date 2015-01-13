@@ -17,11 +17,11 @@
 #define GravitySensorShield_h
 
 //Output Function ID
-#define GRAVITY_SELECT_SHIELD	0x01
-#define GRAVITY_UNSELECT_SHIELD	0x02
+#define GRAVITY_SELECT_SHIELD	0xFE
+#define GRAVITY_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define GRAVITY_VALUE 0x01
-#define GRAVITY_CHECK_SELECTED	0x02
+#define GRAVITY_CHECK_SELECTED	0xFF
 
 
 class GravitySensorShield

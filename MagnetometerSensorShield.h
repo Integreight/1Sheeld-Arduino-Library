@@ -17,11 +17,11 @@
 #define MagnetometerSensorShield_h
 
 //Output Function ID
-#define MAGNETOMETER_SELECT_SHIELD	0x01
-#define MAGNETOMETER_UNSELECT_SHIELD	0x02  
+#define MAGNETOMETER_SELECT_SHIELD	0xFE
+#define MAGNETOMETER_UNSELECT_SHIELD	0xFD  
 //Input Function ID 
 #define MAGNETOMETER_VALUE 0x01
-#define MAGNETOMETER_CHECK_SELECTED	0x02  
+#define MAGNETOMETER_CHECK_SELECTED	0xFF  
 
 
 class MagnetometerSensorShield

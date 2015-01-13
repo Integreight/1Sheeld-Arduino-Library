@@ -17,11 +17,11 @@
 #define GyroscopeSensorShield_h
 
 //Output Function ID
-#define GYROSCOPE_SELECT_SHIELD	0x01
-#define GYROSCOPE_UNSELECT_SHIELD	0x02
+#define GYROSCOPE_SELECT_SHIELD	0xFE
+#define GYROSCOPE_UNSELECT_SHIELD	0xFD
 //Input Function ID 
 #define GYROSCOPE_VALUE 0x01
-#define GYROSCOPE_CHECK_SELECTED 0x02
+#define GYROSCOPE_CHECK_SELECTED 0xFF
 
 class GyroscopeSensorShield
 {

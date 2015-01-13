@@ -17,11 +17,11 @@
 #define PressureSensorShield_h
 
 //Output Function ID's
-#define PRESSURE_SELECT_SHIELD	0x01
-#define PRESSURE_UNSELECT_SHIELD	0x02
+#define PRESSURE_SELECT_SHIELD	0xFE
+#define PRESSURE_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define PRESSURE_VALUE 0x01
-#define PRESSURE_CHECK_SELECTED	0x02
+#define PRESSURE_CHECK_SELECTED	0xFF
 
 class PressureSensorShield
 {

@@ -18,11 +18,11 @@
 
 //Output Function ID
 #define TTS_SAY 0x01
-#define TTS_SELECT_SHIELD 0x02
-#define TTS_UNSELECT_SHIELD 0x03
+#define TTS_SELECT_SHIELD 0xFE
+#define TTS_UNSELECT_SHIELD 0xFD
 
 //Input Function ID's
-#define TTS_CHECK_SELECTED  0x01
+#define TTS_CHECK_SELECTED  0xFF
 
   class TTSShield
   {

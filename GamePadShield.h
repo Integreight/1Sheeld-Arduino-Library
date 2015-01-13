@@ -17,11 +17,11 @@
 #define GamePadShield_h
 
 //Output Function ID
-#define GAMEPAD_SELECT_SHIELD	0x01
-#define GAMEPAD_UNSELECT_SHIELD	0x02  
+#define GAMEPAD_SELECT_SHIELD	0xFE
+#define GAMEPAD_UNSELECT_SHIELD	0xFD  
 //Input Function ID
 #define GAMEPAD_VALUE 0x01
-#define GAMEPAD_CHECK_SELECTED	0x02
+#define GAMEPAD_CHECK_SELECTED	0xFF
 //GamePad Bit Reference 
 #define ORANGE_BIT 0
 #define RED_BIT 1

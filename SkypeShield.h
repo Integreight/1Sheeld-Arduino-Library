@@ -19,11 +19,11 @@
 //Output Function ID's
 #define SKYPE_CALL 		0x01
 #define SKYPE_VIDEO_CALL  0x02
-#define SKYPE_SELECT_SHIELD 0x03
-#define SKYPE_UNSELECT_SHIELD 0x04
+#define SKYPE_SELECT_SHIELD 0xFE
+#define SKYPE_UNSELECT_SHIELD 0xFD
 
 //Input Function ID
-#define SKYPE_CHECK_SELECTED  0x01
+#define SKYPE_CHECK_SELECTED  0xFF
 
 class SkypeShieldClass 
 {

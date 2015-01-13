@@ -18,13 +18,13 @@
 
 //Output Functions ID's
 #define LED_SET_HIGH  0x01
-#define LED_SELECT_SHIELD 0x02
-#define LED_UNSELECT_SHIELD 0x03
+#define LED_SELECT_SHIELD 0xFE
+#define LED_UNSELECT_SHIELD 0xFD
 //Parameters
 #define LED_SET_LOW   0x00
 #define LED_SET_VALUE 0x01
 //Input Function ID
-#define LED_CHECK_SELECTED  0x01
+#define LED_CHECK_SELECTED  0xFF
 
 
 class LedShield

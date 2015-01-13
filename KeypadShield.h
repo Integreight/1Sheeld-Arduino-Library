@@ -17,11 +17,11 @@
 #define KeypadShield_h
 
 //Output Function ID
-#define KEYPAD_SELECT_SHIELD	0x01
-#define KEYPAD_UNSELECT_SHIELD	0x02
+#define KEYPAD_SELECT_SHIELD	0xFE
+#define KEYPAD_UNSELECT_SHIELD	0xFD
 //Input Function ID 
 #define KEYPAD_VALUE 0x01
-#define KEYPAD_CHECK_SELECTED	0x02
+#define KEYPAD_CHECK_SELECTED	0xFF
 
 class KeypadShieldClass 
 {

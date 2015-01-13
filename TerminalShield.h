@@ -22,11 +22,11 @@
 //Output Function ID's
 #define TERMINAL_WRITE 0x01		
 #define TERMINAL_PRINT 0x02
-#define TERMINAL_SELECT_SHIELD	0x03
-#define TERMINAL_UNSELECT_SHIELD	0x04
+#define TERMINAL_SELECT_SHIELD	0xFE
+#define TERMINAL_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define TERMINAL_READ  0x01
-#define TERMINAL_CHECK_SELECTED	0x02
+#define TERMINAL_CHECK_SELECTED	0xFF
 
 
 class TerminalShield : public PrintlnClass

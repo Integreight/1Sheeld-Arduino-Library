@@ -17,12 +17,12 @@
 
 //Output  function ID's
 #define VOICE_START_LISTENING	0x01
-#define VOICE_SELECT_SHIELD		0x02
-#define VOICE_UNSELECT_SHIELD	0x03
+#define VOICE_SELECT_SHIELD		0xFE
+#define VOICE_UNSELECT_SHIELD	0xFD
 //Input Function ID's 
 #define VOICE_GET 				0x01
 #define VOICE_GET_ERROR		    0x02
-#define VOICE_CHECK_SELECTED	0x03
+#define VOICE_CHECK_SELECTED	0xFF
 
 //Errors messages 
 #define NETWORK_TIMEOUT_ERROR	0x01

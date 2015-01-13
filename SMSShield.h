@@ -18,11 +18,11 @@
 
 //Outputs Functions ID's
 #define SMS_SEND 0x01
-#define SMS_SELECT_SHIELD 0x02
-#define SMS_UNSELECT_SHIELD 0x03 
+#define SMS_SELECT_SHIELD 0xFE
+#define SMS_UNSELECT_SHIELD 0xFD 
 //Input Functions ID's 
 #define SMS_GET  0x01
-#define SMS_CHECK_SELECTED	0x02
+#define SMS_CHECK_SELECTED	0xFF
 
 
 class SMSShieldClass 

@@ -17,11 +17,11 @@
 #define ProximitySensorShield_h
 
 //Output Function ID's
-#define PROXIMITY_SELECT_SHIELD	0x01
-#define PROXIMITY_UNSELECT_SHIELD	0x02
+#define PROXIMITY_SELECT_SHIELD	0xFE
+#define PROXIMITY_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define PROXIMITY_VALUE 0x01
-#define PROXIMITY_CHECK_SELECTED 0x02
+#define PROXIMITY_CHECK_SELECTED 0xFF
 
 class ProximitySensorShield
 {

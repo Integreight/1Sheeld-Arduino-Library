@@ -21,11 +21,11 @@
 #define LOGGER_ADD_FLOAT	   0x03
 #define LOGGER_ADD_STRING	   0x04
 #define LOGGER_LOG_DATA	   	   0x05
-#define LOGGER_SELECT_SHIELD   0x06
-#define LOGGER_UNSELECT_SHIELD   0x07
+#define LOGGER_SELECT_SHIELD   0xFE
+#define LOGGER_UNSELECT_SHIELD   0xFD
 
 //Input Function ID
-#define LOGGER_CHECK_SELECTED	0x01
+#define LOGGER_CHECK_SELECTED	0xFF
 
 
 class DataLoggerShield

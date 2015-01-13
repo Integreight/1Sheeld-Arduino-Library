@@ -18,11 +18,11 @@
 
 
 //Output Function ID
-#define SLIDER_SELECT_SHIELD	0x01
-#define SLIDER_UNSELECT_SHIELD	0x02
+#define SLIDER_SELECT_SHIELD	0xFE
+#define SLIDER_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define SLIDER_VALUE 0x01
-#define SLIDER_CHECK_SELECTED	0x02
+#define SLIDER_CHECK_SELECTED	0xFF
 
 class SliderShield
 {

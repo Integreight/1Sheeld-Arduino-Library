@@ -19,12 +19,12 @@
 
 //Output Function ID
 #define PHONE_CALL 0x01
-#define PHONE_SELECT_SHIELD	0x02
-#define PHONE_UNSELECT_SHIELD	0x03
+#define PHONE_SELECT_SHIELD	0xFE
+#define PHONE_UNSELECT_SHIELD	0xFD
 //Input Function ID's
 #define PHONE_IS_RINGING 0x01
 #define PHONE_GET_NUMBER 0x02
-#define PHONE_CHECK_SELECTED 0x03
+#define PHONE_CHECK_SELECTED 0xFF
 
 
 class PhoneShieldClass 

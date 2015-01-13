@@ -19,11 +19,11 @@
 //Ouput Functions ID's 
 #define BUZZER_OFF 	0x00
 #define BUZZER_ON 	0x01
-#define BUZZER_SELECT_SHIELD	0x02
-#define BUZZER_UNSELECT_SHIELD	0x03
+#define BUZZER_SELECT_SHIELD	0xFE
+#define BUZZER_UNSELECT_SHIELD	0xFD
 
 //Input Fuinction ID
-#define BUZZER_CHECK_SELECTED	0x01
+#define BUZZER_CHECK_SELECTED	0xFF
 //Parameter
 #define BUZZER_SET 	0x01
 

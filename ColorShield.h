@@ -17,11 +17,11 @@
 #define ColorShield_h
 
 //Output Function ID
-#define COLOR_SELECT_SHIELD	0x01
-#define COLOR_UNSELECT_SHIELD	0x02
+#define COLOR_SELECT_SHIELD	0xFE
+#define COLOR_UNSELECT_SHIELD	0xFD
 //Input function ID
 #define COLOR_VALUE 0x01
-#define COLOR_CHECK_SELECTED	0x02
+#define COLOR_CHECK_SELECTED	0xFF
 
 class ColorShield
 {

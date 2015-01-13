@@ -35,11 +35,11 @@
 #define LCD_SETCURSOR 	 0x0E
 #define LCD_WRITE 		 0x0F
 #define LCD_PRINT 		 0x11
-#define LCD_SELECT_SHIELD	0x012
-#define LCD_UNSELECT_SHIELD	0x013
+#define LCD_SELECT_SHIELD	0xFE
+#define LCD_UNSELECT_SHIELD	0xFD
 
 //Input Function ID
-#define LCD_CHECK_SELECTED	0x01
+#define LCD_CHECK_SELECTED	0xFF
 
 class LCDShield : public PrintClass
 {

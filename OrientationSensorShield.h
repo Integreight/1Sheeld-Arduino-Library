@@ -17,11 +17,11 @@
 #define OrientationSensorShield_h
 
 //Output Function ID
-#define OREINTATION_SELECT_SHIELD	0x01
-#define OREINTATION_UNSELECT_SHIELD	0x02
+#define OREINTATION_SELECT_SHIELD	0xFE
+#define OREINTATION_UNSELECT_SHIELD	0xFD
 //Input Function ID
 #define ORIENTATION_VALUE 0x01
-#define ORIENTATION_CHECK_SELECTED	0x02
+#define ORIENTATION_CHECK_SELECTED	0xFF
 
 
 class OrientationSensorShield
