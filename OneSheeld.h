@@ -33,7 +33,7 @@ typedef unsigned char byte;
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 //Library Version
-#define LIBRARY_VERSION 3
+#define LIBRARY_VERSION 4
 //Time between sending Frames
 #define TIME_GAP		200UL
 //Maximum number of remote connections
@@ -93,7 +93,7 @@ public:
     
 	OneSheeldClass(Stream &s);
 	//Blocking function
-	void waitForConnection();
+	void waitForAppConnection();
 	//Check connection
 	bool isAppConnected();
 	//Getters 
@@ -115,10 +115,10 @@ public:
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	//Set on change for users function
-	void setOnFloatMessage(void (*)(char * ,char * ,float));
-	void setOnFloatMessage(void (*)(String ,String ,float));
-	void setOnStringMessage(void (*)(char * ,char * ,char *));
-	void setOnStringMessage(void (*)(String  ,String ,String ));	 
+	void setOnNewMessage(void (*)(char * ,char * ,float));
+	void setOnNewMessage(void (*)(String ,String ,float));
+	void setOnNewMessage(void (*)(char * ,char * ,char *));
+	void setOnNewMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
 
 private:

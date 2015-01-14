@@ -5,7 +5,7 @@ Email Shield Example
 This example shows an application on 1Sheeld's email shield.
 
 By using this example, you can send an email when the app's
-toggle button is pressed.
+Push button is pressed.
 
 */
 

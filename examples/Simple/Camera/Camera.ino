@@ -41,7 +41,7 @@ void loop()
     Camera.rearCapture();
     /* Wait for 10 seconds. */
     delay(10000);
-    /* Post the picture on Facebook. */
+    /* Post the picture on Twitter. */
     Twitter.tweetLastPicture("Posted by @1Sheeld");
   }
   else

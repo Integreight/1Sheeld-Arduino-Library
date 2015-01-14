@@ -18,25 +18,21 @@
 
 //Output Functions ID's
 #define CAMERA_REAR_CAPTURE 		0x01
-#define CAMERA_SET_FLASH 			0x02
+#define CAMERA_SET_FLASH 			  0x02
 #define CAMERA_FRONT_CAPTURE 		0x03
 #define CAMERA_SET_QUALITY 			0x04
 #define CAMERA_SELECT_SHIELD    0xFE
 #define CAMERA_UNSELECT_SHIELD    0xFD
 //Input Function ID
 #define CAMERA_CHECK_SELECTED 0xFF
-//Quality Control 
-#define CAMERA_LOW_QUALITY 	0x01
-#define CAMERA_MID_QUALITY 	0x02
-#define CAMERA_HIG_QUALITY 	0x03
 //Setting Flash (Literals)
-#define OFF				0x00
+#define OFF				  0x00
 #define ON    			0x01
 #define AUTO  			0x02
 //Literals used by users
 #define LOW_QUALITY  0x01
 #define MID_QUALITY  0x02
-#define HIG_QUALITY  0x03
+#define HIGH_QUALITY  0x03
   
 class CameraShieldClass
 {

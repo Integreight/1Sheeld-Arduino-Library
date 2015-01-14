@@ -54,7 +54,6 @@ void MagnetometerSensorShield::unselect()
 //MagnetometerSensor Data processing 	
 void MagnetometerSensorShield::processData()
 {
-	byte shieldId=OneSheeld.getShieldId();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	

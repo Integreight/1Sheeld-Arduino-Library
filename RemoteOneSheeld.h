@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          RemoteOneSheeld.h
                  
-  Version:       1.4
+  Version:       1.3
 
   Compiler:      Arduino avr-gcc 4.3.2
 
@@ -17,19 +17,19 @@
 #define RemoteOneSheeld_h
 
 //Output function ID's 
-#define REMOTEONESHEELD_PIN_MODE 0x01
-#define REMOTEONESHEELD_WRITE 0x02
-#define REMOTEONESHEELD_READ  0x03
+#define REMOTEONESHEELD_PIN_MODE 	 0x01
+#define REMOTEONESHEELD_WRITE 		 0x02
+#define REMOTEONESHEELD_READ  		 0x03
 #define REMOTEONESHEELD_ANALOG_WRITE 0x04
-#define REMOTEONESHEELD_SEND_FLOAT	0x05
-#define REMOTEONESHEELD_SEND_STRING	0x06
-#define REMOTEONESHEELD_SUBSCRIBE	0x07
-#define REMOTEONESHEELD_UNSUBSCRIBE 0x08
+#define REMOTEONESHEELD_SEND_FLOAT	 0x05
+#define REMOTEONESHEELD_SEND_STRING	 0x06
+#define REMOTEONESHEELD_SUBSCRIBE	 0x07
+#define REMOTEONESHEELD_UNSUBSCRIBE  0x08
 
 //Input function ID's
 #define DIGITAL_SUBSCRIBE_VALUE	 0x01
-#define READ_MESSAGE_FLOAT 0x02
-#define READ_MESSAGE_STRING 0x03
+#define READ_MESSAGE_FLOAT 		 0x02
+#define READ_MESSAGE_STRING 	 0x03
 
 
 class RemoteOneSheeld
@@ -50,10 +50,10 @@ public:
 	void sendMessage(const char* ,const char*);
 	void sendMessage(String ,String );
 	//Getters
-	void setOnFloatMessage(void (*)(char*,float));
-	void setOnFloatMessage(void (*)(String , float));
-	void setOnStringMessage(void(*)(char* , char*));
-	void setOnStringMessage(void(*)(String , String));
+	void setOnNewMessage(void (*)(char*,float));
+	void setOnNewMessage(void (*)(String , float));
+	void setOnNewMessage(void(*)(char* , char*));
+	void setOnNewMessage(void(*)(String , String));
 	void setOnSubscribeOrDigitalChange(void (*)(byte , bool));
 	//Subscribers
 	void subscribeToChanges(byte);

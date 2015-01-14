@@ -53,7 +53,6 @@ void GyroscopeSensorShield::unselect()
 //GyroscopeSensor Input Data processing 	
 void GyroscopeSensorShield::processData()
 {
-	byte shieldId=OneSheeld.getShieldId();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	

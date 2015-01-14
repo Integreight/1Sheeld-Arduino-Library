@@ -29,7 +29,7 @@ public:
 	void println(unsigned int,byte =DEC);
 	void println(long,byte = DEC);
 	void println(unsigned long,byte =DEC);
-	void println(char *);
+	void println(const char *);
 	void println(String);
 	//Unsupported by Intel Galileo board and Arduino Due
 	#if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)

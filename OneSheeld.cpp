@@ -92,7 +92,7 @@ void OneSheeldClass::begin(long baudRate)
   #endif
 }
 //Blocking function 
-void OneSheeldClass::waitForConnection()
+void OneSheeldClass::waitForAppConnection()
 {
   isOneSheeldConnected = false;
 
@@ -498,9 +498,6 @@ void OneSheeldClass::sendToShields()
     #ifdef TERMINAL_SHIELD
     case TERMINAL_ID             : Terminal.processData();break;
     #endif
-    #ifdef COLOR_SHIELD
-    case COLOR_ID                : Color.processData();break;
-    #endif
     #ifdef REMOTE_SHIELD
     case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
                                     listOfRemoteOneSheelds[i]->processData();
@@ -511,14 +508,14 @@ void OneSheeldClass::sendToShields()
   }
 }
 #ifdef REMOTE_SHIELD
-void OneSheeldClass::setOnFloatMessage(void (*userFunction)(char * address, char * key, float value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(char * address, char * key, float value))
 {
   changeFloatCallBack = userFunction;
   isSetOnFloatMessageInvoked = true;
   isOneSheeldRemoteDataUsed=true;
 }
 
-void OneSheeldClass::setOnFloatMessage(void (*userFunction)(String address, String key, float value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String key, float value))
 {
   changeFloatCallBackWithString = userFunction;
   usedSetOnFloatWithString = true;
@@ -526,14 +523,14 @@ void OneSheeldClass::setOnFloatMessage(void (*userFunction)(String address, Stri
 }
 
 
-void OneSheeldClass::setOnStringMessage(void (*userFunction)(char * address, char * key, char * value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(char * address, char * key, char * value))
 {
   changeStringCallBack = userFunction;
   isSetOnStringMessageInvoked = true;
   isOneSheeldRemoteDataUsed=true;
 }
 
-void OneSheeldClass::setOnStringMessage(void (*userFunction)(String address, String key, String value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String key, String value))
 {
   changeStringCallBackWithString = userFunction;
   usedSetOnStringWithString = true;
@@ -612,8 +609,7 @@ void OneSheeldClass::processData(){
   }
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
-    byte libraryVersion = LIBRARY_VERSION;
-    sendPacket(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0x01,new FunctionArg(1,&libraryVersion));
+    sendPacket(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0);
   }
 }
 

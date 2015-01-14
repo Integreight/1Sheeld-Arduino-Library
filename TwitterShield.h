@@ -17,7 +17,7 @@
 #define TwitterShield_h
 
 //Output Function ID
-#define TWITTER_SEND 0x01  
+#define TWITTER_SEND 				0x01  
 #define TWITTER_SEND_DIRECT_MESSAGE 0x02
 #define TWITTER_POST_LAST_PIC 0x03
 #define TWITTER_TRACK_KEYWORD	0x04
@@ -27,6 +27,7 @@
 //Input Functions ID's
 #define TWITTER_GET_TWEET	0x01
 #define TWITTER_CHECK_SELECTED 0xFF
+
 
 
 

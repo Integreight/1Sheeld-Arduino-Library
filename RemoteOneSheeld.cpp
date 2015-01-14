@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          RemoteOneSheeld.cpp
                  
-  Version:       1.4
+  Version:       1.3
 
   Compiler:      Arduino avr-gcc 4.3.2
 
@@ -158,25 +158,25 @@ void RemoteOneSheeld::sendMessage(const char * key , const char * stringData)
 						new FunctionArg(strlen(stringData),(byte*)stringData));
 }
 //Getting Data from remote 1Sheeld
-void RemoteOneSheeld::setOnFloatMessage(void (*userFunction)(char* key, float value))
+void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(char* key, float value))
 {
 	changeFloatCallBack=userFunction;
 	isFloatMessageAssigned = true;
 }
 //Getting Data from remote 1Sheeld 
-void RemoteOneSheeld::setOnFloatMessage(void (*userFunction)(String key, float value))
+void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(String key, float value))
 {
 	changeFloatCallBackString=userFunction;
 	usedSetOnFloatWithString= true;
 }
 //Getting Data from remote 1Sheeld
-void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(char* key, char* stringData))
+void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(char* key, char* stringData))
 {
 	changeStringCallBack=userFunction;
 	isStringMessageAssigned = true;
 }
 //Getting Data from remote 1Sheeld
-void RemoteOneSheeld::setOnStringMessage(void (*userFunction)(String key, String stringData))
+void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(String key, String stringData))
 {
 	changeStringCallBackString=userFunction;
 	usedSetOnStringWithString = true;
