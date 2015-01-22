@@ -12,12 +12,10 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "LightSensorShield.h"
 
 //Class Constructor
-LightSensorShield::LightSensorShield()
+LightSensorShield::LightSensorShield() : ShieldParent(LIGHT_ID)
 {
 	value=0;
 	isCallBackAssigned=false;
@@ -29,19 +27,11 @@ unsigned long LightSensorShield::getValue()
 	return value;
 	
 }
-
-void LightSensorShield::select()
-{
-	OneSheeld.sendPacket(LIGHT_ID,0,LIGHT_SELECT_SHIELD,0);	
-}
-
-void LightSensorShield::unselect()
-{
-	OneSheeld.sendPacket(LIGHT_ID,0,LIGHT_UNSELECT_SHIELD,0);	
-}
 //Light Input Data Processing
 void LightSensorShield::processData()
 {
+	//Supering
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==LIGHT_VALUE)
@@ -59,10 +49,6 @@ void LightSensorShield::processData()
 			(*changeCallBack)(value);
 		}
 	}
-	else if (functionId == LIGHT_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
 }
 //Users Function Setter 
 void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long lightValue))
@@ -71,9 +57,5 @@ void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long ligh
 	isCallBackAssigned=true;
 }
 
-void LightSensorShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiating Object
 LightSensorShield LightSensor;

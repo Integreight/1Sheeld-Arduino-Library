@@ -12,12 +12,10 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "PressureSensorShield.h"
 
 //Class Constructor
-PressureSensorShield::PressureSensorShield()
+PressureSensorShield::PressureSensorShield() : ShieldParent(PRESSURE_ID)
 {
 	value=0;
 	isCallBackAssigned=false;
@@ -29,18 +27,12 @@ unsigned long PressureSensorShield::getValue()
 	return value;
 	
 }
-void PressureSensorShield::select()
-{
-	OneSheeld.sendPacket(PRESSURE_ID,0,PRESSURE_SELECT_SHIELD,0);
-}
 
-void PressureSensorShield::unselect()
-{
-	OneSheeld.sendPacket(PRESSURE_ID,0,PRESSURE_UNSELECT_SHIELD,0);
-}
 //PressureSensor Input Data Processing 
 void PressureSensorShield::processData()
 {
+	//Supering 
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==PRESSURE_VALUE)
@@ -56,10 +48,6 @@ void PressureSensorShield::processData()
 			(*changeCallBack)(value);
 		}
 	}
-	else if(functionId == PRESSURE_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
 }
 //Users Function Setter
 void PressureSensorShield::setOnValueChange(void (*userFunction)(unsigned long pressureValue))
@@ -68,9 +56,5 @@ void PressureSensorShield::setOnValueChange(void (*userFunction)(unsigned long p
 	isCallBackAssigned=true;
 }
 
-void PressureSensorShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instatntiating Object
 PressureSensorShield PressureSensor;

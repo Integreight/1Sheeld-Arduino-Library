@@ -16,26 +16,21 @@
 #ifndef ProximitySensorShield_h
 #define ProximitySensorShield_h
 
-//Output Function ID's
-#define PROXIMITY_SELECT_SHIELD	0xFE
-#define PROXIMITY_UNSELECT_SHIELD	0xFD
+#include "OneSheeld.h"
+
 //Input Function ID
 #define PROXIMITY_VALUE 0x01
-#define PROXIMITY_CHECK_SELECTED 0xFF
 
-class ProximitySensorShield
+class ProximitySensorShield : public ShieldParent
 {
 public:
 	//Constructor
 	ProximitySensorShield();
 	//Getter 
 	byte getValue();
-	//Selection
-	void select();
-	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*userFunction)(byte));
-	void setOnSelected(void(*)(void));
+
 private:
 	//Reserve Variables
 	byte value;
@@ -44,7 +39,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (* changeCallBack)(byte);
-	void (*selectedCallBack)(void);
 
 	friend class OneSheeldClass;
 };

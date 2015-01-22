@@ -12,8 +12,6 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "SevenSegmentShield.h"
 
 //Number Setter
@@ -52,28 +50,5 @@ void SevenSegmentShieldClass::setDot()
 
 }
 
-void SevenSegmentShieldClass::select()
-{
-	OneSheeld.sendPacket(SEV_SEG_ID,0,SEVENSEGMENT_SELECT_SHIELD,0);
-}
-
-void SevenSegmentShieldClass::unselect()
-{
-	OneSheeld.sendPacket(SEV_SEG_ID,0,SEVENSEGMENT_UNSELECT_SHIELD,0);
-}
-
-void SevenSegmentShieldClass::processData()
-{
-	byte functionID = OneSheeld.getFunctionId();
-	if(functionID == SEVENSEGMENT_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-}
-
-void SevenSegmentShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiating Object
 SevenSegmentShieldClass SevenSegment;

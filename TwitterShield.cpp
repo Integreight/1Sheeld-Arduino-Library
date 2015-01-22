@@ -12,12 +12,10 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "TwitterShield.h"
 
 //Class Constructor
-TwitterShieldClass::TwitterShieldClass()
+TwitterShieldClass::TwitterShieldClass() : ShieldParent(TWITTER_ID)
 {
  	userName = 0;
  	tweetText = 0;
@@ -150,16 +148,6 @@ void TwitterShieldClass::untrackKeyword(const char * keyword)
 	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
 }
 
-void TwitterShieldClass::select()
-{
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SELECT_SHEILD,0);
-}
-
-void TwitterShieldClass::unselect()
-{
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNSELECT_SHEILD,0);
-}
-
 //Support string for Arduino
 #if !defined(ARDUINO_LINUX)
 void TwitterShieldClass::trackKeyword(String keyword )
@@ -244,6 +232,8 @@ String TwitterShieldClass::getTweetAsString()
 //Twitter Input Data Processing
 void TwitterShieldClass::processData()
 {
+	//Supering
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId = OneSheeld.getFunctionId();
 	if( functionId == TWITTER_GET_TWEET)
@@ -287,10 +277,6 @@ void TwitterShieldClass::processData()
 			(*changeCallBackString)(usernameString,tweetTextString);
 		}
 	}
-	else if(functionId == TWITTER_CHECK_SELECTED) //called when twitter shield is selected
-	{
-		(*selectedCallBack)();
-	}
 }
 //Users Function Setter
 void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,char * tweetText))
@@ -304,11 +290,6 @@ void TwitterShieldClass::setOnNewTweet(void (*userFunction)(String userName ,Str
 {
 	changeCallBackString=userFunction;
 	usedSetOnWithString=true;
-}
-//Checking Twitter selected
-void TwitterShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
 }
 
 //Instantiating Object 

@@ -16,30 +16,22 @@
 #ifndef NotificationShield_h
 #define NotificationShield_h
 
+#include "OneSheeld.h"
+
 //Output Function ID
 #define NOTIFICATION_NOTIFY_PHONE 0x01
-#define	NOTIFICATION_SELECT_SHIELD	0xFE
-#define NOTIFICATION_UNSELECT_SHIELD 0xFD
 
-//Input Function ID
-#define NOTIFICATION_CHECK_SELECTED	0xFF
-
-class NotificationShieldClass 
+class NotificationShieldClass : public ShieldParent
 {
 public:
+	//Constructror
+	NotificationShieldClass():ShieldParent(NOTIFICATION_ID){};
 	//Sender 
 	void notifyPhone(const char* );
 	void notifyPhone(String );
-	//Selection
-	void select();
-	void unselect();
-	//Set On when Selected
-	void setOnSelected(void (*)(void));
+	
 private:
-	void processData();
-	void (*selectedCallBack)(void);
-
-	friend class OneSheeldClass;
+	
 };
 
 //Extern Object

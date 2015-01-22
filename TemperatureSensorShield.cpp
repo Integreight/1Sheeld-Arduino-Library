@@ -12,13 +12,11 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "TemperatureSensorShield.h"
 
 
 //Class Constructor
-TemperatureSensorShield::TemperatureSensorShield()
+TemperatureSensorShield::TemperatureSensorShield() : ShieldParent(TEMPERATURE_ID)
 {
 	value=0xff;
 	isCallBackAssigned=false;
@@ -29,19 +27,11 @@ char TemperatureSensorShield::getValue()
 	return value;
 }
 
-void TemperatureSensorShield::select()
-{
-	OneSheeld.sendPacket(TEMPERATURE_ID,0,TEMPERATURE_SELECT_SHIELD,0);
-}
-
-void TemperatureSensorShield::unselect()
-{
-	OneSheeld.sendPacket(TEMPERATURE_ID,0,TEMPERATURE_UNSELECT_SHIELD,0);
-}
-
 //TemperatureSensor Input Data Processing
 void TemperatureSensorShield::processData()
 {
+	//Supering
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 
@@ -52,10 +42,6 @@ void TemperatureSensorShield::processData()
 		if(isCallBackAssigned)
 			(*changeOnCallBack)(value);
 	}
-	else if(functionId == TEMPERATURE_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
 }
 //Users Function Setter
 void TemperatureSensorShield::setOnValueChange(void(*userFunction)(char temp))
@@ -64,10 +50,6 @@ void TemperatureSensorShield::setOnValueChange(void(*userFunction)(char temp))
 	isCallBackAssigned=true;
 }
 
-void TemperatureSensorShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack= userFunction;
-}
 float TemperatureSensorShield::getAsFahrenheit()
 {
 	float fahrenheit;

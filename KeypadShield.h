@@ -16,14 +16,12 @@
 #ifndef KeypadShield_h
 #define KeypadShield_h
 
-//Output Function ID
-#define KEYPAD_SELECT_SHIELD	0xFE
-#define KEYPAD_UNSELECT_SHIELD	0xFD
+#include "OneSheeld.h"
+
 //Input Function ID 
 #define KEYPAD_VALUE 0x01
-#define KEYPAD_CHECK_SELECTED	0xFF
 
-class KeypadShieldClass 
+class KeypadShieldClass : public ShieldParent
 {
 public:
 	//Constructor
@@ -33,12 +31,9 @@ public:
 	bool isColumnPressed(byte x);
 	bool isAnyRowPressed();
 	bool isAnyColumnPressed();
-	//Selection
-	void select();
-	void unselect();
 	//setOnChange for Users Function
 	void setOnButtonChange(void (*)(byte ,byte));
-	void setOnSelected(void (*)(void));
+
 private:
 	//Reserve Variables
 	byte  row;
@@ -48,7 +43,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallback)(byte , byte);
- 	void (*selectedCallBack)(void);
 	
 friend class OneSheeldClass;
 };

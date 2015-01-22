@@ -12,12 +12,10 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "PhoneShield.h"
 
 //Class Constructor
-PhoneShieldClass::PhoneShieldClass()
+PhoneShieldClass::PhoneShieldClass() : ShieldParent(PHONE_ID)
 {
 	value=0;
 	number=0;
@@ -75,19 +73,11 @@ String PhoneShieldClass::getNumberAsString()
 	return phoneNumberAsString;
 }
 
-void PhoneShieldClass::select()
-{
-	OneSheeld.sendPacket(PHONE_ID,0,PHONE_SELECT_SHIELD,0);
-}
-
-void PhoneShieldClass::unselect()
-{
-	OneSheeld.sendPacket(PHONE_ID,0,PHONE_UNSELECT_SHIELD,0);
-}
-
 //Phone Input Data Processing 
 void PhoneShieldClass::processData()
 {	
+	//Supering
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 
@@ -123,13 +113,6 @@ void PhoneShieldClass::processData()
 				(*changeCallBackString)(value,phoneNumberAsString);
 			}
 	}
-	else if(functionId == PHONE_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-	
-
-
 }
 
 //Users Function Setter
@@ -137,11 +120,6 @@ void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
-}
-
-void PhoneShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
 }
 
 void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,String phoneNumber))

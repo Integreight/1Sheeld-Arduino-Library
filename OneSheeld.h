@@ -21,9 +21,11 @@
 
 typedef unsigned char byte;
 
-#include "IncludedShieldsDefines.h"
-#include "ShieldsIncludes.h"
 #include "ShieldsIds.h"
+#include "IncludedShieldsDefines.h"
+#include "ShieldParent.h"
+#include "ShieldsIncludes.h"
+
 
 #define ONE_SECOND 1000
 

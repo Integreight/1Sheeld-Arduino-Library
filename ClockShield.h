@@ -16,16 +16,16 @@
 #ifndef ClockShield_h
 #define ClockShield_h
 
+#include "OneSheeld.h"
+
 //Output Function ID
 #define CLOCK_BEGIN 0x01
-#define CLOCK_SELECT_SHIELD	0xFE
-#define CLOCK_UNSELECT_SHIELD	0xFD
+
+
 //Input Function ID
 #define CLOCK_DATE_VALUE 0x01
-#define CLOCK_CHECK_SELECTED	0xFF
 
-
-class ClockShield
+class ClockShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -39,11 +39,6 @@ public:
 	byte getDay();
 	byte getMonth();
 	short getYear();
-	//Selection
-	void select();
-	void unselect();
-	//Set on when selected
-	void setOnSelected(void(*)(void));
 private:
 	//Reserve Variables
 	byte seconds;
@@ -59,7 +54,6 @@ private:
 	unsigned long timeCheck;
 	//Process Input Data 
 	void processData();
-	void (*selectedCallBack)(void);
 	
 	friend class OneSheeldClass;
 

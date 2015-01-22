@@ -16,29 +16,21 @@
 #ifndef MicShield_h
 #define MicShield_h
 
-//Output Function ID
-#define MIC_SELECT_SHIELD	0xFE
-#define MIC_UNSELECT_SHIELD	0xFD
+#include "OneSheeld.h"
 
 //Input Function ID 
 #define MIC_VALUE 0x01
-#define MIC_CHECK_SELECTED	0xFF
 
-
-class MicShield
+class MicShield : public ShieldParent
 {
 public:
 	//Constructor
 	MicShield();
 	//Getter
 	byte getValue();
-	//Selection
-	void select();
-	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(byte));
-	//Set when Selected
-	void setOnSelected(void (*)(void));
+
 private:
 	//Reserve Variable
 	byte value;
@@ -47,7 +39,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*changeCallBack)(byte);
-	void (*selectedCallBack)(void);
 	
 	friend class OneSheeldClass;
 };

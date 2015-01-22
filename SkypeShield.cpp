@@ -12,8 +12,6 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "SkypeShield.h"
 
 //Call Setter
@@ -83,29 +81,5 @@ void SkypeShieldClass::videoCall(String username)
 }
 #endif
 
-void SkypeShieldClass::select()
-{
-	OneSheeld.sendPacket(SKYPE_ID,0,SKYPE_SELECT_SHIELD,0);
-}
-
-void SkypeShieldClass::unselect()
-{
-	OneSheeld.sendPacket(SKYPE_ID,0,SKYPE_UNSELECT_SHIELD,0);
-}
-
-void SkypeShieldClass::processData()
-{
-	byte functionId = OneSheeld.getFunctionId();
-
-	if(functionId == SKYPE_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-}
-
-void SkypeShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiating Object
 SkypeShieldClass Skype;

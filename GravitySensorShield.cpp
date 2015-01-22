@@ -12,13 +12,11 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "GravitySensorShield.h"
 
 
 //Class Constructor 
-GravitySensorShield::GravitySensorShield()
+GravitySensorShield::GravitySensorShield() : ShieldParent(GRAVITY_ID)
 {
 	valueX=0;
 	valueY=0;
@@ -43,19 +41,11 @@ float GravitySensorShield::getZ()
 	return valueZ;
 }
 
-void GravitySensorShield::select()
-{
-	OneSheeld.sendPacket(GRAVITY_ID,0,GRAVITY_SELECT_SHIELD,0);
-}
-
-void GravitySensorShield::unselect()
-{
-	OneSheeld.sendPacket(GRAVITY_ID,0,GRAVITY_UNSELECT_SHIELD,0);
-}
-
 //Gravity Input Data Processing 
 void GravitySensorShield::processData()
 {
+	//Supering
+	ShieldParent::processData();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
@@ -74,10 +64,6 @@ void GravitySensorShield::processData()
 				(*changeCallBack)(valueX,valueY,valueZ);
 			}
 		}
-		else if(functionId == GRAVITY_CHECK_SELECTED)
-		{
-			(*selectedCallBack)();
-		}
 }
 
 //User Function Setter 
@@ -85,11 +71,6 @@ void GravitySensorShield::setOnValueChange(void (*userFunction)(float valueX,flo
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
-}
-
-void GravitySensorShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
 }
 //Instantiating Object
 GravitySensorShield GravitySensor ;

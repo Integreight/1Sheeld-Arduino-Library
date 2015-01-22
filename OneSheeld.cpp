@@ -413,7 +413,7 @@ void OneSheeldClass::sendToShields()
     #endif
     #ifdef FACEBOOK_SHIELD
     case FOURSQUARE_ID           : Foursquare.processData(); break ;
-    #endif.
+    #endif
     #ifdef EMAIL_SHIELD
     case EMAIL_ID                : Email.processData(); break ;
     #endif

@@ -16,35 +16,24 @@
 #ifndef FacebookShield_h
 #define FacebookShield_h
 
+#include "OneSheeld.h"
+
 //Output Functions ID's
 #define FACEBOOK_UPDATE_STATUS 0x01  
 #define FACEBOOK_POST_LAST_PIC 0x02
-#define FACEBOOK_SELECT_SHIELD 0xFE
-#define FACEBOOK_UNSELECT_SHIELD 0xFD
 
-//Input Function ID
-#define FACEBOOK_CHECK_SELECTED 0xFF
-
-class FacebookShieldClass 
+class FacebookShieldClass : public ShieldParent
 {
 public:
+  //Constructor
+  FacebookShieldClass() : ShieldParent(FACEBOOK_ID){};
 	//Senders
 	void post(const char* );
 	void post(String );
 	void postLastPicture(const char *,byte =0);
 	void postLastPicture(String , byte);
-  //Selection
-  void select();
-  void unselect();
-  //Set on when selected
-  void setOnSelected(void(*)(void));
-
+  
 private:
-  void processData();
-  void (*selectedCallBack)(void);
-
-  friend class OneSheeldClass;
-
 
 };
 

@@ -12,8 +12,6 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "FoursquareShield.h"
 
 
@@ -60,29 +58,5 @@ void FoursquareShieldClass::checkIn(String placeId , String message)
 }
 #endif
 
-void FoursquareShieldClass::select()
-{
-	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_SELECT_SHIELD,0);
-}
-
-void FoursquareShieldClass::unselect()
-{
-	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_UNSELECT_SHIELD,0);
-}
-
-void FoursquareShieldClass::processData()
-{
-	byte functionId = OneSheeld.getFunctionId();
-
-	if(functionId == FOURSQUARE_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-}
-
-void FoursquareShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiating Object
 FoursquareShieldClass Foursquare;

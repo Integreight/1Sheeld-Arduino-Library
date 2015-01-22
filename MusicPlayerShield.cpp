@@ -12,8 +12,6 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "MusicPlayerShield.h"
 
 //Stop Setter
@@ -61,29 +59,5 @@ void MusicPlayerShieldClass::setVolume(byte x)
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,MUSIC_VOLUME,1,new FunctionArg(1,&x));
 }
 
-void MusicPlayerShieldClass::select()
-{
-	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,MUSIC_SELECT_SHEILD,0);
-}
-
-void MusicPlayerShieldClass::unselect()
-{
-	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,MUSIC_UNSELECT_SHIELD,0);
-}
-
-void MusicPlayerShieldClass::processData()
-{
-	byte functionId = OneSheeld.getFunctionId();
-
-	if(functionId == MUSIC_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-}
-
-void MusicPlayerShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiating Object
 MusicPlayerShieldClass MusicPlayer;

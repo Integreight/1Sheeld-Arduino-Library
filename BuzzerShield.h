@@ -16,18 +16,15 @@
 #ifndef BuzzerShield_h
 #define BuzzerShield_h
 
+#include "OneSheeld.h"
+
 //Ouput Functions ID's 
 #define BUZZER_SET 	0x01
 #define BUZZER_OFF 	0x00
 #define BUZZER_ON 	0x01
-#define BUZZER_SELECT_SHIELD	0xFE
-#define BUZZER_UNSELECT_SHIELD	0xFD
-
-//Input Fuinction ID
-#define BUZZER_CHECK_SELECTED	0xFF
 
 
-class BuzzerShieldClass
+class BuzzerShieldClass : public ShieldParent
 {
 public:
 	//Constructor
@@ -35,21 +32,13 @@ public:
 	//Setters
 	void buzzOn();
 	void buzzOff();
-	//Selection
-	void select();
-	void unselect();
-	//Set on when selected
-	void setOnSelected(void(*)(void));
 
 private:
 	//Boolean for buzz check 
 	bool buzzing;
 	//Setter  
 	void setValue(byte x);
-	void processData();
-	void (*selectedCallBack)(void);
 
-	friend class OneSheeldClass;
 };
 
 //Extern Object

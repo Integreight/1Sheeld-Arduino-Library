@@ -16,31 +16,20 @@
 #ifndef FoursquareShield_h
 #define FoursquareShield_h
 
+#include "OneSheeld.h"
 
 //Output Function ID
 #define FOURSQUARE_CHECK_IN 0x01
-#define FOURSQUARE_SELECT_SHIELD	0xFE
-#define FOURSQUARE_UNSELECT_SHIELD	0xFD  
 
-//Input Function ID
-#define FOURSQUARE_CHECK_SELECTED	0xFF
-
-class FoursquareShieldClass
+class FoursquareShieldClass : public ShieldParent
 {
 public:
+	//Constructor
+	FoursquareShieldClass() : ShieldParent(FOURSQUARE_ID){};
 	//Sender
 	void checkIn(const char* ,const char* );
 	void checkIn(String , String );
-	//Selection
-	void select();
-	void unselect();
-	//Set On when selected
-	void setOnSelected(void(*)(void));
 private:
-	void processData();
-	void (*selectedCallBack)(void);
-
-	friend class OneSheeldClass;
 
 };
 

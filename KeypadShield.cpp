@@ -12,14 +12,11 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "KeypadShield.h"
 
 
-
 //Class Constructor
-KeypadShieldClass::KeypadShieldClass()
+KeypadShieldClass::KeypadShieldClass() : ShieldParent(KEYPAD_SHIELD_ID)
 {
   row=0;
   col=0;
@@ -48,20 +45,11 @@ bool KeypadShieldClass::isAnyColumnPressed()
 {
 return !!col;
 }
-
-void KeypadShieldClass::select()
-{
-  OneSheeld.sendPacket(KEYPAD_SHIELD_ID,0,KEYPAD_SELECT_SHIELD,0);
-}
-
-void KeypadShieldClass::unselect()
-{
-  OneSheeld.sendPacket(KEYPAD_SHIELD_ID,0,KEYPAD_UNSELECT_SHIELD,0);
-}
-
 //Keypad Input Data Processing
 void KeypadShieldClass::processData()
 {
+  //Supering 
+  ShieldParent::processData();
   //Checking Function-ID
   byte functionId=OneSheeld.getFunctionId();
   if (functionId==KEYPAD_VALUE)
@@ -72,11 +60,6 @@ void KeypadShieldClass::processData()
      if (isCallbackAssigned)
      (*buttonChangeCallback)(row,col);
    }
-   else if(functionId == KEYPAD_CHECK_SELECTED)
-   {
-      (*selectedCallBack)();
-   }
-   
 }
 
 //Users Function Setter 
@@ -84,11 +67,6 @@ void KeypadShieldClass::setOnButtonChange(void (*userFunction)(byte row ,byte co
 {
   buttonChangeCallback=userFunction;
   isCallbackAssigned=true;
-}
-
-void KeypadShieldClass::setOnSelected(void (*userFunction)(void))
-{
-  selectedCallBack=userFunction;
 }
 
 //Instatntiating Object

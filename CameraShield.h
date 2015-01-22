@@ -16,15 +16,14 @@
 #ifndef CameraShield_h
 #define CameraShield_h
 
+#include "OneSheeld.h"
+
 //Output Functions ID's
 #define CAMERA_REAR_CAPTURE 		0x01
 #define CAMERA_SET_FLASH 			  0x02
 #define CAMERA_FRONT_CAPTURE 		0x03
 #define CAMERA_SET_QUALITY 			0x04
-#define CAMERA_SELECT_SHIELD    0xFE
-#define CAMERA_UNSELECT_SHIELD    0xFD
-//Input Function ID
-#define CAMERA_CHECK_SELECTED 0xFF
+
 //Setting Flash (Literals)
 #define OFF				  0x00
 #define ON    			0x01
@@ -34,24 +33,19 @@
 #define MID_QUALITY  0x02
 #define HIGH_QUALITY  0x03
   
-class CameraShieldClass
+class CameraShieldClass : public ShieldParent
 {
 public:
+  //Constructor
+  CameraShieldClass():ShieldParent(CAMERA_ID){};
 	//Setters 
 	void frontCapture();
 	void rearCapture ();
 	void setFlash(byte );
 	void setQuality(byte);
-  //Selection 
-  void select();
-  void unselect();
-  //Set on  when selected
-  void setOnSelected(void(*userFunction)(void));
-private:
-  void processData();
-  void (*selectedCallBack)(void);
 
-  friend class OneSheeldClass;
+private:
+
 };
 
 //Extern Object

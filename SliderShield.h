@@ -16,27 +16,22 @@
 #ifndef SliderShield_h
 #define SliderShield_h
 
+#include "OneSheeld.h"
 
-//Output Function ID
-#define SLIDER_SELECT_SHIELD	0xFE
-#define SLIDER_UNSELECT_SHIELD	0xFD
+
 //Input Function ID
 #define SLIDER_VALUE 0x01
-#define SLIDER_CHECK_SELECTED	0xFF
 
-class SliderShield
+class SliderShield : public ShieldParent
 {
 public:
 	//Constructor
 	SliderShield();
 	//Getter
 	byte getValue();
-	//Selection
-	void select();
-	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*userFunction)(byte));
-	void setOnSelected(void(*)(void));
+
 private:
 	//Reserve Variable 
 	byte value;	
@@ -45,11 +40,8 @@ private:
 	//Process Input Data 
 	void processData();
 	void(*changeCallBack)(byte);
-	void (*selectedCallBack)(void);
+
 	friend class OneSheeldClass;
-
-
-
 };
 
 //Extern Object

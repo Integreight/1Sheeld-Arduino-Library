@@ -12,12 +12,11 @@
   Date:          2014.9
 
 */
-#include "OneSheeld.h"
 #include "VoiceRecognitionShield.h"
 
 
 //Constructor 
-VoiceRecognitionShield::VoiceRecognitionShield()
+VoiceRecognitionShield::VoiceRecognitionShield() : ShieldParent(VOICE_RECOGNITION_ID)
 {
 	voice =0;
 	voicetextLength=-1;
@@ -55,19 +54,11 @@ String VoiceRecognitionShield::getCommandAsString()
 		return dataInString;
 }
 
-void VoiceRecognitionShield::select()
-{
-	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,VOICE_SELECT_SHIELD,0);
-}
-
-void VoiceRecognitionShield::unselect()
-{
-	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,VOICE_UNSELECT_SHIELD,0);
-}
-
 //Process Input Data
 void VoiceRecognitionShield::processData()
 {
+	//Supering 
+	ShieldParent::processData();
 	byte functionID = OneSheeld.getFunctionId();
 
 	if(functionID==VOICE_GET)
@@ -111,10 +102,6 @@ void VoiceRecognitionShield::processData()
 			(*errorCallBack)(errorNumber);
 		}
 	}
-	else if(functionID==VOICE_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
 }
 //Users Function Setter 
 void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(char * voice))
@@ -136,10 +123,5 @@ void VoiceRecognitionShield::setOnError(void (*userFunction)(byte error))
 	errorAssigned=true;
 }
 
-void VoiceRecognitionShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack= userFunction;
-	isCheckingSelectedTriggered=true;
-}
 //Instantiating object 
 VoiceRecognitionShield VoiceRecognition;

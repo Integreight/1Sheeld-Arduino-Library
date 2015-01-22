@@ -16,16 +16,15 @@
 #ifndef AccelerometerSensorShield_h
 #define AccelerometerSensorShield_h
 
-//Output Function ID
-#define ACCELEROMETER_SELECT_SHIELD	0xFE
-#define ACCELEROMETER_UNSELECT_SHIELD	0xFD
+#include "OneSheeld.h"
+
 //Input Function ID 
 #define ACCELEROMETER_VALUE 0x01
-#define ACCELEROMETER_CHECK_SELECTED	0xFF
 
 
 
-class AccelerometerSensorShield
+
+class AccelerometerSensorShield : public ShieldParent
 {
 friend class OneSheeldClass;
 public:
@@ -37,11 +36,6 @@ public:
 	float getZ();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float,float,float));
-	//Selection
-	void select();
-	void unselect();
-	//Set on when selected
-	void setOnSelected(void(*)(void));
 private:
 	//Reserve Variables 
 	float valueX,valueY,valueZ;
@@ -50,7 +44,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*changeCallBack)(float,float,float);	
-	void (*selectedCallBack)(void);
 };
 
 //Extern Object

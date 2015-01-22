@@ -13,30 +13,24 @@
 
 */
 
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+#ifndef Keyboard_h
+#define Keyboard_h
 
-//Output Function ID
-#define KEYBPARD_SELECT_SHIELD	0xFE
-#define KEYBPARD_UNSELECT_SHIELD	0xFD  
+#include "OneSheeld.h"
+
 //Input Function ID 
 #define KEYBOARD_GET_CHAR	0x01
-#define KEYBOARD_CHECK_SELECTED	0xFF
 
-
-class KeyboardShield
+class KeyboardShield : public ShieldParent
 {
 public:
 	//Constructor 
 	KeyboardShield();
 	//Getter 
 	char getCharacter();
-	//Selection
-	void select();
-	void unselect();
 	//setOnChange Function for User Function
 	void setOnButtonChange(void (*)(char));
-	void setOnSelected(void (*)(void));
+
 private:
 	//Reserve Variable
 	char character;
@@ -45,7 +39,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallBack)(char);
-	void (*selectedCallBack)(void);
 	
 	friend class OneSheeldClass ;
 

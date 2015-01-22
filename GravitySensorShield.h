@@ -16,15 +16,12 @@
 #ifndef GravitySensorShield_h
 #define GravitySensorShield_h
 
-//Output Function ID
-#define GRAVITY_SELECT_SHIELD	0xFE
-#define GRAVITY_UNSELECT_SHIELD	0xFD
+#include "OneSheeld.h"
+
 //Input Function ID
 #define GRAVITY_VALUE 0x01
-#define GRAVITY_CHECK_SELECTED	0xFF
 
-
-class GravitySensorShield
+class GravitySensorShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -33,12 +30,9 @@ public:
 	float getX();
 	float getY();
 	float getZ();
-	//Selection
-	void select();
-	void unselect();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float,float,float));
-	void setOnSelected(void (*)(void));
+
 private:
 	//Reserve Variables
 	float valueX ,valueY,valueZ;
@@ -47,11 +41,8 @@ private:
 	//Process Input Data
 	void processData();
 	void (*changeCallBack)(float,float,float);
-	void (*selectedCallBack)(void);
+
 	friend class OneSheeldClass;
-
-
-	
 };
 
 //Extern Object

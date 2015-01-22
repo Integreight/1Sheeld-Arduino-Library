@@ -12,7 +12,6 @@
   Date:          2014.9
 
 */
-#include "OneSheeld.h"
 #include "DataLoggerShield.h"
 
 
@@ -140,29 +139,5 @@ void DataLoggerShield::log()
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_LOG_DATA,0);
 }
 
-void DataLoggerShield::select()
-{
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_SELECT_SHIELD,0);
-}
-
-void DataLoggerShield::unselect()
-{
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_UNSELECT_SHIELD,0);
-}
-
-void DataLoggerShield::processData()
-{
-	byte functionId = OneSheeld.getFunctionId();
-
-	if(functionId == LOGGER_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-}
-
-void DataLoggerShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiating Object
 DataLoggerShield Logger;

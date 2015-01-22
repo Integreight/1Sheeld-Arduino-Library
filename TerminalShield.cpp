@@ -12,12 +12,10 @@
   Date:          2014.9
 
 */
-
-#include "OneSheeld.h"
 #include "TerminalShield.h"
 
 //Constructor
-TerminalShield::TerminalShield():PrintlnClass(TERMINAL_ID,TERMINAL_WRITE,TERMINAL_PRINT)
+TerminalShield::TerminalShield():PrintlnClass(TERMINAL_ID,TERMINAL_WRITE,TERMINAL_PRINT),ShieldParent(TERMINAL_ID)
 {}
 
 //Read from Android
@@ -49,18 +47,11 @@ int TerminalShield::readBytes(char *arr, int length)
   return count;
 }
 
-void TerminalShield::select()
-{
-	OneSheeld.sendPacket(TERMINAL_ID,0,TERMINAL_SELECT_SHIELD,0);
-}
-
-void TerminalShield::unselect()
-{
-	OneSheeld.sendPacket(TERMINAL_ID,0,TERMINAL_UNSELECT_SHIELD,0);
-}
 //Terminal Incomming Data processing
 void TerminalShield::processData()
 {
+	//Supering
+	ShieldParent::processData();
 	byte functionID = OneSheeld.getFunctionId();
 	byte dataLength = OneSheeld.getArgumentLength(0);
 	if(functionID == TERMINAL_READ)
@@ -70,15 +61,7 @@ void TerminalShield::processData()
 				buffer.push(OneSheeld.getArgumentData(0)[j]);
 			}
 	}
-	else if(functionID == TERMINAL_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
 }
 
-void TerminalShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack= userFunction;
-}
 //instantiating Object 
 TerminalShield Terminal;

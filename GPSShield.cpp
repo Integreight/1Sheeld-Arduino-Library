@@ -12,12 +12,10 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
 #include "GPSShield.h"
 
 //Class Constructor 
-GPSShieldClass::GPSShieldClass ()
+GPSShieldClass::GPSShieldClass () : ShieldParent(GPS_ID)
 {
 	LatValue=0;
 	LonValue=0;
@@ -25,19 +23,11 @@ GPSShieldClass::GPSShieldClass ()
 	isCallBackAssigned=false;
 }
 
-void GPSShieldClass::select()
-{
-	OneSheeld.sendPacket(GPS_ID,0,GPS_SELECT_SHIELD,0);
-}
-
-void GPSShieldClass::unselect()
-{
-	OneSheeld.sendPacket(GPS_ID,0,GPS_UNSELECT_SHIELD,0);
-}
-
 //GPS Input Data Processing 
 void GPSShieldClass::processData ()
 {
+	//Supering
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==GPS_VALUE)
@@ -57,10 +47,6 @@ void GPSShieldClass::processData ()
 		LonValue=getfloat.num;
 
 		isInit=true;  									//setting a flag 
-	}
-	else if(functionId==GPS_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
 	}
 	//Users Function Invoked
 	if (isCallBackAssigned)
@@ -122,11 +108,6 @@ void GPSShieldClass::setOnValueChange(void (*userFunction)(float lattitude ,floa
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
-}
-
-void GPSShieldClass::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
 }
 //Instantiating Object
 GPSShieldClass  GPS ;

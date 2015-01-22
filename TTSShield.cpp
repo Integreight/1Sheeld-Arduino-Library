@@ -12,26 +12,12 @@
   Date:          2014.9
 
 */
-
-#include "OneSheeld.h"
 #include "TTSShield.h"
-
-
 
 //Give text to be said by the phone
 void TTSShield::say(const char * text)
 {
 	OneSheeld.sendPacket(TTS_ID,0,TTS_SAY,1,new FunctionArg(strlen(text),(byte*)text));
-}
-
-void TTSShield::select()
-{
-	OneSheeld.sendPacket(TTS_ID,0,TTS_SELECT_SHIELD,0);
-}
-
-void TTSShield::unselect()
-{
-	OneSheeld.sendPacket(TTS_ID,0,TTS_UNSELECT_SHIELD,0);
 }
 
 //Support string for Arduino
@@ -62,19 +48,5 @@ void TTSShield::say(String text)
 }
 #endif
 
-void TTSShield::processData()
-{
-	byte functionID = OneSheeld.getFunctionId();
-
-	if(functionID == TTS_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
-}
-
-void TTSShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Instantiaing Object
 TTSShield TextToSpeech;

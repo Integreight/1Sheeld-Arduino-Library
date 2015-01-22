@@ -13,13 +13,12 @@
 
 */
 
-#include "OneSheeld.h"
 #include "ClockShield.h"
 #include "Arduino.h"
 
 
 //Class Constructor
-ClockShield::ClockShield()
+ClockShield::ClockShield() : ShieldParent(CLOCK_ID)
 {
 	hours=0;
 	minutes=0;
@@ -78,19 +77,10 @@ short ClockShield::getYear()
 {
 	return year;
 }
-
-void ClockShield::select()
-{
-	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_SELECT_SHIELD,0);
-}
-
-void ClockShield::unselect()
-{
-	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_UNSELECT_SHIELD,0);
-}
 //Clock Input Data Processing 
 void ClockShield::processData()
 {
+	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==CLOCK_DATE_VALUE)
@@ -129,16 +119,8 @@ void ClockShield::processData()
 
 		}
 	}
-	else if(functionId == CLOCK_CHECK_SELECTED)
-	{
-		(*selectedCallBack)();
-	}
 }
 
-void ClockShield::setOnSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-}
 //Intantiating Object
 ClockShield Clock;
 
