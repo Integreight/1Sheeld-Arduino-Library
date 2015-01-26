@@ -17,49 +17,8 @@
 #include "HardwareSerial.h"
 #include "stdarg.h"
 
-//Shields ID's
-byte inputShieldsList[]={ONESHEELD_ID
-,SLIDER_ID
-,LED_ID
-,PUSH_BUTTON_ID
-,TOGGLE_BUTTON_ID
-,NOTIFICATION_ID
-,SEV_SEG_ID
-,BUZZER_ID
-,KEYPAD_SHIELD_ID
-,MAGNETOMETER_ID
-,ACCELEROMETER_ID
-,GAMEPAD_ID
-,SMS_ID
-,GYROSCOPE_ID
-,ORIENTATION_ID
-,LIGHT_ID
-,PRESSURE_ID
-,TEMPERATURE_ID
-,PROXIMITY_ID
-,GRAVITY_ID
-,CAMERA_ID
-,LCD_ID
-,MIC_ID
-,FACEBOOK_ID
-,TWITTER_ID
-,FOURSQUARE_ID
-,GPS_ID
-,MUSIC_PLAYER_ID
-,EMAIL_ID
-,SKYPE_ID
-,PHONE_ID
-,CLOCK_ID
-,KEYBOARD_ID
-,TTS_ID
-,VOICE_RECOGNITION_ID
-,DATA_LOGGER_ID
-,TERMINAL_ID
-,COLOR_ID
-,REMOTE_SHEELD_ID
-};
-
-
+byte OneSheeldClass::shieldsCounter=0;
+ShieldParent * OneSheeldClass::shieldsArray[]={0};
 //Class Constructor
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
@@ -106,6 +65,12 @@ void OneSheeldClass::waitForAppConnection()
 void OneSheeldClass::begin()
 {
   begin(115200);
+}
+
+void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
+{
+  if(shieldsCounter==SHIELDS_NO) return;
+  shieldsArray[shieldsCounter++]= shield;  
 }
 
 //Frame Sender for Output Shields
@@ -324,8 +289,8 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<39;i++) {
-                    if (shield == inputShieldsList[i]){
+                  for (int i=0;i<shieldsCounter;i++) {
+                    if (shield == shieldsArray[i]->getShieldId()){
                       found = true;
                       
                     }
@@ -389,122 +354,19 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
-    case ONESHEELD_ID            :processData();break;
-    #ifdef TEXTTOSPEECH_SHIELD
-    case TTS_ID                  : TextToSpeech.processData(); break ;
-    #endif
-    #ifdef SEVEN_SEGMENT_SHIELD
-    case SEV_SEG_ID              : SevenSegment.processData(); break ;
-    #endif
-    #ifdef NOTIFICATION_SHIELD
-    case NOTIFICATION_ID         : Notification.processData(); break ;
-    #endif
-    #ifdef MUSIC_PLAYER_SHIELD
-    case MUSIC_PLAYER_ID         : MusicPlayer.processData(); break ;
-    #endif
-    #ifdef LED_SHIELD
-    case LED_ID                  : LED.processData(); break ;
-    #endif
-    #ifdef LCD_SHIELD
-    case LCD_ID                  : LCD.processData(); break ;
-    #endif
-    #ifdef FOURSQUARE_SHIELD
-    case FACEBOOK_ID             : Facebook.processData(); break ;
-    #endif
-    #ifdef FACEBOOK_SHIELD
-    case FOURSQUARE_ID           : Foursquare.processData(); break ;
-    #endif
-    #ifdef EMAIL_SHIELD
-    case EMAIL_ID                : Email.processData(); break ;
-    #endif
-    #ifdef DATA_LOGGER_SHIELD
-    case DATA_LOGGER_ID          : Logger.processData(); break ;
-    #endif
-    #ifdef CAMERA_SHIELD
-    case CAMERA_ID               : Camera.processData(); break ;
-    #endif
-    #ifdef BUZZER_SHIELD
-    case BUZZER_ID               : Buzzer.processData(); break ;
-    #endif
-    #ifdef SKYPE_SHIELD
-    case SKYPE_ID                : Skype.processData(); break ;
-    #endif
-    #ifdef KEYPAD_SHIELD
-    case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
-    #endif
-    #ifdef GPS_SHIELD
-    case GPS_ID                  : GPS.processData();break ;
-    #endif
-    #ifdef SLIDER_SHIELD
-    case SLIDER_ID               : Slider.processData(); break;
-    #endif
-    #ifdef PUSH_BUTTON_SHIELD
-    case PUSH_BUTTON_ID          : PushButton.processData();break;
-    #endif
-    #ifdef TOGGLE_BUTTON_SHIELD
-    case TOGGLE_BUTTON_ID        : ToggleButton.processData();break;
-    #endif
-    #ifdef GAMEPAD_SHIELD
-    case GAMEPAD_ID              : GamePad.processData();break;
-    #endif
-    #ifdef PROXIMITY_SHIELD
-    case PROXIMITY_ID            : ProximitySensor.processData();break;
-    #endif
-    #ifdef MIC_SHIELD
-    case MIC_ID                  : Mic.processData();break;
-    #endif
-    #ifdef TEMPERATURE_SHIELD
-    case TEMPERATURE_ID          : TemperatureSensor.processData();break;
-    #endif
-    #ifdef LIGHT_SHIELD
-    case LIGHT_ID                : LightSensor.processData();break;
-    #endif
-    #ifdef PRESSURE_SHIELD
-    case PRESSURE_ID             : PressureSensor.processData();break;
-    #endif
-    #ifdef GRAVITY_SHIELD
-    case GRAVITY_ID              : GravitySensor.processData();break;
-    #endif
-    #ifdef ACCELEROMETER_SHIELD
-    case ACCELEROMETER_ID        : AccelerometerSensor.processData();break;
-    #endif
-    #ifdef GYROSCOPE_SHIELD
-    case GYROSCOPE_ID            : GyroscopeSensor.processData();break;
-    #endif
-    #ifdef ORIENTATION_SHIELD
-    case ORIENTATION_ID          : OrientationSensor.processData();break;
-    #endif
-    #ifdef MAGNETOMETER_SHIELD
-    case MAGNETOMETER_ID         : MagnetometerSensor.processData();break;
-    #endif
-    #ifdef PHONE_SHIELD
-    case PHONE_ID                : Phone.processData();break;
-    #endif
-    #ifdef SMS_SHIELD
-    case SMS_ID                  : SMS.processData();break;
-    #endif
-    #ifdef CLOCK_SHIELD
-    case CLOCK_ID                : Clock.processData();break;
-    #endif
-    #ifdef KEYBOARD_SHIELD
-    case KEYBOARD_ID             : AsciiKeyboard.processData();break;
-    #endif
-    #ifdef TWITTER_SHIELD
-    case TWITTER_ID              : Twitter.processData();break;
-    #endif
-    #ifdef VOICE_RECOGNITION_SHIELD
-    case VOICE_RECOGNITION_ID    : VoiceRecognition.processData();break;
-    #endif
-    #ifdef TERMINAL_SHIELD
-    case TERMINAL_ID             : Terminal.processData();break;
-    #endif
+    case ONESHEELD_ID            :processFrame();break;
     #ifdef REMOTE_SHIELD
     case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
-                                    listOfRemoteOneSheelds[i]->processData();
+                                    listOfRemoteOneSheelds[i]->processFrame();
                                     if(isOneSheeldRemoteDataUsed)
                                     processRemoteData();
                                     break;
     #endif
+    default:
+    for(int i=0 ;i<shieldsCounter;i++)
+    {
+      shieldsArray[i]->processFrame();
+    }
   }
 }
 #ifdef REMOTE_SHIELD
@@ -596,7 +458,7 @@ void OneSheeldClass::processRemoteData()
 }
 #endif
 
-void OneSheeldClass::processData(){
+void OneSheeldClass::processFrame(){
   byte functionId = getFunctionId();
   //Check  the function ID 
   if(functionId == DISCONNECTION_CHECK_FUNCTION)
