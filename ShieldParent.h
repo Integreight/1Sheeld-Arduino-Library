@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          ShieldParent.h
+                 
+  Version:       1.3
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
+
 #ifndef ShieldParent_h
 #define ShieldParent_h
 
@@ -15,16 +30,19 @@ class ShieldParent
 {
 protected:
 	ShieldParent(byte);
+	virtual void processFrame(void);
+	virtual void processData(void){};
 public:
 	/* Functions will be inherited by all shields. */
 	void select(void);
 	void deselect(void);
 	void setOnSelected(void(*)(void));
-	virtual void processData(void);
+	byte getShieldId(void);
 private:
 	bool isCallBackSet ;
 	byte shieldID;
 	void (*selectedCallBack)(void);
+friend class OneSheeldClass;
 };
 
 #endif

@@ -1,14 +1,25 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          ShieldParent.cpp
+                 
+  Version:       1.3
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
 #include "OneSheeld.h"
-
-
-
-
 
 
 ShieldParent::ShieldParent(byte shieldNo)
 {
 	shieldID = shieldNo ;
 	isCallBackSet=false;
+	OneSheeld.addToShieldsArray(this);
 }
 
 void ShieldParent::select()
@@ -28,12 +39,19 @@ void ShieldParent::setOnSelected(void (*userFunction)(void))
 	selectedCallBack=userFunction;
 }
 
-void ShieldParent::processData()
+byte ShieldParent::getShieldId()
 {
+	return shieldID;
+}
+
+void ShieldParent::processFrame()
+{
+	if(shieldID!=OneSheeld.getShieldId())return;
 	byte functionID = OneSheeld.getFunctionId();
 
-	if(functionID == CHECK_SELECTED && isCallBackSet)
+	if(functionID == CHECK_SELECTED)
 	{
-		(*selectedCallBack)();
+		if(isCallBackSet)(*selectedCallBack)();
 	}
+	else processData();
 }
