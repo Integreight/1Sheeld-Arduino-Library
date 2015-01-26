@@ -327,7 +327,7 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte p
 						 new FunctionArg(1,&pin4));
 }
 //Process Input data from remote 1Sheeld
-void RemoteOneSheeld::processData()
+void RemoteOneSheeld::processFrame()
 {
 	if(memcmp (remoteOneSheeldAddress,OneSheeld.getArgumentData(0),36))return;
 
