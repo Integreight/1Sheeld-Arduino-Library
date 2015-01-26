@@ -52,5 +52,4 @@
 #define VOICE_RECOGNITION_ID 0x24
 #define DATA_LOGGER_ID	  	 0x25
 #define TERMINAL_ID			 0x26
-#define COLOR_ID			 0x27
 #define REMOTE_SHEELD_ID	 0x28

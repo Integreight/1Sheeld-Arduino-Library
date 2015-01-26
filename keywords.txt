@@ -163,6 +163,8 @@ getStatus	KEYOWRD2
 getLastCommandLength	KEYWORD2
 tweetLastPicture	KEYWORD2
 setOnSelected	KEYWORD2
+select	KEYWORD2
+deselect	KEYWORD2
 waitForAppConnection	KEYWORD2
 setOnTwitterSelected	KEYWORD2
 attachLastPicture	KEYWORD2
