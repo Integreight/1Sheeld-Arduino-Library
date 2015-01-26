@@ -16,7 +16,7 @@
 #ifndef TerminalShield_h
 #define TerminalShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 #include "OneSheeldPrintln.h"
 #include "CircularBuffer.h"
@@ -47,8 +47,6 @@ private:
 	CircularBuffer<char,64> buffer;
 	//Process Input data
 	void processData();
-
-	friend class OneSheeldClass;
 };
 //Extern Object
 extern TerminalShield Terminal;

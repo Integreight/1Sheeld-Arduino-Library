@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "GyroscopeSensorShield.h"
 
 //Class Constructor 
@@ -42,7 +43,6 @@ float GyroscopeSensorShield::getZ()
 //GyroscopeSensor Input Data processing 	
 void GyroscopeSensorShield::processData()
 {
-	ShieldParent::processData();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
@@ -70,5 +70,7 @@ void GyroscopeSensorShield::setOnValueChange(void (*userFunction)(float valueX, 
 	isCallBackAssigned=true;
 }
 
+#ifdef GYROSCOPE_SHIELD
 //Instatntiating Object
 GyroscopeSensorShield GyroscopeSensor ;
+#endif

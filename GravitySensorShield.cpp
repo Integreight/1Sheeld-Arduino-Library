@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "GravitySensorShield.h"
 
 
@@ -44,8 +45,6 @@ float GravitySensorShield::getZ()
 //Gravity Input Data Processing 
 void GravitySensorShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
@@ -72,5 +71,8 @@ void GravitySensorShield::setOnValueChange(void (*userFunction)(float valueX,flo
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
+
+#ifdef GRAVITY_SHIELD
 //Instantiating Object
 GravitySensorShield GravitySensor ;
+#endif

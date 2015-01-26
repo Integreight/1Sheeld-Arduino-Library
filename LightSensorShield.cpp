@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "LightSensorShield.h"
 
 //Class Constructor
@@ -30,8 +31,6 @@ unsigned long LightSensorShield::getValue()
 //Light Input Data Processing
 void LightSensorShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==LIGHT_VALUE)
@@ -57,5 +56,7 @@ void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long ligh
 	isCallBackAssigned=true;
 }
 
+#ifdef LIGHT_SHIELD
 //Instantiating Object
 LightSensorShield LightSensor;
+#endif

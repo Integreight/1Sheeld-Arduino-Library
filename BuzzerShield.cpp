@@ -12,7 +12,7 @@
   Date:          2014.5
 
 */
-
+#include "OneSheeld.h"
 #include "BuzzerShield.h"
 
 //Class Constructor
@@ -49,6 +49,7 @@ void BuzzerShieldClass::setValue(byte x)
 	OneSheeld.sendPacket(BUZZER_ID,0,BUZZER_SET,1,new FunctionArg(1,&x));
 }
 
-
+#ifdef BUZZER_SHIELD
 //instantiating Object
 BuzzerShieldClass Buzzer;
+#endif

@@ -16,7 +16,7 @@
 #ifndef GamePadShield_h
 #define GamePadShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID
 #define GAMEPAD_VALUE 0x01
@@ -58,7 +58,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallBack)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char );
-	friend class OneSheeldClass ;
 };
 
 //Extern Object

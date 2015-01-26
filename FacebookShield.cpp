@@ -12,7 +12,7 @@
   Date:          2014.5
 
 */
-
+#include "OneSheeld.h"
 #include "FacebookShield.h"
 
 //Post Sender
@@ -81,5 +81,7 @@ void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
 }
 #endif
 
+#ifdef FACEBOOK_SHIELD
 //Instantiating Object
 FacebookShieldClass Facebook;
+#endif

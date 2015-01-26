@@ -17,7 +17,7 @@
 #define GPSShield_h
 
 #include <math.h>
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Literal Constants 
 #define RADUIS_OF_EARTH 6371
@@ -60,9 +60,6 @@ private:
 		float num;
 
 	} getfloat;
-
-	friend class OneSheeldClass;
-
 };
 
 //Extern Object

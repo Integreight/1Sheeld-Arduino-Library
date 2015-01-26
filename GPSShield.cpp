@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "GPSShield.h"
 
 //Class Constructor 
@@ -26,8 +27,6 @@ GPSShieldClass::GPSShieldClass () : ShieldParent(GPS_ID)
 //GPS Input Data Processing 
 void GPSShieldClass::processData ()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==GPS_VALUE)
@@ -109,5 +108,8 @@ void GPSShieldClass::setOnValueChange(void (*userFunction)(float lattitude ,floa
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
+
+#ifdef GPS_SHIELD
 //Instantiating Object
 GPSShieldClass  GPS ;
+#endif

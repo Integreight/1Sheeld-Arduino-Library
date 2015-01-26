@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "SMSShield.h"
 
 //Class Constructor
@@ -99,8 +100,6 @@ String SMSShieldClass::getSmsAsString()
 //SMS Input Data Processing
 void SMSShieldClass::processData()
   {
-  	//Supering
-  	ShieldParent::processData();
   	//Checking Function-ID
 	byte functionID= OneSheeld.getFunctionId();
 	if(functionID==SMS_GET)
@@ -154,5 +153,7 @@ void SMSShieldClass::setOnSmsReceive(void (*userFunction)(String number ,String 
 	usedSetOnWithString=true;
 }
 
+#ifdef SMS_SHIELD
 //Instantiating Object
 SMSShieldClass SMS;
+#endif

@@ -16,7 +16,7 @@
 #ifndef ToggleButtonShield_h
 #define ToggleButtonShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID
 #define TOGGLEBUTTON_VALUE 0x01
@@ -39,8 +39,6 @@ private:
 	//Process Input Data
 	void processData();
 	void (*changeCallBack)(bool);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

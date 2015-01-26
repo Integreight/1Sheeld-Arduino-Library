@@ -12,7 +12,7 @@
   Date:          2014.5
 
 */
-
+#include "OneSheeld.h"
 #include "CameraShield.h"
 
 
@@ -37,5 +37,7 @@ void CameraShieldClass::setQuality(byte x)
 	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
+#ifdef CAMERA_SHIELD
 //Instantiating Object
 CameraShieldClass Camera;
+#endif

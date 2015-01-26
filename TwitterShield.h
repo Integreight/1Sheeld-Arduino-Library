@@ -16,7 +16,7 @@
 #ifndef TwitterShield_h
 #define TwitterShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output Function ID
 #define TWITTER_SEND 				0x01  
@@ -74,8 +74,6 @@ private:
 	void processData();
 	void (*changeCallBack)(char*,char*);
 	void (*changeCallBackString)(String , String);
-
-	friend class OneSheeldClass;
 };
 //Extern Object
 extern TwitterShieldClass Twitter;

@@ -15,7 +15,7 @@
 #ifndef	VoiceRecognitionShield_h
 #define VoiceRecognitionShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output  function ID's
 #define VOICE_START_LISTENING	0x01
@@ -77,9 +77,6 @@ private:
 	void (*changeCallBackString)(String);
 	//Setter
 	void (*errorCallBack)(byte);
-	
-	//Friend Class to OneSheeld Class
-	friend class OneSheeldClass;
 };
 //Extern Object
 extern VoiceRecognitionShield VoiceRecognition;

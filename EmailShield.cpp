@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "EmailShield.h"
 
 //Email Sender
@@ -115,5 +116,8 @@ void EmailShieldClass::attachLastPicture(String email, String subject , String m
 	attachLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
 }
 #endif
+
+#ifdef EMAIL_SHIELD
 //Instantiating object 
 EmailShieldClass Email;
+#endif

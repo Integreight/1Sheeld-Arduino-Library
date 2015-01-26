@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "TwitterShield.h"
 
 //Class Constructor
@@ -232,8 +233,6 @@ String TwitterShieldClass::getTweetAsString()
 //Twitter Input Data Processing
 void TwitterShieldClass::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId = OneSheeld.getFunctionId();
 	if( functionId == TWITTER_GET_TWEET)
@@ -292,5 +291,7 @@ void TwitterShieldClass::setOnNewTweet(void (*userFunction)(String userName ,Str
 	usedSetOnWithString=true;
 }
 
+#ifdef TWITTER_SHIELD
 //Instantiating Object 
 TwitterShieldClass Twitter;
+#endif

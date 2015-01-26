@@ -12,6 +12,7 @@
   Date:          2014.9
 
 */
+#include "OneSheeld.h"
 #include "TerminalShield.h"
 
 //Constructor
@@ -50,8 +51,6 @@ int TerminalShield::readBytes(char *arr, int length)
 //Terminal Incomming Data processing
 void TerminalShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	byte functionID = OneSheeld.getFunctionId();
 	byte dataLength = OneSheeld.getArgumentLength(0);
 	if(functionID == TERMINAL_READ)
@@ -63,5 +62,7 @@ void TerminalShield::processData()
 	}
 }
 
+#ifdef TERMINAL_SHIELD
 //instantiating Object 
 TerminalShield Terminal;
+#endif

@@ -16,7 +16,7 @@
 #ifndef OrientationSensorShield_h
 #define OrientationSensorShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID
 #define ORIENTATION_VALUE 0x01

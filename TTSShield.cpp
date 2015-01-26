@@ -12,6 +12,7 @@
   Date:          2014.9
 
 */
+#include "OneSheeld.h"
 #include "TTSShield.h"
 
 //Give text to be said by the phone
@@ -48,5 +49,7 @@ void TTSShield::say(String text)
 }
 #endif
 
+#ifdef TEXTTOSPEECH_SHIELD
 //Instantiaing Object
 TTSShield TextToSpeech;
+#endif

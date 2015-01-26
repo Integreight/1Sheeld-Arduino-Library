@@ -16,7 +16,7 @@
 #ifndef MusicPlayerShield_h
 #define MusicPlayerShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output Functions ID's
 #define MUSIC_STOP 			0x01

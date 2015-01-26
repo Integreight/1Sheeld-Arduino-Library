@@ -16,7 +16,7 @@
 #ifndef PushButtonShield_h
 #define PushButtonShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID
 #define PUSHBUTTON_VALUE 0x01
@@ -38,9 +38,7 @@ public:
 	bool isCallBackAssigned;
 	//Process Input Data 
 	void processData();
-	void (*changeCallBack)(bool);
-
-	friend class OneSheeldClass;	
+	void (*changeCallBack)(bool);	
 };
 
 //Extern Object

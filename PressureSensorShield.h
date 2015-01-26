@@ -16,7 +16,7 @@
 #ifndef PressureSensorShield_h
 #define PressureSensorShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID
 #define PRESSURE_VALUE 0x01
@@ -40,8 +40,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(unsigned long);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

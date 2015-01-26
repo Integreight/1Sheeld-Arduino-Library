@@ -16,7 +16,7 @@
 #ifndef PhoneShield_h
 #define PhoneShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output Function ID
 #define PHONE_CALL 0x01
@@ -53,8 +53,6 @@ private:
 	void processData();
 	void (*changeCallBack)(bool ,char *);
 	void (*changeCallBackString)(bool , String);
-	
-	friend class OneSheeldClass ;
 };
 
 //Extern Object

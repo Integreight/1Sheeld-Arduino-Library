@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "PushButtonShield.h"
 
 //Class Constructor
@@ -29,8 +30,6 @@ bool PushButtonShield::isPressed()
 //Phone Input Data Processing 
 void PushButtonShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 
@@ -49,5 +48,7 @@ void PushButtonShield::setOnButtonStatusChange(void (*userFunction)(bool pushBut
 	isCallBackAssigned=true;
 }
 
+#ifdef PUSH_BUTTON_SHIELD
 //Instatntiating Object
 PushButtonShield PushButton;
+#endif

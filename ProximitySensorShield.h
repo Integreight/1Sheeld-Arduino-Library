@@ -16,7 +16,7 @@
 #ifndef ProximitySensorShield_h
 #define ProximitySensorShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID
 #define PROXIMITY_VALUE 0x01
@@ -39,8 +39,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (* changeCallBack)(byte);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

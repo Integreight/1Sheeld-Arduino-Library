@@ -12,9 +12,9 @@
   Date:          2014.5
 
 */
-
+#include "OneSheeld.h"
 #include "ClockShield.h"
-#include "Arduino.h"
+//#include "Arduino.h"
 
 
 //Class Constructor
@@ -80,7 +80,6 @@ short ClockShield::getYear()
 //Clock Input Data Processing 
 void ClockShield::processData()
 {
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==CLOCK_DATE_VALUE)
@@ -121,6 +120,7 @@ void ClockShield::processData()
 	}
 }
 
+#ifdef CLOCK_SHIELD
 //Intantiating Object
 ClockShield Clock;
-
+#endif

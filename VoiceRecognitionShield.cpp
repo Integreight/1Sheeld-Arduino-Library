@@ -12,6 +12,7 @@
   Date:          2014.9
 
 */
+#include "OneSheeld.h"
 #include "VoiceRecognitionShield.h"
 
 
@@ -57,8 +58,6 @@ String VoiceRecognitionShield::getCommandAsString()
 //Process Input Data
 void VoiceRecognitionShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	byte functionID = OneSheeld.getFunctionId();
 
 	if(functionID==VOICE_GET)
@@ -123,5 +122,7 @@ void VoiceRecognitionShield::setOnError(void (*userFunction)(byte error))
 	errorAssigned=true;
 }
 
+#ifdef VOICE_RECOGNITION_SHIELD
 //Instantiating object 
 VoiceRecognitionShield VoiceRecognition;
+#endif

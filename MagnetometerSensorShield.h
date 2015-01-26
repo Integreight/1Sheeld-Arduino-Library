@@ -16,7 +16,7 @@
 #ifndef MagnetometerSensorShield_h
 #define MagnetometerSensorShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID 
 #define MAGNETOMETER_VALUE 0x01
@@ -42,8 +42,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(float ,float ,float );
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

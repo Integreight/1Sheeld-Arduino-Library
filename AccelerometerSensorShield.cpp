@@ -12,7 +12,7 @@
   Date:          2014.5
 
 */
-
+#include "OneSheeld.h"
 #include "AccelerometerSensorShield.h"
 
 
@@ -47,7 +47,6 @@ float AccelerometerSensorShield::getZ()
 //AccelerometerSensor Input Data processing 	
 void AccelerometerSensorShield::processData()					
 {
-	ShieldParent::processData();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
@@ -75,6 +74,7 @@ void AccelerometerSensorShield::setOnValueChange(void (* usersFunction)(float va
 	isCallBackAssigned=true;
 }
 
-
+#ifdef ACCELEROMETER_SHIELD
 //Instatntiating Object
 AccelerometerSensorShield AccelerometerSensor;					
+#endif

@@ -16,7 +16,7 @@
 #ifndef TemperatureSensorShield_h
 #define TemperatureSensorShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 
 //Input Function ID
@@ -42,8 +42,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void(*changeOnCallBack)(char);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

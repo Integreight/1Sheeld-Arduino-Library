@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "SliderShield.h"
 
 //Class Constructor
@@ -29,8 +30,6 @@ byte SliderShield::getValue()
 //Phone Input Data Processing 
 void SliderShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 
@@ -49,5 +48,7 @@ void SliderShield::setOnValueChange(void (*userFunction)(byte sliderValue))
 	isCallBackAssigned=true;
 }
 
+#ifdef SLIDER_SHIELD
 //Instatntiating Object
 SliderShield Slider;
+#endif

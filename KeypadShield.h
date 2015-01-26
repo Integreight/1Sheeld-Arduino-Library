@@ -16,7 +16,7 @@
 #ifndef KeypadShield_h
 #define KeypadShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID 
 #define KEYPAD_VALUE 0x01
@@ -43,8 +43,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallback)(byte , byte);
-	
-friend class OneSheeldClass;
 };
 
 //Extern Object

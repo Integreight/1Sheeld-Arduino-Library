@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "GamePadShield.h"
 
 
@@ -75,8 +76,6 @@ bool GamePadShield::isBluePressed()
 //GamePad Input Data Processing  
 void GamePadShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==GAMEPAD_VALUE)
@@ -97,5 +96,7 @@ void GamePadShield::setOnButtonChange(void (* userFunction)(unsigned char up,uns
 	isCallBackAssigned=true;
 }
 
+#ifdef GAMEPAD_SHIELD
 //Instantiating Object
 GamePadShield GamePad;
+#endif

@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "TemperatureSensorShield.h"
 
 
@@ -30,8 +31,6 @@ char TemperatureSensorShield::getValue()
 //TemperatureSensor Input Data Processing
 void TemperatureSensorShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 
@@ -54,7 +53,10 @@ float TemperatureSensorShield::getAsFahrenheit()
 {
 	float fahrenheit;
 	fahrenheit = (float)value*(1.8)+32;
-	return value;
+	return fahrenheit;
 }
+
+#ifdef TEMPERATURE_SHIELD
 //Instatntiating Object
 TemperatureSensorShield TemperatureSensor;
+#endif

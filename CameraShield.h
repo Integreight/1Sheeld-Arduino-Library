@@ -16,7 +16,7 @@
 #ifndef CameraShield_h
 #define CameraShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output Functions ID's
 #define CAMERA_REAR_CAPTURE 		0x01

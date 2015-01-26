@@ -16,7 +16,7 @@
 #ifndef SMSShield_h
 #define SMSShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Outputs Functions ID's
 #define SMS_SEND 0x01
@@ -56,8 +56,6 @@ private:
 	void processData();
 	void (*changeCallBack)(char*,char*);
 	void (*changeCallBackString)(String ,String);
-	
-	friend class OneSheeldClass ;
 };
 
 //Extern Object

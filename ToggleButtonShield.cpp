@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "ToggleButtonShield.h"
 
 
@@ -30,8 +31,6 @@ bool ToggleButtonShield::getStatus()
 //ToggleButton Input Data Processing
 void ToggleButtonShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 	if(functionId==TOGGLEBUTTON_VALUE)
@@ -49,5 +48,7 @@ void ToggleButtonShield::setOnButtonStatusChange(void (*userFunction)(bool toggl
 	isCallBackAssigned=true;
 }
 
+#ifdef TOGGLE_BUTTON_SHIELD
 //Instantiating Object
 ToggleButtonShield ToggleButton;
+#endif

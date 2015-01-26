@@ -16,7 +16,7 @@
 #ifndef Keyboard_h
 #define Keyboard_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID 
 #define KEYBOARD_GET_CHAR	0x01
@@ -39,10 +39,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallBack)(char);
-	
-	friend class OneSheeldClass ;
-
-
 };
 
 //Extern Object

@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "KeyboardShield.h"
 
 //Class Constructor
@@ -30,8 +31,6 @@ char KeyboardShield::getCharacter()
 //Keyboard Input Data Processing 
 void KeyboardShield::processData()
 {
-	//Supering
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	if (functionId==KEYBOARD_GET_CHAR)
@@ -52,5 +51,7 @@ void KeyboardShield::setOnButtonChange(void (*userFunction)(char data))
 	isCallBackAssigned=true;
 }
 
+#ifdef KEYBOARD_SHIELD
 /*Instantiate object to user*/
 KeyboardShield AsciiKeyboard;
+#endif

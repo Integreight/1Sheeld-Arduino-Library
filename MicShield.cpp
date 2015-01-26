@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "MicShield.h"
 
 
@@ -30,8 +31,6 @@ byte MicShield::getValue()
 //Mic Input Data processing 	
 void MicShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==MIC_VALUE)
@@ -52,5 +51,7 @@ void MicShield::setOnValueChange(void (*userFunction)(byte micValue))
 	isCallBackAssigned=true;
 }
 
+#ifdef MIC_SHIELD
 //Instatntiating Object
 MicShield Mic;
+#endif

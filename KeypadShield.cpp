@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "KeypadShield.h"
 
 
@@ -48,8 +49,6 @@ return !!col;
 //Keypad Input Data Processing
 void KeypadShieldClass::processData()
 {
-  //Supering 
-  ShieldParent::processData();
   //Checking Function-ID
   byte functionId=OneSheeld.getFunctionId();
   if (functionId==KEYPAD_VALUE)
@@ -69,6 +68,8 @@ void KeypadShieldClass::setOnButtonChange(void (*userFunction)(byte row ,byte co
   isCallbackAssigned=true;
 }
 
+#ifdef KEYPAD_SHIELD
 //Instatntiating Object
 KeypadShieldClass Keypad;
+#endif
 

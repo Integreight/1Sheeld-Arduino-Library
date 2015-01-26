@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "PressureSensorShield.h"
 
 //Class Constructor
@@ -31,8 +32,6 @@ unsigned long PressureSensorShield::getValue()
 //PressureSensor Input Data Processing 
 void PressureSensorShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==PRESSURE_VALUE)
@@ -56,5 +55,7 @@ void PressureSensorShield::setOnValueChange(void (*userFunction)(unsigned long p
 	isCallBackAssigned=true;
 }
 
+#ifdef PRESSURE_SHIELD
 //Instatntiating Object
 PressureSensorShield PressureSensor;
+#endif

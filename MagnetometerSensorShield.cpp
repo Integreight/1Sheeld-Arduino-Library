@@ -12,7 +12,7 @@
   Date:          2014.5
 
 */
-
+#include "OneSheeld.h"
 #include "MagnetometerSensorShield.h"
 #include <math.h>
 
@@ -44,8 +44,6 @@ float MagnetometerSensorShield::getZ()
 //MagnetometerSensor Data processing 	
 void MagnetometerSensorShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	//Check Function-ID
 	byte functionId=OneSheeld.getFunctionId();
 	
@@ -79,5 +77,7 @@ float MagnetometerSensorShield::getMagneticStrength()
 	return sqrt((valueX*valueX)+(valueY*valueY)+(valueZ*valueZ));
 }
 
+#ifdef MAGNETOMETER_SHIELD
 //Instatntiating Object
 MagnetometerSensorShield MagnetometerSensor;
+#endif

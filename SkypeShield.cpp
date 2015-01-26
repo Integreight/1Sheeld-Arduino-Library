@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "SkypeShield.h"
 
 //Call Setter
@@ -81,5 +82,7 @@ void SkypeShieldClass::videoCall(String username)
 }
 #endif
 
+#ifdef SKYPE_SHIELD
 //Instantiating Object
 SkypeShieldClass Skype;
+#endif

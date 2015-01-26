@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "PhoneShield.h"
 
 //Class Constructor
@@ -75,9 +76,7 @@ String PhoneShieldClass::getNumberAsString()
 
 //Phone Input Data Processing 
 void PhoneShieldClass::processData()
-{	
-	//Supering
-	ShieldParent::processData();
+{
 	//Checking Function-ID
 	byte functionId= OneSheeld.getFunctionId();
 
@@ -128,5 +127,7 @@ void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging
 	usedSetOnString=true;
 }
 
+#ifdef PHONE_SHIELD
 //Instatntiating Object
 PhoneShieldClass Phone;
+#endif

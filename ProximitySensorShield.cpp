@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#include "OneSheeld.h"
 #include "ProximitySensorShield.h"
 
 
@@ -30,8 +31,6 @@ byte ProximitySensorShield::getValue()
 //ProximitySensor Input Data Processing 
 void ProximitySensorShield::processData()
 {
-	//Supering 
-	ShieldParent::processData();
 	//Checking Function-ID
 	byte functionId =OneSheeld.getFunctionId();
 	if(functionId==PROXIMITY_VALUE)
@@ -49,5 +48,7 @@ void ProximitySensorShield::setOnValueChange(void (*userFunction)(byte proximity
 	isCallBackAssigned=true;
 }
 
+#ifdef PROXIMITY_SHIELD
 //Instatntiating Object
 ProximitySensorShield ProximitySensor;
+#endif

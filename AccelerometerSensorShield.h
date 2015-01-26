@@ -16,7 +16,7 @@
 #ifndef AccelerometerSensorShield_h
 #define AccelerometerSensorShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Input Function ID 
 #define ACCELEROMETER_VALUE 0x01
@@ -26,7 +26,6 @@
 
 class AccelerometerSensorShield : public ShieldParent
 {
-friend class OneSheeldClass;
 public:
 	//Constructor 
 	AccelerometerSensorShield(); 

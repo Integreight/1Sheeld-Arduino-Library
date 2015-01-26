@@ -16,7 +16,7 @@
 #ifndef FacebookShield_h
 #define FacebookShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output Functions ID's
 #define FACEBOOK_UPDATE_STATUS 0x01  

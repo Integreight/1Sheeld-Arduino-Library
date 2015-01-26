@@ -16,7 +16,7 @@
 #ifndef FoursquareShield_h
 #define FoursquareShield_h
 
-#include "OneSheeld.h"
+#include "ShieldParent.h"
 
 //Output Function ID
 #define FOURSQUARE_CHECK_IN 0x01
