@@ -17,15 +17,11 @@
 #define OneSheeld_h
 #include "Stream.h"
 #include "Arduino.h"
-
-
-typedef unsigned char byte;
-
 #include "ShieldsIds.h"
 #include "IncludedShieldsDefines.h"
-#include "ShieldParent.h"
 #include "ShieldsIncludes.h"
-
+#include "ShieldParent.h"
+#include "RemoteOneSheeld.h"
 
 #define ONE_SECOND 1000
 
@@ -55,7 +51,8 @@ typedef unsigned char byte;
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
 
-
+//Numer of Shields
+#define SHIELDS_NO	36
 
 //Class for Datalength and Data
 class FunctionArg
@@ -112,6 +109,8 @@ public:
 	void processInput();		
 	//Library Starter
 	void begin();
+	//Adding objects in array 
+	static void addToShieldsArray(ShieldParent *);
 	//Frame Sender
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
 	//PulseWidthModulation Getter 
@@ -149,17 +148,21 @@ private:
 	byte **arguments;	
 	byte *argumentL;            
 	byte endFrame;
+	//Shields Counter 
+	static byte shieldsCounter;
 	//Checker variable 
 	unsigned long lastTimeFrameSent;
 	//Number of connected Remote 1Sheelds
 	int remoteOneSheeldsCounter;
 	//Array of remote 1Sheelds
 	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
+	//Array of pointers to Parents
+	static ShieldParent * shieldsArray[SHIELDS_NO];
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);
 	void freeMemoryAllocated();
-	void processData();
+	void processFrame();
 	//Remote OneSheeld fucntions
 	void processRemoteData();
 	void (*changeFloatCallBack)(char*,char*, float);
