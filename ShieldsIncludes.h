@@ -125,3 +125,6 @@
 #ifdef REMOTE_SHIELD
 #include "RemoteOneSheeld.h"
 #endif
+#ifdef INTERNET_SHIELD
+#include "InternetShield.h"
+#endif
