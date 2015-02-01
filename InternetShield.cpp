@@ -25,7 +25,7 @@ HttpRequest::HttpRequest(char * url)
 	localRequestId = ++totalRequests;
 	started = 0;
 	finished = 0;
-	response.setId(localRequestId);
+	response.requestId = localRequestId;
 	//OneSheeld.sendPacket(INTERNET_ID,0,HTTP_REQUEST_URL,2,new FunctionArg(sizeof(int),(byte*)OneSheeld.convertIntegerToBytes(totalRequests)),new FunctionArg(strlen(url),(byte*)url));
 }
 
@@ -182,6 +182,11 @@ void HttpRequest::setOnProgress(void (*userFunction)(int,int))
 /***************************HttpResponse************************/
 /**************************************************************/
 /*************************************************************/
+HttpResponse::HttpResponse()
+{
+	isDisposedTriggered=false;
+}
+
 int HttpResponse::getStatusCode()
 {
 	return statusCode;
@@ -232,6 +237,51 @@ void HttpResponse::setOnNextResponseBytesUpdate(void (*userFunction)(HttpRespons
 	callbacksRequested |= RESPONSE_GET_NEXT_RESPONSE_BIT;
 	getNextCallBack = userFunction;
 }
+
+void HttpResponse::setOnError(void (*userFunction)(int errorNumber))
+{
+	callbacksRequested |= RESPONSE_GET_ERROR_BIT;
+	getErrorCallBack = userFunction;
+}
+
+bool HttpResponse::isSentFully()
+{
+	return (totalBytesCount-index==0);
+}
+
+void HttpResponse::dispose()
+{
+	isDisposedTriggered = true;
+	if(!isInit && bytesCount!=0)
+	{
+		free(bytes);
+	}
+	isInit=false;
+
+	byte idIntegerArray[2] ;
+  	idIntegerArray[1] = (requestId >> 8) & 0xFF;
+  	idIntegerArray[0] = requestId & 0xFF;
+	
+	OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_DISPOSE,1,new FunctionArg(sizeof(int),idIntegerArray));
+}
+
+bool HttpResponse::isDisposed()
+{
+	return isDisposedTriggered;
+}
+
+void HttpResponse::resetIndex(int x)
+{
+	index=x;
+}
+
+void HttpResponse::getHeader(char * headerName , void (*userFunction)(char * incomingheaderName ,char * IncomingHeaderValue))
+{
+	callbacksRequested |= RESPONSE_INPUT_GET_HEADER_BIT;
+	getHeaderCallBack = userFunction;
+	OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,new FunctionArg(strlen(headerName),(byte *)headerName));
+}
+
 /***************************Internet***************************/
 /*************************************************************/
 /************************************************************/
@@ -384,17 +434,19 @@ void InternetShield::processData()
 {
 	byte functionId = OneSheeld.getFunctionId();
 
-	if(functionId == HTTP_GET_SUCCESS   || functionId == HTTP_GET_FAILURE    ||
-	   functionId == HTTP_GET_STARTED   || functionId == HTTP_GET_ON_PROGRESS||
-	   functionId == HTTP_GET_ON_FINISH || functionId == RESPONSE_GET_NEXT_RESPONSE)
+	if(functionId == HTTP_GET_SUCCESS   || functionId == HTTP_GET_FAILURE           ||
+	   functionId == HTTP_GET_STARTED   || functionId == HTTP_GET_ON_PROGRESS       ||
+	   functionId == HTTP_GET_ON_FINISH || functionId == RESPONSE_GET_NEXT_RESPONSE ||
+	   functionId == RESPONSE_GET_ERROR || functionId == RESPONSE_INPUT_GET_HEADER)
 	{
 
 		int requestId  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
 		unsigned long totalBytesCount  = 0;
 		unsigned long progressDoneBytes  = 0;
-		int statusCode = 0; 
-		if(functionId ==HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE)
-			statusCode = OneSheeld.getArgumentData(1)[0]|((OneSheeld.getArgumentData(1)[1])<<8);
+		int statusCodeOrError = 0;
+
+		if(functionId ==HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE || functionId == RESPONSE_GET_ERROR )
+			statusCodeOrError = OneSheeld.getArgumentData(1)[0]|((OneSheeld.getArgumentData(1)[1])<<8);
 		
 		else if(functionId == HTTP_GET_ON_PROGRESS)
 		{	
@@ -404,6 +456,7 @@ void InternetShield::processData()
 						 		|(((unsigned long)OneSheeld.getArgumentData(1)[3])<<24); 
 		}
 
+
 		if(functionId == HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE||functionId == HTTP_GET_ON_PROGRESS)
 		{	
 			 totalBytesCount  =(unsigned long)OneSheeld.getArgumentData(2)[0]
@@ -411,6 +464,7 @@ void InternetShield::processData()
 						 		|(((unsigned long)OneSheeld.getArgumentData(2)[2])<<16)
 						 		|(((unsigned long)OneSheeld.getArgumentData(2)[3])<<24); 
 		}
+		
 		char * data =NULL;
 		int dataLength=0;
 		int i;
@@ -452,7 +506,8 @@ void InternetShield::processData()
 					if(functionId != RESPONSE_GET_NEXT_RESPONSE)
 					{
 						requestsArray[i]->response.isInit=true;
-						requestsArray[i]->response.statusCode=statusCode;
+						requestsArray[i]->response.isDisposedTriggered=false;
+						requestsArray[i]->response.statusCode=statusCodeOrError;
 						requestsArray[i]->response.totalBytesCount=totalBytesCount;
 					}
 					if(((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS) requestsArray[i]->successCallBack(requestsArray[i]->response);
@@ -470,6 +525,33 @@ void InternetShield::processData()
 				else if(((requestsArray[i]->callbacksRequested) & PROGRESS_CALLBACK_BIT) && functionId == HTTP_GET_ON_PROGRESS)
 				{
 					requestsArray[i]->progressCallback(progressDoneBytes,totalBytesCount);
+				}
+				else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) 
+				{
+					requestsArray[i]->response.getErrorCallBack(statusCodeOrError);	
+				}
+				else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_INPUT_GET_HEADER_BIT)
+				{
+					byte headerNameLength = OneSheeld.getArgumentLength(1);
+
+					char  headerName [headerNameLength+1];
+					for(int k = 0 ;k<headerNameLength ;k++)
+					{
+						headerName[k]=OneSheeld.getArgumentData(1)[k];
+					}
+					headerName[headerNameLength]='\0';
+
+
+					byte headerValueLength = OneSheeld.getArgumentLength(2);
+
+					char  headerValue [headerValueLength+1];
+					for(int j = 0 ;j<headerValueLength ;j++)
+					{
+						headerValue[j]=OneSheeld.getArgumentData(2)[j];
+					}
+					headerValue[headerValueLength]='\0';
+
+					requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
 				}
 				break;
 			}

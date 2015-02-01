@@ -69,7 +69,7 @@
 class HttpResponse
 {
 public:
-	HttpResponse(){};
+	HttpResponse();
 	//Checkers
 	bool isSentFully();
 	bool isDisposed(); 
@@ -78,8 +78,7 @@ public:
 	void setOnError(void (*)(int ));
 	//Setters
 	void dispose();
-	void resetIndex();
-	void setId(int id){requestId=id;}
+	void resetIndex(int= 0);
 	//Getters
 	void getNextBytes(int=255);
 	void getTheseBytes(int ,int);
@@ -99,6 +98,7 @@ public:
 	}
 private:
 	bool isInit;
+	bool isDisposedTriggered;
 	int statusCode;
 	unsigned long totalBytesCount;
 	char * bytes;
@@ -108,8 +108,11 @@ private:
 	byte callbacksRequested;
 
 	void (*getNextCallBack)(HttpResponse &);
+	void (*getHeaderCallBack)(char * ,char *);
+	void (*getErrorCallBack)(int);
 
 friend class InternetShield;
+friend class HttpRequest;
 };
 
 
