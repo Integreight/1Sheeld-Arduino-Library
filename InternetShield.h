@@ -61,7 +61,7 @@ private:
 	void processData();
 	void (*internetErrorCallBack)(int);
 	HttpRequest * requestsArray[MAX_NO_OF_REQUESTS];
-
+friend class HttpRequest;
 };
 //Extern Object
 extern InternetShield Internet;
