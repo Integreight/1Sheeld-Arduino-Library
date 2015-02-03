@@ -132,22 +132,22 @@ void InternetShield::cancelAllRequests(void)
 
 void InternetShield::setBasicAuthentication(char * userName,char * password)
 {
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HEADER,2,
+	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_AUTHENTICATION,2,
 		                 new FunctionArg(strlen(userName),(byte*)userName),
 		                 new FunctionArg(strlen(password),(byte*)password));
 }
 
 void InternetShield::clearBasicAuthentication()
 {
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HEADER,0);
+	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_CLEAR_AUTHENTICATIOM,0);
 }
 
-void InternetShield::setDefaultMaxResponseBytesCount(int data)
+void InternetShield::setDefaultMaxResponseBytesCount(int size)
 {
-	byte IntegerArray[2] ;
-  	IntegerArray[1] = (data >> 8) & 0xFF;
-  	IntegerArray[0] = data & 0xFF;
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HEADER,1,new FunctionArg(sizeof(int),IntegerArray));
+	byte sizeArray[2] ;
+  	sizeArray[1] = (size >> 8) & 0xFF;
+  	sizeArray[0] = size & 0xFF;
+	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_DEFAULT_MAX_RESPONSE,1,new FunctionArg(sizeof(int),sizeArray));
 }
 
 void InternetShield::processData()
