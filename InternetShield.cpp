@@ -190,7 +190,7 @@ void InternetShield::processData()
 		int i;
 		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
 		{  
-			if(requestsArray[i]!=NULL&&requestsArray[i]->localRequestId==requestId)
+			if(requestsArray[i]!=NULL&&requestsArray[i]->getRequestId()==requestId)
 			{
 				if((((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS)||
 				   (((requestsArray[i]->callbacksRequested) & FAILURE_CALLBACK_BIT) && functionId == HTTP_GET_FAILURE)||
@@ -208,19 +208,22 @@ void InternetShield::processData()
 					}
 					else dataArgumentNumber = 3;
 					
-					if(functionId == RESPONSE_GET_NEXT_RESPONSE || totalBytesCount!=0)
+					if(((functionId == RESPONSE_GET_NEXT_RESPONSE && requestsArray[i]->response.isInit) || totalBytesCount!=0))
 					{
 						dataLength = OneSheeld.getArgumentLength(dataArgumentNumber);
-						data=(char*)malloc(sizeof(char)*(dataLength+1));
-						for (int j=0; j<dataLength; j++)
+						if(dataLength!=0)
 						{
-							data[j]=OneSheeld.getArgumentData(dataArgumentNumber)[j];
-						}
+							data=(char*)malloc(sizeof(char)*(dataLength+1));
+							for (int j=0; j<dataLength; j++)
+							{
+								data[j]=OneSheeld.getArgumentData(dataArgumentNumber)[j];
+							}
 
 						data[dataLength]='\0';
 						requestsArray[i]->response.bytesCount=dataLength;
 						requestsArray[i]->response.index=dataLength;
 						requestsArray[i]->response.bytes=data;
+						}
 					}
 
 					if(functionId != RESPONSE_GET_NEXT_RESPONSE)
