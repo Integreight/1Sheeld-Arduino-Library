@@ -19,7 +19,7 @@ ShieldParent::ShieldParent(byte shieldNo)
 {
 	shieldID = shieldNo ;
 	isCallBackSet=false;
-	OneSheeld.addToShieldsArray(this);
+	OneSheeldClass::addToShieldsArray(this);
 }
 
 void ShieldParent::select()
