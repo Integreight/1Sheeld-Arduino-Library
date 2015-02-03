@@ -111,6 +111,8 @@ public:
 	void begin();
 	//Adding objects in array 
 	static void addToShieldsArray(ShieldParent *);
+	static void addToUnSentRequestsArray(HttpRequest *);
+	static bool isInitialized();
 	//Frame Sender
 	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
 	//PulseWidthModulation Getter 
@@ -150,6 +152,10 @@ private:
 	byte endFrame;
 	//Shields Counter 
 	static byte shieldsCounter;
+	//Requests Counter
+	static byte requestsCounter;
+	//Is constructor called
+	static bool isInit;
 	//Checker variable 
 	unsigned long lastTimeFrameSent;
 	//Number of connected Remote 1Sheelds
@@ -158,6 +164,8 @@ private:
 	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
+	//Array of pointers to un sent requests
+	static HttpRequest ** requestsArray;
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);

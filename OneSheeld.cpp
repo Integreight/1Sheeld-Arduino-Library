@@ -17,8 +17,11 @@
 #include "HardwareSerial.h"
 #include "stdarg.h"
 
+bool OneSheeldClass::isInit=false;
 byte OneSheeldClass::shieldsCounter=0;
 ShieldParent * OneSheeldClass::shieldsArray[]={0};
+byte OneSheeldClass::requestsCounter=0;
+HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
 //Class Constructor
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
@@ -65,12 +68,27 @@ void OneSheeldClass::waitForAppConnection()
 void OneSheeldClass::begin()
 {
   begin(115200);
+  isInit=true;
+  for(int i=0;i<requestsCounter;i++)
+    requestsArray[i]->sendInitFrame();
+  free(requestsArray);
 }
 
 void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
 {
   if(shieldsCounter==SHIELDS_NO) return;
-  shieldsArray[shieldsCounter++]= shield;  
+  shieldsArray[shieldsCounter++] = shield;  
+}
+
+void OneSheeldClass::addToUnSentRequestsArray(HttpRequest * request)
+{
+  if(requestsCounter==MAX_NO_OF_REQUESTS) return;
+  requestsArray[requestsCounter++] = request;  
+}
+
+bool OneSheeldClass::isInitialized()
+{
+  return isInit;
 }
 
 //Frame Sender for Output Shields
