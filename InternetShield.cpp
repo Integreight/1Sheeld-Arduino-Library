@@ -41,12 +41,9 @@ bool InternetShield::performGet(HttpRequest & request)
 		}
 
 	}
-	byte idIntegerArray[2] ;
-  	idIntegerArray[1] = (request.localRequestId >> 8) & 0xFF;
-  	idIntegerArray[0] = request.localRequestId & 0xFF;
 	
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_GET,2,
-						 new FunctionArg(sizeof(int),idIntegerArray),
+						 new FunctionArg(sizeof(int),request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
 	return true;
 }
@@ -68,12 +65,9 @@ bool InternetShield::performPost(HttpRequest & request)
 		}
 
 	}
-	byte idIntegerArray[2] ;
-  	idIntegerArray[1] = (request.localRequestId >> 8) & 0xFF;
-  	idIntegerArray[0] = request.localRequestId & 0xFF;
 	
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_POST,2,
-						 new FunctionArg(sizeof(int),idIntegerArray),
+						 new FunctionArg(sizeof(int),request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
 	return true;
 }
@@ -95,12 +89,9 @@ bool InternetShield::performPut(HttpRequest & request)
 		}
 
 	}
-	byte idIntegerArray[2] ;
-  	idIntegerArray[1] = (request.localRequestId >> 8) & 0xFF;
-  	idIntegerArray[0] = request.localRequestId & 0xFF;
 	
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_PUT,2,
-						 new FunctionArg(sizeof(int),idIntegerArray),
+						 new FunctionArg(sizeof(int),request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
 	return true;
 }
@@ -122,12 +113,9 @@ bool InternetShield::performDelete(HttpRequest & request)
 		}
 
 	}
-	byte idIntegerArray[2] ;
-  	idIntegerArray[1] = (request.localRequestId >> 8) & 0xFF;
-  	idIntegerArray[0] = request.localRequestId & 0xFF;
 	
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_DELETE,2,
-						 new FunctionArg(sizeof(int),idIntegerArray),
+						 new FunctionArg(sizeof(int),request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
 	return true;
 }
