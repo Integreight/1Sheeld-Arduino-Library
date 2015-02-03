@@ -160,7 +160,6 @@ void HttpRequest::setOnProgress(void (*userFunction)(int,int))
 
 HttpRequest::~HttpRequest()
 {
-	Serial.println((char *)localRequestId);
 	for (int i = 0; i < MAX_NO_OF_REQUESTS; i++)
 	{
 		if(Internet.requestsArray[i] == this)
