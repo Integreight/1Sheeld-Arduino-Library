@@ -207,9 +207,10 @@ void InternetShield::processData()
 						}
 					}
 					else dataArgumentNumber = 3;
-					
+
 					if(((functionId == RESPONSE_GET_NEXT_RESPONSE && requestsArray[i]->response.isInit) || totalBytesCount!=0))
-					{
+					{	
+						requestsArray[i]->response.dispose(false);
 						dataLength = OneSheeld.getArgumentLength(dataArgumentNumber);
 						if(dataLength!=0)
 						{
