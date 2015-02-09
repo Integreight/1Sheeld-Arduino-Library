@@ -222,7 +222,7 @@ void InternetShield::processData()
 
 						data[dataLength]='\0';
 						requestsArray[i]->response.bytesCount=dataLength;
-						requestsArray[i]->response.index=dataLength;
+						requestsArray[i]->response.index+=dataLength+1;
 						requestsArray[i]->response.bytes=data;
 						}
 					}
