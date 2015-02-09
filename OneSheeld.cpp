@@ -159,7 +159,9 @@ byte OneSheeldClass::getArgumentLength(byte x)
 //Data Getter
 byte * OneSheeldClass::getArgumentData(byte x)
 {
-  return arguments[x];
+  if(argumentL[x]!=0)
+    return arguments[x];
+  else return NULL;
 }
 
 //Convert float to array of bytes
@@ -250,12 +252,25 @@ void OneSheeldClass::processInput()
             Serial.print("C7 ");
             #endif
             if((255-argumentL[argumentcounter])==data){
-              arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
-              #ifdef DEBUG
-              Serial.print("M3 ");
-              #endif
+              if(argumentL[argumentcounter]!=0)
+              {
+                arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
+                #ifdef DEBUG
+                Serial.print("M3 ");
+                #endif;
+                counter++;
+              }
+              else
+              {
+                arguments[argumentcounter]=NULL;
+                datalengthcounter=0;
+                argumentcounter++;
+                if(argumentcounter==argumentnumber)
+                  counter=9;
+                else
+                  counter=6;
+              }
               numberOfDataMalloced++;
-              counter++;
             }
             else{
                 framestart=false;
@@ -267,7 +282,7 @@ void OneSheeldClass::processInput()
               #ifdef DEBUG
               Serial.print("C8 ");
               #endif
-              arguments[argumentcounter][datalengthcounter++]=data;
+              if(arguments[argumentcounter]!=NULL)arguments[argumentcounter][datalengthcounter++]=data;
               if (datalengthcounter==argumentL[argumentcounter])
               {
                   datalengthcounter=0;
@@ -279,7 +294,7 @@ void OneSheeldClass::processInput()
                   }
                   else
                   {
-                       counter=6;
+                    counter=6;
 
                   }
 
@@ -340,7 +355,7 @@ void OneSheeldClass::freeMemoryAllocated(){
   if(isArgumentsNumberMalloced){
           for(int i=0;i<numberOfDataMalloced;i++)
           {
-            free(arguments[i]);
+            if(arguments[i]!=NULL)free(arguments[i]);
             #ifdef DEBUG
             Serial.print("F3 ");
             #endif
