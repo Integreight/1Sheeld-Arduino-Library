@@ -60,9 +60,9 @@ void HttpResponse::getTheseBytes(int start,int size)
 	  	reqId[1] = (requestId >> 8) & 0xFF;
 	  	reqId[0] = requestId & 0xFF;
 		
-		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_GET_NEXT_BYTES,3,new FunctionArg(sizeof(int),startArray),
-																	 new FunctionArg(sizeof(int),sizeArray),
-																	 new FunctionArg(sizeof(int),reqId));
+		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_GET_NEXT_BYTES,3,new FunctionArg(sizeof(int),reqId),
+																	 new FunctionArg(sizeof(int),startArray),
+																	 new FunctionArg(sizeof(int),sizeArray));
 	}
 	
 }
