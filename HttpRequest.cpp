@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          HttpRequest.cpp
+                 
+  Version:       1.2
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
+
 #include "OneSheeld.h"
 #include "InternetShield.h"
 

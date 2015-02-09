@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          HttpRequest.h
+                 
+  Version:       1.2
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
+
 #ifndef HttpRequest_h
 #define HttpRequest_h
 
