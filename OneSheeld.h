@@ -114,7 +114,8 @@ public:
 	static void addToUnSentRequestsArray(HttpRequest *);
 	static bool isInitialized();
 	//Frame Sender
-	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+	void sendPacket(byte , byte ,byte , byte , ...);
+	void sendPacket(byte , byte , byte , byte , FunctionArg ** );
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	//Set on change for users function

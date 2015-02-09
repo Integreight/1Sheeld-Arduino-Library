@@ -285,7 +285,7 @@ void OneSheeldClass::processInput()
                 arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
                 #ifdef DEBUG
                 Serial.print("M3 ");
-                #endif;
+                #endif
                 counter++;
               }
               else
