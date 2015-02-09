@@ -1,3 +1,18 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          HttpResponse.h
+                 
+  Version:       1.2
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
+
 #ifndef HttpResponse_h
 #define HttpResponse_h
 
@@ -26,7 +41,7 @@ public:
 	void setOnNextResponseBytesUpdate(void (*)(HttpResponse&));
 	void setOnError(void (*)(int ));
 	//Setters
-	void dispose();
+	void dispose(bool=true);
 	void resetIndex(int= 0);
 	//Getters
 	void getNextBytes(int=255);
