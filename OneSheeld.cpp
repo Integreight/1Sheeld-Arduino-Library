@@ -127,6 +127,34 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     va_end(arguments);
     lastTimeFrameSent=millis()+1;
 }
+
+void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
+{
+  unsigned long mill=millis()+1;
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+    delay(TIME_GAP-(mill-lastTimeFrameSent));
+  isFirstFrame=true;
+  OneSheeldSerial.write((byte)START_OF_FRAME);
+  OneSheeldSerial.write(LIBRARY_VERSION);
+  OneSheeldSerial.write(shieldID);
+  OneSheeldSerial.write(instanceID);
+  OneSheeldSerial.write(functionID);
+  OneSheeldSerial.write(argNo);
+  OneSheeldSerial.write(255-argNo);
+  
+  for (int i=0 ; i<argNo ; i++)
+  {
+    OneSheeldSerial.write(arguments[i]->getLength());
+    OneSheeldSerial.write(255-(arguments[i]->getLength()));
+      for (int j=0 ; j<arguments[i]->getLength() ; j++)
+      {
+        byte* tempData=arguments[i]->getData();
+        OneSheeldSerial.write(tempData[j]);
+      }
+ }
+    OneSheeldSerial.write((byte)END_OF_FRAME);
+    lastTimeFrameSent=millis()+1;
+}
 bool OneSheeldClass::isAppConnected()
 {
   return isOneSheeldConnected;

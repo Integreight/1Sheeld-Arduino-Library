@@ -87,6 +87,12 @@ void HttpResponse::setOnError(void (*userFunction)(int errorNumber))
 	getErrorCallBack = userFunction;
 }
 
+void HttpResponse::setOnJsonResponse(void (*userFunction)(JsonKeyChain & chain,char * data))
+{
+	callbacksRequested |= RESPONSE_GET_JSON_BIT;
+	getJsonCallBack = userFunction;
+}
+
 bool HttpResponse::isSentFully()
 {
 	return (totalBytesCount-index==0);
@@ -131,6 +137,18 @@ void HttpResponse::getHeader(char * headerName , void (*userFunction)(char * inc
 		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,new FunctionArg(strlen(headerName),(byte *)headerName));	
 	}
 	
+}
+
+JsonKeyChain HttpResponse::operator[](int key)
+{
+    JsonKeyChain chain;
+    return chain[key];
+}
+
+JsonKeyChain HttpResponse::operator[](const char *key)
+{
+    JsonKeyChain chain;
+    return chain[key];
 }
 
 HttpResponse::~HttpResponse()
