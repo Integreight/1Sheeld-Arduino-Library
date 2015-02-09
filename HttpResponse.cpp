@@ -21,6 +21,7 @@ HttpResponse::HttpResponse()
 {
 	isDisposedTriggered=false;
 	bytes=NULL;
+	index =0;
 }
 
 int HttpResponse::getStatusCode()

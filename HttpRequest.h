@@ -78,6 +78,7 @@ public:
 	void setOnProgress(void (*)(int ,int));
 	void setOnFinish(void (*)());
 	void sendInitFrame();
+	HttpResponse & getResponse();
 	~HttpRequest();
 private:
 	bool started;

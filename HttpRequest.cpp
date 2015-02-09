@@ -25,6 +25,7 @@ HttpRequest::HttpRequest(char * _url)
 	localRequestId[1] = (reqId >> 8) & 0xFF;
 	started = 0;
 	finished = 0;
+	callbacksRequested = 0;
 	response.requestId = getRequestId();
 	if(!OneSheeldClass::isInitialized())
 	{
@@ -171,6 +172,11 @@ void HttpRequest::setOnProgress(void (*userFunction)(int,int))
 {
 	callbacksRequested |= PROGRESS_CALLBACK_BIT;
 	progressCallback=userFunction;
+}
+
+HttpResponse & HttpRequest::getResponse()
+{
+	return response;
 }
 
 HttpRequest::~HttpRequest()
