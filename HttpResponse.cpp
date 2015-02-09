@@ -44,15 +44,17 @@ unsigned long HttpResponse::getTotalBytesCount()
 	return totalBytesCount;
 }
 
-void HttpResponse::getTheseBytes(int start,int size)
+void HttpResponse::getTheseBytes(unsigned long start,int size)
 {
 	if(isInit)
 	{
 		index=start;
-		byte startArray[2] ;
-	  	startArray[1] = (start >> 8) & 0xFF;
+		byte startArray[4] ;
 	  	startArray[0] = start & 0xFF;
-
+	  	startArray[1] = (start >> 8) & 0xFF;
+	  	startArray[2] = (start >> 16) & 0xFF;
+	  	startArray[3] = (start >> 24) & 0xFF;
+		
 	  	byte sizeArray[2] ;
 	  	sizeArray[1] = (size >> 8) & 0xFF;
 	  	sizeArray[0] = size & 0xFF;
@@ -62,7 +64,7 @@ void HttpResponse::getTheseBytes(int start,int size)
 	  	reqId[0] = requestId & 0xFF;
 		
 		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_GET_NEXT_BYTES,3,new FunctionArg(sizeof(int),reqId),
-																	 new FunctionArg(sizeof(int),startArray),
+																	 new FunctionArg(sizeof(unsigned long),startArray),
 																	 new FunctionArg(sizeof(int),sizeArray));
 	}
 	
