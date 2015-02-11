@@ -25,8 +25,6 @@
 struct PatternNode{
 	byte row;
 	byte col;
-	// PatternNode(byte val):row(val&0x0F),col((val&0xF0)>>4){}
-	// PatternNode(){}
 	void setValue(byte val)
 	{
 		row=val&0x0F;
