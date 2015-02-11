@@ -19,6 +19,7 @@
 
 InternetShield::InternetShield() : ShieldParent(INTERNET_ID)
 {
+	isSetOnErrorCallBackAssigned=false;
 	for(int i=0;i<MAX_NO_OF_REQUESTS;i++){
 		requestsArray[i]=NULL;
 	}

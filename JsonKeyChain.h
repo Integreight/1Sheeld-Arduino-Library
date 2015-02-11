@@ -1,3 +1,17 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          JsonKeyChain.h
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
 #ifndef JsonKeyChain_h
 #define JsonKeyChain_h
 

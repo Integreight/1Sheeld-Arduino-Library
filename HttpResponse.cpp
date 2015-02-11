@@ -19,9 +19,15 @@
 
 HttpResponse::HttpResponse()
 {
+	isInit=false;
 	isDisposedTriggered=false;
+	statusCode=0;
+	totalBytesCount=0;
 	bytes=NULL;
+	bytesCount = 0;
+	requestId = 0;
 	index =0;
+	callbacksRequested = 0;
 }
 
 int HttpResponse::getStatusCode()

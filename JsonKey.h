@@ -1,3 +1,17 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          JsonKey.h
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
 #ifndef JsonKey_h
 #define JsonKey_h
 

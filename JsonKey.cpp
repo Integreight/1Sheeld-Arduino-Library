@@ -1,3 +1,17 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          JsonKey.cpp
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
 #include "JsonKey.h"
 
 
@@ -8,7 +22,7 @@ JsonKey::JsonKey(int key)
     number=key;
     isText=false;
   }
-
+/* Copy Constructor */
 JsonKey::JsonKey(const JsonKey & old)
 {
 	isText=old.isText;

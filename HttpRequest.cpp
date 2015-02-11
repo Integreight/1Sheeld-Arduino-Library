@@ -23,9 +23,10 @@ HttpRequest::HttpRequest(char * _url)
 	int reqId=++totalRequests;
 	localRequestId[0] = reqId & 0xFF;
 	localRequestId[1] = (reqId >> 8) & 0xFF;
-	started = 0;
-	finished = 0;
+	started = false;
+	finished = false;
 	callbacksRequested = 0;
+	url = NULL;
 	response.requestId = getRequestId();
 	if(!OneSheeldClass::isInitialized())
 	{

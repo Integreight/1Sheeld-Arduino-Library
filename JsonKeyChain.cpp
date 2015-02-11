@@ -1,3 +1,17 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          JsonKeyChain.cpp
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
 #include "OneSheeld.h"
 #include "InternetShield.h"
 #include "JsonKeyChain.h"
@@ -9,7 +23,7 @@ JsonKeyChain::JsonKeyChain()
   counter=0;
   isDisposed=false;
 }
-
+/* Copy Constructor */ 
 JsonKeyChain::JsonKeyChain(const JsonKeyChain& old)
 {
 	counter=old.counter;
