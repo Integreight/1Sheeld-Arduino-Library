@@ -97,7 +97,7 @@ void JsonKeyChain::query()
   	integerArray[0] = types & 0xFF;
   	arguments[0]=new FunctionArg(sizeof(int),integerArray);
   	
-  	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_GET_JSON,counter+1,arguments);
+  	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_QUERY_JSON,counter+1,arguments);
 
   	for(int i=1;i<counter+1;i++)
     {
