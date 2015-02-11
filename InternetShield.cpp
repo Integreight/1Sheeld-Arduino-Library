@@ -158,7 +158,8 @@ void InternetShield::processData()
 	if(functionId == HTTP_GET_SUCCESS   || functionId == HTTP_GET_FAILURE           ||
 	   functionId == HTTP_GET_STARTED   || functionId == HTTP_GET_ON_PROGRESS       ||
 	   functionId == HTTP_GET_ON_FINISH || functionId == RESPONSE_GET_NEXT_RESPONSE ||
-	   functionId == RESPONSE_GET_ERROR || functionId == RESPONSE_INPUT_GET_HEADER)
+	   functionId == RESPONSE_GET_ERROR || functionId == RESPONSE_INPUT_GET_HEADER	||
+	   functionId == RESPONSE_GET_JSON)
 	{
 
 		int requestId  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
@@ -277,6 +278,45 @@ void InternetShield::processData()
 					headerValue[headerValueLength]='\0';
 
 					requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
+				}
+				else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT)
+				{
+					byte jsonResponseLength = OneSheeld.getArgumentLength(1);
+
+					char  jsonResponseValue[jsonResponseLength+1];
+					for(int k = 0 ;k<jsonResponseLength ;k++)
+					{
+						jsonResponseValue[k]=OneSheeld.getArgumentData(1)[k];
+					}
+					jsonResponseValue[jsonResponseLength]='\0';
+
+					int keyChainTypes = OneSheeld.getArgumentData(2)[0]|((OneSheeld.getArgumentData(2)[1])<<8);
+
+					byte argumentNo = OneSheeld.getArgumentNo();
+					if(argumentNo - 3 <= MAX_JSON_KEY_DEPTH)
+					{
+						JsonKeyChain responseJsonChain;
+						for(int i=3;i<argumentNo;i++)
+						{
+							if((keyChainTypes & (1 << (i-3))))
+							{
+								byte jsonKeyValueLength = OneSheeld.getArgumentLength(i);
+								char  jsonKeyValue[jsonKeyValueLength+1];
+								for(int k = 0 ;k<jsonKeyValueLength ;k++)
+								{
+									jsonKeyValue[k]=OneSheeld.getArgumentData(i)[k];
+								}
+								jsonKeyValue[jsonKeyValueLength]='\0';
+								responseJsonChain[jsonKeyValue];
+							}
+							else
+							{
+								int jsonKeyValue = OneSheeld.getArgumentData(i)[0]|((OneSheeld.getArgumentData(i)[1])<<8);
+								responseJsonChain[jsonKeyValue];
+							}
+						}
+						requestsArray[i]->response.getJsonCallBack(responseJsonChain,jsonResponseValue);
+					}
 				}
 				break;
 			}

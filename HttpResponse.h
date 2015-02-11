@@ -24,6 +24,7 @@
 //Input Function ID's for Response class
 #define	RESPONSE_GET_ERROR					0x08
 #define RESPONSE_GET_NEXT_RESPONSE			0x09
+#define RESPONSE_GET_JSON					0x0A
 //Bit Setters
 #define RESPONSE_INPUT_GET_HEADER_BIT		0x01
 #define	RESPONSE_GET_ERROR_BIT				0x02
