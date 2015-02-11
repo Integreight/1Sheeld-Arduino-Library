@@ -23,11 +23,25 @@
 
 
 struct PatternNode{
-	byte value;
-	PatternNode(byte val):value(val){}
-	PatternNode(){}
-	byte getRow(){return value&0x0F;}
-	byte getColumn(){return (value&0xF0)>>4;}
+	byte row;
+	byte col;
+	// PatternNode(byte val):row(val&0x0F),col((val&0xF0)>>4){}
+	// PatternNode(){}
+	void setValue(byte val)
+	{
+		row=val&0x0F;
+		col=(val&0xF0)>>4;
+	}
+	bool operator==(const PatternNode& other) 
+	{
+	    return (row==other.row)&&(col==other.col);
+	}
+
+	bool operator!=(const PatternNode& other)
+	{
+	  return !(*this == other);
+	}
+
 };
 
 class PatternShield : public ShieldParent

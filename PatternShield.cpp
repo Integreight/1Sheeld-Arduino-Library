@@ -22,7 +22,7 @@ PatternShield::PatternShield() : ShieldParent(PATTERN_ID)
 	isCallBackAssigned = false;
 	size=0;
 	for(int i=0;i<MAX_PATTERN_SIZE;i++){
-		nodes[i]=PatternNode(0);
+		nodes[i]=PatternNode();
 	}
 }
 
@@ -59,7 +59,9 @@ void PatternShield::processData()
 		if(size>MAX_PATTERN_SIZE)return;
 		for (int i = 0; i < size; i++)
 		{
-			nodes[i]=PatternNode(OneSheeld.getArgumentData(0)[i]);
+			PatternNode node;
+			node.setValue(OneSheeld.getArgumentData(0)[i]);
+			nodes[i]=node;
 		}
 
 		if(isCallBackAssigned)
