@@ -50,6 +50,11 @@ unsigned long HttpResponse::getTotalBytesCount()
 	return totalBytesCount;
 }
 
+unsigned long HttpResponse::getCurrentIndex()
+{
+	return index;
+}
+
 void HttpResponse::getTheseBytes(unsigned long start,int size)
 {
 	if(isInit)
@@ -107,13 +112,13 @@ bool HttpResponse::isSentFully()
 void HttpResponse::dispose(bool sendFrame)
 {
 	isDisposedTriggered = true;
-	if(isInit && bytesCount!=0)
+	if(isInit && bytesCount!=0 && bytes!=NULL)
 	{
 		free(bytes);
 	}
 	isInit=false;
 	bytes=NULL;
-	callbacksRequested = 0;
+	index = 0;
 	bytesCount = 0;
 	statusCode = 0;
 	totalBytesCount = 0;
