@@ -58,6 +58,7 @@ public:
 	int getStatusCode();
 	int getBytesCount();
 	unsigned long getTotalBytesCount();
+	unsigned long getCurrentIndex();
 	char * getBytes();
 	String getBytesAsStrings();
 	~HttpResponse();
