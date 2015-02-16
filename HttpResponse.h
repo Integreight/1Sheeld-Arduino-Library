@@ -20,8 +20,8 @@
 #define RESPONSE_DISPOSE					0x11
 #define RESPONSE_GET_NEXT_BYTES				0x12
 #define RESPONSE_GET_HEADER					0x13
-#define RESPONSE_INPUT_GET_HEADER			0x07
 //Input Function ID's for Response class
+#define RESPONSE_INPUT_GET_HEADER			0x07
 #define	RESPONSE_GET_ERROR					0x08
 #define RESPONSE_GET_NEXT_RESPONSE			0x09
 #define RESPONSE_GET_JSON					0x0A
