@@ -203,16 +203,21 @@ void InternetShield::processData()
 					if(functionId == RESPONSE_GET_NEXT_RESPONSE)
 					{
 						dataArgumentNumber = 1;
-						if(requestsArray[i]->response.bytesCount!= 0 && requestsArray[i]->response.isInit)
+						if(requestsArray[i]->response.bytesCount!= 0 && requestsArray[i]->response.isInit && requestsArray[i]->response.bytes!=NULL)
 						{
 							free(requestsArray[i]->response.bytes);
+							requestsArray[i]->response.bytes = NULL;
 						}
 					}
-					else dataArgumentNumber = 3;
-
-					if(((functionId == RESPONSE_GET_NEXT_RESPONSE && requestsArray[i]->response.isInit) || totalBytesCount!=0))
-					{	
+					else
+					{
+						dataArgumentNumber = 3;
 						requestsArray[i]->response.dispose(false);
+					}
+					
+					if((functionId == RESPONSE_GET_NEXT_RESPONSE && requestsArray[i]->response.isInit) ||
+					  ((functionId == HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE) && totalBytesCount!=0))
+					{
 						dataLength = OneSheeld.getArgumentLength(dataArgumentNumber);
 						if(dataLength!=0)
 						{
@@ -226,6 +231,11 @@ void InternetShield::processData()
 						requestsArray[i]->response.bytesCount=dataLength;
 						requestsArray[i]->response.index+=dataLength+1;
 						requestsArray[i]->response.bytes=data;
+						}
+						else
+						{
+							requestsArray[i]->response.bytesCount=0;
+							requestsArray[i]->response.bytes=NULL;
 						}
 					}
 
