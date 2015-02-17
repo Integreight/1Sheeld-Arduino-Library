@@ -126,7 +126,11 @@ void HttpResponse::dispose(bool sendFrame)
   	reqId[1] = (requestId >> 8) & 0xFF;
   	reqId[0] = requestId & 0xFF;
 	
-	if(sendFrame)OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_DISPOSE,1,new FunctionArg(sizeof(int),reqId));
+	if(sendFrame)
+	{
+		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_DISPOSE,1,new FunctionArg(sizeof(int),reqId));
+		callbacksRequested=0;
+	}
 }
 
 bool HttpResponse::isDisposed()
