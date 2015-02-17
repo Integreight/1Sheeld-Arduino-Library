@@ -103,6 +103,13 @@ void HttpRequest::addParameter(char * paramName,char * data)
 		                 new FunctionArg(strlen(data),(byte*)data));
 }
 
+void HttpRequest::addHttpEntity(char * data)
+{
+	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HTTPENTITY,2,
+						 new FunctionArg(sizeof(int),localRequestId),
+						 new FunctionArg(strlen(data),(byte*)data));
+}
+
 int HttpRequest::getRequestId(void)
 {
 	return (localRequestId[1] << 8) | localRequestId[0];
