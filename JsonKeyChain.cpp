@@ -23,11 +23,20 @@ JsonKeyChain::JsonKeyChain()
   counter=0;
   isDisposed=false;
 }
+
+JsonKeyChain::JsonKeyChain(int id)
+{
+  counter=0;
+  isDisposed=false;
+  request = id;
+}
+
 /* Copy Constructor */ 
 JsonKeyChain::JsonKeyChain(const JsonKeyChain& old)
 {
 	counter=old.counter;
 	isDisposed=old.isDisposed;
+  request=old.request;
 	if(counter>0){
 		for(int i=0;i<counter;i++)
 		{
@@ -76,39 +85,45 @@ bool JsonKeyChain::operator!=(const JsonKeyChain& other)
 
 void JsonKeyChain::query()
 {
-	if(counter>16)return;
-	int types=0;
-	FunctionArg **arguments =(FunctionArg**)malloc(sizeof(FunctionArg *)*(counter+1));
-
-	for(int i=1;i<counter+1;i++)
+  if(counter>16)return;
+  int types=0;
+  FunctionArg **arguments =(FunctionArg**)malloc(sizeof(FunctionArg *)*(counter+2));
+  for(int i=2;i<counter+2;i++)
     {
-      if(keysArray[i-1]->isString())arguments[i]=new FunctionArg(strlen(keysArray[i-1]->getString()),(byte *)keysArray[i-1]->getString());
+      if(keysArray[i-2]->isString())arguments[i]=new FunctionArg(strlen(keysArray[i-2]->getString()),(byte *)keysArray[i-2]->getString());
       else 
       {
-      	byte integerArray[2] ;
-	  	integerArray[1] = (keysArray[i-1]->getNumber() >> 8) & 0xFF;
-	  	integerArray[0] = keysArray[i-1]->getNumber() & 0xFF;
-      	arguments[i]=new FunctionArg(sizeof(int),integerArray);	
+        byte integerArray[2] ;
+      integerArray[1] = (keysArray[i-2]->getNumber() >> 8) & 0xFF;
+      integerArray[0] = keysArray[i-2]->getNumber() & 0xFF;
+        arguments[i]=new FunctionArg(sizeof(int),integerArray); 
       }
-      types|=((keysArray[i-1]->isString())<<(i-1));
+      types|=((keysArray[i-2]->isString())<<(i-2));
     }
     byte integerArray[2] ;
-  	integerArray[1] = (types >> 8) & 0xFF;
-  	integerArray[0] = types & 0xFF;
-  	arguments[0]=new FunctionArg(sizeof(int),integerArray);
-  	
-  	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_QUERY_JSON,counter+1,arguments);
+    integerArray[1] = (types >> 8) & 0xFF;
+    integerArray[0] = types & 0xFF;
+    arguments[1]=new FunctionArg(sizeof(int),integerArray);
 
-  	for(int i=1;i<counter+1;i++)
+    byte requestIdArray[2] ;
+    requestIdArray[1] = (request >> 8) & 0xFF;
+    requestIdArray[0] = request & 0xFF;
+    arguments[0]=new FunctionArg(sizeof(int),requestIdArray);
+
+    OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_QUERY_JSON,counter+2,arguments);
+
+    for(int i=2;i<counter+2;i++)
     {
-    	delete arguments[i];
-    	delete keysArray[i-1];
+      delete arguments[i];
+      delete keysArray[i-2];
     }
+    delete arguments[1];
     delete arguments[0];
     free(arguments);
     counter=0;
     isDisposed=true;
 }
+
 
 JsonKeyChain::~JsonKeyChain()
 {

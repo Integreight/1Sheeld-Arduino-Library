@@ -152,13 +152,13 @@ void HttpResponse::getHeader(char * headerName , void (*userFunction)(char * inc
 
 JsonKeyChain HttpResponse::operator[](int key)
 {
-    JsonKeyChain chain;
+    JsonKeyChain chain(requestId);
     return chain[key];
 }
 
 JsonKeyChain HttpResponse::operator[](const char *key)
 {
-    JsonKeyChain chain;
+    JsonKeyChain chain(requestId);
     return chain[key];
 }
 

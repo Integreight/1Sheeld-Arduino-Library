@@ -24,6 +24,7 @@ class JsonKeyChain {
 
 public:
   JsonKeyChain();
+  JsonKeyChain(int );
   JsonKeyChain(const JsonKeyChain& old);
   JsonKeyChain & operator[](int );
   
@@ -36,6 +37,7 @@ public:
 
 private:
   int counter;
+  int request;
   bool isDisposed;
   JsonKey * keysArray[MAX_JSON_KEY_DEPTH];
 };
