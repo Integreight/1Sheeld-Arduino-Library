@@ -121,6 +121,13 @@ void HttpRequest::setContentType(char * contentType)
 						 new FunctionArg(strlen(contentType),(byte*)contentType));
 }
 
+void HttpRequest::setParametersContentEncoding(char * contentEncoding)
+{
+	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_CONTENT_ENCODING,2,
+						 new FunctionArg(sizeof(int),localRequestId),
+						 new FunctionArg(strlen(contentEncoding),(byte*)contentEncoding));
+}
+
 void HttpRequest::ignoreResponse(void)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_IGNORE_REQUEST,1,new FunctionArg(sizeof(int),localRequestId));
