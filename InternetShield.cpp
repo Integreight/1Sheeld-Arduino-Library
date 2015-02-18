@@ -333,7 +333,7 @@ void InternetShield::processData()
 		}	
 
 	}
-	else if(functionId == INTERNET_GET_ERROR)
+	else if(functionId == INTERNET_GET_ERROR && isSetOnErrorCallBackAssigned)
 	{
 		int errorNumber  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
 		(*internetErrorCallBack)(errorNumber);
