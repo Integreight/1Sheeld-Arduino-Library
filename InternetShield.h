@@ -53,11 +53,11 @@ public:
 	void clearBasicAuthentication();
 	void setDefaultMaxResponseBytesCount(int );
 	//Set on for userFunction
-	void setOnError(void (*)(int));
+	void setOnError(void (*)(int,int));
 private:
 	bool isSetOnErrorCallBackAssigned;
 	void processData();
-	void (*internetErrorCallBack)(int);
+	void (*internetErrorCallBack)(int,int);
 	HttpRequest * requestsArray[MAX_NO_OF_REQUESTS];
 friend class HttpRequest;
 };

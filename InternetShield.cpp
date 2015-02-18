@@ -168,7 +168,7 @@ void InternetShield::processData()
 		int statusCodeOrError = 0;
 
 		if(functionId ==HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE || functionId == RESPONSE_GET_ERROR )
-			statusCodeOrError = OneSheeld.getArgumentData(1)[0]|((OneSheeld.getArgumentData(1)[1])<<8);
+			statusCodeOrError = OneSheeld.getArgumentData(1)[0];
 		
 		else if(functionId == HTTP_GET_ON_PROGRESS)
 		{	
@@ -335,12 +335,13 @@ void InternetShield::processData()
 	}
 	else if(functionId == INTERNET_GET_ERROR && isSetOnErrorCallBackAssigned)
 	{
-		int errorNumber  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
-		(*internetErrorCallBack)(errorNumber);
+		int reqid  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
+		int errorNumber  = OneSheeld.getArgumentData(1)[0];
+		(*internetErrorCallBack)(reqid,errorNumber);
 	}
 }
 
-void InternetShield::setOnError(void (*userFunction)(int errorNumber))
+void InternetShield::setOnError(void (*userFunction)(int requestid, int errorNumber))
 {
 	isSetOnErrorCallBackAssigned = true;
 	internetErrorCallBack = userFunction;
