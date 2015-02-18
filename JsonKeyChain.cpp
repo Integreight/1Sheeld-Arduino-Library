@@ -85,7 +85,17 @@ bool JsonKeyChain::operator!=(const JsonKeyChain& other)
 
 void JsonKeyChain::query()
 {
-  if(counter>16)return;
+  sendQueryFrame(INTERNET_QUERY_JSON);
+}
+
+void JsonKeyChain::queryArrayLength()
+{
+  sendQueryFrame(INTERNET_QUERY_JSON_ARRAY_LENGTH);
+}
+
+void JsonKeyChain::sendQueryFrame(byte functionId)
+{
+    if(counter>16)return;
   int types=0;
   FunctionArg **arguments =(FunctionArg**)malloc(sizeof(FunctionArg *)*(counter+2));
   for(int i=2;i<counter+2;i++)
@@ -110,7 +120,7 @@ void JsonKeyChain::query()
     requestIdArray[0] = request & 0xFF;
     arguments[0]=new FunctionArg(sizeof(int),requestIdArray);
 
-    OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_QUERY_JSON,counter+2,arguments);
+    OneSheeld.sendPacket(INTERNET_ID,0,functionId,counter+2,arguments);
 
     for(int i=2;i<counter+2;i++)
     {
@@ -123,7 +133,6 @@ void JsonKeyChain::query()
     counter=0;
     isDisposed=true;
 }
-
 
 JsonKeyChain::~JsonKeyChain()
 {

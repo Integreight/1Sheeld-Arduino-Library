@@ -25,11 +25,13 @@
 #define	RESPONSE_GET_ERROR					0x08
 #define RESPONSE_GET_NEXT_RESPONSE			0x09
 #define RESPONSE_GET_JSON					0x0A
+#define RESPONSE_GET_JSON_ARRAY_LENGTH		0x0B
 //Bit Setters
 #define RESPONSE_INPUT_GET_HEADER_BIT		0x01
 #define	RESPONSE_GET_ERROR_BIT				0x02
 #define RESPONSE_GET_NEXT_RESPONSE_BIT		0x04
 #define RESPONSE_GET_JSON_BIT				0x08
+#define RESPONSE_GET_JSON_ARRAY_LENGTH_BIT	0x10
 
 
 class HttpResponse
@@ -43,6 +45,7 @@ public:
 	void setOnNextResponseBytesUpdate(void (*)(HttpResponse&));
 	void setOnError(void (*)(int ));
 	void setOnJsonResponse(void (*)(JsonKeyChain & ,char *));
+	void setOnJsonResponse(void (*)(JsonKeyChain & ,unsigned long));
 	JsonKeyChain operator[](int );
 	JsonKeyChain operator[](const char *);
 	//Setters
@@ -74,6 +77,7 @@ private:
 	void (*getHeaderCallBack)(char * ,char *);
 	void (*getErrorCallBack)(int);
 	void (*getJsonCallBack)(JsonKeyChain & , char *);
+	void (*getJsonArrayLengthCallBack)(JsonKeyChain & , unsigned long);
 
 friend class InternetShield;
 friend class HttpRequest;

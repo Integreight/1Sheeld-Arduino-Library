@@ -32,6 +32,7 @@ public:
   bool operator==(const JsonKeyChain& other);
   bool operator!=(const JsonKeyChain& other);
   void query();
+  void queryArrayLength();
 
   ~JsonKeyChain();
 
@@ -40,6 +41,7 @@ private:
   int request;
   bool isDisposed;
   JsonKey * keysArray[MAX_JSON_KEY_DEPTH];
+  void sendQueryFrame(byte);
 };
 
 #endif

@@ -104,6 +104,12 @@ void HttpResponse::setOnJsonResponse(void (*userFunction)(JsonKeyChain & chain,c
 	getJsonCallBack = userFunction;
 }
 
+void HttpResponse::setOnJsonResponse(void (*userFunction)(JsonKeyChain & chain,unsigned long size))
+{
+	callbacksRequested |= RESPONSE_GET_JSON_ARRAY_LENGTH_BIT;
+	getJsonArrayLengthCallBack = userFunction;
+}
+
 bool HttpResponse::isSentFully()
 {
 	return (index>=totalBytesCount);

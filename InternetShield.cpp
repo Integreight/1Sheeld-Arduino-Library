@@ -159,7 +159,7 @@ void InternetShield::processData()
 	   functionId == HTTP_GET_STARTED   || functionId == HTTP_GET_ON_PROGRESS       ||
 	   functionId == HTTP_GET_ON_FINISH || functionId == RESPONSE_GET_NEXT_RESPONSE ||
 	   functionId == RESPONSE_GET_ERROR || functionId == RESPONSE_INPUT_GET_HEADER	||
-	   functionId == RESPONSE_GET_JSON)
+	   functionId == RESPONSE_GET_JSON  || functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
 	{
 
 		int requestId  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
@@ -289,43 +289,56 @@ void InternetShield::processData()
 
 					requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
 				}
-				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT) && functionId == RESPONSE_GET_JSON)
+				else if(functionId == RESPONSE_GET_JSON || functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
 				{
-					byte jsonResponseLength = OneSheeld.getArgumentLength(1);
-
-					char  jsonResponseValue[jsonResponseLength+1];
-					for(int k = 0 ;k<jsonResponseLength ;k++)
-					{
-						jsonResponseValue[k]=OneSheeld.getArgumentData(1)[k];
-					}
-					jsonResponseValue[jsonResponseLength]='\0';
-
 					int keyChainTypes = OneSheeld.getArgumentData(2)[0]|((OneSheeld.getArgumentData(2)[1])<<8);
 
 					byte argumentNo = OneSheeld.getArgumentNo();
 					if(argumentNo - 3 <= MAX_JSON_KEY_DEPTH)
 					{
 						JsonKeyChain responseJsonChain;
-						for(int i=3;i<argumentNo;i++)
+						for(int j=3;j<argumentNo;j++)
 						{
-							if((keyChainTypes & (1 << (i-3))))
+							if((keyChainTypes & (1 << (j-3))))
 							{
-								byte jsonKeyValueLength = OneSheeld.getArgumentLength(i);
+								byte jsonKeyValueLength = OneSheeld.getArgumentLength(j);
 								char  jsonKeyValue[jsonKeyValueLength+1];
 								for(int k = 0 ;k<jsonKeyValueLength ;k++)
 								{
-									jsonKeyValue[k]=OneSheeld.getArgumentData(i)[k];
+									jsonKeyValue[k]=OneSheeld.getArgumentData(j)[k];
 								}
 								jsonKeyValue[jsonKeyValueLength]='\0';
 								responseJsonChain[jsonKeyValue];
 							}
 							else
 							{
-								int jsonKeyValue = OneSheeld.getArgumentData(i)[0]|((OneSheeld.getArgumentData(i)[1])<<8);
+								int jsonKeyValue = OneSheeld.getArgumentData(j)[0]|((OneSheeld.getArgumentData(j)[1])<<8);
 								responseJsonChain[jsonKeyValue];
 							}
 						}
-						requestsArray[i]->response.getJsonCallBack(responseJsonChain,jsonResponseValue);
+
+						if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT) && functionId == RESPONSE_GET_JSON)
+						{
+							byte jsonResponseLength = OneSheeld.getArgumentLength(1);
+
+							char  jsonResponseValue[jsonResponseLength+1];
+							for(int k = 0 ;k<jsonResponseLength ;k++)
+							{
+								jsonResponseValue[k]=OneSheeld.getArgumentData(1)[k];
+							}
+							jsonResponseValue[jsonResponseLength]='\0';
+
+							requestsArray[i]->response.getJsonCallBack(responseJsonChain,jsonResponseValue);
+						}
+						else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_ARRAY_LENGTH_BIT) && functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
+						{
+							unsigned long arrayLength  =(unsigned long)OneSheeld.getArgumentData(1)[0]
+							 		|(((unsigned long)OneSheeld.getArgumentData(1)[1])<<8)
+							 		|(((unsigned long)OneSheeld.getArgumentData(1)[2])<<16)
+							 		|(((unsigned long)OneSheeld.getArgumentData(1)[3])<<24);
+							 		
+							requestsArray[i]->response.getJsonArrayLengthCallBack(responseJsonChain,arrayLength);
+						}
 					}
 				}
 				break;
