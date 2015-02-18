@@ -21,7 +21,7 @@
 #define HTTP_SET_URL						0x02
 #define HTTP_ADD_HEADER						0x03
 #define	HTTP_ADD_PARAMETER					0x04
-#define	HTTP_ADD_HTTPENTITY					0x15
+#define	HTTP_ADD_RAW_DATA					0x15
 #define HTTP_DELETE_HEADER					0x05
 #define HTTP_DELETE_PARAMETER				0x06
 #define HTTP_SET_CONTENT_TYPE				0x07
@@ -57,7 +57,7 @@ public:
 	//Adders
 	void addParameter(char * ,float);
 	void addParameter(char * ,char *);
-	void addHttpEntity(char *);
+	void addRawData(char *);
 	void addParameter(String ,float);
 	void addParameter(String ,String);
 	//Getters

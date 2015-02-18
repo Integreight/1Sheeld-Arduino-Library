@@ -103,9 +103,9 @@ void HttpRequest::addParameter(char * paramName,char * data)
 		                 new FunctionArg(strlen(data),(byte*)data));
 }
 
-void HttpRequest::addHttpEntity(char * data)
+void HttpRequest::addRawData(char * data)
 {
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HTTPENTITY,2,
+	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_RAW_DATA,2,
 						 new FunctionArg(sizeof(int),localRequestId),
 						 new FunctionArg(strlen(data),(byte*)data));
 }
