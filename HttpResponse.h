@@ -47,20 +47,17 @@ public:
 	JsonKeyChain operator[](const char *);
 	//Setters
 	void dispose(bool=true);
-	void resetIndex(int= 0);
+	void resetIndex(unsigned long= 0);
 	//Getters
 	void getNextBytes(int=64);
 	void getTheseBytes(unsigned long ,int);
 	void getHeader(char * , void (*)(char * ,float ));
 	void getHeader(char * , void (*)(char * ,char * ));
-	// void getHeader(String , void (*)(String ,float ));
-	// void getHeader(String , void (*)(String ,String ));
 	int getStatusCode();
 	int getBytesCount();
 	unsigned long getTotalBytesCount();
 	unsigned long getCurrentIndex();
 	char * getBytes();
-	String getBytesAsStrings();
 	~HttpResponse();
 private:
 	bool isInit;
