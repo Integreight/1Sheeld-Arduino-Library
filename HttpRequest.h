@@ -26,6 +26,7 @@
 #define HTTP_DELETE_PARAMETER				0x06
 #define HTTP_SET_CONTENT_TYPE				0x07
 #define HTTP_IGNORE_REQUEST					0x08
+#define HTTP_SET_CONTENT_ENCODING			0x16
 //Input Function ID's for HTTP Request class
 #define HTTP_GET_SUCCESS					0x01
 #define HTTP_GET_FAILURE					0x02
@@ -67,6 +68,7 @@ public:
 	void deleteCallBacks();
 	//Setters
 	void setContentType(char * );
+	void setParametersContentEncoding(char * );
 	void setContentType(String );
 	//Deleter
 	void ignoreResponse(void);
