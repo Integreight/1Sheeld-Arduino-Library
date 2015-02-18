@@ -106,7 +106,7 @@ void HttpResponse::setOnJsonResponse(void (*userFunction)(JsonKeyChain & chain,c
 
 bool HttpResponse::isSentFully()
 {
-	return (totalBytesCount-index==0);
+	return (index>=totalBytesCount);
 }
 
 void HttpResponse::dispose(bool sendFrame)
@@ -138,7 +138,7 @@ bool HttpResponse::isDisposed()
 	return isDisposedTriggered;
 }
 
-void HttpResponse::resetIndex(int x)
+void HttpResponse::resetIndex(unsigned long x)
 {
 	index=x;
 }
