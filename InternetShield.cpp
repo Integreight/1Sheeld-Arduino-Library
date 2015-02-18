@@ -262,11 +262,11 @@ void InternetShield::processData()
 				{
 					requestsArray[i]->progressCallback(progressDoneBytes,totalBytesCount);
 				}
-				else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) 
+				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) && functionId == RESPONSE_GET_ERROR) 
 				{
 					requestsArray[i]->response.getErrorCallBack(statusCodeOrError);	
 				}
-				else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_INPUT_GET_HEADER_BIT)
+				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_INPUT_GET_HEADER_BIT) && functionId == RESPONSE_INPUT_GET_HEADER)
 				{
 					byte headerNameLength = OneSheeld.getArgumentLength(1);
 
@@ -289,7 +289,7 @@ void InternetShield::processData()
 
 					requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
 				}
-				else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT)
+				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT) && functionId == RESPONSE_GET_JSON)
 				{
 					byte jsonResponseLength = OneSheeld.getArgumentLength(1);
 
