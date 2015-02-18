@@ -69,14 +69,6 @@ void HttpRequest::setUrl(char * urlName)
 }
 
 
-void HttpRequest::addHeader(char * headerName,float value)
-{
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HEADER,3,
-		                 new FunctionArg(sizeof(int),localRequestId),
-		                 new FunctionArg(strlen(headerName),(byte*)headerName),
-		                 new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
-}
-
 
 void HttpRequest::addHeader(char * headerName,char * data)
 {
@@ -84,14 +76,6 @@ void HttpRequest::addHeader(char * headerName,char * data)
 		                 new FunctionArg(sizeof(int),localRequestId),
 		                 new FunctionArg(strlen(headerName),(byte*)headerName),
 		                 new FunctionArg(strlen(data),(byte*)data));
-}
-
-void HttpRequest::addParameter(char * paramName,float value)
-{
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_PARAMETER,3,
-		                 new FunctionArg(sizeof(int),localRequestId),
-		                 new FunctionArg(strlen(paramName),(byte*)paramName),
-		                 new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 
 

@@ -50,7 +50,6 @@ public:
 	void cancelAllRequests();
 	void ignoreResponse(HttpRequest &);
 	void setBasicAuthentication(char * ,char *);
-	void setBasicAuthentication(String ,String);
 	void clearBasicAuthentication();
 	void setDefaultMaxResponseBytesCount(int );
 	//Set on for userFunction

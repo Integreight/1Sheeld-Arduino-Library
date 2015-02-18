@@ -44,21 +44,13 @@ class HttpRequest
 public:
 	//Constructors
 	HttpRequest(char *);
-	HttpRequest(String);
 	//Setters
 	void setUrl(char *);
-	void setUrl(String);
 	//Adders
-	void addHeader(char * ,float);
 	void addHeader(char * ,char *);
-	void addHeader(String ,float);
-	void addHeader(String ,String);
 	//Adders
-	void addParameter(char * ,float);
 	void addParameter(char * ,char *);
 	void addHttpEntity(char *);
-	void addParameter(String ,float);
-	void addParameter(String ,String);
 	//Getters
 	int getRequestId();
 	//Deleters
@@ -67,7 +59,6 @@ public:
 	void deleteCallBacks();
 	//Setters
 	void setContentType(char * );
-	void setContentType(String );
 	//Deleter
 	void ignoreResponse(void);
 	//Checkers
