@@ -25,11 +25,16 @@ InternetShield::InternetShield() : ShieldParent(INTERNET_ID)
 	}
 }
 
-bool InternetShield::performGet(HttpRequest & request)
-{	
+bool InternetShield::addToRequestsArray(HttpRequest & request)
+{
 	if(request.callbacksRequested!=0)
 	{
 		int i;
+		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
+		{
+			if(requestsArray[i]==&request)return true;
+		}
+		
 		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
 		{
 			if(requestsArray[i]==NULL)break;
@@ -39,86 +44,66 @@ bool InternetShield::performGet(HttpRequest & request)
 		else
 		{
 			requestsArray[i]=&request;
+			return true;
 		}
+	
+	}
+}
 
+bool InternetShield::performGet(HttpRequest & request)
+{	
+	bool isAdded=addToRequestsArray(request);
+	if(isAdded)
+	{
+	
+		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_GET,2,
+							 new FunctionArg(sizeof(int),request.localRequestId),
+							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_GET,2,
-						 new FunctionArg(sizeof(int),request.localRequestId),
-						 new FunctionArg(1,&(request.callbacksRequested)));
-	return true;
+	return isAdded;
 }
 
 bool InternetShield::performPost(HttpRequest & request)
 {	
-	if(request.callbacksRequested!=0)
-	{
-		int i;
-		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
-		{
-			if(requestsArray[i]==NULL)break;
-		}
-
-		if(i>=MAX_NO_OF_REQUESTS)return false;
-		else
-		{
-			requestsArray[i]=&request;
-		}
-
-	}
 	
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_POST,2,
+	bool isAdded=addToRequestsArray(request);
+	if(isAdded)
+	{
+		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_POST,2,
 						 new FunctionArg(sizeof(int),request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
-	return true;
+	}
+	
+	return isAdded;
 }
 
 bool InternetShield::performPut(HttpRequest & request)
 {	
-	if(request.callbacksRequested!=0)
+	bool isAdded=addToRequestsArray(request);
+	if(isAdded)
 	{
-		int i;
-		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
-		{
-			if(requestsArray[i]==NULL)break;
-		}
-
-		if(i>=MAX_NO_OF_REQUESTS)return false;
-		else
-		{
-			requestsArray[i]=&request;
-		}
-
+	
+		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_PUT,2,
+							 new FunctionArg(sizeof(int),request.localRequestId),
+							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_PUT,2,
-						 new FunctionArg(sizeof(int),request.localRequestId),
-						 new FunctionArg(1,&(request.callbacksRequested)));
-	return true;
+	return isAdded;
 }
 
 bool InternetShield::performDelete(HttpRequest & request)
 {	
-	if(request.callbacksRequested!=0)
+	bool isAdded=addToRequestsArray(request);
+	if(isAdded)
 	{
-		int i;
-		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
-		{
-			if(requestsArray[i]==NULL)break;
-		}
-
-		if(i>=MAX_NO_OF_REQUESTS)return false;
-		else
-		{
-			requestsArray[i]=&request;
-		}
-
+	
+		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_DELETE,2,
+							 new FunctionArg(sizeof(int),request.localRequestId),
+							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_DELETE,2,
-						 new FunctionArg(sizeof(int),request.localRequestId),
-						 new FunctionArg(1,&(request.callbacksRequested)));
-	return true;
+	return isAdded;
 }
 
 void InternetShield::ignoreResponse(HttpRequest & request)

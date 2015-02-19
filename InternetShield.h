@@ -58,6 +58,7 @@ public:
 private:
 	bool isSetOnErrorCallBackAssigned;
 	void processData();
+	bool addToRequestsArray(HttpRequest &);
 	void (*internetErrorCallBack)(int,int);
 	HttpRequest * requestsArray[MAX_NO_OF_REQUESTS];
 friend class HttpRequest;
