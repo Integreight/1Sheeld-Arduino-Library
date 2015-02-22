@@ -97,7 +97,8 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 {
   unsigned long mill=millis()+1;
  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
-    delay(TIME_GAP-(mill-lastTimeFrameSent));
+    //delay(TIME_GAP-(mill-lastTimeFrameSent));
+  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
@@ -133,7 +134,8 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 {
   unsigned long mill=millis()+1;
  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
-    delay(TIME_GAP-(mill-lastTimeFrameSent));
+    //delay(TIME_GAP-(mill-lastTimeFrameSent));
+  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
   isFirstFrame=true;
   OneSheeldSerial.write((byte)START_OF_FRAME);
   OneSheeldSerial.write(LIBRARY_VERSION);
