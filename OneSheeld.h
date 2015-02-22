@@ -45,11 +45,14 @@
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
+#define CALLBACK_ENTERED		0x03
+#define CALLBACK_EXITED			0x04
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
+
 
 //Numer of Shields
 #define SHIELDS_NO	36
@@ -124,7 +127,9 @@ public:
 	void setOnNewMessage(void (*)(char * ,char * ,char *));
 	void setOnNewMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
-
+	void enteringACallback();
+	void exitingACallback();
+	bool isInACallback();
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
@@ -139,6 +144,7 @@ private:
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
 	bool isOneSheeldRemoteDataUsed;
+	bool inACallback;
 	//Data bytes
 	byte numberOfDataMalloced;
 	byte shield;

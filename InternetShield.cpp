@@ -231,25 +231,69 @@ void InternetShield::processData()
 						requestsArray[i]->response.statusCode=statusCodeOrError;
 						requestsArray[i]->response.totalBytesCount=totalBytesCount;
 					}
-					if(((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS) requestsArray[i]->successCallBack(requestsArray[i]->response);
-					else if(((requestsArray[i]->callbacksRequested) & FAILURE_CALLBACK_BIT) && functionId == HTTP_GET_FAILURE) requestsArray[i]->failureCallBack(requestsArray[i]->response);
-					else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_NEXT_RESPONSE_BIT) requestsArray[i]->response.getNextCallBack(requestsArray[i]->response);
+					if(((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS)
+						{
+							if(!OneSheeld.isInACallback())
+							{
+								OneSheeld.enteringACallback();
+								requestsArray[i]->successCallBack(requestsArray[i]->response);
+								OneSheeld.exitingACallback();
+							}
+						}
+					else if(((requestsArray[i]->callbacksRequested) & FAILURE_CALLBACK_BIT) && functionId == HTTP_GET_FAILURE)
+						{
+							if(!OneSheeld.isInACallback())
+							{
+								OneSheeld.enteringACallback();
+								requestsArray[i]->failureCallBack(requestsArray[i]->response);
+								OneSheeld.exitingACallback();
+							}
+						}
+					else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_NEXT_RESPONSE_BIT)
+						{
+							if(!OneSheeld.isInACallback())
+							{
+								OneSheeld.enteringACallback();
+								requestsArray[i]->response.getNextCallBack(requestsArray[i]->response);
+								OneSheeld.exitingACallback();
+							}
+						}
 				}
 				else if(((requestsArray[i]->callbacksRequested) & START_CALLBACK_BIT) && functionId == HTTP_GET_STARTED)
 				{
-					requestsArray[i]->startCallBack();
+					if(!OneSheeld.isInACallback())
+					{
+						OneSheeld.enteringACallback();
+						requestsArray[i]->startCallBack();
+						OneSheeld.exitingACallback();
+					}
 				}
 				else if(((requestsArray[i]->callbacksRequested) & FINISH_CALLBACK_BIT) && functionId == HTTP_GET_ON_FINISH)
 				{
-					requestsArray[i]->finishCallBack();
+					if(!OneSheeld.isInACallback())
+					{
+						OneSheeld.enteringACallback();
+						requestsArray[i]->finishCallBack();
+						OneSheeld.exitingACallback();
+					}
 				}
 				else if(((requestsArray[i]->callbacksRequested) & PROGRESS_CALLBACK_BIT) && functionId == HTTP_GET_ON_PROGRESS)
 				{
-					requestsArray[i]->progressCallback(progressDoneBytes,totalBytesCount);
+					if(!OneSheeld.isInACallback())
+					{
+						OneSheeld.enteringACallback();
+						requestsArray[i]->progressCallback(progressDoneBytes,totalBytesCount);
+						OneSheeld.exitingACallback();
+					}
 				}
 				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) && functionId == RESPONSE_GET_ERROR) 
 				{
-					requestsArray[i]->response.getErrorCallBack(statusCodeOrError);	
+					if(!OneSheeld.isInACallback())
+					{
+						OneSheeld.enteringACallback();
+						requestsArray[i]->response.getErrorCallBack(statusCodeOrError);	
+						OneSheeld.exitingACallback();
+					}
 				}
 				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_INPUT_GET_HEADER_BIT) && functionId == RESPONSE_INPUT_GET_HEADER)
 				{
@@ -271,8 +315,12 @@ void InternetShield::processData()
 						headerValue[j]=OneSheeld.getArgumentData(2)[j];
 					}
 					headerValue[headerValueLength]='\0';
-
-					requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
+					if(!OneSheeld.isInACallback())
+					{
+						OneSheeld.enteringACallback();
+						requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
+						OneSheeld.exitingACallback();
+					}
 				}
 				else if(functionId == RESPONSE_GET_JSON || functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
 				{
@@ -312,8 +360,12 @@ void InternetShield::processData()
 								jsonResponseValue[k]=OneSheeld.getArgumentData(1)[k];
 							}
 							jsonResponseValue[jsonResponseLength]='\0';
-
-							requestsArray[i]->response.getJsonCallBack(responseJsonChain,jsonResponseValue);
+							if(!OneSheeld.isInACallback())
+							{
+								OneSheeld.enteringACallback(); 	
+								requestsArray[i]->response.getJsonCallBack(responseJsonChain,jsonResponseValue);
+								OneSheeld.exitingACallback();
+							}
 						}
 						else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_ARRAY_LENGTH_BIT) && functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
 						{
@@ -321,8 +373,12 @@ void InternetShield::processData()
 							 		|(((unsigned long)OneSheeld.getArgumentData(1)[1])<<8)
 							 		|(((unsigned long)OneSheeld.getArgumentData(1)[2])<<16)
 							 		|(((unsigned long)OneSheeld.getArgumentData(1)[3])<<24);
-							 		
-							requestsArray[i]->response.getJsonArrayLengthCallBack(responseJsonChain,arrayLength);
+							if(!OneSheeld.isInACallback())
+							{
+								OneSheeld.enteringACallback(); 		
+								requestsArray[i]->response.getJsonArrayLengthCallBack(responseJsonChain,arrayLength);
+								OneSheeld.exitingACallback();
+							}
 						}
 					}
 				}
@@ -335,7 +391,12 @@ void InternetShield::processData()
 	{
 		int reqid  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
 		int errorNumber  = OneSheeld.getArgumentData(1)[0];
-		(*internetErrorCallBack)(reqid,errorNumber);
+		if(!OneSheeld.isInACallback())
+		{
+			OneSheeld.enteringACallback();
+			(*internetErrorCallBack)(reqid,errorNumber);
+			OneSheeld.exitingACallback();
+		}
 	}
 }
 

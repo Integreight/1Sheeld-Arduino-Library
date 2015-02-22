@@ -42,6 +42,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       usedSetOnFloatWithString=false;
       usedSetOnStringWithString=false;
       isOneSheeldRemoteDataUsed=false;
+      inACallback=false;
 }
 
 //Library Starter
@@ -544,6 +545,29 @@ unsigned char OneSheeldClass::analogRead(int pin)
     double fraction=duty/period;
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
+}
+
+void OneSheeldClass::enteringACallback()
+{
+  if(!inACallback)
+  {
+    inACallback=true;
+    sendPacket(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
+  }
+}
+
+void OneSheeldClass::exitingACallback()
+{
+  if(inACallback)
+  {
+    inACallback=false;
+    sendPacket(ONESHEELD_ID,0,CALLBACK_EXITED,0);
+  }
+}
+
+bool OneSheeldClass::isInACallback()
+{
+  return inACallback;
 }
 
 //Instantiating Object
