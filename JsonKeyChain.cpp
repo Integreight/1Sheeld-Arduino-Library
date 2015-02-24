@@ -21,6 +21,7 @@
 JsonKeyChain::JsonKeyChain()
 {
   counter=0;
+  request=0;
 }
 
 JsonKeyChain::JsonKeyChain(int id)
@@ -101,7 +102,7 @@ void JsonKeyChain::queryArrayLength()
 
 void JsonKeyChain::sendQueryFrame(byte functionId)
 {
-  if(counter>16||counter==0)return;
+  if(counter>16||counter==0||request==0)return;
   int types=0;
   FunctionArg **arguments =(FunctionArg**)malloc(sizeof(FunctionArg *)*(counter+2));
   for(int i=2;i<counter+2;i++)
