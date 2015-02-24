@@ -44,7 +44,9 @@ class HttpRequest
 {
 public:
 	//Constructors
+	#ifdef INTERNET_SHIELD
 	HttpRequest(char *);
+	#endif
 	//Setters
 	void setUrl(char *);
 	//Adders
@@ -87,7 +89,6 @@ private:
 	void (*finishCallBack)();
 	void (*progressCallback)(int,int);
 	byte callbacksRequested;
-	// byte callbacksReceived;
 	HttpResponse response;
 	static int totalRequests;
 	void sendInitFrame(char *);

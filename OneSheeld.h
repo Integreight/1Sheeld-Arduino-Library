@@ -115,7 +115,9 @@ public:
 	void begin();
 	//Adding objects in array 
 	static void addToShieldsArray(ShieldParent *);
+	#ifdef INTERNET_SHIELD
 	static void addToUnSentRequestsArray(HttpRequest *);
+	#endif
 	static bool isInitialized();
 	//Frame Sender
 	void sendPacket(byte , byte ,byte , byte , ...);
@@ -173,8 +175,10 @@ private:
 	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
+	#ifdef INTERNET_SHIELD
 	//Array of pointers to un sent requests
 	static HttpRequest ** requestsArray;
+	#endif
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);

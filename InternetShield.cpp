@@ -409,4 +409,7 @@ void InternetShield::setOnError(void (*userFunction)(int requestid, int errorNum
 	internetErrorCallBack = userFunction;
 }
 
+#ifdef INTERNET_SHIELD
+//Instatntiating Object
 InternetShield Internet;
+#endif
