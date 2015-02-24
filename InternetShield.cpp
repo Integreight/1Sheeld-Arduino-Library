@@ -27,9 +27,9 @@ InternetShield::InternetShield() : ShieldParent(INTERNET_ID)
 
 bool InternetShield::addToRequestsArray(HttpRequest & request)
 {
+	int i;
 	if(request.callbacksRequested!=0)
 	{
-		int i;
 		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
 		{
 			if(requestsArray[i]==&request)return true;
@@ -46,7 +46,13 @@ bool InternetShield::addToRequestsArray(HttpRequest & request)
 			requestsArray[i]=&request;
 			return true;
 		}
-	
+	}
+	else {
+		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
+		{
+			if(requestsArray[i]==&request)requestsArray[i]=NULL;
+		}
+		return true;
 	}
 }
 
