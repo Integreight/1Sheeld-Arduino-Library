@@ -1,0 +1,144 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          JsonKeyChain.cpp
+                 
+  Version:       1.4
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.1
+
+*/
+#include "OneSheeld.h"
+#include "InternetShield.h"
+#include "JsonKeyChain.h"
+
+
+
+JsonKeyChain::JsonKeyChain()
+{
+  counter=0;
+  isDisposed=false;
+}
+
+JsonKeyChain::JsonKeyChain(int id)
+{
+  counter=0;
+  isDisposed=false;
+  request = id;
+}
+
+/* Copy Constructor */ 
+JsonKeyChain::JsonKeyChain(const JsonKeyChain& old)
+{
+	counter=old.counter;
+	isDisposed=old.isDisposed;
+  request=old.request;
+	if(counter>0){
+		for(int i=0;i<counter;i++)
+		{
+			keysArray[i]=new JsonKey(*old.keysArray[i]);
+		}
+	}
+}
+
+JsonKeyChain & JsonKeyChain::operator[](int key)
+{
+    if(counter<MAX_JSON_KEY_DEPTH)keysArray[counter++]=new JsonKey(key);
+    return *this;
+}
+
+JsonKeyChain & JsonKeyChain::operator[](const char *key)
+{
+    if(counter<MAX_JSON_KEY_DEPTH)keysArray[counter++]=new JsonKey(key);
+    return *this;
+}
+
+bool JsonKeyChain::operator==(const JsonKeyChain& other) 
+{
+    if(counter!=other.counter)return false;
+    for(int i=0;i<counter;i++)
+    {
+      if(keysArray[i]->isString()!=other.keysArray[i]->isString())
+      {
+        return false;
+      }
+      else if(keysArray[i]->isString() && strcmp(keysArray[i]->getString(),other.keysArray[i]->getString()))
+      {
+        return false;
+      }
+      else if(keysArray[i]->isNumber() && keysArray[i]->getNumber()!=other.keysArray[i]->getNumber())
+      {
+        return false;
+      }
+    }
+    return true;
+}
+
+bool JsonKeyChain::operator!=(const JsonKeyChain& other)
+{
+  return !(*this == other);
+}
+
+void JsonKeyChain::query()
+{
+  sendQueryFrame(INTERNET_QUERY_JSON);
+}
+
+void JsonKeyChain::queryArrayLength()
+{
+  sendQueryFrame(INTERNET_QUERY_JSON_ARRAY_LENGTH);
+}
+
+void JsonKeyChain::sendQueryFrame(byte functionId)
+{
+    if(counter>16)return;
+  int types=0;
+  FunctionArg **arguments =(FunctionArg**)malloc(sizeof(FunctionArg *)*(counter+2));
+  for(int i=2;i<counter+2;i++)
+    {
+      if(keysArray[i-2]->isString())arguments[i]=new FunctionArg(strlen(keysArray[i-2]->getString()),(byte *)keysArray[i-2]->getString());
+      else 
+      {
+        byte integerArray[2] ;
+      integerArray[1] = (keysArray[i-2]->getNumber() >> 8) & 0xFF;
+      integerArray[0] = keysArray[i-2]->getNumber() & 0xFF;
+        arguments[i]=new FunctionArg(sizeof(int),integerArray); 
+      }
+      types|=((keysArray[i-2]->isString())<<(i-2));
+    }
+    byte integerArray[2] ;
+    integerArray[1] = (types >> 8) & 0xFF;
+    integerArray[0] = types & 0xFF;
+    arguments[1]=new FunctionArg(sizeof(int),integerArray);
+
+    byte requestIdArray[2] ;
+    requestIdArray[1] = (request >> 8) & 0xFF;
+    requestIdArray[0] = request & 0xFF;
+    arguments[0]=new FunctionArg(sizeof(int),requestIdArray);
+
+    OneSheeld.sendPacket(INTERNET_ID,0,functionId,counter+2,arguments);
+
+    for(int i=2;i<counter+2;i++)
+    {
+      delete arguments[i];
+      delete keysArray[i-2];
+    }
+    delete arguments[1];
+    delete arguments[0];
+    free(arguments);
+    counter=0;
+    isDisposed=true;
+}
+
+JsonKeyChain::~JsonKeyChain()
+{
+    if(isDisposed)return;
+    for(int i=0;i<counter;i++)
+    {
+      delete keysArray[i];
+    }
+}

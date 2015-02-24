@@ -45,11 +45,14 @@
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
+#define CALLBACK_ENTERED		0x03
+#define CALLBACK_EXITED			0x04
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
+
 
 //Numer of Shields
 #define SHIELDS_NO	36
@@ -111,8 +114,11 @@ public:
 	void begin();
 	//Adding objects in array 
 	static void addToShieldsArray(ShieldParent *);
+	static void addToUnSentRequestsArray(HttpRequest *);
+	static bool isInitialized();
 	//Frame Sender
-	void sendPacket(byte shieldID, byte instanceID,byte functionCommand, byte argNo, ...);
+	void sendPacket(byte , byte ,byte , byte , ...);
+	void sendPacket(byte , byte , byte , byte , FunctionArg ** );
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	//Set on change for users function
@@ -121,7 +127,9 @@ public:
 	void setOnNewMessage(void (*)(char * ,char * ,char *));
 	void setOnNewMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
-
+	void enteringACallback();
+	void exitingACallback();
+	bool isInACallback();
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
@@ -136,6 +144,7 @@ private:
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
 	bool isOneSheeldRemoteDataUsed;
+	bool inACallback;
 	//Data bytes
 	byte numberOfDataMalloced;
 	byte shield;
@@ -150,6 +159,10 @@ private:
 	byte endFrame;
 	//Shields Counter 
 	static byte shieldsCounter;
+	//Requests Counter
+	static byte requestsCounter;
+	//Is constructor called
+	static bool isInit;
 	//Checker variable 
 	unsigned long lastTimeFrameSent;
 	//Number of connected Remote 1Sheelds
@@ -158,6 +171,8 @@ private:
 	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
+	//Array of pointers to un sent requests
+	static HttpRequest ** requestsArray;
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);

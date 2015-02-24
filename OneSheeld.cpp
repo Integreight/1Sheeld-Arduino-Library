@@ -17,8 +17,11 @@
 #include "HardwareSerial.h"
 #include "stdarg.h"
 
+bool OneSheeldClass::isInit=false;
 byte OneSheeldClass::shieldsCounter=0;
 ShieldParent * OneSheeldClass::shieldsArray[]={0};
+byte OneSheeldClass::requestsCounter=0;
+HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
 //Class Constructor
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
@@ -39,6 +42,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       usedSetOnFloatWithString=false;
       usedSetOnStringWithString=false;
       isOneSheeldRemoteDataUsed=false;
+      inACallback=false;
 }
 
 //Library Starter
@@ -65,12 +69,27 @@ void OneSheeldClass::waitForAppConnection()
 void OneSheeldClass::begin()
 {
   begin(115200);
+  isInit=true;
+  for(int i=0;i<requestsCounter;i++)
+    requestsArray[i]->sendInitFrame();
+  free(requestsArray);
 }
 
 void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
 {
   if(shieldsCounter==SHIELDS_NO) return;
-  shieldsArray[shieldsCounter++]= shield;  
+  shieldsArray[shieldsCounter++] = shield;  
+}
+
+void OneSheeldClass::addToUnSentRequestsArray(HttpRequest * request)
+{
+  if(requestsCounter==MAX_NO_OF_REQUESTS) return;
+  requestsArray[requestsCounter++] = request;  
+}
+
+bool OneSheeldClass::isInitialized()
+{
+  return isInit;
 }
 
 //Frame Sender for Output Shields
@@ -78,7 +97,8 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 {
   unsigned long mill=millis()+1;
  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
-    delay(TIME_GAP-(mill-lastTimeFrameSent));
+    //delay(TIME_GAP-(mill-lastTimeFrameSent));
+  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
@@ -107,6 +127,35 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
  }
     OneSheeldSerial.write((byte)END_OF_FRAME);
     va_end(arguments);
+    lastTimeFrameSent=millis()+1;
+}
+
+void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
+{
+  unsigned long mill=millis()+1;
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+    //delay(TIME_GAP-(mill-lastTimeFrameSent));
+  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
+  isFirstFrame=true;
+  OneSheeldSerial.write((byte)START_OF_FRAME);
+  OneSheeldSerial.write(LIBRARY_VERSION);
+  OneSheeldSerial.write(shieldID);
+  OneSheeldSerial.write(instanceID);
+  OneSheeldSerial.write(functionID);
+  OneSheeldSerial.write(argNo);
+  OneSheeldSerial.write(255-argNo);
+  
+  for (int i=0 ; i<argNo ; i++)
+  {
+    OneSheeldSerial.write(arguments[i]->getLength());
+    OneSheeldSerial.write(255-(arguments[i]->getLength()));
+      for (int j=0 ; j<arguments[i]->getLength() ; j++)
+      {
+        byte* tempData=arguments[i]->getData();
+        OneSheeldSerial.write(tempData[j]);
+      }
+ }
+    OneSheeldSerial.write((byte)END_OF_FRAME);
     lastTimeFrameSent=millis()+1;
 }
 bool OneSheeldClass::isAppConnected()
@@ -141,7 +190,9 @@ byte OneSheeldClass::getArgumentLength(byte x)
 //Data Getter
 byte * OneSheeldClass::getArgumentData(byte x)
 {
-  return arguments[x];
+  if(argumentL[x]!=0)
+    return arguments[x];
+  else return NULL;
 }
 
 //Convert float to array of bytes
@@ -232,12 +283,25 @@ void OneSheeldClass::processInput()
             Serial.print("C7 ");
             #endif
             if((255-argumentL[argumentcounter])==data){
-              arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
-              #ifdef DEBUG
-              Serial.print("M3 ");
-              #endif
+              if(argumentL[argumentcounter]!=0)
+              {
+                arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
+                #ifdef DEBUG
+                Serial.print("M3 ");
+                #endif
+                counter++;
+              }
+              else
+              {
+                arguments[argumentcounter]=NULL;
+                datalengthcounter=0;
+                argumentcounter++;
+                if(argumentcounter==argumentnumber)
+                  counter=9;
+                else
+                  counter=6;
+              }
               numberOfDataMalloced++;
-              counter++;
             }
             else{
                 framestart=false;
@@ -249,7 +313,7 @@ void OneSheeldClass::processInput()
               #ifdef DEBUG
               Serial.print("C8 ");
               #endif
-              arguments[argumentcounter][datalengthcounter++]=data;
+              if(arguments[argumentcounter]!=NULL)arguments[argumentcounter][datalengthcounter++]=data;
               if (datalengthcounter==argumentL[argumentcounter])
               {
                   datalengthcounter=0;
@@ -261,7 +325,7 @@ void OneSheeldClass::processInput()
                   }
                   else
                   {
-                       counter=6;
+                    counter=6;
 
                   }
 
@@ -322,7 +386,7 @@ void OneSheeldClass::freeMemoryAllocated(){
   if(isArgumentsNumberMalloced){
           for(int i=0;i<numberOfDataMalloced;i++)
           {
-            free(arguments[i]);
+            if(arguments[i]!=NULL)free(arguments[i]);
             #ifdef DEBUG
             Serial.print("F3 ");
             #endif
@@ -483,6 +547,29 @@ unsigned char OneSheeldClass::analogRead(int pin)
     double fraction=duty/period;
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
+}
+
+void OneSheeldClass::enteringACallback()
+{
+  if(!inACallback)
+  {
+    inACallback=true;
+    sendPacket(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
+  }
+}
+
+void OneSheeldClass::exitingACallback()
+{
+  if(inACallback)
+  {
+    inACallback=false;
+    sendPacket(ONESHEELD_ID,0,CALLBACK_EXITED,0);
+  }
+}
+
+bool OneSheeldClass::isInACallback()
+{
+  return inACallback;
 }
 
 //Instantiating Object
