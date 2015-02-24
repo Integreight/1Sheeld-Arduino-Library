@@ -131,6 +131,7 @@ public:
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();
+	void delay(unsigned long);
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;

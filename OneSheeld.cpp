@@ -574,6 +574,12 @@ bool OneSheeldClass::isInACallback()
   return inACallback;
 }
 
+void OneSheeldClass::delay(unsigned long time)
+{
+  unsigned long now=millis();
+  while(millis()<(now+time))processInput();
+}
+
 //Instantiating Object
 #if defined(__AVR_ATmega32U4__) || defined(ARDUINO_LINUX)
 OneSheeldClass OneSheeld(Serial1);
