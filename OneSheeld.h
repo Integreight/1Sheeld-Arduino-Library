@@ -46,6 +46,7 @@
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
 #define CALLBACK_ENTERED		0x03
+#define WAIT_RESET_APPLICATION	0x02
 #define CALLBACK_EXITED			0x04
 //Input function ID's 
 //Checking Bluetooth connection
