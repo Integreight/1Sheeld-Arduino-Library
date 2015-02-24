@@ -150,10 +150,13 @@ void InternetShield::processData()
 		int requestId  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
 		unsigned long totalBytesCount  = 0;
 		unsigned long progressDoneBytes  = 0;
-		int statusCodeOrError = 0;
+		int statusCode = 0;
+		int error = 0;
 
-		if(functionId ==HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE || functionId == RESPONSE_GET_ERROR )
-			statusCodeOrError = OneSheeld.getArgumentData(1)[0];
+		if(functionId ==HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE)
+			statusCode = OneSheeld.getArgumentData(1)[0]|((OneSheeld.getArgumentData(1)[1])<<8);
+		else if (functionId == RESPONSE_GET_ERROR)
+			error=OneSheeld.getArgumentData(1)[0];
 		
 		else if(functionId == HTTP_GET_ON_PROGRESS)
 		{	
@@ -228,7 +231,7 @@ void InternetShield::processData()
 					{
 						requestsArray[i]->response.isInit=true;
 						requestsArray[i]->response.isDisposedTriggered=false;
-						requestsArray[i]->response.statusCode=statusCodeOrError;
+						requestsArray[i]->response.statusCode=statusCode;
 						requestsArray[i]->response.totalBytesCount=totalBytesCount;
 					}
 					if(((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS)
@@ -291,7 +294,7 @@ void InternetShield::processData()
 					if(!OneSheeld.isInACallback())
 					{
 						OneSheeld.enteringACallback();
-						requestsArray[i]->response.getErrorCallBack(statusCodeOrError);	
+						requestsArray[i]->response.getErrorCallBack(error);	
 						OneSheeld.exitingACallback();
 					}
 				}
