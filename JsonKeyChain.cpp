@@ -21,13 +21,11 @@
 JsonKeyChain::JsonKeyChain()
 {
   counter=0;
-  isDisposed=false;
 }
 
 JsonKeyChain::JsonKeyChain(int id)
 {
   counter=0;
-  isDisposed=false;
   request = id;
 }
 
@@ -35,7 +33,6 @@ JsonKeyChain::JsonKeyChain(int id)
 JsonKeyChain::JsonKeyChain(const JsonKeyChain& old)
 {
 	counter=old.counter;
-	isDisposed=old.isDisposed;
   request=old.request;
 	if(counter>0){
 		for(int i=0;i<counter;i++)
@@ -83,6 +80,15 @@ bool JsonKeyChain::operator!=(const JsonKeyChain& other)
   return !(*this == other);
 }
 
+void JsonKeyChain::dispose()
+{
+  for(int i=0;i<counter;i++)
+    {
+      delete keysArray[i];
+    }
+  counter=0;
+}
+
 void JsonKeyChain::query()
 {
   sendQueryFrame(INTERNET_QUERY_JSON);
@@ -95,7 +101,7 @@ void JsonKeyChain::queryArrayLength()
 
 void JsonKeyChain::sendQueryFrame(byte functionId)
 {
-    if(counter>16)return;
+  if(counter>16||counter==0)return;
   int types=0;
   FunctionArg **arguments =(FunctionArg**)malloc(sizeof(FunctionArg *)*(counter+2));
   for(int i=2;i<counter+2;i++)
@@ -125,20 +131,14 @@ void JsonKeyChain::sendQueryFrame(byte functionId)
     for(int i=2;i<counter+2;i++)
     {
       delete arguments[i];
-      delete keysArray[i-2];
     }
     delete arguments[1];
     delete arguments[0];
     free(arguments);
-    counter=0;
-    isDisposed=true;
+    dispose();
 }
 
 JsonKeyChain::~JsonKeyChain()
 {
-    if(isDisposed)return;
-    for(int i=0;i<counter;i++)
-    {
-      delete keysArray[i];
-    }
+    dispose();
 }
