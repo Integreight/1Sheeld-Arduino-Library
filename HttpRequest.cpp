@@ -28,7 +28,7 @@ HttpRequest::HttpRequest(char * _url)
 	finished = false;
 	callbacksRequested = 0;
 	url = NULL;
-	response.requestId = getRequestId();
+	response.requestId = getId();
 	if(!OneSheeldClass::isInitialized())
 	{
 		int urlLength=strlen(_url);

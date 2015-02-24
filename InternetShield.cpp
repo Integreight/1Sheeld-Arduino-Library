@@ -186,7 +186,7 @@ void InternetShield::processData()
 		int i;
 		for (i = 0; i < MAX_NO_OF_REQUESTS; i++)
 		{  
-			if(requestsArray[i]!=NULL&&requestsArray[i]->getRequestId()==requestId)
+			if(requestsArray[i]!=NULL&&requestsArray[i]->getId()==requestId)
 			{
 				if((((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS)||
 				   (((requestsArray[i]->callbacksRequested) & FAILURE_CALLBACK_BIT) && functionId == HTTP_GET_FAILURE)||
