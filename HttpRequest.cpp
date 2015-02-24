@@ -96,7 +96,7 @@ void HttpRequest::addRawData(char * data)
 						 new FunctionArg(strlen(data),(byte*)data));
 }
 
-int HttpRequest::getRequestId(void)
+int HttpRequest::getId(void)
 {
 	return (localRequestId[1] << 8) | localRequestId[0];
 }

@@ -55,7 +55,7 @@ public:
 	void addParameter(char * ,char *);
 	void addRawData(char *);
 	//Getters
-	int getRequestId();
+	int getId();
 	//Deleters
 	void deleteHeaders(void);
 	void deleteParameters(void);
