@@ -37,7 +37,7 @@ void loop()
     /* First insure to save previous logged values. */
     Logger.stop();
     /* Set a delay. */
-    delay(500);
+    OneSheeld.delay(500);
     /* Start logging in a new CSV file. */
     Logger.start("Mic values");
     /* Set startFlag. */
@@ -52,7 +52,7 @@ void loop()
     /* Log the row in the file. */
     Logger.log();  
     /* Delay for 1 second. */
-    delay(1000);
+    OneSheeld.delay(1000);
     /* Increment counter. */
     counter++;
     /* Stop logging after 20 readings and save the CSV file. */

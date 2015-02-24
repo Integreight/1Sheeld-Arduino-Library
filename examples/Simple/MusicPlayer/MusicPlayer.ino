@@ -43,7 +43,7 @@ void loop()
        /* Turn on the music. */
        MusicPlayer.play();
        /* Wait for 300 ms. */
-       delay(300);
+       OneSheeld.delay(300);
   }
   /* Always check button 2 state. */
   if(digitalRead(buttonPin2) == HIGH)
@@ -53,7 +53,7 @@ void loop()
       /* Turn off the music. */
       MusicPlayer.pause();
       /* Wait for 300 ms. */
-      delay(300);
+      OneSheeld.delay(300);
       
   }
 }

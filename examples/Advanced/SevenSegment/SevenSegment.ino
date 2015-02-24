@@ -33,7 +33,7 @@ void loop()
     /* Display the number on the seven segment. */
     SevenSegment.setNumber(number);
     /* Wait for a second. */
-    delay(1000);
+    OneSheeld.delay(1000);
     /* Increment the number. */
     number++;
     /* If the number reaches 9, return it back to zero. */

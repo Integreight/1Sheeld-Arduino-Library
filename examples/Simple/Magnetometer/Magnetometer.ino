@@ -48,5 +48,5 @@ void loop()
   /* Display the magnetic strength. */
   lcd.print(MagnetometerSensor.getMagneticStrength());
   /* Wait for 1 second. */
-  delay(1000);
+  OneSheeld.delay(1000);
 }

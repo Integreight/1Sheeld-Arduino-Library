@@ -22,8 +22,8 @@ void loop()
 {
   /* Turn on the LED. */
   LED.setHigh();
-  delay(1000);
+  OneSheeld.delay(1000);
   /* Turn off the LED. */
   LED.setLow();
-  delay(1000);
+  OneSheeld.delay(1000);
 }

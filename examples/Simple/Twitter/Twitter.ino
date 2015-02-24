@@ -37,7 +37,7 @@ void loop()
     /* Tweet. */
     Twitter.tweet("I'm tweeting from @Arduino via @1Sheeld!");
     /* Wait for 300 ms. */
-    delay(300);
+    OneSheeld.delay(300);
   }
   else
   {

@@ -37,7 +37,7 @@ void loop()
     /* Check-in at Integreight. */
     Foursquare.checkIn("511759f2e4b0b0ae6ed91067","Back to work!");
     /* Wait for 300 ms. */
-    delay(300);
+    OneSheeld.delay(300);
   }
   else
   {

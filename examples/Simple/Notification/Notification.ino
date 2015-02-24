@@ -38,7 +38,7 @@ void loop()
     /* Send a notification to your phone. */
     Notification.notifyPhone("Someone pressed the button!");
     /* Wait for 300 ms. */
-    delay(300);
+    OneSheeld.delay(300);
   }
   else
   {

@@ -55,7 +55,7 @@ void loop()
     /* Turn on the LED. */
     digitalWrite(ledPin,HIGH);
     /* Wait half a second. */
-    delay(500);
+    OneSheeld.delay(500);
     /* Reset the Counter. */
     counter = 0;
   }

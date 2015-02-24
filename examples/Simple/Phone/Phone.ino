@@ -38,7 +38,7 @@ void loop()
       /* Call a friend. */
       Phone.call("1234567890");
       /* Wait for 300 ms. */
-      delay(300);
+      OneSheeld.delay(300);
   }
 
   /* Turn off the LED. */
