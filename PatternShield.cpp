@@ -64,11 +64,11 @@ void PatternShield::processData()
 			nodes[i]=node;
 		}
 
-		if(isCallBackAssigned && !OneSheeld.isInACallback())
+		if(isCallBackAssigned && !isInACallback())
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*changeCallBack)(nodes,size);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 
 	}

@@ -32,6 +32,9 @@ protected:
 	ShieldParent(byte);
 	virtual void processFrame(void);
 	virtual void processData(void){};
+	void enteringACallback();
+	void exitingACallback();
+	bool isInACallback();
 public:
 	/* Functions will be inherited by all shields. */
 	void select(void);

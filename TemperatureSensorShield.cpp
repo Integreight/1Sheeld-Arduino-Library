@@ -38,11 +38,11 @@ void TemperatureSensorShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invocation
-		if(isCallBackAssigned && !OneSheeld.isInACallback())
+		if(isCallBackAssigned && !isInACallback())
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*changeOnCallBack)(value);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 	}
 }

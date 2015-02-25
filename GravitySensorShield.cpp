@@ -58,11 +58,11 @@ void GravitySensorShield::processData()
 			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 
 			//User Function Invoked
-			if(isCallBackAssigned && !OneSheeld.isInACallback())
+			if(isCallBackAssigned && !isInACallback())
 			{
-				OneSheeld.enteringACallback();
+				enteringACallback();
 				(*changeCallBack)(valueX,valueY,valueZ);
-				OneSheeld.exitingACallback();
+				exitingACallback();
 			}
 		}
 }

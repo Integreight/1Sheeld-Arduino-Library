@@ -43,11 +43,11 @@ void LightSensorShield::processData()
 		value|=(data[1]<<8);
 		value|=(data[2]<<16);
 		//Users Function Invoked
-		if(isCallBackAssigned && !OneSheeld.isInACallback())
+		if(isCallBackAssigned && !isInACallback())
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*changeCallBack)(value);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 	}
 }

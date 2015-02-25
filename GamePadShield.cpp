@@ -82,11 +82,11 @@ void GamePadShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if(isCallBackAssigned && !OneSheeld.isInACallback())
+		if(isCallBackAssigned && !isInACallback())
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*buttonChangeCallBack)(up , down , left , right , orange , red , green , blue);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 	}
 }

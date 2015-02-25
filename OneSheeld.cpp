@@ -45,6 +45,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       usedSetOnStringWithString=false;
       isOneSheeldRemoteDataUsed=false;
       inACallback=false;
+      callbacksInterrupts=false;
 }
 
 //Library Starter
@@ -574,7 +575,7 @@ unsigned char OneSheeldClass::analogRead(int pin)
 
 void OneSheeldClass::enteringACallback()
 {
-  if(!inACallback)
+  if(!isInACallback())
   {
     inACallback=true;
     sendPacket(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
@@ -583,7 +584,7 @@ void OneSheeldClass::enteringACallback()
 
 void OneSheeldClass::exitingACallback()
 {
-  if(inACallback)
+  if(isInACallback())
   {
     inACallback=false;
     sendPacket(ONESHEELD_ID,0,CALLBACK_EXITED,0);
@@ -592,7 +593,22 @@ void OneSheeldClass::exitingACallback()
 
 bool OneSheeldClass::isInACallback()
 {
-  return inACallback;
+  return inACallback && !callbacksInterrupts;
+}
+
+bool OneSheeldClass::isCallbacksInterruptsSet()
+{
+  return callbacksInterrupts;
+}
+
+void OneSheeldClass::disableCallbacksInterrupts()
+{
+   callbacksInterrupts=false;
+}
+
+void OneSheeldClass::enableCallbacksInterrupts()
+{
+   callbacksInterrupts=true;
 }
 
 void OneSheeldClass::delay(unsigned long time)

@@ -44,6 +44,21 @@ byte ShieldParent::getShieldId()
 	return shieldID;
 }
 
+void ShieldParent::enteringACallback()
+{
+  OneSheeld.enteringACallback();
+}
+
+void ShieldParent::exitingACallback()
+{
+  OneSheeld.exitingACallback();
+}
+
+bool ShieldParent::isInACallback()
+{
+  return OneSheeld.isInACallback();
+}
+
 void ShieldParent::processFrame()
 {
 	if(shieldID!=OneSheeld.getShieldId())return;
@@ -51,11 +66,11 @@ void ShieldParent::processFrame()
 
 	if(functionID == CHECK_SELECTED)
 	{
-		if(isCallBackSet && !OneSheeld.isInACallback())
+		if(isCallBackSet && !isInACallback())
 		{
-				OneSheeld.enteringACallback();
+				enteringACallback();
 				(*selectedCallBack)();
-				OneSheeld.exitingACallback();
+				exitingACallback();
 		}
 	}
 	else processData();

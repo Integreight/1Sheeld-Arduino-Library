@@ -79,34 +79,34 @@ void VoiceRecognitionShield::processData()
 		newCommand=true;
 
 		//Invoke Users function
-		if(!OneSheeld.isInACallback())
+		if(!isInACallback())
 		{
 			if(isCallBackAssigned)
 			{
-				OneSheeld.enteringACallback();
+				enteringACallback();
 				(*changeCallBack)(voice);
-				OneSheeld.exitingACallback();
+				exitingACallback();
 			}
 			//Invoke Users function
 			if (usedSetOnWithString)
 			{
 				String convertedIncomingVoice (voice);
-				OneSheeld.enteringACallback();
+				enteringACallback();
 				(*changeCallBackString)(convertedIncomingVoice);
-				OneSheeld.exitingACallback();
+				exitingACallback();
 			}
 		}
 
 	}
-	else if(functionID==VOICE_GET_ERROR && !OneSheeld.isInACallback())
+	else if(functionID==VOICE_GET_ERROR && !isInACallback())
 	{
 		errorNumber=OneSheeld.getArgumentData(0)[0];
 		//Invoke User Function
 		if(errorAssigned)
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*errorCallBack)(errorNumber);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 	}
 }

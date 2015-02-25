@@ -39,11 +39,11 @@ void MicShield::processData()
 		value=OneSheeld.getArgumentData(0)[0];
 
 		//Users Function Invoked
-		if(isCallBackAssigned && !OneSheeld.isInACallback())
+		if(isCallBackAssigned && !isInACallback())
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*changeCallBack)(value);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 	}
 }

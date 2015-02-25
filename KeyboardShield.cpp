@@ -38,11 +38,11 @@ void KeyboardShield::processData()
 		
 		character=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if(isCallBackAssigned && !OneSheeld.isInACallback())
+		if(isCallBackAssigned && !isInACallback())
 		{
-			OneSheeld.enteringACallback();
+			enteringACallback();
 			(*buttonChangeCallBack)(character);
-			OneSheeld.exitingACallback();
+			exitingACallback();
 		}
 	}
 }

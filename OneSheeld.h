@@ -130,10 +130,10 @@ public:
 	void setOnNewMessage(void (*)(char * ,char * ,char *));
 	void setOnNewMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
-	void enteringACallback();
-	void exitingACallback();
-	bool isInACallback();
 	void delay(unsigned long);
+	bool isCallbacksInterruptsSet();
+	void enableCallbacksInterrupts();
+	void disableCallbacksInterrupts();
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
@@ -149,6 +149,7 @@ private:
 	bool usedSetOnStringWithString;
 	bool isOneSheeldRemoteDataUsed;
 	bool inACallback;
+	bool callbacksInterrupts;
 	//Data bytes
 	byte numberOfDataMalloced;
 	byte shield;
@@ -190,6 +191,11 @@ private:
 	void (*changeFloatCallBackWithString)(String ,String , float);
 	void (*changeStringCallBack)(char*,char*, char*);
 	void (*changeStringCallBackWithString)(String ,String ,String );
+	void enteringACallback();
+	void exitingACallback();
+	bool isInACallback();
+friend class RemoteOneSheeld;
+friend class ShieldParent;
 };
 
 
