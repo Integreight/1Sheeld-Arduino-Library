@@ -129,14 +129,21 @@ void SMSShieldClass::processData()
 		}
 			text[textlength]='\0';
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(!OneSheeld.isInACallback())
 		{
-			(*changeCallBack)(number,text);
-		}
+			if(isCallBackAssigned)
+			{
+				OneSheeld.enteringACallback();
+				(*changeCallBack)(number,text);
+				OneSheeld.exitingACallback();
+			}
 
-		if(usedSetOnWithString)
-		{
-			(*changeCallBackString)(getNumberAsString(),getSmsAsString());
+			if(usedSetOnWithString)
+			{
+				OneSheeld.enteringACallback();
+				(*changeCallBackString)(getNumberAsString(),getSmsAsString());
+				OneSheeld.exitingACallback();
+			}
 		}
 	}
 }

@@ -102,14 +102,21 @@ void PhoneShieldClass::processData()
 
 			number[length]='\0';
 			//Users Function Invoked
-			if (isCallBackAssigned)
+			if(!OneSheeld.isInACallback())
 			{
-				(*changeCallBack)(value,number);
-			}
-			if(usedSetOnString)
-			{
-				String phoneNumberAsString(number);
-				(*changeCallBackString)(value,phoneNumberAsString);
+				if (isCallBackAssigned)
+				{
+					OneSheeld.enteringACallback();
+					(*changeCallBack)(value,number);
+					OneSheeld.exitingACallback();
+				}
+				if(usedSetOnString)
+				{
+					OneSheeld.enteringACallback();
+					String phoneNumberAsString(number);
+					(*changeCallBackString)(value,phoneNumberAsString);
+					OneSheeld.exitingACallback();
+				}
 			}
 	}
 }

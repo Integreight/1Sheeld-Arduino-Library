@@ -60,9 +60,11 @@ void AccelerometerSensorShield::processData()
 			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 			
 			//User Function Invoked
-			if(isCallBackAssigned)
+			if(isCallBackAssigned && !OneSheeld.isInACallback())
 			{
+				OneSheeld.enteringACallback();
 				(*changeCallBack)(valueX,valueY,valueZ);
+				OneSheeld.exitingACallback();
 			}
 		}	
 }

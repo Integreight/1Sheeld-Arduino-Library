@@ -51,7 +51,12 @@ void ShieldParent::processFrame()
 
 	if(functionID == CHECK_SELECTED)
 	{
-		if(isCallBackSet)(*selectedCallBack)();
+		if(isCallBackSet && !OneSheeld.isInACallback())
+		{
+				OneSheeld.enteringACallback();
+				(*selectedCallBack)();
+				OneSheeld.exitingACallback();
+		}
 	}
 	else processData();
 }

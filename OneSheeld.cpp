@@ -486,14 +486,23 @@ void OneSheeldClass::processRemoteData()
 
     float incomingValue = convertBytesToFloat(getArgumentData(2));
 
-    if(isSetOnFloatMessageInvoked)
-    (*changeFloatCallBack)(remoteAddress,key,incomingValue);
-
-    if(usedSetOnFloatWithString)
+    if(!isInACallback())
     {
-      String remoteAddressInString(remoteAddress);
-      String keyInString(key);
-      (*changeFloatCallBackWithString)(remoteAddressInString,keyInString,incomingValue);
+      if(isSetOnFloatMessageInvoked)
+      {
+        enteringACallback();
+        (*changeFloatCallBack)(remoteAddress,key,incomingValue);
+        exitingACallback();
+      }
+
+      if(usedSetOnFloatWithString)
+      {
+        String remoteAddressInString(remoteAddress);
+        String keyInString(key);
+        enteringACallback();
+        (*changeFloatCallBackWithString)(remoteAddressInString,keyInString,incomingValue);
+        exitingACallback();
+      }
     }
 
   }
@@ -513,17 +522,25 @@ void OneSheeldClass::processRemoteData()
     memcpy(stringData,getArgumentData(2),stringDataLength);
     stringData[stringDataLength]='\0';
 
-    if(isSetOnStringMessageInvoked)
-    (*changeStringCallBack)(remoteAddress,key,stringData);
+    if(!isInACallback())
+    {    
+      if(isSetOnStringMessageInvoked)
+      {
+        enteringACallback();
+        (*changeStringCallBack)(remoteAddress,key,stringData);
+        exitingACallback();
+      }
 
-    if(usedSetOnStringWithString)
-    {
-      String remoteAddressInString(remoteAddress);
-      String keyInString(key);
-      String stringDataInString(stringData);
-      (*changeStringCallBackWithString)(remoteAddressInString,keyInString,stringDataInString);
+      if(usedSetOnStringWithString)
+      {
+        String remoteAddressInString(remoteAddress);
+        String keyInString(key);
+        String stringDataInString(stringData);
+        enteringACallback();
+        (*changeStringCallBackWithString)(remoteAddressInString,keyInString,stringDataInString);
+        exitingACallback();
+      }
     }
-
   }
 }
 #endif

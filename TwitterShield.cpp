@@ -263,17 +263,23 @@ void TwitterShieldClass::processData()
 		}
 			tweetText[tweetLength]='\0';
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(!OneSheeld.isInACallback())
 		{
-			(*changeCallBack)(userName,tweetText);
-		}
+			if(isCallBackAssigned)
+			{
+				OneSheeld.enteringACallback();
+				(*changeCallBack)(userName,tweetText);
+				OneSheeld.exitingACallback();
+			}
 
-		if(usedSetOnWithString)
-		{
-			String usernameString(userName);
-			String tweetTextString(tweetText);
-
-			(*changeCallBackString)(usernameString,tweetTextString);
+			if(usedSetOnWithString)
+			{
+				String usernameString(userName);
+				String tweetTextString(tweetText);
+				OneSheeld.enteringACallback();
+				(*changeCallBackString)(usernameString,tweetTextString);
+				OneSheeld.exitingACallback();
+			}
 		}
 	}
 }

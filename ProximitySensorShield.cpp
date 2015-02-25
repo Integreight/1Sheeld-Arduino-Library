@@ -37,8 +37,12 @@ void ProximitySensorShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if (isCallBackAssigned)
-		(*changeCallBack)(value);
+		if (isCallBackAssigned && !OneSheeld.isInACallback())
+		{
+			OneSheeld.enteringACallback();
+			(*changeCallBack)(value);
+			OneSheeld.exitingACallback();
+		}
 	}
 }
 //Users Function Setter

@@ -42,9 +42,11 @@ void PressureSensorShield::processData()
 		value|=data[0];
 		value|=(data[1]<<8);
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !OneSheeld.isInACallback())
 		{
+			OneSheeld.enteringACallback();
 			(*changeCallBack)(value);
+			OneSheeld.exitingACallback();
 		}
 	}
 }

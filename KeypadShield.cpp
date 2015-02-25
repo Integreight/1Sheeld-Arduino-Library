@@ -56,8 +56,12 @@ void KeypadShieldClass::processData()
      row=OneSheeld.getArgumentData(0)[0];
      col=OneSheeld.getArgumentData(1)[0];
      //Users Function Invoked
-     if (isCallbackAssigned)
-     (*buttonChangeCallback)(row,col);
+     if (isCallbackAssigned && !OneSheeld.isInACallback())
+      {
+        OneSheeld.enteringACallback();
+        (*buttonChangeCallback)(row,col);
+        OneSheeld.exitingACallback();
+      }
    }
 }
 

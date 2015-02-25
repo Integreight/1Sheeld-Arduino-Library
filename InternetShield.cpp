@@ -240,150 +240,126 @@ void InternetShield::processData()
 						requestsArray[i]->response.statusCode=statusCode;
 						requestsArray[i]->response.totalBytesCount=totalBytesCount;
 					}
-					if(((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS)
-						{
-							if(!OneSheeld.isInACallback())
+					if(!OneSheeld.isInACallback())
+					{
+						if(((requestsArray[i]->callbacksRequested) & SUCCESS_CALLBACK_BIT) && functionId == HTTP_GET_SUCCESS)
 							{
 								OneSheeld.enteringACallback();
 								requestsArray[i]->successCallBack(requestsArray[i]->response);
 								OneSheeld.exitingACallback();
 							}
-						}
-					else if(((requestsArray[i]->callbacksRequested) & FAILURE_CALLBACK_BIT) && functionId == HTTP_GET_FAILURE)
-						{
-							if(!OneSheeld.isInACallback())
+						else if(((requestsArray[i]->callbacksRequested) & FAILURE_CALLBACK_BIT) && functionId == HTTP_GET_FAILURE)
 							{
 								OneSheeld.enteringACallback();
 								requestsArray[i]->failureCallBack(requestsArray[i]->response);
 								OneSheeld.exitingACallback();
 							}
-						}
-					else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_NEXT_RESPONSE_BIT)
-						{
-							if(!OneSheeld.isInACallback())
+						else if((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_NEXT_RESPONSE_BIT)
 							{
 								OneSheeld.enteringACallback();
 								requestsArray[i]->response.getNextCallBack(requestsArray[i]->response);
 								OneSheeld.exitingACallback();
 							}
-						}
+					}
 				}
-				else if(((requestsArray[i]->callbacksRequested) & START_CALLBACK_BIT) && functionId == HTTP_GET_STARTED)
+				else if(!OneSheeld.isInACallback())
 				{
-					if(!OneSheeld.isInACallback())
+					if(((requestsArray[i]->callbacksRequested) & START_CALLBACK_BIT) && functionId == HTTP_GET_STARTED)
 					{
 						OneSheeld.enteringACallback();
 						requestsArray[i]->startCallBack();
 						OneSheeld.exitingACallback();
 					}
-				}
-				else if(((requestsArray[i]->callbacksRequested) & FINISH_CALLBACK_BIT) && functionId == HTTP_GET_ON_FINISH)
-				{
-					if(!OneSheeld.isInACallback())
+					else if(((requestsArray[i]->callbacksRequested) & FINISH_CALLBACK_BIT) && functionId == HTTP_GET_ON_FINISH)
 					{
 						OneSheeld.enteringACallback();
 						requestsArray[i]->finishCallBack();
 						OneSheeld.exitingACallback();
 					}
-				}
-				else if(((requestsArray[i]->callbacksRequested) & PROGRESS_CALLBACK_BIT) && functionId == HTTP_GET_ON_PROGRESS)
-				{
-					if(!OneSheeld.isInACallback())
+					else if(((requestsArray[i]->callbacksRequested) & PROGRESS_CALLBACK_BIT) && functionId == HTTP_GET_ON_PROGRESS)
 					{
 						OneSheeld.enteringACallback();
 						requestsArray[i]->progressCallback(progressDoneBytes,totalBytesCount);
 						OneSheeld.exitingACallback();
 					}
-				}
-				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) && functionId == RESPONSE_GET_ERROR) 
-				{
-					if(!OneSheeld.isInACallback())
+					else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) && functionId == RESPONSE_GET_ERROR) 
 					{
 						OneSheeld.enteringACallback();
 						requestsArray[i]->response.getErrorCallBack(error);	
 						OneSheeld.exitingACallback();
 					}
-				}
-				else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_INPUT_GET_HEADER_BIT) && functionId == RESPONSE_INPUT_GET_HEADER)
-				{
-					byte headerNameLength = OneSheeld.getArgumentLength(1);
-
-					char  headerName [headerNameLength+1];
-					for(int k = 0 ;k<headerNameLength ;k++)
+					else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_INPUT_GET_HEADER_BIT) && functionId == RESPONSE_INPUT_GET_HEADER)
 					{
-						headerName[k]=OneSheeld.getArgumentData(1)[k];
-					}
-					headerName[headerNameLength]='\0';
+						byte headerNameLength = OneSheeld.getArgumentLength(1);
+
+						char  headerName [headerNameLength+1];
+						for(int k = 0 ;k<headerNameLength ;k++)
+						{
+							headerName[k]=OneSheeld.getArgumentData(1)[k];
+						}
+						headerName[headerNameLength]='\0';
 
 
-					byte headerValueLength = OneSheeld.getArgumentLength(2);
+						byte headerValueLength = OneSheeld.getArgumentLength(2);
 
-					char  headerValue [headerValueLength+1];
-					for(int j = 0 ;j<headerValueLength ;j++)
-					{
-						headerValue[j]=OneSheeld.getArgumentData(2)[j];
-					}
-					headerValue[headerValueLength]='\0';
-					if(!OneSheeld.isInACallback())
-					{
+						char  headerValue [headerValueLength+1];
+						for(int j = 0 ;j<headerValueLength ;j++)
+						{
+							headerValue[j]=OneSheeld.getArgumentData(2)[j];
+						}
+						headerValue[headerValueLength]='\0';
 						OneSheeld.enteringACallback();
 						requestsArray[i]->response.getHeaderCallBack(headerName,headerValue);
 						OneSheeld.exitingACallback();
 					}
-				}
-				else if(functionId == RESPONSE_GET_JSON || functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
-				{
-					int keyChainTypes = OneSheeld.getArgumentData(2)[0]|((OneSheeld.getArgumentData(2)[1])<<8);
-
-					byte argumentNo = OneSheeld.getArgumentNo();
-					if(argumentNo - 3 <= MAX_JSON_KEY_DEPTH)
+					else if(functionId == RESPONSE_GET_JSON || functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
 					{
-						JsonKeyChain responseJsonChain;
-						for(int j=3;j<argumentNo;j++)
+						int keyChainTypes = OneSheeld.getArgumentData(2)[0]|((OneSheeld.getArgumentData(2)[1])<<8);
+
+						byte argumentNo = OneSheeld.getArgumentNo();
+						if(argumentNo - 3 <= MAX_JSON_KEY_DEPTH)
 						{
-							if((keyChainTypes & (1 << (j-3))))
+							JsonKeyChain responseJsonChain;
+							for(int j=3;j<argumentNo;j++)
 							{
-								byte jsonKeyValueLength = OneSheeld.getArgumentLength(j);
-								char  jsonKeyValue[jsonKeyValueLength+1];
-								for(int k = 0 ;k<jsonKeyValueLength ;k++)
+								if((keyChainTypes & (1 << (j-3))))
 								{
-									jsonKeyValue[k]=OneSheeld.getArgumentData(j)[k];
+									byte jsonKeyValueLength = OneSheeld.getArgumentLength(j);
+									char  jsonKeyValue[jsonKeyValueLength+1];
+									for(int k = 0 ;k<jsonKeyValueLength ;k++)
+									{
+										jsonKeyValue[k]=OneSheeld.getArgumentData(j)[k];
+									}
+									jsonKeyValue[jsonKeyValueLength]='\0';
+									responseJsonChain[jsonKeyValue];
 								}
-								jsonKeyValue[jsonKeyValueLength]='\0';
-								responseJsonChain[jsonKeyValue];
+								else
+								{
+									int jsonKeyValue = OneSheeld.getArgumentData(j)[0]|((OneSheeld.getArgumentData(j)[1])<<8);
+									responseJsonChain[jsonKeyValue];
+								}
 							}
-							else
-							{
-								int jsonKeyValue = OneSheeld.getArgumentData(j)[0]|((OneSheeld.getArgumentData(j)[1])<<8);
-								responseJsonChain[jsonKeyValue];
-							}
-						}
 
-						if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT) && functionId == RESPONSE_GET_JSON)
-						{
-							byte jsonResponseLength = OneSheeld.getArgumentLength(1);
+							if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_BIT) && functionId == RESPONSE_GET_JSON)
+							{
+								byte jsonResponseLength = OneSheeld.getArgumentLength(1);
 
-							char  jsonResponseValue[jsonResponseLength+1];
-							for(int k = 0 ;k<jsonResponseLength ;k++)
-							{
-								jsonResponseValue[k]=OneSheeld.getArgumentData(1)[k];
-							}
-							jsonResponseValue[jsonResponseLength]='\0';
-							if(!OneSheeld.isInACallback())
-							{
+								char  jsonResponseValue[jsonResponseLength+1];
+								for(int k = 0 ;k<jsonResponseLength ;k++)
+								{
+									jsonResponseValue[k]=OneSheeld.getArgumentData(1)[k];
+								}
+								jsonResponseValue[jsonResponseLength]='\0';
 								OneSheeld.enteringACallback(); 	
 								requestsArray[i]->response.getJsonCallBack(responseJsonChain,jsonResponseValue);
 								OneSheeld.exitingACallback();
 							}
-						}
-						else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_ARRAY_LENGTH_BIT) && functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
-						{
-							unsigned long arrayLength  =(unsigned long)OneSheeld.getArgumentData(1)[0]
-							 		|(((unsigned long)OneSheeld.getArgumentData(1)[1])<<8)
-							 		|(((unsigned long)OneSheeld.getArgumentData(1)[2])<<16)
-							 		|(((unsigned long)OneSheeld.getArgumentData(1)[3])<<24);
-							if(!OneSheeld.isInACallback())
+							else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_JSON_ARRAY_LENGTH_BIT) && functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
 							{
+								unsigned long arrayLength  =(unsigned long)OneSheeld.getArgumentData(1)[0]
+								 		|(((unsigned long)OneSheeld.getArgumentData(1)[1])<<8)
+								 		|(((unsigned long)OneSheeld.getArgumentData(1)[2])<<16)
+								 		|(((unsigned long)OneSheeld.getArgumentData(1)[3])<<24);
 								OneSheeld.enteringACallback(); 		
 								requestsArray[i]->response.getJsonArrayLengthCallBack(responseJsonChain,arrayLength);
 								OneSheeld.exitingACallback();

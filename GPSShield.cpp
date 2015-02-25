@@ -48,9 +48,11 @@ void GPSShieldClass::processData ()
 		isInit=true;  									//setting a flag 
 	}
 	//Users Function Invoked
-	if (isCallBackAssigned)
+	if (isCallBackAssigned && !OneSheeld.isInACallback())
 	{
+		OneSheeld.enteringACallback();
 		(*changeCallBack)(LatValue,LonValue);
+		OneSheeld.exitingACallback();
 	}
 }
 
