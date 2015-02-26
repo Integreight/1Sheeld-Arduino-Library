@@ -147,7 +147,7 @@ void InternetShield::processData()
 	byte functionId = OneSheeld.getFunctionId();
 
 	if(functionId == HTTP_GET_SUCCESS   || functionId == HTTP_GET_FAILURE           ||
-	   functionId == HTTP_GET_STARTED   || functionId == HTTP_GET_ON_PROGRESS       ||
+	   functionId == HTTP_GET_STARTED   ||
 	   functionId == HTTP_GET_ON_FINISH || functionId == RESPONSE_GET_NEXT_RESPONSE ||
 	   functionId == RESPONSE_GET_ERROR || functionId == RESPONSE_INPUT_GET_HEADER	||
 	   functionId == RESPONSE_GET_JSON  || functionId == RESPONSE_GET_JSON_ARRAY_LENGTH)
@@ -155,7 +155,6 @@ void InternetShield::processData()
 
 		int requestId  = OneSheeld.getArgumentData(0)[0]|((OneSheeld.getArgumentData(0)[1])<<8);
 		unsigned long totalBytesCount  = 0;
-		unsigned long progressDoneBytes  = 0;
 		int statusCode = 0;
 		int error = 0;
 
@@ -163,17 +162,9 @@ void InternetShield::processData()
 			statusCode = OneSheeld.getArgumentData(1)[0]|((OneSheeld.getArgumentData(1)[1])<<8);
 		else if (functionId == RESPONSE_GET_ERROR)
 			error=OneSheeld.getArgumentData(1)[0];
-		
-		else if(functionId == HTTP_GET_ON_PROGRESS)
-		{	
-			progressDoneBytes  =(unsigned long)OneSheeld.getArgumentData(1)[0]
-						 		|(((unsigned long)OneSheeld.getArgumentData(1)[1])<<8)
-						 		|(((unsigned long)OneSheeld.getArgumentData(1)[2])<<16)
-						 		|(((unsigned long)OneSheeld.getArgumentData(1)[3])<<24); 
-		}
 
 
-		if(functionId == HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE||functionId == HTTP_GET_ON_PROGRESS)
+		if(functionId == HTTP_GET_SUCCESS||functionId == HTTP_GET_FAILURE)
 		{	
 			 totalBytesCount  =(unsigned long)OneSheeld.getArgumentData(2)[0]
 						 		|(((unsigned long)OneSheeld.getArgumentData(2)[1])<<8)
@@ -274,12 +265,6 @@ void InternetShield::processData()
 					{
 						enteringACallback();
 						requestsArray[i]->finishCallBack();
-						exitingACallback();
-					}
-					else if(((requestsArray[i]->callbacksRequested) & PROGRESS_CALLBACK_BIT) && functionId == HTTP_GET_ON_PROGRESS)
-					{
-						enteringACallback();
-						requestsArray[i]->progressCallback(progressDoneBytes,totalBytesCount);
 						exitingACallback();
 					}
 					else if(((requestsArray[i]->response.callbacksRequested) & RESPONSE_GET_ERROR_BIT) && functionId == RESPONSE_GET_ERROR) 

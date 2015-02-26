@@ -31,14 +31,12 @@
 #define HTTP_GET_SUCCESS					0x01
 #define HTTP_GET_FAILURE					0x02
 #define HTTP_GET_STARTED					0x03
-#define HTTP_GET_ON_PROGRESS				0x04
 #define HTTP_GET_ON_FINISH					0x05
 
 #define SUCCESS_CALLBACK_BIT				0x01
 #define FAILURE_CALLBACK_BIT				0x02
 #define START_CALLBACK_BIT					0x04
 #define FINISH_CALLBACK_BIT					0x08
-#define PROGRESS_CALLBACK_BIT				0x10
 
 class HttpRequest 
 {
@@ -70,7 +68,6 @@ public:
 	void setOnSuccess(void (*)(HttpResponse&));
 	void setOnFailure(void (*)(HttpResponse&));
 	void setOnStart(void (*)());
-	void setOnProgress(void (*)(int ,int));
 	void setOnFinish(void (*)());
 	void sendInitFrame();
 	HttpResponse & getResponse();
@@ -85,7 +82,6 @@ private:
 	void (*failureCallBack)(HttpResponse &);
 	void (*startCallBack)();
 	void (*finishCallBack)();
-	void (*progressCallback)(int,int);
 	byte callbacksRequested;
 	HttpResponse response;
 	static int totalRequests;
