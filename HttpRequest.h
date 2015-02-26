@@ -44,9 +44,7 @@ class HttpRequest
 {
 public:
 	//Constructors
-	#ifdef INTERNET_SHIELD
 	HttpRequest(char *);
-	#endif
 	//Setters
 	void setUrl(char *);
 	//Adders
