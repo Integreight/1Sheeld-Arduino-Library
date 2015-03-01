@@ -93,7 +93,7 @@ void PhoneShieldClass::processData()
 		
 		byte length=OneSheeld.getArgumentLength(0);
 		
-		number=(char*)malloc(sizeof(char)*(length+1));
+		number=(char*)malloc(1*(length+1));
 		
 		for (int i=0; i< length;i++)
 			{

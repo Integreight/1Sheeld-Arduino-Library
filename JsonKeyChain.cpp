@@ -113,19 +113,19 @@ void JsonKeyChain::sendQueryFrame(byte functionId)
         byte integerArray[2] ;
       integerArray[1] = (keysArray[i-2]->getNumber() >> 8) & 0xFF;
       integerArray[0] = keysArray[i-2]->getNumber() & 0xFF;
-        arguments[i]=new FunctionArg(sizeof(int),integerArray); 
+        arguments[i]=new FunctionArg(2,integerArray); 
       }
       types|=((keysArray[i-2]->isString())<<(i-2));
     }
     byte integerArray[2] ;
     integerArray[1] = (types >> 8) & 0xFF;
     integerArray[0] = types & 0xFF;
-    arguments[1]=new FunctionArg(sizeof(int),integerArray);
+    arguments[1]=new FunctionArg(2,integerArray);
 
     byte requestIdArray[2] ;
     requestIdArray[1] = (request >> 8) & 0xFF;
     requestIdArray[0] = request & 0xFF;
-    arguments[0]=new FunctionArg(sizeof(int),requestIdArray);
+    arguments[0]=new FunctionArg(2,requestIdArray);
 
     OneSheeld.sendPacket(INTERNET_ID,0,functionId,counter+2,arguments);
 
