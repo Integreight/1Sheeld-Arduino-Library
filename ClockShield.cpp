@@ -12,14 +12,13 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "ClockShield.h"
-#include "Arduino.h"
+//#include "Arduino.h"
 
 
 //Class Constructor
-ClockShield::ClockShield()
+ClockShield::ClockShield() : ShieldParent(CLOCK_ID)
 {
 	hours=0;
 	minutes=0;
@@ -121,6 +120,7 @@ void ClockShield::processData()
 	}
 }
 
+#ifdef CLOCK_SHIELD
 //Intantiating Object
 ClockShield Clock;
-
+#endif

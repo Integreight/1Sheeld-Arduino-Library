@@ -15,6 +15,8 @@
 #ifndef DataLogger_h
 #define DataLogger_h
 
+#include "ShieldParent.h"
+
 //Ouput Function ID's
 #define LOGGER_START_LOG 	   0x01
 #define LOGGER_STOP_LOG	   	   0x02
@@ -23,9 +25,10 @@
 #define LOGGER_LOG_DATA	   	   0x05
 
 
-class DataLoggerShield
+class DataLoggerShield : public ShieldParent
 {
 public:
+	DataLoggerShield():ShieldParent(DATA_LOGGER_ID){};
 	//Starters
 	void start();
 	void start(const char *);

@@ -16,11 +16,12 @@
 #ifndef GravitySensorShield_h
 #define GravitySensorShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID
 #define GRAVITY_VALUE 0x01
 
-
-class GravitySensorShield
+class GravitySensorShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -31,6 +32,7 @@ public:
 	float getZ();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float,float,float));
+
 private:
 	//Reserve Variables
 	float valueX ,valueY,valueZ;
@@ -39,11 +41,6 @@ private:
 	//Process Input Data
 	void processData();
 	void (*changeCallBack)(float,float,float);
-
-	friend class OneSheeldClass;
-
-
-	
 };
 
 //Extern Object

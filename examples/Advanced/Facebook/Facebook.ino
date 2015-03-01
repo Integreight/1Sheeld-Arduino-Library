@@ -51,7 +51,7 @@ void loop()
     /* Update the LCD screen. */
     lcd.print("Status updated!");
     /* Delay for 2 seconds. */
-    delay(2000);
+    OneSheeld.delay(2000);
     /* Clear the LCD. */
     lcd.clear();
   }

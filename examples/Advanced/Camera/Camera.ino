@@ -28,7 +28,7 @@ void loop()
     /* Take a photo using the phone's rear camera. */
     Camera.rearCapture();
     /* Delay for 5 seconds. */
-    delay(5000);
+    OneSheeld.delay(5000);
   }
   
 }

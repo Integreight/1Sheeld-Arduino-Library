@@ -12,12 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "SliderShield.h"
 
 //Class Constructor
-SliderShield::SliderShield()
+SliderShield::SliderShield() : ShieldParent(SLIDER_ID)
 {
 	value=0x00;
 	isCallBackAssigned=false;
@@ -27,6 +26,7 @@ byte SliderShield::getValue()
 {
 	return value;
 }
+
 //Phone Input Data Processing 
 void SliderShield::processData()
 {
@@ -37,8 +37,12 @@ void SliderShield::processData()
 		{
 			value= OneSheeld.getArgumentData(0)[0];
 			//Users Function Invoked
-			if(isCallBackAssigned)
+			if(isCallBackAssigned && !isInACallback())
+			{
+				enteringACallback();
 				(*changeCallBack)(value);
+				exitingACallback();
+			}
 		}
 }
 //Users Function Setter
@@ -48,5 +52,7 @@ void SliderShield::setOnValueChange(void (*userFunction)(byte sliderValue))
 	isCallBackAssigned=true;
 }
 
+#ifdef SLIDER_SHIELD
 //Instatntiating Object
 SliderShield Slider;
+#endif

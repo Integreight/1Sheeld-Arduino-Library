@@ -43,6 +43,6 @@ void loop()
     /* Update my Facebook status. */ 
     Facebook.post("It is my friend birthday.");
     /* Delay 2 sec. */
-    delay(2000);
+    OneSheeld.delay(2000);
   }
 } 

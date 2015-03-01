@@ -44,6 +44,7 @@ TextToSpeech	KEYWORD3
 VoiceRecognition	KEYWORD3
 Logger	KEYWORD3
 Terminal	KEYWORD3
+Pattern	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -163,6 +164,8 @@ getStatus	KEYOWRD2
 getLastCommandLength	KEYWORD2
 tweetLastPicture	KEYWORD2
 setOnSelected	KEYWORD2
+select	KEYWORD2
+deselect	KEYWORD2
 waitForAppConnection	KEYWORD2
 setOnTwitterSelected	KEYWORD2
 attachLastPicture	KEYWORD2
@@ -175,6 +178,11 @@ setOnSubscribeOrDigitalChange	KEYWORD2
 subscribeToChanges	KEYWORD2
 unsubscribeToChanges	KEYWORD2
 getOnButtonStatusChange	KEYWORD2
+getLasPattern	KEYWORD2
+isNewPatternReceived	KEYWORD2
+setOnNewPattern	KEYWORD2
+getRow	KEYWORD2
+getColumn	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

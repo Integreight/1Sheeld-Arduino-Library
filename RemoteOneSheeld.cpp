@@ -327,19 +327,22 @@ void RemoteOneSheeld::unSubscribeToChanges(byte pin0 ,byte pin1,byte pin2,byte p
 						 new FunctionArg(1,&pin4));
 }
 //Process Input data from remote 1Sheeld
-void RemoteOneSheeld::processData()
+void RemoteOneSheeld::processFrame()
 {
+	if(!(isSubscribeAssigned || isFloatMessageAssigned || usedSetOnFloatWithString || usedSetOnStringWithString || isStringMessageAssigned) || OneSheeld.isInACallback())
+		return;
+
 	if(memcmp (remoteOneSheeldAddress,OneSheeld.getArgumentData(0),36))return;
 
 	byte functionId = OneSheeld.getFunctionId();
 
-	if(functionId == DIGITAL_SUBSCRIBE_VALUE)
+	OneSheeld.enteringACallback();
+	if(functionId == DIGITAL_SUBSCRIBE_VALUE && isSubscribeAssigned)
 	{
 		int argumentNo = OneSheeld.getArgumentNo();
 		byte pinData;
 		byte pinNo;
 		bool pinValue;
-
 		for (int i=1 ; i <argumentNo;i++)
 		{
 			pinData = OneSheeld.getArgumentData(i)[0];
@@ -392,9 +395,8 @@ void RemoteOneSheeld::processData()
     	{
     		(*changeStringCallBack)(stringKey,incommingStringData);	
     	}
-		
-
 	}
+	OneSheeld.exitingACallback();
 }
 //Check analog pins low level number 
 byte RemoteOneSheeld::checkAnalogPinNumbers(byte pinNumber)

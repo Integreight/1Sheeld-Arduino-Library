@@ -16,11 +16,14 @@
 #ifndef CameraShield_h
 #define CameraShield_h
 
+#include "ShieldParent.h"
+
 //Output Functions ID's
 #define CAMERA_REAR_CAPTURE 		0x01
 #define CAMERA_SET_FLASH 			  0x02
 #define CAMERA_FRONT_CAPTURE 		0x03
 #define CAMERA_SET_QUALITY 			0x04
+
 //Setting Flash (Literals)
 #define OFF				  0x00
 #define ON    			0x01
@@ -30,14 +33,19 @@
 #define MID_QUALITY  0x02
 #define HIGH_QUALITY  0x03
   
-class CameraShieldClass
+class CameraShieldClass : public ShieldParent
 {
 public:
+  //Constructor
+  CameraShieldClass():ShieldParent(CAMERA_ID){};
 	//Setters 
 	void frontCapture();
 	void rearCapture ();
 	void setFlash(byte );
 	void setQuality(byte);
+
+private:
+
 };
 
 //Extern Object

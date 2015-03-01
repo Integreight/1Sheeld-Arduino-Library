@@ -12,13 +12,12 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "TemperatureSensorShield.h"
 
 
 //Class Constructor
-TemperatureSensorShield::TemperatureSensorShield()
+TemperatureSensorShield::TemperatureSensorShield() : ShieldParent(TEMPERATURE_ID)
 {
 	value=0xff;
 	isCallBackAssigned=false;
@@ -28,6 +27,7 @@ char TemperatureSensorShield::getValue()
 {
 	return value;
 }
+
 //TemperatureSensor Input Data Processing
 void TemperatureSensorShield::processData()
 {
@@ -38,8 +38,12 @@ void TemperatureSensorShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invocation
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !isInACallback())
+		{
+			enteringACallback();
 			(*changeOnCallBack)(value);
+			exitingACallback();
+		}
 	}
 }
 //Users Function Setter
@@ -53,7 +57,10 @@ float TemperatureSensorShield::getAsFahrenheit()
 {
 	float fahrenheit;
 	fahrenheit = (float)value*(1.8)+32;
-	return value;
+	return fahrenheit;
 }
+
+#ifdef TEMPERATURE_SHIELD
 //Instatntiating Object
 TemperatureSensorShield TemperatureSensor;
+#endif

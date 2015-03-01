@@ -37,7 +37,7 @@ void loop()
     /* Update your status on Facebook. */
     Facebook.post("I'm home folks!");
     /* Wait for 300 ms. */
-    delay(300);
+    OneSheeld.delay(300);
   }
   else
   {

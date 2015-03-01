@@ -15,10 +15,13 @@
 
 #ifndef LightSensorShield_h
 #define LightSensorShield_h
+
+#include "ShieldParent.h"
+
 //Input Function ID 
 #define LIGHT_VALUE 0x01
 
-class LightSensorShield
+class LightSensorShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -27,6 +30,7 @@ public:
 	unsigned long getValue();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(unsigned long));
+
 private:
 	//Reserve Variables
 	unsigned long value;
@@ -36,9 +40,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(unsigned long);
-	
-	friend class OneSheeldClass;
-
 };
 
 //Extern Object

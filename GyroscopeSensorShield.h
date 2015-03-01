@@ -16,10 +16,12 @@
 #ifndef GyroscopeSensorShield_h
 #define GyroscopeSensorShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID 
 #define GYROSCOPE_VALUE 0x01
 
-class GyroscopeSensorShield
+class GyroscopeSensorShield : public ShieldParent
 {
 public:
 	//Constructor 
@@ -30,6 +32,7 @@ public:
 	float getZ();
 	//setOnChange for Users Fucntion 
 	void setOnValueChange(void (*)(float,float,float));
+
 private:
 	//Reserve Variables
 	float valueX ,valueY,valueZ;
@@ -38,10 +41,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (*changeCallBack)(float,float,float);
-
-	friend class OneSheeldClass;
-
-	
 };
 
 //Extern Object

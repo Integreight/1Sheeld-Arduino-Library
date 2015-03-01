@@ -16,12 +16,12 @@
 #ifndef ToggleButtonShield_h
 #define ToggleButtonShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID
 #define TOGGLEBUTTON_VALUE 0x01
 
-
-
-class ToggleButtonShield
+class ToggleButtonShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -30,6 +30,7 @@ public:
 	bool getStatus();
 	//setOnChange for Users Function
 	void setOnButtonStatusChange(void (*userFunction)(bool));
+	
 private:
 	//Reserve Variable
 	byte value;
@@ -38,8 +39,6 @@ private:
 	//Process Input Data
 	void processData();
 	void (*changeCallBack)(bool);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

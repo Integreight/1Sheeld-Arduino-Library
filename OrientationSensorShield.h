@@ -16,11 +16,12 @@
 #ifndef OrientationSensorShield_h
 #define OrientationSensorShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID
 #define ORIENTATION_VALUE 0x01
 
-
-class OrientationSensorShield
+class OrientationSensorShield : public ShieldParent
 {
 public:
 	//Constructor 
@@ -31,6 +32,7 @@ public:
 	float getZ();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float,float,float));
+
 private:
 	//Reserve Variables
 	float valueX ,valueY,valueZ;
@@ -41,8 +43,6 @@ private:
 	void (*changeCallBack)(float,float,float);
 
 	friend class OneSheeldClass;
-
-	
 };
 
 //Extern Object

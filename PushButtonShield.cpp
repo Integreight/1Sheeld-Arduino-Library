@@ -12,14 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "PushButtonShield.h"
 
-
-
 //Class Constructor
-PushButtonShield::PushButtonShield()
+PushButtonShield::PushButtonShield() : ShieldParent(PUSH_BUTTON_ID)
 {
 	value=0x00;
 	isCallBackAssigned=false;
@@ -29,6 +26,7 @@ bool PushButtonShield::isPressed()
 {
 	return !!value;
 }
+
 //Phone Input Data Processing 
 void PushButtonShield::processData()
 {
@@ -39,8 +37,12 @@ void PushButtonShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !isInACallback())
+		{
+			enteringACallback();
 			(*changeCallBack)(!!value);
+			exitingACallback();
+		}
 	}
 }
 //Users Function Setter
@@ -50,5 +52,7 @@ void PushButtonShield::setOnButtonStatusChange(void (*userFunction)(bool pushBut
 	isCallBackAssigned=true;
 }
 
+#ifdef PUSH_BUTTON_SHIELD
 //Instatntiating Object
 PushButtonShield PushButton;
+#endif

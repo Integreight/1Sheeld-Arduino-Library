@@ -16,11 +16,12 @@
 #ifndef PushButtonShield_h
 #define PushButtonShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID
 #define PUSHBUTTON_VALUE 0x01
 
-
-class PushButtonShield
+class PushButtonShield : public ShieldParent
 {
 public:
 	//Constructor 
@@ -29,6 +30,7 @@ public:
 	bool isPressed();
 	//setOnChange for Users Function
 	void setOnButtonStatusChange(void (*userFunction)(bool ));
+
 public:
 	//Reserve Variable
 	byte value;
@@ -36,10 +38,7 @@ public:
 	bool isCallBackAssigned;
 	//Process Input Data 
 	void processData();
-	void (*changeCallBack)(bool);
-
-	friend class OneSheeldClass;
-	
+	void (*changeCallBack)(bool);	
 };
 
 //Extern Object

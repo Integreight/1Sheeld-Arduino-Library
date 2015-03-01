@@ -12,13 +12,12 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "ToggleButtonShield.h"
 
 
 //Class Constructor
-ToggleButtonShield::ToggleButtonShield()
+ToggleButtonShield::ToggleButtonShield() : ShieldParent(TOGGLE_BUTTON_ID)
 {
 	value=0x00;
 	isCallBackAssigned=false;
@@ -28,6 +27,7 @@ bool ToggleButtonShield::getStatus()
 {
 	return !!value;
 }
+
 //ToggleButton Input Data Processing
 void ToggleButtonShield::processData()
 {
@@ -37,8 +37,12 @@ void ToggleButtonShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !isInACallback())
+		{
+			enteringACallback();
 			(*changeCallBack)(!!value);
+			exitingACallback();
+		}
 	}
 }
 //Users Function Setter
@@ -48,5 +52,7 @@ void ToggleButtonShield::setOnButtonStatusChange(void (*userFunction)(bool toggl
 	isCallBackAssigned=true;
 }
 
+#ifdef TOGGLE_BUTTON_SHIELD
 //Instantiating Object
 ToggleButtonShield ToggleButton;
+#endif

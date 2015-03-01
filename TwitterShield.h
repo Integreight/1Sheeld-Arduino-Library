@@ -16,20 +16,20 @@
 #ifndef TwitterShield_h
 #define TwitterShield_h
 
+#include "ShieldParent.h"
+
 //Output Function ID
 #define TWITTER_SEND 				0x01  
 #define TWITTER_SEND_DIRECT_MESSAGE 0x02
-#define TWITTER_POST_LAST_PIC 		0x03
-#define TWITTER_TRACK_KEYWORD		0x04
-#define TWITTER_UNTRACK_KEYWORD		0x05
+#define TWITTER_POST_LAST_PIC 0x03
+#define TWITTER_TRACK_KEYWORD	0x04
+#define TWITTER_UNTRACK_KEYWORD	0x05
 
 //Input Functions ID's
-#define TWITTER_GET_TWEET		0x01
-#define TWITTER_CHECK_SELECTED  0x02
+#define TWITTER_GET_TWEET	0x01
 
 
-
-class TwitterShieldClass 
+class TwitterShieldClass : public ShieldParent
 {
 public:
 	//Constructor
@@ -59,16 +59,13 @@ public:
 	void trackKeyword(String );
 	void untrackKeyword(const char *);
 	void untrackKeyword(String);
-	//Check if shield selected
-	void setOnTwitterSelected(void(*)(void));
+	
 private:
 	//Reserve Variables
 	char * userName;
 	char * tweetText;
 	//Boolean for setOnChange Function
 	bool isCallBackAssigned;
-	//Boolean for checking selection
-	bool isCheckingTriggered;
 	//Boolean for incoming String support
 	bool usedSetOnWithString;
 	//Boolean to check if a new tweet 
@@ -77,13 +74,6 @@ private:
 	void processData();
 	void (*changeCallBack)(char*,char*);
 	void (*changeCallBackString)(String , String);
-	void (*selectedCallBack)(void);
-
-	friend class OneSheeldClass;
-
-
-
-
 };
 //Extern Object
 extern TwitterShieldClass Twitter;

@@ -32,7 +32,7 @@ void loop()
    LCD.begin();
    /* Blink the cursor and for 5 seconds. */
    LCD.blink();
-   delay(5000);
+   OneSheeld.delay(5000);
    /* Stop blinking. */
    LCD.noBlink();
    /* Write some characters. */
@@ -40,7 +40,7 @@ void loop()
    LCD.write('B');
    LCD.write('C');
    /* Wait for 2 seconds. */
-   delay(2000);
+   OneSheeld.delay(2000);
    /* Clear the LCD. */
    LCD.clear();
    /* Print "Hello, World!" */
@@ -50,13 +50,13 @@ void loop()
    /* Print "This is 1Sheeld" */ 
    LCD.print("This is 1Sheeld");
    /* Wait 10 seconds. */  
-   delay(10000);
+   OneSheeld.delay(10000);
    /*Clear LCD*/
    LCD.clear();
    /* Print "Closing!" */
    LCD.print("Closing!");
    /* Wait for 2 seconds. */
-   delay(10000);
+   OneSheeld.delay(10000);
   }
   
   

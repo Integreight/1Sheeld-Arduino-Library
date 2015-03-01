@@ -12,14 +12,13 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "MagnetometerSensorShield.h"
 #include <math.h>
 
 
 //Class Constructor
-MagnetometerSensorShield::MagnetometerSensorShield()
+MagnetometerSensorShield::MagnetometerSensorShield():ShieldParent(MAGNETOMETER_ID)
 {
 	valueX=0;
 	valueY=0;
@@ -41,6 +40,7 @@ float MagnetometerSensorShield::getZ()
 {
 	return valueZ;
 }
+
 //MagnetometerSensor Data processing 	
 void MagnetometerSensorShield::processData()
 {
@@ -57,9 +57,11 @@ void MagnetometerSensorShield::processData()
 			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 			
 			//User Function Invoked
-			if(isCallBackAssigned)
+			if(isCallBackAssigned && !isInACallback())
 			{
+				enteringACallback();
 				(*changeCallBack)(valueX,valueY,valueZ);
+				exitingACallback();
 			}
 		}
 }
@@ -70,11 +72,14 @@ void MagnetometerSensorShield::setOnValueChange(void (*userFunction)(float value
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
+
 //Helper
 float MagnetometerSensorShield::getMagneticStrength()
 {
 	return sqrt((valueX*valueX)+(valueY*valueY)+(valueZ*valueZ));
 }
 
+#ifdef MAGNETOMETER_SHIELD
 //Instatntiating Object
 MagnetometerSensorShield MagnetometerSensor;
+#endif

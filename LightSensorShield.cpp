@@ -12,12 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "LightSensorShield.h"
 
 //Class Constructor
-LightSensorShield::LightSensorShield()
+LightSensorShield::LightSensorShield() : ShieldParent(LIGHT_ID)
 {
 	value=0;
 	isCallBackAssigned=false;
@@ -44,9 +43,11 @@ void LightSensorShield::processData()
 		value|=(data[1]<<8);
 		value|=(data[2]<<16);
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !isInACallback())
 		{
+			enteringACallback();
 			(*changeCallBack)(value);
+			exitingACallback();
 		}
 	}
 }
@@ -57,5 +58,7 @@ void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long ligh
 	isCallBackAssigned=true;
 }
 
+#ifdef LIGHT_SHIELD
 //Instantiating Object
 LightSensorShield LightSensor;
+#endif

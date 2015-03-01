@@ -12,17 +12,15 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "TwitterShield.h"
 
 //Class Constructor
-TwitterShieldClass::TwitterShieldClass()
+TwitterShieldClass::TwitterShieldClass() : ShieldParent(TWITTER_ID)
 {
  	userName = 0;
  	tweetText = 0;
  	isCallBackAssigned=false;
- 	isCheckingTriggered=false;
  	usedSetOnWithString=false;
  	isItNewTweet=false;
 }
@@ -265,22 +263,24 @@ void TwitterShieldClass::processData()
 		}
 			tweetText[tweetLength]='\0';
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(!isInACallback())
 		{
-			(*changeCallBack)(userName,tweetText);
-		}
+			if(isCallBackAssigned)
+			{
+				enteringACallback();
+				(*changeCallBack)(userName,tweetText);
+				exitingACallback();
+			}
 
-		if(usedSetOnWithString)
-		{
-			String usernameString(userName);
-			String tweetTextString(tweetText);
-
-			(*changeCallBackString)(usernameString,tweetTextString);
+			if(usedSetOnWithString)
+			{
+				String usernameString(userName);
+				String tweetTextString(tweetText);
+				enteringACallback();
+				(*changeCallBackString)(usernameString,tweetTextString);
+				exitingACallback();
+			}
 		}
-	}
-	else if(functionId == TWITTER_CHECK_SELECTED) //called when twitter shield is selected
-	{
-		(*selectedCallBack)();
 	}
 }
 //Users Function Setter
@@ -296,12 +296,8 @@ void TwitterShieldClass::setOnNewTweet(void (*userFunction)(String userName ,Str
 	changeCallBackString=userFunction;
 	usedSetOnWithString=true;
 }
-//Checking Twitter selected
-void TwitterShieldClass::setOnTwitterSelected(void (*userFunction)(void))
-{
-	selectedCallBack=userFunction;
-	isCheckingTriggered=true;
-}
 
+#ifdef TWITTER_SHIELD
 //Instantiating Object 
 TwitterShieldClass Twitter;
+#endif

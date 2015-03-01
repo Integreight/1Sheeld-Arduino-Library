@@ -12,12 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "SMSShield.h"
 
 //Class Constructor
- SMSShieldClass::SMSShieldClass()
+ SMSShieldClass::SMSShieldClass() : ShieldParent(SMS_ID)
   {
   	text=0;
   	number=0;
@@ -102,8 +101,8 @@ String SMSShieldClass::getSmsAsString()
 void SMSShieldClass::processData()
   {
   	//Checking Function-ID
-	byte x= OneSheeld.getFunctionId();
-	if(x==SMS_GET)
+	byte functionID= OneSheeld.getFunctionId();
+	if(functionID==SMS_GET)
 	{
 		isItNewSms =true;
 		if(text!=0)
@@ -130,14 +129,21 @@ void SMSShieldClass::processData()
 		}
 			text[textlength]='\0';
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(!isInACallback())
 		{
-			(*changeCallBack)(number,text);
-		}
+			if(isCallBackAssigned)
+			{
+				enteringACallback();
+				(*changeCallBack)(number,text);
+				exitingACallback();
+			}
 
-		if(usedSetOnWithString)
-		{
-			(*changeCallBackString)(getNumberAsString(),getSmsAsString());
+			if(usedSetOnWithString)
+			{
+				enteringACallback();
+				(*changeCallBackString)(getNumberAsString(),getSmsAsString());
+				exitingACallback();
+			}
 		}
 	}
 }
@@ -154,6 +160,7 @@ void SMSShieldClass::setOnSmsReceive(void (*userFunction)(String number ,String 
 	usedSetOnWithString=true;
 }
 
-
+#ifdef SMS_SHIELD
 //Instantiating Object
 SMSShieldClass SMS;
+#endif

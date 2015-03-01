@@ -16,11 +16,12 @@
 #ifndef KeypadShield_h
 #define KeypadShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID 
 #define KEYPAD_VALUE 0x01
 
-
-class KeypadShieldClass 
+class KeypadShieldClass : public ShieldParent
 {
 public:
 	//Constructor
@@ -42,9 +43,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallback)(byte , byte);
- 
-	
-friend class OneSheeldClass;
 };
 
 //Extern Object

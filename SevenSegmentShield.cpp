@@ -12,8 +12,7 @@
   Date:          2014.5
 
 */
-
-#include "OneSheeld.h"
+#include "OneSheeld.h" 
 #include "SevenSegmentShield.h"
 
 //Number Setter
@@ -52,6 +51,7 @@ void SevenSegmentShieldClass::setDot()
 
 }
 
-
+#ifdef SEVEN_SEGMENT_SHIELD
 //Instantiating Object
 SevenSegmentShieldClass SevenSegment;
+#endif

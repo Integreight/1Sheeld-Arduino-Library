@@ -12,7 +12,6 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "LedShield.h"
 
@@ -32,5 +31,7 @@ void LedShield::setValue(byte data)
 	OneSheeld.sendPacket(LED_ID,0,LED_SET_VALUE,1,new FunctionArg(1,&data));
 }
 
+#ifdef LED_SHIELD
 //Instantiating Object
 LedShield LED;
+#endif

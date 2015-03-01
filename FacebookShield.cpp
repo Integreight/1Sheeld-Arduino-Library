@@ -12,7 +12,6 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "FacebookShield.h"
 
@@ -81,5 +80,8 @@ void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
 	postLastPicture(cTypePictureText,imageSource);
 }
 #endif
+
+#ifdef FACEBOOK_SHIELD
 //Instantiating Object
 FacebookShieldClass Facebook;
+#endif

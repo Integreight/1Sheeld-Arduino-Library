@@ -16,13 +16,16 @@
 #ifndef FoursquareShield_h
 #define FoursquareShield_h
 
+#include "ShieldParent.h"
 
 //Output Function ID
 #define FOURSQUARE_CHECK_IN 0x01
 
-class FoursquareShieldClass
+class FoursquareShieldClass : public ShieldParent
 {
 public:
+	//Constructor
+	FoursquareShieldClass() : ShieldParent(FOURSQUARE_ID){};
 	//Sender
 	void checkIn(const char* ,const char* );
 	void checkIn(String , String );

@@ -16,10 +16,13 @@
 #ifndef TemperatureSensorShield_h
 #define TemperatureSensorShield_h
 
+#include "ShieldParent.h"
+
+
 //Input Function ID
 #define TEMPERATURE_VALUE 0x01
 
-class TemperatureSensorShield
+class TemperatureSensorShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -30,6 +33,7 @@ public:
 	void setOnValueChange(void (*)(char));
 	//Helper Function 
 	float getAsFahrenheit();
+
 private:
 	//Reserve Variable
 	char value;
@@ -38,8 +42,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void(*changeOnCallBack)(char);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

@@ -12,13 +12,12 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "OrientationSensorShield.h"
 
 
 //Class Constructor
-OrientationSensorShield::OrientationSensorShield()
+OrientationSensorShield::OrientationSensorShield() : ShieldParent(ORIENTATION_ID)
 {
 	valueX=0;
 	valueY=0;
@@ -41,6 +40,7 @@ float OrientationSensorShield::getZ()
 {
 	return valueZ;
 }
+
 //AccelerometerSensor Data processing 
 void OrientationSensorShield::processData()
 {
@@ -56,9 +56,11 @@ void OrientationSensorShield::processData()
 			//Process Z-Axis Value
 			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 			//User Function Invoked
-			if(isCallBackAssigned)
+			if(isCallBackAssigned && !isInACallback())
 			{
+				enteringACallback();
 				(*changeCallBack)(valueX,valueY,valueZ);
+				exitingACallback();
 			}
 		}
 }
@@ -70,5 +72,7 @@ void OrientationSensorShield::setOnValueChange(void (*userFunction)(float valueX
 	isCallBackAssigned=true;
 }
 
+#ifdef ORIENTATION_SHIELD
 //Instatntiating Object
 OrientationSensorShield OrientationSensor;
+#endif

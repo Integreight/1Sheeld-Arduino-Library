@@ -16,6 +16,7 @@
 #ifndef LCDShield_h
 #define LCDShield_h
 
+#include "ShieldParent.h"
 #include "OneSheeldPrint.h"
 
 //Output Functions ID's
@@ -36,7 +37,8 @@
 #define LCD_WRITE 		 0x0F
 #define LCD_PRINT 		 0x11
 
-class LCDShield : public PrintClass
+
+class LCDShield : public PrintClass , public ShieldParent
 {
 public:
 	LCDShield();

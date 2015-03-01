@@ -16,18 +16,22 @@
 #ifndef NotificationShield_h
 #define NotificationShield_h
 
+#include "ShieldParent.h"
+
 //Output Function ID
 #define NOTIFICATION_NOTIFY_PHONE 0x01
 
-class NotificationShieldClass 
+class NotificationShieldClass : public ShieldParent
 {
 public:
+	//Constructror
+	NotificationShieldClass():ShieldParent(NOTIFICATION_ID){};
 	//Sender 
 	void notifyPhone(const char* );
 	void notifyPhone(String );
-
+	
 private:
-
+	
 };
 
 //Extern Object

@@ -15,18 +15,19 @@
 
 #ifndef GPSShield_h
 #define GPSShield_h
+
 #include <math.h>
+#include "ShieldParent.h"
 
 //Literal Constants 
 #define RADUIS_OF_EARTH 6371
 #define PI 3.1415926535897932384626433832795
+
 //Input Function ID 
 #define GPS_VALUE 0x01
 
 
-
-
-class GPSShieldClass 
+class GPSShieldClass : public ShieldParent
 {
 public:
 	//Constructor
@@ -42,6 +43,7 @@ public:
 	float radian(float);
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float ,float ));
+
 private:
 	//Reserving Variables
 	float LatValue,LonValue;
@@ -58,9 +60,6 @@ private:
 		float num;
 
 	} getfloat;
-
-	friend class OneSheeldClass;
-
 };
 
 //Extern Object

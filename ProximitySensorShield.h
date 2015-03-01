@@ -16,10 +16,12 @@
 #ifndef ProximitySensorShield_h
 #define ProximitySensorShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID
 #define PROXIMITY_VALUE 0x01
 
-class ProximitySensorShield
+class ProximitySensorShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -28,6 +30,7 @@ public:
 	byte getValue();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*userFunction)(byte));
+
 private:
 	//Reserve Variables
 	byte value;
@@ -36,8 +39,6 @@ private:
 	//Process Input Data 
 	void processData();
 	void (* changeCallBack)(byte);
-
-	friend class OneSheeldClass;
 };
 
 //Extern Object

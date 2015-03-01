@@ -12,12 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "PhoneShield.h"
 
 //Class Constructor
-PhoneShieldClass::PhoneShieldClass()
+PhoneShieldClass::PhoneShieldClass() : ShieldParent(PHONE_ID)
 {
 	value=0;
 	number=0;
@@ -74,17 +73,18 @@ String PhoneShieldClass::getNumberAsString()
 	String phoneNumberAsString(number);
 	return phoneNumberAsString;
 }
+
 //Phone Input Data Processing 
 void PhoneShieldClass::processData()
-{	
+{
 	//Checking Function-ID
-	byte x= OneSheeld.getFunctionId();
+	byte functionId= OneSheeld.getFunctionId();
 
-	if (x==PHONE_IS_RINGING)
+	if (functionId==PHONE_IS_RINGING)
 	{
 		value =OneSheeld.getArgumentData(0)[0];
 	}
-	else if (x==PHONE_GET_NUMBER)
+	else if (functionId==PHONE_GET_NUMBER)
 	{
 		if(number!=0)
 		{
@@ -102,19 +102,23 @@ void PhoneShieldClass::processData()
 
 			number[length]='\0';
 			//Users Function Invoked
-			if (isCallBackAssigned)
+			if(!isInACallback())
 			{
-				(*changeCallBack)(value,number);
-			}
-			if(usedSetOnString)
-			{
-				String phoneNumberAsString(number);
-				(*changeCallBackString)(value,phoneNumberAsString);
+				if (isCallBackAssigned)
+				{
+					enteringACallback();
+					(*changeCallBack)(value,number);
+					exitingACallback();
+				}
+				if(usedSetOnString)
+				{
+					enteringACallback();
+					String phoneNumberAsString(number);
+					(*changeCallBackString)(value,phoneNumberAsString);
+					exitingACallback();
+				}
 			}
 	}
-	
-
-
 }
 
 //Users Function Setter
@@ -130,5 +134,7 @@ void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging
 	usedSetOnString=true;
 }
 
+#ifdef PHONE_SHIELD
 //Instatntiating Object
 PhoneShieldClass Phone;
+#endif

@@ -16,15 +16,16 @@
 #ifndef PhoneShield_h
 #define PhoneShield_h
 
+#include "ShieldParent.h"
 
 //Output Function ID
 #define PHONE_CALL 0x01
+
 //Input Function ID's
 #define PHONE_IS_RINGING 0x01
 #define PHONE_GET_NUMBER 0x02
 
-
-class PhoneShieldClass 
+class PhoneShieldClass : public ShieldParent
 {
 public:
 	//Constructor 
@@ -40,6 +41,7 @@ public:
 	//setOnChange for Users Function
 	void setOnCallStatusChange(void (*)(bool ,char *));
 	void setOnCallStatusChange(void (*)(bool , String));
+
 private:
 	//Reserve Variable
 	byte value ;
@@ -51,8 +53,6 @@ private:
 	void processData();
 	void (*changeCallBack)(bool ,char *);
 	void (*changeCallBackString)(bool , String);
-	
-	friend class OneSheeldClass ;
 };
 
 //Extern Object

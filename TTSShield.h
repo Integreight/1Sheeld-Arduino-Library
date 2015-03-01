@@ -16,16 +16,21 @@
 #ifndef TTSShield_h
 #define TTSShield_h
 
+
+#include "ShieldParent.h"
+
 //Output Function ID
 #define TTS_SAY 0x01
 
-  class TTSShield
+
+  class TTSShield: public ShieldParent
   {
   public:
+    // Constructor
+    TTSShield():ShieldParent(TTS_ID){};
     //Process
   	void say(const char *);
     void say(String );
-
   private:
 
   };

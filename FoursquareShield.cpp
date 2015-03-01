@@ -12,7 +12,6 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "FoursquareShield.h"
 
@@ -59,5 +58,8 @@ void FoursquareShieldClass::checkIn(String placeId , String message)
 	checkIn(cTypePlaceId,cTypeMessage);
 }
 #endif
+
+#ifdef FOURSQUARE_SHIELD
 //Instantiating Object
 FoursquareShieldClass Foursquare;
+#endif

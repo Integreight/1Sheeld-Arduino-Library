@@ -17,35 +17,13 @@
 #include "HardwareSerial.h"
 #include "stdarg.h"
 
-//Shields ID's
-byte inputShieldsList[]={ONESHEELD_ID
-,KEYPAD_SHIELD_ID
-,GPS_ID
-,SLIDER_ID
-,PUSH_BUTTON_ID
-,TOGGLE_BUTTON_ID
-,GAMEPAD_ID
-,PROXIMITY_ID
-,MIC_ID
-,TEMPERATURE_ID
-,LIGHT_ID
-,PRESSURE_ID
-,GRAVITY_ID
-,ACCELEROMETER_ID
-,GYROSCOPE_ID
-,ORIENTATION_ID
-,MAGNETOMETER_ID
-,PHONE_ID
-,SMS_ID
-,CLOCK_ID
-,KEYBOARD_ID
-,TWITTER_ID
-,VOICE_RECOGNITION_ID,
-TERMINAL_ID,
-REMOTE_SHEELD_ID,
-};
-
-
+bool OneSheeldClass::isInit=false;
+byte OneSheeldClass::shieldsCounter=0;
+ShieldParent * OneSheeldClass::shieldsArray[]={0};
+#ifdef INTERNET_SHIELD
+byte OneSheeldClass::requestsCounter=0;
+HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
+#endif
 //Class Constructor
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
@@ -66,6 +44,8 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       usedSetOnFloatWithString=false;
       usedSetOnStringWithString=false;
       isOneSheeldRemoteDataUsed=false;
+      inACallback=false;
+      callbacksInterrupts=false;
 }
 
 //Library Starter
@@ -94,6 +74,29 @@ void OneSheeldClass::waitForAppConnection()
 void OneSheeldClass::begin()
 {
   begin(115200);
+  isInit=true;
+  #ifdef INTERNET_SHIELD
+  for(int i=0;i<requestsCounter;i++)
+    requestsArray[i]->sendInitFrame();
+  free(requestsArray);
+  #endif
+}
+
+void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
+{
+  if(shieldsCounter==SHIELDS_NO) return;
+  shieldsArray[shieldsCounter++] = shield;  
+}
+#ifdef INTERNET_SHIELD
+void OneSheeldClass::addToUnSentRequestsArray(HttpRequest * request)
+{
+  if(requestsCounter==MAX_NO_OF_REQUESTS) return;
+  requestsArray[requestsCounter++] = request;  
+}
+#endif
+bool OneSheeldClass::isInitialized()
+{
+  return isInit;
 }
 
 //Frame Sender for Output Shields
@@ -101,7 +104,8 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 {
   unsigned long mill=millis()+1;
  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
-    delay(TIME_GAP-(mill-lastTimeFrameSent));
+    //delay(TIME_GAP-(mill-lastTimeFrameSent));
+  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
@@ -130,6 +134,35 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
  }
     OneSheeldSerial.write((byte)END_OF_FRAME);
     va_end(arguments);
+    lastTimeFrameSent=millis()+1;
+}
+
+void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
+{
+  unsigned long mill=millis()+1;
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
+    //delay(TIME_GAP-(mill-lastTimeFrameSent));
+  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
+  isFirstFrame=true;
+  OneSheeldSerial.write((byte)START_OF_FRAME);
+  OneSheeldSerial.write(LIBRARY_VERSION);
+  OneSheeldSerial.write(shieldID);
+  OneSheeldSerial.write(instanceID);
+  OneSheeldSerial.write(functionID);
+  OneSheeldSerial.write(argNo);
+  OneSheeldSerial.write(255-argNo);
+  
+  for (int i=0 ; i<argNo ; i++)
+  {
+    OneSheeldSerial.write(arguments[i]->getLength());
+    OneSheeldSerial.write(255-(arguments[i]->getLength()));
+      for (int j=0 ; j<arguments[i]->getLength() ; j++)
+      {
+        byte* tempData=arguments[i]->getData();
+        OneSheeldSerial.write(tempData[j]);
+      }
+ }
+    OneSheeldSerial.write((byte)END_OF_FRAME);
     lastTimeFrameSent=millis()+1;
 }
 bool OneSheeldClass::isAppConnected()
@@ -164,7 +197,9 @@ byte OneSheeldClass::getArgumentLength(byte x)
 //Data Getter
 byte * OneSheeldClass::getArgumentData(byte x)
 {
-  return arguments[x];
+  if(argumentL[x]!=0)
+    return arguments[x];
+  else return NULL;
 }
 
 //Convert float to array of bytes
@@ -255,12 +290,25 @@ void OneSheeldClass::processInput()
             Serial.print("C7 ");
             #endif
             if((255-argumentL[argumentcounter])==data){
-              arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
-              #ifdef DEBUG
-              Serial.print("M3 ");
-              #endif
+              if(argumentL[argumentcounter]!=0)
+              {
+                arguments[argumentcounter]=(byte*)malloc(sizeof(byte)*argumentL[argumentcounter]); // assigning the second dimensional of the pointer
+                #ifdef DEBUG
+                Serial.print("M3 ");
+                #endif
+                counter++;
+              }
+              else
+              {
+                arguments[argumentcounter]=NULL;
+                datalengthcounter=0;
+                argumentcounter++;
+                if(argumentcounter==argumentnumber)
+                  counter=9;
+                else
+                  counter=6;
+              }
               numberOfDataMalloced++;
-              counter++;
             }
             else{
                 framestart=false;
@@ -272,7 +320,7 @@ void OneSheeldClass::processInput()
               #ifdef DEBUG
               Serial.print("C8 ");
               #endif
-              arguments[argumentcounter][datalengthcounter++]=data;
+              if(arguments[argumentcounter]!=NULL)arguments[argumentcounter][datalengthcounter++]=data;
               if (datalengthcounter==argumentL[argumentcounter])
               {
                   datalengthcounter=0;
@@ -284,7 +332,7 @@ void OneSheeldClass::processInput()
                   }
                   else
                   {
-                       counter=6;
+                    counter=6;
 
                   }
 
@@ -312,8 +360,8 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  for (int i=0;i<28;i++) {
-                    if (shield == inputShieldsList[i]){
+                  for (int i=0;i<shieldsCounter;i++) {
+                    if (shield == shieldsArray[i]->getShieldId()){
                       found = true;
                       
                     }
@@ -345,7 +393,7 @@ void OneSheeldClass::freeMemoryAllocated(){
   if(isArgumentsNumberMalloced){
           for(int i=0;i<numberOfDataMalloced;i++)
           {
-            free(arguments[i]);
+            if(arguments[i]!=NULL)free(arguments[i]);
             #ifdef DEBUG
             Serial.print("F3 ");
             #endif
@@ -377,83 +425,19 @@ void OneSheeldClass::sendToShields()
   byte number_Of_Shield= OneSheeld.getShieldId();     
   switch (number_Of_Shield)
   {
-    case ONESHEELD_ID            :processData();break;
-    #ifdef KEYPAD_SHIELD
-    case KEYPAD_SHIELD_ID        : Keypad.processData(); break ;
-    #endif
-    #ifdef GPS_SHIELD
-    case GPS_ID                  : GPS.processData();break ;
-    #endif
-    #ifdef SLIDER_SHIELD
-    case SLIDER_ID               : Slider.processData(); break;
-    #endif
-    #ifdef PUSH_BUTTON_SHIELD
-    case PUSH_BUTTON_ID          : PushButton.processData();break;
-    #endif
-    #ifdef TOGGLE_BUTTON_SHIELD
-    case TOGGLE_BUTTON_ID        : ToggleButton.processData();break;
-    #endif
-    #ifdef GAMEPAD_SHIELD
-    case GAMEPAD_ID              : GamePad.processData();break;
-    #endif
-    #ifdef PROXIMITY_SHIELD
-    case PROXIMITY_ID            : ProximitySensor.processData();break;
-    #endif
-    #ifdef MIC_SHIELD
-    case MIC_ID                  : Mic.processData();break;
-    #endif
-    #ifdef TEMPERATURE_SHIELD
-    case TEMPERATURE_ID          : TemperatureSensor.processData();break;
-    #endif
-    #ifdef LIGHT_SHIELD
-    case LIGHT_ID                : LightSensor.processData();break;
-    #endif
-    #ifdef PRESSURE_SHIELD
-    case PRESSURE_ID             : PressureSensor.processData();break;
-    #endif
-    #ifdef GRAVITY_SHIELD
-    case GRAVITY_ID              : GravitySensor.processData();break;
-    #endif
-    #ifdef ACCELEROMETER_SHIELD
-    case ACCELEROMETER_ID        : AccelerometerSensor.processData();break;
-    #endif
-    #ifdef GYROSCOPE_SHIELD
-    case GYROSCOPE_ID            : GyroscopeSensor.processData();break;
-    #endif
-    #ifdef ORIENTATION_SHIELD
-    case ORIENTATION_ID          : OrientationSensor.processData();break;
-    #endif
-    #ifdef MAGNETOMETER_SHIELD
-    case MAGNETOMETER_ID         : MagnetometerSensor.processData();break;
-    #endif
-    #ifdef PHONE_SHIELD
-    case PHONE_ID                : Phone.processData();break;
-    #endif
-    #ifdef SMS_SHIELD
-    case SMS_ID                  : SMS.processData();break;
-    #endif
-    #ifdef CLOCK_SHIELD
-    case CLOCK_ID                : Clock.processData();break;
-    #endif
-    #ifdef KEYBOARD_SHIELD
-    case KEYBOARD_ID             : AsciiKeyboard.processData();break;
-    #endif
-    #ifdef TWITTER_SHIELD
-    case TWITTER_ID              : Twitter.processData();break;
-    #endif
-    #ifdef VOICE_RECOGNITION_SHIELD
-    case VOICE_RECOGNITION_ID    : VoiceRecognition.processData();break;
-    #endif
-    #ifdef TERMINAL_SHIELD
-    case TERMINAL_ID             : Terminal.processData();break;
-    #endif
+    case ONESHEELD_ID            :processFrame();break;
     #ifdef REMOTE_SHIELD
     case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
-                                    listOfRemoteOneSheelds[i]->processData();
+                                    listOfRemoteOneSheelds[i]->processFrame();
                                     if(isOneSheeldRemoteDataUsed)
                                     processRemoteData();
                                     break;
     #endif
+    default:
+    for(int i=0 ;i<shieldsCounter;i++)
+    {
+      shieldsArray[i]->processFrame();
+    }
   }
 }
 #ifdef REMOTE_SHIELD
@@ -503,14 +487,23 @@ void OneSheeldClass::processRemoteData()
 
     float incomingValue = convertBytesToFloat(getArgumentData(2));
 
-    if(isSetOnFloatMessageInvoked)
-    (*changeFloatCallBack)(remoteAddress,key,incomingValue);
-
-    if(usedSetOnFloatWithString)
+    if(!isInACallback())
     {
-      String remoteAddressInString(remoteAddress);
-      String keyInString(key);
-      (*changeFloatCallBackWithString)(remoteAddressInString,keyInString,incomingValue);
+      if(isSetOnFloatMessageInvoked)
+      {
+        enteringACallback();
+        (*changeFloatCallBack)(remoteAddress,key,incomingValue);
+        exitingACallback();
+      }
+
+      if(usedSetOnFloatWithString)
+      {
+        String remoteAddressInString(remoteAddress);
+        String keyInString(key);
+        enteringACallback();
+        (*changeFloatCallBackWithString)(remoteAddressInString,keyInString,incomingValue);
+        exitingACallback();
+      }
     }
 
   }
@@ -530,22 +523,30 @@ void OneSheeldClass::processRemoteData()
     memcpy(stringData,getArgumentData(2),stringDataLength);
     stringData[stringDataLength]='\0';
 
-    if(isSetOnStringMessageInvoked)
-    (*changeStringCallBack)(remoteAddress,key,stringData);
+    if(!isInACallback())
+    {    
+      if(isSetOnStringMessageInvoked)
+      {
+        enteringACallback();
+        (*changeStringCallBack)(remoteAddress,key,stringData);
+        exitingACallback();
+      }
 
-    if(usedSetOnStringWithString)
-    {
-      String remoteAddressInString(remoteAddress);
-      String keyInString(key);
-      String stringDataInString(stringData);
-      (*changeStringCallBackWithString)(remoteAddressInString,keyInString,stringDataInString);
+      if(usedSetOnStringWithString)
+      {
+        String remoteAddressInString(remoteAddress);
+        String keyInString(key);
+        String stringDataInString(stringData);
+        enteringACallback();
+        (*changeStringCallBackWithString)(remoteAddressInString,keyInString,stringDataInString);
+        exitingACallback();
+      }
     }
-
   }
 }
 #endif
 
-void OneSheeldClass::processData(){
+void OneSheeldClass::processFrame(){
   byte functionId = getFunctionId();
   //Check  the function ID 
   if(functionId == DISCONNECTION_CHECK_FUNCTION)
@@ -570,6 +571,50 @@ unsigned char OneSheeldClass::analogRead(int pin)
     double fraction=duty/period;
     unsigned char pwm_out=(unsigned char)(ceil)(fraction*255);
     return pwm_out;
+}
+
+void OneSheeldClass::enteringACallback()
+{
+  if(!isInACallback())
+  {
+    inACallback=true;
+    sendPacket(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
+  }
+}
+
+void OneSheeldClass::exitingACallback()
+{
+  if(isInACallback())
+  {
+    inACallback=false;
+    sendPacket(ONESHEELD_ID,0,CALLBACK_EXITED,0);
+  }
+}
+
+bool OneSheeldClass::isInACallback()
+{
+  return inACallback && !callbacksInterrupts;
+}
+
+bool OneSheeldClass::isCallbacksInterruptsSet()
+{
+  return callbacksInterrupts;
+}
+
+void OneSheeldClass::disableCallbacksInterrupts()
+{
+   callbacksInterrupts=false;
+}
+
+void OneSheeldClass::enableCallbacksInterrupts()
+{
+   callbacksInterrupts=true;
+}
+
+void OneSheeldClass::delay(unsigned long time)
+{
+  unsigned long now=millis();
+  while(millis()<(now+time))processInput();
 }
 
 //Instantiating Object

@@ -14,24 +14,27 @@
 */
 
 #ifndef SevenSegmentShield_h
-#define SevenSegmentShield_h 
+#define SevenSegmentShield_h
+
+#include "ShieldParent.h" 
 
 //Output Function ID's
 #define SEVENSEGMENT_SET_VALUE 0x01 
 #define SEVENSEGMENT_SET_DOT	 0x02
 
-class SevenSegmentShieldClass
+class SevenSegmentShieldClass : public ShieldParent
 {
 
 public:
+  //Constructor
+  SevenSegmentShieldClass():ShieldParent(SEV_SEG_ID){};
 	//Setters 
 	void setNumber(byte );
 	void setValue(byte  );
 	void setDot();
-
-
+ 
 private:
-
+ 
 };
 
 //Extern Object

@@ -12,14 +12,13 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "GamePadShield.h"
 
 
 
 //Class Constructor
-GamePadShield::GamePadShield()
+GamePadShield::GamePadShield() : ShieldParent(GAMEPAD_ID)
 {
 	value =0x00;
 	isCallBackAssigned=false;
@@ -73,6 +72,7 @@ bool GamePadShield::isBluePressed()
 	blue = !!(value & (1<<BLUE_BIT));
 	return blue ;
 }
+
 //GamePad Input Data Processing  
 void GamePadShield::processData()
 {
@@ -82,9 +82,11 @@ void GamePadShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !isInACallback())
 		{
+			enteringACallback();
 			(*buttonChangeCallBack)(up , down , left , right , orange , red , green , blue);
+			exitingACallback();
 		}
 	}
 }
@@ -96,5 +98,7 @@ void GamePadShield::setOnButtonChange(void (* userFunction)(unsigned char up,uns
 	isCallBackAssigned=true;
 }
 
+#ifdef GAMEPAD_SHIELD
 //Instantiating Object
 GamePadShield GamePad;
+#endif

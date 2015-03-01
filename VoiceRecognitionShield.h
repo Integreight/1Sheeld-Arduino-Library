@@ -15,10 +15,15 @@
 #ifndef	VoiceRecognitionShield_h
 #define VoiceRecognitionShield_h
 
+#include "ShieldParent.h"
+
+//Output  function ID's
+#define VOICE_START_LISTENING	0x01
+
 //Input Function ID's 
 #define VOICE_GET 				0x01
-#define VOICE_START_LISTENING	0x01
 #define VOICE_GET_ERROR		    0x02
+
 //Errors messages 
 #define NETWORK_TIMEOUT_ERROR	0x01
 #define NETWORK_ERROR 			0x02
@@ -29,7 +34,7 @@
 #define RECOGNIZER_BUSY_ERROR	0x08
 
 
-class VoiceRecognitionShield
+class VoiceRecognitionShield : public ShieldParent
 {
 public:
 	//Constructor 
@@ -50,6 +55,7 @@ public:
 	void setOnNewCommand(void (*)(String));
 	//Setter
 	void setOnError(void (*)(byte));
+
 private:
 	//Pointer to voice data in memory 
 	char * voice;
@@ -71,8 +77,6 @@ private:
 	void (*changeCallBackString)(String);
 	//Setter
 	void (*errorCallBack)(byte);
-	//Friend Class to OneSheeld Class
-	friend class OneSheeldClass;
 };
 //Extern Object
 extern VoiceRecognitionShield VoiceRecognition;

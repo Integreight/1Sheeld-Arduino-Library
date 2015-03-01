@@ -17,7 +17,7 @@
 
 
 //Constructor 
-VoiceRecognitionShield::VoiceRecognitionShield()
+VoiceRecognitionShield::VoiceRecognitionShield() : ShieldParent(VOICE_RECOGNITION_ID)
 {
 	voice =0;
 	voicetextLength=-1;
@@ -79,26 +79,34 @@ void VoiceRecognitionShield::processData()
 		newCommand=true;
 
 		//Invoke Users function
-		if(isCallBackAssigned)
+		if(!isInACallback())
 		{
-			(*changeCallBack)(voice);
-		}
-		//Invoke Users function
-		if (usedSetOnWithString)
-		{
-			String convertedIncomingVoice (voice);
-
-			(*changeCallBackString)(convertedIncomingVoice);
+			if(isCallBackAssigned)
+			{
+				enteringACallback();
+				(*changeCallBack)(voice);
+				exitingACallback();
+			}
+			//Invoke Users function
+			if (usedSetOnWithString)
+			{
+				String convertedIncomingVoice (voice);
+				enteringACallback();
+				(*changeCallBackString)(convertedIncomingVoice);
+				exitingACallback();
+			}
 		}
 
 	}
-	else if(functionID==VOICE_GET_ERROR)
+	else if(functionID==VOICE_GET_ERROR && !isInACallback())
 	{
 		errorNumber=OneSheeld.getArgumentData(0)[0];
 		//Invoke User Function
 		if(errorAssigned)
 		{
+			enteringACallback();
 			(*errorCallBack)(errorNumber);
+			exitingACallback();
 		}
 	}
 }
@@ -121,5 +129,8 @@ void VoiceRecognitionShield::setOnError(void (*userFunction)(byte error))
 	errorCallBack=userFunction;
 	errorAssigned=true;
 }
+
+#ifdef VOICE_RECOGNITION_SHIELD
 //Instantiating object 
 VoiceRecognitionShield VoiceRecognition;
+#endif

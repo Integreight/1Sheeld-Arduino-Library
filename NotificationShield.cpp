@@ -12,7 +12,6 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "NotificationShield.h"
 
@@ -50,5 +49,7 @@ void NotificationShieldClass::notifyPhone(String data)
 }
 #endif
 
+#ifdef NOTIFICATION_SHIELD
 //Instantiating Object
 NotificationShieldClass Notification;
+#endif

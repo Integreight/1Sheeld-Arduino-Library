@@ -12,12 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "GPSShield.h"
 
 //Class Constructor 
-GPSShieldClass::GPSShieldClass ()
+GPSShieldClass::GPSShieldClass () : ShieldParent(GPS_ID)
 {
 	LatValue=0;
 	LonValue=0;
@@ -49,9 +48,11 @@ void GPSShieldClass::processData ()
 		isInit=true;  									//setting a flag 
 	}
 	//Users Function Invoked
-	if (isCallBackAssigned)
+	if (isCallBackAssigned && !isInACallback())
 	{
+		enteringACallback();
 		(*changeCallBack)(LatValue,LonValue);
+		exitingACallback();
 	}
 }
 
@@ -110,5 +111,7 @@ void GPSShieldClass::setOnValueChange(void (*userFunction)(float lattitude ,floa
 	isCallBackAssigned=true;
 }
 
+#ifdef GPS_SHIELD
 //Instantiating Object
 GPSShieldClass  GPS ;
+#endif

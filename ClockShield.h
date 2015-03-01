@@ -16,13 +16,16 @@
 #ifndef ClockShield_h
 #define ClockShield_h
 
+#include "ShieldParent.h"
+
 //Output Function ID
 #define CLOCK_BEGIN 0x01
+
+
 //Input Function ID
 #define CLOCK_DATE_VALUE 0x01
 
-
-class ClockShield
+class ClockShield : public ShieldParent
 {
 public:
 	//Constructor
@@ -51,9 +54,6 @@ private:
 	unsigned long timeCheck;
 	//Process Input Data 
 	void processData();
-
-	friend class OneSheeldClass;
-
 };
 
 //Extern Object

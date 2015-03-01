@@ -82,7 +82,7 @@ private:
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
 	//Functions
-	void processData();
+	void processFrame();
 	//Set On Change for user functions
 	void (*changeFloatCallBack)(char*, float);
 	void (*changeFloatCallBackString)(String ,float);

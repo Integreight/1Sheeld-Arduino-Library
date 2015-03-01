@@ -12,13 +12,12 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "ProximitySensorShield.h"
 
 
 //Class Constructor
-ProximitySensorShield::ProximitySensorShield()
+ProximitySensorShield::ProximitySensorShield() : ShieldParent(PROXIMITY_ID)
 {
 	value=0x00;
 	isCallBackAssigned=false;
@@ -28,6 +27,7 @@ byte ProximitySensorShield::getValue()
 {
 	return value;
 }
+
 //ProximitySensor Input Data Processing 
 void ProximitySensorShield::processData()
 {
@@ -37,8 +37,12 @@ void ProximitySensorShield::processData()
 	{
 		value=OneSheeld.getArgumentData(0)[0];
 		//Users Function Invoked
-		if (isCallBackAssigned)
-		(*changeCallBack)(value);
+		if (isCallBackAssigned && !isInACallback())
+		{
+			enteringACallback();
+			(*changeCallBack)(value);
+			exitingACallback();
+		}
 	}
 }
 //Users Function Setter
@@ -48,5 +52,7 @@ void ProximitySensorShield::setOnValueChange(void (*userFunction)(byte proximity
 	isCallBackAssigned=true;
 }
 
+#ifdef PROXIMITY_SHIELD
 //Instatntiating Object
 ProximitySensorShield ProximitySensor;
+#endif

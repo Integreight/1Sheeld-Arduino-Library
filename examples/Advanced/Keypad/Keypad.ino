@@ -62,7 +62,7 @@ void loop()
    if(iterations == 4)
    {    
         digitalWrite(ledPin,HIGH);
-        delay(500);
+        OneSheeld.delay(500);
         digitalWrite(ledPin,LOW);
         /* Reset the iterator. */
         iterations = 0;

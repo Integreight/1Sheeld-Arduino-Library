@@ -13,14 +13,15 @@
 
 */
 
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+#ifndef Keyboard_h
+#define Keyboard_h
+
+#include "ShieldParent.h"
 
 //Input Function ID 
 #define KEYBOARD_GET_CHAR	0x01
 
-
-class KeyboardShield
+class KeyboardShield : public ShieldParent
 {
 public:
 	//Constructor 
@@ -29,6 +30,7 @@ public:
 	char getCharacter();
 	//setOnChange Function for User Function
 	void setOnButtonChange(void (*)(char));
+
 private:
 	//Reserve Variable
 	char character;
@@ -37,10 +39,6 @@ private:
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallBack)(char);
-	
-	friend class OneSheeldClass ;
-
-
 };
 
 //Extern Object

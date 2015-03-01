@@ -12,12 +12,11 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "PressureSensorShield.h"
 
 //Class Constructor
-PressureSensorShield::PressureSensorShield()
+PressureSensorShield::PressureSensorShield() : ShieldParent(PRESSURE_ID)
 {
 	value=0;
 	isCallBackAssigned=false;
@@ -29,6 +28,7 @@ unsigned long PressureSensorShield::getValue()
 	return value;
 	
 }
+
 //PressureSensor Input Data Processing 
 void PressureSensorShield::processData()
 {
@@ -42,9 +42,11 @@ void PressureSensorShield::processData()
 		value|=data[0];
 		value|=(data[1]<<8);
 		//Users Function Invoked
-		if(isCallBackAssigned)
+		if(isCallBackAssigned && !isInACallback())
 		{
+			enteringACallback();
 			(*changeCallBack)(value);
+			exitingACallback();
 		}
 	}
 }
@@ -55,5 +57,7 @@ void PressureSensorShield::setOnValueChange(void (*userFunction)(unsigned long p
 	isCallBackAssigned=true;
 }
 
+#ifdef PRESSURE_SHIELD
 //Instatntiating Object
 PressureSensorShield PressureSensor;
+#endif

@@ -16,20 +16,24 @@
 #ifndef SkypeShield_h
 #define SkypeShield_h
 
+#include "ShieldParent.h"
+
 //Output Function ID's
 #define SKYPE_CALL 		0x01
 #define SKYPE_VIDEO_CALL  0x02
 
-class SkypeShieldClass 
+class SkypeShieldClass : public ShieldParent
 {
 
 public:
+  //Constructor
+  SkypeShieldClass(): ShieldParent(SKYPE_ID){};
 	//Setters 
 	void call(const char *);
 	void call(String );
 	void videoCall(const char *);	
 	void videoCall(String );
-
+ 
 private:
 
 };

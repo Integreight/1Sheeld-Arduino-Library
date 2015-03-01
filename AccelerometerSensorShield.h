@@ -16,14 +16,16 @@
 #ifndef AccelerometerSensorShield_h
 #define AccelerometerSensorShield_h
 
+#include "ShieldParent.h"
+
 //Input Function ID 
 #define ACCELEROMETER_VALUE 0x01
 
 
 
-class AccelerometerSensorShield
+
+class AccelerometerSensorShield : public ShieldParent
 {
-friend class OneSheeldClass;
 public:
 	//Constructor 
 	AccelerometerSensorShield(); 
@@ -33,7 +35,6 @@ public:
 	float getZ();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(float,float,float));
-
 private:
 	//Reserve Variables 
 	float valueX,valueY,valueZ;

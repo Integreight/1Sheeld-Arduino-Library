@@ -12,11 +12,10 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "LCDShield.h"
 
-LCDShield::LCDShield():PrintClass(LCD_ID,LCD_WRITE,LCD_PRINT)
+LCDShield::LCDShield():PrintClass(LCD_ID,LCD_WRITE,LCD_PRINT),ShieldParent(LCD_ID)
 {}
 //Setter
 void LCDShield::begin()
@@ -93,5 +92,7 @@ void LCDShield::setCursor(byte x ,byte y)
 	OneSheeld.sendPacket(LCD_ID,0,LCD_SETCURSOR,2,new FunctionArg(1,&x),new FunctionArg(1,&y));
 }
 
+#ifdef LCD_SHIELD
 //Instantiating Object
 LCDShield LCD;
+#endif

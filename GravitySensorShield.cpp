@@ -12,13 +12,12 @@
   Date:          2014.5
 
 */
-
 #include "OneSheeld.h"
 #include "GravitySensorShield.h"
 
 
 //Class Constructor 
-GravitySensorShield::GravitySensorShield()
+GravitySensorShield::GravitySensorShield() : ShieldParent(GRAVITY_ID)
 {
 	valueX=0;
 	valueY=0;
@@ -42,6 +41,7 @@ float GravitySensorShield::getZ()
 {
 	return valueZ;
 }
+
 //Gravity Input Data Processing 
 void GravitySensorShield::processData()
 {
@@ -58,9 +58,11 @@ void GravitySensorShield::processData()
 			valueZ=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(2));
 
 			//User Function Invoked
-			if(isCallBackAssigned)
+			if(isCallBackAssigned && !isInACallback())
 			{
+				enteringACallback();
 				(*changeCallBack)(valueX,valueY,valueZ);
+				exitingACallback();
 			}
 		}
 }
@@ -72,5 +74,7 @@ void GravitySensorShield::setOnValueChange(void (*userFunction)(float valueX,flo
 	isCallBackAssigned=true;
 }
 
+#ifdef GRAVITY_SHIELD
 //Instantiating Object
 GravitySensorShield GravitySensor ;
+#endif
