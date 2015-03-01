@@ -23,8 +23,6 @@ HttpRequest::HttpRequest(char * _url)
 	int reqId=++totalRequests;
 	localRequestId[0] = reqId & 0xFF;
 	localRequestId[1] = (reqId >> 8) & 0xFF;
-	started = false;
-	finished = false;
 	callbacksRequested = 0;
 	url = NULL;
 	response.requestId = getId();
@@ -131,16 +129,6 @@ void HttpRequest::setParametersContentEncoding(char * contentEncoding)
 void HttpRequest::ignoreResponse(void)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_IGNORE_REQUEST,1,new FunctionArg(sizeof(int),localRequestId));
-}
-
-bool HttpRequest::isStarted()
-{
-	return started;
-}
-
-bool HttpRequest::isFinished()
-{
-	return finished;
 }
 
 void HttpRequest::setOnSuccess(void (*userFunction)(HttpResponse &))
