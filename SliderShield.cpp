@@ -27,6 +27,24 @@ byte SliderShield::getValue()
 	return value;
 }
 
+void SliderShield::setValue(int value)
+{
+	byte copiedValue ;
+	if(value>255) 
+	{
+		copiedValue= 255;
+	}
+	else if (value < 0)
+	{
+		copiedValue= 0;
+	}
+	else
+	{
+		copiedValue = value;
+	}
+	OneSheeld.sendPacket(SLIDER_ID,0,SLIDER_SET,1,new FunctionArg(1,&copiedValue));
+}
+
 //Phone Input Data Processing 
 void SliderShield::processData()
 {

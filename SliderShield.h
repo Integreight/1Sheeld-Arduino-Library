@@ -22,6 +22,9 @@
 //Input Function ID
 #define SLIDER_VALUE 0x01
 
+//Output Function ID
+#define SLIDER_SET	0x01
+
 class SliderShield : public ShieldParent
 {
 public:
@@ -29,6 +32,8 @@ public:
 	SliderShield();
 	//Getter
 	byte getValue();
+	//Setter
+	void setValue(int );
 	//setOnChange for Users Function
 	void setOnValueChange(void (*userFunction)(byte));
 
