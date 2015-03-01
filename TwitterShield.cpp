@@ -247,7 +247,7 @@ void TwitterShieldClass::processData()
 			free(tweetText);
 		}
 		int userNameLength=OneSheeld.getArgumentLength(0);
-		userName = (char*)malloc(1*(userNameLength+1));
+		userName = (char*)malloc(sizeof(char)*(userNameLength+1));
 		for (int j=0; j<userNameLength; j++)
 		{
 			userName[j]=OneSheeld.getArgumentData(0)[j];
@@ -255,7 +255,7 @@ void TwitterShieldClass::processData()
 		userName[userNameLength]='\0';
 
 		int tweetLength=OneSheeld.getArgumentLength(1);
-		tweetText = (char*)malloc(1*(tweetLength+1));
+		tweetText = (char*)malloc(sizeof(char)*(tweetLength+1));
 
 		for(int i=0 ;i<tweetLength;i++)
 		{

@@ -63,7 +63,7 @@ bool InternetShield::performGet(HttpRequest & request)
 	{
 	
 		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_GET,2,
-							 new FunctionArg(2,request.localRequestId),
+							 new FunctionArg(sizeof(int),request.localRequestId),
 							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
@@ -77,7 +77,7 @@ bool InternetShield::performPost(HttpRequest & request)
 	if(isAdded)
 	{
 		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_POST,2,
-						 new FunctionArg(2,request.localRequestId),
+						 new FunctionArg(sizeof(int),request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
@@ -91,7 +91,7 @@ bool InternetShield::performPut(HttpRequest & request)
 	{
 	
 		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_PUT,2,
-							 new FunctionArg(2,request.localRequestId),
+							 new FunctionArg(sizeof(int),request.localRequestId),
 							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
@@ -105,7 +105,7 @@ bool InternetShield::performDelete(HttpRequest & request)
 	{
 	
 		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_DELETE,2,
-							 new FunctionArg(2,request.localRequestId),
+							 new FunctionArg(sizeof(int),request.localRequestId),
 							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
 	
@@ -139,7 +139,7 @@ void InternetShield::setDefaultMaxResponseBytesCount(int size)
 	byte sizeArray[2] ;
   	sizeArray[1] = (size >> 8) & 0xFF;
   	sizeArray[0] = size & 0xFF;
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_DEFAULT_MAX_RESPONSE,1,new FunctionArg(2,sizeArray));
+	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_DEFAULT_MAX_RESPONSE,1,new FunctionArg(sizeof(int),sizeArray));
 }
 
 void InternetShield::processData()
@@ -206,7 +206,7 @@ void InternetShield::processData()
 						dataLength = OneSheeld.getArgumentLength(dataArgumentNumber);
 						if(dataLength!=0)
 						{
-							data=(char*)malloc(1*(dataLength+1));
+							data=(char*)malloc(sizeof(char)*(dataLength+1));
 							for (int j=0; j<dataLength; j++)
 							{
 								data[j]=OneSheeld.getArgumentData(dataArgumentNumber)[j];

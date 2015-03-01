@@ -29,7 +29,7 @@ JsonKey::JsonKey(const JsonKey & old)
 	if(isText)
 	{
 		int textSize=strlen(old.text);
-		text=(char *)malloc(1*(textSize+1));
+		text=(char *)malloc(sizeof(char)*(textSize+1));
 		for (int i = 0; i < textSize; i++)
 		{
 		  text[i]=old.text[i];
@@ -45,7 +45,7 @@ JsonKey::JsonKey(const JsonKey & old)
 JsonKey::JsonKey(const char * key)
 {
 	int textSize=strlen(key);
-	text=(char *)malloc(1*(textSize+1));
+	text=(char *)malloc(sizeof(char)*(textSize+1));
 	for (int i = 0; i < textSize; i++)
 	{
 	  text[i]=key[i];

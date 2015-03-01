@@ -83,7 +83,7 @@ public:
 
 union FloatUnion{
 	    float number;
-	    byte floatBytes[4];
+	    byte floatBytes[sizeof(float)];
 	  };
 
 

@@ -114,14 +114,14 @@ void SMSShieldClass::processData()
 			free(number);
 		}
 		int numberlength=OneSheeld.getArgumentLength(0);
-		number=(char*)malloc(1*(numberlength+1));
+		number=(char*)malloc(sizeof(char)*(numberlength+1));
 		for (int j=0; j<numberlength; j++)
 		{
 			number[j]=OneSheeld.getArgumentData(0)[j];
 		}
 		number[numberlength]='\0';
 		int textlength=OneSheeld.getArgumentLength(1);
-		text=(char*)malloc(1*(textlength+1));
+		text=(char*)malloc(sizeof(char)*(textlength+1));
 
 		for(int i=0 ;i<textlength;i++)
 		{

@@ -63,7 +63,7 @@ void DataLoggerShield::stop()
 //Log Data
 void DataLoggerShield::add(const char * key,float value)
 {
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(value)));
+	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(strlen(key),(byte *)key),new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 
 //Support strings for Arduino

@@ -68,7 +68,7 @@ void VoiceRecognitionShield::processData()
 		}
 		
 		voicetextLength=OneSheeld.getArgumentLength(0);
-		voice = (char*)malloc(1*(voicetextLength+1));
+		voice = (char*)malloc(sizeof(char)*(voicetextLength+1));
 		for (int j=0; j<voicetextLength; j++)
 		{
 			voice[j]=OneSheeld.getArgumentData(0)[j];
