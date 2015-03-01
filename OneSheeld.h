@@ -31,7 +31,7 @@
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 //Library Version
-#define LIBRARY_VERSION 4
+#define LIBRARY_VERSION 5
 //Time between sending Frames
 #define TIME_GAP		200UL
 //Maximum number of remote connections
@@ -56,7 +56,7 @@
 
 
 //Numer of Shields
-#define SHIELDS_NO	36
+#define SHIELDS_NO	40
 
 //Class for Datalength and Data
 class FunctionArg
