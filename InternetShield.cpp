@@ -122,7 +122,7 @@ void InternetShield::cancelAllRequests(void)
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_CANCEL_ALL_REQUESTS,0);
 }
 
-void InternetShield::setBasicAuthentication(char * userName,char * password)
+void InternetShield::setBasicAuthentication(const char * userName,const char * password)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_AUTHENTICATION,2,
 		                 new FunctionArg(strlen(userName),(byte*)userName),

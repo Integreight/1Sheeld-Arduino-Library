@@ -149,7 +149,7 @@ void HttpResponse::resetIndex(unsigned long x)
 	index=x;
 }
 
-void HttpResponse::getHeader(char * headerName , void (*userFunction)(char * incomingheaderName ,char * IncomingHeaderValue))
+void HttpResponse::getHeader(const char * headerName , void (*userFunction)(char * incomingheaderName ,char * IncomingHeaderValue))
 {
 	if(isInit)
 	{

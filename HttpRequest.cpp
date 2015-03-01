@@ -18,7 +18,7 @@
 
 
 int HttpRequest::totalRequests = 0;
-HttpRequest::HttpRequest(char * _url)
+HttpRequest::HttpRequest(const char * _url)
 {
 	int reqId=++totalRequests;
 	localRequestId[0] = reqId & 0xFF;
