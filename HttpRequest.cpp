@@ -167,11 +167,6 @@ void HttpRequest::setOnFinish(void (*userFunction)())
 	finishCallBack=userFunction;
 }
 
-// void HttpRequest::setOnProgress(void (*userFunction)(int,int))
-// {
-// 	callbacksRequested |= PROGRESS_CALLBACK_BIT;
-// 	progressCallback=userFunction;
-// }
 
 HttpResponse & HttpRequest::getResponse()
 {
