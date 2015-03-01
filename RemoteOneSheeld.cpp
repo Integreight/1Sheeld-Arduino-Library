@@ -91,7 +91,7 @@ void RemoteOneSheeld::sendMessage(const char * key , float value)
 	OneSheeld.sendPacket(REMOTE_SHEELD_ID,0,REMOTEONESHEELD_SEND_FLOAT,3,
 						new FunctionArg(strlen(remoteOneSheeldAddress),(byte*)remoteOneSheeldAddress),
 						new FunctionArg(strlen(key),(byte*)key),
-						new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(value)));
+						new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 //Supporting Strings for arduino
 #if !defined(ARDUINO_LINUX) 
