@@ -27,50 +27,42 @@ GamePadShield::GamePadShield() : ShieldParent(GAMEPAD_ID)
 //Up ArrowChecker
 bool GamePadShield::isUpPressed()
 {
-	up = !!(value & (1<<UP_BIT));
-	return up ;
+	return !!(value & (1<<UP_BIT));
 }
 //Down Arrow Checker 
 bool GamePadShield::isDownPressed()
 {
-	down = !!(value & (1<<DOWN_BIT));
-	return down ;
+	return !!(value & (1<<DOWN_BIT));
 }
 //Left Arrow Checker
 bool GamePadShield::isLeftPressed()
-{
-	left = !!(value & (1<<LEFT_BIT));
-	return left ;
+{	
+	return  !!(value & (1<<LEFT_BIT));
 }
 //Right Arrow Checker
 bool GamePadShield::isRightPressed()
 {
-	right = !!(value & (1<<RIGHT_BIT));
-	return right ;
+	return !!(value & (1<<RIGHT_BIT));
 }
 //Orange Button Checker
 bool GamePadShield::isOrangePressed()
 {
-	orange = !!(value & (1<<ORANGE_BIT));
-	return orange ;
+	return !!(value & (1<<ORANGE_BIT));
 }
 //Red Button Checker 
 bool GamePadShield::isRedPressed()
 {
-	red = !!(value & (1<<RED_BIT));
-	return red ;
+	return !!(value & (1<<RED_BIT));
 }
 //Green Button Checker 
 bool GamePadShield::isGreenPressed()
 {
-	green = !!(value & (1<<GREEN_BIT));
-	return green ;
+	return !!(value & (1<<GREEN_BIT));
 }
 //Blue Button Checker
 bool GamePadShield::isBluePressed()
 {
-	blue = !!(value & (1<<BLUE_BIT));
-	return blue ;
+	return !!(value & (1<<BLUE_BIT));
 }
 
 //GamePad Input Data Processing  
@@ -85,7 +77,10 @@ void GamePadShield::processData()
 		if(isCallBackAssigned && !isInACallback())
 		{
 			enteringACallback();
-			(*buttonChangeCallBack)(up , down , left , right , orange , red , green , blue);
+			(*buttonChangeCallBack)(!!(value & (1<<UP_BIT)),      !!(value & (1<<DOWN_BIT)),
+									!!(value & (1<<LEFT_BIT)), 	  !!(value & (1<<RIGHT_BIT)),
+									!!(value & (1<<ORANGE_BIT)),  !!(value & (1<<RED_BIT)), 
+									!!(value & (1<<GREEN_BIT)),   !!(value & (1<<BLUE_BIT)));
 			exitingACallback();
 		}
 	}

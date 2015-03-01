@@ -49,15 +49,20 @@ public:
 	bool isBluePressed();
 	
 	//setOnChange for Users Function
-	void setOnButtonChange(void (*)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char ));
+	void setOnButtonChange(void (*)(unsigned char , unsigned char ,
+									unsigned char , unsigned char ,
+									unsigned char , unsigned char ,
+									unsigned char , unsigned char ));
 private:
 	//Reserve Variables
 	byte value;
 	bool isCallBackAssigned;
-	bool up ,down ,left ,right,orange ,red ,green, blue;
 	//Process Input Data  
 	void processData();
-	void (*buttonChangeCallBack)(unsigned char , unsigned char ,unsigned char , unsigned char ,unsigned char ,unsigned char ,unsigned char ,unsigned char );
+	void (*buttonChangeCallBack)(unsigned char , unsigned char ,
+								 unsigned char , unsigned char ,
+								 unsigned char ,unsigned char  ,
+								 unsigned char ,unsigned char );
 };
 
 //Extern Object
