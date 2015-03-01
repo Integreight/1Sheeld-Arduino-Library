@@ -19,7 +19,7 @@
 //Constructor 
 VoiceRecognitionShield::VoiceRecognitionShield() : ShieldParent(VOICE_RECOGNITION_ID)
 {
-	voice =0;
+	voice =NULL;
 	voicetextLength=-1;
 	isCallBackAssigned=false;
 	newCommand=false;

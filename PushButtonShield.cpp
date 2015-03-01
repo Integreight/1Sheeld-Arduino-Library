@@ -18,7 +18,7 @@
 //Class Constructor
 PushButtonShield::PushButtonShield() : ShieldParent(PUSH_BUTTON_ID)
 {
-	value=0x00;
+	value=0;
 	isCallBackAssigned=false;
 }
 //PushButton Checker 

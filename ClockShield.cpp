@@ -25,7 +25,9 @@ ClockShield::ClockShield() : ShieldParent(CLOCK_ID)
 	day=0;
 	month=0;
 	year=0;
-
+	isClockInit = false;
+	timeStart = 0;
+	timeCheck = 0;
 }
 
 //Blocking function 

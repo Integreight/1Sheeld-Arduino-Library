@@ -46,6 +46,10 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isOneSheeldRemoteDataUsed=false;
       inACallback=false;
       callbacksInterrupts=false;
+      isSetOnFloatMessageInvoked =false;
+      isSetOnStringMessageInvoked =false;
+      framestart =false;
+      isOneSheeldConnected =false;
 }
 
 //Library Starter

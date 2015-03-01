@@ -19,6 +19,7 @@
 //Constructor 
 PatternShield::PatternShield() : ShieldParent(PATTERN_ID)
 {
+	isNewPattern =false;
 	isCallBackAssigned = false;
 	size=0;
 	for(int i=0;i<MAX_PATTERN_SIZE;i++){
