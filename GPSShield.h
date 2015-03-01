@@ -53,13 +53,6 @@ private:
 	//Processing Input Data
 	void processData ();
 	void (*changeCallBack)(float ,float);
-	//Processing Float Numbers
-	union 
-	{
-		byte data[4];
-		float num;
-
-	} getfloat;
 };
 
 //Extern Object
