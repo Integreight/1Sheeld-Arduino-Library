@@ -55,13 +55,13 @@ void HttpRequest::sendInitFrame()
 	}
 }
 
-void HttpRequest::sendInitFrame(char * _url)
+void HttpRequest::sendInitFrame(const char * _url)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_REQUEST_URL,2,new FunctionArg(sizeof(int),(byte*)localRequestId),new FunctionArg(strlen(_url),(byte*)_url));
 	isInitFrameSent=true;
 }
 
-void HttpRequest::setUrl(char * urlName)
+void HttpRequest::setUrl(const char * urlName)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_URL,2,
 						 new FunctionArg(sizeof(int),localRequestId),
@@ -70,7 +70,7 @@ void HttpRequest::setUrl(char * urlName)
 
 
 
-void HttpRequest::addHeader(char * headerName,char * data)
+void HttpRequest::addHeader(const char * headerName,const char * data)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HEADER,3,
 		                 new FunctionArg(sizeof(int),localRequestId),
@@ -79,7 +79,7 @@ void HttpRequest::addHeader(char * headerName,char * data)
 }
 
 
-void HttpRequest::addParameter(char * paramName,char * data)
+void HttpRequest::addParameter(const char * paramName,const char * data)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_PARAMETER,3,
 		                 new FunctionArg(sizeof(int),localRequestId),
@@ -87,7 +87,7 @@ void HttpRequest::addParameter(char * paramName,char * data)
 		                 new FunctionArg(strlen(data),(byte*)data));
 }
 
-void HttpRequest::addRawData(char * data)
+void HttpRequest::addRawData(const char * data)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_RAW_DATA,2,
 						 new FunctionArg(sizeof(int),localRequestId),
@@ -114,14 +114,14 @@ void HttpRequest::deleteCallBacks(void)
 	callbacksRequested=0;
 }
 
-void HttpRequest::setContentType(char * contentType)
+void HttpRequest::setContentType(const char * contentType)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_CONTENT_TYPE,2,
 						 new FunctionArg(sizeof(int),localRequestId),
 						 new FunctionArg(strlen(contentType),(byte*)contentType));
 }
 
-void HttpRequest::setParametersContentEncoding(char * contentEncoding)
+void HttpRequest::setParametersContentEncoding(const char * contentEncoding)
 {
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_CONTENT_ENCODING,2,
 						 new FunctionArg(sizeof(int),localRequestId),
