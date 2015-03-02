@@ -58,7 +58,7 @@
 
 
 //Numer of Shields
-#define SHIELDS_NO	40
+#define SHIELDS_NO	38
 
 //Class for Datalength and Data
 class FunctionArg
