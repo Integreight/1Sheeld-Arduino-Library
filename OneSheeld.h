@@ -33,8 +33,11 @@
 #define LIBRARY_VERSION 5
 //Time between sending Frames
 #define TIME_GAP		200UL
+
+#ifdef REMOTE_SHIELD
 //Maximum number of remote connections
 #define MAX_REMOTE_CONNECTIONS 10
+#endif
 
 //Selecting picture from folder
 #define FROM_ONESHEELD_FOLDER 0x00
@@ -107,7 +110,9 @@ public:
 	byte * getArgumentData(byte );
 	byte * convertFloatToBytes(float );
 	float convertBytesToFloat(byte * );
+	#ifdef REMOTE_SHIELD
 	void listenToRemoteOneSheeld(RemoteOneSheeld *);
+	#endif
 	//Processing Incomming Frames
 	void processInput();		
 	//Library Starter
@@ -141,12 +146,16 @@ private:
 	bool isOneSheeldConnected;
 	bool isFirstFrame;
 	bool framestart;
+	#ifdef REMOTE_SHIELD
 	//Remote OneSheeld fnuctions
 	bool isSetOnFloatMessageInvoked;
 	bool isSetOnStringMessageInvoked;
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
 	bool isOneSheeldRemoteDataUsed;
+	//Number of connected Remote 1Sheelds
+	int remoteOneSheeldsCounter;
+	#endif
 	bool inACallback;
 	bool callbacksInterrupts;
 	//Data bytes
@@ -169,10 +178,10 @@ private:
 	static bool isInit;
 	//Checker variable 
 	unsigned long lastTimeFrameSent;
-	//Number of connected Remote 1Sheelds
-	int remoteOneSheeldsCounter;
+	#ifdef REMOTE_SHIELD
 	//Array of remote 1Sheelds
 	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
+	#endif
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
 	#ifdef INTERNET_SHIELD
@@ -184,8 +193,10 @@ private:
 	void begin(long baudRate);
 	void freeMemoryAllocated();
 	void processFrame();
+	#ifdef REMOTE_SHIELD
 	//Remote OneSheeld fucntions
 	void processRemoteData();
+	#endif
 	void (*changeFloatCallBack)(char*,char*, float);
 	void (*changeFloatCallBackWithString)(String ,String , float);
 	void (*changeStringCallBack)(char*,char*, char*);
