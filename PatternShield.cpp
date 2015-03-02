@@ -25,7 +25,6 @@ PatternShield::PatternShield() : ShieldParent(PATTERN_ID)
 	for(int i=0;i<MAX_PATTERN_SIZE;i++){
 		nodes[i]=PatternNode();
 	}
-	isNewPattern=false;
 }
 
 PatternNode * PatternShield::getLastPattern()
