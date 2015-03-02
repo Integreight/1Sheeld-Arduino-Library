@@ -206,6 +206,7 @@ isSentFully	KEYWORD2
 isDisposed	KEYWORD2
 setOnNextResponseBytesUpdate	KEYWORD2
 setOnJsonResponse	KEYWORD2
+setOnJsonArrayLengthResponse	KEYWORD2
 dispose	KEYWORD2
 resetIndex	KEYWORD2
 getNextBytes	KEYWORD2
@@ -226,7 +227,7 @@ performDelete	KEYWORD2
 cancelAllRequests	KEYWORD2
 setBasicAuthentication	KEYWORD2
 clearBasicAuthentication	KEYWORD2
-setDefaultMaxResponseBytesCount	KEYWORD2
+setIntialResponseMaxBytesCount	KEYWORD2
 processInput	KEYWORD2
 isCallbacksInterruptsSet	KEYWORD2
 enableCallbacksInterrupts	KEYWORD2
