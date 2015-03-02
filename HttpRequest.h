@@ -73,8 +73,6 @@ public:
 	HttpResponse & getResponse();
 	~HttpRequest();
 private:
-	bool started;
-	bool finished;
 	bool isInitFrameSent;
 	char * url;
 	byte localRequestId[2];
