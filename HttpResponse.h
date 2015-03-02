@@ -45,7 +45,7 @@ public:
 	void setOnNextResponseBytesUpdate(void (*)(HttpResponse&));
 	void setOnError(void (*)(int ));
 	void setOnJsonResponse(void (*)(JsonKeyChain & ,char *));
-	void setOnJsonResponse(void (*)(JsonKeyChain & ,unsigned long));
+	void setOnJsonArrayLengthResponse(void (*)(JsonKeyChain & ,unsigned long));
 	JsonKeyChain operator[](int );
 	JsonKeyChain operator[](const char *);
 	//Setters
