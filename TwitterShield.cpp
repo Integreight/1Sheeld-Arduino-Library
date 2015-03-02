@@ -18,8 +18,8 @@
 //Class Constructor
 TwitterShieldClass::TwitterShieldClass() : ShieldParent(TWITTER_ID)
 {
- 	userName = 0;
- 	tweetText = 0;
+ 	userName = NULL;
+ 	tweetText = NULL;
  	isCallBackAssigned=false;
  	usedSetOnWithString=false;
  	isItNewTweet=false;

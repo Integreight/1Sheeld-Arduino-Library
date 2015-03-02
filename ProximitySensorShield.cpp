@@ -19,7 +19,7 @@
 //Class Constructor
 ProximitySensorShield::ProximitySensorShield() : ShieldParent(PROXIMITY_ID)
 {
-	value=0x00;
+	value=0;
 	isCallBackAssigned=false;
 }
 //Proximity Getter 

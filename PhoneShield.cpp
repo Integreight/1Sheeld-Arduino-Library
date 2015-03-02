@@ -19,7 +19,7 @@
 PhoneShieldClass::PhoneShieldClass() : ShieldParent(PHONE_ID)
 {
 	value=0;
-	number=0;
+	number=NULL;
 	isCallBackAssigned=false;
 	usedSetOnString=false;	
 }

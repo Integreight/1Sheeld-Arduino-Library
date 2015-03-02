@@ -54,8 +54,8 @@ public:
 	//Getters
 	void getNextBytes(int=64);
 	void getTheseBytes(unsigned long ,int);
-	void getHeader(char * , void (*)(char * ,float ));
-	void getHeader(char * , void (*)(char * ,char * ));
+	void getHeader(const char * , void (*)(char * ,float ));
+	void getHeader(const char * , void (*)(char * ,char * ));
 	int getStatusCode();
 	int getBytesCount();
 	unsigned long getTotalBytesCount();

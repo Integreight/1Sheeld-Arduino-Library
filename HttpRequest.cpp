@@ -18,7 +18,7 @@
 
 
 int HttpRequest::totalRequests = 0;
-HttpRequest::HttpRequest(char * _url)
+HttpRequest::HttpRequest(const char * _url)
 {
 	int reqId=++totalRequests;
 	localRequestId[0] = reqId & 0xFF;
@@ -155,11 +155,6 @@ void HttpRequest::setOnFinish(void (*userFunction)())
 	finishCallBack=userFunction;
 }
 
-// void HttpRequest::setOnProgress(void (*userFunction)(int,int))
-// {
-// 	callbacksRequested |= PROGRESS_CALLBACK_BIT;
-// 	progressCallback=userFunction;
-// }
 
 HttpResponse & HttpRequest::getResponse()
 {

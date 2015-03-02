@@ -28,6 +28,7 @@ RemoteOneSheeld::RemoteOneSheeld(const char * address):remoteOneSheeldAddress(ad
 	isSubscribeAssigned=false;
 	usedSetOnFloatWithString=false;
 	usedSetOnStringWithString=false;
+	incommingFloatValue = 0;
 }
 //Setting Pins mode
 void RemoteOneSheeld::pinMode(byte pinNumber, byte pinDirection)

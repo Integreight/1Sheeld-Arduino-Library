@@ -18,8 +18,8 @@
 //Class Constructor
  SMSShieldClass::SMSShieldClass() : ShieldParent(SMS_ID)
   {
-  	text=0;
-  	number=0;
+  	text=NULL;
+  	number=NULL;
   	isCallBackAssigned=false;
   	isItNewSms=false;
   	usedSetOnWithString=false;

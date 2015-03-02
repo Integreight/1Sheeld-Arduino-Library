@@ -50,7 +50,7 @@ public:
 	bool performDelete(HttpRequest &);
 	void cancelAllRequests();
 	void ignoreResponse(HttpRequest &);
-	void setBasicAuthentication(char * ,char *);
+	void setBasicAuthentication(const char * ,const char *);
 	void clearBasicAuthentication();
 	void setDefaultMaxResponseBytesCount(int );
 	//Set on for userFunction

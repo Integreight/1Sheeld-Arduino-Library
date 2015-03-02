@@ -42,14 +42,14 @@ class HttpRequest
 {
 public:
 	//Constructors
-	HttpRequest(char *);
+	HttpRequest(const char *);
 	//Setters
-	void setUrl(char *);
+	void setUrl(const char *);
 	//Adders
-	void addHeader(char * ,char *);
+	void addHeader(const char * ,const char *);
 	//Adders
-	void addParameter(char * ,char *);
-	void addRawData(char *);
+	void addParameter(const char * ,const char *);
+	void addRawData(const char *);
 	//Getters
 	int getId();
 	//Deleters
@@ -57,8 +57,8 @@ public:
 	void deleteParameters(void);
 	void deleteCallBacks();
 	//Setters
-	void setContentType(char * );
-	void setParametersContentEncoding(char * );
+	void setContentType(const char * );
+	void setParametersContentEncoding(const char * );
 	//Deleter
 	void ignoreResponse(void);
 	//Checkers
@@ -83,7 +83,7 @@ private:
 	byte callbacksRequested;
 	HttpResponse response;
 	static int totalRequests;
-	void sendInitFrame(char *);
+	void sendInitFrame(const char *);
 friend class InternetShield;
 };
 

@@ -31,19 +31,10 @@ void GPSShieldClass::processData ()
 	byte functionId=OneSheeld.getFunctionId();
 	if(functionId==GPS_VALUE)
 	{
-		//Process Lattitude Value
-		getfloat.data[0]=OneSheeld.getArgumentData(0)[0];
-		getfloat.data[1]=OneSheeld.getArgumentData(0)[1];
-		getfloat.data[2]=OneSheeld.getArgumentData(0)[2];
-		getfloat.data[3]=OneSheeld.getArgumentData(0)[3];
-		LatValue=getfloat.num;
 
-		//Process Longitude Value
-		getfloat.data[0]=OneSheeld.getArgumentData(1)[0];
-		getfloat.data[1]=OneSheeld.getArgumentData(1)[1];
-		getfloat.data[2]=OneSheeld.getArgumentData(1)[2];
-		getfloat.data[3]=OneSheeld.getArgumentData(1)[3];
-		LonValue=getfloat.num;
+		LatValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(0));
+
+		LonValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(1));
 
 		isInit=true;  									//setting a flag 
 	}
