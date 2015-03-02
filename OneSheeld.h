@@ -21,7 +21,6 @@
 #include "IncludedShieldsDefines.h"
 #include "ShieldsIncludes.h"
 #include "ShieldParent.h"
-#include "RemoteOneSheeld.h"
 
 #define ONE_SECOND 1000
 

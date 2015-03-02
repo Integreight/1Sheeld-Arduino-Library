@@ -37,17 +37,19 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       endFrame=0;
       lastTimeFrameSent=0;
       numberOfDataMalloced=0;
-      remoteOneSheeldsCounter=0;
       isFirstFrame=false;
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
+      inACallback=false;
+      callbacksInterrupts=false;
+      #ifdef REMOTE_SHIELD
+      isSetOnFloatMessageInvoked =false;
+      isSetOnStringMessageInvoked =false;
       usedSetOnFloatWithString=false;
       usedSetOnStringWithString=false;
       isOneSheeldRemoteDataUsed=false;
-      inACallback=false;
-      callbacksInterrupts=false;
-      isSetOnFloatMessageInvoked =false;
-      isSetOnStringMessageInvoked =false;
+      remoteOneSheeldsCounter=0;
+      #endif
       framestart =false;
       isOneSheeldConnected =false;
 }
@@ -364,6 +366,8 @@ void OneSheeldClass::processInput()
                 if(counter==1){
                   shield=data;
                   bool found = false;
+                  if(shield == ONESHEELD_ID || shield == REMOTE_SHEELD_ID) found = true;
+                  else 
                   for (int i=0;i<shieldsCounter;i++) {
                     if (shield == shieldsArray[i]->getShieldId()){
                       found = true;
@@ -417,11 +421,13 @@ void OneSheeldClass::freeMemoryAllocated(){
           isArgumentLengthMalloced=false;
         }
 }
+#ifdef REMOTE_SHIELD
 void OneSheeldClass::listenToRemoteOneSheeld(RemoteOneSheeld * oneSheeld)
 {
   if(remoteOneSheeldsCounter<MAX_REMOTE_CONNECTIONS)
   listOfRemoteOneSheelds[remoteOneSheeldsCounter++]=oneSheeld;
 } 
+#endif
 //Data Sender to Input Shields
 void OneSheeldClass::sendToShields()
 {
