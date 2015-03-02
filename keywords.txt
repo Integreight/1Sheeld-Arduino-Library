@@ -45,6 +45,8 @@ VoiceRecognition	KEYWORD3
 Logger	KEYWORD3
 Terminal	KEYWORD3
 Pattern	KEYWORD3
+Internet	KEYWORD3
+JsonKeyChain	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -94,8 +96,6 @@ autoScroll	KEYWORD2
 noAutoScroll	KEYWORD2
 createChar	KEYWORD2
 setCursor	KEYWORD2
-write	KEYWORD2
-print	KEYWORD2
 getValue	KEYWORD2
 stop	KEYWORD2
 play	KEYWORD2
@@ -117,7 +117,6 @@ getNumber	KEYWORD2
 getNumberAsString	KEYWORD2
 getSms	KEYWORD2
 getSmsAsString	KEYWORD2
-getNumberAsString	KEYWORD2
 isNewSms	KEYWORD2
 frontCapture	KEYWORD2
 getSeconds	KEYWORD2
@@ -167,7 +166,7 @@ setOnSelected	KEYWORD2
 select	KEYWORD2
 deselect	KEYWORD2
 waitForAppConnection	KEYWORD2
-setOnTwitterSelected	KEYWORD2
+setOnSelected	KEYWORD2
 attachLastPicture	KEYWORD2
 isAppConnected	KEYWORD2
 trackKeyword	KEYWORD2
@@ -183,6 +182,62 @@ isNewPatternReceived	KEYWORD2
 setOnNewPattern	KEYWORD2
 getRow	KEYWORD2
 getColumn	KEYWORD2
+HttpRequest	KEYWORD2
+setUrl	KEYWORD2
+addHeader	KEYWORD2
+addParameters	KEYWORD2
+addRawData	KEYWORD2
+getId	KEYWORD2
+deleteHeaders	KEYWORD2
+deleteParameters	KEYWORD2
+deleteCallBacks		KEYWORD2
+setContentTypes		KEYWORD2
+setParametersContentEncoding	KEYWORD2
+ignoreResponse	KEYWORD2
+isStarted	KEYWORD2
+isFinished	KEYWORD2
+setOnSuccess KEYWORD2
+setOnFailure	KEYWORD2
+setOnStart	KEYWORD2
+setOnFinish	KEYWORD2
+getResponse	KEYWORD2
+HttpResponse	KEYWORD2
+isSentFully	KEYWORD2
+isDisposed	KEYWORD2
+setOnNextResponseBytesUpdate	KEYWORD2
+setOnJsonResponse	KEYWORD2
+dispose	KEYWORD2
+resetIndex	KEYWORD2
+getNextBytes	KEYWORD2
+getTheseBytes	KEYWORD2
+getHeader	KEYWORD2
+getStatusCode	KEYWORD2
+getBytesCount	KEYWORD2
+getTotalBytesCount	KEYWORD2
+getCurrentIndex	KEYWORD2
+getBytes	KEYWORD2
+JsonKeyChain	KEYWORD2
+query	KEYWORD2
+queryArrayLength	KEYWORD2
+performGet	KEYWORD2
+performPost	KEYWORD2
+performPut	KEYWORD2
+performDelete	KEYWORD2
+cancelAllRequests	KEYWORD2
+setBasicAuthentication	KEYWORD2
+clearBasicAuthentication	KEYWORD2
+setDefaultMaxResponseBytesCount	KEYWORD2
+processInput	KEYWORD2
+isCallbacksInterruptsSet	KEYWORD2
+enableCallbacksInterrupts	KEYWORD2
+disableCallbacksInterrupts	KEYWORD2
+getShieldId	KEYWORD2
+getLastPattern	KEYWORD2
+getLastPatternSize	KEYWORD2
+isNewPatternReceived	KEYWORD2
+setOnNewPattern	KEYWORD2
+getLastCommandAsString	KEYWORD2
+RemoteOneSheeld	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
@@ -202,3 +257,15 @@ NO_MATCH_ERROR	LITERAL1
 RECOGNIZER_BUSY_ERROR	LITERAL1
 FROM_ONESHEELD_FOLDER	LITERAL1
 FROM_CAMERA_FOLDER	LITERAL1
+INDEX_OUT_OF_BOUNDS	LITERAL1					
+RESPONSE_CAN_NOT_BE_FOUND	LITERAL1
+HEADER_CAN_NOT_BE_FOUND	LITERAL1
+NO_ENOUGH_BYTES	LITERAL1
+REQUEST_HAS_NO_RESPONSE	LITERAL1
+SIZE_OF_REQUEST_CAN_NOT_BE_ZERO	LITERAL1
+UNSUPPORTED_HTTP_ENTITY	LITERAL1
+JSON_KEYCHAIN_IS_WRONG	LITERAL1
+REQUEST_CAN_NOT_BE_FOUND	LITERAL1
+NOT_CONNECTED_TO_NETWORK	LITERAL1
+URL_IS_NOT_FOUND	LITERAL1
+ALREADY_EXECUTING_REQUEST	LITERAL1
