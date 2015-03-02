@@ -50,7 +50,7 @@ public:
 	PatternNode * getLastPattern();
 	int getLastPatternSize();
 	bool isNewPatternReceived();
-	void setOnNewPattern(void (*)(PatternNode* ,int ));
+	void setOnNewPattern(void (*)(PatternNode[] ,int ));
 
 private:
 	int size;
@@ -59,7 +59,7 @@ private:
 	PatternNode nodes[MAX_PATTERN_SIZE]; 
 
 	void processData();
-	void (*changeCallBack)(PatternNode *, int ); 
+	void (*changeCallBack)(PatternNode[], int ); 
 	
 };
 

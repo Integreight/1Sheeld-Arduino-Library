@@ -24,11 +24,12 @@ PatternShield::PatternShield() : ShieldParent(PATTERN_ID)
 	for(int i=0;i<MAX_PATTERN_SIZE;i++){
 		nodes[i]=PatternNode();
 	}
+	isNewPattern=false;
 }
 
 PatternNode * PatternShield::getLastPattern()
 {
-	isCallBackAssigned = false;
+	isNewPattern = false;
 	return nodes;
 }
 
@@ -42,7 +43,7 @@ bool PatternShield::isNewPatternReceived()
 	return isNewPattern;
 }
 
-void PatternShield::setOnNewPattern(void (* userFunction)(PatternNode* patternNode ,int size))
+void PatternShield::setOnNewPattern(void (* userFunction)(PatternNode patternNode[] ,int size))
 {
 	isCallBackAssigned = true;
 	changeCallBack = userFunction;
