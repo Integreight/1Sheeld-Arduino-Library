@@ -239,6 +239,7 @@ isNewPatternReceived	KEYWORD2
 setOnNewPattern	KEYWORD2
 getLastCommandAsString	KEYWORD2
 RemoteOneSheeld	KEYWORD2
+PatternNode	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
