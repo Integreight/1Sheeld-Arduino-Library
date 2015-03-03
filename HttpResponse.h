@@ -53,7 +53,7 @@ public:
 	//Set On for userFunctions
 	void setOnNextResponseBytesUpdate(void (*)(HttpResponse&));
 	void setOnError(void (*)(int ));
-	void setOnJsonResponse(void (*)(JsonKeyChain & ,char *));
+	void setOnJsonResponse(void (*)(JsonKeyChain & ,char []));
 	void setOnJsonArrayLengthResponse(void (*)(JsonKeyChain & ,unsigned long));
 	JsonKeyChain operator[](int );
 	JsonKeyChain operator[](const char *);
@@ -63,8 +63,8 @@ public:
 	//Getters
 	void getNextBytes(int=64);
 	void getTheseBytes(unsigned long ,int);
-	void getHeader(const char * , void (*)(char * ,float ));
-	void getHeader(const char * , void (*)(char * ,char * ));
+	void getHeader(const char * , void (*)(char [],float ));
+	void getHeader(const char * , void (*)(char [],char []));
 	int getStatusCode();
 	int getBytesCount();
 	unsigned long getTotalBytesCount();
@@ -83,9 +83,9 @@ private:
 	byte callbacksRequested;
 
 	void (*getNextCallBack)(HttpResponse &);
-	void (*getHeaderCallBack)(char * ,char *);
+	void (*getHeaderCallBack)(char [],char []);
 	void (*getErrorCallBack)(int);
-	void (*getJsonCallBack)(JsonKeyChain & , char *);
+	void (*getJsonCallBack)(JsonKeyChain & , char []);
 	void (*getJsonArrayLengthCallBack)(JsonKeyChain & , unsigned long);
 
 friend class InternetShield;

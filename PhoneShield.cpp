@@ -122,7 +122,7 @@ void PhoneShieldClass::processData()
 }
 
 //Users Function Setter
-void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,char * phoneNumber))
+void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging,char  phoneNumber []))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

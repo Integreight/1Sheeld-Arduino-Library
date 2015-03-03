@@ -49,7 +49,7 @@ public:
 	char * getTweet();
 	String getTweetAsString();
 	//setOnChange for Users Function
-	void setOnNewTweet(void (*)(char*,char*));
+	void setOnNewTweet(void (*)(char [],char []));
 	void setOnNewTweet(void (*)(String , String ));
 	//Posting Pictures
 	void tweetLastPicture(const char *,byte =0);
@@ -72,7 +72,7 @@ private:
 	bool isItNewTweet;
 	//Process Input Data 
 	void processData();
-	void (*changeCallBack)(char*,char*);
+	void (*changeCallBack)(char [],char []);
 	void (*changeCallBackString)(String , String);
 };
 //Extern Object

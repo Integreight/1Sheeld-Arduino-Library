@@ -39,7 +39,7 @@ public:
 	char * getNumber();
 	String getNumberAsString();
 	//setOnChange for Users Function
-	void setOnCallStatusChange(void (*)(bool ,char *));
+	void setOnCallStatusChange(void (*)(bool ,char []));
 	void setOnCallStatusChange(void (*)(bool , String));
 
 private:
@@ -51,7 +51,7 @@ private:
 	bool usedSetOnString;
 	//Process Input Data 
 	void processData();
-	void (*changeCallBack)(bool ,char *);
+	void (*changeCallBack)(bool ,char []);
 	void (*changeCallBackString)(bool , String);
 };
 

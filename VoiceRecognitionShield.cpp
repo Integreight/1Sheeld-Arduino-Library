@@ -111,7 +111,7 @@ void VoiceRecognitionShield::processData()
 	}
 }
 //Users Function Setter 
-void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(char * voice))
+void VoiceRecognitionShield::setOnNewCommand(void (*userFunction)(char  voice[]))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

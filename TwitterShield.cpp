@@ -284,7 +284,7 @@ void TwitterShieldClass::processData()
 	}
 }
 //Users Function Setter
-void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char * userName ,char * tweetText))
+void TwitterShieldClass::setOnNewTweet(void (*userFunction)(char  userName [],char  tweetText []))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

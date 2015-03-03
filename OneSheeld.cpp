@@ -451,7 +451,7 @@ void OneSheeldClass::sendToShields()
   }
 }
 #ifdef REMOTE_SHIELD
-void OneSheeldClass::setOnNewMessage(void (*userFunction)(char * address, char * key, float value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(char address[], char  key[], float value))
 {
   changeFloatCallBack = userFunction;
   isSetOnFloatMessageInvoked = true;
@@ -466,7 +466,7 @@ void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String
 }
 
 
-void OneSheeldClass::setOnNewMessage(void (*userFunction)(char * address, char * key, char * value))
+void OneSheeldClass::setOnNewMessage(void (*userFunction)(char address[], char key[], char value[]))
 {
   changeStringCallBack = userFunction;
   isSetOnStringMessageInvoked = true;

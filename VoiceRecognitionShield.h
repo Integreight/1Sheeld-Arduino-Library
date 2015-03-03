@@ -50,7 +50,7 @@ public:
 	//Checker 
 	bool isNewCommandReceived();
 	//Setter
-	void setOnNewCommand(void (*)(char*));
+	void setOnNewCommand(void (*)(char []));
 	//Setter using Strings 
 	void setOnNewCommand(void (*)(String));
 	//Setter

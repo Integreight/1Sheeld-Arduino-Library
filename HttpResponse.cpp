@@ -98,7 +98,7 @@ void HttpResponse::setOnError(void (*userFunction)(int errorNumber))
 	getErrorCallBack = userFunction;
 }
 
-void HttpResponse::setOnJsonResponse(void (*userFunction)(JsonKeyChain & chain,char * data))
+void HttpResponse::setOnJsonResponse(void (*userFunction)(JsonKeyChain & chain,char data[]))
 {
 	callbacksRequested |= RESPONSE_GET_JSON_BIT;
 	getJsonCallBack = userFunction;
@@ -149,7 +149,7 @@ void HttpResponse::resetIndex(unsigned long x)
 	index=x;
 }
 
-void HttpResponse::getHeader(const char * headerName , void (*userFunction)(char * incomingheaderName ,char * IncomingHeaderValue))
+void HttpResponse::getHeader(const char * headerName , void (*userFunction)(char incomingheaderName [],char IncomingHeaderValue[]))
 {
 	if(isInit)
 	{

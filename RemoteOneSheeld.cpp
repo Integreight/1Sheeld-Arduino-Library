@@ -159,7 +159,7 @@ void RemoteOneSheeld::sendMessage(const char * key , const char * stringData)
 						new FunctionArg(strlen(stringData),(byte*)stringData));
 }
 //Getting Data from remote 1Sheeld
-void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(char* key, float value))
+void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(char key [], float value))
 {
 	changeFloatCallBack=userFunction;
 	isFloatMessageAssigned = true;
@@ -171,7 +171,7 @@ void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(String key, float val
 	usedSetOnFloatWithString= true;
 }
 //Getting Data from remote 1Sheeld
-void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(char* key, char* stringData))
+void RemoteOneSheeld::setOnNewMessage(void (*userFunction)(char key[], char stringData[]))
 {
 	changeStringCallBack=userFunction;
 	isStringMessageAssigned = true;

@@ -148,7 +148,7 @@ void SMSShieldClass::processData()
 	}
 }
 //Users Function Setter
-void SMSShieldClass::setOnSmsReceive(void (*userFunction)(char * number ,char * text))
+void SMSShieldClass::setOnSmsReceive(void (*userFunction)(char number[] ,char text[]))
 {
 	changeCallBack=userFunction;
 	isCallBackAssigned=true;

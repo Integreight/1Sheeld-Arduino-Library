@@ -129,9 +129,9 @@ public:
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	//Set on change for users function
-	void setOnNewMessage(void (*)(char * ,char * ,float));
+	void setOnNewMessage(void (*)(char  [] ,char [] ,float));
 	void setOnNewMessage(void (*)(String ,String ,float));
-	void setOnNewMessage(void (*)(char * ,char * ,char *));
+	void setOnNewMessage(void (*)(char [] ,char [] ,char []));
 	void setOnNewMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
 	void delay(unsigned long);
@@ -197,9 +197,9 @@ private:
 	//Remote OneSheeld fucntions
 	void processRemoteData();
 	#endif
-	void (*changeFloatCallBack)(char*,char*, float);
+	void (*changeFloatCallBack)(char [],char [], float);
 	void (*changeFloatCallBackWithString)(String ,String , float);
-	void (*changeStringCallBack)(char*,char*, char*);
+	void (*changeStringCallBack)(char [],char [], char []);
 	void (*changeStringCallBackWithString)(String ,String ,String );
 	void enteringACallback();
 	void exitingACallback();
