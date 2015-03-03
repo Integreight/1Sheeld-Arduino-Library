@@ -40,6 +40,7 @@
 #define	NOT_CONNECTED_TO_NETWORK			0x01	
 #define	URL_IS_NOT_FOUND					0x02
 #define	ALREADY_EXECUTING_REQUEST			0x03
+#define	URL_IS_WRONG						0x04
 
 
 
