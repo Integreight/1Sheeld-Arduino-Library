@@ -55,7 +55,7 @@ void PatternShield::processData()
 
 	if(functionID==PATTERN_VALUE)
 	{
-		isNewPattern=false;
+		isNewPattern=true;
 		size = OneSheeld.getArgumentLength(0);
 		if(size>MAX_PATTERN_SIZE)return;
 		for (int i = 0; i < size; i++)
