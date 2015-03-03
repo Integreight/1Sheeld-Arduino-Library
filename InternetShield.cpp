@@ -134,7 +134,7 @@ void InternetShield::clearBasicAuthentication()
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_CLEAR_AUTHENTICATIOM,0);
 }
 
-void InternetShield::setDefaultMaxResponseBytesCount(int size)
+void InternetShield::setIntialResponseMaxBytesCount(int size)
 {
 	byte sizeArray[2] ;
   	sizeArray[1] = (size >> 8) & 0xFF;

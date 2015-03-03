@@ -58,7 +58,7 @@ public:
 	void ignoreResponse(HttpRequest &);
 	void setBasicAuthentication(const char * ,const char *);
 	void clearBasicAuthentication();
-	void setDefaultMaxResponseBytesCount(int );
+	void setIntialResponseMaxBytesCount(int );
 	//Set on for userFunction
 	void setOnError(void (*)(int,int));
 private:
