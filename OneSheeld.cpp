@@ -19,6 +19,10 @@
 
 bool OneSheeldClass::isInit=false;
 byte OneSheeldClass::shieldsCounter=0;
+unsigned long OneSheeldClass::lastTimeFrameSent=0;
+bool OneSheeldClass::inACallback=false;
+bool OneSheeldClass::callbacksInterrupts=false;
+bool OneSheeldClass::isFirstFrame=false;
 ShieldParent * OneSheeldClass::shieldsArray[]={0};
 #ifdef INTERNET_SHIELD
 byte OneSheeldClass::requestsCounter=0;
@@ -35,12 +39,9 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       datalengthcounter=0;
       argumentnumber=0;
       endFrame=0;
-      lastTimeFrameSent=0;
       numberOfDataMalloced=0;
-      isFirstFrame=false;
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
-      inACallback=false;
       callbacksInterrupts=false;
       #ifdef REMOTE_SHIELD
       isSetOnFloatMessageInvoked =false;
@@ -109,9 +110,23 @@ bool OneSheeldClass::isInitialized()
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
- if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
-    //delay(TIME_GAP-(mill-lastTimeFrameSent));
-  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
+  if(inACallback){
+     OneSheeldClass TempOneSheeld(OneSheeldSerial);
+     ShieldParent::setOneSheeldInstance(TempOneSheeld);
+     while(millis()<(TIME_GAP+lastTimeFrameSent)||TempOneSheeld.framestart)
+     {
+        if(TempOneSheeld.OneSheeldSerial.available())
+          TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial.read());
+      }
+      ShieldParent::unSetOneSheeldInstance();
+   }else
+      while(millis()<(TIME_GAP+lastTimeFrameSent)||framestart)
+      {
+        if(OneSheeldSerial.available())
+          OneSheeld.processInput(OneSheeldSerial.read());
+      }
+  }
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
@@ -146,9 +161,24 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
 {
   unsigned long mill=millis()+1;
- if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP) 
-    //delay(TIME_GAP-(mill-lastTimeFrameSent));
-  while(millis()<(TIME_GAP+lastTimeFrameSent))processInput();
+ if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
+  if(inACallback){
+     OneSheeldClass TempOneSheeld(OneSheeldSerial);
+     ShieldParent::setOneSheeldInstance(TempOneSheeld);
+     while(millis()<(TIME_GAP+lastTimeFrameSent)||TempOneSheeld.framestart)
+     {
+        if(TempOneSheeld.OneSheeldSerial.available())
+          TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial.read());
+      }
+      ShieldParent::unSetOneSheeldInstance();
+   }else
+      while(millis()<(TIME_GAP+lastTimeFrameSent)||framestart)
+      {
+        if(OneSheeldSerial.available())
+          OneSheeld.processInput(OneSheeldSerial.read());
+      }
+  }
+
   isFirstFrame=true;
   OneSheeldSerial.write((byte)START_OF_FRAME);
   OneSheeldSerial.write(LIBRARY_VERSION);
@@ -226,10 +256,8 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 } 
 
 //Incomming Frames processing 
-void OneSheeldClass::processInput()
+void OneSheeldClass::processInput(int data) 
 {
-  while(OneSheeldSerial.available()){
-    int data=OneSheeldSerial.read();
     if(data==-1)return;
      if(!framestart&&data==START_OF_FRAME)
           {
@@ -260,7 +288,7 @@ void OneSheeldClass::processInput()
               #endif
               if((255-argumentnumber)==data&&argumentnumber==0){
                 counter=9;
-                continue;
+                return;
               }
               else if((255-argumentnumber)==data){
               arguments=(byte**)malloc(sizeof(byte*)*argumentnumber);//new byte*[argumentnumber];          //assigning the first dimension of the pointer (allocating dynamically space for 2d array)
@@ -277,7 +305,8 @@ void OneSheeldClass::processInput()
               }
               else{
                 framestart=false;
-                continue;
+                freeMemoryAllocated();
+                return;
               }
 
 
@@ -318,7 +347,8 @@ void OneSheeldClass::processInput()
             }
             else{
                 framestart=false;
-                continue;
+                freeMemoryAllocated();
+                return;
               }
           }
           else if (counter==8&&framestart)
@@ -376,7 +406,8 @@ void OneSheeldClass::processInput()
                   }
                   if (!found) {
                     framestart=false;
-                    continue;
+                    freeMemoryAllocated();
+                    return;
                   }
                 }
                 else if(counter==2){
@@ -393,8 +424,16 @@ void OneSheeldClass::processInput()
                 }
             counter++;
           }
-      }
-    }
+
+}
+
+void OneSheeldClass::processInput()
+{
+  while(OneSheeldSerial.available())
+  {
+    processInput(OneSheeldSerial.read());
+  }
+}
 
 void OneSheeldClass::freeMemoryAllocated(){
   framestart=false;

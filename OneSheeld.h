@@ -43,7 +43,7 @@
 #define FROM_ONESHEELD_FOLDER 0x00
 #define FROM_CAMERA_FOLDER	  0x01
 
-//#define DEBUG
+// #define DEBUG
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
@@ -144,7 +144,7 @@ private:
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
-	bool isFirstFrame;
+	static bool isFirstFrame;
 	bool framestart;
 	#ifdef REMOTE_SHIELD
 	//Remote OneSheeld fnuctions
@@ -156,8 +156,8 @@ private:
 	//Number of connected Remote 1Sheelds
 	int remoteOneSheeldsCounter;
 	#endif
-	bool inACallback;
-	bool callbacksInterrupts;
+	static bool inACallback;
+	static bool callbacksInterrupts;
 	//Data bytes
 	byte numberOfDataMalloced;
 	byte shield;
@@ -177,7 +177,7 @@ private:
 	//Is constructor called
 	static bool isInit;
 	//Checker variable 
-	unsigned long lastTimeFrameSent;
+	static unsigned long lastTimeFrameSent;
 	#ifdef REMOTE_SHIELD
 	//Array of remote 1Sheelds
 	RemoteOneSheeld * listOfRemoteOneSheelds[MAX_REMOTE_CONNECTIONS];
@@ -204,6 +204,7 @@ private:
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();
+	void processInput(int byte);
 friend class RemoteOneSheeld;
 friend class ShieldParent;
 };

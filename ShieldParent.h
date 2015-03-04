@@ -26,6 +26,8 @@
 /* Input functions ID. */
 #define CHECK_SELECTED		0xFF
 
+class OneSheeldClass;
+
 class ShieldParent
 {
 protected:
@@ -35,6 +37,7 @@ protected:
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();
+	OneSheeldClass & getOneSheeldInstance();
 public:
 	/* Functions will be inherited by all shields. */
 	void select(void);
@@ -42,9 +45,14 @@ public:
 	void setOnSelected(void(*)(void));
 	byte getShieldId(void);
 private:
-	bool isCallBackSet ;
+	bool isCallBackSet;
 	byte shieldID;
 	void (*selectedCallBack)(void);
+	static OneSheeldClass * oneSheeldInstance;
+	static bool oneSheeldInstanceAvailable;
+	static void setOneSheeldInstance(OneSheeldClass &);
+	static void unSetOneSheeldInstance();
+
 friend class OneSheeldClass;
 };
 

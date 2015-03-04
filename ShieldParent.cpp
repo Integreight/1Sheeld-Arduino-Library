@@ -14,6 +14,8 @@
 */
 #include "OneSheeld.h"
 
+OneSheeldClass * ShieldParent::oneSheeldInstance=NULL;
+bool ShieldParent::oneSheeldInstanceAvailable=false;
 
 ShieldParent::ShieldParent(byte shieldNo)
 {
@@ -59,10 +61,28 @@ bool ShieldParent::isInACallback()
   return OneSheeld.isInACallback();
 }
 
+void ShieldParent::setOneSheeldInstance(OneSheeldClass & instance)
+{
+	oneSheeldInstance=&instance;
+	oneSheeldInstanceAvailable=true;
+}
+
+void ShieldParent::unSetOneSheeldInstance()
+{
+	oneSheeldInstance=NULL;
+	oneSheeldInstanceAvailable=false;
+}
+
+OneSheeldClass & ShieldParent::getOneSheeldInstance()
+{
+	if(oneSheeldInstanceAvailable)return *oneSheeldInstance;
+	else return OneSheeld;
+}
+
 void ShieldParent::processFrame()
 {
-	if(shieldID!=OneSheeld.getShieldId())return;
-	byte functionID = OneSheeld.getFunctionId();
+	if(shieldID!=getOneSheeldInstance().getShieldId())return;
+	byte functionID = getOneSheeldInstance().getFunctionId();
 
 	if(functionID == CHECK_SELECTED)
 	{
