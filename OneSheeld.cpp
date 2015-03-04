@@ -663,7 +663,22 @@ void OneSheeldClass::enableCallbacksInterrupts()
 void OneSheeldClass::delay(unsigned long time)
 {
   unsigned long now=millis();
-  while(millis()<(now+time))processInput();
+    if(inACallback)
+    {
+     OneSheeldClass TempOneSheeld(OneSheeldSerial);
+     ShieldParent::setOneSheeldInstance(TempOneSheeld);
+     while(millis()<(now+time)||TempOneSheeld.framestart)
+     {
+        if(TempOneSheeld.OneSheeldSerial.available())
+          TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial.read());
+      }
+      ShieldParent::unSetOneSheeldInstance();
+   }else
+      while(millis()<(now+time)||framestart)
+      {
+        if(OneSheeldSerial.available())
+          OneSheeld.processInput(OneSheeldSerial.read());
+      }
 }
 
 //Instantiating Object
