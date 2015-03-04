@@ -153,9 +153,12 @@ void HttpResponse::getHeader(const char * headerName , void (*userFunction)(char
 {
 	if(isInit)
 	{
+		//Check length of string 
+		int headerNameLength = strlen(headerName);
+		if(!headerNameLength) return;
 		callbacksRequested |= RESPONSE_INPUT_GET_HEADER_BIT;
 		getHeaderCallBack = userFunction;
-		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,new FunctionArg(strlen(headerName),(byte *)headerName));	
+		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,new FunctionArg(headerNameLength,(byte *)headerName));	
 	}
 	
 }
@@ -168,6 +171,7 @@ JsonKeyChain HttpResponse::operator[](int key)
 
 JsonKeyChain HttpResponse::operator[](const char *key)
 {
+	if(!strlen(key)) return 0;
     JsonKeyChain chain(requestId);
     return chain[key];
 }

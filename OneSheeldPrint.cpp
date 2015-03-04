@@ -71,7 +71,10 @@ void PrintClass::print(unsigned long data , byte base)
 //Print string
 void PrintClass::print(const char * stringData)
 {
-	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringData),(byte*)stringData));	
+	//Check length of string 
+	int stringDataLength = strlen(stringData);
+	if(!stringDataLength) return;
+	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(stringDataLength,(byte*)stringData));	
 }
 
 //Support string for Arduino

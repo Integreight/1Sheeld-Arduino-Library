@@ -55,41 +55,59 @@ void HttpRequest::sendInitFrame()
 
 void HttpRequest::sendInitFrame(const char * _url)
 {
-	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_REQUEST_URL,2,new FunctionArg(2,(byte*)localRequestId),new FunctionArg(strlen(_url),(byte*)_url));
+	//Check length of string 
+	int _urlLength = strlen(_url);
+	if(!_urlLength) return;
+	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_REQUEST_URL,2,new FunctionArg(2,(byte*)localRequestId),
+														  new FunctionArg(_urlLength,(byte*)_url));
 	isInitFrameSent=true;
 }
 
 void HttpRequest::setUrl(const char * urlName)
 {
+	//Check length of string 
+	int urlNameLength = strlen(urlName);
+	if(!urlNameLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_URL,2,
 						 new FunctionArg(2,localRequestId),
-						 new FunctionArg(strlen(urlName),(byte*)urlName));
+						 new FunctionArg(urlNameLength,(byte*)urlName));
 }
 
 
 
 void HttpRequest::addHeader(const char * headerName,const char * data)
 {
+	//Check length of string 
+	int headerNameLength = strlen(headerName);
+	int dataLength = strlen(data);
+	if(!headerNameLength || !dataLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_HEADER,3,
 		                 new FunctionArg(2,localRequestId),
-		                 new FunctionArg(strlen(headerName),(byte*)headerName),
-		                 new FunctionArg(strlen(data),(byte*)data));
+		                 new FunctionArg(headerNameLength,(byte*)headerName),
+		                 new FunctionArg(dataLength,(byte*)data));
 }
 
 
 void HttpRequest::addParameter(const char * paramName,const char * data)
 {
+	//Check length of string 
+	int paramNameLength = strlen(paramName);
+	int dataLength = strlen(data);
+	if(!paramNameLength || !dataLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_PARAMETER,3,
 		                 new FunctionArg(2,localRequestId),
-		                 new FunctionArg(strlen(paramName),(byte*)paramName),
-		                 new FunctionArg(strlen(data),(byte*)data));
+		                 new FunctionArg(paramNameLength,(byte*)paramName),
+		                 new FunctionArg(dataLength,(byte*)data));
 }
 
 void HttpRequest::addRawData(const char * data)
 {
+	//Check length of string 
+	int dataLength = strlen(data);
+	if(!dataLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_ADD_RAW_DATA,2,
 						 new FunctionArg(2,localRequestId),
-						 new FunctionArg(strlen(data),(byte*)data));
+						 new FunctionArg(dataLength,(byte*)data));
 }
 
 int HttpRequest::getId(void)
@@ -114,16 +132,22 @@ void HttpRequest::deleteCallBacks(void)
 
 void HttpRequest::setContentType(const char * contentType)
 {
+	//Check length of string 
+	int contentTypeLength = strlen(contentType);
+	if(!contentTypeLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_CONTENT_TYPE,2,
 						 new FunctionArg(2,localRequestId),
-						 new FunctionArg(strlen(contentType),(byte*)contentType));
+						 new FunctionArg(contentTypeLength,(byte*)contentType));
 }
 
 void HttpRequest::setParametersContentEncoding(const char * contentEncoding)
 {
+	//Check length of string 
+	int contentEncodingLength = strlen(contentEncoding);
+	if(!contentEncodingLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,HTTP_SET_CONTENT_ENCODING,2,
 						 new FunctionArg(2,localRequestId),
-						 new FunctionArg(strlen(contentEncoding),(byte*)contentEncoding));
+						 new FunctionArg(contentEncodingLength,(byte*)contentEncoding));
 }
 
 void HttpRequest::ignoreResponse(void)

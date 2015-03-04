@@ -19,7 +19,12 @@
 //Checking-In Sender
 void FoursquareShieldClass::checkIn(const char* placeId,const char* message)
 {
-	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_CHECK_IN,2,new FunctionArg(strlen(placeId),(byte*)placeId),new FunctionArg(strlen(message),(byte*)message));
+	//Check length of string 
+	int placeIdLength = strlen(placeId);
+	int messageLength = strlen(message);
+	if(!placeIdLength || !messageLength) return;
+	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_CHECK_IN,2,new FunctionArg(placeIdLength,(byte*)placeId),
+															   new FunctionArg(messageLength,(byte*)message));
 }
 
 //Support string for Arduino

@@ -124,9 +124,13 @@ void InternetShield::cancelAllRequests(void)
 
 void InternetShield::setBasicAuthentication(const char * userName,const char * password)
 {
+	//Check length of string 
+	int userNameLength = strlen(userName);
+	int passwordLength = strlen(password);
+	if(!userNameLength || !passwordLength) return;
 	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_AUTHENTICATION,2,
-		                 new FunctionArg(strlen(userName),(byte*)userName),
-		                 new FunctionArg(strlen(password),(byte*)password));
+		                 new FunctionArg(userNameLength,(byte*)userName),
+		                 new FunctionArg(passwordLength,(byte*)password));
 }
 
 void InternetShield::clearBasicAuthentication()

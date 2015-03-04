@@ -26,7 +26,10 @@ PhoneShieldClass::PhoneShieldClass() : ShieldParent(PHONE_ID)
 //Call Setter 
 void PhoneShieldClass::call(const char* phone)
 {
-	OneSheeld.sendPacket(PHONE_ID,0,PHONE_CALL,1,new FunctionArg(strlen(phone),(byte *)phone));
+	//Check length of string 
+	int phoneLength = strlen(phone);
+	if(!phoneLength) return;
+	OneSheeld.sendPacket(PHONE_ID,0,PHONE_CALL,1,new FunctionArg(phoneLength,(byte *)phone));
 }
 
 //Support string for Arduino

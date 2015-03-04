@@ -75,6 +75,7 @@ private:
 	char * stringKey;
 	char * incommingStringData;
 	float incommingFloatValue;
+	int remoteOneSheeldAddressLength;
 	//Booleans
 	bool isFloatMessageAssigned;
 	bool isStringMessageAssigned;

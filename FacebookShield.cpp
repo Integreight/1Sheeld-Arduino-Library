@@ -18,7 +18,10 @@
 //Post Sender
 void FacebookShieldClass::post(const char* status)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_UPDATE_STATUS,1,new FunctionArg(strlen(status),(byte*)status));
+	//Check length of string 
+	int statusLength = strlen(status);
+	if(!statusLength) return;
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_UPDATE_STATUS,1,new FunctionArg(statusLength,(byte*)status));
 }
 //Support strings Arduino
 #if !defined(ARDUINO_LINUX)
@@ -50,7 +53,11 @@ void FacebookShieldClass::post(String status)
 
 void FacebookShieldClass::postLastPicture(const char * pictureText, byte imageSource)
 {
-	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_POST_LAST_PIC,2,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
+	//Check length of string 
+	int pictureTextLength = strlen(pictureText);
+	if(!pictureTextLength) return;
+	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_POST_LAST_PIC,2,new FunctionArg(pictureTextLength,(byte*)pictureText),
+																new FunctionArg(1,(byte *)&imageSource));
 }
 
 //Support string and image source Arduino

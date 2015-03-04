@@ -18,7 +18,10 @@
 //Notification Sender
 void NotificationShieldClass::notifyPhone(const char* data)
 {
-	OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,new FunctionArg(strlen(data),(byte*)data));
+	//Check length of string 
+	int dataLength = strlen(data);
+	if(!dataLength) return;
+	OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,new FunctionArg(dataLength,(byte*)data));
 }
 
 //Support string for Arduino

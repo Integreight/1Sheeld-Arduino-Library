@@ -27,7 +27,10 @@ TwitterShieldClass::TwitterShieldClass() : ShieldParent(TWITTER_ID)
 //Tweet Sender
 void TwitterShieldClass::tweet(const char *data)
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(strlen(data),(byte*)data));
+	//Check length of string 
+	int dataLength = strlen(data);
+	if(!dataLength) return;
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(dataLength,(byte*)data));
 }
 //Support string for Arduino
 #if !defined(ARDUINO_LINUX)
@@ -60,8 +63,12 @@ void TwitterShieldClass::tweet(String data)
 //Message Sender
 void TwitterShieldClass::sendMessage(const char* username,const char* message)
 {
-
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND_DIRECT_MESSAGE,2,new FunctionArg(strlen(username),(byte*)username),new FunctionArg(strlen(message),(byte*) message));
+	//Check length of string 
+	int usernameLength = strlen(username); 
+	int messageLength = strlen(message);
+	if(!usernameLength || !messageLength) return;
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND_DIRECT_MESSAGE,2,new FunctionArg(usernameLength,(byte*)username),
+																	new FunctionArg(messageLength,(byte*) message));
 
 }
 
@@ -104,7 +111,11 @@ void TwitterShieldClass::sendMessage(String username , String message)
 
 void TwitterShieldClass::tweetLastPicture(const char * pictureText , byte imageSource)
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(strlen(pictureText),(byte*)pictureText),new FunctionArg(1,(byte *)&imageSource));
+	//Check length of string 
+	int pictureTextLength = strlen(pictureText);
+	if(!pictureTextLength) return;
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(pictureTextLength,(byte*)pictureText),
+															  new FunctionArg(1,(byte *)&imageSource));
 }
 
 //Support string for Arduino
@@ -141,12 +152,18 @@ bool TwitterShieldClass::isNewTweet()
 }
 void TwitterShieldClass::trackKeyword(const char * keyword)
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
+	//Check length of string 
+	int keywordLength = strlen(keyword);
+	if(!keywordLength) return;
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(keywordLength,(byte*)keyword));
 }
 
 void TwitterShieldClass::untrackKeyword(const char * keyword)
 {
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(strlen(keyword),(byte*)keyword));
+	//Check length of string 
+	int keywordLength = strlen(keyword);
+	if(!keywordLength) return;
+	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(keywordLength,(byte*)keyword));
 }
 
 //Support string for Arduino

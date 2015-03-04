@@ -18,7 +18,10 @@
 //Give text to be said by the phone
 void TTSShield::say(const char * text)
 {
-	OneSheeld.sendPacket(TTS_ID,0,TTS_SAY,1,new FunctionArg(strlen(text),(byte*)text));
+	//Check length of string 
+	int textLength = strlen(text);
+	if(!textLength) return;
+	OneSheeld.sendPacket(TTS_ID,0,TTS_SAY,1,new FunctionArg(textLength,(byte*)text));
 }
 
 //Support string for Arduino
