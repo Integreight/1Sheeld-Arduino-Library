@@ -61,9 +61,6 @@ public:
 	void setParametersContentEncoding(const char * );
 	//Deleter
 	void ignoreResponse(void);
-	//Checkers
-	bool isStarted();
-	bool isFinished();
 	//Set On for userFunctions 
 	void setOnSuccess(void (*)(HttpResponse&));
 	void setOnFailure(void (*)(HttpResponse&));
