@@ -191,7 +191,7 @@ getId	KEYWORD2
 deleteHeaders	KEYWORD2
 deleteParameters	KEYWORD2
 deleteCallBacks	KEYWORD2
-setContentTypes	KEYWORD2
+setContentType	KEYWORD2
 setParametersContentEncoding	KEYWORD2
 ignoreResponse	KEYWORD2
 isStarted	KEYWORD2
