@@ -42,28 +42,36 @@ void loop()
 
     /* Get the length of the pattern to loop over it. */
     length = Pattern.getLastPatternLength();
-
-    /* A for loop to check the entered pattern to the stored pattern. */
-    for (int i = 0; i < length ; i++)
-    {
-      /* A check for the pattern by checking the row and the column of each node entered by the user. */
-      if (patternEntered[i].row == patternStored[i].row && patternEntered[i].col == patternStored[i].col)
+    /* Check the pattern length. */
+    if (length ==5)
       {
-        counter++;
+        /* A for loop to check the entered pattern to the stored pattern. */
+        for (int i = 0; i < length ; i++)
+        {
+          /* A check for the pattern by checking the row and the column of each node entered by the user. */
+          if (patternEntered[i].row == patternStored[i].row && patternEntered[i].col == patternStored[i].col)
+            {
+              counter++;
+            }
+        }
+    
+        /* If condidition to check if all the nodes entered by the user are right and equal to the right pattern. */
+        if (counter == 5)
+          {
+            digitalWrite(ledPin,HIGH);
+            counter = 0;
+          }
+        else 
+          {
+            digitalWrite(ledPin,LOW);
+            counter = 0;
+          }
       }
-    }
-
-    /* If condidition to check if all the nodes entered by the user are right and equal to the right pattern. */
-    if (counter == 5)
-    {
-      digitalWrite(ledPin,HIGH);
-      counter = 0;
-    }
+    /* If pattern length is different turn off the LED.  */
     else 
-    {
-      digitalWrite(ledPin,LOW);
-      counter = 0;
-    }
+      {
+        digitalWrite(ledPin,LOW);
+      }
   } 
 }
 
