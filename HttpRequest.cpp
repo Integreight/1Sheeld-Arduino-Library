@@ -26,6 +26,7 @@ HttpRequest::HttpRequest(const char * _url)
 	callbacksRequested = 0;
 	url = NULL;
 	response.requestId = getId();
+	if(!strlen(_url)) return;
 	if(!OneSheeldClass::isInitialized())
 	{
 		int urlLength=strlen(_url);
