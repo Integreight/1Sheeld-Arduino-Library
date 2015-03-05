@@ -53,7 +53,7 @@ public:
 	void setOnNewPattern(void (*)(PatternNode[] ,int ));
 
 private:
-	int size;
+	int length;
 	bool isNewPattern;
 	bool isCallBackAssigned;
 	PatternNode nodes[MAX_PATTERN_SIZE]; 
