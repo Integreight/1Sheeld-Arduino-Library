@@ -32,11 +32,11 @@ char KeyboardShield::getCharacter()
 void KeyboardShield::processData()
 {
 	//Checking Function-ID
-	byte functionId=OneSheeld.getFunctionId();
+	byte functionId=getOneSheeldInstance().getFunctionId();
 	if (functionId==KEYBOARD_GET_CHAR)
 	{
 		
-		character=OneSheeld.getArgumentData(0)[0];
+		character=getOneSheeldInstance().getArgumentData(0)[0];
 		//Users Function Invoked
 		if(isCallBackAssigned && !isInACallback())
 		{

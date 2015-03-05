@@ -51,17 +51,17 @@ void PatternShield::setOnNewPattern(void (* userFunction)(PatternNode patternNod
 //Process Input Data
 void PatternShield::processData()
 {
-	byte functionID = OneSheeld.getFunctionId();
+	byte functionID = getOneSheeldInstance().getFunctionId();
 
 	if(functionID==PATTERN_VALUE)
 	{
 		isNewPattern=true;
-		size = OneSheeld.getArgumentLength(0);
+		size = getOneSheeldInstance().getArgumentLength(0);
 		if(size>MAX_PATTERN_SIZE)return;
 		for (int i = 0; i < size; i++)
 		{
 			PatternNode node;
-			node.setValue(OneSheeld.getArgumentData(0)[i]);
+			node.setValue(getOneSheeldInstance().getArgumentData(0)[i]);
 			nodes[i]=node;
 		}
 

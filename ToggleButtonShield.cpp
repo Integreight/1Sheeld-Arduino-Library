@@ -32,10 +32,10 @@ bool ToggleButtonShield::getStatus()
 void ToggleButtonShield::processData()
 {
 	//Checking Function-ID
-	byte functionId= OneSheeld.getFunctionId();
+	byte functionId= getOneSheeldInstance().getFunctionId();
 	if(functionId==TOGGLEBUTTON_VALUE)
 	{
-		value=OneSheeld.getArgumentData(0)[0];
+		value=getOneSheeldInstance().getArgumentData(0)[0];
 		//Users Function Invoked
 		if(isCallBackAssigned && !isInACallback())
 		{

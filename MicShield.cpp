@@ -32,11 +32,11 @@ byte MicShield::getValue()
 void MicShield::processData()
 {
 	//Checking Function-ID
-	byte functionId =OneSheeld.getFunctionId();
+	byte functionId =getOneSheeldInstance().getFunctionId();
 	if(functionId==MIC_VALUE)
 	{
 		value=0;
-		value=OneSheeld.getArgumentData(0)[0];
+		value=getOneSheeldInstance().getArgumentData(0)[0];
 
 		//Users Function Invoked
 		if(isCallBackAssigned && !isInACallback())

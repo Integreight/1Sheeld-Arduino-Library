@@ -50,11 +50,11 @@ return !!col;
 void KeypadShieldClass::processData()
 {
   //Checking Function-ID
-  byte functionId=OneSheeld.getFunctionId();
+  byte functionId=getOneSheeldInstance().getFunctionId();
   if (functionId==KEYPAD_VALUE)
    { 
-     row=OneSheeld.getArgumentData(0)[0];
-     col=OneSheeld.getArgumentData(1)[0];
+     row=getOneSheeldInstance().getArgumentData(0)[0];
+     col=getOneSheeldInstance().getArgumentData(1)[0];
      //Users Function Invoked
      if (isCallbackAssigned && !isInACallback())
       {

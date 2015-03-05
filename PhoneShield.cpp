@@ -81,11 +81,11 @@ String PhoneShieldClass::getNumberAsString()
 void PhoneShieldClass::processData()
 {
 	//Checking Function-ID
-	byte functionId= OneSheeld.getFunctionId();
+	byte functionId= getOneSheeldInstance().getFunctionId();
 
 	if (functionId==PHONE_IS_RINGING)
 	{
-		value =OneSheeld.getArgumentData(0)[0];
+		value =getOneSheeldInstance().getArgumentData(0)[0];
 	}
 	else if (functionId==PHONE_GET_NUMBER)
 	{
@@ -94,13 +94,13 @@ void PhoneShieldClass::processData()
 			free(number);
 		}
 		
-		byte length=OneSheeld.getArgumentLength(0);
+		byte length=getOneSheeldInstance().getArgumentLength(0);
 		
 		number=(char*)malloc(sizeof(char)*(length+1));
 		
 		for (int i=0; i< length;i++)
 			{
-				number[i]=OneSheeld.getArgumentData(0)[i];
+				number[i]=getOneSheeldInstance().getArgumentData(0)[i];
 			}
 
 			number[length]='\0';

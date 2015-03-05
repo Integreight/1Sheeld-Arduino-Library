@@ -51,13 +51,13 @@ int TerminalShield::readBytes(char *arr, int length)
 //Terminal Incomming Data processing
 void TerminalShield::processData()
 {
-	byte functionID = OneSheeld.getFunctionId();
-	byte dataLength = OneSheeld.getArgumentLength(0);
+	byte functionID = getOneSheeldInstance().getFunctionId();
+	byte dataLength = getOneSheeldInstance().getArgumentLength(0);
 	if(functionID == TERMINAL_READ)
 	{
 			for (int j=0; j<dataLength; j++)
 			{
-				buffer.push(OneSheeld.getArgumentData(0)[j]);
+				buffer.push(getOneSheeldInstance().getArgumentData(0)[j]);
 			}
 	}
 }

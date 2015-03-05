@@ -251,7 +251,7 @@ String TwitterShieldClass::getTweetAsString()
 void TwitterShieldClass::processData()
 {
 	//Checking Function-ID
-	byte functionId = OneSheeld.getFunctionId();
+	byte functionId = getOneSheeldInstance().getFunctionId();
 	if( functionId == TWITTER_GET_TWEET)
 	{	
 		isItNewTweet = true;
@@ -263,20 +263,20 @@ void TwitterShieldClass::processData()
 		{
 			free(tweetText);
 		}
-		int userNameLength=OneSheeld.getArgumentLength(0);
+		int userNameLength=getOneSheeldInstance().getArgumentLength(0);
 		userName = (char*)malloc(sizeof(char)*(userNameLength+1));
 		for (int j=0; j<userNameLength; j++)
 		{
-			userName[j]=OneSheeld.getArgumentData(0)[j];
+			userName[j]=getOneSheeldInstance().getArgumentData(0)[j];
 		}
 		userName[userNameLength]='\0';
 
-		int tweetLength=OneSheeld.getArgumentLength(1);
+		int tweetLength=getOneSheeldInstance().getArgumentLength(1);
 		tweetText = (char*)malloc(sizeof(char)*(tweetLength+1));
 
 		for(int i=0 ;i<tweetLength;i++)
 		{
-			tweetText[i]=OneSheeld.getArgumentData(1)[i];
+			tweetText[i]=getOneSheeldInstance().getArgumentData(1)[i];
 		}
 			tweetText[tweetLength]='\0';
 		//Users Function Invoked

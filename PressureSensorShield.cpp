@@ -33,12 +33,12 @@ unsigned long PressureSensorShield::getValue()
 void PressureSensorShield::processData()
 {
 	//Checking Function-ID
-	byte functionId =OneSheeld.getFunctionId();
+	byte functionId =getOneSheeldInstance().getFunctionId();
 	if(functionId==PRESSURE_VALUE)
 	{
 		value=0;
-		data[0]=OneSheeld.getArgumentData(0)[0];
-		data[1]=OneSheeld.getArgumentData(0)[1];
+		data[0]=getOneSheeldInstance().getArgumentData(0)[0];
+		data[1]=getOneSheeldInstance().getArgumentData(0)[1];
 		value|=data[0];
 		value|=(data[1]<<8);
 		//Users Function Invoked

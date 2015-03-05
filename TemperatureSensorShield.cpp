@@ -32,11 +32,11 @@ char TemperatureSensorShield::getValue()
 void TemperatureSensorShield::processData()
 {
 	//Checking Function-ID
-	byte functionId =OneSheeld.getFunctionId();
+	byte functionId =getOneSheeldInstance().getFunctionId();
 
 	if(functionId==TEMPERATURE_VALUE)
 	{
-		value=OneSheeld.getArgumentData(0)[0];
+		value=getOneSheeldInstance().getArgumentData(0)[0];
 		//Users Function Invocation
 		if(isCallBackAssigned && !isInACallback())
 		{

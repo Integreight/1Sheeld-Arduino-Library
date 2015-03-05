@@ -28,13 +28,13 @@ GPSShieldClass::GPSShieldClass () : ShieldParent(GPS_ID)
 void GPSShieldClass::processData ()
 {
 	//Checking Function-ID
-	byte functionId=OneSheeld.getFunctionId();
+	byte functionId=getOneSheeldInstance().getFunctionId();
 	if(functionId==GPS_VALUE)
 	{
 
-		LatValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(0));
+		LatValue=getOneSheeldInstance().convertBytesToFloat(getOneSheeldInstance().getArgumentData(0));
 
-		LonValue=OneSheeld.convertBytesToFloat(OneSheeld.getArgumentData(1));
+		LonValue=getOneSheeldInstance().convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
 
 		isInit=true;  									//setting a flag 
 	}

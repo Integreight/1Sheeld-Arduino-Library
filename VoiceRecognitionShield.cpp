@@ -58,7 +58,7 @@ String VoiceRecognitionShield::getCommandAsString()
 //Process Input Data
 void VoiceRecognitionShield::processData()
 {
-	byte functionID = OneSheeld.getFunctionId();
+	byte functionID = getOneSheeldInstance().getFunctionId();
 
 	if(functionID==VOICE_GET)
 	{
@@ -67,11 +67,11 @@ void VoiceRecognitionShield::processData()
 			free(voice);
 		}
 		
-		voicetextLength=OneSheeld.getArgumentLength(0);
+		voicetextLength=getOneSheeldInstance().getArgumentLength(0);
 		voice = (char*)malloc(sizeof(char)*(voicetextLength+1));
 		for (int j=0; j<voicetextLength; j++)
 		{
-			voice[j]=OneSheeld.getArgumentData(0)[j];
+			voice[j]=getOneSheeldInstance().getArgumentData(0)[j];
 		}
 		voice[voicetextLength]='\0';
 
@@ -100,7 +100,7 @@ void VoiceRecognitionShield::processData()
 	}
 	else if(functionID==VOICE_GET_ERROR && !isInACallback())
 	{
-		errorNumber=OneSheeld.getArgumentData(0)[0];
+		errorNumber=getOneSheeldInstance().getArgumentData(0)[0];
 		//Invoke User Function
 		if(errorAssigned)
 		{

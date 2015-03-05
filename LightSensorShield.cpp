@@ -32,13 +32,13 @@ unsigned long LightSensorShield::getValue()
 void LightSensorShield::processData()
 {
 	//Checking Function-ID
-	byte functionId =OneSheeld.getFunctionId();
+	byte functionId =getOneSheeldInstance().getFunctionId();
 	if(functionId==LIGHT_VALUE)
 	{
 		value=0;
-		data[0]=OneSheeld.getArgumentData(0)[0];
-		data[1]=OneSheeld.getArgumentData(0)[1];
-		data[2]=OneSheeld.getArgumentData(0)[2];
+		data[0]=getOneSheeldInstance().getArgumentData(0)[0];
+		data[1]=getOneSheeldInstance().getArgumentData(0)[1];
+		data[2]=getOneSheeldInstance().getArgumentData(0)[2];
 		value|=data[0];
 		value|=(data[1]<<8);
 		value|=(data[2]<<16);

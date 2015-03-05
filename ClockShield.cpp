@@ -83,40 +83,40 @@ short ClockShield::getYear()
 void ClockShield::processData()
 {
 	//Checking Function-ID
-	byte functionId=OneSheeld.getFunctionId();
+	byte functionId=getOneSheeldInstance().getFunctionId();
 	if(functionId==CLOCK_DATE_VALUE)
 	{
-		byte argumentNumber=OneSheeld.getArgumentNo();
+		byte argumentNumber=getOneSheeldInstance().getArgumentNo();
 		switch(argumentNumber)
 		{
-			case 0x01 	: 	seconds=OneSheeld.getArgumentData(0)[0];break;
+			case 0x01 	: 	seconds=getOneSheeldInstance().getArgumentData(0)[0];break;
 			
-			case 0x02 	: 	seconds=OneSheeld.getArgumentData(0)[0];
-							minutes=OneSheeld.getArgumentData(1)[0];break;
+			case 0x02 	: 	seconds=getOneSheeldInstance().getArgumentData(0)[0];
+							minutes=getOneSheeldInstance().getArgumentData(1)[0];break;
 			
-			case 0x03	: 	seconds=OneSheeld.getArgumentData(0)[0];
-						    minutes=OneSheeld.getArgumentData(1)[0];
-						   	hours=OneSheeld.getArgumentData(2)[0];break;
+			case 0x03	: 	seconds=getOneSheeldInstance().getArgumentData(0)[0];
+						    minutes=getOneSheeldInstance().getArgumentData(1)[0];
+						   	hours=getOneSheeldInstance().getArgumentData(2)[0];break;
 			
-			case 0x04 	: 	seconds=OneSheeld.getArgumentData(0)[0];
-						    minutes=OneSheeld.getArgumentData(1)[0];
-						   	hours=OneSheeld.getArgumentData(2)[0];
-						   	day=OneSheeld.getArgumentData(3)[0];break;
+			case 0x04 	: 	seconds=getOneSheeldInstance().getArgumentData(0)[0];
+						    minutes=getOneSheeldInstance().getArgumentData(1)[0];
+						   	hours=getOneSheeldInstance().getArgumentData(2)[0];
+						   	day=getOneSheeldInstance().getArgumentData(3)[0];break;
 			
-			case 0x05 	:	seconds=OneSheeld.getArgumentData(0)[0];
-						    minutes=OneSheeld.getArgumentData(1)[0];
-						   	hours=OneSheeld.getArgumentData(2)[0];
-						   	day=OneSheeld.getArgumentData(3)[0];
-						   	month=OneSheeld.getArgumentData(4)[0];break;
+			case 0x05 	:	seconds=getOneSheeldInstance().getArgumentData(0)[0];
+						    minutes=getOneSheeldInstance().getArgumentData(1)[0];
+						   	hours=getOneSheeldInstance().getArgumentData(2)[0];
+						   	day=getOneSheeldInstance().getArgumentData(3)[0];
+						   	month=getOneSheeldInstance().getArgumentData(4)[0];break;
 
 			case 0x06	:	isClockInit=true;
-							seconds=OneSheeld.getArgumentData(0)[0];
-						    minutes=OneSheeld.getArgumentData(1)[0];
-						   	hours=OneSheeld.getArgumentData(2)[0];
-						   	day=OneSheeld.getArgumentData(3)[0];
-						   	month=OneSheeld.getArgumentData(4)[0];
-						   	year|=(short)OneSheeld.getArgumentData(5)[0];
-						   	year|=(short)(OneSheeld.getArgumentData(5)[1]<<8);break;
+							seconds=getOneSheeldInstance().getArgumentData(0)[0];
+						    minutes=getOneSheeldInstance().getArgumentData(1)[0];
+						   	hours=getOneSheeldInstance().getArgumentData(2)[0];
+						   	day=getOneSheeldInstance().getArgumentData(3)[0];
+						   	month=getOneSheeldInstance().getArgumentData(4)[0];
+						   	year|=(short)getOneSheeldInstance().getArgumentData(5)[0];
+						   	year|=(short)(getOneSheeldInstance().getArgumentData(5)[1]<<8);break;
 
 		}
 	}
