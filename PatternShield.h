@@ -48,7 +48,7 @@ public:
 	//Constructor 
 	PatternShield();
 	PatternNode * getLastPattern();
-	int getLastPatternSize();
+	int getLastPatternLength();
 	bool isNewPatternReceived();
 	void setOnNewPattern(void (*)(PatternNode[] ,int ));
 
