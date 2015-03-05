@@ -33,7 +33,7 @@ PatternNode * PatternShield::getLastPattern()
 	return nodes;
 }
 
-int PatternShield::getLastPatternSize()
+int PatternShield::getLastPatternLength()
 {
 	return size;
 }
