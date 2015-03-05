@@ -16,6 +16,7 @@
 int ledPin = 13;
 
 /* A variable to store the right pattern which is "L" character. */
+/* The first number is the row, and the second is the column of the PatternNode. */
 PatternNode patternStored[] = { {0,0}, {1,0}, {2,0}, {2,1}, {2,2} };
 
 /* A variable used to check wether the pattern is right or wrong. */
@@ -26,7 +27,7 @@ int length = 0;
 
 void setup() 
 {
-  /* Start communication. */
+  /* Start Communication. */
   OneSheeld.begin();
   /* Set the LED as output. */
   pinMode(ledPin,OUTPUT);
@@ -42,8 +43,8 @@ void loop()
 
     /* Get the length of the pattern to loop over it. */
     length = Pattern.getLastPatternLength();
-    /* Check the pattern length. */
-    if (length ==5)
+    /* Check if the pattern length is equal to 5. */
+    if (length == 5)
       {
         /* A for loop to check the entered pattern to the stored pattern. */
         for (int i = 0; i < length ; i++)
@@ -55,7 +56,7 @@ void loop()
             }
         }
     
-        /* If condidition to check if all the nodes entered by the user are right and equal to the right pattern. */
+        /* Check if all the nodes entered by the user are right and equal to the correct pattern. */
         if (counter == 5)
           {
             digitalWrite(ledPin,HIGH);
