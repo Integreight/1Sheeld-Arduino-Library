@@ -166,7 +166,6 @@ setOnSelected	KEYWORD2
 select	KEYWORD2
 deselect	KEYWORD2
 waitForAppConnection	KEYWORD2
-setOnSelected	KEYWORD2
 attachLastPicture	KEYWORD2
 isAppConnected	KEYWORD2
 trackKeyword	KEYWORD2
@@ -202,8 +201,8 @@ setOnStart	KEYWORD2
 setOnFinish	KEYWORD2
 getResponse	KEYWORD2
 HttpResponse	KEYWORD2
-isSentFully						KEYWORD2
-isDisposed						KEYWORD2
+isSentFully	KEYWORD2
+isDisposed	KEYWORD2
 setOnNextResponseBytesUpdate	KEYWORD2
 setOnJsonResponse	KEYWORD2
 setOnJsonArrayLengthResponse	KEYWORD2
@@ -246,7 +245,7 @@ PatternNode	KEYWORD2
 OFF	LITERAL1
 AUTO	LITERAL1
 ON	LITERAL1
-RADUIS_OF_EARTH	LITERAL1
+RADIUS_OF_EARTH	LITERAL1
 LOW_QUALITY	LITERAL1
 MID_QUALITY	LITERAL1
 HIGH_QUALITY	LITERAL1

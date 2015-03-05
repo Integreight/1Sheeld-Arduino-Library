@@ -20,7 +20,7 @@
 #include "ShieldParent.h"
 
 //Literal Constants 
-#define RADUIS_OF_EARTH 6371
+#define RADIUS_OF_EARTH 6371
 #define PI 3.1415926535897932384626433832795
 
 //Input Function ID 
