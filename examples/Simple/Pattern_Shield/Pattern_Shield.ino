@@ -41,7 +41,7 @@ void loop()
     PatternNode * patternEntered = Pattern.getLastPattern();
 
     /* Get the length of the pattern to loop over it. */
-    length = Pattern.getLastPatternSize();
+    length = Pattern.getLastPatternLength();
 
     /* A for loop to check the entered pattern to the stored pattern. */
     for (int i = 0; i < length ; i++)

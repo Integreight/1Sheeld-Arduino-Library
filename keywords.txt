@@ -234,7 +234,7 @@ enableCallbacksInterrupts	KEYWORD2
 disableCallbacksInterrupts	KEYWORD2
 getShieldId	KEYWORD2
 getLastPattern	KEYWORD2
-getLastPatternSize	KEYWORD2
+getLastPatternLength	KEYWORD2
 isNewPatternReceived	KEYWORD2
 setOnNewPattern	KEYWORD2
 getLastCommandAsString	KEYWORD2
