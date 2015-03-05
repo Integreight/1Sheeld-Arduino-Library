@@ -21,7 +21,7 @@ PatternShield::PatternShield() : ShieldParent(PATTERN_ID)
 {
 	isNewPattern =false;
 	isCallBackAssigned = false;
-	size=0;
+	length=0;
 	for(int i=0;i<MAX_PATTERN_SIZE;i++){
 		nodes[i]=PatternNode();
 	}
@@ -35,7 +35,7 @@ PatternNode * PatternShield::getLastPattern()
 
 int PatternShield::getLastPatternLength()
 {
-	return size;
+	return length;
 }
 
 bool PatternShield::isNewPatternReceived()
@@ -43,7 +43,7 @@ bool PatternShield::isNewPatternReceived()
 	return isNewPattern;
 }
 
-void PatternShield::setOnNewPattern(void (* userFunction)(PatternNode patternNode[] ,int size))
+void PatternShield::setOnNewPattern(void (* userFunction)(PatternNode patternNode[] ,int length))
 {
 	isCallBackAssigned = true;
 	changeCallBack = userFunction;
@@ -56,9 +56,9 @@ void PatternShield::processData()
 	if(functionID==PATTERN_VALUE)
 	{
 		isNewPattern=true;
-		size = getOneSheeldInstance().getArgumentLength(0);
-		if(size>MAX_PATTERN_SIZE)return;
-		for (int i = 0; i < size; i++)
+		length = getOneSheeldInstance().getArgumentLength(0);
+		if(length>MAX_PATTERN_SIZE)return;
+		for (int i = 0; i < length; i++)
 		{
 			PatternNode node;
 			node.setValue(getOneSheeldInstance().getArgumentData(0)[i]);
@@ -68,7 +68,7 @@ void PatternShield::processData()
 		if(isCallBackAssigned && !isInACallback())
 		{
 			enteringACallback();
-			(*changeCallBack)(nodes,size);
+			(*changeCallBack)(nodes,length);
 			exitingACallback();
 		}
 
