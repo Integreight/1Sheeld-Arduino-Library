@@ -4,69 +4,55 @@
  
  This example shows an application on 1Sheeld's internet shield.
  
- By using this example, you can get response of certain request and 
- print it all out on the terminal shield.
+ By using this example, you can get response of certain GET request and 
+ print it all out on the terminal shield 64 bytes by 64 bytes.
  
- */
+*/
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Create an HttpRequest and it's important to be created here as a global object.*/
-HttpRequest oneSheeldRequest("http://1sheeld.com/");
+/* Create an Http request with 1Sheeld website's url. */
+/* It's important to be created here as a global object. */
+HttpRequest oneSheeldRequest("http://www.1sheeld.com/");
 
 /* Set an LED on pin 13.*/
 int ledPin = 13;
-
-/* Boolean for seting on next bytes.*/
-bool subscribedTosetOnNextBytes = false;
 
 void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* LED pin mode is OUTPUT.*/
+  /* LED pin mode is output. */
   pinMode(ledPin,OUTPUT); 
-  /* Subscribe to onSuccess for request. */
-  oneSheeldRequest.setOnSuccess(&successFunction);
-  /* Subscribe to onFailure for request. */
-  oneSheeldRequest.setOnFailure(&failureFunction);
-  /* Subscribe to onStart for request. */
-  oneSheeldRequest.setOnStart(&startFunction);
-  /* Subscribe to onFinish for request. */
-  oneSheeldRequest.setOnFinish(&finishFunction);
-  /*Perform a GET order.*/
+  /* Subscribe to success callback for the request. */
+  oneSheeldRequest.setOnSuccess(&onSuccess);
+  /* Subscribe to failure callback for the request. */
+  oneSheeldRequest.setOnFailure(&onFailure);
+  /* Subscribe to start callback for the request. */
+  oneSheeldRequest.setOnStart(&onStart);
+  /* Subscribe to finish callback for the request. */
+  oneSheeldRequest.setOnFinish(&onFinish);
+  /* Sunbscribe to setOnNextResponseBytesUpdate to be notified once the bytes is updated in the response object. */
+  oneSheeldRequest.getResponse().setOnNextResponseBytesUpdate(&onBytesUpdate);
+  /* Subscribe to response errors. */
+  oneSheeldRequest.getResponse().setOnError(&onError);
+  /* Perform a GET request using the Internet shield. */
   Internet.performGet(oneSheeldRequest);
 }
 
 void loop()
 {}
 
-void successFunction(HttpResponse &response)
+void onSuccess(HttpResponse &response)
 {
-  /* Print out the data on the terminal.*/
+  /* Print out the data on the terminal. */
   Terminal.println(response.getBytes());
-  /* Check if the reponse is sent till the last byte.*/
-  if(!response.isSentFully())
-      {
-           if(!subscribedTosetOnNextBytes)
-              /* Sunbscribe to setOnNextResponseBytesUpdate.*/
-              response.setOnNextResponseBytesUpdate(&successFunction);
-              /* Set the boolean. */
-              subscribedTosetOnNextBytes = true; 
-              /* Ask for nextBytes. */
-              response.getNextBytes();
-      }
-      else
-      {
-        /* Subscribe to setOnError.*/
-        response.setOnError(&errorFunction);
-        /* Print out error message.*/
-        Terminal.println("An Error occurred when getting response");
-      }
+  /* Ask for the next 64 bytes. */
+  response.getNextBytes();
 }
 
-void failureFunction(HttpResponse &response)
+void onFailure(HttpResponse &response)
 {
   /* Print out the status code of failure.*/
   Terminal.println(response.getStatusCode());
@@ -74,22 +60,45 @@ void failureFunction(HttpResponse &response)
   Terminal.println(response.getBytes());
 }
 
-void startFunction()
+void onStart()
 {
-  /* Turn on the LED when the request is started.*/
+  /* Turn on the LED when the request is started. */
   digitalWrite(13,HIGH);
 }
 
-void finishFunction()
+void onFinish()
 {
-  /* Turn off the LED when the request has finished.*/
+  /* Turn off the LED when the request has finished. */
   digitalWrite(13,LOW);
 }
 
-void errorFunction(int errorNumber)
+void onBytesUpdate(HttpResponse &response)
 {
-  /* Print out Error Number.*/
-  Terminal.print("Error Number:");
-  Terminal.println(errorNumber);
+  /* Print out the data on the terminal. */
+  Terminal.println(response.getBytes());
+  /* Check if the reponse is sent till the last byte. */
+  if(!response.isSentFully())
+    {       
+      /* Ask for the next 64 bytes. */
+      response.getNextBytes();
+    }
+
+}
+
+void onError(int errorNumber)
+{
+  /* Print out error Number.*/
+  Terminal.print("Error:");
+  switch(errorNumber)
+  {
+    case INDEX_OUT_OF_BOUNDS: Terminal.println("INDEX_OUT_OF_BOUNDS");break;
+    case RESPONSE_CAN_NOT_BE_FOUND: Terminal.println("RESPONSE_CAN_NOT_BE_FOUND");break;
+    case HEADER_CAN_NOT_BE_FOUND: Terminal.println("HEADER_CAN_NOT_BE_FOUND");break;
+    case NO_ENOUGH_BYTES: Terminal.println("NO_ENOUGH_BYTES");break;
+    case REQUEST_HAS_NO_RESPONSE: Terminal.println("REQUEST_HAS_NO_RESPONSE");break;
+    case SIZE_OF_REQUEST_CAN_NOT_BE_ZERO: Terminal.println("SIZE_OF_REQUEST_CAN_NOT_BE_ZERO");break;
+    case UNSUPPORTED_HTTP_ENTITY: Terminal.println("UNSUPPORTED_HTTP_ENTITY");break;
+    case JSON_KEYCHAIN_IS_WRONG: Terminal.println("JSON_KEYCHAIN_IS_WRONG");break;
+  }
 }
 
