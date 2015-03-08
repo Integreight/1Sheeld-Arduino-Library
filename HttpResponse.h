@@ -63,7 +63,6 @@ public:
 	//Getters
 	void getNextBytes(int=64);
 	void getTheseBytes(unsigned long ,int);
-	void getHeader(const char * , void (*)(char [],float ));
 	void getHeader(const char * , void (*)(char [],char []));
 	int getStatusCode();
 	int getBytesCount();
