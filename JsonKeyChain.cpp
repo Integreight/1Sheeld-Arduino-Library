@@ -111,9 +111,9 @@ void JsonKeyChain::sendQueryFrame(byte functionId)
       else 
       {
         byte integerArray[2] ;
-      integerArray[1] = (keysArray[i-2]->getNumber() >> 8) & 0xFF;
-      integerArray[0] = keysArray[i-2]->getNumber() & 0xFF;
-        arguments[i]=new FunctionArg(sizeof(int),integerArray); 
+        integerArray[1] = (keysArray[i-2]->getNumber() >> 8) & 0xFF;
+        integerArray[0] = keysArray[i-2]->getNumber() & 0xFF;
+        arguments[i]=new FunctionArg(sizeof(int),integerArray,true); 
       }
       types|=((keysArray[i-2]->isString())<<(i-2));
     }
