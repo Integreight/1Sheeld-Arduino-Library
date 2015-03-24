@@ -68,8 +68,7 @@ private:
 	byte * data;
 	bool saveData;
 public:
-	FunctionArg(int l ,byte * d):FunctionArg(l,d,false){}
-	FunctionArg(int l ,byte * d, bool _saveData)
+	FunctionArg(int l ,byte * d, bool _saveData=false)
 	{
 		saveData=_saveData;
 		length=(l>0xff)?0xff:l;
