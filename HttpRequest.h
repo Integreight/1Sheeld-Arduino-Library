@@ -41,7 +41,7 @@
 class HttpRequest 
 {
 public:
-	#ifndef INTERNET_SHIELD
+	#ifdef INTERNET_SHIELD
 	//Constructors
 	HttpRequest(const char *);
 	#endif
