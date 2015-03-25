@@ -18,6 +18,7 @@
 
 
 int HttpRequest::totalRequests = 0;
+#ifdef INTERNET_SHIELD
 HttpRequest::HttpRequest(const char * _url)
 {
 	int reqId=++totalRequests;
@@ -44,7 +45,7 @@ HttpRequest::HttpRequest(const char * _url)
 		sendInitFrame(_url);
 	}
 }
-
+#endif
 void HttpRequest::sendInitFrame()
 {
 	if(!isInitFrameSent)
