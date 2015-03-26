@@ -77,18 +77,6 @@ void PrintClass::print(const char * stringData)
 	OneSheeld.sendPacket(shieldId,0,print_fn_id,1,new FunctionArg(stringDataLength,(byte*)stringData));	
 }
 
-//Support string for Arduino
-#if !defined(ARDUINO_LINUX)
-void PrintClass::print(String stringData)
-{
-	const char * cTypeStringData = stringData.c_str();
-
-	print(cTypeStringData);
-}
-#endif
-
-//Support string for galileo
-#if defined(ARDUINO_LINUX)
 void PrintClass::print(String stringData)
 {
 	int stringDataLength = stringData.length();
@@ -103,7 +91,7 @@ void PrintClass::print(String stringData)
 
 	print(cTypeStringData);
 }
-#endif
+
 //Print double 
 //Unsupported by Intel Galileo board and Arduino Due
 #if  !defined(ARDUINO_LINUX) && !defined(SAM3X8)

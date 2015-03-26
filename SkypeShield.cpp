@@ -23,18 +23,7 @@ void SkypeShieldClass::call(const char *username)
 	if(!usernameLength) return;
 	OneSheeld.sendPacket(SKYPE_ID,0,SKYPE_CALL,1,new FunctionArg(usernameLength,(byte *)username));
 }
-//Support string for Arduino
-#if !defined(ARDUINO_LINUX)
-void SkypeShieldClass::call(String username)
-{
-	const char * cTypeUsername = username.c_str();
 
-	call(cTypeUsername);
-}
-#endif
-
-//Support string for galileo
-#if defined(ARDUINO_LINUX)
 void SkypeShieldClass::call(String username)
 {
 	int usernameLength = username.length();
@@ -49,8 +38,6 @@ void SkypeShieldClass::call(String username)
 
 	call(cTypeUsername);
 }
-#endif
-
 
 //VideoCall Setter
 void SkypeShieldClass::videoCall(const char * username)
@@ -60,18 +47,7 @@ void SkypeShieldClass::videoCall(const char * username)
 	if(!usernameLength) return;
 	OneSheeld.sendPacket(SKYPE_ID,0,SKYPE_VIDEO_CALL,1,new FunctionArg(usernameLength,(byte *)username));
 }
-//Support string for Arduino
-#if !defined(ARDUINO_LINUX)
-void SkypeShieldClass::videoCall(String username)
-{
-	const char * cTypeUsername = username.c_str();
 
-	call(cTypeUsername);
-}
-#endif
-
-//Support string for galileo
-#if defined(ARDUINO_LINUX)
 void SkypeShieldClass::videoCall(String username)
 {
 	int usernameLength = username.length();
@@ -86,7 +62,6 @@ void SkypeShieldClass::videoCall(String username)
 
 	call(cTypeUsername);
 }
-#endif
 
 #ifdef SKYPE_SHIELD
 //Instantiating Object

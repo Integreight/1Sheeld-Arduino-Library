@@ -23,18 +23,7 @@ void FacebookShieldClass::post(const char* status)
 	if(!statusLength) return;
 	OneSheeld.sendPacket(FACEBOOK_ID,0,FACEBOOK_UPDATE_STATUS,1,new FunctionArg(statusLength,(byte*)status));
 }
-//Support strings Arduino
-#if !defined(ARDUINO_LINUX)
-void FacebookShieldClass::post(String status)
-{
-	const char * cTypeStatus = status.c_str();
 
-	post(cTypeStatus);
-}
-#endif
-
-//Support string galileo 
-#if defined(ARDUINO_LINUX)
 void FacebookShieldClass::post(String status)
 {
 	int statusLength = status.length();
@@ -49,7 +38,6 @@ void FacebookShieldClass::post(String status)
 
 	post(cTypeStatus);
 }
-#endif
 
 void FacebookShieldClass::postLastPicture(const char * pictureText, byte imageSource)
 {
@@ -60,18 +48,6 @@ void FacebookShieldClass::postLastPicture(const char * pictureText, byte imageSo
 																new FunctionArg(1,(byte *)&imageSource));
 }
 
-//Support string and image source Arduino
-#if !defined(ARDUINO_LINUX)
-void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
-{
-	const char * cTypePictureText = pictureText.c_str();
-
-	postLastPicture(cTypePictureText,imageSource);
-}
-#endif
-
-//Support string and image source galileo
-#if defined(ARDUINO_LINUX)
 void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
 {
 	int pictureTextLength = pictureText.length();
@@ -86,7 +62,6 @@ void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
 
 	postLastPicture(cTypePictureText,imageSource);
 }
-#endif
 
 #ifdef FACEBOOK_SHIELD
 //Instantiating Object
