@@ -53,6 +53,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       #endif
       framestart =false;
       isOneSheeldConnected =false;
+      isApplicationFocusedCallBackInvoked =false;
 }
 
 //Library Starter
@@ -89,6 +90,27 @@ void OneSheeldClass::begin()
   #endif
 }
 
+void OneSheeldClass::makeAppFocused()
+{
+  sendPacket(ONESHEELD_ID,0,MAKE_APP_FOCUSED,0);
+}
+
+void OneSheeldClass::lockFocus()
+{
+  sendPacket(ONESHEELD_ID,0,LOCK_FOCUS,0);
+}
+
+void OneSheeldClass::unlockFocus()
+{
+  sendPacket(ONESHEELD_ID,0,UNLOCK_FOCUS,0);
+}
+
+void OneSheeldClass::isAppFocused(void (* userFunction) (bool isFocused))
+{
+  sendPacket(ONESHEELD_ID,0,IS_APP_FOCUSED,0);
+  isAppFocusedCallBack = userFunction;
+  isApplicationFocusedCallBackInvoked = true;
+}
 void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
 {
   if(shieldsCounter==SHIELDS_NO) return;
@@ -609,6 +631,10 @@ void OneSheeldClass::processFrame(){
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
     sendPacket(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0);
+  }
+  else if( functionId == CHECK_APP_FOCUS && isApplicationFocusedCallBackInvoked)
+  {
+    (isAppFocusedCallBack)(getArgumentData(0)[0]);
   }
 }
 

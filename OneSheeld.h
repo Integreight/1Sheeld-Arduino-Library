@@ -47,14 +47,19 @@
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
-#define CALLBACK_ENTERED		0x03
 #define WAIT_RESET_APPLICATION	0x02
+#define CALLBACK_ENTERED		0x03
 #define CALLBACK_EXITED			0x04
+#define MAKE_APP_FOCUSED		0x05
+#define LOCK_FOCUS				0x06
+#define UNLOCK_FOCUS			0x07
+#define IS_APP_FOCUSED			0x08
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
+#define CHECK_APP_FOCUS			0x04
 
 
 //Numer of Shields
@@ -152,12 +157,17 @@ public:
 	bool isCallbacksInterruptsSet();
 	void enableCallbacksInterrupts();
 	void disableCallbacksInterrupts();
+	void makeAppFocused();
+	void lockFocus();
+	void unlockFocus();
+	void isAppFocused(void (*)(bool));
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
+	bool isApplicationFocusedCallBackInvoked;
 	static bool isFirstFrame;
 	bool framestart;
 	#ifdef REMOTE_SHIELD
@@ -215,6 +225,7 @@ private:
 	void (*changeFloatCallBackWithString)(String ,String , float);
 	void (*changeStringCallBack)(char [],char [], char []);
 	void (*changeStringCallBackWithString)(String ,String ,String );
+	void (*isAppFocusedCallBack)(bool);
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();
