@@ -54,6 +54,7 @@
 #define LOCK_FOCUS				0x06
 #define UNLOCK_FOCUS			0x07
 #define IS_APP_FOCUSED			0x08
+#define CHECK_APP_CONNECTION	0x09
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
@@ -120,6 +121,7 @@ public:
 	void waitForAppConnection();
 	//Check connection
 	bool isAppConnected();
+	void setOnAppConnected(void (*)(bool));
 	//Getters 
 	byte getShieldId();
 	byte getInstanceId();
@@ -177,6 +179,7 @@ private:
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
 	bool isOneSheeldRemoteDataUsed;
+	bool isAppConnectionCallBack;
 	//Number of connected Remote 1Sheelds
 	int remoteOneSheeldsCounter;
 	#endif
@@ -226,6 +229,7 @@ private:
 	void (*changeStringCallBack)(char [],char [], char []);
 	void (*changeStringCallBackWithString)(String ,String ,String );
 	void (*isAppFocusedCallBack)(bool);
+	void (*isAppConnectedCallBack)(bool);
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();

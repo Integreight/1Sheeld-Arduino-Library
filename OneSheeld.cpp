@@ -54,6 +54,7 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       framestart =false;
       isOneSheeldConnected =false;
       isApplicationFocusedCallBackInvoked =false;
+      isAppConnectionCallBack = false;
 }
 
 //Library Starter
@@ -225,7 +226,15 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 }
 bool OneSheeldClass::isAppConnected()
 {
+  if(!isOneSheeldConnected)
+  sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   return isOneSheeldConnected;
+}
+void OneSheeldClass::setOnAppConnected(void (*userFunction)(bool isAppConnected))
+{
+  sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
+  isAppConnectedCallBack = userFunction;
+  isAppConnectionCallBack = true;
 }
 //Shield_ID Getter
 byte OneSheeldClass::getShieldId()
@@ -627,6 +636,8 @@ void OneSheeldClass::processFrame(){
   else if(functionId == CONNECTION_CHECK_FUNCTION)
   {
       isOneSheeldConnected=true;
+      if(isAppConnectionCallBack)
+      (*isAppConnectedCallBack)(isOneSheeldConnected);
   }
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
