@@ -39,18 +39,7 @@ bool SMSShieldClass::isNewSms()
 {
 	return isItNewSms;
 }
-//Support string for Arduino 
-#if !defined(ARDUINO_LINUX)
-void SMSShieldClass::send(String number ,String text)
-{
-	const char * cTypeNumber = number.c_str();
-	const char * cTypeText = text.c_str();
 
-	send(cTypeNumber,cTypeText);
-}
-#endif
-//Support string for galileo
-#if defined(ARDUINO_LINUX)
 void SMSShieldClass::send(String number,String text)
 {
 	int numberLength = number.length();
@@ -73,7 +62,6 @@ void SMSShieldClass::send(String number,String text)
 
 	send(cTypeNumber,cTypeText);
 }
-#endif
 
 //Number Getter
 char * SMSShieldClass::getNumber()

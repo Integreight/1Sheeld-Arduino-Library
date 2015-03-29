@@ -31,18 +31,6 @@ void DataLoggerShield::start(const char * fileName)
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_START_LOG,1,new FunctionArg(fileNameLength,(byte *)fileName));
 }
 //Start Logging Data giving name to the file in strings
-//Support strings for Arduino
-#if !defined(ARDUINO_LINUX)
-void DataLoggerShield::start(String fileName)
-{
-	const char * cTypeStringFileName = fileName.c_str();
-
-	start(cTypeStringFileName);
-}
-#endif
-
-//Supporting strings for galileo
-#if defined(ARDUINO_LINUX) 
 void DataLoggerShield::start(String fileName)
 {
 	int fileNameStringLength = fileName.length();
@@ -56,7 +44,7 @@ void DataLoggerShield::start(String fileName)
 	cTypeFileName [fileNameStringLength]='\0';	
 	start(cTypeFileName);
 }
-#endif
+
 //Stop Logging Data
 void DataLoggerShield::stop()
 {
@@ -72,18 +60,6 @@ void DataLoggerShield::add(const char * key,float value)
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 
-//Support strings for Arduino
-#if !defined(ARDUINO_LINUX)
-void DataLoggerShield::add(String key ,float value)
-{
-	const char * cTypeStringKey = key.c_str();
-
-	add(cTypeStringKey,value);
-}
-#endif
-
-//Supporting strings for galileo
-#if defined(ARDUINO_LINUX) 
 void DataLoggerShield::add(String key , float value)
 {
 	int keyStringLength = key.length();
@@ -97,7 +73,6 @@ void DataLoggerShield::add(String key , float value)
 	cTypeKey [keyStringLength]='\0';	
 	add(cTypeKey,value);
 }
-#endif
 
 void DataLoggerShield::add(const char * key,const char * data)
 {
@@ -108,19 +83,6 @@ void DataLoggerShield::add(const char * key,const char * data)
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_STRING,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(dataLength,(byte*)data));
 }
 
-//Support strings for Arduino
-#if !defined(ARDUINO_LINUX)
-void DataLoggerShield::add(String key ,String data)
-{
-	const char * cTypeStringKey = key.c_str();
-	const char * cTypesStringData = data.c_str();
-
-	add(cTypeStringKey,cTypesStringData);
-}
-#endif
-
-//Supporting strings for galileo 
-#if defined(ARDUINO_LINUX)
 void DataLoggerShield::add(String key , String data)
 {
 	int keyStringLength = key.length();
@@ -143,7 +105,7 @@ void DataLoggerShield::add(String key , String data)
 
 	add(cTypeKey,cTypeData);
 }
-#endif
+
 //Save data 
 void DataLoggerShield::log()
 {
