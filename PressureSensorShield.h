@@ -27,14 +27,13 @@ public:
 	//Constructor
 	PressureSensorShield();
 	//Getter
-	unsigned long getValue();
+	int getValue();
 	//setOnChange for Users Function
 	void setOnValueChange(void (*)(unsigned  long));
 
 private:
 	//Reserve Variables
-	unsigned long value;
-	unsigned long data[2];
+	int value;
 	//Boolean For the setOnChange Function
 	bool isCallBackAssigned;
 	//Process Input Data 
