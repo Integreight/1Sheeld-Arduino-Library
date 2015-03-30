@@ -53,11 +53,11 @@ void AccelerometerSensorShield::processData()
 		if(functionId==ACCELEROMETER_VALUE)
 		{
 			//Process X-Axis Value
-			valueX=OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(0));
+			valueX=getOneSheeldInstance().convertBytesToFloat(getOneSheeldInstance().getArgumentData(0));
 			//Process Y-Axis Value
-			valueY=OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
+			valueY=getOneSheeldInstance().convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
 			//Process Z-Axis Value
-			valueZ=OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(2));
+			valueZ=getOneSheeldInstance().convertBytesToFloat(getOneSheeldInstance().getArgumentData(2));
 			
 			//User Function Invoked
 			if(isCallBackAssigned && !isInACallback())
