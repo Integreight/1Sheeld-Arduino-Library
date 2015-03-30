@@ -33,7 +33,8 @@ public:
 
 private:
 	//Reserve Variables
-	float value;
+	unsigned long value;
+	unsigned long data[3];
 	//Boolean for the setOnChange Function
 	bool isCallBackAssigned;
 	//Process Input Data 
