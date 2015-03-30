@@ -131,3 +131,6 @@
 #ifdef INTERNET_SHIELD
 #include "InternetShield.h"
 #endif
+#ifdef COLOR_SHIELD
+#include "ColorShield.h"
+#endif
