@@ -71,8 +71,6 @@ void OneSheeldClass::waitForAppConnection()
 {
   isOneSheeldConnected = false;
 
-  sendPacket(ONESHEELD_ID,0,WAIT_RESET_APPLICATION,0);
-
   while(!isOneSheeldConnected)
   {
     OneSheeld.processInput();
@@ -83,6 +81,7 @@ void OneSheeldClass::waitForAppConnection()
 void OneSheeldClass::begin()
 {
   begin(115200);
+  sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isInit=true;
   #ifdef INTERNET_SHIELD
   for(int i=0;i<requestsCounter;i++)
@@ -226,13 +225,10 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 }
 bool OneSheeldClass::isAppConnected()
 {
-  if(!isOneSheeldConnected)
-  sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   return isOneSheeldConnected;
 }
 void OneSheeldClass::setOnAppConnected(void (*userFunction)(bool isAppConnected))
 {
-  sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isAppConnectedCallBack = userFunction;
   isAppConnectionCallBack = true;
 }

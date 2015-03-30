@@ -47,14 +47,13 @@
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
-#define WAIT_RESET_APPLICATION	0x02
+#define CHECK_APP_CONNECTION	0x02
 #define CALLBACK_ENTERED		0x03
 #define CALLBACK_EXITED			0x04
 #define MAKE_APP_FOCUSED		0x05
 #define LOCK_FOCUS				0x06
 #define UNLOCK_FOCUS			0x07
 #define IS_APP_FOCUSED			0x08
-#define CHECK_APP_CONNECTION	0x09
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
