@@ -16,7 +16,7 @@ void ColorShield::setPalette(byte range)
 	OneSheeld.sendPacket(COLOR_ID,0,COLOR_RANGE_ID,1,new FunctionArg(1,&range));
 }
 
-Color & ColorShield::getLastColor()
+Color ColorShield::getLastColor()
 {
 	isNewColor =false;
 	return colorInstance;

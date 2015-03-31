@@ -12,6 +12,7 @@
 struct Color{
 	unsigned long rgb;
 	unsigned long hsb;
+
 	Color()
 	{
 		rgb = 0;
@@ -25,33 +26,38 @@ struct Color{
 
 	bool operator!=(const Color& other)
 	{
-	  return !(*this == other);
+		return !(*this == other);
 	}
 
-	 byte getRed()
-	 {
-	 	return rgb;
-	 }
-	 byte getGreen()
-	 {
-	 	return rgb>>8;
-	 }
-	 byte getBlue()
-	 {
-	 	return rgb>>16;
-	 }
-	 int getHue()
-	 {
-	 	return hsb;
-	 }
-	 byte getSaturation()
-	 {
-	 	return hsb>>16;
-	 }
-	 byte getBrightness()
-	 {
-	 	return hsb>>24;
-	 }
+	byte getRed()
+	{
+		return rgb;
+	}
+
+	byte getGreen()
+	{
+		return rgb>>8;
+	}
+
+	byte getBlue()
+	{
+		return rgb>>16;
+	}
+
+	unsigned int getHue()
+	{
+		return hsb;
+	}
+
+	byte getSaturation()
+	{
+		return hsb>>16;
+	}
+	
+	byte getBrightness()
+	{
+		return hsb>>24;
+	}
 
 };
 
@@ -61,7 +67,7 @@ class ColorShield : public ShieldParent
 {
 public:
 	ColorShield();
-	Color & getLastColor();
+	Color getLastColor();
 	void setOnNewColor(void (*)(Color ));
 	bool isNewColorReceived();
 	void setPalette(byte);
