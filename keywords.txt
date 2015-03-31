@@ -47,6 +47,8 @@ Terminal	KEYWORD3
 Pattern	KEYWORD3
 Internet	KEYWORD3
 JsonKeyChain	KEYWORD3
+Color	KEYWORD3
+ColorDetector	KEYWORD3
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -239,6 +241,16 @@ setOnNewPattern	KEYWORD2
 getLastCommandAsString	KEYWORD2
 RemoteOneSheeld	KEYWORD2
 PatternNode	KEYWORD2
+getRed	KEYWORD2
+getGreen	KEYWORD2
+getBlue	KEYWORD2
+getHue	KEYWORD2
+getSaturation	KEYWORD2
+getBrightness	KEYWORD2
+getLastColor	KEYWORD2
+setOnNewColor	KEYWORD2
+isNewColorReceived	KEYWORD2
+setPalette	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
