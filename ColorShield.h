@@ -58,7 +58,7 @@ struct Color{
 
 	byte getRed()
 	{
-		return rgb;
+		return rgb>>16;
 	}
 
 	byte getGreen()
@@ -68,22 +68,22 @@ struct Color{
 
 	byte getBlue()
 	{
-		return rgb>>16;
+		return rgb;
 	}
 
 	unsigned int getHue()
 	{
-		return hsb;
+		return hsb>>16;
 	}
 
 	byte getSaturation()
 	{
-		return hsb>>16;
+		return hsb>>8;
 	}
 	
 	byte getBrightness()
 	{
-		return hsb>>24;
+		return hsb;
 	}
 
 };
