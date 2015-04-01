@@ -24,12 +24,14 @@ void ColorShield::setCalculationMode(byte mode)
 
 void ColorShield::enableFullOperation()
 {
+	isNewColor=false;
 	byte fullMode = 1;
 	OneSheeld.sendPacket(COLOR_ID,0,COLOR_FULL_OPERATION_ID,1,new FunctionArg(1,&fullMode));
 }
 
 void ColorShield::enableNormalOperation()
 {
+	isNewColor=false;
 	byte normalMode = 0;
 	OneSheeld.sendPacket(COLOR_ID,0,COLOR_FULL_OPERATION_ID,1,new FunctionArg(1,&normalMode));
 }
@@ -100,17 +102,18 @@ void ColorShield::processData()
 		isNewColor = true;
 		fullOperation = true;
 
-		for(int i=0;i<getOneSheeldInstance().getArgumentNo();i+=2)
+		for(int i=0;i < 9;i++)
 		{
-			colorInstances[i].rgb = (unsigned long )(((unsigned long)getOneSheeldInstance().getArgumentData(i)[0])|
-											 ((unsigned long)getOneSheeldInstance().getArgumentData(i)[1])<<8|
-											 ((unsigned long)getOneSheeldInstance().getArgumentData(i)[2])<<16);
+			colorInstances[i].rgb = (unsigned long )(((unsigned long)getOneSheeldInstance().getArgumentData(i*2)[0])|
+											 ((unsigned long)getOneSheeldInstance().getArgumentData(i*2)[1])<<8|
+											 ((unsigned long)getOneSheeldInstance().getArgumentData(i*2)[2])<<16);
 
-			colorInstances[i].hsb = (unsigned long)(((unsigned long)getOneSheeldInstance().getArgumentData(i+1)[3]<<24)|
-												((unsigned long)getOneSheeldInstance().getArgumentData(i+1)[2]<<16)|
-												((unsigned long)getOneSheeldInstance().getArgumentData(i+1)[1]<<8)|
-												 (unsigned long)getOneSheeldInstance().getArgumentData(i+1)[0]);
+			colorInstances[i].hsb = (unsigned long)(((unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[3]<<24)|
+												((unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[2]<<16)|
+												((unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[1]<<8)|
+												 (unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[0]);
 		}
+
 		
 		if(colorsCallBackInvoked)
 		{
