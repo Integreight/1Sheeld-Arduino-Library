@@ -628,12 +628,12 @@ void OneSheeldClass::processFrame(){
   if(functionId == DISCONNECTION_CHECK_FUNCTION)
   {
       isOneSheeldConnected=false;
+      if(isAppConnectionCallBack)(*isAppConnectedCallBack)(isOneSheeldConnected);
   }
   else if(functionId == CONNECTION_CHECK_FUNCTION)
   {
       isOneSheeldConnected=true;
-      if(isAppConnectionCallBack)
-      (*isAppConnectedCallBack)(isOneSheeldConnected);
+      if(isAppConnectionCallBack)(*isAppConnectedCallBack)(isOneSheeldConnected);
   }
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
@@ -643,6 +643,7 @@ void OneSheeldClass::processFrame(){
   {
     (isAppFocusedCallBack)(getArgumentData(0)[0]);
   }
+
 }
 
 //PulseWidthModulation Getter 

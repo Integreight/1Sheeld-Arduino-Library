@@ -251,6 +251,7 @@ getLastColor	KEYWORD2
 setOnNewColor	KEYWORD2
 isNewColorReceived	KEYWORD2
 setPalette	KEYWORD2
+setOnAppConnected	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
