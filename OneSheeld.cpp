@@ -632,8 +632,6 @@ void OneSheeldClass::processFrame(){
   else if(functionId == CONNECTION_CHECK_FUNCTION)
   {
       isOneSheeldConnected=true;
-      if(isAppConnectionCallBack)
-      (*isAppConnectedCallBack)(isOneSheeldConnected);
   }
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
@@ -643,6 +641,8 @@ void OneSheeldClass::processFrame(){
   {
     (isAppFocusedCallBack)(getArgumentData(0)[0]);
   }
+  
+  if(isAppConnectionCallBack)(*isAppConnectedCallBack)(isOneSheeldConnected);
 }
 
 //PulseWidthModulation Getter 
