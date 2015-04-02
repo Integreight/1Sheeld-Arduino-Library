@@ -169,6 +169,7 @@ private:
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
 	bool isApplicationFocusedCallBackInvoked;
+	bool isAppConnectionCallBack;
 	static bool isFirstFrame;
 	bool framestart;
 	#ifdef REMOTE_SHIELD
@@ -178,7 +179,6 @@ private:
 	bool usedSetOnFloatWithString;
 	bool usedSetOnStringWithString;
 	bool isOneSheeldRemoteDataUsed;
-	bool isAppConnectionCallBack;
 	//Number of connected Remote 1Sheelds
 	int remoteOneSheeldsCounter;
 	#endif
