@@ -11,6 +11,7 @@
 #define COLOR_VALUE			0x01
 #define ALL_COLORS_VALUE 	0x02
 
+//Literals
 #define COLOR_UPPER_LEFT	0
 #define COLOR_UPPER_MIDDLE	1
 #define COLOR_UPPER_RIGHT	2
@@ -39,12 +40,6 @@
 struct Color{
 	unsigned long rgb;
 	unsigned long hsb;
-
-	Color()
-	{
-		rgb = 0;
-		hsb = 0;
-	}
 
 	bool operator==(const Color& other) 
 	{
