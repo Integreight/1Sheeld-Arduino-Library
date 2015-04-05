@@ -41,6 +41,18 @@ struct Color{
 	unsigned long rgb;
 	unsigned long hsb;
 
+	Color(unsigned long _rgb,unsigned long _hsb)
+	{
+		rgb = _rgb;
+		hsb = _hsb;
+	}
+
+	Color()
+	{
+		rgb = 0;
+		hsb = 0;
+	}
+
 	bool operator==(const Color& other) 
 	{
 	    return (rgb==other.rgb)||(hsb==other.hsb);
@@ -49,6 +61,16 @@ struct Color{
 	bool operator!=(const Color& other)
 	{
 		return !(*this == other);
+	}
+
+	bool operator==(const unsigned long other) 
+	{
+	    return rgb==other;
+	}
+
+	bool operator!=(const unsigned long other) 
+	{
+	    return !(*this == other);
 	}
 
 	byte getRed()
