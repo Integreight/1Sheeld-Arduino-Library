@@ -31,7 +31,7 @@ public:
 	//setOnChange for Users Function
 	void setOnButtonStatusChange(void (*userFunction)(bool ));
 
-public:
+private:
 	//Reserve Variable
 	byte value;
 	//Boolean For the setOnChange Function
