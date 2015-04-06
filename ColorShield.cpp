@@ -92,9 +92,11 @@ void ColorShield::processData()
 											((unsigned long)getOneSheeldInstance().getArgumentData(1)[1]<<8)|
 											 (unsigned long)getOneSheeldInstance().getArgumentData(1)[0]);
 		
-		if(colorCallBackInvoked)
+		if(colorCallBackInvoked && !isInACallback())
 		{
+			enteringACallback();
 			(*colorCallBack)(colorInstances[COLOR_CENTER_MIDDLE]);
+			exitingACallback();
 		}
 	}
 	else if(functionId == ALL_COLORS_VALUE && getOneSheeldInstance().getArgumentNo()==18)
@@ -115,11 +117,13 @@ void ColorShield::processData()
 		}
 
 		
-		if(colorsCallBackInvoked)
-		{
+		if(colorsCallBackInvoked && !isInACallback())
+		{	
+			enteringACallback();
 			(*colorsCallBack)(colorInstances[COLOR_UPPER_LEFT],colorInstances[COLOR_UPPER_MIDDLE],colorInstances[COLOR_UPPER_RIGHT],
 				colorInstances[COLOR_CENTER_LEFT],colorInstances[COLOR_CENTER_MIDDLE],colorInstances[COLOR_CENTER_RIGHT],
 				colorInstances[COLOR_LOWER_LEFT],colorInstances[COLOR_LOWER_MIDDLE],colorInstances[COLOR_LOWER_RIGHT]);
+			exitingACallback();
 		}
 	}
 }
