@@ -1,3 +1,17 @@
+/*
+
+  Project:       1Sheeld Library 
+  File:          ColorShield.cpp
+                 
+  Version:       1.0
+
+  Compiler:      Arduino avr-gcc 4.3.2
+
+  Author:        Integreight
+                 
+  Date:          2015.3
+
+*/
 #include "OneSheeld.h"
 #include "ColorShield.h"
 
