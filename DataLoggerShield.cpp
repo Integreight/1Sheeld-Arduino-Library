@@ -12,6 +12,7 @@
   Date:          2014.9
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "DataLoggerShield.h"
 
@@ -112,7 +113,3 @@ void DataLoggerShield::log()
 	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_LOG_DATA,0);
 }
 
-#ifdef DATA_LOGGER_SHIELD
-//Instantiating Object
-DataLoggerShield Logger;
-#endif

@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "GPSShield.h"
 
@@ -102,7 +103,3 @@ void GPSShieldClass::setOnValueChange(void (*userFunction)(float lattitude ,floa
 	isCallBackAssigned=true;
 }
 
-#ifdef GPS_SHIELD
-//Instantiating Object
-GPSShieldClass  GPS ;
-#endif

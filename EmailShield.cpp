@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "EmailShield.h"
 
@@ -108,7 +109,3 @@ void EmailShieldClass::attachLastPicture(String email, String subject , String m
 	attachLastPicture(cTypeEmail,cTypeSubject,cTypeMessage,imageSource);
 }
 
-#ifdef EMAIL_SHIELD
-//Instantiating object 
-EmailShieldClass Email;
-#endif

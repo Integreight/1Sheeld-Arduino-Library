@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "MagnetometerSensorShield.h"
 
@@ -79,7 +80,3 @@ float MagnetometerSensorShield::getMagneticStrength()
 	return sqrt((valueX*valueX)+(valueY*valueY)+(valueZ*valueZ));
 }
 
-#ifdef MAGNETOMETER_SHIELD
-//Instatntiating Object
-MagnetometerSensorShield MagnetometerSensor;
-#endif

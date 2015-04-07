@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "LightSensorShield.h"
 
@@ -58,7 +59,3 @@ void LightSensorShield::setOnValueChange(void (*userFunction)(unsigned long ligh
 	isCallBackAssigned=true;
 }
 
-#ifdef LIGHT_SHIELD
-//Instantiating Object
-LightSensorShield LightSensor;
-#endif

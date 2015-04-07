@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "GamePadShield.h"
 
@@ -93,7 +94,3 @@ void GamePadShield::setOnButtonChange(void (* userFunction)(unsigned char up,uns
 	isCallBackAssigned=true;
 }
 
-#ifdef GAMEPAD_SHIELD
-//Instantiating Object
-GamePadShield GamePad;
-#endif

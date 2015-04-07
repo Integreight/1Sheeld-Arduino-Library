@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "PushButtonShield.h"
 
@@ -51,7 +52,3 @@ void PushButtonShield::setOnButtonStatusChange(void (*userFunction)(bool pushBut
 	isCallBackAssigned=true;
 }
 
-#ifdef PUSH_BUTTON_SHIELD
-//Instatntiating Object
-PushButtonShield PushButton;
-#endif

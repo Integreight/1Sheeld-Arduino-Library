@@ -12,7 +12,7 @@
   Date:          2014.5
 
 */
-  
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "HardwareSerial.h"
 #include "stdarg.h"
@@ -24,10 +24,10 @@ bool OneSheeldClass::inACallback=false;
 bool OneSheeldClass::callbacksInterrupts=false;
 bool OneSheeldClass::isFirstFrame=false;
 ShieldParent * OneSheeldClass::shieldsArray[]={0};
-#ifdef INTERNET_SHIELD
+// #ifdef INTERNET_SHIELD
 byte OneSheeldClass::requestsCounter=0;
 HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
-#endif
+// #endif
 //Class Constructor
 OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
 {
@@ -83,11 +83,11 @@ void OneSheeldClass::begin()
   begin(115200);
   sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isInit=true;
-  #ifdef INTERNET_SHIELD
+  // #ifdef INTERNET_SHIELD
   for(int i=0;i<requestsCounter;i++)
     requestsArray[i]->sendInitFrame();
   free(requestsArray);
-  #endif
+  // #endif
 }
 
 void OneSheeldClass::makeAppFocused()
@@ -116,13 +116,13 @@ void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
   if(shieldsCounter==SHIELDS_NO) return;
   shieldsArray[shieldsCounter++] = shield;  
 }
-#ifdef INTERNET_SHIELD
+// #ifdef INTERNET_SHIELD
 void OneSheeldClass::addToUnSentRequestsArray(HttpRequest * request)
 {
   if(requestsCounter==MAX_NO_OF_REQUESTS) return;
   requestsArray[requestsCounter++] = request;  
 }
-#endif
+// #endif
 bool OneSheeldClass::isInitialized()
 {
   return isInit;

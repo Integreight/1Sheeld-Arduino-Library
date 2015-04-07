@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "KeyboardShield.h"
 
@@ -53,7 +54,3 @@ void KeyboardShield::setOnButtonChange(void (*userFunction)(char data))
 	isCallBackAssigned=true;
 }
 
-#ifdef KEYBOARD_SHIELD
-/*Instantiate object to user*/
-KeyboardShield AsciiKeyboard;
-#endif

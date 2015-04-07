@@ -12,13 +12,13 @@
   Date:          2015.1
 
 */
-
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "InternetShield.h"
 
 
 int HttpRequest::totalRequests = 0;
-#ifdef INTERNET_SHIELD
+// #ifdef INTERNET_SHIELD
 HttpRequest::HttpRequest(const char * _url)
 {
 	int reqId=++totalRequests;
@@ -45,7 +45,7 @@ HttpRequest::HttpRequest(const char * _url)
 		sendInitFrame(_url);
 	}
 }
-#endif
+// #endif
 void HttpRequest::sendInitFrame()
 {
 	if(!isInitFrameSent)

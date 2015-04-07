@@ -12,6 +12,7 @@
   Date:          2014.9
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "TTSShield.h"
 
@@ -39,7 +40,3 @@ void TTSShield::say(String text)
 	say(cTypeText);
 }
 
-#ifdef TEXTTOSPEECH_SHIELD
-//Instantiaing Object
-TTSShield TextToSpeech;
-#endif

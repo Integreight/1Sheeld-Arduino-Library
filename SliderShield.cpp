@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "SliderShield.h"
 
@@ -70,7 +71,3 @@ void SliderShield::setOnValueChange(void (*userFunction)(byte sliderValue))
 	isCallBackAssigned=true;
 }
 
-#ifdef SLIDER_SHIELD
-//Instatntiating Object
-SliderShield Slider;
-#endif

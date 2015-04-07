@@ -12,6 +12,7 @@
   Date:          2014.9
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "TerminalShield.h"
 
@@ -62,7 +63,3 @@ void TerminalShield::processData()
 	}
 }
 
-#ifdef TERMINAL_SHIELD
-//instantiating Object 
-TerminalShield Terminal;
-#endif

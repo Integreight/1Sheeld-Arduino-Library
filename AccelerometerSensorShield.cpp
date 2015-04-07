@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "AccelerometerSensorShield.h"
 
@@ -76,7 +77,3 @@ void AccelerometerSensorShield::setOnValueChange(void (* usersFunction)(float va
 	isCallBackAssigned=true;
 }
 
-#ifdef ACCELEROMETER_SHIELD
-//Instatntiating Object
-AccelerometerSensorShield AccelerometerSensor;					
-#endif

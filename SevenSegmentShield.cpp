@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h" 
 #include "SevenSegmentShield.h"
 
@@ -51,7 +52,3 @@ void SevenSegmentShieldClass::setDot()
 
 }
 
-#ifdef SEVEN_SEGMENT_SHIELD
-//Instantiating Object
-SevenSegmentShieldClass SevenSegment;
-#endif

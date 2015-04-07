@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "KeypadShield.h"
 
@@ -72,8 +73,4 @@ void KeypadShieldClass::setOnButtonChange(void (*userFunction)(byte row ,byte co
   isCallbackAssigned=true;
 }
 
-#ifdef KEYPAD_SHIELD
-//Instatntiating Object
-KeypadShieldClass Keypad;
-#endif
 

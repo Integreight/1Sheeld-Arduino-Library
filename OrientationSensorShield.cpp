@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "OrientationSensorShield.h"
 
@@ -72,7 +73,3 @@ void OrientationSensorShield::setOnValueChange(void (*userFunction)(float valueX
 	isCallBackAssigned=true;
 }
 
-#ifdef ORIENTATION_SHIELD
-//Instatntiating Object
-OrientationSensorShield OrientationSensor;
-#endif

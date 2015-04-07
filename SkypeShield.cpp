@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "SkypeShield.h"
 
@@ -63,7 +64,3 @@ void SkypeShieldClass::videoCall(String username)
 	call(cTypeUsername);
 }
 
-#ifdef SKYPE_SHIELD
-//Instantiating Object
-SkypeShieldClass Skype;
-#endif

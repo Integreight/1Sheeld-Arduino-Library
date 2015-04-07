@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "GravitySensorShield.h"
 
@@ -74,7 +75,3 @@ void GravitySensorShield::setOnValueChange(void (*userFunction)(float valueX,flo
 	isCallBackAssigned=true;
 }
 
-#ifdef GRAVITY_SHIELD
-//Instantiating Object
-GravitySensorShield GravitySensor ;
-#endif

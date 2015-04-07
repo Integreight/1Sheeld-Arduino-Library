@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "MusicPlayerShield.h"
 
@@ -60,7 +61,3 @@ void MusicPlayerShieldClass::setVolume(byte x)
 	OneSheeld.sendPacket(MUSIC_PLAYER_ID,0,MUSIC_VOLUME,1,new FunctionArg(1,&x));
 }
 
-#ifdef MUSIC_PLAYER_SHIELD
-//Instantiating Object
-MusicPlayerShieldClass MusicPlayer;
-#endif

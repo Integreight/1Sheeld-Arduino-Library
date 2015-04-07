@@ -12,6 +12,7 @@
   Date:          2015.1
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "PatternShield.h"
 
@@ -76,7 +77,3 @@ void PatternShield::processData()
 
 }
 
-#ifdef PATTERN_SHIELD
-//Instantiating object 
-PatternShield Pattern;
-#endif

@@ -18,9 +18,11 @@
 #include "Stream.h"
 #include "Arduino.h"
 #include "ShieldsIds.h"
-#include "IncludedShieldsDefines.h"
+#include "ShieldsSelection.h"
 #include "ShieldsIncludes.h"
 #include "ShieldParent.h"
+#include "ShieldsInstantiation.h"
+
 
 #define ONE_SECOND 1000
 
@@ -139,9 +141,9 @@ public:
 	void begin();
 	//Adding objects in array 
 	static void addToShieldsArray(ShieldParent *);
-	#ifdef INTERNET_SHIELD
+	// #ifdef INTERNET_SHIELD
 	static void addToUnSentRequestsArray(HttpRequest *);
-	#endif
+	// #endif
 	static bool isInitialized();
 	//Frame Sender
 	void sendPacket(byte , byte ,byte , byte , ...);
@@ -210,10 +212,10 @@ private:
 	#endif
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
-	#ifdef INTERNET_SHIELD
+	// #ifdef INTERNET_SHIELD
 	//Array of pointers to un sent requests
 	static HttpRequest ** requestsArray;
-	#endif
+	// #endif
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);

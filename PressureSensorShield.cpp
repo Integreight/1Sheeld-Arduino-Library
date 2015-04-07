@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "PressureSensorShield.h"
 
@@ -53,7 +54,3 @@ void PressureSensorShield::setOnValueChange(void (*userFunction)(unsigned long p
 	isCallBackAssigned=true;
 }
 
-#ifdef PRESSURE_SHIELD
-//Instatntiating Object
-PressureSensorShield PressureSensor;
-#endif

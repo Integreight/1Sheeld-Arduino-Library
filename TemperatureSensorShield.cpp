@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "TemperatureSensorShield.h"
 
@@ -60,7 +61,3 @@ float TemperatureSensorShield::getAsFahrenheit()
 	return fahrenheit;
 }
 
-#ifdef TEMPERATURE_SHIELD
-//Instatntiating Object
-TemperatureSensorShield TemperatureSensor;
-#endif

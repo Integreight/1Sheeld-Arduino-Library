@@ -12,7 +12,7 @@
   Date:          2014.9
 
 */
-
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "OneSheeldPrintln.h"
 

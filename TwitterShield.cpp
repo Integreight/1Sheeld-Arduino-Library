@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "TwitterShield.h"
 
@@ -251,7 +252,3 @@ void TwitterShieldClass::setOnNewTweet(void (*userFunction)(String userName ,Str
 	usedSetOnWithString=true;
 }
 
-#ifdef TWITTER_SHIELD
-//Instantiating Object 
-TwitterShieldClass Twitter;
-#endif

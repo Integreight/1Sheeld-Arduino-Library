@@ -12,6 +12,7 @@
   Date:          2015.1
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "InternetShield.h"
 
@@ -380,7 +381,3 @@ void InternetShield::setOnError(void (*userFunction)(int requestid, int errorNum
 	internetErrorCallBack = userFunction;
 }
 
-#ifdef INTERNET_SHIELD
-//Instatntiating Object
-InternetShield Internet;
-#endif

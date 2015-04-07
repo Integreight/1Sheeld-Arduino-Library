@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "ToggleButtonShield.h"
 
@@ -52,7 +53,3 @@ void ToggleButtonShield::setOnButtonStatusChange(void (*userFunction)(bool toggl
 	isCallBackAssigned=true;
 }
 
-#ifdef TOGGLE_BUTTON_SHIELD
-//Instantiating Object
-ToggleButtonShield ToggleButton;
-#endif

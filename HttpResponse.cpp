@@ -12,7 +12,7 @@
   Date:          2015.1
 
 */
-
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "InternetShield.h"
 

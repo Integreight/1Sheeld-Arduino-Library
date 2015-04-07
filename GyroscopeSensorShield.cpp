@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "GyroscopeSensorShield.h"
 
@@ -72,7 +73,3 @@ void GyroscopeSensorShield::setOnValueChange(void (*userFunction)(float valueX, 
 	isCallBackAssigned=true;
 }
 
-#ifdef GYROSCOPE_SHIELD
-//Instatntiating Object
-GyroscopeSensorShield GyroscopeSensor ;
-#endif

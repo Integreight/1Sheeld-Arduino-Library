@@ -41,10 +41,10 @@
 class HttpRequest 
 {
 public:
-	#ifdef INTERNET_SHIELD
+	// #ifdef INTERNET_SHIELD
 	//Constructors
 	HttpRequest(const char *);
-	#endif
+	// #endif
 	//Setters
 	void setUrl(const char *);
 	//Adders

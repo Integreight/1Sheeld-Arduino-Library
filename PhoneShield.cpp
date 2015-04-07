@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "PhoneShield.h"
 
@@ -125,7 +126,3 @@ void PhoneShieldClass::setOnCallStatusChange(void (*userFunction)(bool isRinging
 	usedSetOnString=true;
 }
 
-#ifdef PHONE_SHIELD
-//Instatntiating Object
-PhoneShieldClass Phone;
-#endif

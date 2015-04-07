@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "SMSShield.h"
 
@@ -153,7 +154,3 @@ void SMSShieldClass::setOnSmsReceive(void (*userFunction)(String number ,String 
 	usedSetOnWithString=true;
 }
 
-#ifdef SMS_SHIELD
-//Instantiating Object
-SMSShieldClass SMS;
-#endif

@@ -12,6 +12,7 @@
   Date:          2014.5
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "MicShield.h"
 
@@ -55,7 +56,3 @@ void MicShield::setOnValueChange(void (*userFunction)(byte micValue))
 	isCallBackAssigned=true;
 }
 
-#ifdef MIC_SHIELD
-//Instatntiating Object
-MicShield Mic;
-#endif
