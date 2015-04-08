@@ -13,154 +13,154 @@
 
 */
 
-#ifdef BUZZER_SHIELD
+#ifdef INCLUDE_BUZZER_SHIELD
 EXTERN BuzzerShieldClass Buzzer;
 #endif
 
-#ifdef ACCELEROMETER_SHIELD
+#ifdef INCLUDE_ACCELEROMETER_SENSOR_SHIELD
 EXTERN AccelerometerSensorShield AccelerometerSensor;	
 #endif
 
-#ifdef CAMERA_SHIELD
+#ifdef INCLUDE_CAMERA_SHIELD
 EXTERN CameraShieldClass Camera;
 #endif
 
-#ifdef CLOCK_SHIELD
+#ifdef INCLUDE_CLOCK_SHIELD
 EXTERN ClockShield Clock;
 #endif
 
-#ifdef DATA_LOGGER_SHIELD
+#ifdef INCLUDE_DATA_LOGGER_SHIELD
 EXTERN DataLoggerShield Logger;
 #endif
 
-#ifdef EMAIL_SHIELD
+#ifdef INCLUDE_EMAIL_SHIELD
 EXTERN EmailShieldClass Email;
 #endif
 
-#ifdef FACEBOOK_SHIELD
+#ifdef INCLUDE_FACEBOOK_SHIELD
 EXTERN FacebookShieldClass Facebook;
 #endif
 
-#ifdef FOURSQUARE_SHIELD
+#ifdef INCLUDE_FOURSQUARE_SHIELD
 EXTERN FoursquareShieldClass Foursquare;
 #endif
 
-#ifdef GAMEPAD_SHIELD
+#ifdef INCLUDE_GAMEPAD_SHIELD
 EXTERN GamePadShield GamePad;
 #endif
 
-#ifdef GPS_SHIELD
+#ifdef INCLUDE_GPS_SHIELD
 EXTERN GPSShieldClass  GPS;
 #endif
 
-#ifdef GRAVITY_SHIELD
+#ifdef INCLUDE_GRAVITY_SENSOR_SHIELD
 EXTERN GravitySensorShield GravitySensor;
 #endif
 
-#ifdef GYROSCOPE_SHIELD
+#ifdef INCLUDE_GYROSCOPE_SENSOR_SHIELD
 EXTERN GyroscopeSensorShield GyroscopeSensor;
 #endif
 
-#ifdef INTERNET_SHIELD
+#ifdef INCLUDE_INTERNET_SHIELD
 EXTERN InternetShield Internet;
 #endif
 
-#ifdef KEYBOARD_SHIELD
+#ifdef INCLUDE_KEYBOARD_SHIELD
 EXTERN KeyboardShield AsciiKeyboard;
 #endif
 
-#ifdef KEYPAD_SHIELD
+#ifdef INCLUDE_KEYPAD_SHIELD
 EXTERN KeypadShieldClass Keypad;
 #endif
 
-#ifdef LCD_SHIELD
+#ifdef INCLUDE_LCD_SHIELD
 EXTERN LCDShield LCD;
 #endif
 
-#ifdef LED_SHIELD
+#ifdef INCLUDE_LED_SHIELD
 EXTERN LedShield LED;
 #endif
 
-#ifdef LIGHT_SHIELD
+#ifdef INCLUDE_LIGHT_SENSOR_SHIELD
 EXTERN LightSensorShield LightSensor;
 #endif
 
-#ifdef MAGNETOMETER_SHIELD
+#ifdef INCLUDE_MAGNETOMETER_SENSOR_SHIELD
 EXTERN MagnetometerSensorShield MagnetometerSensor;
 #endif
 
-#ifdef MIC_SHIELD
+#ifdef INCLUDE_MIC_SHIELD
 EXTERN MicShield Mic;
 #endif
 
-#ifdef MUSIC_PLAYER_SHIELD
+#ifdef INCLUDE_MUSIC_PLAYER_SHIELD
 EXTERN MusicPlayerShieldClass MusicPlayer;
 #endif
 
-#ifdef NOTIFICATION_SHIELD
+#ifdef INCLUDE_NOTIFICATION_SHIELD
 EXTERN NotificationShieldClass Notification;
 #endif
 
-#ifdef ORIENTATION_SHIELD
+#ifdef INCLUDE_ORIENTATION_SENSOR_SHIELD
 EXTERN OrientationSensorShield OrientationSensor;
 #endif
 
-#ifdef PATTERN_SHIELD
+#ifdef INCLUDE_PATTERN_SHIELD
 EXTERN PatternShield Pattern;
 #endif
 
-#ifdef PHONE_SHIELD
+#ifdef INCLUDE_PHONE_SHIELD
 EXTERN PhoneShieldClass Phone;
 #endif
 
-#ifdef PRESSURE_SHIELD
+#ifdef INCLUDE_PRESSURE_SENSOR_SHIELD
 EXTERN PressureSensorShield PressureSensor;
 #endif
 
-#ifdef PROXIMITY_SHIELD
+#ifdef INCLUDE_PROXIMITY_SENSOR_SHIELD
 EXTERN ProximitySensorShield ProximitySensor;
 #endif
 
-#ifdef PUSH_BUTTON_SHIELD
+#ifdef INCLUDE_PUSH_BUTTON_SHIELD
 EXTERN PushButtonShield PushButton;
 #endif
 
-#ifdef SEVEN_SEGMENT_SHIELD
+#ifdef INCLUDE_SEVEN_SEGMENT_SHIELD
 EXTERN SevenSegmentShieldClass SevenSegment;
 #endif
 
-#ifdef SKYPE_SHIELD
+#ifdef INCLUDE_SKYPE_SHIELD
 EXTERN SkypeShieldClass Skype;
 #endif
 
-#ifdef SLIDER_SHIELD
+#ifdef INCLUDE_SLIDER_SHIELD
 EXTERN SliderShield Slider;
 #endif
 
-#ifdef SMS_SHIELD
+#ifdef INCLUDE_SMS_SHIELD
 EXTERN SMSShieldClass SMS;
 #endif
 
-#ifdef TEMPERATURE_SHIELD
+#ifdef INCLUDE_TEMPERATURE_SENSOR_SHIELD
 EXTERN TemperatureSensorShield TemperatureSensor;
 #endif
 
-#ifdef TERMINAL_SHIELD
+#ifdef INCLUDE_TERMINAL_SHIELD
 EXTERN TerminalShield Terminal;
 #endif
 
-#ifdef TOGGLE_BUTTON_SHIELD
+#ifdef INCLUDE_TOGGLE_BUTTON_SHIELD
 EXTERN ToggleButtonShield ToggleButton;
 #endif
 
-#ifdef TEXTTOSPEECH_SHIELD
+#ifdef INCLUDE_TEXT_TO_SPEECH_SHIELD
 EXTERN TTSShield TextToSpeech;
 #endif
 
-#ifdef TWITTER_SHIELD
+#ifdef INCLUDE_TWITTER_SHIELD
 EXTERN TwitterShieldClass Twitter;
 #endif
 
-#ifdef VOICE_RECOGNITION_SHIELD
+#ifdef INCLUDE_VOICE_RECOGNIZER_SHIELD
 EXTERN VoiceRecognitionShield VoiceRecognition;
 #endif

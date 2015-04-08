@@ -14,54 +14,53 @@
 */
 
 #define ANY_SHIELD_DEFINED \
-(defined(KEYPAD_SHIELD) || \
-defined(GPS_SHIELD) || \
-defined(SLIDER_SHIELD) || \
-defined(PUSH_BUTTON_SHIELD) || \
-defined(TOGGLE_BUTTON_SHIELD) || \
-defined(GAMEPAD_SHIELD) || \
-defined(PROXIMITY_SHIELD) || \
-defined(MIC_SHIELD) || \
-defined(TEMPERATURE_SHIELD) || \
-defined(LIGHT_SHIELD) || \
-defined(PRESSURE_SHIELD) || \
-defined(GRAVITY_SHIELD) || \
-defined(ACCELEROMETER_SHIELD) || \
-defined(GYROSCOPE_SHIELD) || \
-defined(ORIENTATION_SHIELD) || \
-defined(MAGNETOMETER_SHIELD) || \
-defined(PHONE_SHIELD) || \
-defined(SMS_SHIELD) || \
-defined(CLOCK_SHIELD) || \
-defined(KEYBOARD_SHIELD) || \
-defined(TWITTER_SHIELD) || \
-defined(VOICE_RECOGNITION_SHIELD) || \
-defined(TERMINAL_SHIELD) || \
-defined(FACEBOOK_SHIELD) || \
-defined(NOTIFICATION_SHIELD) || \
-defined(SEVEN_SEGMENT_SHIELD) || \
-defined(SKYPE_SHIELD) || \
-defined(MUSIC_PLAYER_SHIELD) || \
-defined(EMAIL_SHIELD) || \
-defined(FOURSQUARE_SHIELD) || \
-defined(CAMERA_SHIELD) || \
-defined(BUZZER_SHIELD) || \
-defined(LED_SHIELD) || \
-defined(LCD_SHIELD) || \
-defined(TEXTTOSPEECH_SHIELD) || \
-defined(DATA_LOGGER_SHIELD) || \
-defined(REMOTE_SHIELD) || \
-defined(PATTERN_SHIELD) || \
-defined(INTERNET_SHIELD))
+(defined(INCLUDE_KEYPAD_SHIELD) || \ 
+defined(INCLUDE_GPS_SHIELD) || \ 
+defined(INCLUDE_SLIDER_SHIELD) || \ 
+defined(INCLUDE_PUSH_BUTTON_SHIELD) || \ 
+defined(INCLUDE_TOGGLE_BUTTON_SHIELD) || \ 
+defined(INCLUDE_GAMEPAD_SHIELD) || \ 
+defined(INCLUDE_PROXIMITY_SENSOR_SHIELD) || \ 
+defined(INCLUDE_MIC_SHIELD) || \ 
+defined(INCLUDE_TEMPERATURE_SENSOR_SHIELD) || \ 
+defined(INCLUDE_LIGHT_SENSOR_SHIELD) || \ 
+defined(INCLUDE_PRESSURE_SENSOR_SHIELD) || \ 
+defined(INCLUDE_GRAVITY_SENSOR_SHIELD) || \ 
+defined(INCLUDE_ACCELEROMETER_SENSOR_SHIELD) || \ 
+defined(INCLUDE_GYROSCOPE_SENSOR_SHIELD) || \ 
+defined(INCLUDE_ORIENTATION_SENSOR_SHIELD) || \ 
+defined(INCLUDE_MAGNETOMETER_SENSOR_SHIELD) || \ 
+defined(INCLUDE_PHONE_SHIELD) || \ 
+defined(INCLUDE_SMS_SHIELD) || \ 
+defined(INCLUDE_CLOCK_SHIELD) || \ 
+defined(INCLUDE_KEYBOARD_SHIELD) || \ 
+defined(INCLUDE_TWITTER_SHIELD) || \ 
+defined(INCLUDE_VOICE_RECOGNIZER_SHIELD) || \ 
+defined(INCLUDE_TERMINAL_SHIELD) || \ 
+defined(INCLUDE_FACEBOOK_SHIELD) || \ 
+defined(INCLUDE_NOTIFICATION_SHIELD) || \ 
+defined(INCLUDE_SEVEN_SEGMENT_SHIELD) || \ 
+defined(INCLUDE_SKYPE_SHIELD) || \ 
+defined(INCLUDE_MUSIC_PLAYER_SHIELD) || \ 
+defined(INCLUDE_EMAIL_SHIELD) || \ 
+defined(INCLUDE_FOURSQUARE_SHIELD) || \ 
+defined(INCLUDE_CAMERA_SHIELD) || \ 
+defined(INCLUDE_BUZZER_SHIELD) || \ 
+defined(INCLUDE_LED_SHIELD) || \ 
+defined(INCLUDE_LCD_SHIELD) || \ 
+defined(INCLUDE_TEXT_TO_SPEECH_SHIELD) || \ 
+defined(INCLUDE_DATA_LOGGER_SHIELD) || \ 
+defined(INCLUDE_PATTERN_SHIELD) || \ 
+defined(INCLUDE_INTERNET_SHIELD))
 
 #if !defined(FROM_ONESHEELD_LIBRARY) 
-	#if (defined(ALL_SHIELDS) && defined(CUSTOM_OPTIONS)) || (!defined(CUSTOM_OPTIONS) && !ANY_SHIELD_DEFINED)
+	#if (defined(INCLUDE_ALL_SHIELDS) && defined(CUSTOM_SETTINGS)) || (!defined(CUSTOM_SETTINGS) && !ANY_SHIELD_DEFINED)
 		#include "IncludedShieldsDefines.h"
 		#define ALL_SHIELDS_INCLUDED
 	#endif
 #endif 
 
-#if (ANY_SHIELD_DEFINED && defined(CUSTOM_OPTIONS)) || defined(ALL_SHIELDS_INCLUDED)
+#if (ANY_SHIELD_DEFINED && defined(CUSTOM_SETTINGS)) || defined(ALL_SHIELDS_INCLUDED)
 	#define EXTERN
 #else
     #define EXTERN extern
