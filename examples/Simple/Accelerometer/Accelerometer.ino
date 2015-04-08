@@ -8,10 +8,6 @@ By using this example, you can turn on the LED on pin 13 if the
 smartphone's accelerometer sensor reaches the maximum
 acceleration in any of the x, y and z axises.
 
-*/
-
-/*
-
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
 can specify which shields you want to include in your sketch by
