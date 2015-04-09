@@ -47,7 +47,7 @@ void ColorShield::enableNormalOperation()
 {
 	isNewColor=false;
 	byte normalMode = 0;
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_FULL_OPERATION_ID,1,new FunctionArg(1,&normalMode));
+	OneSheeld.sendPacket(COLOR_ID,0,COLOR_NORMAL_OPERATION_ID,1,new FunctionArg(1,&normalMode));
 }
 
 Color ColorShield::getLastColor(byte whichColor)
