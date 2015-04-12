@@ -29,7 +29,7 @@ void setup()
   /* Start communication. */
   OneSheeld.begin();
   /* Start the clock shield. */
-  Clock.begin();
+  Clock.queryDateAndTime();
 }
 
 void loop() 

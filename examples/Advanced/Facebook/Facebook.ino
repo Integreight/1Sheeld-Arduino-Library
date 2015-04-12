@@ -37,7 +37,7 @@ void setup()
   /* Start communication. */
   OneSheeld.begin();
   /* Start clock shield. */
-  Clock.begin();
+  Clock.queryDateAndTime();
   /* Set up the LCD's columns and rows. */ 
   lcd.begin(16, 2);
   /*Set lcd contrast pin as output. */ 
