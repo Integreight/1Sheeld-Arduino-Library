@@ -52,20 +52,15 @@
 #define CHECK_APP_CONNECTION	0x02
 #define CALLBACK_ENTERED		0x03
 #define CALLBACK_EXITED			0x04
-#define MAKE_APP_FOCUSED		0x05
-#define LOCK_FOCUS				0x06
-#define UNLOCK_FOCUS			0x07
-#define IS_APP_FOCUSED			0x08
 //Input function ID's 
 //Checking Bluetooth connection
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
-#define CHECK_APP_FOCUS			0x04
 
 
 //Numer of Shields
-#define SHIELDS_NO	39
+#define SHIELDS_NO	40
 
 //Class for Datalength and Data
 class FunctionArg
