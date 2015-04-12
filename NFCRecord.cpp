@@ -12,7 +12,7 @@
   Date:          2015.3
 
 */
-
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "NFCRecord.h"
 

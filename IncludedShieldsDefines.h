@@ -13,7 +13,6 @@
 
 */
 
-<<<<<<< HEAD
 #define INCLUDE_KEYPAD_SHIELD
 #define INCLUDE_GPS_SHIELD
 #define INCLUDE_SLIDER_SHIELD

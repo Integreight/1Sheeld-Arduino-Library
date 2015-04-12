@@ -168,3 +168,7 @@ EXTERN VoiceRecognitionShield VoiceRecognition;
 #ifdef INCLUDE_COLOR_DETECTOR_SHIELD
 EXTERN ColorShield ColorDetector;
 #endif
+
+#ifdef INCLUDE_NFC_SHIELD
+EXTERN NFCShield NFC;
+#endif
