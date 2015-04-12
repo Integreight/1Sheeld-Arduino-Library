@@ -160,17 +160,12 @@ public:
 	bool isCallbacksInterruptsSet();
 	void enableCallbacksInterrupts();
 	void disableCallbacksInterrupts();
-	void makeAppFocused();
-	void lockFocus();
-	void unlockFocus();
-	void isAppFocused(void (*)(bool));
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
-	bool isApplicationFocusedCallBackInvoked;
 	bool isAppConnectionCallBack;
 	static bool isFirstFrame;
 	bool framestart;
@@ -229,7 +224,6 @@ private:
 	void (*changeFloatCallBackWithString)(String ,String , float);
 	void (*changeStringCallBack)(char [],char [], char []);
 	void (*changeStringCallBackWithString)(String ,String ,String );
-	void (*isAppFocusedCallBack)(bool);
 	void (*isAppConnectedCallBack)(bool);
 	void enteringACallback();
 	void exitingACallback();
