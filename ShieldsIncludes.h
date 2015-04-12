@@ -50,7 +50,6 @@
 #include "VoiceRecognitionShield.h"
 #include "DataLoggerShield.h"
 #include "TerminalShield.h"
-#include "RemoteOneSheeld.h"
 #include "PatternShield.h"
 #include "InternetShield.h"
 #include "ColorShield.h"

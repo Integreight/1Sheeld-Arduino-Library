@@ -43,14 +43,6 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       isArgumentsNumberMalloced=false;
       isArgumentLengthMalloced=false;
       callbacksInterrupts=false;
-      #ifdef REMOTE_SHIELD
-      isSetOnFloatMessageInvoked =false;
-      isSetOnStringMessageInvoked =false;
-      usedSetOnFloatWithString=false;
-      usedSetOnStringWithString=false;
-      isOneSheeldRemoteDataUsed=false;
-      remoteOneSheeldsCounter=0;
-      #endif
       framestart =false;
       isOneSheeldConnected =false;
       isAppConnectionCallBack = false;
@@ -401,7 +393,7 @@ void OneSheeldClass::processInput(int data)
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  if(shield == ONESHEELD_ID || shield == REMOTE_SHEELD_ID) found = true;
+                  if(shield == ONESHEELD_ID) found = true;
                   else 
                   for (int i=0;i<shieldsCounter;i++) {
                     if (shield == shieldsArray[i]->getShieldId()){
@@ -465,13 +457,7 @@ void OneSheeldClass::freeMemoryAllocated(){
           isArgumentLengthMalloced=false;
         }
 }
-#ifdef REMOTE_SHIELD
-void OneSheeldClass::listenToRemoteOneSheeld(RemoteOneSheeld * oneSheeld)
-{
-  if(remoteOneSheeldsCounter<MAX_REMOTE_CONNECTIONS)
-  listOfRemoteOneSheelds[remoteOneSheeldsCounter++]=oneSheeld;
-} 
-#endif
+
 //Data Sender to Input Shields
 void OneSheeldClass::sendToShields()
 {
@@ -480,13 +466,6 @@ void OneSheeldClass::sendToShields()
   switch (number_Of_Shield)
   {
     case ONESHEELD_ID            :processFrame();break;
-    #ifdef REMOTE_SHIELD
-    case REMOTE_SHEELD_ID        : for(int i=0;i<remoteOneSheeldsCounter;i++)
-                                    listOfRemoteOneSheelds[i]->processFrame();
-                                    if(isOneSheeldRemoteDataUsed)
-                                    processRemoteData();
-                                    break;
-    #endif
     default:
     for(int i=0 ;i<shieldsCounter;i++)
     {
@@ -494,111 +473,6 @@ void OneSheeldClass::sendToShields()
     }
   }
 }
-#ifdef REMOTE_SHIELD
-void OneSheeldClass::setOnNewMessage(void (*userFunction)(char address[], char  key[], float value))
-{
-  changeFloatCallBack = userFunction;
-  isSetOnFloatMessageInvoked = true;
-  isOneSheeldRemoteDataUsed=true;
-}
-
-void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String key, float value))
-{
-  changeFloatCallBackWithString = userFunction;
-  usedSetOnFloatWithString = true;
-  isOneSheeldRemoteDataUsed=true;
-}
-
-
-void OneSheeldClass::setOnNewMessage(void (*userFunction)(char address[], char key[], char value[]))
-{
-  changeStringCallBack = userFunction;
-  isSetOnStringMessageInvoked = true;
-  isOneSheeldRemoteDataUsed=true;
-}
-
-void OneSheeldClass::setOnNewMessage(void (*userFunction)(String address, String key, String value))
-{
-  changeStringCallBackWithString = userFunction;
-  usedSetOnStringWithString = true;
-  isOneSheeldRemoteDataUsed=true;
-}
-
-void OneSheeldClass::processRemoteData()
-{
-  byte functionId = getFunctionId();
-
-  if(functionId == READ_MESSAGE_FLOAT)
-  {
-    char remoteAddress[37];
-    memcpy(remoteAddress,getArgumentData(0),36);
-    remoteAddress[36]='\0';  // processed the remote address 
-
-    int keyLength = getArgumentLength(1);
-    char key[keyLength+1];
-    memcpy(key,getArgumentData(1),keyLength);
-    key[keyLength]='\0';
-
-    float incomingValue = convertBytesToFloat(getArgumentData(2));
-
-    if(!isInACallback())
-    {
-      if(isSetOnFloatMessageInvoked)
-      {
-        enteringACallback();
-        (*changeFloatCallBack)(remoteAddress,key,incomingValue);
-        exitingACallback();
-      }
-
-      if(usedSetOnFloatWithString)
-      {
-        String remoteAddressInString(remoteAddress);
-        String keyInString(key);
-        enteringACallback();
-        (*changeFloatCallBackWithString)(remoteAddressInString,keyInString,incomingValue);
-        exitingACallback();
-      }
-    }
-
-  }
-  else if(functionId == READ_MESSAGE_STRING)
-  {
-    char remoteAddress[37];
-    memcpy(remoteAddress,getArgumentData(0),36);
-    remoteAddress[36]='\0';  // processed the remote address 
-
-    int keyLength = getArgumentLength(1);
-    char key[keyLength+1];
-    memcpy(key,getArgumentData(1),keyLength);
-    key[keyLength]='\0';
-    
-    int stringDataLength = getArgumentLength(2);
-    char stringData[stringDataLength+2];
-    memcpy(stringData,getArgumentData(2),stringDataLength);
-    stringData[stringDataLength]='\0';
-
-    if(!isInACallback())
-    {    
-      if(isSetOnStringMessageInvoked)
-      {
-        enteringACallback();
-        (*changeStringCallBack)(remoteAddress,key,stringData);
-        exitingACallback();
-      }
-
-      if(usedSetOnStringWithString)
-      {
-        String remoteAddressInString(remoteAddress);
-        String keyInString(key);
-        String stringDataInString(stringData);
-        enteringACallback();
-        (*changeStringCallBackWithString)(remoteAddressInString,keyInString,stringDataInString);
-        exitingACallback();
-      }
-    }
-  }
-}
-#endif
 
 void OneSheeldClass::processFrame(){
   byte functionId = getFunctionId();
