@@ -7,7 +7,16 @@ This example shows an application on 1Sheeld's Foursquare shield.
 By using this example, you can check-in at the Great Pyramids
 of Giza (Egypt) using the Foursquare shield along with the GPS shield.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_FOURSQUARE_SHIELD
+#define INCLUDE_GPS_SHIELD
 
 /* Include 1Sheeld library.*/
 #include <OneSheeld.h>

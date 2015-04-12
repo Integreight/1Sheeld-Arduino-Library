@@ -8,7 +8,17 @@ By using this example, you can send an SMS to a friend on his
 birthday and update your status on Facebook when the phone's
 time reaches a certain time you specify.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_CLOCK_SHIELD
+#define INCLUDE_SMS_SHIELD
+#define INCLUDE_FACEBOOK_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

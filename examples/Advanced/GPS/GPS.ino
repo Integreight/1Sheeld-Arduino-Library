@@ -8,7 +8,16 @@ By using this example, you can send an SMS when the smartphone
 is in a hundred meters distance from a fixed coordinates you
 provide.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_GPS_SHIELD
+#define INCLUDE_SMS_SHIELD
 
 /* Include 1Sheeld library.*/
 #include <OneSheeld.h>

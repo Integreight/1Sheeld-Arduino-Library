@@ -8,7 +8,17 @@ By using this example, you can campture a picture and
 send a SMS when the value of the smartphone's proximity
 sensor exceeds a certain limit.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_PROXIMITY_SENSOR_SHIELD
+#define INCLUDE_CAMERA_SHIELD
+#define INCLUDE_SMS_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

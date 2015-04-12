@@ -12,7 +12,15 @@ DISCLAIMER: This Example is not for REAL SECURITY SYSTEMS and
 we don't hold responsibility in case something went wrong. Use
 it at your own risk.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_KEYPAD_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

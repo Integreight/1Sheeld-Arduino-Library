@@ -8,7 +8,18 @@
  get the status of its weather using the internet shield and the open weather map api and
  based of the weather status (i.e. cloudy, sunny, snowy,... etc) an RGB LED changes its color.
  
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_INTERNET_SHIELD
+#define INCLUDE_TERMINAL_SHIELD
+#define INCLUDE_TEXT_TO_SPEECH_SHIELD
+#define INCLUDE_VOICE_RECOGNIZER_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

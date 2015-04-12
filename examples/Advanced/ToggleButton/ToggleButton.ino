@@ -12,6 +12,11 @@ PS: This example doesn't require you to include our Arduino
 library. You can connect the toggle button directly from the
 shield screen on our app to any Arduino pin you want.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
 
 

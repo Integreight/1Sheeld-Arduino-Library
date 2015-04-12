@@ -7,7 +7,15 @@ This example shows an application on 1Sheeld's accelerometer shield.
 By using this example, you can grab your smartphone and strike as if
 you are bowling so you can turn on the LED on pin 13.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_ACCELEROMETER_SENSOR_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

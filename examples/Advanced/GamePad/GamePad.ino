@@ -10,7 +10,15 @@ Seeedstudio's motor shield.
 
 PS: Arduino's motor shield has different configuration.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_GAMEPAD_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

@@ -12,7 +12,15 @@ PS: For the sake of this example, put your smartphone in
 place where it can detect the maximum light intensity in
 the room first as it use it to calibrate.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_LIGHT_SENSOR_SHIELD
 
 
 /* Include 1Sheeld library.*/ 

@@ -8,7 +8,15 @@ By using this example, you can display the numbers from
 0 till 9 on the app's seven segment every time you press
 the button on pin 12.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_SEVEN_SEGMENT_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
