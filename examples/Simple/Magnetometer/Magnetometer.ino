@@ -7,7 +7,15 @@ This example shows an application on 1Sheeld's magnetometer shield.
 By using this example, you can display the magnetic field
 strength read by the smartphone's on a hardware LCD.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_MAGNETOMETER_SENSOR_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

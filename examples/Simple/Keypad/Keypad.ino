@@ -7,7 +7,15 @@ This example shows an application on 1Sheeld's keypad shield.
 By using this example, you can turn on some LEDs if you
 pressed the first 4 buttons of our app's keypad shield.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_KEYPAD_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

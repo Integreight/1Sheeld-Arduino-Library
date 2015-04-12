@@ -7,7 +7,16 @@ This example shows an application on 1Sheeld's data logger shield.
 By using this example, you can check the variation of noise level using 
 Mic shield by logging each 20 successive readings in separate CSV files.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_DATA_LOGGER_SHIELD
+#define INCLUDE_MIC_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>

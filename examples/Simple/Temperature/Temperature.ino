@@ -7,7 +7,15 @@ This example shows an application on 1Sheeld's temperature shield.
 By using this example, you can turn on the LED on pin 13 if the
 smartphone's temperature sensor reports a certain value.
 
+OPTIONAL:
+To reduce the library compiled size and limit its memory usage, you
+can specify which shields you want to include in your sketch by
+defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
+
 */
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_TEMPERATURE_SENSOR_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
