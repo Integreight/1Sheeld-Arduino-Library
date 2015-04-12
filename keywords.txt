@@ -240,6 +240,7 @@ getLastCommandAsString	KEYWORD2
 RemoteOneSheeld	KEYWORD2
 PatternNode	KEYWORD2
 setOnAppConnected	KEYWORD2
+queryDateAndTime	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

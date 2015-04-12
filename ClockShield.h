@@ -31,7 +31,7 @@ public:
 	//Constructor
 	ClockShield();
 	//Begin Clock 
-	void begin();
+	void queryDateAndTime();
 	//Getters 
 	byte getSeconds();
 	byte getHours();
@@ -47,11 +47,6 @@ private:
 	byte day;
 	byte month;
 	short year;
-	//Boolean for Begin Function
-	bool isClockInit;
-	//Timeout Checkers
-	unsigned long timeStart;
-	unsigned long timeCheck;
 	//Process Input Data 
 	void processData();
 };

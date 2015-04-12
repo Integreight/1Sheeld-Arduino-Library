@@ -15,7 +15,7 @@
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "ClockShield.h"
-//#include "Arduino.h"
+
 
 
 //Class Constructor
@@ -26,28 +26,12 @@ ClockShield::ClockShield() : ShieldParent(CLOCK_ID)
 	day=0;
 	month=0;
 	year=0;
-	isClockInit = false;
-	timeStart = 0;
-	timeCheck = 0;
 }
 
 //Blocking function 
-void ClockShield::begin()
+void ClockShield::queryDateAndTime()
 {
 	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_BEGIN,0);
-	timeStart=millis();
-	isClockInit=false;
-	while(!isClockInit)
-	{
-		timeCheck=millis();
-		if(timeCheck-timeStart>=ONE_SECOND)
-		{
-			break;
-		}
-
-		OneSheeld.processInput();
-		
-	}
 }
 //Seconds getter 
 byte ClockShield::getSeconds()
@@ -110,8 +94,7 @@ void ClockShield::processData()
 						   	day=getOneSheeldInstance().getArgumentData(3)[0];
 						   	month=getOneSheeldInstance().getArgumentData(4)[0];break;
 
-			case 0x06	:	isClockInit=true;
-							seconds=getOneSheeldInstance().getArgumentData(0)[0];
+			case 0x06	:	seconds=getOneSheeldInstance().getArgumentData(0)[0];
 						    minutes=getOneSheeldInstance().getArgumentData(1)[0];
 						   	hours=getOneSheeldInstance().getArgumentData(2)[0];
 						   	day=getOneSheeldInstance().getArgumentData(3)[0];
