@@ -12,6 +12,7 @@
   Date:          2015.3
 
 */
+#define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "ColorShield.h"
 
@@ -139,7 +140,3 @@ void ColorShield::processData()
 		}
 	}
 }
-#ifdef COLOR_SHIELD
-//Instantiating object 
-ColorShield ColorDetector;
-#endif

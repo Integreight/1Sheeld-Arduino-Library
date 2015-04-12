@@ -164,3 +164,7 @@ EXTERN TwitterShieldClass Twitter;
 #ifdef INCLUDE_VOICE_RECOGNIZER_SHIELD
 EXTERN VoiceRecognitionShield VoiceRecognition;
 #endif
+
+#ifdef INCLUDE_COLOR_DETECTOR_SHIELD
+EXTERN ColorShield ColorDetector;
+#endif
