@@ -36,6 +36,7 @@
 #define PROXIMITY_ID	 	 0x13
 #define GRAVITY_ID 			 0x14
 #define CAMERA_ID 		 	 0x15
+#define NFC_ID				 0x16
 #define LCD_ID 		   	 	 0x17
 #define MIC_ID 				 0x18
 #define FACEBOOK_ID     	 0x19
