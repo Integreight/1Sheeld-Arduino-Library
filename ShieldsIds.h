@@ -19,6 +19,7 @@
 #define LED_ID 		 	 	 0x02
 #define PUSH_BUTTON_ID 	 	 0x03
 #define TOGGLE_BUTTON_ID 	 0x04
+#define COLOR_ID			 0x05
 #define NOTIFICATION_ID 	 0x06
 #define SEV_SEG_ID 			 0x07
 #define BUZZER_ID 		 	 0x08

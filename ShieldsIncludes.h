@@ -53,3 +53,4 @@
 #include "RemoteOneSheeld.h"
 #include "PatternShield.h"
 #include "InternetShield.h"
+#include "ColorShield.h"
