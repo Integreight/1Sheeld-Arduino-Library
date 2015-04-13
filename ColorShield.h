@@ -19,7 +19,6 @@
 
 //Output Function ID
 #define COLOR_PALETTE_ID			0x01
-#define COLOR_CALCULATION_MODE_ID	0x02
 #define COLOR_FULL_OPERATION_ID		0x03
 #define COLOR_NORMAL_OPERATION_ID	0x04
 //Input Function ID
@@ -36,9 +35,6 @@
 #define COLOR_LOWER_LEFT	6
 #define COLOR_LOWER_MIDDLE	7
 #define COLOR_LOWER_RIGHT	8
-
-#define MOST_DOMINANT_COLOR	0x01
-#define AVERAGE_COLOR		0x02
 
 #define _1_BIT_GRAYSCALE_PALETTE	1
 #define _2_BIT_GRAYSCALE_PALETTE	2
@@ -131,7 +127,6 @@ public:
 	void setOnNewColor(void (*)(Color,Color,Color,Color,Color,Color,Color,Color,Color));
 	bool isNewColorReceived();
 	void setPalette(byte);
-	void setCalculationMode(byte);
 	void enableFullOperation();
 	void enableNormalOperation();
 	bool isFullOperation();

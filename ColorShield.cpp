@@ -32,11 +32,6 @@ void ColorShield::setPalette(byte range)
 	OneSheeld.sendPacket(COLOR_ID,0,COLOR_PALETTE_ID,1,new FunctionArg(1,&range));
 }
 
-void ColorShield::setCalculationMode(byte mode)
-{
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_CALCULATION_MODE_ID,1,new FunctionArg(1,&mode));
-}
-
 void ColorShield::enableFullOperation()
 {
 	isNewColor=false;
