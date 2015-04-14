@@ -138,7 +138,6 @@ getMagneticStrength	KEYWORD2
 setOnCallStatusChange	KEYWORD2
 setOnSmsReceive	KEYWORD2
 setOnButtonStatusChange	KEYWORD2
-sendMessage	KEYWORD2
 isPressed	KEYWORD2
 getUserName	KEYWORD2
 getTweet	KEYWORD2
@@ -173,14 +172,7 @@ attachLastPicture	KEYWORD2
 isAppConnected	KEYWORD2
 trackKeyword	KEYWORD2
 untrackKeyword	KEYWORD2
-setOnNewMessage	KEYWORD2
-setOnSubscribeOrDigitalChange	KEYWORD2
-subscribeToChanges	KEYWORD2
-unsubscribeToChanges	KEYWORD2
 getOnButtonStatusChange	KEYWORD2
-getLasPattern	KEYWORD2
-isNewPatternReceived	KEYWORD2
-setOnNewPattern	KEYWORD2
 getRow	KEYWORD2
 getColumn	KEYWORD2
 HttpRequest	KEYWORD2
