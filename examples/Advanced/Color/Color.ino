@@ -1,6 +1,6 @@
 /*
 
-Color Shield Example
+Color Detector Shield Example
 
 This example shows an application on 1Sheeld's color detector shield.
 
@@ -22,18 +22,18 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Red Color. */
+/* Red color. */
 unsigned long redColor = 0xFF0000;
-/* Blue Color. */
+/* Blue color. */
 unsigned long blueColor = 0x0000FF;
-/* Green Color. */
+/* Green color. */
 unsigned long greenColor = 0x00FF00;
 
 
 void setup() {
   /* Start communication. */
   OneSheeld.begin();
-  /* Set Palette to get 8 different colors only instead of the default 16 million colors. */
+  /* Set the color detection palette to get only 8 different colors instead of the default 16 million. */
   ColorDetector.setPalette(_3_BIT_RGB_PALETTE);
 }
 
@@ -41,18 +41,20 @@ void loop() {
   /* Check if there's a new color received. */
   if(ColorDetector.isNewColorReceived())
   {
+    /* Read the last received color and save it locally. */
+    Color readColor = ColorDetector.getLastColor();
     /* Compare colors and if red say red. */
-    if(ColorDetector.getLastColor()== redColor)
+    if(readColor == redColor)
     {
       /* Say red. */
       TextToSpeech.say("Red");
     }
-    else if(ColorDetector.getLastColor()== blueColor)
+    else if(readColor == blueColor)
     {
       /* Say blue. */
       TextToSpeech.say("Blue");
     }
-    else if(ColorDetector.getLastColor()== greenColor)
+    else if(readColor == greenColor)
     {
       /* Say green. */
       TextToSpeech.say("Green");

@@ -1,11 +1,11 @@
 /*
 
-Color Shield Example
+Color Detector Shield Example
 
-This example shows an application on 1Sheeld's color shield.
+This example shows an application on 1Sheeld's color detector shield.
 
-By using this example, you can control and RGB led colors using color shield and 
-PWM and change it's "RGB" color according grabbed color.
+By using this example, you can control the color of a RGB LED according
+to the color read by our color detector shield.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -20,36 +20,35 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Reserve PWM pins for RGB LED. */  
+/* Reserve PWM pins for the RGB LED. */  
 int redPin = 9;
 int greenPin =10;
 int bluePin = 11;
 
 void setup() {
-  // put your setup code here, to run once:
   /* Start communication. */
   OneSheeld.begin();
-  /* Set pins mode OUTPUT for RGB LED. */
+  /* Set the RGB LED pins as output. */
   pinMode(redPin, OUTPUT); 
   pinMode(greenPin, OUTPUT); 
   pinMode(bluePin, OUTPUT);
-  /* Enable normal operating mode for color shield. */
-  ColorDetector.enableNormalOperation();
-  /* Set Palette to get 8 different colors only. */
-  ColorDetector.setPalette(_3_BIT_RGB_PALETTE); 
+  /* Set the color detection palette to get only 8 different colors instead of the default 16 million. */
+  ColorDetector.setPalette(_3_BIT_RGB_PALETTE);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  /* Check if there's a new color grabbed. */
+  /* Check if there's a new color received. */
   if(ColorDetector.isNewColorReceived())
   {
-    /* Get red, blue and green component values. */
-    byte redValue = ColorDetector.getLastColor().getRed();
-    byte greenValue = ColorDetector.getLastColor().getGreen();
-    byte blueValue = ColorDetector.getLastColor().getBlue();
+    /* Read the last received color and save it locally. */
+    Color readColor = ColorDetector.getLastColor();
+
+    /* Get red, blue and green components values. */
+    byte redValue = readColor.getRed();
+    byte greenValue = readColor.getGreen();
+    byte blueValue = readColor.getBlue();
     
-    /* Output values on LED pins. */
+    /* Output the values on the RGB LED pins. */
     digitalWrite(redPin,redValue);
     digitalWrite(greenPin,greenValue);
     digitalWrite(bluePin,blueValue);    

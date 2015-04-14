@@ -4,8 +4,7 @@ NFC Shield Example
 
 This example shows an application on 1Sheeld's NFC shield.
 
-By using this example, you can control an RGB LED with NFC cards
-to light up certain colors.
+By using this example, you can control an RGB LED color using NFC tags.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -21,7 +20,7 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 /* Inlcude 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Stings to be compared by data from the NFC card. */
+/* Reserve some color names as char arrays. */
 char * redArray = "red";
 char * greenArray = "green";
 char * blueArray = "blue";
@@ -32,31 +31,30 @@ int green = 9;
 int blue = 10;
 
 void setup() {
-  // put your setup code here, to run once:
   /* Start communication. */
   OneSheeld.begin();
-  /* Subscribe to a new scanned tag CallBack. */
+  /* Subscribe to the new tag scanned event. */
   NFC.setOnNewTagScanned(&tagFunction);
-  /* LED pin modes OUTPUT.*/
+  /* Set the RGB LED pins as output. */
   pinMode(red, OUTPUT); 
   pinMode(green, OUTPUT); 
   pinMode(blue, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  /* Leave the loop empty. */
 }
 
-
+/* A function to be called once a new tag is received. */
 void tagFunction(NFCTag &myTag)
 {
-  /* Subscribe to record parsed data Callback. */
+  /* Subscribe to record parsed data response event. */
   myTag.setOnRecordParsedDataResponse(&responseFunction);
-  /* Send to check the parsed data in first Record. */
+  /* Parse and query the data in the first record. */
   myTag.getRecord(0).queryParsedData();
 }
 
+/* A function to be called once a new parsed data is received. */
 void responseFunction(byte recordNumber , char data[])
 {
   /* Check response and compare data. */
