@@ -2,10 +2,11 @@
 
 Color Shield Example
 
-This example shows an application on 1Sheeld's color shield.
+This example shows an application on 1Sheeld's color detector shield.
 
-By using this example, by using your camera you can teach your children colors 
-by pointing the camera to the color and your smartphone will say the color.
+By using this example, you can teach your children colors names by
+pointing your smartphone's camera to the color and your smartphone
+will say its name using our text-to-speech shield.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -30,34 +31,30 @@ unsigned long greenColor = 0x00FF00;
 
 
 void setup() {
-  // put your setup code here, to run once:
   /* Start communication. */
   OneSheeld.begin();
-  /* Enable normal operating mode for color shield. */
-  ColorDetector.enableNormalOperation();
-  /* Set Palette to get 8 different colors only. */
+  /* Set Palette to get 8 different colors only instead of the default 16 million colors. */
   ColorDetector.setPalette(_3_BIT_RGB_PALETTE);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  /* Check if there's a new color grabbed. */
+  /* Check if there's a new color received. */
   if(ColorDetector.isNewColorReceived())
   {
-    /* Compare colors and if red say RED. */
+    /* Compare colors and if red say red. */
     if(ColorDetector.getLastColor()== redColor)
     {
-      /* Say RED. */
+      /* Say red. */
       TextToSpeech.say("Red");
     }
     else if(ColorDetector.getLastColor()== blueColor)
     {
-      /* Say BLUE. */
+      /* Say blue. */
       TextToSpeech.say("Blue");
     }
     else if(ColorDetector.getLastColor()== greenColor)
     {
-      /* Say GREEN. */
+      /* Say green. */
       TextToSpeech.say("Green");
     }
   }
