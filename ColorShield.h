@@ -19,8 +19,8 @@
 
 //Output Function ID
 #define COLOR_PALETTE_ID			0x01
-#define COLOR_FULL_OPERATION_ID		0x03
-#define COLOR_NORMAL_OPERATION_ID	0x04
+#define COLOR_FULL_OPERATION_ID		0x02
+#define COLOR_NORMAL_OPERATION_ID	0x03
 //Input Function ID
 #define COLOR_VALUE			0x01
 #define ALL_COLORS_VALUE 	0x02
