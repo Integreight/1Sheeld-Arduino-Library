@@ -14,7 +14,7 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 
 */
 
-#define CUSTOM_SETTINGS`
+#define CUSTOM_SETTINGS
 #define INCLUDE_COLOR_DETECTOR_SHIELD
 #define INCLUDE_TEXT_TO_SPEECH_SHIELD
 
