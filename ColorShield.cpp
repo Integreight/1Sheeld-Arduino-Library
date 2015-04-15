@@ -49,7 +49,7 @@ void ColorShield::setCalculationMode(byte mode)
 	OneSheeld.sendPacket(COLOR_ID,0,COLOR_CALCULATION_MODE_ID,1,new FunctionArg(1,&mode));
 }
 
-void ColorShield::setPathSize(byte mode)
+void ColorShield::setPatchSize(byte mode)
 {
 	OneSheeld.sendPacket(COLOR_ID,0,COLOR_SET_PATH_SIZE_ID,1,new FunctionArg(1,&mode));
 }

@@ -270,7 +270,7 @@ enableNormalOperation	KEYWORD2
 isFullOperation	KEYWORD2
 finishedReading	KEYWORD2
 setCalculationMode	KEYWORD2
-setPathSize	KEYWORD2
+setPatchSize	KEYWORD2
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################

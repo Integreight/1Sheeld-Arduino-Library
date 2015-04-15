@@ -139,7 +139,7 @@ public:
 	void enableFullOperation();
 	void enableNormalOperation();
 	void setCalculationMode(byte);
-	void setPathSize(byte);
+	void setPatchSize(byte);
 	bool isFullOperation();
 	void finishedReading();
 private:
