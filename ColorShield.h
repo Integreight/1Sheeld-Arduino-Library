@@ -21,6 +21,8 @@
 #define COLOR_PALETTE_ID			0x01
 #define COLOR_FULL_OPERATION_ID		0x02
 #define COLOR_NORMAL_OPERATION_ID	0x03
+#define COLOR_CALCULATION_MODE_ID	0x04
+#define COLOR_SET_PATH_SIZE_ID		0x05
 //Input Function ID
 #define COLOR_VALUE			0x01
 #define ALL_COLORS_VALUE 	0x02
@@ -35,6 +37,13 @@
 #define COLOR_LOWER_LEFT	6
 #define COLOR_LOWER_MIDDLE	7
 #define COLOR_LOWER_RIGHT	8
+
+#define MOST_DOMINANT_COLOR	0x01
+#define AVERAGE_COLOR		0x02
+
+#define SMALL_SIZE			0x01
+#define MEDIUM_SIZE			0x02
+#define LARGE_SIZE			0x03
 
 #define _1_BIT_GRAYSCALE_PALETTE	1
 #define _2_BIT_GRAYSCALE_PALETTE	2
@@ -129,6 +138,8 @@ public:
 	void setPalette(byte);
 	void enableFullOperation();
 	void enableNormalOperation();
+	void setCalculationMode(byte);
+	void setPathSize(byte);
 	bool isFullOperation();
 	void finishedReading();
 private:
