@@ -16,7 +16,7 @@
 #ifndef PushButtonShield_h
 #define PushButtonShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID
 #define PUSHBUTTON_VALUE 0x01

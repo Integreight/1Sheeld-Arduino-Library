@@ -16,7 +16,7 @@
 #ifndef ClockShield_h
 #define ClockShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Function ID
 #define CLOCK_BEGIN 0x01

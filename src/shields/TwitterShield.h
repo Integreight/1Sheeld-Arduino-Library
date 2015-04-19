@@ -16,7 +16,7 @@
 #ifndef TwitterShield_h
 #define TwitterShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Function ID
 #define TWITTER_SEND 				0x01  

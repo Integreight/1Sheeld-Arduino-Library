@@ -16,7 +16,7 @@
 #ifndef BuzzerShield_h
 #define BuzzerShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Ouput Functions ID's 
 #define BUZZER_SET 	0x01

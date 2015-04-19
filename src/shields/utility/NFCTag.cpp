@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "NFCTag.h"
+#include "shields/utility/NFCTag.h"
 
 
 NFCRecord NFCTag::nullRecord;

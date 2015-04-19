@@ -17,11 +17,11 @@
 #define OneSheeld_h
 #include "Stream.h"
 #include "Arduino.h"
-#include "ShieldsIds.h"
-#include "ShieldsSelection.h"
-#include "ShieldsIncludes.h"
-#include "ShieldParent.h"
-#include "ShieldsInstantiation.h"
+#include "utility/ShieldsIds.h"
+#include "utility/ShieldsSelection.h"
+#include "utility/ShieldsIncludes.h"
+#include "utility/ShieldParent.h"
+#include "utility/ShieldsInstantiation.h"
 
 
 #define ONE_SECOND 1000

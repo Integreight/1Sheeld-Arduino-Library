@@ -16,7 +16,7 @@
 #ifndef MicShield_h
 #define MicShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define MIC_VALUE 0x01

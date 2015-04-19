@@ -16,7 +16,7 @@
 #ifndef LightSensorShield_h
 #define LightSensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define LIGHT_VALUE 0x01

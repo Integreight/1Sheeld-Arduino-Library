@@ -57,7 +57,7 @@ defined(INCLUDE_NFC_SHIELD))
 
 #if !defined(FROM_ONESHEELD_LIBRARY) 
 	#if (defined(INCLUDE_ALL_SHIELDS) && defined(CUSTOM_SETTINGS)) || (!defined(CUSTOM_SETTINGS) && !ANY_SHIELD_DEFINED)
-		#include "IncludedShieldsDefines.h"
+		#include "utility/IncludedShieldsDefines.h"
 		#define ALL_SHIELDS_INCLUDED
 	#endif
 #endif 

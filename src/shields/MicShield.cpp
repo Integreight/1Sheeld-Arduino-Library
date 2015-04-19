@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "MicShield.h"
+#include "shields/MicShield.h"
 
 
 //Class Constructor

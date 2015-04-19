@@ -28,9 +28,9 @@
 #define TAG_READING_ERROR			0x04
 #define RECORD_NOT_FOUND			0x05
   
-#include "ShieldParent.h"
-#include "NFCTag.h"
-#include "NFCRecord.h"
+#include "utility/ShieldParent.h"
+#include "shields/utility/NFCTag.h"
+#include "shields/utility/NFCRecord.h"
 
 class NFCShield : public ShieldParent
 {

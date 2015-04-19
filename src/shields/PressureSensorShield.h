@@ -16,7 +16,7 @@
 #ifndef PressureSensorShield_h
 #define PressureSensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID
 #define PRESSURE_VALUE 0x01

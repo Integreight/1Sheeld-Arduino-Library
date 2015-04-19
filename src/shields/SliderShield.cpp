@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "SliderShield.h"
+#include "shields/SliderShield.h"
 
 //Class Constructor
 SliderShield::SliderShield() : ShieldParent(SLIDER_ID)

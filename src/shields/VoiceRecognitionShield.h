@@ -15,7 +15,7 @@
 #ifndef	VoiceRecognitionShield_h
 #define VoiceRecognitionShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output  function ID's
 #define VOICE_START_LISTENING	0x01

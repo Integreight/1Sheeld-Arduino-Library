@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "EmailShield.h"
+#include "shields/EmailShield.h"
 
 //Email Sender
 void EmailShieldClass::send(const char *email ,const char* subject,const char* message)

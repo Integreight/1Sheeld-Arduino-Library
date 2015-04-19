@@ -16,7 +16,7 @@
 #ifndef GyroscopeSensorShield_h
 #define GyroscopeSensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define GYROSCOPE_VALUE 0x01

@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "FacebookShield.h"
+#include "shields/FacebookShield.h"
 
 //Post Sender
 void FacebookShieldClass::post(const char* status)

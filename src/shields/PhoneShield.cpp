@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "PhoneShield.h"
+#include "shields/PhoneShield.h"
 
 //Class Constructor
 PhoneShieldClass::PhoneShieldClass() : ShieldParent(PHONE_ID)

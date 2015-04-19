@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "KeyboardShield.h"
+#include "shields/KeyboardShield.h"
 
 //Class Constructor
  KeyboardShield::KeyboardShield() : ShieldParent(KEYBOARD_ID)

@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "OrientationSensorShield.h"
+#include "shields/OrientationSensorShield.h"
 
 
 //Class Constructor

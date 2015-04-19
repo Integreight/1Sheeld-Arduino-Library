@@ -16,7 +16,7 @@
 #ifndef Keyboard_h
 #define Keyboard_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define KEYBOARD_GET_CHAR	0x01

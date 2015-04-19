@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h" 
-#include "SevenSegmentShield.h"
+#include "shields/SevenSegmentShield.h"
 
 //Number Setter
 void SevenSegmentShieldClass::setNumber(byte x)

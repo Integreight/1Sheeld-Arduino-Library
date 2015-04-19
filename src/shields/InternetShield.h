@@ -17,9 +17,9 @@
 
 #define MAX_NO_OF_REQUESTS					20
 
-#include "ShieldParent.h"
-#include "HttpResponse.h"
-#include "HttpRequest.h"
+#include "utility/ShieldParent.h"
+#include "shields/utility/HttpResponse.h"
+#include "shields/utility/HttpRequest.h"
 
 
 //Output Function ID's for Internet calss

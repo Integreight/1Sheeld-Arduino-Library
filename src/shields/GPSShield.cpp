@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "GPSShield.h"
+#include "shields/GPSShield.h"
 
 //Class Constructor 
 GPSShieldClass::GPSShieldClass () : ShieldParent(GPS_ID)

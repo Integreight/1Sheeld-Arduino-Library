@@ -17,7 +17,7 @@
 #define TagClass_h
 
 
-#include "NFCRecord.h"
+#include "shields/utility/NFCRecord.h"
 
 //Input Function ID
 #define NFC_TAG_ON_TYPE     0x03

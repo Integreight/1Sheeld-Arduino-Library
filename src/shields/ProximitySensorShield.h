@@ -16,7 +16,7 @@
 #ifndef ProximitySensorShield_h
 #define ProximitySensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID
 #define PROXIMITY_VALUE 0x01

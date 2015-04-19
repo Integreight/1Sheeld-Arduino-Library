@@ -16,7 +16,7 @@
 #ifndef NotificationShield_h
 #define NotificationShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Function ID
 #define NOTIFICATION_NOTIFY_PHONE 0x01

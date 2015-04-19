@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "TwitterShield.h"
+#include "shields/TwitterShield.h"
 
 //Class Constructor
 TwitterShieldClass::TwitterShieldClass() : ShieldParent(TWITTER_ID)

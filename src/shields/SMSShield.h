@@ -16,7 +16,7 @@
 #ifndef SMSShield_h
 #define SMSShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Outputs Functions ID's
 #define SMS_SEND 0x01

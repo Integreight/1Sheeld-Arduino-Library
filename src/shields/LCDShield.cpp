@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "LCDShield.h"
+#include "shields/LCDShield.h"
 
 LCDShield::LCDShield():PrintClass(LCD_ID,LCD_WRITE,LCD_PRINT),ShieldParent(LCD_ID)
 {}

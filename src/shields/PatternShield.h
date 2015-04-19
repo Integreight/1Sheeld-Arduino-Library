@@ -15,7 +15,7 @@
 #ifndef	PatternShield_h
 #define PatternShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 // Input Function ID
 #define PATTERN_VALUE	0x01

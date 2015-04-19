@@ -15,7 +15,7 @@
 #ifndef JsonKeyChain_h
 #define JsonKeyChain_h
 
-#include "JsonKey.h"
+#include "shields/utility/JsonKey.h"
 
 //This number should not exceed 16
 #define MAX_JSON_KEY_DEPTH 8

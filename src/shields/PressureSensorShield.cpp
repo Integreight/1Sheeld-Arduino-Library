@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "PressureSensorShield.h"
+#include "shields/PressureSensorShield.h"
 
 //Class Constructor
 PressureSensorShield::PressureSensorShield() : ShieldParent(PRESSURE_ID)

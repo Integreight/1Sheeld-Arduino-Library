@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "LightSensorShield.h"
+#include "shields/LightSensorShield.h"
 
 //Class Constructor
 LightSensorShield::LightSensorShield() : ShieldParent(LIGHT_ID)

@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "TemperatureSensorShield.h"
+#include "shields/TemperatureSensorShield.h"
 
 
 //Class Constructor

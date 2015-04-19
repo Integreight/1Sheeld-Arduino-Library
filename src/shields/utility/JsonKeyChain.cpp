@@ -14,8 +14,8 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "InternetShield.h"
-#include "JsonKeyChain.h"
+#include "shields/InternetShield.h"
+#include "shields/utility/JsonKeyChain.h"
 
 
 

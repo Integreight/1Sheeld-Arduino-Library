@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "BuzzerShield.h"
+#include "shields/BuzzerShield.h"
 
 //Class Constructor
 BuzzerShieldClass::BuzzerShieldClass():ShieldParent(BUZZER_ID)

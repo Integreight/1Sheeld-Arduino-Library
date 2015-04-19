@@ -15,7 +15,7 @@
 
 #ifndef HttpResponse_h
 #define HttpResponse_h
-#include "JsonKeyChain.h"
+#include "shields/utility/JsonKeyChain.h"
 //Output Function ID's for Response class
 #define RESPONSE_DISPOSE					0x11
 #define RESPONSE_GET_NEXT_BYTES				0x12

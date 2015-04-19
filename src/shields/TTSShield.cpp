@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "TTSShield.h"
+#include "shields/TTSShield.h"
 
 //Give text to be said by the phone
 void TTSShield::say(const char * text)

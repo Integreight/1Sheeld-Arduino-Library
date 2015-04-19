@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "OneSheeldPrintln.h"
+#include "utility/OneSheeldPrintln.h"
 
 //Constructor
 PrintlnClass::PrintlnClass(byte shid,byte writefnid, byte printfnid):PrintClass(shid,writefnid,printfnid)

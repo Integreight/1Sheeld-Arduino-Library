@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "NotificationShield.h"
+#include "shields/NotificationShield.h"
 
 //Notification Sender
 void NotificationShieldClass::notifyPhone(const char* data)

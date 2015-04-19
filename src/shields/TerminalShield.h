@@ -16,10 +16,10 @@
 #ifndef TerminalShield_h
 #define TerminalShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
-#include "OneSheeldPrintln.h"
-#include "CircularBuffer.h"
+#include "utility/OneSheeldPrintln.h"
+#include "utility/CircularBuffer.h"
 
 //Output Function ID's
 #define TERMINAL_WRITE 0x01		

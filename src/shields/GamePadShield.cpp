@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "GamePadShield.h"
+#include "shields/GamePadShield.h"
 
 
 

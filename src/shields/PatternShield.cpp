@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "PatternShield.h"
+#include "shields/PatternShield.h"
 
 
 //Constructor 

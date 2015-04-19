@@ -16,7 +16,7 @@
 #ifndef EmailShield_h
 #define EmailShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Function ID
 #define EMAIL_SEND 0x01

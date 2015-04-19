@@ -16,7 +16,7 @@
 #ifndef SevenSegmentShield_h
 #define SevenSegmentShield_h
 
-#include "ShieldParent.h" 
+#include "utility/ShieldParent.h" 
 
 //Output Function ID's
 #define SEVENSEGMENT_SET_VALUE 0x01 

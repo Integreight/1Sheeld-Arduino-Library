@@ -16,7 +16,7 @@
 #ifndef KeypadShield_h
 #define KeypadShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define KEYPAD_VALUE 0x01

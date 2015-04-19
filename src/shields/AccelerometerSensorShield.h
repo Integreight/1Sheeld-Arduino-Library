@@ -16,7 +16,7 @@
 #ifndef AccelerometerSensorShield_h
 #define AccelerometerSensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define ACCELEROMETER_VALUE 0x01

@@ -16,7 +16,7 @@
 #ifndef MagnetometerSensorShield_h
 #define MagnetometerSensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID 
 #define MAGNETOMETER_VALUE 0x01

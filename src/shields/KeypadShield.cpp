@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "KeypadShield.h"
+#include "shields/KeypadShield.h"
 
 
 //Class Constructor

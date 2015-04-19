@@ -16,7 +16,7 @@
 #ifndef GravitySensorShield_h
 #define GravitySensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Input Function ID
 #define GRAVITY_VALUE 0x01

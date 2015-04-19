@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "MusicPlayerShield.h"
+#include "shields/MusicPlayerShield.h"
 
 //Stop Setter
 void MusicPlayerShieldClass::stop()

@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "InternetShield.h"
+#include "shields/InternetShield.h"
 
 
 int HttpRequest::totalRequests = 0;

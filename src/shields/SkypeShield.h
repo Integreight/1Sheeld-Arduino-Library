@@ -16,7 +16,7 @@
 #ifndef SkypeShield_h
 #define SkypeShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Function ID's
 #define SKYPE_CALL 		0x01

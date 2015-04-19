@@ -17,7 +17,7 @@
 #define GPSShield_h
 
 #include <math.h>
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Literal Constants 
 #define RADIUS_OF_EARTH 6371

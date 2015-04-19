@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "PushButtonShield.h"
+#include "shields/PushButtonShield.h"
 
 //Class Constructor
 PushButtonShield::PushButtonShield() : ShieldParent(PUSH_BUTTON_ID)

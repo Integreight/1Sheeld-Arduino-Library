@@ -15,7 +15,7 @@
 #ifndef DataLogger_h
 #define DataLogger_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Ouput Function ID's
 #define LOGGER_START_LOG 	   0x01

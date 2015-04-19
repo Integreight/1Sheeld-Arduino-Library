@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "SMSShield.h"
+#include "shields/SMSShield.h"
 
 //Class Constructor
  SMSShieldClass::SMSShieldClass() : ShieldParent(SMS_ID)

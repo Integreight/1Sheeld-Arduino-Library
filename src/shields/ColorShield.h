@@ -15,7 +15,7 @@
 #ifndef ColorShield_h
 #define ColorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Function ID
 #define COLOR_PALETTE_ID			0x01

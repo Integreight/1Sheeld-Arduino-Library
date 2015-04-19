@@ -16,7 +16,7 @@
 #ifndef TemperatureSensorShield_h
 #define TemperatureSensorShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 
 //Input Function ID

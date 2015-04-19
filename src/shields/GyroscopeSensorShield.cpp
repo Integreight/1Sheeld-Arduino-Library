@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "GyroscopeSensorShield.h"
+#include "shields/GyroscopeSensorShield.h"
 
 //Class Constructor 
 GyroscopeSensorShield::GyroscopeSensorShield() : ShieldParent(GYROSCOPE_ID)

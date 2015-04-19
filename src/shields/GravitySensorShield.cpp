@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "GravitySensorShield.h"
+#include "shields/GravitySensorShield.h"
 
 
 //Class Constructor 

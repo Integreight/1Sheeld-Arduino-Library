@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "NFCShield.h"
+#include "shields/NFCShield.h"
 
 NFCTag NFCShield::nullTag;
 NFCShield::NFCShield():ShieldParent(NFC_ID)

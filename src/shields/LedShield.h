@@ -16,7 +16,7 @@
 #ifndef LedShield_h
 #define LedShield_h
 
-#include "ShieldParent.h"
+#include "utility/ShieldParent.h"
 
 //Output Functions ID's
 #define LED_SET_HIGH  0x01

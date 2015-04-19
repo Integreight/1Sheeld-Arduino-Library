@@ -16,8 +16,8 @@
 #ifndef LCDShield_h
 #define LCDShield_h
 
-#include "ShieldParent.h"
-#include "OneSheeldPrint.h"
+#include "utility/ShieldParent.h"
+#include "utility/OneSheeldPrint.h"
 
 //Output Functions ID's
 #define LCD_BEGIN		 0x01  

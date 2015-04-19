@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "TerminalShield.h"
+#include "shields/TerminalShield.h"
 
 //Constructor
 TerminalShield::TerminalShield():PrintlnClass(TERMINAL_ID,TERMINAL_WRITE,TERMINAL_PRINT),ShieldParent(TERMINAL_ID)

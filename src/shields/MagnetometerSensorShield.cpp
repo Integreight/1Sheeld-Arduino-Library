@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "MagnetometerSensorShield.h"
+#include "shields/MagnetometerSensorShield.h"
 
 
 

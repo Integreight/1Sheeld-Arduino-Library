@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY  
 #include "OneSheeld.h"
-#include "CameraShield.h"
+#include "shields/CameraShield.h"
 
 
 //Rear Capture   

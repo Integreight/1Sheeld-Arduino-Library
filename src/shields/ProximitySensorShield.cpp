@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "ProximitySensorShield.h"
+#include "shields/ProximitySensorShield.h"
 
 
 //Class Constructor

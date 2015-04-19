@@ -14,7 +14,7 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "SkypeShield.h"
+#include "shields/SkypeShield.h"
 
 //Call Setter
 void SkypeShieldClass::call(const char *username)
