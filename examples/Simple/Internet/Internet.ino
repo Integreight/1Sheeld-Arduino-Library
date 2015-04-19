@@ -1,11 +1,11 @@
 /*
 
- Internet Shield Example
- 
- This example shows an application on 1Sheeld's internet shield.
- 
- By using this example, you can get response of certain GET request and 
- print it all out on the terminal shield 64 bytes by 64 bytes.
+Internet Shield Example
+
+This example shows an application on 1Sheeld's internet shield.
+
+By using this example, you can get response of certain GET request and 
+print it all out on the terminal shield 64 bytes by 64 bytes.
  
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
