@@ -1,12 +1,12 @@
 /*
  
- Internet Shield Example
- 
- This example shows an application on 1Sheeld's internet shield
- 
- By using this example, you can use the voice recognition shield to say any country's name and 
- get the status of its weather using the internet shield and the open weather map api and
- based of the weather status (i.e. cloudy, sunny, snowy,... etc) an RGB LED changes its color.
+Internet Shield Example
+
+This example shows an application on 1Sheeld's internet shield
+
+By using this example, you can use the voice recognition shield to say any country's name and 
+get the status of its weather using the internet shield and the open weather map api and
+based of the weather status (i.e. cloudy, sunny, snowy,... etc) an RGB LED changes its color.
  
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you

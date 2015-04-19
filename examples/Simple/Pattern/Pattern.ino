@@ -1,13 +1,13 @@
 /*
 
- Pattern Shield Example
- 
- This example shows an application on 1Sheeld's pattern shield.
- 
- By using this example, you can turn on a LED if you
- entered the right pattern which is "L" character.
- 
- OPTIONAL:
+Pattern Shield Example
+
+This example shows an application on 1Sheeld's pattern shield.
+
+By using this example, you can turn on a LED if you
+entered the right pattern which is "L" character.
+
+OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
 can specify which shields you want to include in your sketch by
 defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. 
