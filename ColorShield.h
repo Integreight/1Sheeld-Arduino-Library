@@ -57,16 +57,12 @@
 #define _18_BIT_RGB_PALETTE			10
 #define _24_BIT_RGB_PALETTE			11
 
+
 struct Color{
 	unsigned long rgb;
 	unsigned long hsb;
 
-	Color(unsigned long _rgb,unsigned long _hsb)
-	{
-		rgb = _rgb;
-		hsb = _hsb;
-	}
-
+	Color(unsigned long);
 	Color()
 	{
 		rgb = 0;
@@ -142,6 +138,7 @@ public:
 	void setPatchSize(byte);
 	bool isFullOperation();
 	void finishedReading();
+	static unsigned long convertRgbToHsb(unsigned long);
 private:
 	bool isNewColor;
 	bool fullOperation;

@@ -18,7 +18,11 @@
 
 
 
-
+Color::Color(unsigned long _rgb)
+{
+	rgb = _rgb;
+	hsb = ColorShield::convertRgbToHsb(rgb);
+}
 
 ColorShield::ColorShield() : ShieldParent(COLOR_ID)
 {
@@ -92,6 +96,34 @@ void ColorShield::setOnNewColor(void (*userFunction)(Color,Color,Color,Color,Col
 	colorsCallBackInvoked = true;
 }
 
+unsigned long ColorShield::convertRgbToHsb(unsigned long rgb) {
+    double rd = (double)((rgb&0xFF0000)>>16)/255;
+    double gd = (double)((rgb&0x00FF00)>>8)/255;
+    double bd = (double)((rgb&0x0000FF))/255;
+    double maximum = max(rd, max(gd, bd)), minimum = min(rd, min(gd, bd));
+    double h, s, b = maximum;
+
+    double d = maximum - minimum;
+    s = maximum == 0 ? 0 : d / maximum;
+
+    if (maximum == minimum) { 
+        h = 0; // achromatic
+    } else {
+        if (maximum == rd) {
+            h = (gd - bd) / d + (gd < bd ? 6 : 0);
+        } else if (maximum == gd) {
+            h = (bd - rd) / d + 2;
+        } else if (maximum == bd) {
+            h = (rd - gd) / d + 4;
+        }
+        h /= 6;
+    }
+    unsigned int hue=(h=round(h*360))>360?360:h;
+    byte saturation=(s=round(s*100))>100?100:s;
+    byte brightness=(b=round(b*100))>100?100:b;
+    return ((unsigned long)hue<<16)|((unsigned long)saturation<<8)|((unsigned long)brightness);
+}
+
 void ColorShield::processData()
 {
 	byte functionId = getOneSheeldInstance().getFunctionId();
@@ -101,14 +133,9 @@ void ColorShield::processData()
 		isNewColor = true;
 		fullOperation=false;
 
-		colorInstances[COLOR_CENTER_MIDDLE].rgb = (unsigned long )(((unsigned long)getOneSheeldInstance().getArgumentData(0)[0])|
+		colorInstances[COLOR_CENTER_MIDDLE] = Color((unsigned long )(((unsigned long)getOneSheeldInstance().getArgumentData(0)[0])|
 											 ((unsigned long)getOneSheeldInstance().getArgumentData(0)[1])<<8|
-											 ((unsigned long)getOneSheeldInstance().getArgumentData(0)[2])<<16);
-
-		colorInstances[COLOR_CENTER_MIDDLE].hsb = (unsigned long)(((unsigned long)getOneSheeldInstance().getArgumentData(1)[3]<<24)|
-											((unsigned long)getOneSheeldInstance().getArgumentData(1)[2]<<16)|
-											((unsigned long)getOneSheeldInstance().getArgumentData(1)[1]<<8)|
-											 (unsigned long)getOneSheeldInstance().getArgumentData(1)[0]);
+											 ((unsigned long)getOneSheeldInstance().getArgumentData(0)[2])<<16));
 		
 		if(colorCallBackInvoked && !isInACallback())
 		{
@@ -117,21 +144,16 @@ void ColorShield::processData()
 			exitingACallback();
 		}
 	}
-	else if(functionId == ALL_COLORS_VALUE && getOneSheeldInstance().getArgumentNo()==18)
+	else if(functionId == ALL_COLORS_VALUE && getOneSheeldInstance().getArgumentNo()==9)
 	{
 		isNewColor = true;
 		fullOperation = true;
 
 		for(int i=0;i < 9;i++)
 		{
-			colorInstances[i].rgb = (unsigned long )(((unsigned long)getOneSheeldInstance().getArgumentData(i*2)[0])|
-											 ((unsigned long)getOneSheeldInstance().getArgumentData(i*2)[1])<<8|
-											 ((unsigned long)getOneSheeldInstance().getArgumentData(i*2)[2])<<16);
-
-			colorInstances[i].hsb = (unsigned long)(((unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[3]<<24)|
-												((unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[2]<<16)|
-												((unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[1]<<8)|
-												 (unsigned long)getOneSheeldInstance().getArgumentData((i*2)+1)[0]);
+			colorInstances[i]= Color((unsigned long )(((unsigned long)getOneSheeldInstance().getArgumentData(i)[0])|
+											 ((unsigned long)getOneSheeldInstance().getArgumentData(i)[1])<<8|
+											 ((unsigned long)getOneSheeldInstance().getArgumentData(i)[2])<<16));
 		}
 
 		
