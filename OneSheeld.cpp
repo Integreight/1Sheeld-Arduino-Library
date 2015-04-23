@@ -102,23 +102,25 @@ bool OneSheeldClass::isInitialized()
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
- if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
+  unsigned long localLastTimeFrameSent=lastTimeFrameSent;
+  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&localLastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
   if(inACallback){
      OneSheeldClass TempOneSheeld(OneSheeldSerial);
      ShieldParent::setOneSheeldInstance(TempOneSheeld);
-     while(millis()<(TIME_GAP+lastTimeFrameSent)||TempOneSheeld.framestart)
+     while((millis()<(TIME_GAP+localLastTimeFrameSent))||TempOneSheeld.framestart)
      {
         if(TempOneSheeld.OneSheeldSerial.available())
           TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial.read());
-      }
+     }
       ShieldParent::unSetOneSheeldInstance();
    }else
-      while(millis()<(TIME_GAP+lastTimeFrameSent)||framestart)
+      while((millis()<(TIME_GAP+localLastTimeFrameSent))||framestart)
       {
         if(OneSheeldSerial.available())
           OneSheeld.processInput(OneSheeldSerial.read());
       }
   }
+
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
@@ -147,24 +149,25 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
  }
     OneSheeldSerial.write((byte)END_OF_FRAME);
     va_end(arguments);
-    lastTimeFrameSent=millis()+1;
+    if(shieldID!=ONESHEELD_ID)lastTimeFrameSent=millis()+1;
 }
 
 void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
 {
   unsigned long mill=millis()+1;
- if(shieldID!=ONESHEELD_ID&&isFirstFrame&&lastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
+  unsigned long localLastTimeFrameSent=lastTimeFrameSent;
+  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&localLastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
   if(inACallback){
      OneSheeldClass TempOneSheeld(OneSheeldSerial);
      ShieldParent::setOneSheeldInstance(TempOneSheeld);
-     while(millis()<(TIME_GAP+lastTimeFrameSent)||TempOneSheeld.framestart)
+     while((millis()<(TIME_GAP+localLastTimeFrameSent))||TempOneSheeld.framestart)
      {
         if(TempOneSheeld.OneSheeldSerial.available())
           TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial.read());
-      }
+     }
       ShieldParent::unSetOneSheeldInstance();
    }else
-      while(millis()<(TIME_GAP+lastTimeFrameSent)||framestart)
+      while((millis()<(TIME_GAP+localLastTimeFrameSent))||framestart)
       {
         if(OneSheeldSerial.available())
           OneSheeld.processInput(OneSheeldSerial.read());
@@ -191,7 +194,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
       }
  }
     OneSheeldSerial.write((byte)END_OF_FRAME);
-    lastTimeFrameSent=millis()+1;
+    if(shieldID!=ONESHEELD_ID)lastTimeFrameSent=millis()+1;
 }
 bool OneSheeldClass::isAppConnected()
 {
@@ -548,14 +551,14 @@ void OneSheeldClass::delay(unsigned long time)
     {
      OneSheeldClass TempOneSheeld(OneSheeldSerial);
      ShieldParent::setOneSheeldInstance(TempOneSheeld);
-     while(millis()<(now+time)||TempOneSheeld.framestart)
+     while((millis()<(now+time))||TempOneSheeld.framestart)
      {
         if(TempOneSheeld.OneSheeldSerial.available())
           TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial.read());
       }
       ShieldParent::unSetOneSheeldInstance();
    }else
-      while(millis()<(now+time)||framestart)
+      while((millis()<(now+time))||framestart)
       {
         if(OneSheeldSerial.available())
           OneSheeld.processInput(OneSheeldSerial.read());
