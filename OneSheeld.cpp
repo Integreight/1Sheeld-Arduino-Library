@@ -103,7 +103,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 {
   unsigned long mill=millis()+1;
   unsigned long localLastTimeFrameSent=lastTimeFrameSent;
-  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&localLastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
+  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&localLastTimeFrameSent&&(mill-localLastTimeFrameSent)<TIME_GAP){
   if(inACallback){
      OneSheeldClass TempOneSheeld(OneSheeldSerial);
      ShieldParent::setOneSheeldInstance(TempOneSheeld);
@@ -156,7 +156,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
 {
   unsigned long mill=millis()+1;
   unsigned long localLastTimeFrameSent=lastTimeFrameSent;
-  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&localLastTimeFrameSent&&(mill-lastTimeFrameSent)<TIME_GAP){
+  if(shieldID!=ONESHEELD_ID&&isFirstFrame&&localLastTimeFrameSent&&(mill-localLastTimeFrameSent)<TIME_GAP){
   if(inACallback){
      OneSheeldClass TempOneSheeld(OneSheeldSerial);
      ShieldParent::setOneSheeldInstance(TempOneSheeld);
