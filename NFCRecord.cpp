@@ -41,7 +41,7 @@ bool NFCRecord::isNull()
 	return isRecordNull;
 }
 
-byte NFCRecord::getType()
+byte NFCRecord::getTypeCategory()
 {
 	return recordType;
 }

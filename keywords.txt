@@ -251,7 +251,7 @@ setOnRecordTypeResponse	KEYWORD2
 setOnRecordParsedDataResponse	KEYWORD2
 setOnRecordDataResponse	KEYWORD2
 isNull	KEYWORD2
-getType	KEYWORD2
+getTypeCategory	KEYWORD2
 getTypeLength	KEYWORD2
 getDataLength	KEYWORD2
 queryData	KEYWORD2
