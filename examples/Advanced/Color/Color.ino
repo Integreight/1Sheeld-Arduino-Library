@@ -23,38 +23,39 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Reserve a varriable for black color. */
-unsigned long black = 0x00000000;
+/* Reserve a variable for black color. */
+unsigned long black = 0x000000;
 
 void setup() 
 {
   /* Start communincation. */  
   OneSheeld.begin();
-  /* Subscribe to setOnSelected Callback as once color shield 
-  is selected Arduino sends data to be processed by color shield. */
-  ColorDetector.setOnSelected(&selected);
+  /* Subscribe to setOnSelected event for the color shield. */
+  ColorDetector.setOnSelected(&onColorDetectorSelection);
 }
 
 void loop() 
-{}
-
-/* OnSelected function. */
-void selected()
 {
-  /* Set color palette for a 1 bit gray scale. */
-  ColorDetector.setPalette(_1_BIT_GRAYSCALE_PALETTE);
-  /* Enable full operation mode .*/
-  ColorDetector.enableFullOperation();
-  /* Grab most dominant color in each patch. */
-  ColorDetector.setCalculationMode(MOST_DOMINANT_COLOR);
-  /* Subscribe when a new color is received. */
-  ColorDetector.setOnNewColor(&newColor);
+  /* Leave the loop empty. */
 }
 
-/* onNewColor function. */
-void newColor(Color one,Color two,Color three,Color four,Color five,Color six,Color seven,Color eight,Color nine)
+/* onColorDetectorSelection callback. */
+void onColorDetectorSelection()
 {
-  /* Check first and third patches. */
+  /* Set color palette to a 1 bit gray scale. */
+  ColorDetector.setPalette(_1_BIT_GRAYSCALE_PALETTE);
+  /* Enable full operation mode to get 9 colors.*/
+  ColorDetector.enableFullOperation();
+  /* Grab the most dominant color in each patch. */
+  ColorDetector.setCalculationMode(MOST_DOMINANT_COLOR);
+  /* Subscribe to setOnNewColor event. */
+  ColorDetector.setOnNewColor(&onNewColor);
+}
+
+/* onNewColor callback. */
+void onNewColor(Color one,Color two,Color three,Color four,Color five,Color six,Color seven,Color eight,Color nine)
+{
+  /* Check upper-left and upper-right patches. */
   if (three == black && one != black)
   {
     /* Guide me to the Right. */

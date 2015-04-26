@@ -45,7 +45,7 @@ void loop() {
   /* Leave the loop empty. */
 }
 
-/* A function to be called once a new tag is received. */
+/* A function to be called once a new tag is scanned. */
 void tagFunction(NFCTag &myTag)
 {
   /* Subscribe to record parsed data response event. */
