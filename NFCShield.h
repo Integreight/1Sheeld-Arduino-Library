@@ -3,7 +3,7 @@
   Project:       1Sheeld Library 
   File:          NFCShield.h
                  
-  Version:       1.2
+  Version:       1.5
 
   Compiler:      Arduino avr-gcc 4.3.2
 
