@@ -37,7 +37,7 @@ class NFCRecord
 public:
 	NFCRecord(byte );
 	NFCRecord();
-	byte getType();
+	byte getTypeCategory();
 	int getTypeLength();
 	int getDataLength();
 	void queryData(int=0 ,byte=64);

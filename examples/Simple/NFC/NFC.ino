@@ -4,7 +4,8 @@ NFC Shield Example
 
 This example shows an application on 1Sheeld's NFC shield.
 
-By using this example, you can check records number, used size and Max size of Tags.
+By using this example, you can check records number, used size and
+maximum size of NFC tags.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -29,19 +30,19 @@ void setup()
 
 void loop()
 {
-  /* Check if there's a new Tag Scanned. */
+  /* Check if there's a new tag scanned. */
   if(NFC.isNewTagScanned())
   {
-    /* Get last tag scanned. */
+    /* Get that last scanned tag. */
     NFCTag & myTag = NFC.getLastTag();
-    /* Print all data about the scanned Tag. */
+    /* Print all the data about the scanned tag. */
     Terminal.print("Number of Records in Tag = ");
-    /* Print number of Records. */
+    /* Print number of records. */
     Terminal.println(myTag.getNumberOfRecords());
-    /* Print used size of Tag. */
+    /* Print tag used size. */
     Terminal.print("Used Tag Size = ");
     Terminal.println(myTag.getSize());
-    /* Print max. size of Tag. */
+    /* Print tag maximum size. */
     Terminal.print("Maximum Tag Size = ");
     Terminal.println(myTag.getMaxSize());    
   }
