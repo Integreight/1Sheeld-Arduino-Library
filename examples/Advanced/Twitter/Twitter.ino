@@ -4,10 +4,8 @@ Twitter Shield Example
 
 This example shows an application on 1Sheeld's Twitter shield.
 
-By using this example, you can track a certain keyword over Twitter and 
-every time a tweet has the keyword it will return back to you with the 
-user name and the tweet and also an LED will turn on for three
-times then it will stop tracking the keyword.
+By using this example, you can flash a LED once a certain keyword
+is mentioned on Twitter.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -30,29 +28,29 @@ int trackingCounter = 0;
 void setup() {
   /* Start communication. */
   OneSheeld.begin();
-  /* Set ledPin to OUTPUT. */
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
-  /* Subscribe to callback on selected as once you select the shield
-  it will invoke your function which is in this example track keyword. */
+  /* Subscribe to setOnSelected event for the Twitter shield. */
   Twitter.setOnSelected(&shieldSelection);
-  /* Subscribe to callback on new tweet to invoke your function once a new
-  tweet comes. */
+  /* Subscribe to onNewTweet event. */
   Twitter.setOnNewTweet(&myTweet);
 }
 
 void loop() 
-{}
+{
+  /* Leave the loop empty. */
+}
 
 void shieldSelection()
 {
-  /* Track keyword 1Sheeld on twitter. */
+  /* Track keyword 1Sheeld on Twitter. */
   Twitter.trackKeyword("1Sheeld");
 }
 
 void myTweet(char * userName , char * userTweet)
 {
-    /* Check if the tweet got the keyword turn on the LED for 1 second. */
-    if(strstr(userTweet,"1Sheeld")!=NULL)
+    /* Check if the tweet has 1Sheeld keyword. */
+    if(strstr(userTweet,"1Sheeld")!=0)
     {
       /* Turn on the LED. */
       digitalWrite(ledPin,HIGH);
@@ -63,7 +61,7 @@ void myTweet(char * userName , char * userTweet)
       /* Turn off the LED. */
       digitalWrite(ledPin,LOW);
     }
-    /* Check if the counter reached three times stop tracking the word. */
+    /* Check if the counter reached three times. */
     if(trackingCounter == 3)
     {
       /* Stop tracking the word 1Sheeld. */
