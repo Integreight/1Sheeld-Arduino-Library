@@ -44,6 +44,20 @@ void loop()
     Terminal.println(myTag.getSize());
     /* Print tag maximum size. */
     Terminal.print("Maximum Tag Size = ");
-    Terminal.println(myTag.getMaxSize());    
+    Terminal.println(myTag.getMaxSize());
+    Terminal.print("Tag id length = ");
+    Terminal.println(myTag.getIdLength());
+    switch(myTag.getRecord(0).getTypeCategory())
+    {
+      case TNF_UNKNOWN : Terminal.println("TNF_UNKNOWN");break;
+      case TNF_EMPTY : Terminal.println("TNF_EMPTY");break;
+      case TNF_EXTERNAL_TYPE : Terminal.println("TNF_EXTERNAL_TYPE");break;
+      case TNF_MIME_MEDIA : Terminal.println("TNF_MIME_MEDIA");break;
+      case TNF_UNCHANGED : Terminal.println("TNF_UNCHANGED");break;
+      case TNF_ABSOLUTE_URI : Terminal.println("TNF_ABSOLUTE_URI");break;
+      case RTD_TEXT : Terminal.println("RTD_TEXT");break;
+      case RTD_URI : Terminal.println("RTD_URI");break;
+      case RTD_UNSUPPORTED : Terminal.println("RTD_UNSUPPORTED");break;
+    }    
   }
 }
