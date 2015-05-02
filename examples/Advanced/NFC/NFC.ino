@@ -35,6 +35,8 @@ void setup() {
   OneSheeld.begin();
   /* Subscribe to the new tag scanned event. */
   NFC.setOnNewTagScanned(&tagFunction);
+  /* Subscribe to on Tag error event. */
+  NFC.setOnError(&tagErrorFunction);
   /* Set the RGB LED pins as output. */
   pinMode(red, OUTPUT); 
   pinMode(green, OUTPUT); 
@@ -48,10 +50,22 @@ void loop() {
 /* A function to be called once a new tag is scanned. */
 void tagFunction(NFCTag &myTag)
 {
+  /* Create and object of type NFCRecord. */
+  NFCRecord &myRecordNumber0 = myTag.getRecord(0);
   /* Subscribe to record parsed data response event. */
   myTag.setOnRecordParsedDataResponse(&responseFunction);
-  /* Parse and query the data in the first record. */
-  myTag.getRecord(0).queryParsedData();
+  /* 
+  /* Check if there's a record with number 0 in Tag. */
+  if(!myRecordNumber0.isNull())
+  {
+    /* Parse and query the data in the first record. */
+    myRecordNumber0.queryParsedData();  
+  }
+  else
+  {
+    /* Print out no record found. */
+    Terminal.println("No Record found"); 
+  }
 }
 
 /* A function to be called once a new parsed data is received. */
@@ -78,5 +92,20 @@ void responseFunction(byte recordNumber , char data[])
     digitalWrite(red, LOW);
     digitalWrite(green, HIGH);
     digitalWrite(blue, LOW);
+  }
+}
+
+/* OnError event. */
+void tagErrorFunction(byte errorNumber)
+{
+  /* Switch on error number. */
+  switch(errorNumber)
+  {
+    case INDEX_OUT_OF_BOUNDS: Terminal.println("INDEX_OUT_OF_BOUNDS");break;
+    case RECORD_CAN_NOT_BE_PARSED: Terminal.println("RECORD_CAN_NOT_BE_PARSED");break;
+    case TAG_NOT_SUPPORTED: Terminal.println("TAG_NOT_SUPPORTED");break;
+    case NO_ENOUGH_BYTES: Terminal.println("NO_ENOUGH_BYTES");break;
+    case TAG_READING_ERROR: Terminal.println("TAG_READING_ERROR");break;
+    case RECORD_NOT_FOUND: Terminal.println("RECORD_NOT_FOUND");break;
   }
 }
