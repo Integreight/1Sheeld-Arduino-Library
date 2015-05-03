@@ -60,21 +60,10 @@ void KeypadShieldClass::processData()
      if (isCallbackAssigned && !isInACallback())
       {
         enteringACallback();
-        (*buttonChangeCallback)(returnActualNumber(row),returnActualNumber(col));
+        (*buttonChangeCallback)(row,col);
         exitingACallback();
       }
    }
-}
-
-byte KeypadShieldClass::returnActualNumber(byte rawDataNumber)
-{
-  byte counter = 0;
-  while(!(rawDataNumber & 0x01))
-  {
-    counter++;
-    rawDataNumber= rawDataNumber>>1;
-  }
-  return counter;
 }
 
 //Users Function Setter 

@@ -40,7 +40,6 @@ private:
 	byte col;
 	//Boolean For setOnChange Function
 	bool isCallbackAssigned;
-	byte returnActualNumber(byte );
 	//Process Input Data  
 	void processData();
 	void (*buttonChangeCallback)(byte , byte);
