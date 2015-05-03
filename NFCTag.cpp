@@ -22,7 +22,6 @@ NFCRecord NFCTag::nullRecord;
 NFCTag::NFCTag(byte * _tagId,byte tagIdLength, int _tagSize, int _tagMaxSize, byte _recordsNumber)
 {
 	isTypeCallBackAssigned= false;
-	isErrorCallBackAssigned= false;
 	isDataCallBackAssigned= false;
 	isParsedDataCallBackAssigned= false;
 	tagId=NULL;
@@ -48,7 +47,6 @@ NFCTag::NFCTag(byte * _tagId,byte tagIdLength, int _tagSize, int _tagMaxSize, by
 NFCTag::NFCTag()
 {
 	isTypeCallBackAssigned= false;
-	isErrorCallBackAssigned= false;
 	isDataCallBackAssigned= false;
 	isParsedDataCallBackAssigned= false;
 	tagId=NULL;
@@ -92,11 +90,6 @@ byte * NFCTag::getId()
 	return tagId;
 }
 
-void NFCTag::setOnError(void (*userFunction)(byte data))
-{
-	isErrorCallBackAssigned = true;
-	errorCallBack = userFunction;
-}
 
 void NFCTag::setOnRecordTypeResponse(void (*userFunction)(byte id, byte data[], byte typeLength))
 {
