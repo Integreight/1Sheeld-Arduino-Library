@@ -38,6 +38,9 @@ public:
 	NFCShield();
 	NFCTag & getLastTag();
 	bool isNewTagScanned();
+	void finishedReading();
+	void enableTagInterrupts();
+	void disableTagInterrupts();
 	void setOnNewTagScanned(void (*)(NFCTag &));
 	void setOnError(void (*)(byte));
 	
@@ -45,6 +48,8 @@ private:
 	bool isErrorAssigned;
 	bool isNewTag;
 	bool isNewTagSetOnAssigned;
+	bool isReadingInProgress;
+	bool isTagInterruptsEnabled;
 	NFCTag * tag;
 	void processData();
 	void (*errorCallBack)(byte);

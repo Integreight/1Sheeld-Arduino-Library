@@ -22,12 +22,15 @@ NFCShield::NFCShield():ShieldParent(NFC_ID)
 	isErrorAssigned =false;
 	isNewTag =false;
 	isNewTagSetOnAssigned =false;
+	isReadingInProgress=false;
+	isTagInterruptsEnabled=false;
 	tag=NULL;
 }
 
 NFCTag & NFCShield::getLastTag()
 {
 	isNewTag=false;
+	isReadingInProgress=true;
 	if(tag!=NULL)return *tag;
 	return NFCShield::nullTag;
 }
@@ -35,6 +38,21 @@ NFCTag & NFCShield::getLastTag()
 bool NFCShield::isNewTagScanned()
 {
 	return isNewTag;
+}
+
+void NFCShield::finishedReading()
+{
+	isReadingInProgress=false;
+}
+
+void NFCShield::enableTagInterrupts()
+{
+	isTagInterruptsEnabled=true;
+}
+
+void NFCShield::disableTagInterrupts()
+{
+	isTagInterruptsEnabled=false;
 }
 
 void NFCShield::setOnNewTagScanned(void (*userFunction)(NFCTag &))
@@ -53,7 +71,7 @@ void NFCShield::processData()
 {
 	byte functionId = getOneSheeldInstance().getFunctionId();
 
-	if(functionId == NFC_GET_BASIC_INFO)
+	if(functionId == NFC_GET_BASIC_INFO && (!isTagInterruptsEnabled || (!isReadingInProgress && isTagInterruptsEnabled)))
 	{
 		isNewTag = true;
 

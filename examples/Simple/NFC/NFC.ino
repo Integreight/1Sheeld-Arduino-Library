@@ -26,6 +26,8 @@ void setup()
 {
   /* Start Communication. */
   OneSheeld.begin();
+  /* Enable Tags Interruptions. */
+  NFC.enableTagInterrupts();
 }
 
 void loop()
@@ -58,6 +60,8 @@ void loop()
       case RTD_TEXT : Terminal.println("RTD_TEXT");break;
       case RTD_URI : Terminal.println("RTD_URI");break;
       case RTD_UNSUPPORTED : Terminal.println("RTD_UNSUPPORTED");break;
-    }    
+    }
+    /* Finished dealing with last Tag. */   
+    NFC.finishedReading();
   }
 }
