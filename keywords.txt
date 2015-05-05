@@ -265,9 +265,8 @@ isFullOperation	KEYWORD2
 finishedReading	KEYWORD2
 setCalculationMode	KEYWORD2
 setPatchSize	KEYWORD2
-enableTagInterrupt	KEYWORD2
-disableTagInterrupt	KEYWORD2
-finishReading	KEYWORD2
+enableTagInterrupts	KEYWORD2
+disableTagInterrupts	KEYWORD2
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
