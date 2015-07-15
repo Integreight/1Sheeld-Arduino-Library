@@ -54,4 +54,5 @@
 #define DATA_LOGGER_ID	  	 0x25
 #define TERMINAL_ID			 0x26
 #define PATTERN_ID			 0x27
+#define GLCD_ID				 0x28
 #define INTERNET_ID	 		 0x29

@@ -172,3 +172,7 @@ EXTERN ColorShield ColorDetector;
 #ifdef INCLUDE_NFC_SHIELD
 EXTERN NFCShield NFC;
 #endif
+
+#ifdef INCLUDE_GLCD_SHIELD
+EXTERN GLCDShield GLCD;
+#endif

@@ -54,3 +54,4 @@
 #include "InternetShield.h"
 #include "ColorShield.h"
 #include "NFCShield.h"
+#include "GLCDShield.h"
