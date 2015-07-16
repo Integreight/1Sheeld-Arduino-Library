@@ -42,7 +42,7 @@
 class GLCDShield : public ShieldParent
 {
 public:
-	GLCDShield():ShieldParent(GLCD_ID){};
+	GLCDShield();
 	void init();
 	void clear();
 	void clear(int x,int y,int width,int height);

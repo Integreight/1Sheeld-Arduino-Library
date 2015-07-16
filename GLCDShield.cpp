@@ -17,7 +17,12 @@
 #include "OneSheeld.h"
 #include "GLCDShield.h"
 
-
+GLCDShield::GLCDShield() : ShieldParent(GLCD_ID)
+{
+  for(int i=0;i<MAX_NO_OF_SHAPE_USED;i++){
+    interactiveShapesArray[i]=NULL;
+  }
+}
 
 void GLCDShield::init()
 {
@@ -99,11 +104,13 @@ void GLCDShield::processData()
    {
      int shapeId =(getOneSheeldInstance().getArgumentData(1)[0] | ((getOneSheeldInstance().getArgumentData(1)[1])<<8));
 
+     byte incomingShapeType = getOneSheeldInstance().getFunctionId();
+     
      for(int i ; i<MAX_NO_OF_SHAPE_USED ;i++)
      {
-       if(interactiveShapesArray[i]->shapeID == shapeId)
+       if(interactiveShapesArray[i]->shapeID == shapeId &&  interactiveShapesArray[i] != NULL && interactiveShapesArray[i]->shapeType == incomingShapeType)
        {
-         switch(getOneSheeldInstance().getFunctionId())
+         switch(incomingShapeType)
          {
            byte incomingValue ;
            case GLCD_BUTTON_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
@@ -116,38 +123,38 @@ void GLCDShield::processData()
                                     }
                                  break;
 
-        //   case GLCD_RADIO_BUTTON_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
-        //                                 interactiveShapesArray[i]->value = incomingValue;
-        //                                 if(interactiveShapesArray[i]->isCallBackAssigned)
-        //                                 {
-        //                                     enteringACallback();
-        //                                     interactiveShapesArray[i]->onChangeCallback(!!incomingValue);
-        //                                     exitingACallback();
-        //                                 }
-        //                                 break;
+          case GLCD_RADIO_BUTTON_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
+                                        interactiveShapesArray[i]->value = incomingValue;
+                                        if(interactiveShapesArray[i]->isCallBackAssigned)
+                                        {
+                                            enteringACallback();
+                                            interactiveShapesArray[i]->onChangeCallback(incomingValue);
+                                            exitingACallback();
+                                        }
+                                        break;
 
-        //   case GLCD_CHECK_BOX_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
-        //                             interactiveShapesArray[i]->value = incomingValue;
-        //                             if(interactiveShapesArray[i]->isCallBackAssigned)
-        //                             {
-        //                                 enteringACallback();
-        //                                  interactiveShapesArray[i]->onChangeCallback(!!incomingValue);
-        //                                 exitingACallback();
-        //                             }
-        //                             break;
+          case GLCD_CHECK_BOX_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
+                                    interactiveShapesArray[i]->value = incomingValue;
+                                    if(interactiveShapesArray[i]->isCallBackAssigned)
+                                    {
+                                        enteringACallback();
+                                         interactiveShapesArray[i]->onChangeCallback(incomingValue);
+                                        exitingACallback();
+                                    }
+                                    break;
 
-        //   case GLCD_SLIDER_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
-        //                           interactiveShapesArray[i]->value = incomingValue;
-        //                           if(interactiveShapesArray[i]->isCallBackAssigned)
-        //                           {
-        //                               enteringACallback();
-        //                               interactiveShapesArray[i]->onChangeCallback(incomingValue);
-        //                               exitingACallback();
-        //                           }
-        //                           break;
-        // }
+          case GLCD_SLIDER_TYPE :  incomingValue =  getOneSheeldInstance().getArgumentData(2)[0];
+                                  interactiveShapesArray[i]->value = incomingValue;
+                                  if(interactiveShapesArray[i]->isCallBackAssigned)
+                                  {
+                                      enteringACallback();
+                                      interactiveShapesArray[i]->onChangeCallback(incomingValue);
+                                      exitingACallback();
+                                  }
+                                  break;
+        }
+        break;
       }
     }
   }
-}
 }
