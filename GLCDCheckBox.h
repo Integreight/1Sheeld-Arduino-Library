@@ -22,23 +22,18 @@
 #define GLCD_CHECK_BOX_SELECT			0x05
 
 
-#include "ShapeClass.h"
+#include "InteractiveShapeClass.h"
 
-class GLCDCheckBox : public ShapeClass
+class GLCDCheckBox : public InteractiveShapeClass
 {
 public:
 	GLCDCheckBox(int , int , char *);
 	void setText(char *);
 	void setSize(byte );
-	// bool isSelected(); 
 	void select();
-	void setOnChange(void (*userFunction)(byte));
 private:
 	void draw();
 	char * dataString;
-	// byte value;
-	bool isCallBackAssigned; 
-	void (*onChangeCallback)(byte);
 };
 
 #endif

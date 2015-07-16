@@ -21,7 +21,7 @@
 class InteractiveShapeClass : public ShapeClass
 {
 public:
-	virtual void setOnChange(void (*userFunction)(byte));
+	void setOnChange(void (*userFunction)(byte));
 	friend class GLCDShield;
 protected:	
 	InteractiveShapeClass(byte ,int ,int);

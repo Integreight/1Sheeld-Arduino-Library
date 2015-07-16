@@ -30,10 +30,6 @@ GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataStri
   dataString = _dataString;
 }
 
-// bool GLCDButton::isPressed()
-// {
-//   return !!value;
-// }
 
 void GLCDButton::draw()
 {
@@ -113,9 +109,3 @@ void GLCDButton::setDimensions(int xdimension, int ydimension)
                                                                                ,new FunctionArg(2,xdimensionArray)
                                                                                ,new FunctionArg(2,ydimensionArray));
 }  
-
-void GLCDButton::setOnChange(void (*userFunction)(byte))
-{
-  isCallBackAssigned = true;
-  onChangeCallback = userFunction;
-}

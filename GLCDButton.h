@@ -36,15 +36,11 @@ public:
 	void setText(char *);
 	void setStyle(byte );
 	void setDimensions(int,int);
-	// bool isPressed();
-	void setOnChange(void (*userFunction)(byte));
-	byte value; 
 private:
 	void draw();
 	int width; 
 	int height;
 	char * dataString;
-	void (*onChangeCallback)(byte);
 };
 
 #endif
