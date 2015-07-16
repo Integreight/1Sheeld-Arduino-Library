@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          GLCDButton.h
+  File:          GLCDButton.cpp
                  
   Version:       7.0
 

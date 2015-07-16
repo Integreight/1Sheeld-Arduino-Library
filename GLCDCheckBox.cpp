@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          GLCDCheckBox.h
+  File:          GLCDCheckBox.cpp
                  
   Version:       7.0
 

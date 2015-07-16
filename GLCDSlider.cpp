@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          GLCDSlider.h
+  File:          GLCDSlider.cpp
                  
   Version:       7.0
 
