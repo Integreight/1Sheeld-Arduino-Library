@@ -32,6 +32,7 @@ protected:
 	byte shapeType;
 	int xposition;
 	int yposition;
+	bool isInteractiveShape;
 	virtual void draw()=0;
 
 private:

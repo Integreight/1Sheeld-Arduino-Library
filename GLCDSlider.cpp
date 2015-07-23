@@ -17,10 +17,12 @@
 #include "GLCDSlider.h"
 
 
-GLCDSlider::GLCDSlider(int x , int y, int _width, int _height): InteractiveShapeClass(GLCD_SLIDER_TYPE,x,y)
+GLCDSlider::GLCDSlider(int x , int y, int _width, int _height): ShapeClass(GLCD_SLIDER_TYPE,x,y)
 {
   width = _width;
   height = _height;
+  isCallbackAssigned = false;
+  isInteractiveShape = true;
 }
 
 void GLCDSlider::draw()
@@ -111,3 +113,9 @@ void GLCDSlider::setDimensions(int xdimension, int ydimension)
                                        ,new FunctionArg(2,xdimensionArray)
                                        ,new FunctionArg(2,ydimensionArray));
 }  
+
+void GLCDSlider::setOnChange(void (*userFunction)(int))
+{
+  isCallbackAssigned = true;
+  onChangeCallback = userFunction;
+}

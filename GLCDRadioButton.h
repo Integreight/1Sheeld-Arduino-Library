@@ -22,10 +22,11 @@
 #define GLCD_RADIO_BUTTON_SET_GROUP		0x05
 #define GLCD_RADIO_BUTTON_SELECT		0x06
 
-#include "InteractiveShapeClass.h"
+#include "ShapeClass.h"
 
-class GLCDRadioButton : public InteractiveShapeClass
+class GLCDRadioButton : public ShapeClass
 {
+friend class GLCDShield;
 public:
 	GLCDRadioButton(int , int , char *);
 	GLCDRadioButton(int , int , char * , int );
@@ -33,11 +34,15 @@ public:
 	void setSize(byte );
 	void setGroup(int );
 	void select();
+	void setOnChange(void (*)(byte));
 private:
 	void draw();
 	char * dataString;
 	int groupNumber;
 	bool sendAsGroup;
+	byte value;
+	bool isCallbackAssigned;
+	void (*onChangeCallback)(byte);
 };
 
 #endif

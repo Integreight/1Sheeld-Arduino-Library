@@ -20,20 +20,27 @@
 #define GLCD_CHECK_BOX_SET_TEXT			0x03
 #define GLCD_CHECK_BOX_SET_SIZE			0x04
 #define GLCD_CHECK_BOX_SELECT			0x05
+#define GLCD_CHECK_BOX_UNSELECT			0x06
 
 
-#include "InteractiveShapeClass.h"
+#include "ShapeClass.h"
 
-class GLCDCheckBox : public InteractiveShapeClass
+class GLCDCheckBox : public ShapeClass
 {
+friend class GLCDShield;
 public:
 	GLCDCheckBox(int , int , char *);
 	void setText(char *);
 	void setSize(byte );
 	void select();
+	void unselect();
+	void setOnChange(void(*)(byte));
 private:
 	void draw();
 	char * dataString;
+	bool isCallbackAssigned;
+	byte value;
+	void (*onChangeCallback)(byte);
 };
 
 #endif

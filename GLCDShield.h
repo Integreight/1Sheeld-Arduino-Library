@@ -26,7 +26,6 @@
 
 #include "ShieldParent.h"
 #include "ShapeClass.h"
-#include "InteractiveShapeClass.h"
 #include "GLCDPoint.h"
 #include "GLCDRectangle.h"
 #include "GLCDLine.h"
@@ -48,7 +47,7 @@ public:
 	void clear(int x,int y,int width,int height);
   void draw(ShapeClass &);
 private:
-  InteractiveShapeClass * interactiveShapesArray[MAX_NO_OF_SHAPE_USED];
+  ShapeClass * interactiveShapesArray[MAX_NO_OF_SHAPE_USED];
   bool addToShapesArray(ShapeClass &);
   void processData();
 };

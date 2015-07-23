@@ -21,19 +21,24 @@
 #define GLCD_SLIDER_VALUE				0x04
 #define GLCD_SLIDER_DIMENSIONS			0x05
 
-#include "InteractiveShapeClass.h"
+#include "ShapeClass.h"
 
-class GLCDSlider : public InteractiveShapeClass
+class GLCDSlider : public ShapeClass
 {
+friend class GLCDShield;
 public:
 	GLCDSlider(int , int , int ,int );
 	void setRange(int , int);
 	void setValue(int );
 	void setDimensions(int ,int);
+	void setOnChange(void (*)(int));
 private:
 	void draw();
 	int width;
 	int height;
+	int value;
+	bool isCallbackAssigned;
+	void (*onChangeCallback)(int);
 };
 
 #endif

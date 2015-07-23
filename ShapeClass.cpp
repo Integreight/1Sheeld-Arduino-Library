@@ -24,6 +24,7 @@ ShapeClass::ShapeClass(byte _shapeType,int _xPosition, int _yPosition)
 	shapeID =currentShapeId++;
 	xposition=_xPosition;
 	yposition=_yPosition;
+  isInteractiveShape=false;
 }
 
 

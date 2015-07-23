@@ -26,21 +26,26 @@
 #define DIMENSION_2D						0x00
 #define DIMENSION_3D						0x01
 
-#include "InteractiveShapeClass.h"
+#include "ShapeClass.h"
 
-class GLCDButton : public InteractiveShapeClass
+class GLCDButton : public ShapeClass
 {
+friend class GLCDShield;
 public:
 	GLCDButton(int , int , int ,int );
 	GLCDButton(int , int , int ,int ,char *);
 	void setText(char *);
 	void setStyle(byte );
 	void setDimensions(int,int);
+	void setOnChange(void(*)(byte));
 private:
 	void draw();
 	int width; 
 	int height;
 	char * dataString;
+	byte value;
+	bool isCallBackAssigned;
+	void (*onChangeCallback)(byte);
 };
 
 #endif

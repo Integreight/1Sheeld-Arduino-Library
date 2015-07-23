@@ -17,9 +17,11 @@
 #include "GLCDCheckBox.h"
 
 
-GLCDCheckBox::GLCDCheckBox(int x , int y, char * _dataString): InteractiveShapeClass(GLCD_CHECK_BOX_TYPE,x,y)
+GLCDCheckBox::GLCDCheckBox(int x , int y, char * _dataString): ShapeClass(GLCD_CHECK_BOX_TYPE,x,y)
 {
   dataString = _dataString;
+  isCallbackAssigned = false;
+  isInteractiveShape = true;
 }
 
 void GLCDCheckBox::draw()
@@ -82,3 +84,21 @@ void GLCDCheckBox::select()
 
     OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
+
+void GLCDCheckBox::unselect()
+{
+
+    byte shapeIdArray[2] ;
+    shapeIdArray[1] = (shapeID >> 8) & 0xFF;
+    shapeIdArray[0] = shapeID & 0xFF;
+
+    byte functionId = GLCD_CHECK_BOX_UNSELECT;
+
+    OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
+} 
+
+void GLCDCheckBox::setOnChange(void (*userFunction)(byte))
+{
+  isCallbackAssigned = true;
+  onChangeCallback = userFunction;
+}
