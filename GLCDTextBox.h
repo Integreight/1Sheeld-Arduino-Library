@@ -16,21 +16,20 @@
 #ifndef GLCDTextBox_h
 #define GLCDTextBox_h
 
-#define GLCD_TEXTBOX_TYPE			0x05
+#define GLCD_TEXTBOX_TYPE			  0x05
 #define GLCD_TEXTBOX_SET_FONT		0x03
 #define GLCD_TEXTBOX_SET_SIZE		0x04
 
 /* Fonts Literals. */
-#define ARIAL			0x00
+#define ARIAL			    0x00
 #define ARIAL_BOLD		0x01
 #define ARIAL_ITALIC	0x02
 #define COMIC_SANS		0x03
-#define SREIF			0x04
+#define SREIF			    0x04
 /* Size Literals. */
-#define SMALL			0x00
+#define SMALL			  0x00
 #define MEDIUM			0x01
-#define LARGE			0x02
-#define XLARGE			0x03
+#define LARGE			  0x02
 
 #include "ShapeClass.h"
 
