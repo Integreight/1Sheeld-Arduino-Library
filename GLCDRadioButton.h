@@ -30,19 +30,20 @@ friend class GLCDShield;
 public:
 	GLCDRadioButton(int , int , char *);
 	GLCDRadioButton(int , int , char * , int );
+	bool isSelected();
 	void setText(char *);
 	void setSize(byte );
 	void setGroup(int );
 	void select();
-	void setOnChange(void (*)(byte));
+	void setOnChange(void (*)(bool));
 private:
 	void draw();
 	char * dataString;
 	int groupNumber;
 	bool sendAsGroup;
-	byte value;
+	bool value;
 	bool isCallbackAssigned;
-	void (*onChangeCallback)(byte);
+	void (*onChangeCallback)(bool);
 };
 
 #endif

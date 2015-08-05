@@ -32,15 +32,16 @@ public:
 	GLCDCheckBox(int , int , char *);
 	void setText(char *);
 	void setSize(byte );
+	bool isSelected();
 	void select();
-	void unselect();
-	void setOnChange(void(*)(byte));
+	void deselect();
+	void setOnChange(void(*)(bool));
 private:
 	void draw();
 	char * dataString;
 	bool isCallbackAssigned;
-	byte value;
-	void (*onChangeCallback)(byte);
+	bool value;
+	void (*onChangeCallback)(bool);
 };
 
 #endif

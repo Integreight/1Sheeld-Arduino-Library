@@ -56,6 +56,11 @@ void GLCDSlider::draw()
                                                                                 ,new FunctionArg(2,heightArray));
 }
 
+int GLCDSlider::getValue()
+{
+  return value;
+}
+
 void GLCDSlider::setRange(int start, int end)
 {
     byte startArray[2] ;

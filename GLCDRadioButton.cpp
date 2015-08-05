@@ -22,9 +22,10 @@ GLCDRadioButton::GLCDRadioButton(int x , int y, char * _dataString): ShapeClass(
   dataString = _dataString;
   isCallbackAssigned = false;
   isInteractiveShape = true;
+  groupNumber =0;
 }
 
-GLCDRadioButton::GLCDRadioButton(int x , int y, char * _dataString , int _groupNumber =0): ShapeClass(GLCD_RADIO_BUTTON_TYPE,x,y)
+GLCDRadioButton::GLCDRadioButton(int x , int y, char * _dataString , int _groupNumber): ShapeClass(GLCD_RADIO_BUTTON_TYPE,x,y)
 {
   sendAsGroup = true;
   dataString = _dataString;
@@ -70,6 +71,11 @@ void GLCDRadioButton::draw()
       sendAsGroup = false;
     }
   	
+}
+
+bool GLCDRadioButton::isSelected()
+{
+  return value;
 }
 
 void GLCDRadioButton::setText(char * dataString)
@@ -128,7 +134,7 @@ void GLCDRadioButton::select()
     OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
 
-void GLCDRadioButton::setOnChange(void (*userFunction)(byte))
+void GLCDRadioButton::setOnChange(void (*userFunction)(bool))
 {
   isCallbackAssigned = true;
   onChangeCallback = userFunction;

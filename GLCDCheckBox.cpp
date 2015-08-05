@@ -47,6 +47,11 @@ void GLCDCheckBox::draw()
   	
 }
 
+bool GLCDCheckBox::isSelected()
+{
+  return value;
+}
+
 void GLCDCheckBox::setText(char * dataString)
 {
     byte shapeIdArray[2] ;
@@ -85,7 +90,7 @@ void GLCDCheckBox::select()
     OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
 
-void GLCDCheckBox::unselect()
+void GLCDCheckBox::deselect()
 {
 
     byte shapeIdArray[2] ;
@@ -97,7 +102,7 @@ void GLCDCheckBox::unselect()
     OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
 
-void GLCDCheckBox::setOnChange(void (*userFunction)(byte))
+void GLCDCheckBox::setOnChange(void (*userFunction)(bool))
 {
   isCallbackAssigned = true;
   onChangeCallback = userFunction;

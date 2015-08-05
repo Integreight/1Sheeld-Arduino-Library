@@ -112,10 +112,10 @@ void GLCDShield::processData()
          {
            case GLCD_BUTTON_TYPE :  {
 
-                                          byte incomingButtonValue =  getOneSheeldInstance().getArgumentData(2)[0];
+                                          bool incomingButtonValue =  getOneSheeldInstance().getArgumentData(2)[0];
                                           GLCDButton * buttonPointer = ((GLCDButton*)(interactiveShapesArray[i]));
                                           buttonPointer->value = incomingButtonValue;
-                                          if(buttonPointer->isCallBackAssigned)
+                                          if(buttonPointer->isCallBackAssigned && !isInACallback())
                                           {
                                               enteringACallback();
                                               buttonPointer->onChangeCallback(incomingButtonValue);
@@ -125,10 +125,10 @@ void GLCDShield::processData()
                                     }
 
           case GLCD_RADIO_BUTTON_TYPE : {
-                                          byte incomingRadioButtonValue =  getOneSheeldInstance().getArgumentData(2)[0];
+                                          bool incomingRadioButtonValue =  getOneSheeldInstance().getArgumentData(2)[0];
                                           GLCDRadioButton * radioButtonPointer = ((GLCDRadioButton *)(interactiveShapesArray[i])); 
                                           radioButtonPointer->value = incomingRadioButtonValue;
-                                          if(radioButtonPointer->isCallbackAssigned)
+                                          if(radioButtonPointer->isCallbackAssigned && !isInACallback())
                                           {
                                               enteringACallback();
                                               radioButtonPointer->onChangeCallback(incomingRadioButtonValue);
@@ -138,10 +138,10 @@ void GLCDShield::processData()
                                         }
 
           case GLCD_CHECK_BOX_TYPE : { 
-                                        byte incomingCheckBoxValue =  getOneSheeldInstance().getArgumentData(2)[0];
+                                        bool incomingCheckBoxValue =  getOneSheeldInstance().getArgumentData(2)[0];
                                         GLCDCheckBox * checkBoxPointer = ((GLCDCheckBox *)(interactiveShapesArray[i]));
                                         checkBoxPointer->value = incomingCheckBoxValue;
-                                        if(checkBoxPointer->isCallbackAssigned)
+                                        if(checkBoxPointer->isCallbackAssigned && !isInACallback())
                                         {
                                             enteringACallback();
                                             checkBoxPointer->onChangeCallback(incomingCheckBoxValue);
@@ -154,7 +154,7 @@ void GLCDShield::processData()
                                     int incomingSliderValue =(getOneSheeldInstance().getArgumentData(2)[0] | ((getOneSheeldInstance().getArgumentData(2)[1])<<8));
                                     GLCDSlider * sliderPointer = ((GLCDSlider *)(interactiveShapesArray[i]));
                                     sliderPointer->value = incomingSliderValue;
-                                    if(sliderPointer->isCallbackAssigned)
+                                    if(sliderPointer->isCallbackAssigned && !isInACallback())
                                     {
                                         enteringACallback();
                                         sliderPointer->onChangeCallback(incomingSliderValue);

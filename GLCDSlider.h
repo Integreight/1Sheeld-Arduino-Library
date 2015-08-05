@@ -30,6 +30,7 @@ public:
 	GLCDSlider(int , int , int ,int );
 	void setRange(int , int);
 	void setValue(int );
+	int getValue();
 	void setDimensions(int ,int);
 	void setOnChange(void (*)(int));
 private:

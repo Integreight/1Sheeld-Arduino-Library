@@ -17,13 +17,8 @@
 #include "GLCDRectangle.h"
 
 
-GLCDRectangle::GLCDRectangle(int x , int y, int _width , int _height): ShapeClass(GLCD_RECTANGLE_TYPE,x,y)
-{
-  width = _width;
-  height = _height;
-}
 
-GLCDRectangle::GLCDRectangle(int x , int y, int _width , int _height, int _radius=0): ShapeClass(GLCD_RECTANGLE_TYPE,x,y)
+GLCDRectangle::GLCDRectangle(int x , int y, int _width , int _height, int _radius): ShapeClass(GLCD_RECTANGLE_TYPE,x,y)
 {
   width = _width;
   height = _height;

@@ -17,20 +17,14 @@
 #include "GLCDButton.h"
 
 
-GLCDButton::GLCDButton(int x , int y, int _width , int _height): ShapeClass(GLCD_BUTTON_TYPE,x,y)
-{
-  width = _width;
-  height = _height;
-  isInteractiveShape = true;
-  isCallBackAssigned = false;
-}
 
-GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataString = NULL): ShapeClass(GLCD_BUTTON_TYPE,x,y)
+GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataString): ShapeClass(GLCD_BUTTON_TYPE,x,y)
 {
   width = _width;
   height = _height;
   dataString = _dataString;
-  isInteractiveShape=true;
+  value = 0;
+  isInteractiveShape= true;
   isCallBackAssigned = false;
 }
 
@@ -65,6 +59,11 @@ void GLCDButton::draw()
                                                                                   ,new FunctionArg(2,widthArray)
                                                                                   ,new FunctionArg(2,heightArray)
                                                                                   ,new FunctionArg(strlen(dataString),(byte *)dataString));
+}
+
+bool GLCDButton::isPressed()
+{
+  return value;
 }
 
 void GLCDButton::setText(char * _dataString)
@@ -114,7 +113,7 @@ void GLCDButton::setDimensions(int xdimension, int ydimension)
                                                                                ,new FunctionArg(2,ydimensionArray));
 }  
 
-void GLCDButton::setOnChange(void (*userFunction)(byte))
+void GLCDButton::setOnChange(void (*userFunction)(bool))
 {
   isCallBackAssigned = true;
   onChangeCallback = userFunction;
