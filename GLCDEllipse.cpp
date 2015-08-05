@@ -55,11 +55,16 @@ void GLCDEllipse::draw()
                                                                                 ,new FunctionArg(2,radius2Array));
 }
 
-void GLCDEllipse::setRadius(int radius)
+void GLCDEllipse::setRadius(int radius1 , int radius2)
 {
-    byte radiusArray[2] ;
-    radiusArray[1] = (radius >> 8) & 0xFF;
-    radiusArray[0] = radius & 0xFF;
+    byte radiusArray1[2] ;
+    radiusArray1[1] = (radius1 >> 8) & 0xFF;
+    radiusArray1[0] = radius1 & 0xFF;
+
+
+    byte radiusArray2[2] ;
+    radiusArray2[1] = (radius2 >> 8) & 0xFF;
+    radiusArray2[0] = radius2 & 0xFF;
 
     byte shapeIdArray[2] ;
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
@@ -68,7 +73,8 @@ void GLCDEllipse::setRadius(int radius)
     byte functionId = GLCD_ELLIPSE_RADIUS;
 
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_ELLIPSE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-                                                                               ,new FunctionArg(2,radiusArray));
+                                                                               ,new FunctionArg(2,radiusArray1)
+                                                                               ,new FunctionArg(2,radiusArray2));
 }
 
 void GLCDEllipse::setFill(byte fillingType)
@@ -81,6 +87,6 @@ void GLCDEllipse::setFill(byte fillingType)
     byte functionId = GLCD_ELLIPSE_FILL; 
 
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_ELLIPSE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-                                                                               ,new FunctionArg(2,&fillingType));
+                                                                               ,new FunctionArg(1,&fillingType));
 }  
 

@@ -26,8 +26,7 @@
 class GLCDRectangle : public ShapeClass
 {
 public:
-	GLCDRectangle(int , int , int ,int );
-	GLCDRectangle(int , int , int , int , int);
+	GLCDRectangle(int , int , int , int , int =0);
 	void setRadius(int);
 	void setFill(byte );
 	void setDimensions(int,int);

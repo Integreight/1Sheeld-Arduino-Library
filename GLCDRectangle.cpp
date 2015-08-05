@@ -88,7 +88,7 @@ void GLCDRectangle::setFill(byte fillingType)
     byte functionId = GLCD_RECTANLGE_FILL; 
 
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_RECTANGLE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-                                                                               ,new FunctionArg(2,&fillingType));
+                                                                               ,new FunctionArg(1,&fillingType));
 }  
 
 void GLCDRectangle::setDimensions(int xdimension, int ydimension)
