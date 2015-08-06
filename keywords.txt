@@ -277,6 +277,8 @@ isSelected	KEYWORD2
 setFill	KEYWORD2
 setGroup	KEYWORD2
 draw	KEYWORD2
+setFont	KEYWORD2
+setSize	KEYWORD2
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
