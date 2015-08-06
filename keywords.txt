@@ -279,6 +279,8 @@ setGroup	KEYWORD2
 draw	KEYWORD2
 setFont	KEYWORD2
 setSize	KEYWORD2
+setPosition	KEYWORD2
+setVisibility	KEYWORD2
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
