@@ -23,7 +23,7 @@
 class GLCDPoint : public ShapeClass
 {
 public:
-	GLCDPoint(int , int );
+	GLCDPoint(int x , int y): ShapeClass(GLCD_POINT_TYPE,x,y){};
 private:
 	void draw();
 };

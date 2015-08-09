@@ -17,11 +17,6 @@
 #include "GLCDPoint.h"
 
 
-GLCDPoint::GLCDPoint(int x , int y): ShapeClass(GLCD_POINT_TYPE,x,y)
-{}
-
-
-
 void GLCDPoint::draw()
 {
 	byte xPositionArray[2] ;
