@@ -16,9 +16,9 @@
 #ifndef GLCDShield_h
 #define GLCDShield_h
 
-#define GLCD_TYPE			0x00
-#define GLCD_CLEAR			0x00
-#define GLCD_CUSTOM_CLEAR	0x01
+#define GLCD_TYPE			            0x00
+#define GLCD_CLEAR			          0x00
+#define GLCD_CUSTOM_CLEAR	        0x01
 
 #define GLCD_GET_DATA_FROM_SHAPE  0x01   
 

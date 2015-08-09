@@ -16,7 +16,7 @@
 #ifndef GLCDLine_h
 #define GLCDLine_h
 
-#define GLCD_LINE_TYPE				0x03
+#define GLCD_LINE_TYPE				  0x03
 #define GLCD_LINE_COORDINATES		0x03
 
 

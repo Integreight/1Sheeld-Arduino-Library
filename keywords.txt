@@ -281,6 +281,7 @@ setFont	KEYWORD2
 setSize	KEYWORD2
 setPosition	KEYWORD2
 setVisibility	KEYWORD2
+setCoordinates	KEYWORD2
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

@@ -38,21 +38,21 @@ void GLCDEllipse::draw()
   	shapeIdArray[1] = (shapeID >> 8) & 0xFF;
   	shapeIdArray[0] = shapeID & 0xFF;
 
-    byte radius1Array[2] ;
-    radius1Array[1] = (radius1 >> 8) & 0xFF;
-    radius1Array[0] = radius1 & 0xFF;
+    byte radiusArray1[2] ;
+    radiusArray1[1] = (radius1 >> 8) & 0xFF;
+    radiusArray1[0] = radius1 & 0xFF;
 
-    byte radius2Array[2] ;
-    radius2Array[1] = (radius2 >> 8) & 0xFF;
-    radius2Array[0] = radius2 & 0xFF;
+    byte radiusArray2[2] ;
+    radiusArray2[1] = (radius2 >> 8) & 0xFF;
+    radiusArray2[0] = radius2 & 0xFF;
 
     byte functionId = SHAPE_DRAW;
 
 	OneSheeld.sendPacket(GLCD_ID,0,GLCD_ELLIPSE_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 																			                                          ,new FunctionArg(2,xPositionArray)
 																			                                          ,new FunctionArg(2,yPositionArray)
-                                                                                ,new FunctionArg(2,radius1Array)
-                                                                                ,new FunctionArg(2,radius2Array));
+                                                                                ,new FunctionArg(2,radiusArray1)
+                                                                                ,new FunctionArg(2,radiusArray2));
 }
 
 void GLCDEllipse::setRadius(int radius1 , int radius2)

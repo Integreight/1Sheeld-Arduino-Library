@@ -32,7 +32,6 @@ public:
 	void setDimensions(int,int);
 private:
 	void draw();
-
 	int width; 
 	int height; 
 	int radius;
