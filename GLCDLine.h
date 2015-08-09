@@ -26,7 +26,7 @@ class GLCDLine : public ShapeClass
 {
 public:
 	GLCDLine(int , int , int ,int );
-	void setCoordinates(int , int);
+	void setCoordinates(int , int ,int, int);
 private:
 	void draw();
 	int x2Position; 

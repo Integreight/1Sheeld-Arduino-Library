@@ -54,15 +54,23 @@ void GLCDLine::draw()
                                                                                 ,new FunctionArg(2,y2PositionArray));
 }
 
-void GLCDLine::setCoordinates(int xNewCoordinate , int yNewCoordinate)
+void GLCDLine::setCoordinates(int xNewCoordinate1 , int yNewCoordinate1,int xNewCoordinate2 , int yNewCoordinate2)
 {
-      byte xNewCoordinateArray[2] ;
-    xNewCoordinateArray[1] = (xNewCoordinate >> 8) & 0xFF;
-    xNewCoordinateArray[0] = xNewCoordinate & 0xFF;
+      byte xNewCoordinateArray1[2] ;
+    xNewCoordinateArray1[1] = (xNewCoordinate1 >> 8) & 0xFF;
+    xNewCoordinateArray1[0] = xNewCoordinate1 & 0xFF;
 
-    byte yNewCoordinateArray[2] ;
-    yNewCoordinateArray[1] = (yNewCoordinate >> 8) & 0xFF;
-    yNewCoordinateArray[0] = yNewCoordinate & 0xFF;
+    byte yNewCoordinateArray1[2] ;
+    yNewCoordinateArray1[1] = (yNewCoordinate1 >> 8) & 0xFF;
+    yNewCoordinateArray1[0] = yNewCoordinate1 & 0xFF;
+
+     byte xNewCoordinateArray2[2] ;
+    xNewCoordinateArray2[1] = (xNewCoordinate2 >> 8) & 0xFF;
+    xNewCoordinateArray2[0] = xNewCoordinate2 & 0xFF;
+
+    byte yNewCoordinateArray2[2] ;
+    yNewCoordinateArray2[1] = (yNewCoordinate2 >> 8) & 0xFF;
+    yNewCoordinateArray2[0] = yNewCoordinate2 & 0xFF;
 
     byte shapeIdArray[2] ;
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
@@ -70,8 +78,10 @@ void GLCDLine::setCoordinates(int xNewCoordinate , int yNewCoordinate)
 
     byte functionId = GLCD_LINE_COORDINATES;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_LINE_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-                                                                               ,new FunctionArg(2,xNewCoordinateArray)
-                                                                               ,new FunctionArg(2,yNewCoordinateArray));
+  OneSheeld.sendPacket(GLCD_ID,0,GLCD_LINE_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+                                                                               ,new FunctionArg(2,xNewCoordinateArray1)
+                                                                               ,new FunctionArg(2,yNewCoordinateArray1)
+                                                                               ,new FunctionArg(2,xNewCoordinateArray2)
+                                                                               ,new FunctionArg(2,yNewCoordinateArray2));
 }
 
