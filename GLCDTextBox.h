@@ -19,6 +19,7 @@
 #define GLCD_TEXTBOX_TYPE			  0x05
 #define GLCD_TEXTBOX_SET_FONT		0x03
 #define GLCD_TEXTBOX_SET_SIZE		0x04
+#define GLCD_TEXTBOX_TEXT       0x05
 
 /* Fonts Literals. */
 #define ARIAL			    0x00
@@ -39,6 +40,7 @@ public:
 	GLCDTextBox(int , int ,char * );
 	void setFont(byte );
 	void setSize(byte );
+  void setText(char *);
 private:
 	void draw();
 	char * dataString;

@@ -69,3 +69,17 @@ void GLCDTextBox::setSize(byte size)
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                               ,new FunctionArg(1,&size));
 }  
+
+void GLCDTextBox::setText(char * _dataString)
+{
+    dataString = _dataString;
+
+    byte shapeIdArray[2] ;
+    shapeIdArray[1] = (shapeID >> 8) & 0xFF;
+    shapeIdArray[0] = shapeID & 0xFF;
+
+    byte functionId = GLCD_TEXTBOX_TEXT;
+
+  OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+                                                                             ,new FunctionArg(strlen(dataString),(byte *)dataString));
+}
