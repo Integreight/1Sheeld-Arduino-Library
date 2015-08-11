@@ -24,11 +24,6 @@ GLCDShield::GLCDShield() : ShieldParent(GLCD_ID)
   }
 }
 
-void GLCDShield::init()
-{
-	clear();	
-}
-
 
 void GLCDShield::clear()
 {

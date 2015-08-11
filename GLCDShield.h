@@ -42,7 +42,6 @@ class GLCDShield : public ShieldParent
 {
 public:
 	GLCDShield();
-	void init();
 	void clear();
 	void clear(int x,int y,int width,int height);
   void draw(ShapeClass &);
