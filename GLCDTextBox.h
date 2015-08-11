@@ -41,9 +41,12 @@ public:
 	void setFont(byte );
 	void setSize(byte );
   void setText(char *);
+  ~GLCDTextBox();
 private:
-	void draw();
+  int dataStringLength;
+  bool dataMalloced;
 	char * dataString;
+  void draw();
 };
 
 #endif

@@ -36,9 +36,12 @@ public:
 	void select();
 	void deselect();
 	void setOnChange(void(*)(bool));
+	~GLCDCheckBox();
 private:
 	void draw();
+	int dataStringLength;
 	char * dataString;
+	bool dataMalloced;
 	bool isCallbackAssigned;
 	bool value;
 	void (*onChangeCallback)(bool);

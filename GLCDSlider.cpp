@@ -21,6 +21,7 @@ GLCDSlider::GLCDSlider(int x , int y, int _width, int _height): ShapeClass(GLCD_
 {
   width = _width;
   height = _height;
+  value=0;
   isCallbackAssigned = false;
   isInteractiveShape = true;
 }

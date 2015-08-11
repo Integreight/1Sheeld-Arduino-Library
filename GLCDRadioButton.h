@@ -31,15 +31,19 @@ public:
 	GLCDRadioButton(int , int , char *);
 	GLCDRadioButton(int , int , char * , int );
 	bool isSelected();
+	int getGroupNumber();
 	void setText(char *);
 	void setSize(byte );
 	void setGroup(int );
 	void select();
 	void setOnChange(void (*)(bool));
+	~GLCDRadioButton();
 private:
 	void draw();
 	char * dataString;
+	int dataStringLength;
 	int groupNumber;
+	bool dataMalloced;
 	bool sendAsGroup;
 	bool value;
 	bool isCallbackAssigned;
