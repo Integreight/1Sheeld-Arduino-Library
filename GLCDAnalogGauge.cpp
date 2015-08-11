@@ -64,6 +64,18 @@ void GLCDAnalogGauge::setRange(int start, int end)
 
     byte functionId = GLCD_ANALOG_GAUGE_RANGE;
 
+       if(start > end)
+    {
+        int temp = start;
+        start = end;
+        end =temp;     
+    }
+    else if ((start == 0 && end == 0) || start<0 || end <0)
+    {
+      start = 0;
+      end = 100;
+    }
+    
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,startArray)
                                                                                    ,new FunctionArg(2,endArray));

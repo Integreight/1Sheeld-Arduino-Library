@@ -75,6 +75,18 @@ void GLCDSlider::setRange(int start, int end)
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
     shapeIdArray[0] = shapeID & 0xFF;
 
+    if(start > end)
+    {
+        int temp = start;
+        start = end;
+        end =temp;     
+    }
+    else if ((start == 0 && end == 0) || start<0 || end <0)
+    {
+      start = 0;
+      end = 100;
+    }
+    
     byte functionId = GLCD_SLIDER_RANGE;
 
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_SLIDER_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
