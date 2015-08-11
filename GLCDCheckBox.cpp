@@ -19,7 +19,16 @@
 
 GLCDCheckBox::GLCDCheckBox(int x , int y, char * _dataString): ShapeClass(GLCD_CHECK_BOX_TYPE,x,y)
 {
-  dataString = _dataString;
+  dataStringLength = strlen(_dataString);
+  dataString = NULL;
+  dataMalloced=false;
+   if(dataStringLength!=0)
+  {
+    dataString = (char *) malloc(sizeof(char)*(dataStringLength));
+    memcpy(dataString,_dataString,dataStringLength+1);
+    dataMalloced=true;
+  }
+  value = false;
   isCallbackAssigned = false;
   isInteractiveShape = true;
 }
@@ -106,4 +115,10 @@ void GLCDCheckBox::setOnChange(void (*userFunction)(bool))
 {
   isCallbackAssigned = true;
   onChangeCallback = userFunction;
+}
+
+GLCDCheckBox::~GLCDCheckBox()
+{
+  if(dataMalloced)
+    free(dataString);
 }

@@ -22,7 +22,15 @@ GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataStri
 {
   width = _width;
   height = _height;
-  dataString = _dataString;
+  dataString =NULL;
+  dataStringLength = strlen(_dataString);
+  dataMalloced=false;
+  if(dataStringLength!=0)
+  {
+    dataString = (char *) malloc(sizeof(char)*(dataStringLength));
+    memcpy(dataString,_dataString,dataStringLength+1);
+    dataMalloced = true;
+  }
   value = 0;
   isInteractiveShape= true;
   isCallBackAssigned = false;
@@ -117,4 +125,12 @@ void GLCDButton::setOnChange(void (*userFunction)(bool))
 {
   isCallBackAssigned = true;
   onChangeCallback = userFunction;
+}
+
+GLCDButton::~GLCDButton()
+{
+  if(dataMalloced)
+  {
+    free(dataString);
+  }
 }

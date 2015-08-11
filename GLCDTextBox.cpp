@@ -17,9 +17,17 @@
 #include "GLCDTextBox.h"
 
 
-GLCDTextBox::GLCDTextBox(int x , int y, char * data): ShapeClass(GLCD_TEXTBOX_TYPE,x,y)
+GLCDTextBox::GLCDTextBox(int x , int y, char * _dataString): ShapeClass(GLCD_TEXTBOX_TYPE,x,y)
 {
-  dataString = data;
+   dataString = NULL;
+  dataStringLength = strlen(_dataString);
+  dataMalloced=false;
+  if(dataStringLength!=0)
+  {
+    dataString = (char *) malloc(sizeof(char)*(dataStringLength));
+    memcpy(dataString,_dataString,dataStringLength+1);
+    dataMalloced=true;
+  }
 }
 
 void GLCDTextBox::draw()
@@ -82,4 +90,10 @@ void GLCDTextBox::setText(char * _dataString)
 
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                              ,new FunctionArg(strlen(dataString),(byte *)dataString));
+}
+
+GLCDTextBox::~GLCDTextBox()
+{
+  if(dataMalloced)
+    free(dataString);
 }
