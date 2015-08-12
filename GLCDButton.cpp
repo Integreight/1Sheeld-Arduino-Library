@@ -23,12 +23,12 @@ GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataStri
   width = _width;
   height = _height;
   dataString =NULL;
-  dataStringLength = strlen(_dataString);
+  dataStringLength = strlen(_dataString)+1;
   dataMalloced=false;
   if(dataStringLength!=0)
   {
     dataString = (char *) malloc(sizeof(char)*(dataStringLength));
-    memcpy(dataString,_dataString,dataStringLength+1);
+    memcpy(dataString,_dataString,dataStringLength);
     dataMalloced = true;
   }
   value = 0;

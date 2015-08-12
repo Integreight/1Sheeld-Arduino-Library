@@ -19,13 +19,13 @@
 
 GLCDCheckBox::GLCDCheckBox(int x , int y, char * _dataString): ShapeClass(GLCD_CHECK_BOX_TYPE,x,y)
 {
-  dataStringLength = strlen(_dataString);
+  dataStringLength = strlen(_dataString)+1;
   dataString = NULL;
   dataMalloced=false;
    if(dataStringLength!=0)
   {
     dataString = (char *) malloc(sizeof(char)*(dataStringLength));
-    memcpy(dataString,_dataString,dataStringLength+1);
+    memcpy(dataString,_dataString,dataStringLength);
     dataMalloced=true;
   }
   value = false;

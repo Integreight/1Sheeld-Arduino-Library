@@ -20,12 +20,12 @@
 GLCDTextBox::GLCDTextBox(int x , int y, char * _dataString): ShapeClass(GLCD_TEXTBOX_TYPE,x,y)
 {
    dataString = NULL;
-  dataStringLength = strlen(_dataString);
+  dataStringLength = strlen(_dataString)+1;
   dataMalloced=false;
   if(dataStringLength!=0)
   {
     dataString = (char *) malloc(sizeof(char)*(dataStringLength));
-    memcpy(dataString,_dataString,dataStringLength+1);
+    memcpy(dataString,_dataString,dataStringLength);
     dataMalloced=true;
   }
 }
