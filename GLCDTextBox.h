@@ -26,7 +26,7 @@
 #define ARIAL_BOLD		0x01
 #define ARIAL_ITALIC	0x02
 #define COMIC_SANS		0x03
-#define SREIF			    0x04
+#define SERIF			    0x04
 /* Size Literals. */
 #define SMALL			  0x00
 #define MEDIUM			0x01
