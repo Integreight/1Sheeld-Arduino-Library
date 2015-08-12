@@ -70,7 +70,7 @@ void GLCDAnalogGauge::setRange(int start, int end)
         start = end;
         end =temp;     
     }
-    else if ((start == 0 && end == 0) || start<0 || end <0)
+    else if ((start==end) || start<0 || end <0)
     {
       start = 0;
       end = 100;

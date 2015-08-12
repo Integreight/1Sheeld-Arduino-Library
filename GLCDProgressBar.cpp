@@ -68,13 +68,13 @@ void GLCDProgressBar::setRange(int start, int end)
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
     shapeIdArray[0] = shapeID & 0xFF;
 
-        if(start > end)
+       if(start > end)
     {
         int temp = start;
         start = end;
         end =temp;     
     }
-    else if ((start == 0 && end == 0) || start<0 || end <0)
+    else if ((start==end) || start<0 || end <0)
     {
       start = 0;
       end = 100;
