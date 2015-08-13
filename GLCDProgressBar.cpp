@@ -56,19 +56,7 @@ void GLCDProgressBar::draw()
 
 void GLCDProgressBar::setRange(int start, int end)
 {
-    byte startArray[2] ;
-    startArray[1] = (start >> 8) & 0xFF;
-    startArray[0] = start & 0xFF;
-
-    byte endArray[2] ;
-    endArray[1] = (end >> 8) & 0xFF;
-    endArray[0] = end & 0xFF;
-
-    byte shapeIdArray[2] ;
-    shapeIdArray[1] = (shapeID >> 8) & 0xFF;
-    shapeIdArray[0] = shapeID & 0xFF;
-
-       if(start > end)
+         if(start > end)
     {
         int temp = start;
         start = end;
@@ -80,6 +68,17 @@ void GLCDProgressBar::setRange(int start, int end)
       end = 100;
     }
     
+    byte startArray[2] ;
+    startArray[1] = (start >> 8) & 0xFF;
+    startArray[0] = start & 0xFF;
+
+    byte endArray[2] ;
+    endArray[1] = (end >> 8) & 0xFF;
+    endArray[0] = end & 0xFF;
+
+    byte shapeIdArray[2] ;
+    shapeIdArray[1] = (shapeID >> 8) & 0xFF;
+    shapeIdArray[0] = shapeID & 0xFF;    
 
     byte functionId = GLCD_PROGRESS_BAR_RANGE;
 
