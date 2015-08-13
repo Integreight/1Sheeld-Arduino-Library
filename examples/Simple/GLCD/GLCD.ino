@@ -65,6 +65,7 @@ GLCDLine Bird3LeftWing(210,40,215,37);
 void setup() {
 // put your setup code here, to run once:
 OneSheeld.begin();
+GLCD.clear();
 // call "drawScreen()" function to draw all shapes.
 drawOnScreen();
 }
