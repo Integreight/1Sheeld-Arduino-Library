@@ -31,32 +31,6 @@ void GLCDShield::clear()
 	OneSheeld.sendPacket(GLCD_ID,0,GLCD_TYPE,1,new FunctionArg(1,&functionId));	
 }
 
-void GLCDShield::clear(int xPosition, int yPosition, int width, int height)
-{
-	byte xPositionArray[2] ;
-  	xPositionArray[1] = (xPosition >> 8) & 0xFF;
-  	xPositionArray[0] = xPosition & 0xFF;
-
-  	byte yPositionArray[2] ;
-  	yPositionArray[1] = (yPosition >> 8) & 0xFF;
-  	yPositionArray[0] = yPosition & 0xFF;
-
-  	byte widthArray[2] ;
-  	widthArray[1] = (width >> 8) & 0xFF;
-  	widthArray[0] = width & 0xFF;
-
-  	byte heightArray[2] ;
-  	heightArray[1] = (height >> 8) & 0xFF;
-  	heightArray[0] = height & 0xFF;
-
-  	byte functionId = GLCD_CUSTOM_CLEAR;
-  	OneSheeld.sendPacket(GLCD_ID,0,GLCD_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,xPositionArray)
-  																				   ,new FunctionArg(2,yPositionArray)
-  																				   ,new FunctionArg(2,widthArray)
-  																				   ,new FunctionArg(2,heightArray));
-}
-
-
 void GLCDShield::draw(ShapeClass &usersShape)
 {
   byte currentShapeType = usersShape.shapeType;

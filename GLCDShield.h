@@ -18,7 +18,6 @@
 
 #define GLCD_TYPE			            0x00
 #define GLCD_CLEAR			          0x00
-#define GLCD_CUSTOM_CLEAR	        0x01
 
 #define GLCD_GET_DATA_FROM_SHAPE  0x01   
 
@@ -43,7 +42,6 @@ class GLCDShield : public ShieldParent
 public:
 	GLCDShield();
 	void clear();
-	void clear(int x,int y,int width,int height);
   void draw(ShapeClass &);
 private:
   ShapeClass * interactiveShapesArray[MAX_NO_OF_SHAPE_USED];
