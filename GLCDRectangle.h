@@ -28,7 +28,7 @@ class GLCDRectangle : public ShapeClass
 public:
 	GLCDRectangle(int , int , int , int , int =0);
 	void setRadius(int);
-	void setFill(byte );
+	void setFill(bool );
 	void setDimensions(int,int);
 private:
 	void draw();

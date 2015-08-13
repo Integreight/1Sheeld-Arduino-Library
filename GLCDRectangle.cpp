@@ -78,7 +78,7 @@ void GLCDRectangle::setRadius(int radius)
                                                                                ,new FunctionArg(2,radiusArray));
 }
 
-void GLCDRectangle::setFill(byte fillValue)
+void GLCDRectangle::setFill(bool fillValue)
 {
 
     byte shapeIdArray[2] ;
@@ -86,10 +86,9 @@ void GLCDRectangle::setFill(byte fillValue)
     shapeIdArray[0] = shapeID & 0xFF;
 
     byte functionId = GLCD_RECTANLGE_FILL;
-    fillValue = !!fillValue; 
 
   OneSheeld.sendPacket(GLCD_ID,0,GLCD_RECTANGLE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-                                                                               ,new FunctionArg(1,&fillValue));
+                                                                               ,new FunctionArg(1,(byte *)&fillValue));
 }  
 
 void GLCDRectangle::setDimensions(int xdimension, int ydimension)

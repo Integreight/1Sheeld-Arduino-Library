@@ -28,7 +28,7 @@ class GLCDEllipse : public ShapeClass
 public:
 	GLCDEllipse(int , int , int ,int );
 	void setRadius(int ,int);
-	void setFill(byte );
+	void setFill(bool );
 private:
 	void draw();
 	int radius1; 
