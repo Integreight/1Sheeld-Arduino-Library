@@ -15,6 +15,10 @@ If you want to contribute, please discuss you proposed feature on our forum firs
 
 Change Log:
 
+--------- Version 1.6.0(007) -----------
+
+- Supported the new GLCD shield.
+
 --------- Version 1.5.0(006) -----------
 
 - Supported the new color detector and NFC shields.
@@ -47,17 +51,5 @@ Change Log:
 - Added methods to track keywords to Twitter shield.
 - Report the library version when queried.
 - Increased overall library stability and fixed other bugs.
-
---------- Version 1.2.0(003) -----------
-
-- Added four new shields with examples (Data logger, voice recognition, text to speech and terminal).
-- Added methods to post photos to Facebook and Twitter shields.
-- Added a method to send direct messages from Twitter shield.
-- Added a way to decrease the size occupied by the library by disabling some shields from compilation.
-- Added more printing functions to the LCD shield.
-- Fixed a major bug that made the sketches hang after a couple of minutes.
-- Decreased the forced delay between frames to 200ms instead of 300ms.
-- Fixed some typos.
-- Increased overall library stability.
 
 1Sheeld Arduino Library by Integreight, Inc. is licensed under GNU Lesser General Public License v3.0 (GNU LGPL v3.0).

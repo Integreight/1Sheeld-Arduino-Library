@@ -1,3 +1,6 @@
+--------- Version 1.6.0(007) -----------
++ Supported the new GLCD shield.
+
 --------- Version 1.5.0(006) -----------
 + Supported the new color detector and NFC shields.
 + Added a way to decrease the size occupied by the library by disabling some shields from compilation from the sketch.
