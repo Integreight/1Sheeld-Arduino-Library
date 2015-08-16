@@ -23,8 +23,8 @@
 
 #define GLCD_BUTTON_VALUE					0x01
 
-#define DIMENSION_2D						0x00
-#define DIMENSION_3D						0x01
+#define STYLE_2D							0x00
+#define STYLE_3D							0x01
 
 #include "ShapeClass.h"
 
