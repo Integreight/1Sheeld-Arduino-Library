@@ -24,7 +24,7 @@ void EmailShieldClass::send(const char *email ,const char* subject,const char* m
 	int subjectLength = strlen(subject);
 	int messageLength = strlen(message);
 	if(!emailLength||!subjectLength||!messageLength) return;
-	OneSheeld.sendPacket(EMAIL_ID,0,EMAIL_SEND,3,new FunctionArg(emailLength,(byte*)email),
+	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_SEND,3,new FunctionArg(emailLength,(byte*)email),
 												 new FunctionArg(subjectLength,(byte*)subject),
 												 new FunctionArg(messageLength,(byte*)message));
 }
@@ -41,7 +41,7 @@ void EmailShieldClass::attachLastPicture(const char *email ,const char* subject,
 	//Check email length
 	int messageLength = strlen(message);
 	if(!messageLength) return;
-	OneSheeld.sendPacket(EMAIL_ID,0,EMAIL_ATTACH_PICTURE,4,new FunctionArg(emailLength,(byte*)email),
+	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_PICTURE,4,new FunctionArg(emailLength,(byte*)email),
 														   new FunctionArg(subjectLength,(byte*)subject),
 														   new FunctionArg(messageLength,(byte*)message),
 														   new FunctionArg(1,&imageSource));

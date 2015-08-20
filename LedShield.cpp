@@ -29,6 +29,6 @@ void LedShield::setHigh()
 //Setter 
 void LedShield::setValue(byte data)
 {
-	OneSheeld.sendPacket(LED_ID,0,LED_SET_VALUE,1,new FunctionArg(1,&data));
+	OneSheeld.sendShieldFrame(LED_ID,0,LED_SET_VALUE,1,new FunctionArg(1,&data));
 }
 

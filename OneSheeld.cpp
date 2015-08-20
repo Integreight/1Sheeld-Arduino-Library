@@ -72,7 +72,7 @@ void OneSheeldClass::waitForAppConnection()
 void OneSheeldClass::begin()
 {
   begin(115200);
-  sendPacket(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
+  sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isInit=true;
   // #ifdef INTERNET_SHIELD
   for(int i=0;i<requestsCounter;i++)
@@ -99,7 +99,7 @@ bool OneSheeldClass::isInitialized()
 }
 
 //Frame Sender for Output Shields
-void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
+void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
 {
   unsigned long mill=millis()+1;
   unsigned long localLastTimeFrameSent=lastTimeFrameSent;
@@ -152,7 +152,7 @@ void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID,
     if(shieldID!=ONESHEELD_ID)lastTimeFrameSent=millis()+1;
 }
 
-void OneSheeldClass::sendPacket(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
+void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
 {
   unsigned long mill=millis()+1;
   unsigned long localLastTimeFrameSent=lastTimeFrameSent;
@@ -492,7 +492,7 @@ void OneSheeldClass::processFrame(){
   }
   else if(functionId == LIBRARY_VERSION_REQUEST)
   {
-    sendPacket(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0);
+    sendShieldFrame(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0);
   }
 }
 
@@ -511,7 +511,7 @@ void OneSheeldClass::enteringACallback()
   if(!isInACallback())
   {
     inACallback=true;
-    sendPacket(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
+    sendShieldFrame(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
   }
 }
 
@@ -520,7 +520,7 @@ void OneSheeldClass::exitingACallback()
   if(isInACallback())
   {
     inACallback=false;
-    sendPacket(ONESHEELD_ID,0,CALLBACK_EXITED,0);
+    sendShieldFrame(ONESHEELD_ID,0,CALLBACK_EXITED,0);
   }
 }
 

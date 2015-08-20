@@ -22,7 +22,7 @@ void TTSShield::say(const char * text)
 	//Check length of string 
 	int textLength = strlen(text);
 	if(!textLength) return;
-	OneSheeld.sendPacket(TTS_ID,0,TTS_SAY,1,new FunctionArg(textLength,(byte*)text));
+	OneSheeld.sendShieldFrame(TTS_ID,0,TTS_SAY,1,new FunctionArg(textLength,(byte*)text));
 }
 
 void TTSShield::say(String text)

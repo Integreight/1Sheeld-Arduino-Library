@@ -31,7 +31,7 @@ ClockShield::ClockShield() : ShieldParent(CLOCK_ID)
 //Blocking function 
 void ClockShield::queryDateAndTime()
 {
-	OneSheeld.sendPacket(CLOCK_ID,0,CLOCK_BEGIN,0);
+	OneSheeld.sendShieldFrame(CLOCK_ID,0,CLOCK_BEGIN,0);
 }
 //Seconds getter 
 byte ClockShield::getSeconds()

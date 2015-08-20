@@ -33,29 +33,29 @@ ColorShield::ColorShield() : ShieldParent(COLOR_ID)
 
 void ColorShield::setPalette(byte range)
 {
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_PALETTE_ID,1,new FunctionArg(1,&range));
+	OneSheeld.sendShieldFrame(COLOR_ID,0,COLOR_PALETTE_ID,1,new FunctionArg(1,&range));
 }
 
 void ColorShield::enableFullOperation()
 {
 	isNewColor=false;
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_FULL_OPERATION_ID,0);
+	OneSheeld.sendShieldFrame(COLOR_ID,0,COLOR_FULL_OPERATION_ID,0);
 }
 
 void ColorShield::enableNormalOperation()
 {
 	isNewColor=false;
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_NORMAL_OPERATION_ID,0);
+	OneSheeld.sendShieldFrame(COLOR_ID,0,COLOR_NORMAL_OPERATION_ID,0);
 }
 
 void ColorShield::setCalculationMode(byte mode)
 {
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_CALCULATION_MODE_ID,1,new FunctionArg(1,&mode));
+	OneSheeld.sendShieldFrame(COLOR_ID,0,COLOR_CALCULATION_MODE_ID,1,new FunctionArg(1,&mode));
 }
 
 void ColorShield::setPatchSize(byte mode)
 {
-	OneSheeld.sendPacket(COLOR_ID,0,COLOR_SET_PATH_SIZE_ID,1,new FunctionArg(1,&mode));
+	OneSheeld.sendShieldFrame(COLOR_ID,0,COLOR_SET_PATH_SIZE_ID,1,new FunctionArg(1,&mode));
 }
 
 Color ColorShield::getLastColor(byte whichColor)

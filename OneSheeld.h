@@ -133,8 +133,8 @@ public:
 	// #endif
 	static bool isInitialized();
 	//Frame Sender
-	void sendPacket(byte , byte ,byte , byte , ...);
-	void sendPacket(byte , byte , byte , byte , FunctionArg ** );
+	void sendShieldFrame(byte , byte ,byte , byte , ...);
+	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
 	//Set on change for users function

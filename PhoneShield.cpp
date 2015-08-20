@@ -30,7 +30,7 @@ void PhoneShieldClass::call(const char* phone)
 	//Check length of string 
 	int phoneLength = strlen(phone);
 	if(!phoneLength) return;
-	OneSheeld.sendPacket(PHONE_ID,0,PHONE_CALL,1,new FunctionArg(phoneLength,(byte *)phone));
+	OneSheeld.sendShieldFrame(PHONE_ID,0,PHONE_CALL,1,new FunctionArg(phoneLength,(byte *)phone));
 }
 
 void PhoneShieldClass::call(String phone)

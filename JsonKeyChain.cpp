@@ -128,7 +128,7 @@ void JsonKeyChain::sendQueryFrame(byte functionId)
     requestIdArray[0] = request & 0xFF;
     arguments[0]=new FunctionArg(2,requestIdArray);
 
-    OneSheeld.sendPacket(INTERNET_ID,0,functionId,counter+2,arguments);
+    OneSheeld.sendShieldFrame(INTERNET_ID,0,functionId,counter+2,arguments);
 
     for(int i=2;i<counter+2;i++)
     {

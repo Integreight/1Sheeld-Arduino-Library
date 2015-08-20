@@ -74,7 +74,7 @@ void HttpResponse::getTheseBytes(unsigned long start,int size)
 	  	reqId[1] = (requestId >> 8) & 0xFF;
 	  	reqId[0] = requestId & 0xFF;
 		
-		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_GET_NEXT_BYTES,3,new FunctionArg(2,reqId),
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,RESPONSE_GET_NEXT_BYTES,3,new FunctionArg(2,reqId),
 																	 new FunctionArg(4,startArray),
 																	 new FunctionArg(2,sizeArray));
 	}
@@ -134,7 +134,7 @@ void HttpResponse::dispose(bool sendFrame)
 	
 	if(sendFrame)
 	{
-		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_DISPOSE,1,new FunctionArg(2,reqId));
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,RESPONSE_DISPOSE,1,new FunctionArg(2,reqId));
 		callbacksRequested=0;
 	}
 }
@@ -158,7 +158,7 @@ void HttpResponse::getHeader(const char * headerName , void (*userFunction)(char
 		if(!headerNameLength) return;
 		callbacksRequested |= RESPONSE_INPUT_GET_HEADER_BIT;
 		getHeaderCallBack = userFunction;
-		OneSheeld.sendPacket(INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,new FunctionArg(headerNameLength,(byte *)headerName));	
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,new FunctionArg(headerNameLength,(byte *)headerName));	
 	}
 	
 }

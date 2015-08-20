@@ -21,7 +21,7 @@
 //Start Logging Data
 void DataLoggerShield::start()
 {
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_START_LOG,0);
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_START_LOG,0);
 }
 //Start Logging Data giving name to file created 
 void DataLoggerShield::start(const char * fileName)
@@ -29,7 +29,7 @@ void DataLoggerShield::start(const char * fileName)
 	// Check string is not empty
 	int  fileNameLength = strlen(fileName);
 	if(!fileNameLength) return ; 
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_START_LOG,1,new FunctionArg(fileNameLength,(byte *)fileName));
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_START_LOG,1,new FunctionArg(fileNameLength,(byte *)fileName));
 }
 //Start Logging Data giving name to the file in strings
 void DataLoggerShield::start(String fileName)
@@ -49,7 +49,7 @@ void DataLoggerShield::start(String fileName)
 //Stop Logging Data
 void DataLoggerShield::stop()
 {
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_STOP_LOG,0);
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_STOP_LOG,0);
 }
 
 //Log Data
@@ -58,7 +58,7 @@ void DataLoggerShield::add(const char * key,float value)
 	// Check string is not empty
 	int  keyLength = strlen(key);
 	if(!keyLength) return ; 
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(value)));
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(value)));
 }
 
 void DataLoggerShield::add(String key , float value)
@@ -81,7 +81,7 @@ void DataLoggerShield::add(const char * key,const char * data)
 	int  keyLength = strlen(key);
 	int  dataLength = strlen(data);
 	if(!dataLength || !keyLength) return ;
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_ADD_STRING,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(dataLength,(byte*)data));
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_ADD_STRING,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(dataLength,(byte*)data));
 }
 
 void DataLoggerShield::add(String key , String data)
@@ -110,6 +110,6 @@ void DataLoggerShield::add(String key , String data)
 //Save data 
 void DataLoggerShield::log()
 {
-	OneSheeld.sendPacket(DATA_LOGGER_ID,0,LOGGER_LOG_DATA,0);
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_LOG_DATA,0);
 }
 

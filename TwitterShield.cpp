@@ -31,7 +31,7 @@ void TwitterShieldClass::tweet(const char *data)
 	//Check length of string 
 	int dataLength = strlen(data);
 	if(!dataLength) return;
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(dataLength,(byte*)data));
+	OneSheeld.sendShieldFrame(TWITTER_ID,0,TWITTER_SEND,1,new FunctionArg(dataLength,(byte*)data));
 }
 
 void TwitterShieldClass::tweet(String data)
@@ -56,7 +56,7 @@ void TwitterShieldClass::sendMessage(const char* username,const char* message)
 	int usernameLength = strlen(username); 
 	int messageLength = strlen(message);
 	if(!usernameLength || !messageLength) return;
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_SEND_DIRECT_MESSAGE,2,new FunctionArg(usernameLength,(byte*)username),
+	OneSheeld.sendShieldFrame(TWITTER_ID,0,TWITTER_SEND_DIRECT_MESSAGE,2,new FunctionArg(usernameLength,(byte*)username),
 																	new FunctionArg(messageLength,(byte*) message));
 
 }
@@ -89,7 +89,7 @@ void TwitterShieldClass::tweetLastPicture(const char * pictureText , byte imageS
 	//Check length of string 
 	int pictureTextLength = strlen(pictureText);
 	if(!pictureTextLength) return;
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(pictureTextLength,(byte*)pictureText),
+	OneSheeld.sendShieldFrame(TWITTER_ID,0,TWITTER_POST_LAST_PIC,2,new FunctionArg(pictureTextLength,(byte*)pictureText),
 															  new FunctionArg(1,(byte *)&imageSource));
 }
 
@@ -118,7 +118,7 @@ void TwitterShieldClass::trackKeyword(const char * keyword)
 	//Check length of string 
 	int keywordLength = strlen(keyword);
 	if(!keywordLength) return;
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(keywordLength,(byte*)keyword));
+	OneSheeld.sendShieldFrame(TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,new FunctionArg(keywordLength,(byte*)keyword));
 }
 
 void TwitterShieldClass::untrackKeyword(const char * keyword)
@@ -126,7 +126,7 @@ void TwitterShieldClass::untrackKeyword(const char * keyword)
 	//Check length of string 
 	int keywordLength = strlen(keyword);
 	if(!keywordLength) return;
-	OneSheeld.sendPacket(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(keywordLength,(byte*)keyword));
+	OneSheeld.sendShieldFrame(TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,new FunctionArg(keywordLength,(byte*)keyword));
 }
 
 void TwitterShieldClass::trackKeyword(String keyword )

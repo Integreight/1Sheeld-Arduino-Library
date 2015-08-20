@@ -63,7 +63,7 @@ bool InternetShield::performGet(HttpRequest & request)
 	if(isAdded)
 	{
 	
-		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_GET,2,
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_GET,2,
 							 new FunctionArg(2,request.localRequestId),
 							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
@@ -77,7 +77,7 @@ bool InternetShield::performPost(HttpRequest & request)
 	bool isAdded=addToRequestsArray(request);
 	if(isAdded)
 	{
-		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_POST,2,
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_POST,2,
 						 new FunctionArg(2,request.localRequestId),
 						 new FunctionArg(1,&(request.callbacksRequested)));
 	}
@@ -91,7 +91,7 @@ bool InternetShield::performPut(HttpRequest & request)
 	if(isAdded)
 	{
 	
-		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_PUT,2,
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_PUT,2,
 							 new FunctionArg(2,request.localRequestId),
 							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
@@ -105,7 +105,7 @@ bool InternetShield::performDelete(HttpRequest & request)
 	if(isAdded)
 	{
 	
-		OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_DELETE,2,
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_DELETE,2,
 							 new FunctionArg(2,request.localRequestId),
 							 new FunctionArg(1,&(request.callbacksRequested)));
 	}
@@ -120,7 +120,7 @@ void InternetShield::ignoreResponse(HttpRequest & request)
 
 void InternetShield::cancelAllRequests(void)
 {
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_CANCEL_ALL_REQUESTS,0);
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_CANCEL_ALL_REQUESTS,0);
 }
 
 void InternetShield::setBasicAuthentication(const char * userName,const char * password)
@@ -129,14 +129,14 @@ void InternetShield::setBasicAuthentication(const char * userName,const char * p
 	int userNameLength = strlen(userName);
 	int passwordLength = strlen(password);
 	if(!userNameLength || !passwordLength) return;
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_AUTHENTICATION,2,
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_SET_AUTHENTICATION,2,
 		                 new FunctionArg(userNameLength,(byte*)userName),
 		                 new FunctionArg(passwordLength,(byte*)password));
 }
 
 void InternetShield::clearBasicAuthentication()
 {
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_CLEAR_AUTHENTICATIOM,0);
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_CLEAR_AUTHENTICATIOM,0);
 }
 
 void InternetShield::setIntialResponseMaxBytesCount(int size)
@@ -144,7 +144,7 @@ void InternetShield::setIntialResponseMaxBytesCount(int size)
 	byte sizeArray[2] ;
   	sizeArray[1] = (size >> 8) & 0xFF;
   	sizeArray[0] = size & 0xFF;
-	OneSheeld.sendPacket(INTERNET_ID,0,INTERNET_SET_DEFAULT_MAX_RESPONSE,1,new FunctionArg(2,sizeArray));
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,INTERNET_SET_DEFAULT_MAX_RESPONSE,1,new FunctionArg(2,sizeArray));
 }
 
 void InternetShield::processData()

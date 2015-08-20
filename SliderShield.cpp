@@ -43,7 +43,7 @@ void SliderShield::setValue(int value)
 	{
 		copiedValue = value;
 	}
-	OneSheeld.sendPacket(SLIDER_ID,0,SLIDER_SET,1,new FunctionArg(1,&copiedValue));
+	OneSheeld.sendShieldFrame(SLIDER_ID,0,SLIDER_SET,1,new FunctionArg(1,&copiedValue));
 }
 
 //Phone Input Data Processing 

@@ -54,7 +54,7 @@ void GLCDRectangle::draw()
 
     byte functionId = SHAPE_DRAW;
 
-	OneSheeld.sendPacket(GLCD_ID,0,GLCD_RECTANGLE_TYPE,7,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RECTANGLE_TYPE,7,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 																			                                          ,new FunctionArg(2,xPositionArray)
 																			                                          ,new FunctionArg(2,yPositionArray)
                                                                                 ,new FunctionArg(2,widthArray)
@@ -74,7 +74,7 @@ void GLCDRectangle::setRadius(int radius)
 
     byte functionId = GLCD_RECTANGLE_RADIUS;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_RECTANGLE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RECTANGLE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                ,new FunctionArg(2,radiusArray));
 }
 
@@ -87,7 +87,7 @@ void GLCDRectangle::setFill(bool fillValue)
 
     byte functionId = GLCD_RECTANLGE_FILL;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_RECTANGLE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RECTANGLE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                ,new FunctionArg(1,(byte *)&fillValue));
 }  
 
@@ -107,7 +107,7 @@ void GLCDRectangle::setDimensions(int xdimension, int ydimension)
 
     byte functionId = GLCD_RECTANGLE_DIMENSIONS;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_RECTANGLE_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RECTANGLE_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                        ,new FunctionArg(2,xdimensionArray)
                                        ,new FunctionArg(2,ydimensionArray));
 }  

@@ -50,7 +50,7 @@ void GLCDSlider::draw()
 
     byte functionId = SHAPE_DRAW;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_SLIDER_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_SLIDER_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                 ,new FunctionArg(2,xPositionArray)
                                                                                 ,new FunctionArg(2,yPositionArray)
                                                                                 ,new FunctionArg(2,widthArray)
@@ -91,7 +91,7 @@ void GLCDSlider::setRange(int start, int end)
 
     byte functionId = GLCD_SLIDER_RANGE;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_SLIDER_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_SLIDER_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,startArray)
                                                                                    ,new FunctionArg(2,endArray));
 }
@@ -108,7 +108,7 @@ void GLCDSlider::setValue(int sliderValue)
 
     byte functionId = GLCD_SLIDER_VALUE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_SLIDER_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_SLIDER_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,sliderValueArray));
 }  
 
@@ -128,7 +128,7 @@ void GLCDSlider::setDimensions(int xdimension, int ydimension)
 
     byte functionId = GLCD_SLIDER_DIMENSIONS;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_SLIDER_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_SLIDER_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                        ,new FunctionArg(2,xdimensionArray)
                                        ,new FunctionArg(2,ydimensionArray));
 }  

@@ -28,7 +28,7 @@ GLCDShield::GLCDShield() : ShieldParent(GLCD_ID)
 void GLCDShield::clear()
 {
 	byte functionId = GLCD_CLEAR;
-	OneSheeld.sendPacket(GLCD_ID,0,GLCD_TYPE,1,new FunctionArg(1,&functionId));	
+	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_TYPE,1,new FunctionArg(1,&functionId));	
 }
 
 void GLCDShield::draw(ShapeClass &usersShape)

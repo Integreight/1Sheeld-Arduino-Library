@@ -46,7 +46,7 @@ void GLCDTextBox::draw()
 
     byte functionId = SHAPE_DRAW;
 
-	OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_TEXTBOX_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 																			                                          ,new FunctionArg(2,xPositionArray)
 																			                                          ,new FunctionArg(2,yPositionArray)
                                                                                 ,new FunctionArg(strlen(dataString),(byte *)dataString));
@@ -61,7 +61,7 @@ void GLCDTextBox::setFont(byte fontType)
 
     byte functionId = GLCD_TEXTBOX_SET_FONT;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                   ,new FunctionArg(1,&fontType));
 }
 
@@ -74,7 +74,7 @@ void GLCDTextBox::setSize(byte size)
 
     byte functionId = GLCD_TEXTBOX_SET_SIZE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                               ,new FunctionArg(1,&size));
 }  
 
@@ -88,7 +88,7 @@ void GLCDTextBox::setText(char * _dataString)
 
     byte functionId = GLCD_TEXTBOX_TEXT;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_TEXTBOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                              ,new FunctionArg(strlen(dataString),(byte *)dataString));
 }
 
