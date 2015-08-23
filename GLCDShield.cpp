@@ -73,14 +73,13 @@ void GLCDShield::processData()
 
      byte incomingShapeType = getOneSheeldInstance().getFunctionId();
      
-     for(int i ; i<MAX_NO_OF_SHAPE_USED ;i++)
+     for(int i = 0 ; i<MAX_NO_OF_SHAPE_USED ;i++)
      {
        if(interactiveShapesArray[i] != NULL && interactiveShapesArray[i]->shapeID == shapeId  && interactiveShapesArray[i]->shapeType == incomingShapeType)
        {
          switch(incomingShapeType)
          {
            case GLCD_BUTTON_TYPE :  {
-
                                           bool incomingButtonValue =  getOneSheeldInstance().getArgumentData(2)[0];
                                           GLCDButton * buttonPointer = ((GLCDButton*)(interactiveShapesArray[i]));
                                           buttonPointer->value = incomingButtonValue;
