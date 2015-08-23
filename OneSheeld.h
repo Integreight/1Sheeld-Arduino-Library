@@ -136,12 +136,7 @@ public:
 	void sendPacket(byte , byte ,byte , byte , ...);
 	void sendPacket(byte , byte , byte , byte , FunctionArg ** );
 	//PulseWidthModulation Getter 
-	unsigned char analogRead(int );
-	//Set on change for users function
-	void setOnNewMessage(void (*)(char  [] ,char [] ,float));
-	void setOnNewMessage(void (*)(String ,String ,float));
-	void setOnNewMessage(void (*)(char [] ,char [] ,char []));
-	void setOnNewMessage(void (*)(String  ,String ,String ));	 
+	unsigned char analogRead(int );	 
 	Stream & OneSheeldSerial;
 	void delay(unsigned long);
 	bool isCallbacksInterruptsSet();
@@ -189,10 +184,6 @@ private:
 	void begin(long baudRate);
 	void freeMemoryAllocated();
 	void processFrame();
-	void (*changeFloatCallBack)(char [],char [], float);
-	void (*changeFloatCallBackWithString)(String ,String , float);
-	void (*changeStringCallBack)(char [],char [], char []);
-	void (*changeStringCallBackWithString)(String ,String ,String );
 	void (*isAppConnectedCallBack)(bool);
 	void enteringACallback();
 	void exitingACallback();
@@ -200,8 +191,6 @@ private:
 	void processInput(int byte);
 friend class ShieldParent;
 };
-
-
 //Extern Object
 extern OneSheeldClass OneSheeld;
 #endif
