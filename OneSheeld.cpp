@@ -46,6 +46,8 @@ OneSheeldClass::OneSheeldClass(Stream &s) :OneSheeldSerial(s)
       framestart =false;
       isOneSheeldConnected =false;
       isAppConnectionCallBack = false;
+      isShieldFrameCallback = false;
+      isSerialDataCallback = false;
 }
 
 //Library Starter
@@ -96,6 +98,18 @@ void OneSheeldClass::addToUnSentRequestsArray(HttpRequest * request)
 bool OneSheeldClass::isInitialized()
 {
   return isInit;
+}
+
+void OneSheeldClass::setOnNewShieldFrame(void (*userFunction)(byte shieldID, byte instanceID, byte functionID, byte argNo,byte *argumentL,byte **arguments))
+{
+  isShieldFrameCallback=true;
+  shieldFrameCallback=userFunction;
+}
+
+void OneSheeldClass::setOnNewSerialData(void (*userFunction)(byte))
+{
+  isSerialDataCallback=true;
+  serialDataCallback=userFunction;
 }
 
 //Frame Sender for Output Shields
@@ -384,6 +398,8 @@ void OneSheeldClass::processInput(int data)
               if(endFrame==END_OF_FRAME)                                   //if the endframe is equal to zero send to shields and free memory
               {
                       sendToShields();
+                      if(isShieldFrameCallback)
+                        shieldFrameCallback(shield,instance,functions,argumentnumber,argumentL,arguments);
                       freeMemoryAllocated();
                       
               }
@@ -396,7 +412,7 @@ void OneSheeldClass::processInput(int data)
                 if(counter==1){
                   shield=data;
                   bool found = false;
-                  if(shield == ONESHEELD_ID) found = true;
+                  if(shield == ONESHEELD_ID || isShieldFrameCallback) found = true;
                   else 
                   for (int i=0;i<shieldsCounter;i++) {
                     if (shield == shieldsArray[i]->getShieldId()){
@@ -431,7 +447,10 @@ void OneSheeldClass::processInput()
 {
   while(OneSheeldSerial.available())
   {
-    processInput(OneSheeldSerial.read());
+    byte data=OneSheeldSerial.read();
+    processInput(data);
+    if(isSerialDataCallback)
+      serialDataCallback(data);
   }
 }
 
