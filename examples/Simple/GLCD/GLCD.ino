@@ -42,7 +42,7 @@ void setup()
   drawGirl();
 
   /* Cloud drawing. */
-  drawCoulds();
+  drawClouds();
 
   /* Birds drawing. */
   drawBirds();
@@ -158,7 +158,7 @@ void drawGirl()
   GLCD.draw(GirlHairLine8);
 }
 
-void drawCoulds()
+void drawClouds()
 {
   /* Clouds Element. */
   GLCDEllipse Cloud(200,20,30,10);   
