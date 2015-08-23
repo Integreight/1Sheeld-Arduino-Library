@@ -137,11 +137,6 @@ public:
 	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );
-	//Set on change for users function
-	void setOnNewMessage(void (*)(char  [] ,char [] ,float));
-	void setOnNewMessage(void (*)(String ,String ,float));
-	void setOnNewMessage(void (*)(char [] ,char [] ,char []));
-	void setOnNewMessage(void (*)(String  ,String ,String ));	 
 	Stream & OneSheeldSerial;
 	void delay(unsigned long);
 	bool isCallbacksInterruptsSet();
