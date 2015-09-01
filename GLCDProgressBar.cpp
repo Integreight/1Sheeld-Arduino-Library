@@ -47,7 +47,7 @@ void GLCDProgressBar::draw()
 
     byte functionId = SHAPE_DRAW;
 
-  	OneSheeld.sendPacket(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 	   																		                                          ,new FunctionArg(2,xPositionArray)
 		  																	                                          ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(2,widthArray)
@@ -82,7 +82,7 @@ void GLCDProgressBar::setRange(int start, int end)
 
     byte functionId = GLCD_PROGRESS_BAR_RANGE;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,startArray)
                                                                                    ,new FunctionArg(2,endArray));
 }
@@ -99,7 +99,7 @@ void GLCDProgressBar::setValue(int progressBarValue)
 
     byte functionId = GLCD_PROGRESS_BAR_VALUE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,progressBarValueArray));
 }  
 
@@ -119,7 +119,7 @@ void GLCDProgressBar::setDimensions(int xdimension, int ydimension)
 
     byte functionId = GLCD_PROGRESS_BAR_DIMENSIONS;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_PROGRESS_BAR_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                      ,new FunctionArg(2,xdimensionArray)
                                                                                      ,new FunctionArg(2,ydimensionArray));
 }  

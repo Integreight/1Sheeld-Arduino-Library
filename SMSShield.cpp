@@ -32,7 +32,7 @@ void SMSShieldClass::send(const char* number,const char* text)
 	int numberLength = strlen(number); 
 	int textLength = strlen(text);
 	if(!numberLength || !textLength) return;
-	OneSheeld.sendPacket(SMS_ID,0,SMS_SEND,2,new FunctionArg(numberLength,(byte*)number),
+	OneSheeld.sendShieldFrame(SMS_ID,0,SMS_SEND,2,new FunctionArg(numberLength,(byte*)number),
 											 new FunctionArg(textLength,(byte*)text));
 }
 

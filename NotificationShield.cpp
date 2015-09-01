@@ -22,7 +22,7 @@ void NotificationShieldClass::notifyPhone(const char* data)
 	//Check length of string 
 	int dataLength = strlen(data);
 	if(!dataLength) return;
-	OneSheeld.sendPacket(NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,new FunctionArg(dataLength,(byte*)data));
+	OneSheeld.sendShieldFrame(NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,new FunctionArg(dataLength,(byte*)data));
 }
 
 void NotificationShieldClass::notifyPhone(String data)

@@ -36,7 +36,7 @@ void ShapeClass::setVisibility(byte visbilityType)
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
     shapeIdArray[0] = shapeID & 0xFF;
 	
-  OneSheeld.sendPacket(GLCD_ID,0,shapeType,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,shapeType,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                            ,new FunctionArg(1,&visbilityType));
 }
 
@@ -56,7 +56,7 @@ void ShapeClass::setPosition(int xposition , int yposition)
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
     shapeIdArray[0] = shapeID & 0xFF;
   
-	OneSheeld.sendPacket(GLCD_ID,0,shapeType,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+	OneSheeld.sendShieldFrame(GLCD_ID,0,shapeType,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                            ,new FunctionArg(2,xPositionArray)
                                   																				 ,new FunctionArg(2,yPositionArray));
 }

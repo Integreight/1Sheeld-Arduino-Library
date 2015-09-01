@@ -32,7 +32,7 @@ void GLCDPoint::draw()
   	shapeIdArray[0] = shapeID & 0xFF;
 
     byte functionId = SHAPE_DRAW;
-	OneSheeld.sendPacket(GLCD_ID,0,GLCD_POINT_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_POINT_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 																			 ,new FunctionArg(2,xPositionArray)
 																			 ,new FunctionArg(2,yPositionArray));
 } 

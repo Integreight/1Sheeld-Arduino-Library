@@ -283,6 +283,8 @@ setPosition	KEYWORD2
 setVisibility	KEYWORD2
 setCoordinates	KEYWORD2
 getGroupNumber	KEYWORD2
+setOnNewShieldFrame	KEYWORD2
+setOnNewSerialData	KEYWORD2
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

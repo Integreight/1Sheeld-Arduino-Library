@@ -63,7 +63,7 @@ void NFCRecord::queryData(int start,byte size)
  	startArray[0] = start & 0xFF;
 
  	if(!isRecordNull)
-	OneSheeld.sendPacket(NFC_ID,0,NFC_RECORD_QUERY_DATA,3,new FunctionArg(1,&recordNumber),
+	OneSheeld.sendShieldFrame(NFC_ID,0,NFC_RECORD_QUERY_DATA,3,new FunctionArg(1,&recordNumber),
 														  new FunctionArg(2,startArray),
 														  new FunctionArg(1,&size));
 }
@@ -75,7 +75,7 @@ void NFCRecord::queryType(int start,byte size)
 	startArray[0] = start & 0xFF;
 	
  	if(!isRecordNull)  	
-	OneSheeld.sendPacket(NFC_ID,0,NFC_RECORD_QUERY_TYPE,3,new FunctionArg(1,&recordNumber),
+	OneSheeld.sendShieldFrame(NFC_ID,0,NFC_RECORD_QUERY_TYPE,3,new FunctionArg(1,&recordNumber),
 														  new FunctionArg(2,startArray),
 														  new FunctionArg(1,&size));
 
@@ -84,5 +84,5 @@ void NFCRecord::queryType(int start,byte size)
 void NFCRecord::queryParsedData()
 { 	
 	if(!isRecordNull)
-	OneSheeld.sendPacket(NFC_ID,0,NFC_RECORD_QUERY_PARSED_DATA,1,new FunctionArg(1,&recordNumber));
+	OneSheeld.sendShieldFrame(NFC_ID,0,NFC_RECORD_QUERY_PARSED_DATA,1,new FunctionArg(1,&recordNumber));
 }

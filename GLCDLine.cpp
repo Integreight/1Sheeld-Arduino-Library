@@ -47,7 +47,7 @@ void GLCDLine::draw()
 
     byte functionId = SHAPE_DRAW;
 
-	OneSheeld.sendPacket(GLCD_ID,0,GLCD_LINE_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_LINE_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 																			                                          ,new FunctionArg(2,xPositionArray)
 																			                                          ,new FunctionArg(2,yPositionArray)
                                                                                 ,new FunctionArg(2,x2PositionArray)
@@ -78,7 +78,7 @@ void GLCDLine::setCoordinates(int xNewCoordinate1 , int yNewCoordinate1,int xNew
 
     byte functionId = GLCD_LINE_COORDINATES;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_LINE_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_LINE_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                ,new FunctionArg(2,xNewCoordinateArray1)
                                                                                ,new FunctionArg(2,yNewCoordinateArray1)
                                                                                ,new FunctionArg(2,xNewCoordinateArray2)

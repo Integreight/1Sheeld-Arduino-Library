@@ -32,7 +32,7 @@ VoiceRecognitionShield::VoiceRecognitionShield() : ShieldParent(VOICE_RECOGNITIO
 //Start Listen the voice command  
 void VoiceRecognitionShield::start()
 {
-	OneSheeld.sendPacket(VOICE_RECOGNITION_ID,0,VOICE_START_LISTENING,0);
+	OneSheeld.sendShieldFrame(VOICE_RECOGNITION_ID,0,VOICE_START_LISTENING,0);
 }
 //Get and save the voice command
 char * VoiceRecognitionShield::getLastCommand()

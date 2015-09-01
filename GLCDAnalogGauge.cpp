@@ -42,7 +42,7 @@ void GLCDAnalogGauge::draw()
 
     byte functionId = SHAPE_DRAW;
 
-  	OneSheeld.sendPacket(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 	   																		                                          ,new FunctionArg(2,xPositionArray)
 		  																	                                          ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(2,radiusArray));
@@ -76,7 +76,7 @@ void GLCDAnalogGauge::setRange(int start, int end)
 
     byte functionId = GLCD_ANALOG_GAUGE_RANGE;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,startArray)
                                                                                    ,new FunctionArg(2,endArray));
 }
@@ -93,7 +93,7 @@ void GLCDAnalogGauge::setValue(int analogGaugeValue)
 
     byte functionId = GLCD_ANALOG_GAUGE_VALUE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(2,analogGaugeValueArray));
 }  
 
@@ -109,6 +109,6 @@ void GLCDAnalogGauge::setRadius(int radiusValue)
 
     byte functionId = GLCD_ANALOG_GAUGE_RADIUS;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_ANALOG_GAUGE_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                      ,new FunctionArg(2,radiusValueArray));
 }  

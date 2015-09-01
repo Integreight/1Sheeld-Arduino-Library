@@ -49,7 +49,7 @@ void GLCDCheckBox::draw()
 
     byte functionId = SHAPE_DRAW;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                   ,new FunctionArg(2,xPositionArray)
                                                                                   ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(strlen(dataString),(byte *)dataString));  
@@ -69,7 +69,7 @@ void GLCDCheckBox::setText(char * dataString)
 
     byte functionId = GLCD_CHECK_BOX_SET_TEXT;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(strlen(dataString),(byte *)dataString));
 }
 
@@ -83,7 +83,7 @@ void GLCDCheckBox::setSize(byte size)
 
     byte functionId = GLCD_CHECK_BOX_SET_SIZE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                               ,new FunctionArg(1,&size));
 }  
 
@@ -96,7 +96,7 @@ void GLCDCheckBox::select()
 
     byte functionId = GLCD_CHECK_BOX_SELECT;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
 
 void GLCDCheckBox::deselect()
@@ -108,7 +108,7 @@ void GLCDCheckBox::deselect()
 
     byte functionId = GLCD_CHECK_BOX_UNSELECT;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_CHECK_BOX_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
 
 void GLCDCheckBox::setOnChange(void (*userFunction)(bool))

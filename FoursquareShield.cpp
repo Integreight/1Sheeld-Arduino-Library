@@ -24,7 +24,7 @@ void FoursquareShieldClass::checkIn(const char* placeId,const char* message)
 	int placeIdLength = strlen(placeId);
 	int messageLength = strlen(message);
 	if(!placeIdLength || !messageLength) return;
-	OneSheeld.sendPacket(FOURSQUARE_ID,0,FOURSQUARE_CHECK_IN,2,new FunctionArg(placeIdLength,(byte*)placeId),
+	OneSheeld.sendShieldFrame(FOURSQUARE_ID,0,FOURSQUARE_CHECK_IN,2,new FunctionArg(placeIdLength,(byte*)placeId),
 															   new FunctionArg(messageLength,(byte*)message));
 }
 

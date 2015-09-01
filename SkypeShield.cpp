@@ -22,7 +22,7 @@ void SkypeShieldClass::call(const char *username)
 	//Check length of string 
 	int usernameLength = strlen(username);
 	if(!usernameLength) return;
-	OneSheeld.sendPacket(SKYPE_ID,0,SKYPE_CALL,1,new FunctionArg(usernameLength,(byte *)username));
+	OneSheeld.sendShieldFrame(SKYPE_ID,0,SKYPE_CALL,1,new FunctionArg(usernameLength,(byte *)username));
 }
 
 void SkypeShieldClass::call(String username)
@@ -46,7 +46,7 @@ void SkypeShieldClass::videoCall(const char * username)
 	//Check length of string 
 	int usernameLength = strlen(username);
 	if(!usernameLength) return;
-	OneSheeld.sendPacket(SKYPE_ID,0,SKYPE_VIDEO_CALL,1,new FunctionArg(usernameLength,(byte *)username));
+	OneSheeld.sendShieldFrame(SKYPE_ID,0,SKYPE_VIDEO_CALL,1,new FunctionArg(usernameLength,(byte *)username));
 }
 
 void SkypeShieldClass::videoCall(String username)

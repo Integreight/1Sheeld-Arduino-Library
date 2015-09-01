@@ -47,6 +47,6 @@ void BuzzerShieldClass::buzzOff()
 //Buzz Setter 
 void BuzzerShieldClass::setValue(byte x)
 {
-	OneSheeld.sendPacket(BUZZER_ID,0,BUZZER_SET,1,new FunctionArg(1,&x));
+	OneSheeld.sendShieldFrame(BUZZER_ID,0,BUZZER_SET,1,new FunctionArg(1,&x));
 }
 

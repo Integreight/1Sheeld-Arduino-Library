@@ -61,7 +61,7 @@ void GLCDButton::draw()
 
     byte functionId = SHAPE_DRAW;
 
-  	OneSheeld.sendPacket(GLCD_ID,0,GLCD_BUTTON_TYPE,7,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,7,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
 	   																		                                          ,new FunctionArg(2,xPositionArray)
 		  																	                                          ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(2,widthArray)
@@ -84,7 +84,7 @@ void GLCDButton::setText(char * _dataString)
 
     byte functionId = GLCD_BUTTON_TEXT;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                              ,new FunctionArg(strlen(dataString),(byte *)dataString));
 }
 
@@ -96,7 +96,7 @@ void GLCDButton::setStyle(byte style)
 
     byte functionId = GLCD_BUTTON_STYLE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                              ,new FunctionArg(1,&style));
 }  
 
@@ -116,7 +116,7 @@ void GLCDButton::setDimensions(int xdimension, int ydimension)
 
     byte functionId = GLCD_BUTTON_DIMENSIONS;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_BUTTON_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,4,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                ,new FunctionArg(2,xdimensionArray)
                                                                                ,new FunctionArg(2,ydimensionArray));
 }  

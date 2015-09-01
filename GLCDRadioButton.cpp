@@ -74,7 +74,7 @@ void GLCDRadioButton::draw()
 
     if(!sendAsGroup)
     {
-      OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+      OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,5,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                   ,new FunctionArg(2,xPositionArray)
                                                                                   ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(strlen(dataString),(byte *)dataString));  
@@ -85,7 +85,7 @@ void GLCDRadioButton::draw()
       groupNumberArray[1] = (groupNumber >> 8) & 0xFF;
       groupNumberArray[0] = groupNumber & 0xFF;
       
-      OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+      OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                   ,new FunctionArg(2,xPositionArray)
                                                                                   ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(strlen(dataString),(byte *)dataString)
@@ -108,7 +108,7 @@ void GLCDRadioButton::setText(char * dataString)
 
     byte functionId = GLCD_RADIO_BUTTON_SET_TEXT;
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                    ,new FunctionArg(strlen(dataString),(byte *)dataString));
 }
 
@@ -122,7 +122,7 @@ void GLCDRadioButton::setSize(byte size)
 
     byte functionId = GLCD_RADIO_BUTTON_SET_SIZE; 
 
-  OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+  OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                               ,new FunctionArg(1,&size));
 }  
 
@@ -140,7 +140,7 @@ void GLCDRadioButton::setGroup(int number)
 
     byte functionId = GLCD_RADIO_BUTTON_SET_GROUP;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
                                                                                      ,new FunctionArg(2,numberArray));
 }  
 
@@ -153,7 +153,7 @@ void GLCDRadioButton::select()
 
     byte functionId = GLCD_RADIO_BUTTON_SELECT;
 
-    OneSheeld.sendPacket(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
+    OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_RADIO_BUTTON_TYPE,2,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray));
 } 
 
 void GLCDRadioButton::setOnChange(void (*userFunction)(bool))

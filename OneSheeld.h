@@ -133,8 +133,10 @@ public:
 	// #endif
 	static bool isInitialized();
 	//Frame Sender
-	void sendPacket(byte , byte ,byte , byte , ...);
-	void sendPacket(byte , byte , byte , byte , FunctionArg ** );
+	void sendShieldFrame(byte , byte ,byte , byte , ...);
+	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
+	void setOnNewShieldFrame(void (*)(byte, byte, byte, byte, byte *,byte **));
+	void setOnNewSerialData(void (*)(byte));
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );	 
 	Stream & OneSheeldSerial;
@@ -149,6 +151,8 @@ private:
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
 	bool isAppConnectionCallBack;
+	bool isShieldFrameCallback;
+	bool isSerialDataCallback;
 	static bool isFirstFrame;
 	bool framestart;
 	static bool inACallback;
@@ -185,6 +189,8 @@ private:
 	void freeMemoryAllocated();
 	void processFrame();
 	void (*isAppConnectedCallBack)(bool);
+	void (*shieldFrameCallback)(byte, byte, byte, byte, byte *,byte **);
+	void (*serialDataCallback)(byte);
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();

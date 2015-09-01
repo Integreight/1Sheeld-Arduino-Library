@@ -20,21 +20,21 @@
 //Rear Capture   
 void CameraShieldClass::rearCapture()
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_REAR_CAPTURE,0);
+	OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_REAR_CAPTURE,0);
 }
 //Camera Flash   
 void CameraShieldClass::setFlash(byte x)
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_FLASH,1,new FunctionArg(1,&x));
+	OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_SET_FLASH,1,new FunctionArg(1,&x));
 }
 //Front Capture 
 void CameraShieldClass::frontCapture()
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_FRONT_CAPTURE,0);
+	OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_FRONT_CAPTURE,0);
 }
 //Quality Set 
 void CameraShieldClass::setQuality(byte x)
 {
-	OneSheeld.sendPacket(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
+	OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
