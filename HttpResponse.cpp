@@ -163,7 +163,7 @@ void HttpResponse::getHeader(const char * headerName , void (*userFunction)(char
 	  	reqId[1] = (requestId >> 8) & 0xFF;
 	  	reqId[0] = requestId & 0xFF;
 	  	
-		OneSheeld.sendShieldFrame(INTERNET_ID,0,RESPONSE_GET_HEADER,2,new FunctionArg(2,reqId)
+		OneSheeld.sendShieldFrame(INTERNET_ID,0,RESPONSE_GET_HEADER,2,new FunctionArg(2,reqId));
 	}
 	
 }
