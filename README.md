@@ -15,6 +15,13 @@ If you want to contribute, please discuss you proposed feature on our forum firs
 
 Change Log:
 
+--------- Version 1.6.1(008) -----------
+
+- Added 2 new methods for sending and receiving frames. (For the new Android SDK)
+- Fixed an error in Internet shield.
+- Fixed a bug in GLCD shield.
+- Removed unneeded files.
+
 --------- Version 1.6.0(007) -----------
 
 - Supported the new GLCD shield.
@@ -40,16 +47,6 @@ Change Log:
 - Added a function to set the value of the slider shield from Arduino.
 - Notifiy Arduino once the sketch enters and exits callbacks.
 - Added a callback to be called once the shield is selected on the App.
-- Increased overall library stability and fixed other bugs.
-
---------- Version 1.3.0(004) -----------
-
-- Supported input strings parameters for each char array functions.
-- Added a method to attach pictures to email shield.
-- Added methods to check BT connectivity.
-- Added a feature to control 1Sheelds remotely through the internet.
-- Added methods to track keywords to Twitter shield.
-- Report the library version when queried.
 - Increased overall library stability and fixed other bugs.
 
 1Sheeld Arduino Library by Integreight, Inc. is licensed under GNU Lesser General Public License v3.0 (GNU LGPL v3.0).

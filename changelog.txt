@@ -1,3 +1,9 @@
+--------- Version 1.6.1(008) -----------
++ Added 2 new methods for sending and receiving frames. (For the new Android SDK)
+= Fixed an error in Internet shield.
+- Fixed a bug in GLCD shield.
+- Removed unneeded files.
+
 --------- Version 1.6.0(007) -----------
 + Supported the new GLCD shield.
 
