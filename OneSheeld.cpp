@@ -399,7 +399,11 @@ void OneSheeldClass::processInput(int data)
               {
                       sendToShields();
                       if(isShieldFrameCallback)
+                      {
+                        enteringACallback();
                         shieldFrameCallback(shield,instance,functions,argumentnumber,argumentL,arguments);
+                        exitingACallback();
+                      }
                       freeMemoryAllocated();
                       
               }
@@ -450,7 +454,12 @@ void OneSheeldClass::processInput()
     byte data=OneSheeldSerial.read();
     processInput(data);
     if(isSerialDataCallback)
+    {
+      enteringACallback();
       serialDataCallback(data);
+      exitingACallback();
+    }
+      
   }
 }
 
