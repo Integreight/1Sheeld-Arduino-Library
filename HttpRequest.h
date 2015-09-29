@@ -27,6 +27,7 @@
 #define HTTP_SET_CONTENT_TYPE				0x07
 #define HTTP_IGNORE_REQUEST					0x08
 #define HTTP_SET_CONTENT_ENCODING			0x16
+#define	HTTP_ADD_LAST_IMAGE_AS_PARAM		0x18
 //Input Function ID's for HTTP Request class
 #define HTTP_GET_SUCCESS					0x01
 #define HTTP_GET_FAILURE					0x02
@@ -51,6 +52,7 @@ public:
 	void addHeader(const char * ,const char *);
 	//Adders
 	void addParameter(const char * ,const char *);
+	void addLastImageAsParameter(const char * ,byte =0);
 	void addRawData(const char *);
 	//Getters
 	int getId();

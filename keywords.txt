@@ -176,7 +176,8 @@ getRow	KEYWORD2
 getColumn	KEYWORD2
 setUrl	KEYWORD2
 addHeader	KEYWORD2
-addParameters	KEYWORD2
+addParameter	KEYWORD2
+addLastImageAsParameter	KEYWORD2
 addRawData	KEYWORD2
 getId	KEYWORD2
 getIdLength	KEYWORD2
