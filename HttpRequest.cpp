@@ -114,6 +114,13 @@ void HttpRequest::addLastImageAsParameter(const char * paramName,byte imageSourc
 		                 new FunctionArg(1,(byte *)&encoding));
 }
 
+void HttpRequest::addLastImageAsRawEntity(byte imageSource)
+{
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,HTTP_ADD_LAST_IMAGE_AS_RAW_ENTITY,2,
+		                 new FunctionArg(2,localRequestId),
+		                 new FunctionArg(1,(byte *)&imageSource));
+}
+
 void HttpRequest::addRawData(const char * data)
 {
 	//Check length of string 
