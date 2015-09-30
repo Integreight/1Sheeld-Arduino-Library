@@ -41,7 +41,7 @@
 #define START_CALLBACK_BIT					0x04
 #define FINISH_CALLBACK_BIT					0x08
 //Image Encoding Types
-#define MULTIPART	0x00
+#define RAW	0x00
 #define BASE64	0x01
 
 class HttpRequest 
@@ -57,7 +57,7 @@ public:
 	void addHeader(const char * ,const char *);
 	//Adders
 	void addParameter(const char * ,const char *);
-	void addLastImageAsParameter(const char * ,byte =0,byte =MULTIPART);
+	void addLastImageAsParameter(const char * ,byte =0,byte =0);
 	void addLastImageAsRawEntity(byte =0);
 	void addRawData(const char *);
 	//Getters
