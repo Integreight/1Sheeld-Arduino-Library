@@ -19,6 +19,7 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 
 */
 
+#include <OneSheeld.h>
 
 /* Seven segment pins. */
 int segmentA = 2;
