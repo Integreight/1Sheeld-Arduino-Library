@@ -1,0 +1,79 @@
+language: cpp
+before_install:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
+  - sleep 3
+  - export DISPLAY=:1.0
+  - wget http://downloads.arduino.cc/arduino-1.6.5-linux64.tar.xz
+  - tar xf arduino-1.6.5-linux64.tar.xz
+  - sudo mv arduino-1.6.5 /usr/local/share/arduino
+  - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+install:
+  - ln -s $PWD /usr/local/share/arduino/libraries/OneSheeld
+script:
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Buzzer/Buzzer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Camera/Camera.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Clock/Clock.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Color/Color.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Email/Email.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Facebook/Facebook.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Foursquare/Foursquare.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/GamePad/GamePad.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/GLCD/GLCD.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/GPS/GPS.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Gravity/Gravity.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Internet/Internet.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Keypad/Keypad.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/LCD/LCD.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Light/Light.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Magnetometer/Magnetometer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Mic/Mic.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/MusicPlayer/MusicPlayer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/NFC/NFC.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Notification/Notification.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Orientation/Orientation.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Phone/Phone.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Pressure/Pressure.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Proximity/Proximity.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/SevenSegment/SevenSegment.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Skype/Skype.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/SMS/SMS.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/TextToSpeech/TextToSpeech.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/ToggleButton/ToggleButton.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/Twitter/Twitter.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Advanced/VoiceRecognition/VoiceRecognition.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Accelerometer/Accelerometer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Buzzer/Buzzer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Camera/Camera.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Color/Color.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/DataLogger/DataLogger.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Facebook/Facebook.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Foursquare/Foursquare.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/GamePad/GamePad.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/GLCD/GLCD.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Gravity/Gravity.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Gyroscope/Gyroscope.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Internet/Internet.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Keyboard/Keyboard.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Keypad/Keypad.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Led/Led.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Light/Light.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Magnetometer/Magnetometer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Mic/Mic.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/MusicPlayer/MusicPlayer.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/NFC/NFC.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Notification/Notification.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Orientation/Orientation.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Pattern/Pattern.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Phone/Phone.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Proximity/Proximity.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/PushButton/PushButton.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Slider/Slider.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Temperature/Temperature.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Terminal/Terminal.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Twitter/Twitter.ino
+  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
+notifications:
+  email:
+    on_success: change
+    on_failure: change
