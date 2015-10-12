@@ -12,20 +12,20 @@ Make sure you have the latest version of Arduino IDE.
 
 Open the Arduino IDE, go to Sketch > Include Library > Manage Libraries.
 
-[Imgur](http://i.imgur.com/jxlq6tS.png)
+![Go to Sketch > Include Library > Manage Libraries](http://i.imgur.com/jxlq6tS.png)
 
 And then, search for our library in the list, pick the latest version and click install.
 
-[Imgur](http://i.imgur.com/JBTYGmt.png)
+![Search for our library in the list](http://i.imgur.com/JBTYGmt.png)
 
-### Manual Method ###
+**Manual Method**
 
 Download the latest version of the library either from [our website](http://1sheeld.com/downloads) or the [releases page](https://github.com/Integreight/1Sheeld-Arduino-Library/releases). Unzip it in a new directory names *OneSheeld* inside your Arduino's libraries directory.
 
-## Usage And Examples ##
+**Usage And Examples**
 
-- Add ``` cpp #include <OneSheeld.h> ``` statement at the top of your sketch.
-- Call ``` cpp OneSheeld.begin(); ``` in your setup().
+- Add ``` #include <OneSheeld.h> ``` statement at the top of your sketch.
+- Call ``` OneSheeld.begin(); ``` in your setup().
 - You are now ready to call any of our [shields methods](http://1sheeld.com/docs/).
 
 Note: To reduce the library compiled size and limit its memory usage, you can specify which shields you want to include in your sketch by defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define. Review any of our examples to see that in action.
@@ -34,7 +34,7 @@ We have more than 60+ examples that covers shields usage. They are categorized i
 
 After library installation you can fire up any of our examples by going to File > Examples > OneSheeld > Advanced / Simple then pick your example.
 
-[Imgur](http://i.imgur.com/P8MYTSZ.png)
+![Go to File > Examples > OneSheeld > Advanced / Simple then pick your example](http://i.imgur.com/P8MYTSZ.png)
 
 Here is a an example that capture a photo using your smartphone's camera and post it to Twitter when a hardware button is pressed.
 
