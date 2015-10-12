@@ -8,7 +8,7 @@ This library is crucial when working with 1Sheeld board, as it is the interface 
 
 Make sure you have the latest version of Arduino IDE.
 
-** Automatic Method (Recommended) **
+**Automatic Method (Recommended)**
 
 Open the Arduino IDE, go to Sketch > Include Library > Manage Libraries.
 
@@ -18,7 +18,7 @@ And then, search for our library in the list, pick the latest version and click 
 
 ![Search for our library in the list](http://i.imgur.com/JBTYGmt.png)
 
-** Manual Method **
+**Manual Method**
 
 Download the latest version of the library either from [our website](http://1sheeld.com/downloads) or the [releases page](https://github.com/Integreight/1Sheeld-Arduino-Library/releases). Unzip it in a new directory names *OneSheeld* inside your Arduino's libraries directory.
 
