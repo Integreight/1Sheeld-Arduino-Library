@@ -102,7 +102,7 @@ Don't forget to drop us an email, post on our forum, or mention us on Twitter or
 
 ## Changelog ##
 
-To see what has changed in recent versions of 1Sheeld Android SDK, see the [Change Log](CHANGELOG.md).
+To see what has changed in recent versions of 1Sheeld Arduino Library, see the [Change Log](CHANGELOG.md).
 
 ## Other Implementations ##
 
