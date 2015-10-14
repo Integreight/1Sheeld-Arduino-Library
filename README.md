@@ -87,8 +87,8 @@ void loop()
 Contributions are welcomed, please follow this pattern:
 - Fork the repo.
 - Open an issue with your proposed feature or bug fix.
-- Commit and push code to your forked repo.
-- Submit a pull request to *development* branch.
+- Commit and push code to a new branch in your forked repo.
+- Submit a pull request to our *development* branch.
 
 Don't forget to drop us an email, post on our forum, or mention us on Twitter or Facebook about what you have built using 1Sheeld, we would love to hear about it.
 
