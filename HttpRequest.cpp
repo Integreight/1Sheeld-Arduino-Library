@@ -102,6 +102,25 @@ void HttpRequest::addParameter(const char * paramName,const char * data)
 		                 new FunctionArg(dataLength,(byte*)data));
 }
 
+void HttpRequest::addLastImageAsParameter(const char * paramName,byte imageSource,byte encoding)
+{
+	//Check length of string 
+	int paramNameLength = strlen(paramName);
+	if(!paramNameLength) return;
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,HTTP_ADD_LAST_IMAGE_AS_PARAM,4,
+		                 new FunctionArg(2,localRequestId),
+		                 new FunctionArg(paramNameLength,(byte*)paramName),
+		                 new FunctionArg(1,(byte *)&imageSource),
+		                 new FunctionArg(1,(byte *)&encoding));
+}
+
+void HttpRequest::addLastImageAsRawEntity(byte imageSource)
+{
+	OneSheeld.sendShieldFrame(INTERNET_ID,0,HTTP_ADD_LAST_IMAGE_AS_RAW_ENTITY,2,
+		                 new FunctionArg(2,localRequestId),
+		                 new FunctionArg(1,(byte *)&imageSource));
+}
+
 void HttpRequest::addRawData(const char * data)
 {
 	//Check length of string 
