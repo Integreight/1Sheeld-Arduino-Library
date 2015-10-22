@@ -20,6 +20,7 @@
 
 GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataString): ShapeClass(GLCD_BUTTON_TYPE,x,y)
 {
+  buttonHasName = true;
   width = _width;
   height = _height;
   dataString =NULL;
@@ -36,6 +37,15 @@ GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataStri
   isCallBackAssigned = false;
 }
 
+GLCDButton::GLCDButton(int x , int y, int _width , int _height): ShapeClass(GLCD_BUTTON_TYPE,x,y)
+{
+  buttonHasName = false;
+  width = _width;
+  height = _height;
+  value = 0;
+  isInteractiveShape= true;
+  isCallBackAssigned = false;
+}
 
 void GLCDButton::draw()
 {
@@ -61,12 +71,24 @@ void GLCDButton::draw()
 
     byte functionId = SHAPE_DRAW;
 
-  	OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,7,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-	   																		                                          ,new FunctionArg(2,xPositionArray)
-		  																	                                          ,new FunctionArg(2,yPositionArray)
+    if(buttonHasName)
+    {
+        OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,7,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+                                                                                  ,new FunctionArg(2,xPositionArray)
+                                                                                  ,new FunctionArg(2,yPositionArray)
                                                                                   ,new FunctionArg(2,widthArray)
                                                                                   ,new FunctionArg(2,heightArray)
-                                                                                  ,new FunctionArg(strlen(dataString),(byte *)dataString));
+                                                                                  ,new FunctionArg(strlen(dataString),(byte *)dataString));     
+    }
+    else
+    {
+      OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,6,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
+                                                                                  ,new FunctionArg(2,xPositionArray)
+                                                                                  ,new FunctionArg(2,yPositionArray)
+                                                                                  ,new FunctionArg(2,widthArray)
+                                                                                  ,new FunctionArg(2,heightArray));
+    }
+  	
 }
 
 bool GLCDButton::isPressed()
