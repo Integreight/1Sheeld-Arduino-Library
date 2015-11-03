@@ -26,7 +26,7 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 
 /* Create an Http request with openweathermap.org api url. */
 /* It's important to be created here as a global object. */
-HttpRequest request("http://api.openweathermap.org/data/2.5/weather");
+HttpRequest request("http://api.openweathermap.org/data/2.5/weather?appid=2711d6a2cc90e292afaf00f9335028b1");
 
 /* Set a RGB LED on pin 8,9 and 10. */
 int red = 8;
