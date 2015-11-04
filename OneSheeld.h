@@ -115,7 +115,6 @@ public:
 	void setOnAppConnected(void (*)(bool));
 	//Getters 
 	byte getShieldId();
-	byte getInstanceId();
 	byte getFunctionId();
 	byte getArgumentNo();
 	byte getArgumentLength(byte );
@@ -160,7 +159,7 @@ private:
 	//Data bytes
 	byte numberOfDataMalloced;
 	byte shield;
-	byte instance;
+	byte verificationByte;
 	byte functions;
 	byte counter;
 	byte argumentcounter;
