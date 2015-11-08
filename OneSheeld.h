@@ -134,7 +134,7 @@ public:
 	//Frame Sender
 	void sendShieldFrame(byte , byte ,byte , byte , ...);
 	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
-	void setOnNewShieldFrame(void (*)(byte, byte, byte, byte, byte *,byte **));
+	void setOnNewShieldFrame(void (*)(byte, byte, byte, byte *,byte **));
 	void setOnNewSerialData(void (*)(byte));
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );	 
@@ -188,7 +188,7 @@ private:
 	void freeMemoryAllocated();
 	void processFrame();
 	void (*isAppConnectedCallBack)(bool);
-	void (*shieldFrameCallback)(byte, byte, byte, byte, byte *,byte **);
+	void (*shieldFrameCallback)(byte, byte, byte, byte *,byte **);
 	void (*serialDataCallback)(byte);
 	void enteringACallback();
 	void exitingACallback();

@@ -100,7 +100,7 @@ bool OneSheeldClass::isInitialized()
   return isInit;
 }
 
-void OneSheeldClass::setOnNewShieldFrame(void (*userFunction)(byte shieldID, byte instanceID, byte functionID, byte argNo,byte *argumentL,byte **arguments))
+void OneSheeldClass::setOnNewShieldFrame(void (*userFunction)(byte shieldID, byte functionID, byte argNo,byte *argumentL,byte **arguments))
 {
   isShieldFrameCallback=true;
   shieldFrameCallback=userFunction;
@@ -397,7 +397,7 @@ void OneSheeldClass::processInput(int data)
                       if(isShieldFrameCallback)
                       {
                         enteringACallback();
-                        shieldFrameCallback(shield,verificationByte,functions,argumentnumber,argumentL,arguments);
+                        shieldFrameCallback(shield,functions,argumentnumber,argumentL,arguments);
                         exitingACallback();
                       }
                       freeMemoryAllocated();
