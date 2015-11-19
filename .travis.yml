@@ -10,13 +10,15 @@ before_install:
   - mkdir build
   - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
   - arduino --install-boards "arduino:sam" > /dev/null
+  - arduino --install-boards "arduino:samd" > /dev/null
   - arduino --install-boards "Intel:i586" > /dev/null
 env:
   matrix:
     - BOARD='arduino:avr:uno'
     - BOARD='arduino:avr:mega:cpu=atmega2560'
     - BOARD='arduino:avr:leonardo'
-    - BOARD='arduino:sam:arduino_due_x'
+    - BOARD='arduino:sam:arduino_due_x_dbg'
+    - BOARD='arduino:samd:arduino_zero_edbg'
     - BOARD='Intel:i586:izmir_fd'
     - BOARD='Intel:i586:izmir_fg'
 install:
