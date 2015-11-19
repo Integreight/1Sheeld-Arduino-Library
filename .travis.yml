@@ -8,6 +8,8 @@ before_install:
   - tar xf arduino-1.6.6-linux64.tar.xz
   - sudo mv arduino-1.6.6 /usr/local/share/arduino
   - mkdir temp
+  - chmod 777 ./temp
+  - ls
   - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 #  - arduino --install-board "arduino:Arduino SAM Boards (32-bits ARM Cortex-M3)"
 install:
