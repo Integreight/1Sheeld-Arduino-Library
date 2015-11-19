@@ -23,6 +23,37 @@ MicShield::MicShield():ShieldParent(MIC_ID)
 	value=0x00;
 	isCallBackAssigned=false;
 }
+
+//Record Start
+void MicShield::startRecord()
+{
+	OneSheeld.sendShieldFrame(MIC_ID,0,MIC_START_RECORD,0);
+}
+void MicShield::startRecord(const char * fileName)
+{
+	// Check string is not empty
+	int  fileNameLength = strlen(fileName);
+	if(!fileNameLength) return ; 
+	OneSheeld.sendShieldFrame(MIC_ID,0,MIC_START_RECORD,1,new FunctionArg(fileNameLength,(byte *)fileName));
+}
+void MicShield::startRecord(String fileName)
+{
+	int fileNameStringLength = fileName.length();
+	char cTypeFileName [fileNameStringLength+1];
+
+	for (int i=0 ;i<fileNameStringLength;i++)
+	{
+		cTypeFileName [i]= fileName[i];
+	}
+
+	cTypeFileName [fileNameStringLength]='\0';	
+	startRecord(cTypeFileName);
+}
+//
+void MicShield::stopRecord()
+{
+	OneSheeld.sendShieldFrame(MIC_ID,0,MIC_STOP_RECORD,0);
+}
 //Mic Getter
 byte MicShield::getValue()
 {

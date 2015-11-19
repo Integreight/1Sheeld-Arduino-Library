@@ -287,6 +287,8 @@ setCoordinates			KEYWORD2		RESERVED_WORD
 getGroupNumber			KEYWORD2		RESERVED_WORD
 setOnNewShieldFrame			KEYWORD2		RESERVED_WORD
 setOnNewSerialData			KEYWORD2		RESERVED_WORD
+startRecord			KEYWORD2		RESERVED_WORD
+stopRecord			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
