@@ -78,10 +78,10 @@ script:
 #  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Terminal/Terminal.ino
 #  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/Twitter/Twitter.ino
 #  - arduino --verify --board arduino:avr:uno $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
-  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
-  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Buzzer/Buzzer.ino
-  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Camera/Camera.ino
-  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Clock/Clock.ino
+  - arduino --verify --board arduino:avr:mega:cpu=atmega2560 $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
+  - arduino --verify --board arduino:avr:mega:cpu=atmega2560 $PWD/examples/Advanced/Buzzer/Buzzer.ino
+  - arduino --verify --board arduino:avr:mega:cpu=atmega2560 $PWD/examples/Advanced/Camera/Camera.ino
+  - arduino --verify --board arduino:avr:mega:cpu=atmega2560 $PWD/examples/Advanced/Clock/Clock.ino
 #  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Color/Color.ino
 #  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Email/Email.ino
 #  - arduino --verify --board arduino:avr:mega $PWD/examples/Advanced/Facebook/Facebook.ino
