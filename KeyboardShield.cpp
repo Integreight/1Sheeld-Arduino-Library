@@ -19,7 +19,7 @@
 //Class Constructor
  KeyboardShield::KeyboardShield() : ShieldParent(KEYBOARD_ID)
 {
-	character=NULL;
+	character=0;
 	isCallBackAssigned=false;
 }
 

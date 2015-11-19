@@ -21,9 +21,9 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 #include <OneSheeld.h>
 
 /* Reserve some color names as char arrays. */
-char * redArray = "red";
-char * greenArray = "green";
-char * blueArray = "blue";
+const char * redArray = "red";
+const char * greenArray = "green";
+const char * blueArray = "blue";
 
 /* Set a RGB LED on pin 8,9 and 10. */
 int red = 8;

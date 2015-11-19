@@ -18,7 +18,7 @@
 
 
 
-GLCDButton::GLCDButton(int x , int y, int _width , int _height ,char * _dataString): ShapeClass(GLCD_BUTTON_TYPE,x,y)
+GLCDButton::GLCDButton(int x , int y, int _width , int _height , const char * _dataString): ShapeClass(GLCD_BUTTON_TYPE,x,y)
 {
   buttonHasName = true;
   width = _width;
@@ -96,7 +96,7 @@ bool GLCDButton::isPressed()
   return value;
 }
 
-void GLCDButton::setText(char * _dataString)
+void GLCDButton::setText(const char * _dataString)
 {
     dataString = _dataString;
 
