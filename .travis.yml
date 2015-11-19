@@ -16,7 +16,7 @@ env:
     - BOARD='arduino:avr:uno'
     - BOARD='arduino:avr:mega:cpu=atmega2560'
     - BOARD='arduino:avr:leonardo'
-    - BOARD='arduino:sam:due'
+    - BOARD='arduino:sam:arduino_due_x'
 install:
   - ln -s $PWD /usr/local/share/arduino/libraries/OneSheeld
 script:
