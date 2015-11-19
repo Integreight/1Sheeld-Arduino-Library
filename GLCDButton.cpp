@@ -98,8 +98,6 @@ bool GLCDButton::isPressed()
 
 void GLCDButton::setText(const char * _dataString)
 {
-    dataString = _dataString;
-
     byte shapeIdArray[2] ;
     shapeIdArray[1] = (shapeID >> 8) & 0xFF;
     shapeIdArray[0] = shapeID & 0xFF;
@@ -107,7 +105,7 @@ void GLCDButton::setText(const char * _dataString)
     byte functionId = GLCD_BUTTON_TEXT;
 
   OneSheeld.sendShieldFrame(GLCD_ID,0,GLCD_BUTTON_TYPE,3,new FunctionArg(1,&functionId),new FunctionArg(2,shapeIdArray)
-                                                                             ,new FunctionArg(strlen(dataString),(byte *)dataString));
+                                                                             ,new FunctionArg(strlen(_dataString),(byte *)_dataString));
 }
 
 void GLCDButton::setStyle(byte style)
