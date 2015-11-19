@@ -88,7 +88,8 @@ script:
 #  - arduino --verify $PWD/examples/Simple/Terminal/Terminal.ino
 #  - arduino --verify $PWD/examples/Simple/Twitter/Twitter.ino
 #  - arduino --verify $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
-  - find $PWD/examples -type f -name "*.ino" -exec arduino --verify {} \; 
+  - for example in $PWD/examples/*/*/*.ino; do arduino --verify $example; done;
+#  - find $PWD/examples -type f -name "*.ino" -exec arduino --verify {} \; 
 notifications:
   email:
     on_success: change
