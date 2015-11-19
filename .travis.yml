@@ -9,8 +9,8 @@ before_install:
   - sudo mv arduino-1.6.6 /usr/local/share/arduino
   - mkdir build
   - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
-  - arduino --install-boards "arduino:sam"
-  - arduino --install-boards "Intel:i586"
+  - arduino --install-boards "arduino:sam" > /dev/null
+  - arduino --install-boards "Intel:i586" > /dev/null
 install:
   - ln -s $PWD /usr/local/share/arduino/libraries/OneSheeld
 script:
