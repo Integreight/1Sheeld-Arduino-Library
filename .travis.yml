@@ -265,7 +265,7 @@ script:
 #  - arduino --verify --board arduino:sam:due --pref build.path=$PWD/build $PWD/examples/Simple/Terminal/Terminal.ino
 #  - arduino --verify --board arduino:sam:due --pref build.path=$PWD/build $PWD/examples/Simple/Twitter/Twitter.ino
 #  - arduino --verify --board arduino:sam:due --pref build.path=$PWD/build $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
-notifications:--pref build.path=$PWD/build 
-  email:--pref build.path=$PWD/build 
-    on_success: change--pref build.path=$PWD/build 
-    on_failure: change--pref build.path=$PWD/build 
+notifications:
+  email:
+    on_success: change
+    on_failure: change
