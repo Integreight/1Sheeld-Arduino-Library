@@ -17,6 +17,8 @@ env:
     - BOARD='arduino:avr:mega:cpu=atmega2560'
     - BOARD='arduino:avr:leonardo'
     - BOARD='arduino:sam:arduino_due_x'
+    - BOARD='Intel:i586:izmir_fd'
+    - BOARD='Intel:i586:izmir_fg'
 install:
   - ln -s $PWD /usr/local/share/arduino/libraries/OneSheeld
 script:
