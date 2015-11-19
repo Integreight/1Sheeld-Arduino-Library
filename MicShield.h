@@ -31,11 +31,11 @@ public:
 	//Constructor
 	MicShield();
 	//Record Starter
-	void startRecord();
-	void startRecord(const char *);
-	void startRecord(String );
+	void startRecording();
+	void startRecording(const char *);
+	void startRecording(String );
 	//Record Stop
-	void stopRecord();
+	void stopRecording();
 	//Getter
 	byte getValue();
 	//setOnChange for Users Function

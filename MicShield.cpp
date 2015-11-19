@@ -25,18 +25,18 @@ MicShield::MicShield():ShieldParent(MIC_ID)
 }
 
 //Record Start
-void MicShield::startRecord()
+void MicShield::startRecording()
 {
 	OneSheeld.sendShieldFrame(MIC_ID,0,MIC_START_RECORD,0);
 }
-void MicShield::startRecord(const char * fileName)
+void MicShield::startRecording(const char * fileName)
 {
 	// Check string is not empty
 	int  fileNameLength = strlen(fileName);
 	if(!fileNameLength) return ; 
 	OneSheeld.sendShieldFrame(MIC_ID,0,MIC_START_RECORD,1,new FunctionArg(fileNameLength,(byte *)fileName));
 }
-void MicShield::startRecord(String fileName)
+void MicShield::startRecording(String fileName)
 {
 	int fileNameStringLength = fileName.length();
 	char cTypeFileName [fileNameStringLength+1];
@@ -47,10 +47,10 @@ void MicShield::startRecord(String fileName)
 	}
 
 	cTypeFileName [fileNameStringLength]='\0';	
-	startRecord(cTypeFileName);
+	startRecording(cTypeFileName);
 }
 //
-void MicShield::stopRecord()
+void MicShield::stopRecording()
 {
 	OneSheeld.sendShieldFrame(MIC_ID,0,MIC_STOP_RECORD,0);
 }
