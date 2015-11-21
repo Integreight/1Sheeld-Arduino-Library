@@ -20,7 +20,7 @@ And then, search for our library in the list, pick the latest version and click 
 
 **Manual Method**
 
-Download the latest version of the library either from [our website](http://1sheeld.com/downloads) or the [releases page](https://github.com/Integreight/1Sheeld-Arduino-Library/releases). Unzip it in a new directory names *OneSheeld* inside your Arduino's libraries directory.
+Download the latest version of the library either from [our website](http://1sheeld.com/downloads) or the [releases page](https://github.com/Integreight/1Sheeld-Arduino-Library/releases). Unzip it in a new directory named *OneSheeld* inside your Arduino's libraries directory.
 
 ## Usage And Examples ##
 
