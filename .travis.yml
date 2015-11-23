@@ -1,5 +1,15 @@
 language: cpp
 
+env:
+  matrix:
+    - BOARD='arduino:avr:uno'
+    - BOARD='arduino:avr:mega:cpu=atmega2560'
+    - BOARD='arduino:avr:leonardo'
+    - BOARD='arduino:sam:arduino_due_x_dbg'
+#    - BOARD='arduino:samd:arduino_zero_edbg'
+    - BOARD='Intel:i586:izmir_fd'
+    - BOARD='Intel:i586:izmir_fg'
+
 before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
   - sleep 3
@@ -12,18 +22,13 @@ before_install:
   - arduino --install-boards "arduino:sam" > /dev/null
 #  - arduino --install-boards "arduino:samd" > /dev/null
   - arduino --install-boards "Intel:i586" > /dev/null
-env:
-  matrix:
-    - BOARD='arduino:avr:uno'
-    - BOARD='arduino:avr:mega:cpu=atmega2560'
-    - BOARD='arduino:avr:leonardo'
-    - BOARD='arduino:sam:arduino_due_x_dbg'
-#    - BOARD='arduino:samd:arduino_zero_edbg'
-    - BOARD='Intel:i586:izmir_fd'
-    - BOARD='Intel:i586:izmir_fg'
+
 install:
   - ln -s $PWD /usr/local/share/arduino/libraries/OneSheeld
+
+before_script:
   - arduino --pref build.path=$PWD/build --board $BOARD --save-prefs
+
 script:
   - arduino --verify $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
   - arduino --verify $PWD/examples/Advanced/Buzzer/Buzzer.ino
@@ -90,6 +95,7 @@ script:
   - arduino --verify $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
 #  - for example in $PWD/examples/*/*/*.ino; do arduino --verify $example; done;
 #  - find $PWD/examples -type f -name "*.ino" -exec arduino --verify {} \; 
+
 notifications:
   email:
     on_success: change
