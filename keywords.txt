@@ -49,7 +49,7 @@ Internet		KEYWORD1		RESERVED_WORD
 ColorDetector		KEYWORD1		RESERVED_WORD
 NFC		KEYWORD1		RESERVED_WORD
 GLCD		KEYWORD1		RESERVED_WORD
-Vibrator		KEYWORD1		RESERVED_WORD
+Vibration		KEYWORD1		RESERVED_WORD
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -290,7 +290,6 @@ setOnNewShieldFrame			KEYWORD2		RESERVED_WORD
 setOnNewSerialData			KEYWORD2		RESERVED_WORD
 startRecording			KEYWORD2		RESERVED_WORD
 stopRecording			KEYWORD2		RESERVED_WORD
-vibrate			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

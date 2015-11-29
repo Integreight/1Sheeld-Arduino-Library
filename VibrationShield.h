@@ -17,24 +17,26 @@
 
 #include "ShieldParent.h"
 
+#define NO_REPEAT 65535
+
 //Output Function IDs
-#define VIBRATE_PATTERN_FN 0x01
-#define VIBRATE_DURATION_FN 0x02
+#define START_PATTERN_FN 0x01
+#define START_DURATION_FN 0x02
 #define STOP_VIBRATION_FN 0x03
 
 class VibrationShield : public ShieldParent{
 public:
   //Empty Constructor
   VibrationShield();
-  //Milliseconds and Repeat values range from 0 to 65534
-  void vibrate(int milliseconds,int repeat = -1);
-  //Repeat value range from 0 to 65534 and pattern array has maximum size of 126
+  //duration and repetitionDelay values range from 0 to 65534
+  void start(int duration,int repetitionDelay = NO_REPEAT);
+  //Pattern array has maximum length of 126
   //Each element in the pattern array range from 0 to 65534
-  //n is the pattern array size
-  void vibrate(int n,int *pattern,int repeat = -1);
-  //Stop function stops all repeatitive patterns
+  //repetitionDelay value range from 0 to 65534
+  void start(byte patternLength,int pattern[],int repetitionDelay = NO_REPEAT);
+  //Stop function stops repetitive vibrations
   void stop();
 };
 //External Object
-extern VibrationShield Vibrator;
+extern VibrationShield Vibration;
 #endif

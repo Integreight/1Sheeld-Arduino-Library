@@ -177,5 +177,5 @@ EXTERN NFCShield NFC;
 EXTERN GLCDShield GLCD;
 #endif
 #ifdef INCLUDE_VIBRATION_SHIELD
-EXTERN VibrationShield Vibrator;
+EXTERN VibrationShield Vibration;
 #endif

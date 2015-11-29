@@ -6,12 +6,17 @@
 VibrationShield::VibrationShield() : ShieldParent(VIBRATION_ID){
 }
 
-void VibrationShield::vibrate(int n,int *pattern,int repeat){
-  OneSheeld.sendShieldFrame(VIBRATION_ID,0,VIBRATE_PATTERN_FN,2,new FunctionArg(n*sizeof(int),(byte*)pattern),new FunctionArg(sizeof(int),(byte*)&repeat));
+void VibrationShield::start(byte patternLength,int pattern[],int repetitionDelay){
+  uint16_t *uint16Pattern = (uint16_t*) malloc(patternLength*sizeof(uint16_t));
+  for(int i = 0; i < patternLength;i++){
+    uint16Pattern[i] = (uint16_t) pattern[i];
+  }
+  OneSheeld.sendShieldFrame(VIBRATION_ID,0,START_PATTERN_FN,2,new FunctionArg(patternLength*sizeof(uint16_t),(byte*)uint16Pattern),new FunctionArg(sizeof(uint16_t),(byte*)&repetitionDelay));
+  free(uint16Pattern);
 }
 
-void VibrationShield::vibrate(int milliseconds,int repeat){
-  OneSheeld.sendShieldFrame(VIBRATION_ID,0,VIBRATE_DURATION_FN,2,new FunctionArg(sizeof(int),(byte*)&milliseconds),new FunctionArg(sizeof(int),(byte*)&repeat));
+void VibrationShield::start(int duration,int repetitionDelay){
+  OneSheeld.sendShieldFrame(VIBRATION_ID,0,START_DURATION_FN,2,new FunctionArg(sizeof(uint16_t),(byte*)&duration),new FunctionArg(sizeof(uint16_t),(byte*)&repetitionDelay));
 }
 
 void VibrationShield::stop(){
