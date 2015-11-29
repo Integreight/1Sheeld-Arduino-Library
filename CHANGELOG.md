@@ -1,4 +1,9 @@
-## v1.6.1(008) (September 1, 2015)
+## v1.7.0(009) (November 23, 2015)
+ - Fixed a bug with the new SDK functions.
+ - Added methods for uploading images from internet shield.
+ - Added methods for recording voice clips from mic shield.
+
+ ## v1.6.1(008) (September 1, 2015)
  - Added 2 new methods for sending and receiving frames. (For the new Android SDK)
  - Fixed an error in Internet shield.
  - Fixed a bug in GLCD shield.
