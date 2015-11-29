@@ -55,3 +55,4 @@
 #include "ColorShield.h"
 #include "NFCShield.h"
 #include "GLCDShield.h"
+#include "VibrationShield.h"
