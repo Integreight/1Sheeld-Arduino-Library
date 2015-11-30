@@ -52,6 +52,7 @@
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
+#define STOP_START_SENDING_DATA_REQUEST 0x04
 
 
 //Numer of Shields
@@ -132,6 +133,7 @@ public:
 	// #endif
 	static bool isInitialized();
 	//Frame Sender
+	void write(byte);
 	void sendShieldFrame(byte , byte ,byte , byte , ...);
 	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
 	void setOnNewShieldFrame(void (*)(byte, byte, byte, byte *,byte **));
@@ -152,6 +154,7 @@ private:
 	bool isAppConnectionCallBack;
 	bool isShieldFrameCallback;
 	bool isSerialDataCallback;
+	bool stopRequested;
 	static bool isFirstFrame;
 	bool framestart;
 	static bool inACallback;
