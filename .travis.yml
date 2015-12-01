@@ -21,9 +21,9 @@ before_install:
   - wget http://downloads.arduino.cc/arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
   - tar xf arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
   - mkdir build
-  - $ARDUINO --install-boards "arduino:sam" > /dev/null
-#  - $ARDUINO --install-boards "arduino:samd" > /dev/null
-  - $ARDUINO --install-boards "Intel:i586" > /dev/null
+  - if [[ "$BOARD" = *arduino:sam* ]]; then $ARDUINO --install-boards "arduino:sam" > /dev/null; fi
+  - if [[ "$BOARD" = *arduino:samd* ]]; then $ARDUINO --install-boards "arduino:samd" > /dev/null; fi
+  - if [[ "$BOARD" = *Intel:i586* ]]; then $ARDUINO --install-boards "Intel:i586" > /dev/null; fi
 
 install:
   - ln -s $PWD $ARDUINO_PATH/libraries/OneSheeld
