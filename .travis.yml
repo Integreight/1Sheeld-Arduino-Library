@@ -6,13 +6,13 @@ env:
     - ARDUINO_PATH="./arduino-$(eval echo $ARDUINO_VERSION)"
     - ARDUINO="$(eval echo $ARDUINO_PATH)/arduino"
   matrix:
-    - BOARD='arduino:avr:uno'
-    - BOARD='arduino:avr:mega:cpu=atmega2560'
-    - BOARD='arduino:avr:leonardo'
-    - BOARD='arduino:sam:arduino_due_x_dbg'
-#    - BOARD='arduino:samd:arduino_zero_edbg'
-    - BOARD='Intel:i586:izmir_fd'
-    - BOARD='Intel:i586:izmir_fg'
+    - PLATFORM='arduino:avr'  BOARD='uno'
+    - PLATFORM='arduino:avr'  BOARD='mega:cpu=atmega2560'
+    - PLATFORM='arduino:avr'  BOARD='leonardo'
+    - PLATFORM='arduino:sam'  BOARD='arduino_due_x_dbg'
+#   - PLATFORM='arduino:samd' BOARD='arduino_zero_edbg'
+    - PLATFORM='Intel:i586'   BOARD='izmir_fd'
+    - PLATFORM='Intel:i586'   BOARD='izmir_fg'
 
 before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
@@ -21,15 +21,13 @@ before_install:
   - wget http://downloads.arduino.cc/arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
   - tar xf arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
   - mkdir build
-  - if [[ "$BOARD" = *arduino:sam* ]]; then $ARDUINO --install-boards "arduino:sam" > /dev/null; fi
-  - if [[ "$BOARD" = *arduino:samd* ]]; then $ARDUINO --install-boards "arduino:samd" > /dev/null; fi
-  - if [[ "$BOARD" = *Intel:i586* ]]; then $ARDUINO --install-boards "Intel:i586" > /dev/null; fi
+  - $ARDUINO --install-boards $PLATFORM > /dev/null
 
 install:
   - ln -s $PWD $ARDUINO_PATH/libraries/OneSheeld
 
 before_script:
-  - $ARDUINO --pref build.path=$PWD/build --board $BOARD --save-prefs
+  - $ARDUINO --pref build.path=$PWD/build --board $PLATFORM:$BOARD --save-prefs
 
 script:
   - $ARDUINO --verify $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
