@@ -3,8 +3,6 @@ language: cpp
 env:
   global:
     - ARDUINO_VERSION="1.6.6"
-    - ARDUINO_PATH="./arduino-$(eval echo $ARDUINO_VERSION)"
-    - ARDUINO="$(eval echo $ARDUINO_PATH)/arduino"
   matrix:
     - PLATFORM='arduino:avr'  BOARD='uno'
     - PLATFORM='arduino:avr'  BOARD='mega:cpu=atmega2560'
@@ -20,79 +18,81 @@ before_install:
   - export DISPLAY=:1.0
   - wget http://downloads.arduino.cc/arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
   - tar xf arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
+  - sudo mv arduino-$(eval echo $ARDUINO_VERSION) /usr/local/share/arduino
+  - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
   - mkdir build
-  - $ARDUINO --install-boards $PLATFORM > /dev/null
 
 install:
-  - ln -s $PWD $ARDUINO_PATH/libraries/OneSheeld
+  - arduino --install-boards $PLATFORM > /dev/null
+  - ln -s $PWD /usr/local/share/arduino/libraries/OneSheeld
 
 before_script:
-  - $ARDUINO --pref build.path=$PWD/build --board $PLATFORM:$BOARD --save-prefs
+  - arduino --pref build.path=$PWD/build --board $PLATFORM:$BOARD --save-prefs
 
 script:
-  - $ARDUINO --verify $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Buzzer/Buzzer.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Camera/Camera.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Clock/Clock.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Color/Color.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Email/Email.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Facebook/Facebook.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Foursquare/Foursquare.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/GamePad/GamePad.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/GLCD/GLCD.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/GPS/GPS.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Gravity/Gravity.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Internet/Internet.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Keypad/Keypad.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/LCD/LCD.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Light/Light.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Magnetometer/Magnetometer.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Mic/Mic.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/MusicPlayer/MusicPlayer.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/NFC/NFC.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Notification/Notification.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Orientation/Orientation.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Phone/Phone.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Pressure/Pressure.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Proximity/Proximity.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/SevenSegment/SevenSegment.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Skype/Skype.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/SMS/SMS.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/TextToSpeech/TextToSpeech.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/ToggleButton/ToggleButton.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/Twitter/Twitter.ino
-  - $ARDUINO --verify $PWD/examples/Advanced/VoiceRecognition/VoiceRecognition.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Accelerometer/Accelerometer.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Buzzer/Buzzer.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Camera/Camera.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Color/Color.ino
-  - $ARDUINO --verify $PWD/examples/Simple/DataLogger/DataLogger.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Facebook/Facebook.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Foursquare/Foursquare.ino
-  - $ARDUINO --verify $PWD/examples/Simple/GamePad/GamePad.ino
-  - $ARDUINO --verify $PWD/examples/Simple/GLCD/GLCD.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Gravity/Gravity.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Gyroscope/Gyroscope.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Internet/Internet.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Keyboard/Keyboard.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Keypad/Keypad.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Led/Led.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Light/Light.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Magnetometer/Magnetometer.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Mic/Mic.ino
-  - $ARDUINO --verify $PWD/examples/Simple/MusicPlayer/MusicPlayer.ino
-  - $ARDUINO --verify $PWD/examples/Simple/NFC/NFC.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Notification/Notification.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Orientation/Orientation.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Pattern/Pattern.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Phone/Phone.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Proximity/Proximity.ino
-  - $ARDUINO --verify $PWD/examples/Simple/PushButton/PushButton.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Slider/Slider.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Temperature/Temperature.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Terminal/Terminal.ino
-  - $ARDUINO --verify $PWD/examples/Simple/Twitter/Twitter.ino
-  - $ARDUINO --verify $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
+  - arduino --verify $PWD/examples/Advanced/Accelerometer/Accelerometer.ino
+  - arduino --verify $PWD/examples/Advanced/Buzzer/Buzzer.ino
+  - arduino --verify $PWD/examples/Advanced/Camera/Camera.ino
+  - arduino --verify $PWD/examples/Advanced/Clock/Clock.ino
+  - arduino --verify $PWD/examples/Advanced/Color/Color.ino
+  - arduino --verify $PWD/examples/Advanced/Email/Email.ino
+  - arduino --verify $PWD/examples/Advanced/Facebook/Facebook.ino
+  - arduino --verify $PWD/examples/Advanced/Foursquare/Foursquare.ino
+  - arduino --verify $PWD/examples/Advanced/GamePad/GamePad.ino
+  - arduino --verify $PWD/examples/Advanced/GLCD/GLCD.ino
+  - arduino --verify $PWD/examples/Advanced/GPS/GPS.ino
+  - arduino --verify $PWD/examples/Advanced/Gravity/Gravity.ino
+  - arduino --verify $PWD/examples/Advanced/Internet/Internet.ino
+  - arduino --verify $PWD/examples/Advanced/Keypad/Keypad.ino
+  - arduino --verify $PWD/examples/Advanced/LCD/LCD.ino
+  - arduino --verify $PWD/examples/Advanced/Light/Light.ino
+  - arduino --verify $PWD/examples/Advanced/Magnetometer/Magnetometer.ino
+  - arduino --verify $PWD/examples/Advanced/Mic/Mic.ino
+  - arduino --verify $PWD/examples/Advanced/MusicPlayer/MusicPlayer.ino
+  - arduino --verify $PWD/examples/Advanced/NFC/NFC.ino
+  - arduino --verify $PWD/examples/Advanced/Notification/Notification.ino
+  - arduino --verify $PWD/examples/Advanced/Orientation/Orientation.ino
+  - arduino --verify $PWD/examples/Advanced/Phone/Phone.ino
+  - arduino --verify $PWD/examples/Advanced/Pressure/Pressure.ino
+  - arduino --verify $PWD/examples/Advanced/Proximity/Proximity.ino
+  - arduino --verify $PWD/examples/Advanced/SevenSegment/SevenSegment.ino
+  - arduino --verify $PWD/examples/Advanced/Skype/Skype.ino
+  - arduino --verify $PWD/examples/Advanced/SMS/SMS.ino
+  - arduino --verify $PWD/examples/Advanced/TextToSpeech/TextToSpeech.ino
+  - arduino --verify $PWD/examples/Advanced/ToggleButton/ToggleButton.ino
+  - arduino --verify $PWD/examples/Advanced/Twitter/Twitter.ino
+  - arduino --verify $PWD/examples/Advanced/VoiceRecognition/VoiceRecognition.ino
+  - arduino --verify $PWD/examples/Simple/Accelerometer/Accelerometer.ino
+  - arduino --verify $PWD/examples/Simple/Buzzer/Buzzer.ino
+  - arduino --verify $PWD/examples/Simple/Camera/Camera.ino
+  - arduino --verify $PWD/examples/Simple/Color/Color.ino
+  - arduino --verify $PWD/examples/Simple/DataLogger/DataLogger.ino
+  - arduino --verify $PWD/examples/Simple/Facebook/Facebook.ino
+  - arduino --verify $PWD/examples/Simple/Foursquare/Foursquare.ino
+  - arduino --verify $PWD/examples/Simple/GamePad/GamePad.ino
+  - arduino --verify $PWD/examples/Simple/GLCD/GLCD.ino
+  - arduino --verify $PWD/examples/Simple/Gravity/Gravity.ino
+  - arduino --verify $PWD/examples/Simple/Gyroscope/Gyroscope.ino
+  - arduino --verify $PWD/examples/Simple/Internet/Internet.ino
+  - arduino --verify $PWD/examples/Simple/Keyboard/Keyboard.ino
+  - arduino --verify $PWD/examples/Simple/Keypad/Keypad.ino
+  - arduino --verify $PWD/examples/Simple/Led/Led.ino
+  - arduino --verify $PWD/examples/Simple/Light/Light.ino
+  - arduino --verify $PWD/examples/Simple/Magnetometer/Magnetometer.ino
+  - arduino --verify $PWD/examples/Simple/Mic/Mic.ino
+  - arduino --verify $PWD/examples/Simple/MusicPlayer/MusicPlayer.ino
+  - arduino --verify $PWD/examples/Simple/NFC/NFC.ino
+  - arduino --verify $PWD/examples/Simple/Notification/Notification.ino
+  - arduino --verify $PWD/examples/Simple/Orientation/Orientation.ino
+  - arduino --verify $PWD/examples/Simple/Pattern/Pattern.ino
+  - arduino --verify $PWD/examples/Simple/Phone/Phone.ino
+  - arduino --verify $PWD/examples/Simple/Proximity/Proximity.ino
+  - arduino --verify $PWD/examples/Simple/PushButton/PushButton.ino
+  - arduino --verify $PWD/examples/Simple/Slider/Slider.ino
+  - arduino --verify $PWD/examples/Simple/Temperature/Temperature.ino
+  - arduino --verify $PWD/examples/Simple/Terminal/Terminal.ino
+  - arduino --verify $PWD/examples/Simple/Twitter/Twitter.ino
+  - arduino --verify $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
 #  - for example in $PWD/examples/*/*/*.ino; do arduino --verify $example; done;
 #  - find $PWD/examples -type f -name "*.ino" -exec arduino --verify {} \; 
 
