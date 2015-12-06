@@ -7,7 +7,9 @@
 
   Compiler:      Arduino avr-gcc 4.3.2
 
-  Author:        Integreight
+  Author:        Mostafa Mahmoud
+
+  Email:         mostafa_mahmoud@protonmail.com
 
   Date:          2015.11
 
@@ -17,23 +19,23 @@
 
 #include "ShieldParent.h"
 
-#define NO_REPEAT 65535
+#define VIBRATION_NO_REPEAT 65535
 
 //Output Function IDs
-#define START_PATTERN_FN 0x01
-#define START_DURATION_FN 0x02
-#define STOP_VIBRATION_FN 0x03
+#define VIBRATION_START_PATTERN 0x01
+#define VIBRATION_START_DURATION 0x02
+#define VIBRATION_STOP 0x03
 
 class VibrationShield : public ShieldParent{
 public:
   //Empty Constructor
   VibrationShield();
   //duration and repetitionDelay values range from 0 to 65534
-  void start(int duration,int repetitionDelay = NO_REPEAT);
+  void start(int duration,int repetitionDelay = VIBRATION_NO_REPEAT);
   //Pattern array has maximum length of 126
   //Each element in the pattern array range from 0 to 65534
   //repetitionDelay value range from 0 to 65534
-  void start(byte patternLength,int pattern[],int repetitionDelay = NO_REPEAT);
+  void start(byte patternLength,int pattern[],int repetitionDelay = VIBRATION_NO_REPEAT);
   //Stop function stops repetitive vibrations
   void stop();
 };
