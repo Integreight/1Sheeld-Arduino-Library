@@ -27,8 +27,8 @@ void setup() {
 
 void loop() {
   /* You can send a pattern of vibes */
- 
-  //That pattern makes the phone vibrate for a second and wait for 2 seconds for 3 times
+
+  //That pattern makes the phone wait for 1 second then vibrate for 2 seconds for 3 times
   //send you pattern array size first then the pattern itself to the vibrate function
   Vibration.start(arraySize,pattern);
 

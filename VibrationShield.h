@@ -32,11 +32,11 @@ public:
   VibrationShield();
   //duration and repetitionDelay values range from 0 to 65534
   void start(int duration,int repetitionDelay = VIBRATION_NO_REPEAT);
-  //Pattern array has maximum length of 126
+  //Pattern array has maximum length of 127
   //Each element in the pattern array range from 0 to 65534
   //repetitionDelay value range from 0 to 65534
   void start(byte patternLength,int pattern[],int repetitionDelay = VIBRATION_NO_REPEAT);
-  //Stop function stops repetitive vibrations
+  //Stop function stops vibrations
   void stop();
 };
 //External Object
