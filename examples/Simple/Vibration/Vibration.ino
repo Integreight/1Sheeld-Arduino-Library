@@ -28,15 +28,15 @@ void loop() {
   Vibration.start(1000);
 
   //Wait for 8 seconds
-  
-  /* Make a vibration that lasts for 1 second 
   OneSheeld.delay(8000);
+
+  /* Make a vibration that lasts for 1 second
      and repeat itself with a delay of 5 seconds*/
   Vibration.start(1000,5000);
 
-  //wait for 13 seconds 
-  
+  //wait for 13 seconds
   OneSheeld.delay(13000);
+
   //To stop any repetitive vibration
   Vibration.stop();
 }
