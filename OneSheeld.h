@@ -133,7 +133,6 @@ public:
 	// #endif
 	static bool isInitialized();
 	//Frame Sender
-	void write(byte);
 	void sendShieldFrame(byte , byte ,byte , byte , ...);
 	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
 	void setOnNewShieldFrame(void (*)(byte, byte, byte, byte *,byte **));
@@ -154,7 +153,7 @@ private:
 	bool isAppConnectionCallBack;
 	bool isShieldFrameCallback;
 	bool isSerialDataCallback;
-	bool stopRequested;
+	byte stopRequested;
 	static bool isFirstFrame;
 	bool framestart;
 	static bool inACallback;
@@ -179,6 +178,8 @@ private:
 	static bool isInit;
 	//Checker variable 
 	static unsigned long lastTimeFrameSent;
+	static unsigned long oldMillis;
+  	static unsigned long currentMillis;
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
 	// #ifdef INTERNET_SHIELD
