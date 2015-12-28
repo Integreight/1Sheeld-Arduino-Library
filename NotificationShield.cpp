@@ -16,6 +16,11 @@
 #include "OneSheeld.h"
 #include "NotificationShield.h"
 
+NotificationShieldClass::NotificationShieldClass():ShieldParent(NOTIFICATION_ID)
+{
+	isOnNewCallBackAssigned = false;
+	isOnDataQueryCallBackAssigned =false;
+}
 //Notification Sender
 void NotificationShieldClass::notifyPhone(const char* data)
 {
@@ -40,3 +45,68 @@ void NotificationShieldClass::notifyPhone(String data)
 	notifyPhone(cTypeData);
 }
 
+void NotificationShieldClass::processData()
+{
+	byte functionId = getOneSheeldInstance().getFunctionId();
+	if(functionId == NOTIFICATION_INCOMING)
+	{
+		IncomingNotification myNotification(getOneSheeldInstance().getArgumentData(0)[0]);
+		byte appNameLength =  getOneSheeldInstance().getArgumentLength(1); 
+		char appName[appNameLength+1];
+		for(int i =0 ; i< appNameLength;i++)
+		{
+			appName[i]=getOneSheeldInstance().getArgumentData(1)[i];
+		}
+		appName[appNameLength] = '\0';
+		myNotification.timeStamp = (unsigned long)getOneSheeldInstance().getArgumentData(2)[0]
+					 		|(((unsigned long)getOneSheeldInstance().getArgumentData(2)[1])<<8)
+					 		|(((unsigned long)getOneSheeldInstance().getArgumentData(2)[2])<<16)
+					 		|(((unsigned long)getOneSheeldInstance().getArgumentData(2)[3])<<24);
+ 		myNotification.notificationType =  getOneSheeldInstance().getArgumentData(3)[0];
+		//Invoke Users function
+		if(!isInACallback())
+		{
+			if(isOnNewCallBackAssigned)
+			{
+				enteringACallback();
+				(*onNewNotificationCallback)(myNotification.notificationId,appName,myNotification);
+				exitingACallback();
+			}
+		}
+		
+	}else if(functionId == NOTIFICATION_ON_DATA_QUERY)
+	{
+		byte incomingId = getOneSheeldInstance().getArgumentData(0)[0];
+		byte incomingType = getOneSheeldInstance().getArgumentData(1)[0];
+		int onQueryDataLength = getOneSheeldInstance().getArgumentLength(2);
+		char onQueryData[onQueryDataLength+1];
+		for(int i =0 ; i < onQueryDataLength;i++)
+		{
+			onQueryData[i] = getOneSheeldInstance().getArgumentData(2)[i];
+		}
+		onQueryData[onQueryDataLength]= '\0';
+		byte dataSize = getOneSheeldInstance().getArgumentLength(2);
+		//Invoke Users function
+		if(!isInACallback())
+		{
+			if(isOnDataQueryCallBackAssigned)
+			{
+				enteringACallback();
+				(*onQueryDataCallback)(incomingId,incomingType,onQueryData,dataSize);
+				exitingACallback();
+			}
+		}
+	}
+}
+
+void NotificationShieldClass::onNewNotification(void (*userFunction)(byte , char [],IncomingNotification &))
+{
+	isOnNewCallBackAssigned = true;
+	onNewNotificationCallback = userFunction;
+}
+
+void NotificationShieldClass::onDataQueryResponse(void(*userFunction)(byte , byte , char [], byte ))
+{
+	isOnDataQueryCallBackAssigned = true;
+	onQueryDataCallback = userFunction;
+}

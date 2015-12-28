@@ -289,6 +289,27 @@ setOnNewShieldFrame			KEYWORD2		RESERVED_WORD
 setOnNewSerialData			KEYWORD2		RESERVED_WORD
 startRecording			KEYWORD2		RESERVED_WORD
 stopRecording			KEYWORD2		RESERVED_WORD
+getId			KEYWORD2		RESERVED_WORD
+getTimeStamp			KEYWORD2		RESERVED_WORD
+hasTitle			KEYWORD2		RESERVED_WORD
+hasText			KEYWORD2		RESERVED_WORD
+hasSubText			KEYWORD2		RESERVED_WORD
+hasInfoText			KEYWORD2		RESERVED_WORD
+hasBigText			KEYWORD2		RESERVED_WORD
+hasTextLines			KEYWORD2		RESERVED_WORD
+hasBigTitle			KEYWORD2		RESERVED_WORD
+hasBigTicker			KEYWORD2		RESERVED_WORD
+queryApp			KEYWORD2		RESERVED_WORD
+queryTitle			KEYWORD2		RESERVED_WORD
+queryText			KEYWORD2		RESERVED_WORD
+querySubText			KEYWORD2		RESERVED_WORD
+queryInfoText			KEYWORD2		RESERVED_WORD
+queryBigText			KEYWORD2		RESERVED_WORD
+queryTextLines			KEYWORD2		RESERVED_WORD
+queryBigTitle			KEYWORD2		RESERVED_WORD
+queryBigTicker			KEYWORD2		RESERVED_WORD
+onNewNotification			KEYWORD2		RESERVED_WORD
+onDataQueryResponse			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
@@ -310,6 +331,7 @@ GLCDRadioButton	KEYWORD3		RESERVED_WORD
 GLCDRectangle	KEYWORD3		RESERVED_WORD
 GLCDSlider	KEYWORD3		RESERVED_WORD
 GLCDTextBox	KEYWORD3		RESERVED_WORD
+IncomingNotification	KEYWORD3		RESERVED_WORD
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
