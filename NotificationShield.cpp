@@ -53,7 +53,8 @@ void NotificationShieldClass::processData()
 	byte functionId = getOneSheeldInstance().getFunctionId();
 	if(functionId == NOTIFICATION_INCOMING)
 	{
-		IncomingNotification myNotification(getOneSheeldInstance().getArgumentData(0)[0]);
+		int incomingId = getOneSheeldInstance().getArgumentData(0)[0]|((getOneSheeldInstance().getArgumentData(0)[1])<<8);
+		IncomingNotification myNotification(incomingId);
 		byte appNameLength =  getOneSheeldInstance().getArgumentLength(1); 
 		char appName[appNameLength+1];
 		for(int i =0 ; i< appNameLength;i++)
@@ -79,7 +80,7 @@ void NotificationShieldClass::processData()
 		
 	}else if(functionId == NOTIFICATION_ON_DATA_QUERY)
 	{
-		byte incomingId = getOneSheeldInstance().getArgumentData(0)[0];
+		int incomingId = getOneSheeldInstance().getArgumentData(0)[0]|((getOneSheeldInstance().getArgumentData(0)[1])<<8);
 		byte incomingType = getOneSheeldInstance().getArgumentData(1)[0];
 		int onQueryDataLength = getOneSheeldInstance().getArgumentLength(2);
 		char onQueryData[onQueryDataLength+1];
