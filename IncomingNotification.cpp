@@ -16,16 +16,16 @@
 #include "OneSheeld.h"
 #include "IncomingNotification.h"
 
-IncomingNotification::IncomingNotification(byte id)
+IncomingNotification::IncomingNotification(int id)
 {
 	notificationId= id;
 }
 
-byte IncomingNotification::getId()
+int IncomingNotification::getId()
 { 
 	return notificationId;
 }
-long IncomingNotification::getTimeStamp()
+unsigned long IncomingNotification::getTimeStamp()
 {
 	return timeStamp;
 }

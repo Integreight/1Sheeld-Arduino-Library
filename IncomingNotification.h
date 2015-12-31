@@ -28,15 +28,25 @@
 #define TEXT_BIT 6
 #define TITLE_BIT 7
 
+#define NO_APP_NAME		0x01
+#define NO_TITLE		0x02
+#define NO_TEXT			0x03
+#define NO_SUB_TEXT		0x04
+#define NO_INFO_TEXT	0x05
+#define NO_BIG_TEXT		0x06
+#define NO_TEXT_LINES	0x07
+#define NO_BIG_TITLE	0x08
+#define NO_TICKER		0x09
+
 struct IncomingNotification
 {
-	IncomingNotification(byte);
-	byte notificationId; 
+	IncomingNotification(int);
+	int notificationId; 
 	byte notificationType;
 	char * appName; 
-	long timeStamp;
-	byte getId();
-	long getTimeStamp();
+	unsigned long timeStamp;
+	int getId();
+	unsigned long getTimeStamp();
 	bool hasTitle();
 	bool hasText();
 	bool hasSubText();
