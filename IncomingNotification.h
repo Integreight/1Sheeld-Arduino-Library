@@ -55,8 +55,9 @@ struct IncomingNotification
 	bool hasBigText();
 	bool hasTextLines();
 	bool hasBigTitle();
-	bool hasBigTicker();
-	void queryApp();
+	bool hasTicker();
+	void dismiss();
+	void queryAppName();
 	void queryTitle();
 	void queryText();
 	void querySubText();
@@ -64,7 +65,7 @@ struct IncomingNotification
 	void queryBigText();
 	void queryTextLines();
 	void queryBigTitle();
-	void queryBigTicker();
+	void queryTicker();
 };
 
 #endif
