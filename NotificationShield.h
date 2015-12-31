@@ -50,14 +50,24 @@ public:
 	//Sender 
 	void notifyPhone(const char* );
 	void notifyPhone(String );
-	void onNewNotification(void (*)(byte , char [],IncomingNotification &));
-	void onDataQueryResponse(void(*)(byte , byte , char [], byte ));
+	void onNewNotification(void (*)(int ,const char [],IncomingNotification &));
+	void onDataQueryResponse(void(*)(int , byte ,const char [], byte ));
+	void onNewMessageNotification(void(*)(int , byte ,const char [], const char [], byte ));
+	void onDismiss(void(*)(int ));
+	void onError(void(*)(int , byte ));
+
 	
 private:
 	bool isOnNewCallBackAssigned;
 	bool isOnDataQueryCallBackAssigned;
-	void (*onNewNotificationCallback)(byte ,char [],IncomingNotification &);
-	void (*onQueryDataCallback)(byte, byte , char [],byte);
+	bool isNewMessageCallBackAssigned;
+	bool isDismissedCallBackAssigned;
+	bool isErrorCallBackAssigned;
+	void (*onNewNotificationCallback)(int ,const char [],IncomingNotification &);
+	void (*onQueryDataCallback)(int, byte , const char [],byte);
+	void (*onNewMessageCallback)(int,byte,const char [], const char[],byte);
+	void (*onDimissCallback)(int);
+	void (*onErrorCallback)(int, byte);
 	void processData();
 };
 

@@ -20,6 +20,9 @@ NotificationShieldClass::NotificationShieldClass():ShieldParent(NOTIFICATION_ID)
 {
 	isOnNewCallBackAssigned = false;
 	isOnDataQueryCallBackAssigned =false;
+	isNewMessageCallBackAssigned = false;
+	isDismissedCallBackAssigned = false;
+	isErrorCallBackAssigned = false;
 }
 //Notification Sender
 void NotificationShieldClass::notifyPhone(const char* data)
@@ -96,17 +99,92 @@ void NotificationShieldClass::processData()
 				exitingACallback();
 			}
 		}
+	}else if(functionId == NOTIFICATION_ON_NEW_MESSAGE)
+	{
+		int incomingId = getOneSheeldInstance().getArgumentData(0)[0]|((getOneSheeldInstance().getArgumentData(0)[1])<<8);
+		byte appType = getOneSheeldInstance().getArgumentData(1)[0];
+		int userNameLength = getOneSheeldInstance().getArgumentLength(2);
+		char userName[userNameLength+1];
+		for(int i =0 ; i < userNameLength;i++)
+		{
+			userName[i] = getOneSheeldInstance().getArgumentData(2)[i];
+		}
+		userName[userNameLength]= '\0';
+	
+		int appDataLength = getOneSheeldInstance().getArgumentLength(3);
+		char appData[appDataLength+1];
+		for(int i =0 ; i < appDataLength;i++)
+		{
+			appData[i] = getOneSheeldInstance().getArgumentData(3)[i];
+		}
+		appData[appDataLength]= '\0';
+		byte dataSize = getOneSheeldInstance().getArgumentLength(3);
+		//Invoke Users function
+		if(!isInACallback())
+		{
+			if(isNewMessageCallBackAssigned)
+			{
+				enteringACallback();
+				(*onNewMessageCallback)(incomingId,appType,userName,appData,dataSize);
+				exitingACallback();
+			}
+		}
+	}else if(functionId == NOTIFICATION_ON_DIMISS)
+	{
+		int incomingId = getOneSheeldInstance().getArgumentData(0)[0]|((getOneSheeldInstance().getArgumentData(0)[1])<<8);
+		//Invoke Users function
+		if(!isInACallback())
+		{
+			if(isDismissedCallBackAssigned)
+			{
+				enteringACallback();
+				(*onDimissCallback)(incomingId);
+				exitingACallback();
+			}
+		}
+	}else if(functionId == NOTIFICATION_ON_ERROR)
+	{
+		int incomingId = getOneSheeldInstance().getArgumentData(0)[0]|((getOneSheeldInstance().getArgumentData(0)[1])<<8);
+		byte errorType = getOneSheeldInstance().getArgumentData(1)[0];
+		//Invoke Users function
+		if(!isInACallback())
+		{
+			if(isErrorCallBackAssigned)
+			{
+				enteringACallback();
+				(*onErrorCallback)(incomingId,errorType);
+				exitingACallback();
+			}
+		}
 	}
 }
 
-void NotificationShieldClass::onNewNotification(void (*userFunction)(byte , char [],IncomingNotification &))
+void NotificationShieldClass::onNewNotification(void (*userFunction)(int , const char [],IncomingNotification &))
 {
 	isOnNewCallBackAssigned = true;
 	onNewNotificationCallback = userFunction;
 }
 
-void NotificationShieldClass::onDataQueryResponse(void(*userFunction)(byte , byte , char [], byte ))
+void NotificationShieldClass::onDataQueryResponse(void(*userFunction)(int , byte ,const char [], byte ))
 {
 	isOnDataQueryCallBackAssigned = true;
 	onQueryDataCallback = userFunction;
+}
+
+void NotificationShieldClass::onNewMessageNotification(void(*userFunction)(int , byte ,const char [], const char [], byte ))
+{
+	isNewMessageCallBackAssigned = true;
+	onNewMessageCallback = userFunction;
+}
+
+void NotificationShieldClass::onDismiss(void(*userFunction)(int ))
+{
+	isDismissedCallBackAssigned = true;
+	onDimissCallback = userFunction;
+}
+
+void NotificationShieldClass::onError(void(*userFunction)(int , byte ))
+{
+	isErrorCallBackAssigned = true;
+	onErrorCallback = userFunction;
 }
