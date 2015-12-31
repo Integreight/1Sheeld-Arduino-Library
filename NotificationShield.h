@@ -24,7 +24,23 @@
 //Input Function ID
 #define NOTIFICATION_INCOMING	0x01
 #define NOTIFICATION_ON_DATA_QUERY	0x02
+#define NOTIFICATION_ON_NEW_MESSAGE 0x03
+#define NOTIFICATION_ON_DIMISS		0x04
+#define NOTIFICATION_ON_ERROR		0x05
 
+
+//Error Types
+#define NOTIFICATION_NOT_FOUND_OR_DISMISSED 0x0A
+#define NO_DATA 	0x0B
+
+//Application Types
+#define FACEBOOK	0x01
+#define WHATS_APP	0x02
+#define GMAIL		0x03
+#define HANGOUTS	0x04
+#define TELEGRAM	0x05
+#define LINE		0x06
+#define SLACK		0x07
 
 class NotificationShieldClass : public ShieldParent
 {

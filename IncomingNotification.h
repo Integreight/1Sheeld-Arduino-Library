@@ -16,10 +16,11 @@
 #ifndef IncomingNotification_h
 #define IncomingNotification_h
 
-
-#define NOTIFICATION_QUERY_DATA	  0x02	
+// Output Function ID
+#define NOTIFICATION_QUERY_DATA	  0x02
+#define NOTIFICATION_DIMISS		  0x03	
   
-#define BIG_TICKER_BIT 0
+#define TICKER_BIT 0
 #define BIG_TITLE_BIT 1
 #define TEXT_LINES_BIT 2 
 #define BIG_TEXT_BIT 3 
