@@ -1,96 +1,183 @@
 /*
 
-  Project:       1Sheeld Library 
-  File:          GamePadShield.cpp
-                 
-  Version:       1.0
+  Project:      1Sheeld Library
+  File:         GamePadShield.cpp
 
-  Compiler:      Arduino avr-gcc 4.3.2
+  Version:      1.0
 
-  Author:        Integreight
-                 
-  Date:          2014.5
+  Compiler:     Arduino avr-gcc 4.3.2
+
+  Author:       Integreight
+                Mostafa Mahmoud
+                
+  Date:         2014.5
 
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
 #include "GamePadShield.h"
 
-
-
 //Class Constructor
 GamePadShield::GamePadShield() : ShieldParent(GAMEPAD_ID)
 {
-	value =0;
+  mode = GAMEPAD_KEYS_MODE;
+	keysStatus =0;
+  x = 127;
+  y = 127;
+  power = 0;
+  angle = 0;
+  direction = CENTER;
 	isCallBackAssigned=false;
 }
-
+// get gamepad current mode
+byte GamePadShield::getMode(){
+  return mode;
+}
 //Up ArrowChecker
 bool GamePadShield::isUpPressed()
 {
-	return !!(value & (1<<UP_BIT));
+	return !!(keysStatus & (1<<UP_BIT));
 }
-//Down Arrow Checker 
+//Down Arrow Checker
 bool GamePadShield::isDownPressed()
 {
-	return !!(value & (1<<DOWN_BIT));
+	return !!(keysStatus & (1<<DOWN_BIT));
 }
 //Left Arrow Checker
 bool GamePadShield::isLeftPressed()
-{	
-	return  !!(value & (1<<LEFT_BIT));
+{
+	return  !!(keysStatus & (1<<LEFT_BIT));
 }
 //Right Arrow Checker
 bool GamePadShield::isRightPressed()
 {
-	return !!(value & (1<<RIGHT_BIT));
+	return !!(keysStatus & (1<<RIGHT_BIT));
 }
 //Orange Button Checker
 bool GamePadShield::isOrangePressed()
 {
-	return !!(value & (1<<ORANGE_BIT));
+	return !!(keysStatus & (1<<ORANGE_BIT));
 }
-//Red Button Checker 
+//Red Button Checker
 bool GamePadShield::isRedPressed()
 {
-	return !!(value & (1<<RED_BIT));
+	return !!(keysStatus & (1<<RED_BIT));
 }
-//Green Button Checker 
+//Green Button Checker
 bool GamePadShield::isGreenPressed()
 {
-	return !!(value & (1<<GREEN_BIT));
+	return !!(keysStatus & (1<<GREEN_BIT));
 }
 //Blue Button Checker
 bool GamePadShield::isBluePressed()
 {
-	return !!(value & (1<<BLUE_BIT));
+	return !!(keysStatus & (1<<BLUE_BIT));
+}
+//Analog Stick X Coordinate
+byte GamePadShield::getX(){
+  return x;
+}
+//Analog Stick Y Coordinate
+byte GamePadShield::getY(){
+  return y;
+}
+//Analog Stick power
+byte GamePadShield::getPower(){
+  return power;
+}
+//Analog Stick angle
+short GamePadShield::getAngle(){
+  return angle;
+}
+//Analog Stick direction
+Direction GamePadShield::getDirection(){
+  return direction;
 }
 
-//GamePad Input Data Processing  
+//GamePad Input Data Processing
 void GamePadShield::processData()
 {
 	//Checking Function-ID
 	byte functionId =getOneSheeldInstance().getFunctionId();
-	if(functionId==GAMEPAD_VALUE)
+	if(functionId==GAMEPAD_KEYS_MODE)
 	{
-		value=getOneSheeldInstance().getArgumentData(0)[0];
+    mode = GAMEPAD_KEYS_MODE;
+		keysStatus=getOneSheeldInstance().getArgumentData(0)[0];
+    x = 127;
+    y = 127;
+    angle = 0;
+    power = 0;
+    direction = CENTER;
 		//Users Function Invoked
 		if(isCallBackAssigned && !isInACallback())
 		{
 			enteringACallback();
-			(*buttonChangeCallBack)(!!(value & (1<<UP_BIT)),      !!(value & (1<<DOWN_BIT)),
-									!!(value & (1<<LEFT_BIT)), 	  !!(value & (1<<RIGHT_BIT)),
-									!!(value & (1<<ORANGE_BIT)),  !!(value & (1<<RED_BIT)), 
-									!!(value & (1<<GREEN_BIT)),   !!(value & (1<<BLUE_BIT)));
+			(*buttonChangeCallBack)();
 			exitingACallback();
 		}
 	}
+  else if (functionId== GAMEPAD_ANALOG_MODE) {
+    mode = GAMEPAD_ANALOG_MODE;
+		keysStatus=getOneSheeldInstance().getArgumentData(0)[0];
+    x = getOneSheeldInstance().getArgumentData(1)[0];
+    y = getOneSheeldInstance().getArgumentData(2)[0];
+    calcPower();
+    calcAngle();
+    clacDirection();
+    //Users Function Invoked
+    if(isCallBackAssigned && !isInACallback())
+		{
+			enteringACallback();
+			(*buttonChangeCallBack)();
+			exitingACallback();
+		}
+  }
 }
 
-//Users Function Setter 
-void GamePadShield::setOnButtonChange(void (* userFunction)(unsigned char up,unsigned char down,unsigned char left,unsigned char right,unsigned char orange ,unsigned char red,unsigned char green,unsigned char blue))
+byte GamePadShield::calcPower(){
+  power = (byte)(100 * sqrt((x - 127)
+                * (x - 127) + (y - 127)
+                * (y - 127)) / 127);
+  return power;
+}
+
+short GamePadShield::calcAngle(){
+  angle = (short)(atan2(y - 127,x - 127) * 180 / PI);
+
+  if(angle < 0)
+    angle += 360;
+
+  if (angle != 0)
+    angle = 360 - angle;
+
+  return angle;
+}
+
+Direction GamePadShield::clacDirection(){
+  if (power == 0)
+    direction = CENTER;
+  else if (angle > 338 || angle <= 22)
+    direction = RIGHT;
+  else if (angle > 22 && angle <= 68)
+    direction = UPPER_RIGHT;
+  else if (angle > 68 && angle <= 112)
+    direction = UP;
+  else if (angle > 112 && angle <= 158)
+      direction = UPPER_LEFT;
+  else if (angle > 158 && angle <= 202)
+      direction = LEFT;
+  else if (angle > 202 && angle <= 248)
+      direction = LOWER_LEFT;
+  else if (angle > 248 && angle <= 292)
+      direction = DOWN;
+  else if (angle > 292 && angle <= 338)
+      direction = LOWER_RIGHT;
+  return direction;
+}
+
+//Users Function Setter
+void GamePadShield::setOnButtonChange(void (* userFunction)())
 {
 	buttonChangeCallBack=userFunction;
 	isCallBackAssigned=true;
 }
-
