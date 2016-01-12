@@ -61,6 +61,7 @@ script:
   - arduino --verify $PWD/examples/Advanced/TextToSpeech/TextToSpeech.ino
   - arduino --verify $PWD/examples/Advanced/ToggleButton/ToggleButton.ino
   - arduino --verify $PWD/examples/Advanced/Twitter/Twitter.ino
+  - arduino --verify $PWD/examples/Advanced/Vibration/Vibration.ino
   - arduino --verify $PWD/examples/Advanced/VoiceRecognition/VoiceRecognition.ino
   - arduino --verify $PWD/examples/Simple/Accelerometer/Accelerometer.ino
   - arduino --verify $PWD/examples/Simple/Buzzer/Buzzer.ino
@@ -92,6 +93,7 @@ script:
   - arduino --verify $PWD/examples/Simple/Temperature/Temperature.ino
   - arduino --verify $PWD/examples/Simple/Terminal/Terminal.ino
   - arduino --verify $PWD/examples/Simple/Twitter/Twitter.ino
+  - arduino --verify $PWD/examples/Simple/Vibration/Vibration.ino
   - arduino --verify $PWD/examples/Simple/VoiceRecognition/VoiceRecognition.ino
 #  - for example in $PWD/examples/*/*/*.ino; do arduino --verify $example; done;
 #  - find $PWD/examples -type f -name "*.ino" -exec arduino --verify {} \; 
