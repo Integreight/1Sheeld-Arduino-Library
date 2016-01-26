@@ -1,4 +1,4 @@
-## v1.8.0(010) (November 23, 2015)
+ ## v1.8.0(010) (January 26, 2016)
  - Added the vibration shield.
 
  ## v1.7.0(009) (November 23, 2015)
