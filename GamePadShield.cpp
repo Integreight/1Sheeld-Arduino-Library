@@ -9,7 +9,7 @@
 
   Author:       Integreight
                 Mostafa Mahmoud
-                
+
   Date:         2014.5
 
 */
@@ -123,7 +123,7 @@ void GamePadShield::processData()
     y = getOneSheeldInstance().getArgumentData(2)[0];
     calcPower();
     calcAngle();
-    clacDirection();
+    calcDirection();
     //Users Function Invoked
     if(isCallBackAssigned && !isInACallback())
 		{
@@ -153,7 +153,7 @@ short GamePadShield::calcAngle(){
   return angle;
 }
 
-Direction GamePadShield::clacDirection(){
+Direction GamePadShield::calcDirection(){
   if (power == 0)
     direction = CENTER;
   else if (angle > 338 || angle <= 22)

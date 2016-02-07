@@ -76,7 +76,7 @@ private:
 	//calc angle power and direction functions
 	byte calcPower();
 	short calcAngle();
-	Direction clacDirection();
+	Direction calcDirection();
 	//Process Input Data
 	void processData();
 	//Callback function
