@@ -73,7 +73,7 @@ private:
 	Direction direction;
 	bool isCallBackAssigned;
 
-	//calc angle power and direction functions
+	//calc angle, power and direction functions
 	byte calcPower();
 	short calcAngle();
 	Direction calcDirection();
