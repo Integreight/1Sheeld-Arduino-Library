@@ -51,7 +51,7 @@ void loop()
     /* Wait for 10 seconds. */
     OneSheeld.delay(10000);
     /* Post the picture on Twitter. */
-    Twitter.tweetLastPicture("Posted by @1Sheeld");
+    Twitter.tweetLastPicture("Posted by @1Sheeld and @Arduino");
   }
   else
   {
