@@ -520,6 +520,16 @@ void OneSheeldClass::processFrame(){
   {
     sendShieldFrame(ONESHEELD_ID,0,SEND_LIBRARY_VERSION,0);
   }
+  else if(functionId == LIBRARY_TESTING_REQUEST)
+  {
+    // I will send you 2 arguments:
+    // - "Are you ok?" Check that is it received correctly
+    // - A random number byte array as a challenge for you to solve.
+
+    // RESPOND TO THE CHALLENGE WITH LIBRARY_TESTING_RESPONSE AS AN ARDUINO FRAME:
+    //  - First Argument: "Yup, I’m feeling great!"
+    //  - Answer of the challenge: the sum of all the bytes in a single byte (sum % 256)
+  }
 }
 
 //PulseWidthModulation Getter 
