@@ -33,7 +33,7 @@ void setup()
 
 void loop()
 {
-   /* Always check if the smartphone's GPS and a given longitude and latitude are in a range of 100 meters. */
+   /* Always check if the smartphone's GPS and a given latitude and longitude are in a range of 100 meters. */
   if(GPS.isInRange(30.0831008,31.3242943,100))
   {
     if(!isInRange)
