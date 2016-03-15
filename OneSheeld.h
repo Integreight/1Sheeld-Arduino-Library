@@ -53,7 +53,7 @@
 #define CONNECTION_CHECK_FUNCTION 0x01
 #define DISCONNECTION_CHECK_FUNCTION 0x02
 #define LIBRARY_VERSION_REQUEST	0x03
-#define LIBRARY_TESTING_REQUEST	0x04
+#define LIBRARY_TESTING_REQUEST	0x05
 
 
 //Numer of Shields
@@ -170,6 +170,7 @@ private:
 	byte **arguments;	
 	byte *argumentL;            
 	byte endFrame;
+	const char *testingString;
 	//Shields Counter 
 	static byte shieldsCounter;
 	//Requests Counter
