@@ -26,7 +26,6 @@ bool OneSheeldClass::inACallback=false;
 bool OneSheeldClass::callbacksInterrupts=false;
 bool OneSheeldClass::isFirstFrame=false;
 ShieldParent * OneSheeldClass::shieldsArray[]={0};
-const char * testingString = "Are you ok?";
 // #ifdef INTERNET_SHIELD
 byte OneSheeldClass::requestsCounter=0;
 HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
@@ -527,7 +526,7 @@ void OneSheeldClass::processFrame(){
   }
   else if(functionId == LIBRARY_TESTING_REQUEST)
   {
-    if(memcmp(testingString,getArgumentData(0),11))
+    if(!memcmp("Are you ok?",getArgumentData(0),11))
     {
       const char * responseString = "Yup, I'm feeling great!";
       byte testAnswer = 0;

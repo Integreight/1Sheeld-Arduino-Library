@@ -172,7 +172,6 @@ private:
 	byte **arguments;	
 	byte *argumentL;            
 	byte endFrame;
-	const char *testingString;
 	//Shields Counter 
 	static byte shieldsCounter;
 	//Requests Counter
@@ -200,7 +199,7 @@ private:
 	void enteringACallback();
 	void exitingACallback();
 	bool isInACallback();
-	void processInput(int byte);
+	void processInput(int);
 friend class ShieldParent;
 };
 //Extern Object
