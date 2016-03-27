@@ -109,7 +109,7 @@ class OneSheeldClass
 
 public:
     
-	OneSheeldClass(Stream &s);
+	OneSheeldClass();
 	//Blocking function
 	void waitForAppConnection();
 	//Check connection
@@ -127,12 +127,14 @@ public:
 	void processInput();		
 	//Library Starter
 	void begin();
+	void begin(Stream &s);
 	//Adding objects in array 
 	static void addToShieldsArray(ShieldParent *);
 	// #ifdef INTERNET_SHIELD
 	static void addToUnSentRequestsArray(HttpRequest *);
 	// #endif
 	static bool isInitialized();
+	static bool isSoftwareSerial();
 	//Frame Sender
 	void sendShieldFrame(byte , byte ,byte , byte , ...);
 	void sendShieldFrame(byte , byte , byte , byte , FunctionArg ** );
@@ -140,7 +142,7 @@ public:
 	void setOnNewSerialData(void (*)(byte));
 	//PulseWidthModulation Getter 
 	unsigned char analogRead(int );	 
-	Stream & OneSheeldSerial;
+	Stream * OneSheeldSerial;
 	void delay(unsigned long);
 	bool isCallbacksInterruptsSet();
 	void enableCallbacksInterrupts();
@@ -176,6 +178,7 @@ private:
 	static byte requestsCounter;
 	//Is constructor called
 	static bool isInit;
+	static bool isSws;
 	//Checker variable 
 	static unsigned long lastTimeFrameSent;
 	//Array of pointers to Parents
