@@ -165,7 +165,7 @@ void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functi
   OneSheeldSerial->write((byte)START_OF_FRAME);
   OneSheeldSerial->write(LIBRARY_VERSION);
   OneSheeldSerial->write(shieldID);
-  OneSheeldSerial->write(instanceID);
+  OneSheeldSerial->write(getVerificationByte());
   OneSheeldSerial->write(functionID);
   OneSheeldSerial->write(argNo);
   OneSheeldSerial->write(255-argNo);
@@ -216,7 +216,7 @@ void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functi
   OneSheeldSerial->write((byte)START_OF_FRAME);
   OneSheeldSerial->write(LIBRARY_VERSION);
   OneSheeldSerial->write(shieldID);
-  OneSheeldSerial->write(instanceID);
+  OneSheeldSerial->write(getVerificationByte());
   OneSheeldSerial->write(functionID);
   OneSheeldSerial->write(argNo);
   OneSheeldSerial->write(255-argNo);
@@ -638,4 +638,13 @@ void serialEvent()
 #endif
 {
   if(!OneSheeld.isSoftwareSerial())OneSheeld.processInput();      
+}
+
+byte OneSheeldClass::getVerificationByte()
+{
+  byte randomValue = (byte)random(0,16);
+  byte randomValueComplement = ~(randomValue);
+  randomValue&=0x0F;
+  randomValue = randomValue|(randomValueComplement<<4);
+  return randomValue;
 }

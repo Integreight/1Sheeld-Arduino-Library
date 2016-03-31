@@ -147,6 +147,7 @@ public:
 	bool isCallbacksInterruptsSet();
 	void enableCallbacksInterrupts();
 	void disableCallbacksInterrupts();
+	byte getVerificationByte();
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;
