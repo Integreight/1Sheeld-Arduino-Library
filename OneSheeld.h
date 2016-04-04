@@ -141,13 +141,13 @@ public:
 	void setOnNewShieldFrame(void (*)(byte, byte, byte, byte *,byte **));
 	void setOnNewSerialData(void (*)(byte));
 	//PulseWidthModulation Getter 
-	unsigned char analogRead(int );	 
-	Stream * OneSheeldSerial;
+	unsigned char analogRead(int );	
 	void delay(unsigned long);
 	bool isCallbacksInterruptsSet();
 	void enableCallbacksInterrupts();
 	void disableCallbacksInterrupts();
 	byte getVerificationByte();
+	static Stream * OneSheeldSerial;
 private:
 	//Reserve Variables
 	FloatUnion convertFloatUnion;

@@ -25,6 +25,7 @@ bool OneSheeldClass::inACallback=false;
 bool OneSheeldClass::callbacksInterrupts=false;
 bool OneSheeldClass::isFirstFrame=false;
 ShieldParent * OneSheeldClass::shieldsArray[]={0};
+Stream * OneSheeldClass::OneSheeldSerial = 0;
 // #ifdef INTERNET_SHIELD
 byte OneSheeldClass::requestsCounter=0;
 HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
@@ -49,7 +50,6 @@ OneSheeldClass::OneSheeldClass()
       isAppConnectionCallBack = false;
       isShieldFrameCallback = false;
       isSerialDataCallback = false;
-      OneSheeldSerial=0;
 }
 
 //Library Starter
