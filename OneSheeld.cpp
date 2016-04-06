@@ -28,7 +28,7 @@ ShieldParent * OneSheeldClass::shieldsArray[]={0};
 Stream * OneSheeldClass::OneSheeldSerial = 0;
 // #ifdef INTERNET_SHIELD
 byte OneSheeldClass::requestsCounter=0;
-HttpRequest ** OneSheeldClass::requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
+HttpRequest ** OneSheeldClass::requestsArray=0;
 // #endif
 //Class Constructor
 OneSheeldClass::OneSheeldClass()
@@ -74,32 +74,37 @@ void OneSheeldClass::waitForAppConnection()
   }
 
 }
+
+void OneSheeldClass::init()
+{
+  sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
+  isInit=true;
+  if(requestsArray>0){
+    for(int i=0;i<requestsCounter;i++)
+      requestsArray[i]->sendInitFrame();
+    free(requestsArray);
+    requestsCounter=0;
+  }
+}
+
 //Library Starter
 void OneSheeldClass::begin()
 {
-  begin(115200);
-  isSws=false;
-  sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
-  isInit=true;
-  // #ifdef INTERNET_SHIELD
-  for(int i=0;i<requestsCounter;i++)
-    requestsArray[i]->sendInitFrame();
-  free(requestsArray);
-  // #endif
+  if(!isInit){
+    begin(115200);
+    isSws=false;
+    init();
+  }
 }
 
 //Library Starter
 void OneSheeldClass::begin(Stream &s)
 {
-  OneSheeldSerial=&s;
-  isSws=true;
-  sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
-  isInit=true;
-  // #ifdef INTERNET_SHIELD
-  for(int i=0;i<requestsCounter;i++)
-    requestsArray[i]->sendInitFrame();
-  free(requestsArray);
-  // #endif
+  if(!isInit){
+    OneSheeldSerial=&s;
+    isSws=true;
+    init();
+  }
 }
 
 void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
@@ -111,6 +116,8 @@ void OneSheeldClass::addToShieldsArray(ShieldParent * shield)
 void OneSheeldClass::addToUnSentRequestsArray(HttpRequest * request)
 {
   if(requestsCounter==MAX_NO_OF_REQUESTS) return;
+  if(requestsCounter<=0)
+    requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
   requestsArray[requestsCounter++] = request;  
 }
 // #endif

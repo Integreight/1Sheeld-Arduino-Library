@@ -191,6 +191,7 @@ private:
 	//Send Incomming Data to shields
 	void sendToShields();
 	void begin(long baudRate);
+	void init();
 	void freeMemoryAllocated();
 	void processFrame();
 	void (*isAppConnectedCallBack)(bool);
