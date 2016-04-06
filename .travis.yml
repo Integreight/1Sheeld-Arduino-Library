@@ -2,7 +2,7 @@ language: cpp
 
 env:
   global:
-    - ARDUINO_VERSION="1.6.7"
+    - ARDUINO_VERSION="1.6.8"
   matrix:
     - PLATFORM='arduino:avr'  BOARD='uno'
     - PLATFORM='arduino:avr'  BOARD='mega:cpu=atmega2560'
