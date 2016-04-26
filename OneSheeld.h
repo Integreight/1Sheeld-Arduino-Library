@@ -40,7 +40,7 @@
 #define FROM_ONESHEELD_FOLDER 0x00
 #define FROM_CAMERA_FOLDER	  0x01
 
-// #define DEBUG
+#define DEBUG
 
 //Output function ID's
 #define SEND_LIBRARY_VERSION	0x01
@@ -147,6 +147,7 @@ public:
 	void enableCallbacksInterrupts();
 	void disableCallbacksInterrupts();
 	byte getVerificationByte();
+	void queue();
 	static Stream * OneSheeldSerial;
 private:
 	//Reserve Variables
@@ -173,6 +174,12 @@ private:
 	byte **arguments;	
 	byte *argumentL;            
 	byte endFrame;
+	byte stopRequested;
+	byte stopSequence[7]={0xFF,0x00,0xF0,0x04,0x00,0xFF,0x00};
+	byte startSequence[7]={0xFF,0x00,0xF0,0x05,0x00,0xFF,0x00};
+
+	static unsigned long oldMillis;
+  	static unsigned long currentMillis;
 	//Shields Counter 
 	static byte shieldsCounter;
 	//Requests Counter
