@@ -34,7 +34,7 @@ byte OneSheeldClass::requestsCounter=0;
 HttpRequest ** OneSheeldClass::requestsArray=0;
 // #endif
 
-QueueList <char> queue1;
+QueueList <byte> queue1;
 
 //Class Constructor
 OneSheeldClass::OneSheeldClass()
@@ -305,6 +305,7 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 void OneSheeldClass::processInput(int data) 
 {
     if(data==-1)return;
+    Serial.write(data);
      if(!framestart&&data==START_OF_FRAME)
           {
               freeMemoryAllocated();
@@ -503,9 +504,9 @@ void OneSheeldClass::queue()
 
           if(!queue1.isEmpty())
             {
-              byte data = queue1.pop();
-              processInput(data);
-              // processInput(queue1.pop());
+              // byte data = queue1.pop();
+              // processInput(data);
+              processInput(queue1.pop());
             }
       }
     if(isSerialDataCallback)
