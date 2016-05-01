@@ -306,7 +306,6 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 void OneSheeldClass::processInput(int data) 
 {
     if(data==-1)return;
-    Serial.write(data);
      if(!framestart&&data==START_OF_FRAME)
           {
               freeMemoryAllocated();
@@ -506,8 +505,6 @@ void OneSheeldClass::queue()
 
           if(!queue1.isEmpty())
             {
-              // byte data = queue1.pop();
-              // processInput(data);
               processInput(queue1.pop());
             }
       }
