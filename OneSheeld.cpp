@@ -24,6 +24,7 @@ unsigned long OneSheeldClass::oldMillis=0;
 unsigned long OneSheeldClass::currentMillis=0;
 byte OneSheeldClass::shieldsCounter=0;
 unsigned long OneSheeldClass::lastTimeFrameSent=0;
+unsigned long OneSheeldClass::incomingByteTime=0;
 bool OneSheeldClass::inACallback=false;
 bool OneSheeldClass::callbacksInterrupts=false;
 bool OneSheeldClass::isFirstFrame=false;
@@ -487,6 +488,7 @@ void OneSheeldClass::queue()
   while(OneSheeldSerial->available())
   {
     byte data=OneSheeldSerial->read();
+    incomingByteTime = millis();
     queue1.push(data);
       if(queue1.count()>=7){
           char tempArray[queue1.count()];
@@ -516,6 +518,14 @@ void OneSheeldClass::queue()
       exitingACallback();
     }
       
+  }
+
+  if(millis() - incomingByteTime > 1000)
+  {
+    while(!queue1.isEmpty())
+    {
+      processInput(queue1.pop());
+    }
   }
 }
 

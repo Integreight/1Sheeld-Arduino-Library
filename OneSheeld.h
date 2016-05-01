@@ -180,6 +180,7 @@ private:
 
 	static unsigned long oldMillis;
   	static unsigned long currentMillis;
+  	static unsigned long incomingByteTime;
 	//Shields Counter 
 	static byte shieldsCounter;
 	//Requests Counter
