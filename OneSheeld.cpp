@@ -167,7 +167,7 @@ void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functi
    }
    else
    {
-      while(stopRequested)
+      while(stopRequested || framestart)
       {
         OneSheeld.queue();
         // if(currentMillis - oldMillis > 1000)
