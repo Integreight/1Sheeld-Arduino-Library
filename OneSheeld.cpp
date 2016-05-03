@@ -151,14 +151,14 @@ void OneSheeldClass::setOnNewSerialData(void (*userFunction)(byte))
   serialDataCallback=userFunction;
 }
 
-//Frame Sender for Output Shields
-void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
+void OneSheeldClass::oneSheeldWrite(byte data)
 {
   OneSheeld.queue();
+  // oldMillis = millis();
   if(inACallback){
      OneSheeldClass TempOneSheeld;
      ShieldParent::setOneSheeldInstance(TempOneSheeld);
-        while(stopRequested)
+        while(TempOneSheeld.stopRequested)
         {
           TempOneSheeld.queue();  
         }
@@ -167,84 +167,71 @@ void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functi
    }
    else
    {
-      while(stopRequested || framestart)
+      while(stopRequested)
       {
         OneSheeld.queue();
-        // if(currentMillis - oldMillis > 1000)
+        // if(currentMillis - oldMillis > 2000)
         // {
         //   stopRequested = false;
         // }
         // currentMillis = millis();
      }
    }
- 
+  OneSheeldSerial->write(data);  
+}
+
+//Frame Sender for Output Shields
+void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
+{ 
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
-  OneSheeldSerial->write((byte)START_OF_FRAME);
-  OneSheeldSerial->write(LIBRARY_VERSION);
-  OneSheeldSerial->write(shieldID);
-  OneSheeldSerial->write(getVerificationByte());
-  OneSheeldSerial->write(functionID);
-  OneSheeldSerial->write(argNo);
-  OneSheeldSerial->write(255-argNo);
+  oneSheeldWrite((byte)START_OF_FRAME);
+  oneSheeldWrite(LIBRARY_VERSION);
+  oneSheeldWrite(shieldID);
+  oneSheeldWrite(instanceID);
+  oneSheeldWrite(functionID);
+  oneSheeldWrite(argNo);
+  oneSheeldWrite(255-argNo);
   for (int i=0 ; i<argNo ; i++)
   {
     FunctionArg * temp = va_arg(arguments, FunctionArg *);
-    OneSheeldSerial->write(temp->getLength());
-    OneSheeldSerial->write(255-(temp->getLength()));
-
+    oneSheeldWrite(temp->getLength());
+    oneSheeldWrite(255-(temp->getLength()));
       for (int j=0 ; j<temp->getLength() ; j++)
       {
         byte* tempData=temp->getData();
-        OneSheeldSerial->write(tempData[j]);
+        oneSheeldWrite(tempData[j]);
       }
     delete(temp);
 
  }
-    OneSheeldSerial->write((byte)END_OF_FRAME);
+    oneSheeldWrite((byte)END_OF_FRAME);
     va_end(arguments);
 }
 
 void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functionID, byte argNo, FunctionArg ** arguments)
 {
-  OneSheeld.queue();
-  while(stopRequested)
-  {
-    OneSheeld.queue();
-    if(currentMillis - oldMillis > 1000)
-    {
-      stopRequested = false;
-    }
-    currentMillis = millis();
- }
-  if(inACallback){
-     OneSheeldClass TempOneSheeld;
-     ShieldParent::setOneSheeldInstance(TempOneSheeld);
-        if(TempOneSheeld.OneSheeldSerial->available())
-          TempOneSheeld.processInput(TempOneSheeld.OneSheeldSerial->read());
-      ShieldParent::unSetOneSheeldInstance();
-   }
   isFirstFrame=true;
-  OneSheeldSerial->write((byte)START_OF_FRAME);
-  OneSheeldSerial->write(LIBRARY_VERSION);
-  OneSheeldSerial->write(shieldID);
-  OneSheeldSerial->write(getVerificationByte());
-  OneSheeldSerial->write(functionID);
-  OneSheeldSerial->write(argNo);
-  OneSheeldSerial->write(255-argNo);
+  oneSheeldWrite((byte)START_OF_FRAME);
+  oneSheeldWrite(LIBRARY_VERSION);
+  oneSheeldWrite(shieldID);
+  oneSheeldWrite(getVerificationByte());
+  oneSheeldWrite(functionID);
+  oneSheeldWrite(argNo);
+  oneSheeldWrite(255-argNo);
   
   for (int i=0 ; i<argNo ; i++)
   {
-    OneSheeldSerial->write(arguments[i]->getLength());
-    OneSheeldSerial->write(255-(arguments[i]->getLength()));
+    oneSheeldWrite(arguments[i]->getLength());
+    oneSheeldWrite(255-(arguments[i]->getLength()));
       for (int j=0 ; j<arguments[i]->getLength() ; j++)
       {
         byte* tempData=arguments[i]->getData();
-        OneSheeldSerial->write(tempData[j]);
+        oneSheeldWrite(tempData[j]);
       }
  }
-    OneSheeldSerial->write((byte)END_OF_FRAME);
+    oneSheeldWrite((byte)END_OF_FRAME);
 }
 
 bool OneSheeldClass::isAppConnected()
@@ -430,6 +417,7 @@ void OneSheeldClass::processInput(int data)
             endFrame=data;
               if(endFrame==END_OF_FRAME)                                   //if the endframe is equal to zero send to shields and free memory
               {
+                      framestart = false;
                       sendToShields();
                       if(isShieldFrameCallback)
                       {
@@ -517,7 +505,7 @@ void OneSheeldClass::queue()
       
   }
 
-  if(millis() - incomingByteTime > 1000)
+  if(millis() - incomingByteTime > 10)
   {
     while(!queue1.isEmpty())
     {

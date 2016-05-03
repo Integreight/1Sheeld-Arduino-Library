@@ -148,6 +148,7 @@ public:
 	void disableCallbacksInterrupts();
 	byte getVerificationByte();
 	void queue();
+	void oneSheeldWrite(byte );
 	static Stream * OneSheeldSerial;
 private:
 	//Reserve Variables
