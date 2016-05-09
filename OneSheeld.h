@@ -201,6 +201,7 @@ private:
 	void exitingACallback();
 	bool isInACallback();
 	void processInput(int);
+	void oneSheeldWrite(byte data);
 friend class ShieldParent;
 };
 //Extern Object

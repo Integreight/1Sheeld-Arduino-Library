@@ -142,6 +142,11 @@ void OneSheeldClass::setOnNewSerialData(void (*userFunction)(byte))
   isSerialDataCallback=true;
   serialDataCallback=userFunction;
 }
+void OneSheeldClass::oneSheeldWrite(byte data)
+{
+  OneSheeldSerial->write(data);
+  delay(3);
+}
 
 //Frame Sender for Output Shields
 void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functionID, byte argNo, ...)
@@ -169,30 +174,30 @@ void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functi
   isFirstFrame=true;
   va_list arguments ;
   va_start (arguments,argNo);
-  OneSheeldSerial->write((byte)START_OF_FRAME);
-  OneSheeldSerial->write(LIBRARY_VERSION);
-  OneSheeldSerial->write(shieldID);
-  OneSheeldSerial->write(getVerificationByte());
-  OneSheeldSerial->write(functionID);
-  OneSheeldSerial->write(argNo);
-  OneSheeldSerial->write(255-argNo);
+  oneSheeldWrite((byte)START_OF_FRAME);
+  oneSheeldWrite(LIBRARY_VERSION);
+  oneSheeldWrite(shieldID);
+  oneSheeldWrite(getVerificationByte());
+  oneSheeldWrite(functionID);
+  oneSheeldWrite(argNo);
+  oneSheeldWrite(255-argNo);
 
 
   for (int i=0 ; i<argNo ; i++)
   {
     FunctionArg * temp = va_arg(arguments, FunctionArg *);
-    OneSheeldSerial->write(temp->getLength());
-    OneSheeldSerial->write(255-(temp->getLength()));
+    oneSheeldWrite(temp->getLength());
+    oneSheeldWrite(255-(temp->getLength()));
 
       for (int j=0 ; j<temp->getLength() ; j++)
       {
         byte* tempData=temp->getData();
-        OneSheeldSerial->write(tempData[j]);
+        oneSheeldWrite(tempData[j]);
       }
     delete(temp);
 
  }
-    OneSheeldSerial->write((byte)END_OF_FRAME);
+    oneSheeldWrite((byte)END_OF_FRAME);
     va_end(arguments);
     if(shieldID!=ONESHEELD_ID)lastTimeFrameSent=millis()+1;
 }
@@ -220,25 +225,25 @@ void OneSheeldClass::sendShieldFrame(byte shieldID, byte instanceID, byte functi
   }
 
   isFirstFrame=true;
-  OneSheeldSerial->write((byte)START_OF_FRAME);
-  OneSheeldSerial->write(LIBRARY_VERSION);
-  OneSheeldSerial->write(shieldID);
-  OneSheeldSerial->write(getVerificationByte());
-  OneSheeldSerial->write(functionID);
-  OneSheeldSerial->write(argNo);
-  OneSheeldSerial->write(255-argNo);
+  oneSheeldWrite((byte)START_OF_FRAME);
+  oneSheeldWrite(LIBRARY_VERSION);
+  oneSheeldWrite(shieldID);
+  oneSheeldWrite(getVerificationByte());
+  oneSheeldWrite(functionID);
+  oneSheeldWrite(argNo);
+  oneSheeldWrite(255-argNo);
   
   for (int i=0 ; i<argNo ; i++)
   {
-    OneSheeldSerial->write(arguments[i]->getLength());
-    OneSheeldSerial->write(255-(arguments[i]->getLength()));
+    oneSheeldWrite(arguments[i]->getLength());
+    oneSheeldWrite(255-(arguments[i]->getLength()));
       for (int j=0 ; j<arguments[i]->getLength() ; j++)
       {
         byte* tempData=arguments[i]->getData();
-        OneSheeldSerial->write(tempData[j]);
+        oneSheeldWrite(tempData[j]);
       }
  }
-    OneSheeldSerial->write((byte)END_OF_FRAME);
+    oneSheeldWrite((byte)END_OF_FRAME);
     if(shieldID!=ONESHEELD_ID)lastTimeFrameSent=millis()+1;
 }
 bool OneSheeldClass::isAppConnected()
