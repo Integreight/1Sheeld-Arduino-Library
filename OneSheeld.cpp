@@ -424,6 +424,7 @@ void OneSheeldClass::processInput(int data)
             endFrame=data;
               if(endFrame==END_OF_FRAME)                                   //if the endframe is equal to zero send to shields and free memory
               {
+                      framestart=false;
                       sendToShields();
                       if(isShieldFrameCallback)
                       {
