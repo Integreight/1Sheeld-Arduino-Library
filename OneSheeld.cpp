@@ -145,7 +145,7 @@ void OneSheeldClass::setOnNewSerialData(void (*userFunction)(byte))
 void OneSheeldClass::oneSheeldWrite(byte data)
 {
   OneSheeldSerial->write(data);
-  delay(3);
+  delay(2);
 }
 
 //Frame Sender for Output Shields
