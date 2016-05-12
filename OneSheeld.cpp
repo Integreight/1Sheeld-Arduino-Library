@@ -50,6 +50,7 @@ OneSheeldClass::OneSheeldClass()
       isAppConnectionCallBack = false;
       isShieldFrameCallback = false;
       isSerialDataCallback = false;
+      dontDelay = false;
 }
 
 //Library Starter
@@ -145,7 +146,10 @@ void OneSheeldClass::setOnNewSerialData(void (*userFunction)(byte))
 void OneSheeldClass::oneSheeldWrite(byte data)
 {
   OneSheeldSerial->write(data);
-  delay(2);
+  if(!dontDelay)
+  {
+    delay(2);
+  }
 }
 
 //Frame Sender for Output Shields
@@ -589,7 +593,9 @@ void OneSheeldClass::enteringACallback()
   if(!isInACallback())
   {
     inACallback=true;
+    dontDelay = true;
     sendShieldFrame(ONESHEELD_ID,0,CALLBACK_ENTERED,0);
+    dontDelay = false;
   }
 }
 
@@ -598,7 +604,9 @@ void OneSheeldClass::exitingACallback()
   if(isInACallback())
   {
     inACallback=false;
+    dontDelay = true;
     sendShieldFrame(ONESHEELD_ID,0,CALLBACK_EXITED,0);
+    dontDelay = false;
   }
 }
 

@@ -157,6 +157,7 @@ private:
 	bool isAppConnectionCallBack;
 	bool isShieldFrameCallback;
 	bool isSerialDataCallback;
+	bool dontDelay;
 	static bool isFirstFrame;
 	bool framestart;
 	static bool inACallback;
