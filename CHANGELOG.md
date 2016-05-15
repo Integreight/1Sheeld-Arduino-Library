@@ -1,9 +1,12 @@
+ ## v1.9.1(012) (May 15, 2016)
+ - Added a workaround for 1Sheeld+ slow sending to prevent overruns.
+
  ## v1.9.0(011) (April 4, 2016)
  - Prepared the library to work with SoftwareSerial and AltSoftSerial libraries. (BETA)
  - Made the library connection testable.
  - Added a verification byte to frames sent.
 
-  ## v1.8.0(010) (January 26, 2016)
+ ## v1.8.0(010) (January 26, 2016)
  - Added the vibration shield.
 
  ## v1.7.0(009) (November 23, 2015)
