@@ -1,3 +1,6 @@
+ ## v1.9.2(013) (May 17, 2016)
+ - Used the correct delay method for 1Sheeld+ workaround.
+
  ## v1.9.1(012) (May 15, 2016)
  - Added a workaround for 1Sheeld+ slow sending to prevent overruns.
 
