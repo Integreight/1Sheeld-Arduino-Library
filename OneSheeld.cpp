@@ -435,7 +435,7 @@ void OneSheeldClass::processInput(int data)
               {
                       framestart=false;
                       sendToShields();
-                      if(isShieldFrameCallback)
+                      if(isShieldFrameCallback && shield!=0)
                       {
                         enteringACallback();
                         shieldFrameCallback(shield,functions,argumentnumber,argumentL,arguments);
