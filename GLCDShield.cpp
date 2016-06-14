@@ -33,8 +33,6 @@ void GLCDShield::clear()
 
 void GLCDShield::draw(ShapeClass &usersShape)
 {
-  byte currentShapeType = usersShape.shapeType;
-
   if(usersShape.isInteractiveShape)
   {
     bool shapeIsAdded = addToShapesArray(usersShape);

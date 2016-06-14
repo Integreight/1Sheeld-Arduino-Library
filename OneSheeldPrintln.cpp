@@ -42,7 +42,7 @@ void PrintlnClass::println(char data)
 	print(buffer);
 }
 //Print integers with newline 
-void PrintlnClass::println(int data ,byte base)
+void PrintlnClass::println(int data)
 {
 	char stringPointer[10];
 	snprintf(stringPointer,9,"%d",data);
@@ -51,7 +51,7 @@ void PrintlnClass::println(int data ,byte base)
 	print(stringPointer);
 }
 //Print unsigned integers with newline
-void PrintlnClass::println(unsigned int data , byte base)
+void PrintlnClass::println(unsigned int data)
 {
 	char stringPointer[9];
 	snprintf(stringPointer,8,"%d",data);
@@ -60,7 +60,7 @@ void PrintlnClass::println(unsigned int data , byte base)
 	print(stringPointer);
 }
 //Print long with newline
-void PrintlnClass::println(long data ,byte base)
+void PrintlnClass::println(long data)
 {
 	char stringPointer[15];
 	snprintf(stringPointer,14,"%ld",data);
@@ -69,7 +69,7 @@ void PrintlnClass::println(long data ,byte base)
 	print(stringPointer);
 }
 //Print unsigned long with newline
-void PrintlnClass::println(unsigned long data , byte base)
+void PrintlnClass::println(unsigned long data)
 {
 	char stringPointer[14];
 	snprintf(stringPointer,13,"%lu",data);

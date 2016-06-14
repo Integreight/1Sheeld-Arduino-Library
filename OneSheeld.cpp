@@ -80,7 +80,7 @@ void OneSheeldClass::init()
 {
   sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isInit=true;
-  if(requestsArray>0){
+  if(requestsArray!=0){
     for(int i=0;i<requestsCounter;i++)
       requestsArray[i]->sendInitFrame();
     free(requestsArray);
@@ -470,7 +470,7 @@ void OneSheeldClass::processInput(int data)
                 else if(counter==2){
                   verificationByte=data;
                   byte leastBits = verificationByte & 0x0F;
-                  if((255-verificationByte>>4) != leastBits) framestart =false;
+                  if(((255-verificationByte)>>4) != leastBits) framestart =false;
                   #ifdef DEBUG
                   Serial.print("C2 ");
                   #endif

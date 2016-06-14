@@ -37,7 +37,7 @@ void PrintClass::print(char data)
 	OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,new FunctionArg(1,(byte *)&data));
 }
 //Print integers
-void PrintClass::print(int data, byte base)
+void PrintClass::print(int data)
 {
 	char stringPointer[7];
 	snprintf(stringPointer,7,"%d",data);
@@ -45,7 +45,7 @@ void PrintClass::print(int data, byte base)
 	OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));
 }
 //Print unsigned integers 
-void PrintClass::print(unsigned int data, byte base)
+void PrintClass::print(unsigned int data)
 {
 	char stringPointer[6];
 	snprintf(stringPointer,6,"%d",data);
@@ -53,7 +53,7 @@ void PrintClass::print(unsigned int data, byte base)
 	OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));
 }
 //Print long integers
-void PrintClass::print(long data, byte base)
+void PrintClass::print(long data)
 {
 	char stringPointer[12];
 	snprintf(stringPointer,12,"%ld",data);
@@ -61,7 +61,7 @@ void PrintClass::print(long data, byte base)
 	OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,new FunctionArg(strlen(stringPointer),(byte *)stringPointer));
 }
 //Print unsigned long integers
-void PrintClass::print(unsigned long data , byte base)
+void PrintClass::print(unsigned long data)
 {
 	char stringPointer[11];
 	snprintf(stringPointer,11,"%lu",data);
