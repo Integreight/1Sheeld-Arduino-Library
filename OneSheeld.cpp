@@ -21,6 +21,7 @@ bool OneSheeldClass::isInit=false;
 bool OneSheeldClass::isSws=false;
 byte OneSheeldClass::shieldsCounter=0;
 unsigned long OneSheeldClass::lastTimeFrameSent=0;
+unsigned long OneSheeldClass::argumentDataBytesTimeReceived=0;
 bool OneSheeldClass::inACallback=false;
 bool OneSheeldClass::callbacksInterrupts=false;
 bool OneSheeldClass::isFirstFrame=false;
@@ -309,6 +310,11 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 void OneSheeldClass::processInput(int data) 
 {
     if(data==-1)return;
+    if((millis() - argumentDataBytesTimeReceived) > 100 && argumentDataBytesTimeReceived !=0) 
+      {
+        framestart = false;
+        argumentDataBytesTimeReceived = 0;
+      }
      if(!framestart&&data==START_OF_FRAME)
           {
               freeMemoryAllocated();
@@ -403,6 +409,7 @@ void OneSheeldClass::processInput(int data)
           }
           else if (counter==8&&framestart)
           {
+              argumentDataBytesTimeReceived = millis();
               #ifdef DEBUG
               Serial.print("C8 ");
               #endif

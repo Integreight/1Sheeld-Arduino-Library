@@ -183,6 +183,8 @@ private:
 	static bool isSws;
 	//Checker variable 
 	static unsigned long lastTimeFrameSent;
+
+	static unsigned long argumentDataBytesTimeReceived;
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
 	// #ifdef INTERNET_SHIELD
