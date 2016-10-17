@@ -2,7 +2,7 @@
 
 ## Overview ##
 
-This library is crucial when working with 1Sheeld board, as it is the interface to your smartphone's accessories, sensors and virtual shields. It allows you to communicate and interact with our mobile app using our own custom protocol.
+This library is crucial when working with 1Sheeld board, as it is the interface to your smartphone's accessories, sensors and virtual [Arduino shields](http://1sheeld.com). It allows you to communicate and interact with our mobile app using our own custom protocol.
 
 ## Installation ##
 
