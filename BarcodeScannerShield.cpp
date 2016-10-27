@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          BarcodeShield.cpp
+  File:          BarcodeScannerShield.cpp
                  
   Version:       1.9.3
 
@@ -14,83 +14,76 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "BarcodeShield.h"
+#include "BarcodeScannerShield.h"
 
 
 //Constructor 
-BarcodeShield::BarcodeShield() : ShieldParent(BARCODE_ID)
+BarcodeScannerShield::BarcodeScannerShield() : ShieldParent(BARCODE_ID)
 {
 	isNewBarcode= false;
-	is1DCallbackAssigned= false;
-	is2DCallbackAssigned= false;
+	isCallbackAssigned= false;
 	isNextDataResponseCallbackAssigned= false;
 	isParameterCallbackAssigned= false;
 	isErrorCallbackAssigned= false;
 	barcodeDataLength= 0;
 	barcodeFormat= 0;
-	twoDBarcodeLength= 0;
-	twoDBarcodeCategory= 0;
+	barcodeCategory= 0;
 	errorNumber= 0;
 	barcodeMaxLength= 0;
 	index= 0;
 	barcodeData= '\0';
 }
 
-void BarcodeShield::queryBarcodeNextBytes(byte length)
+void BarcodeScannerShield::queryNextBytes(byte length)
 {
-	OneSheeld.sendShieldFrame(BARCODE_ID,0,BARCODE_QUERY_2D_NEXT_BYTES,1,new FunctionArg(1,&length));
+	OneSheeld.sendShieldFrame(BARCODE_ID,0,BARCODE_QUERY_NEXT_BYTES,1,new FunctionArg(1,&length));
 }
 
-void BarcodeShield::query2DBarcodeParameterValue(const char * parameter)
+void BarcodeScannerShield::queryParameterValue(const char * parameter)
 {
 	OneSheeld.sendShieldFrame(BARCODE_ID,0,BARCODE_QUERY_PARAMETER,1,new FunctionArg(strlen(parameter),(byte *)parameter));	
 }
 
-void BarcodeShield::enableBarcodeInterrupt()
-{
-	OneSheeld.sendShieldFrame(BARCODE_ID,0,BARCODE_ENABLE_INTERRUPT,0);	
-}
-
-void BarcodeShield::disableBarcodeInterrupt()
-{
-	OneSheeld.sendShieldFrame(BARCODE_ID,0,BARCODE_DISABLE_INTERRUPT,0);	
-}
-
-char * BarcodeShield::getBarcodeData()
+char * BarcodeScannerShield::getData()
 {
 	isNewBarcode=false;
 	return barcodeData;
 }
 
-int BarcodeShield::getBarcodeMaxDataLength()
+int BarcodeScannerShield::getMaxDataLength()
 {
 	return barcodeMaxLength;
 } 
 
-bool BarcodeShield::isNewBarcodeScanned()
+bool BarcodeScannerShield::isNewBarcodeScanned()
 {
 	return isNewBarcode;
 }
 
-bool BarcodeShield::isFullySent()
+bool BarcodeScannerShield::isFullySent()
 {
 	return (index>=barcodeMaxLength);
 }
 
-byte BarcodeShield::get2DBarcodeCategory()
+byte BarcodeScannerShield::getCategory()
 {
 	isNewBarcode=false;
-	return twoDBarcodeCategory;
+	return barcodeCategory;
 }
 
-byte BarcodeShield::getBarcodeFormat()
+byte BarcodeScannerShield::getFormat()
 {
 	isNewBarcode=false;
 	return barcodeFormat;
 }
 
+byte BarcodeScannerShield::getDataLength()
+{
+	return barcodeDataLength;
+}
+
 //Process Input Data
-void BarcodeShield::processData()
+void BarcodeScannerShield::processData()
 {
 	byte functionID = getOneSheeldInstance().getFunctionId();
 
@@ -116,10 +109,10 @@ void BarcodeShield::processData()
 		//Invoke Users function
 		if(!isInACallback())
 		{
-			if(is1DCallbackAssigned)
+			if(isCallbackAssigned)
 			{
 				enteringACallback();
-				(*OneDBarcodeCallback)(barcodeFormat,barcodeMaxLength,barcodeData);
+				(*barcodeCallback)(barcodeFormat,NO_CATEGORY,barcodeMaxLength,barcodeData);
 				exitingACallback();
 			}
 		}
@@ -129,7 +122,7 @@ void BarcodeShield::processData()
 	{
 		isNewBarcode = true;
 		barcodeFormat = getOneSheeldInstance().getArgumentData(0)[0];
-		twoDBarcodeCategory = getOneSheeldInstance().getArgumentData(1)[0];
+		barcodeCategory = getOneSheeldInstance().getArgumentData(1)[0];
 		barcodeMaxLength = getOneSheeldInstance().getArgumentData(2)[0]|((getOneSheeldInstance().getArgumentData(2)[1])<<8);
 
 		if (barcodeData!=0)
@@ -149,10 +142,10 @@ void BarcodeShield::processData()
 		//Invoke Users function
 		if(!isInACallback())
 		{
-			if(is2DCallbackAssigned)
+			if(isCallbackAssigned)
 			{
 				enteringACallback();
-				(*twoDBarcodeCallback)(barcodeFormat,twoDBarcodeCategory,barcodeMaxLength,barcodeData);
+				(*barcodeCallback)(barcodeFormat,barcodeCategory,barcodeMaxLength,barcodeData);
 				exitingACallback();
 			}
 		}
@@ -214,31 +207,25 @@ void BarcodeShield::processData()
 	}
 }
 //Users Function Setter 
-void BarcodeShield::on1DBarcodeScanned(void (*userFunction)(byte ,int ,char* ))
+void BarcodeScannerShield::onNewBarcodeScanned(void (*userFunction)(byte , byte , int ,char*))
 {
-	OneDBarcodeCallback=userFunction;
-	is1DCallbackAssigned=true;
+	barcodeCallback=userFunction;
+	isCallbackAssigned=true;
 }
 
-void BarcodeShield::on2DBarcodeScanned(void (*userFunction)(byte , byte , int ,char*))
-{
-	twoDBarcodeCallback=userFunction;
-	is2DCallbackAssigned=true;
-}
-
-void BarcodeShield::onNextDataResponse(void (*userFunction)(byte, char *))
+void BarcodeScannerShield::onNextDataResponse(void (*userFunction)(byte, char *))
 {
 	nextDataResponseCallback=userFunction;
 	isNextDataResponseCallbackAssigned=true;
 }
 
-void BarcodeShield::onParameterValueResponse(void (*userFunction)(char * , char *))
+void BarcodeScannerShield::onParameterValueResponse(void (*userFunction)(char * , char *))
 {
 	parameterValueCallback=userFunction;
 	isParameterCallbackAssigned=true;
 }
 
-void BarcodeShield::onCodeError(void (*userFunction)(byte))
+void BarcodeScannerShield::onError(void (*userFunction)(byte))
 {
 	errorCallback=userFunction;
 	isErrorCallbackAssigned=true;

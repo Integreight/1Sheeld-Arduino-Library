@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          BarcodeShield.h
+  File:          BarcodeScannnerShield.h
                  
   Version:       1.9.3
 
@@ -12,16 +12,14 @@
   Date:          2016.10
 
 */
-#ifndef	BarcodeShield_h
-#define BarcodeShield_h
+#ifndef	BarcodeScannerShield_h
+#define BarcodeScannerShield_h
 
 #include "ShieldParent.h"
 
 //Output  function ID's
 #define BARCODE_QUERY_PARAMETER	    0x01
-#define BARCODE_QUERY_2D_NEXT_BYTES	0x02
-#define BARCODE_ENABLE_INTERRUPT	0x03
-#define BARCODE_DISABLE_INTERRUPT	0x04
+#define BARCODE_QUERY_NEXT_BYTES	0x02
 
 //Input Function ID's 
 #define BARCODE_GET_1D 				0x01
@@ -53,6 +51,7 @@
 #define DATA_MATRIX	0x0D 
 
 //2D Barcode Categories
+#define NO_CATEGORY	 0x00
 #define CODE_URL	 0x01
 #define CODE_TXT	 0x02
 #define CODE_EMAIL	 0x03
@@ -64,50 +63,45 @@
 #define CODE_EVENT	 0x09
 
 
-class BarcodeShield : public ShieldParent
+class BarcodeScannerShield : public ShieldParent
 {
 public:
 	//Constructor 
-	BarcodeShield();
+	BarcodeScannerShield();
 	bool isNewBarcodeScanned();
 	bool isFullySent();
-	byte getBarcodeFormat();
-	byte get2DBarcodeCategory();
-	int getBarcodeMaxDataLength();
-	char * getBarcodeData();
-	void queryBarcodeNextBytes(byte=64);
-	void query2DBarcodeParameterValue(const char *);
-	void enableBarcodeInterrupt();
-	void disableBarcodeInterrupt();
-	void on1DBarcodeScanned(void (*)(byte ,int ,char* ));
-	void on2DBarcodeScanned(void (*)(byte , byte , int ,char*));
+	byte getFormat();
+	byte getCategory();
+	byte getDataLength();
+	int getMaxDataLength();
+	char * getData();
+	void queryNextBytes(byte=128);
+	void queryParameterValue(const char *);
+	void onNewBarcodeScanned(void (*)(byte , byte , int ,char*));
 	void onNextDataResponse(void (*)(byte, char *));
 	void onParameterValueResponse(void (*)(char * , char *));
-	void onCodeError(void (*)(byte));
+	void onError(void (*)(byte));
 
 private:
 	bool isNewBarcode;
-	bool is1DCallbackAssigned;
-	bool is2DCallbackAssigned;
+	bool isCallbackAssigned;
 	bool isNextDataResponseCallbackAssigned;
 	bool isParameterCallbackAssigned;
 	bool isErrorCallbackAssigned;
 	byte barcodeDataLength;
 	byte barcodeFormat;
-	byte twoDBarcodeLength;
-	byte twoDBarcodeCategory;
+	byte barcodeCategory;
 	byte errorNumber;
 	int  barcodeMaxLength;
 	int  index;
 	char * barcodeData;
 
-	void (*OneDBarcodeCallback)(byte,int,char *);
-	void (*twoDBarcodeCallback)(byte ,byte,int,char*);
+	void (*barcodeCallback)(byte ,byte,int,char*);
 	void (*nextDataResponseCallback)(byte,char*);
 	void (*parameterValueCallback)(char*,char*);
 	void (*errorCallback)(byte);
 	void processData();
 };
 //Extern Object
-extern BarcodeShield Barcode;
+extern BarcodeScannerShield BarcodeScanner;
 #endif

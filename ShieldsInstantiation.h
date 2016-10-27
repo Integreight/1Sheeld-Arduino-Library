@@ -181,6 +181,6 @@ EXTERN GLCDShield GLCD;
 EXTERN VibrationShield Vibration;
 #endif
 
-#ifdef INCLUDE_BARCODE_SHIELD
-EXTERN BarcodeShield Barcode;
+#ifdef INCLUDE_BARCODE_SCANNER_SHIELD
+EXTERN BarcodeScannerShield BarcodeScanner;
 #endif
