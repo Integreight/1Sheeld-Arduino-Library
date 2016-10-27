@@ -56,3 +56,4 @@
 #include "NFCShield.h"
 #include "GLCDShield.h"
 #include "VibrationShield.h"
+#include "BarcodeShield.h"

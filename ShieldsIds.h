@@ -56,4 +56,5 @@
 #define PATTERN_ID			 0x27
 #define GLCD_ID				 0x28
 #define INTERNET_ID	 		 0x29
-#define VIBRATION_ID        0x2A
+#define VIBRATION_ID         0x2A
+#define BARCODE_ID			 0x2B
