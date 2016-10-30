@@ -57,7 +57,14 @@ OneSheeldClass::OneSheeldClass()
 //Library Starter
 void OneSheeldClass::begin(long baudRate)
 {
-  #if defined(__AVR_ATmega32U4__) || defined(ARDUINO_LINUX)
+  #if(defined(__AVR_ATmega32U4__) || \
+     defined(ARDUINO_LINUX) || \
+     defined(__MK20DX128__) || \
+     defined(__MK20DX256__) || \
+     defined(__MKL26Z64__) || \
+     defined(_VARIANT_ARDUINO_101_X_) || \
+     defined(_VARIANT_ARDUINO_ZERO_))
+  
   OneSheeldSerial=&Serial1;
   Serial1.begin(baudRate);
   #else
@@ -659,7 +666,13 @@ void OneSheeldClass::delay(unsigned long time)
 }
 OneSheeldClass OneSheeld;
 //Instantiating Object
-#if defined(__AVR_ATmega32U4__) || defined(ARDUINO_LINUX)
+#if(defined(__AVR_ATmega32U4__) || \
+     defined(ARDUINO_LINUX) || \
+     defined(__MK20DX128__) || \
+     defined(__MK20DX256__) || \
+     defined(__MKL26Z64__) || \
+     defined(_VARIANT_ARDUINO_101_X_) || \
+     defined(_VARIANT_ARDUINO_ZERO_))
 void serialEvent1()
 #else
 void serialEvent()
