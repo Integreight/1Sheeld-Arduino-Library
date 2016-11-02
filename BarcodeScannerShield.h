@@ -70,6 +70,7 @@ public:
 	BarcodeScannerShield();
 	bool isNewBarcodeScanned();
 	bool isFullySent();
+	bool isNextData();
 	byte getFormat();
 	byte getCategory();
 	byte getDataLength();
@@ -77,10 +78,10 @@ public:
 	char * getData();
 	void queryNextBytes(byte=128);
 	void queryParameterValue(const char *);
-	void onNewBarcodeScanned(void (*)(byte , byte , int ,char*));
-	void onNextDataResponse(void (*)(byte, char *));
-	void onParameterValueResponse(void (*)(char * , char *));
-	void onError(void (*)(byte));
+	void setOnNewBarcodeScanned(void (*)(byte , byte , int ,char*));
+	void setOnNextDataResponse(void (*)(byte, char *));
+	void setOnParameterValueResponse(void (*)(char * , char *));
+	void setOnError(void (*)(byte));
 
 private:
 	bool isNewBarcode;
@@ -88,6 +89,7 @@ private:
 	bool isNextDataResponseCallbackAssigned;
 	bool isParameterCallbackAssigned;
 	bool isErrorCallbackAssigned;
+	bool isNext;
 	byte barcodeDataLength;
 	byte barcodeFormat;
 	byte barcodeCategory;

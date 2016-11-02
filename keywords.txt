@@ -301,10 +301,10 @@ getMaxDataLength			KEYWORD2		RESERVED_WORD
 getData			KEYWORD2		RESERVED_WORD					
 queryNextBytes			KEYWORD2		RESERVED_WORD			
 queryParameterValue			KEYWORD2		RESERVED_WORD		
-onNewBarcodeScanned			KEYWORD2		RESERVED_WORD		
-onNextDataResponse			KEYWORD2		RESERVED_WORD		
-onParameterValueResponse			KEYWORD2		RESERVED_WORD
-onError			KEYWORD2		RESERVED_WORD					
+setOnNewBarcodeScanned			KEYWORD2		RESERVED_WORD		
+setOnNextDataResponse			KEYWORD2		RESERVED_WORD		
+setOnParameterValueResponse			KEYWORD2		RESERVED_WORD
+isNextData			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
