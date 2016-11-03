@@ -305,6 +305,8 @@ setOnNewBarcodeScanned			KEYWORD2		RESERVED_WORD
 setOnNextDataResponse			KEYWORD2		RESERVED_WORD		
 setOnParameterValueResponse			KEYWORD2		RESERVED_WORD
 isNextData			KEYWORD2		RESERVED_WORD
+sendShieldFrame			KEYWORD2		RESERVED_WORD
+getVerificationByte			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
@@ -326,6 +328,7 @@ GLCDRadioButton	KEYWORD3		RESERVED_WORD
 GLCDRectangle	KEYWORD3		RESERVED_WORD
 GLCDSlider	KEYWORD3		RESERVED_WORD
 GLCDTextBox	KEYWORD3		RESERVED_WORD
+FunctionArg	KEYWORD3		RESERVED_WORD
 #######################################
 # Constants And Literals (KEYWORD2)
 #######################################
