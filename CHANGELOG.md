@@ -1,23 +1,28 @@
- ## v1.9.2(013) (May 17, 2016)
+## v1.10.0(014) (November 7, 2016)
+ - Supported the new bar code scanner shield.
+ - Supported Arduino Zero and Arduino 101.
+ - Made the library handle half-sent frames correctly.
+
+## v1.9.2(013) (May 17, 2016)
  - Used the correct delay method for 1Sheeld+ workaround.
 
- ## v1.9.1(012) (May 15, 2016)
+## v1.9.1(012) (May 15, 2016)
  - Added a workaround for 1Sheeld+ slow sending to prevent overruns.
 
- ## v1.9.0(011) (April 4, 2016)
+## v1.9.0(011) (April 4, 2016)
  - Prepared the library to work with SoftwareSerial and AltSoftSerial libraries. (BETA)
  - Made the library connection testable.
  - Added a verification byte to frames sent.
 
- ## v1.8.0(010) (January 26, 2016)
+## v1.8.0(010) (January 26, 2016)
  - Added the vibration shield.
 
- ## v1.7.0(009) (November 23, 2015)
+## v1.7.0(009) (November 23, 2015)
  - Fixed a bug with the new SDK functions.
  - Added methods for uploading images from internet shield.
  - Added methods for recording voice clips from mic shield.
 
- ## v1.6.1(008) (September 1, 2015)
+## v1.6.1(008) (September 1, 2015)
  - Added 2 new methods for sending and receiving frames. (For the new Android SDK)
  - Fixed an error in Internet shield.
  - Fixed a bug in GLCD shield.
