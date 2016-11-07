@@ -299,12 +299,12 @@ getCategory			KEYWORD2		RESERVED_WORD
 getDataLength			KEYWORD2		RESERVED_WORD			
 getMaxDataLength			KEYWORD2		RESERVED_WORD		
 getData			KEYWORD2		RESERVED_WORD					
-queryNextBytes			KEYWORD2		RESERVED_WORD			
+queryNextDataBytes			KEYWORD2		RESERVED_WORD			
 queryParameterValue			KEYWORD2		RESERVED_WORD		
 setOnNewBarcodeScanned			KEYWORD2		RESERVED_WORD		
 setOnNextDataResponse			KEYWORD2		RESERVED_WORD		
 setOnParameterValueResponse			KEYWORD2		RESERVED_WORD
-isNextData			KEYWORD2		RESERVED_WORD
+isNextDataBytesReceived			KEYWORD2		RESERVED_WORD
 sendShieldFrame			KEYWORD2		RESERVED_WORD
 getVerificationByte			KEYWORD2		RESERVED_WORD
 #######################################
