@@ -176,6 +176,11 @@ EXTERN NFCShield NFC;
 #ifdef INCLUDE_GLCD_SHIELD
 EXTERN GLCDShield GLCD;
 #endif
+
 #ifdef INCLUDE_VIBRATION_SHIELD
 EXTERN VibrationShield Vibration;
+#endif
+
+#ifdef INCLUDE_BARCODE_SCANNER_SHIELD
+EXTERN BarcodeScannerShield BarcodeScanner;
 #endif

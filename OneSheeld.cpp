@@ -21,6 +21,7 @@ bool OneSheeldClass::isInit=false;
 bool OneSheeldClass::isSws=false;
 byte OneSheeldClass::shieldsCounter=0;
 unsigned long OneSheeldClass::lastTimeFrameSent=0;
+unsigned long OneSheeldClass::argumentDataBytesTimeReceived=0;
 bool OneSheeldClass::inACallback=false;
 bool OneSheeldClass::callbacksInterrupts=false;
 bool OneSheeldClass::isFirstFrame=false;
@@ -56,7 +57,14 @@ OneSheeldClass::OneSheeldClass()
 //Library Starter
 void OneSheeldClass::begin(long baudRate)
 {
-  #if defined(__AVR_ATmega32U4__) || defined(ARDUINO_LINUX)
+  #if(defined(__AVR_ATmega32U4__) || \
+     defined(ARDUINO_LINUX) || \
+     defined(__MK20DX128__) || \
+     defined(__MK20DX256__) || \
+     defined(__MKL26Z64__) || \
+     defined(_VARIANT_ARDUINO_101_X_) || \
+     defined(_VARIANT_ARDUINO_ZERO_))
+  
   OneSheeldSerial=&Serial1;
   Serial1.begin(baudRate);
   #else
@@ -80,7 +88,7 @@ void OneSheeldClass::init()
 {
   sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isInit=true;
-  if(requestsArray>0){
+  if(requestsArray!=0){
     for(int i=0;i<requestsCounter;i++)
       requestsArray[i]->sendInitFrame();
     free(requestsArray);
@@ -309,6 +317,11 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 void OneSheeldClass::processInput(int data) 
 {
     if(data==-1)return;
+    if((millis() - argumentDataBytesTimeReceived) > 100 && argumentDataBytesTimeReceived !=0) 
+      {
+        framestart = false;
+        argumentDataBytesTimeReceived = 0;
+      }
      if(!framestart&&data==START_OF_FRAME)
           {
               freeMemoryAllocated();
@@ -403,6 +416,7 @@ void OneSheeldClass::processInput(int data)
           }
           else if (counter==8&&framestart)
           {
+              argumentDataBytesTimeReceived = millis();
               #ifdef DEBUG
               Serial.print("C8 ");
               #endif
@@ -470,7 +484,7 @@ void OneSheeldClass::processInput(int data)
                 else if(counter==2){
                   verificationByte=data;
                   byte leastBits = verificationByte & 0x0F;
-                  if((255-verificationByte>>4) != leastBits) framestart =false;
+                  if(((255-verificationByte)>>4) != leastBits) framestart =false;
                   #ifdef DEBUG
                   Serial.print("C2 ");
                   #endif
@@ -652,7 +666,13 @@ void OneSheeldClass::delay(unsigned long time)
 }
 OneSheeldClass OneSheeld;
 //Instantiating Object
-#if defined(__AVR_ATmega32U4__) || defined(ARDUINO_LINUX)
+#if(defined(__AVR_ATmega32U4__) || \
+     defined(ARDUINO_LINUX) || \
+     defined(__MK20DX128__) || \
+     defined(__MK20DX256__) || \
+     defined(__MKL26Z64__) || \
+     defined(_VARIANT_ARDUINO_101_X_) || \
+     defined(_VARIANT_ARDUINO_ZERO_))
 void serialEvent1()
 #else
 void serialEvent()

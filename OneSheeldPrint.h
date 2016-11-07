@@ -27,10 +27,10 @@ public:
 	void write(char);
 	//Printing functions
 	void print(char);
-	void print(int,byte = DEC);
-	void print(unsigned int,byte =DEC);
-	void print(long,byte = DEC);
-	void print(unsigned long,byte =DEC);
+	void print(int);
+	void print(unsigned int);
+	void print(long);
+	void print(unsigned long);
 	void print(const char *);
 	void print(String );
 	//Unsupported by Intel Galileo board and Arduino Due

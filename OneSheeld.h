@@ -32,7 +32,7 @@
 #define START_OF_FRAME  0xFF
 #define END_OF_FRAME 	0x00
 //Library Version
-#define LIBRARY_VERSION 13
+#define LIBRARY_VERSION 14
 //Time between sending Frames
 #define TIME_GAP		200UL
 
@@ -57,7 +57,7 @@
 
 
 //Numer of Shields
-#define SHIELDS_NO	42
+#define SHIELDS_NO	43
 
 //Class for Datalength and Data
 class FunctionArg
@@ -183,6 +183,8 @@ private:
 	static bool isSws;
 	//Checker variable 
 	static unsigned long lastTimeFrameSent;
+
+	static unsigned long argumentDataBytesTimeReceived;
 	//Array of pointers to Parents
 	static ShieldParent * shieldsArray[SHIELDS_NO];
 	// #ifdef INTERNET_SHIELD

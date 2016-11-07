@@ -54,10 +54,7 @@ void MusicPlayerShieldClass::seekBackward(byte x)
 //Volume Setter
 void MusicPlayerShieldClass::setVolume(byte x)
 {
-	if (x>10) 
-		{x=10;}
-	else if (x<0) 
-		{x=0;}
+	if (x>10) x=10;
 	OneSheeld.sendShieldFrame(MUSIC_PLAYER_ID,0,MUSIC_VOLUME,1,new FunctionArg(1,&x));
 }
 

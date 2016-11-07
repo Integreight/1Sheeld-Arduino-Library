@@ -101,7 +101,9 @@ unsigned long ColorShield::convertRgbToHsb(unsigned long rgb) {
     double gd = (double)((rgb&0x00FF00)>>8)/255;
     double bd = (double)((rgb&0x0000FF))/255;
     double maximum = max(rd, max(gd, bd)), minimum = min(rd, min(gd, bd));
-    double h, s, b = maximum;
+    double h = maximum;
+    double s = maximum;
+    double b = maximum;
 
     double d = maximum - minimum;
     s = maximum == 0 ? 0 : d / maximum;
