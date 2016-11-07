@@ -4,8 +4,9 @@ Barcode Scanner Shield Example
 
 This example shows an application on 1Sheeld's barcode scanner shield.
 
-By using this example, you can scan a 2D (QR/Data Matrix) barcode with an Email categeory
-and send the email directly using the Email shield to the recipient.
+By using this example, you can scan a 2D (QR/Data Matrix) barcode with
+an Email category and send the email directly using the email shield to
+the recipient.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -34,24 +35,27 @@ void setup() {
   BarcodeScanner.setOnNewBarcodeScanned(&newScannedFunction);
   /* Subscribe to parameter data callback. */
   BarcodeScanner.setOnParameterValueResponse(&getParameterFunction);
-  /* Subscribe to error callback. */
+  /* Subscribe to the error callback. */
   BarcodeScanner.setOnError(&errorFunction);
 }
 
 void loop() 
-{}
+{
+  /* Leave the loop function empty. */
+}
 
 /* On new barcode scanned function. */
 void newScannedFunction(byte format,byte category,int maxLength,char * data)
 {
-  /* Check if the code scanned is a QR code or a Data matrix code. */
+  /* Check if the code scanned is a QR code or a data matrix code. */
   if(format == QRCODE || format == DATA_MATRIX)
   {
     /* Check if the code scanned with email category type. */
     if(category == CODE_EMAIL)
     {
       /* Terminal line for debugging. */
-      Terminal.println("Entered");
+      Terminal.println("Email scanned from barcode.");
+
       /* Query parameters from barcode scanner. */
       BarcodeScanner.queryParameterValue("mailto");
       BarcodeScanner.queryParameterValue("subject");
@@ -93,12 +97,15 @@ void getParameterFunction(char * key, char* value)
   /* Check if the arrays are not empty send the email. */
   if(sendTo[0]!=0 && subject[0]!=0 && body[0]!=0)
   {
-    /* Send Email. */
+    /* Send email. */
     Email.send(sendTo,subject,body);
+
     /* Empty the arrays. */
     for(int j=0;j<20;j++)
     {
-      sendTo[i],subject[i],body[i]=0;
+      sendTo[i] = 0;
+      subject[i] = 0;
+      body[i]=0;
     }
   }
 }
@@ -108,8 +115,8 @@ void errorFunction(byte errorData)
   /* Switch on error and print it on the terminal. */
   switch(errorData)
   {
-    case BARCODE_NOT_SUPPORTED: Terminal.println("Barcode not supported");break;
-    case BARCODE_SCANNING_ERROR: Terminal.println("Barcode scanning Error");break;
+    case BARCODE_NOT_SUPPORTED: Terminal.println("Barcode is not supported");break;
+    case BARCODE_SCANNING_ERROR: Terminal.println("Barcode scanning error");break;
     case WRONG_PARAMETER: Terminal.println("Wrong parameter");break;
     case NOT_ENOUGH_BYTES: Terminal.println("No enough bytes");break;
     case CATEGORY_NOT_SUPPORTED: Terminal.println("Category not supported");break;

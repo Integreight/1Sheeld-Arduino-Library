@@ -70,13 +70,13 @@ public:
 	BarcodeScannerShield();
 	bool isNewBarcodeScanned();
 	bool isFullySent();
-	bool isNextData();
+	bool isNextDataBytesReceived();
 	byte getFormat();
 	byte getCategory();
 	byte getDataLength();
 	int getMaxDataLength();
 	char * getData();
-	void queryNextBytes(byte=128);
+	void queryNextDataBytes(byte=128);
 	void queryParameterValue(const char *);
 	void setOnNewBarcodeScanned(void (*)(byte , byte , int ,char*));
 	void setOnNextDataResponse(void (*)(byte, char *));

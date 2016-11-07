@@ -35,7 +35,7 @@ BarcodeScannerShield::BarcodeScannerShield() : ShieldParent(BARCODE_ID)
 	barcodeData= '\0';
 }
 
-void BarcodeScannerShield::queryNextBytes(byte length)
+void BarcodeScannerShield::queryNextDataBytes(byte length)
 {
 	OneSheeld.sendShieldFrame(BARCODE_ID,0,BARCODE_QUERY_NEXT_BYTES,1,new FunctionArg(1,&length));
 }
@@ -67,7 +67,7 @@ bool BarcodeScannerShield::isFullySent()
 	return (index>=barcodeMaxLength);
 }
 
-bool BarcodeScannerShield::isNextData()
+bool BarcodeScannerShield::isNextDataBytesReceived()
 {
 	return isNext;
 }
