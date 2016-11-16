@@ -58,3 +58,4 @@
 #define INTERNET_ID	 		 0x29
 #define VIBRATION_ID         0x2A
 #define BARCODE_ID			 0x2B
+#define FINGERPRINT_ID		 0x2C
