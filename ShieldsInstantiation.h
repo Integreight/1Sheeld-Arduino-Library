@@ -184,3 +184,7 @@ EXTERN VibrationShield Vibration;
 #ifdef INCLUDE_BARCODE_SCANNER_SHIELD
 EXTERN BarcodeScannerShield BarcodeScanner;
 #endif
+
+#ifdef INCLUDE_FACE_DETECTOR_SHIELD
+EXTERN FaceDetectionShield FaceDetector;
+#endif

@@ -57,3 +57,4 @@
 #include "GLCDShield.h"
 #include "VibrationShield.h"
 #include "BarcodeScannerShield.h"
+#include "FaceDetectionShield.h"
