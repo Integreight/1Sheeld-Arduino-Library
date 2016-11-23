@@ -25,16 +25,16 @@
 #define FINGERPRINT_GET_ERROR			0x02
 
 //Errors messages 
-#define AUTHENTICATIONFAILED	0x01
-#define USERCANCEL              0x02
-#define USERFALLBACK            0x03
-#define SYSTEMCANCEL            0x04
-#define PASSCODENOTSET          0x05
-#define TOUCHIDNOTAVAILABLE		0x06
-#define TOUCHIDNOTENROLLED      0x07
-#define TOUCHIDLOCKOUT          0x08
-#define APPCANCEL               0x09
-#define INVALIDCONTEXT          0x0A
+#define AUTHENTICATION_FAILED	0x01
+#define USER_CANCEL              0x02
+#define USER_FALLBACK            0x03
+#define SYSTEM_CANCEL            0x04
+#define PASSCODE_NOT_SET          0x05
+#define TOUCHID_NOT_AVAILABLE		0x06
+#define TOUCHID_NOT_ENROLLED      0x07
+#define TOUCHID_LOCKOUT          0x08
+#define APP_CANCEL               0x09
+#define INVALID_CONTEXT          0x0A
 
 
 class FingerprintScannerShield : public ShieldParent
