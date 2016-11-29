@@ -84,17 +84,17 @@ struct Face{
       return yCoordinate;
   }
 
-  unsigned int getFaceID()
+  unsigned int getID()
   {
     return faceID;
   }
 
-  unsigned int  getFaceWidth()
+  unsigned int  getWidth()
   {
     return faceWidth;
   }
 
-  unsigned int getFaceHeight()
+  unsigned int getHeight()
   {
     return faceHeight;
   }
