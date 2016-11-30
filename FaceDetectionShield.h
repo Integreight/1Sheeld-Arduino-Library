@@ -35,11 +35,9 @@ struct Face{
   byte smiling;
   int  xCoordinate;
   int  yCoordinate;
-  unsigned int faceID;
+  int faceID;
   unsigned int faceWidth;
   unsigned int faceHeight;
-
-
 
   Face()
   {
@@ -49,7 +47,7 @@ struct Face{
     smiling = 0;
     xCoordinate = 0;
     yCoordinate = 0;
-    faceID = 0;
+    faceID = -1;
     faceWidth = 0;
     faceHeight = 0;    
   }
@@ -84,7 +82,7 @@ struct Face{
       return yCoordinate;
   }
 
-  unsigned int getID()
+  int getID()
   {
     return faceID;
   }
