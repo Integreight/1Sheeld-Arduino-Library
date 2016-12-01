@@ -62,22 +62,22 @@ struct Face{
       return smiling;
   }
 
-  byte getIsLeftEyeOpenedProbability() 
+  byte getLeftEyeOpenProbability() 
   {
       return leftEyeOpened;
   }
 
-  byte getIsRightEyeOpenedProbability() 
+  byte getRightEyeOpenProbability() 
   {
       return rightEyeOpened;
   }
 
-  int  getXCoordinate() 
+  int  getXCoordinates() 
   {
       return xCoordinate;
   }
 
-  int  getYCoordinate() 
+  int  getYCoordinates() 
   {
       return yCoordinate;
   }
