@@ -187,4 +187,7 @@ EXTERN BarcodeScannerShield BarcodeScanner;
 
 #ifdef INCLUDE_FINGERPRINT_SCANNER_SHIELD
 EXTERN FingerprintScannerShield FingerprintScanner;
+
+#ifdef INCLUDE_FACE_DETECTOR_SHIELD
+EXTERN FaceDetectionShield FaceDetector;
 #endif

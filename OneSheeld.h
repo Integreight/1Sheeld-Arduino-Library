@@ -57,7 +57,11 @@
 
 
 //Numer of Shields
+<<<<<<< HEAD
 #define SHIELDS_NO	44
+=======
+#define SHIELDS_NO	45
+>>>>>>> feature/face_detector_shield
 
 //Class for Datalength and Data
 class FunctionArg

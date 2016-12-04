@@ -58,3 +58,4 @@
 #include "VibrationShield.h"
 #include "BarcodeScannerShield.h"
 #include "FingerprintScannerShield.h"
+#include "FaceDetectionShield.h"
