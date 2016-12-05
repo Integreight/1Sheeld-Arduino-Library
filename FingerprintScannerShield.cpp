@@ -25,9 +25,9 @@ FingerprintScannerShield::FingerprintScannerShield() : ShieldParent(FINGERPRINT_
 	lastVerified = true;
 }
 
-void FingerprintScannerShield::start()
+void FingerprintScannerShield::scan()
 {
-	OneSheeld.sendShieldFrame(FINGERPRINT_ID,0,FINGERPRINT_START,0);
+	OneSheeld.sendShieldFrame(FINGERPRINT_ID,0,FINGERPRINT_SCAN,0);
 }
 
 

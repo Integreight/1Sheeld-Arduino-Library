@@ -322,6 +322,7 @@ isVisible			KEYWORD2		RESERVED_WORD
 getFace			KEYWORD2		RESERVED_WORD
 setOnNewFace			KEYWORD2		RESERVED_WORD
 setOnNotVisible			KEYWORD2		RESERVED_WORD
+scan			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

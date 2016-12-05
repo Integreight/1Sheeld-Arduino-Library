@@ -18,7 +18,7 @@
 #include "ShieldParent.h"
 
 //Output  function ID's
-#define FINGERPRINT_START	    0x01
+#define FINGERPRINT_SCAN	    0x01
 
 //Input Function ID's 
 #define FINGERPRINT_GET 			0x01
@@ -43,7 +43,7 @@ public:
 	//Constructor 
 	FingerprintScannerShield();
 	bool isVerified();
-	void start();
+	void scan();
 	void setOnError(void (*)(byte));
 
 private:
