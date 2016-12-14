@@ -317,7 +317,7 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 void OneSheeldClass::processInput(int data) 
 {
     if(data==-1)return;
-    if((millis() - argumentDataBytesTimeReceived) > 100 && argumentDataBytesTimeReceived !=0) 
+    if((millis() - argumentDataBytesTimeReceived) > 1000 && argumentDataBytesTimeReceived !=0) 
       {
         framestart = false;
         argumentDataBytesTimeReceived = 0;
