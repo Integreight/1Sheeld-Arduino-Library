@@ -32,7 +32,7 @@ void setup()
 
 void loop()
 {
-  if(FingerprintScanner.isVerified())
+  if(FingerprintScanner.isNewFingerScanned() && FingerprintScanner.isVerified())
   {
     digitalWrite(ledPin,HIGH);
     delay(1000);
