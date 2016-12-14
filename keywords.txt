@@ -323,6 +323,8 @@ getFace			KEYWORD2		RESERVED_WORD
 setOnNewFace			KEYWORD2		RESERVED_WORD
 setOnNotVisible			KEYWORD2		RESERVED_WORD
 scan			KEYWORD2		RESERVED_WORD
+isNewFingerScanned			KEYWORD2		RESERVED_WORD
+setOnNewFingerScanned			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

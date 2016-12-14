@@ -20,9 +20,10 @@
 //Constructor 
 FingerprintScannerShield::FingerprintScannerShield() : ShieldParent(FINGERPRINT_ID)
 {
+	isFingerVerified = false;
 	isNewFingerprintScanned= false;
 	isErrorCallbackAssigned= false;
-	lastVerified = true;
+	isFingerprintCallbackAssigned = false;
 }
 
 void FingerprintScannerShield::scan()
@@ -30,19 +31,15 @@ void FingerprintScannerShield::scan()
 	OneSheeld.sendShieldFrame(FINGERPRINT_ID,0,FINGERPRINT_SCAN,0);
 }
 
+bool FingerprintScannerShield::isNewFingerScanned()
+{
+	return isNewFingerprintScanned;
+}
 
 bool FingerprintScannerShield::isVerified()
 {
-	if(!lastVerified)
-	{
-		lastVerified = true;
-		return isNewFingerprintScanned;
-
-	}else
-	{
-		isNewFingerprintScanned = false;
-		return isNewFingerprintScanned;
-	}
+	isNewFingerprintScanned = false;
+	return isFingerVerified;
 }
 
 //Process Input Data
@@ -53,7 +50,14 @@ void FingerprintScannerShield::processData()
 	if(functionID==FINGERPRINT_GET)
 	{
 		isNewFingerprintScanned = true;
-		lastVerified = false;
+		isFingerVerified = getOneSheeldInstance().getArgumentData(0)[0];
+		//Invoke User Function
+		if(isFingerprintCallbackAssigned)
+		{
+			enteringACallback();
+			(*fingerprintCallback)(isFingerVerified);
+			exitingACallback();
+		}
 	}
 	else if(functionID==FINGERPRINT_GET_ERROR && !isInACallback())
 	{
@@ -74,3 +78,8 @@ void FingerprintScannerShield::setOnError(void (*userFunction)(byte))
 	isErrorCallbackAssigned=true;
 }
 
+void FingerprintScannerShield::setOnNewFingerScanned(void (*userFunction)(bool))
+{
+	fingerprintCallback=userFunction;
+	isFingerprintCallbackAssigned=true;
+}

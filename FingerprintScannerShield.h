@@ -43,14 +43,18 @@ public:
 	//Constructor 
 	FingerprintScannerShield();
 	bool isVerified();
+	bool isNewFingerScanned();
 	void scan();
 	void setOnError(void (*)(byte));
+	void setOnNewFingerScanned(void (*)(bool));
 
 private:
+	bool isFingerVerified;
 	bool isNewFingerprintScanned;
 	bool isErrorCallbackAssigned;
-	bool lastVerified;
+	bool isFingerprintCallbackAssigned;
 	void (*errorCallback)(byte);
+	void (*fingerprintCallback)(bool);
 	void processData();
 };
 //Extern Object
