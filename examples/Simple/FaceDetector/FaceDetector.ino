@@ -40,7 +40,7 @@ void setup()
 void loop() 
 {
   /* Get first Face and check if winks. */
-  if(FaceDetector.getFace(0).isVisible()&& FaceDetector.getFace(0).getLeftEyeOpenProbability()==0)
+  if(FaceDetector.getVisibleFace(0).getLeftEyeOpenProbability()==0)
   {
     /* Turn on the LED when winking. */
     digitalWrite(ledPin,HIGH);
