@@ -22,9 +22,53 @@ FaceDetectionShield::FaceDetectionShield() : ShieldParent(FACE_DETECTOR_ID)
 {}
 
 
-Face FaceDetectionShield::getFace(byte numberOfFace)
+Face FaceDetectionShield::getFace(int _faceID)
 {
-	return facesArray[numberOfFace];
+	for(int i=0 ;i <MAX_FACES ;i++)
+	{
+		if(facesArray[i].faceID == _faceID)
+		{
+			return facesArray[i];
+		}
+	}
+
+	Face nullFace;
+	return nullFace;
+}
+
+Face FaceDetectionShield::getVisibleFace(byte number)
+{
+	if(number >=0 && number <19 && facesArray[number].faceID >=0)
+	{
+		return facesArray[number];
+	}else
+	{
+		Face nullFace;
+		return nullFace;
+	}		
+}
+
+bool FaceDetectionShield::isFaceVisible(int _faceID)
+{
+	for(int i=0 ;i <MAX_FACES ;i++)
+	{
+		if(facesArray[i].faceID == _faceID)
+		{
+			return true;
+		}
+	}
+	return false;	
+}
+
+byte FaceDetectionShield::getVisibleFacesCount()
+{
+	// counter = 0;
+	// for(int i=0 ;i <MAX_FACES ;i++)
+	// {
+	// 	if(facesArray[i].faceID >=0) {counter++;}
+	// }
+
+	return counter;
 }
 
 void FaceDetectionShield::processData()
@@ -39,15 +83,14 @@ void FaceDetectionShield::processData()
 		unsigned int currentHeight = getOneSheeldInstance().getArgumentData(2)[0]|((getOneSheeldInstance().getArgumentData(2)[1])<<8);
 		unsigned int currentWidth = getOneSheeldInstance().getArgumentData(2)[2]|((getOneSheeldInstance().getArgumentData(2)[3])<<8);
 		int i;
-		byte currentLeftEye = getOneSheeldInstance().getArgumentData(3)[0];
-		byte currentRightEye = getOneSheeldInstance().getArgumentData(3)[1];
+		byte currentRightEye = getOneSheeldInstance().getArgumentData(3)[0];
+		byte currentLeftEye = getOneSheeldInstance().getArgumentData(3)[1];
 		byte currentSmile = getOneSheeldInstance().getArgumentData(3)[2];
 
 		for(i =0 ;i <MAX_FACES;i++)
 		{
 			if(facesArray[i].faceID==currentFaceID)
 			{
-				facesArray[i].visible = true;
 				facesArray[i].leftEyeOpened = currentLeftEye;
 				facesArray[i].rightEyeOpened = currentRightEye;
 				facesArray[i].smiling = currentSmile;
@@ -62,11 +105,10 @@ void FaceDetectionShield::processData()
 		if(i == MAX_FACES)
 		{
 			i=0;
-			while(facesArray[i].faceID>= 0)
+			while(facesArray[i].faceID>= 0 && i<MAX_FACES)
 			{
 				i++;
 			}
-			facesArray[i].visible= true;
 			facesArray[i].faceID = currentFaceID;
 			facesArray[i].leftEyeOpened = currentLeftEye;
 			facesArray[i].rightEyeOpened = currentRightEye;
@@ -75,8 +117,9 @@ void FaceDetectionShield::processData()
 			facesArray[i].yCoordinate = currentY;
 			facesArray[i].faceWidth = currentWidth;
 			facesArray[i].faceHeight = currentHeight;
+			counter++;
 		}
-		
+
 		if(!isInACallback())
 		{
 			if(onNewFaceCallback)
@@ -94,10 +137,11 @@ void FaceDetectionShield::processData()
 			if(facesArray[i].faceID==currentFaceID)
 			{
 				eraseFaceData(i);
+				if(counter!=0){counter--;}
 				break;
 			}
 		}
-
+		rearrangeFaces();
 		if(!isInACallback())
 		{
 			if(isdeletedAssigned)
@@ -112,11 +156,10 @@ void FaceDetectionShield::processData()
 
 void FaceDetectionShield::eraseFaceData(byte i)
 {
-	facesArray[i].visible = false;
 	facesArray[i].faceID = -1;
-	facesArray[i].leftEyeOpened = 0;
-	facesArray[i].rightEyeOpened = 0;
-	facesArray[i].smiling = 0;
+	facesArray[i].leftEyeOpened = -1;
+	facesArray[i].rightEyeOpened = -1;
+	facesArray[i].smiling = -1;
 	facesArray[i].xCoordinate = 0;
 	facesArray[i].yCoordinate = 0;
 	facesArray[i].faceWidth = 0;
@@ -135,4 +178,24 @@ void FaceDetectionShield::setOnNotVisible(void (*userFunction)(int id))
 {
 	onDeletedFaceCallback=userFunction;
 	isdeletedAssigned=true;
+}
+
+void FaceDetectionShield::rearrangeFaces()
+{
+	for(int i=0;i<MAX_FACES;i++)
+	{
+		if(facesArray[i].faceID<0)
+		{
+			int j = i+1;
+			while(facesArray[j].faceID<0 && j<MAX_FACES){j++;}
+			if(j==MAX_FACES)
+			{
+				break;
+			}else
+			{
+				facesArray[i]=facesArray[j];
+				eraseFaceData(j);
+			}
+		}
+	}
 }

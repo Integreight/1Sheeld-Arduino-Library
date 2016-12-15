@@ -318,13 +318,15 @@ getXCoordinates			KEYWORD2		RESERVED_WORD
 getRightEyeOpenProbability			KEYWORD2		RESERVED_WORD
 getLeftEyeOpenProbability			KEYWORD2		RESERVED_WORD
 getSmileProbability			KEYWORD2		RESERVED_WORD
-isVisible			KEYWORD2		RESERVED_WORD
+isFaceVisible			KEYWORD2		RESERVED_WORD
 getFace			KEYWORD2		RESERVED_WORD
 setOnNewFace			KEYWORD2		RESERVED_WORD
 setOnNotVisible			KEYWORD2		RESERVED_WORD
 scan			KEYWORD2		RESERVED_WORD
 isNewFingerScanned			KEYWORD2		RESERVED_WORD
 setOnNewFingerScanned			KEYWORD2		RESERVED_WORD
+getVisibleFace			KEYWORD2		RESERVED_WORD
+getVisibleFacesCount			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

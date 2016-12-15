@@ -29,10 +29,9 @@
 
 
 struct Face{
-  bool visible;
-  byte leftEyeOpened;
-  byte rightEyeOpened;
-  byte smiling;
+  int leftEyeOpened;
+  int rightEyeOpened;
+  int smiling;
   int  xCoordinate;
   int  yCoordinate;
   int faceID;
@@ -41,33 +40,27 @@ struct Face{
 
   Face()
   {
-    visible = false;
-    leftEyeOpened = 0;
-    rightEyeOpened = 0;
-    smiling = 0;
+    faceID = -1;
+    leftEyeOpened = -1;
+    rightEyeOpened = -1;
+    smiling = -1;
     xCoordinate = 0;
     yCoordinate = 0;
-    faceID = -1;
     faceWidth = 0;
     faceHeight = 0;    
   }
 
-  bool isVisible()
-  {
-    return visible;
-  }
-
-  byte getSmileProbability() 
+  int getSmileProbability() 
   {
       return smiling;
   }
 
-  byte getLeftEyeOpenProbability() 
+  int getLeftEyeOpenProbability() 
   {
       return leftEyeOpened;
   }
 
-  byte getRightEyeOpenProbability() 
+  int getRightEyeOpenProbability() 
   {
       return rightEyeOpened;
   }
@@ -104,18 +97,23 @@ class FaceDetectionShield : public ShieldParent
 {
 public:
 	FaceDetectionShield();
-  Face getFace(byte);
+  Face getVisibleFace(byte);
+  Face getFace(int);
+  byte getVisibleFacesCount();
+  bool isFaceVisible(int);
   void setOnNewFace(void (*)(Face));
   void setOnNotVisible(void (*)(int ));
 	
 private:
   bool isCallBackAssigned;
   bool isdeletedAssigned;
+  byte counter;
   void eraseFaceData(byte);
 	void processData();
   Face facesArray[MAX_FACES];
   void (*onNewFaceCallback)(Face);
   void (*onDeletedFaceCallback)(int);
+  void rearrangeFaces();
 };
 
 extern FaceDetectionShield FaceDetector;
