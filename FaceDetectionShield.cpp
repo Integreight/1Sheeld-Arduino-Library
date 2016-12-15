@@ -24,9 +24,9 @@ FaceDetectionShield::FaceDetectionShield() : ShieldParent(FACE_DETECTOR_ID)
 
 Face FaceDetectionShield::getFace(int _faceID)
 {
-	for(int i=0 ;i <MAX_FACES ;i++)
+	for(int i=0 ;i <counter ;i++)
 	{
-		if(facesArray[i].faceID == _faceID)
+		if(facesArray[i].faceID == _faceID && _faceID!=-1)
 		{
 			return facesArray[i];
 		}
@@ -38,7 +38,7 @@ Face FaceDetectionShield::getFace(int _faceID)
 
 Face FaceDetectionShield::getVisibleFace(byte number)
 {
-	if(number >=0 && number <19 && facesArray[number].faceID >=0)
+	if(number >=0 && number <MAX_FACES && facesArray[number].faceID >=0)
 	{
 		return facesArray[number];
 	}else
@@ -50,9 +50,9 @@ Face FaceDetectionShield::getVisibleFace(byte number)
 
 bool FaceDetectionShield::isFaceVisible(int _faceID)
 {
-	for(int i=0 ;i <MAX_FACES ;i++)
+	for(int i=0 ;i <counter ;i++)
 	{
-		if(facesArray[i].faceID == _faceID)
+		if(facesArray[i].faceID == _faceID && _faceID!=-1)
 		{
 			return true;
 		}
@@ -62,11 +62,6 @@ bool FaceDetectionShield::isFaceVisible(int _faceID)
 
 byte FaceDetectionShield::getVisibleFacesCount()
 {
-	// counter = 0;
-	// for(int i=0 ;i <MAX_FACES ;i++)
-	// {
-	// 	if(facesArray[i].faceID >=0) {counter++;}
-	// }
 
 	return counter;
 }
