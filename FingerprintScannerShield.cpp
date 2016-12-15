@@ -52,11 +52,14 @@ void FingerprintScannerShield::processData()
 		isNewFingerprintScanned = true;
 		isFingerVerified = getOneSheeldInstance().getArgumentData(0)[0];
 		//Invoke User Function
-		if(isFingerprintCallbackAssigned)
+		if(!isInACallback())
 		{
-			enteringACallback();
-			(*fingerprintCallback)(isFingerVerified);
-			exitingACallback();
+			if(isFingerprintCallbackAssigned)
+			{
+				enteringACallback();
+				(*fingerprintCallback)(isFingerVerified);
+				exitingACallback();
+			}
 		}
 	}
 	else if(functionID==FINGERPRINT_GET_ERROR && !isInACallback())
