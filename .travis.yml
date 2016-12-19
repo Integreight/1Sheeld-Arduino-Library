@@ -1,7 +1,5 @@
 language: cpp
 
-sudo: required
-
 env:
   global:
     - ARDUINO_VERSION="1.6.12"
