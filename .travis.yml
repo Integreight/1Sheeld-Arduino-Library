@@ -2,7 +2,7 @@ language: cpp
 
 env:
   global:
-    - ARDUINO_VERSION="1.6.12"
+    - ARDUINO_VERSION="1.6.13"
   matrix:
     - PLATFORM='arduino:avr'  BOARD='uno'
     - PLATFORM='arduino:avr'  BOARD='mega:cpu=atmega2560'
@@ -71,6 +71,8 @@ script:
   - arduino --verify $PWD/examples/Simple/Color/Color.ino
   - arduino --verify $PWD/examples/Simple/DataLogger/DataLogger.ino
   - arduino --verify $PWD/examples/Simple/Facebook/Facebook.ino
+  - arduino --verify $PWD/examples/Simple/FaceDetector/FaceDetector.ino
+  - arduino --verify $PWD/examples/Simple/FingerpintScanner/FingerpintScanner.ino
   - arduino --verify $PWD/examples/Simple/Foursquare/Foursquare.ino
   - arduino --verify $PWD/examples/Simple/GamePad/GamePad.ino
   - arduino --verify $PWD/examples/Simple/GLCD/GLCD.ino
