@@ -1,3 +1,7 @@
+## v1.11.0(015) (December 19, 2016)
+ - Supported the new fingerprint scanner and face detector shields.
+ - Fixed a bug in the frames timeout that marks a correct frame faulty.
+
 ## v1.10.0(014) (November 7, 2016)
  - Supported the new bar code scanner shield.
  - Supported Arduino Zero and Arduino 101.
