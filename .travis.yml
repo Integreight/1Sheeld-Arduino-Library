@@ -72,7 +72,7 @@ script:
   - arduino --verify $PWD/examples/Simple/DataLogger/DataLogger.ino
   - arduino --verify $PWD/examples/Simple/Facebook/Facebook.ino
   - arduino --verify $PWD/examples/Simple/FaceDetector/FaceDetector.ino
-  - arduino --verify $PWD/examples/Simple/FingerpintScanner/FingerpintScanner.ino
+  - arduino --verify $PWD/examples/Simple/FingerprintScanner/FingerprintScanner.ino
   - arduino --verify $PWD/examples/Simple/Foursquare/Foursquare.ino
   - arduino --verify $PWD/examples/Simple/GamePad/GamePad.ino
   - arduino --verify $PWD/examples/Simple/GLCD/GLCD.ino
