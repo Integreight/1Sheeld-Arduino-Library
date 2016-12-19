@@ -2,7 +2,7 @@
 
 FingerprintScanner Shield Example
 
-This example shows an application on 1Sheeld's FingerprintScanner shield.
+This example shows an application on 1Sheeld's fingerprint scanner shield.
 
 By using this example, you can turn on an LED using your fingerprint.
  
@@ -19,14 +19,14 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 
-/* Set an LED on pin 13.*/
+/* A name for the LED on pin 13. */
 int ledPin = 13;
 
 void setup() 
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* LED pin mode is output. */
+  /* Set the LED pin as output. */
   pinMode(ledPin,OUTPUT);
 }
 
