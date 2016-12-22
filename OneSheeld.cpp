@@ -317,11 +317,11 @@ float OneSheeldClass::convertBytesToFloat(byte * data)
 void OneSheeldClass::processInput(int data) 
 {
     if(data==-1)return;
-    if((millis() - argumentDataBytesTimeReceived) > 1000 && argumentDataBytesTimeReceived !=0) 
+    if((millis() - argumentDataBytesTimeReceived) > 2000 && argumentDataBytesTimeReceived !=0 && framestart) 
       {
-        framestart = false;
-        argumentDataBytesTimeReceived = 0;
+        freeMemoryAllocated();
       }
+      argumentDataBytesTimeReceived = millis();
      if(!framestart&&data==START_OF_FRAME)
           {
               freeMemoryAllocated();
@@ -416,7 +416,6 @@ void OneSheeldClass::processInput(int data)
           }
           else if (counter==8&&framestart)
           {
-              argumentDataBytesTimeReceived = millis();
               #ifdef DEBUG
               Serial.print("C8 ");
               #endif
