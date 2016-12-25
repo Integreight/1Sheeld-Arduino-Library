@@ -59,3 +59,4 @@
 #include "BarcodeScannerShield.h"
 #include "FingerprintScannerShield.h"
 #include "FaceDetectionShield.h"
+#include "GraphShield.h"

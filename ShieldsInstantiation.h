@@ -192,3 +192,7 @@ EXTERN FingerprintScannerShield FingerprintScanner;
 #ifdef INCLUDE_FACE_DETECTOR_SHIELD
 EXTERN FaceDetectionShield FaceDetector;
 #endif
+
+#ifdef INCLUDE_GRAPH_SHIELD
+EXTERN GraphShield Graph;
+#endif
