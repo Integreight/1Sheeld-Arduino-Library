@@ -31,13 +31,16 @@ GraphShield::GraphShield() : ShieldParent(GRAPH_ID)
 void GraphShield::add(const char * _key,float _value, byte _chartID)
 {
 	byte found = false;
-
+	if(_chartID>5)
+	{
+		_chartID=5;
+	}
+	
 	for(int i=0 ;i<keysCounter;i++)
 	{
-		if(!strcmp(namesArray[i],_key))
+		if(!strcmp(namesArray[i],_key) && chartIDArray[i]==_chartID)
 		{
 			floatArray[i]=_value;
-			chartIDArray[i]=_chartID;
 			found=true;
 		}
 	}
