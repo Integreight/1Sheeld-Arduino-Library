@@ -20,6 +20,7 @@
 //Output Function ID
 #define GRAPH_PLOT            0x01
 #define GRAPH_SAVE            0x02
+#define GRAPH_CLEAR           0x03
 
 //Input Function ID
 
@@ -33,6 +34,7 @@ class GraphShield : public ShieldParent
 {
 public:
   GraphShield();
+  void clear(byte);
   void add(const char *,float,byte =0);
   void plot();
   void save(byte);

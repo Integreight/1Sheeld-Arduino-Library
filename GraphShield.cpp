@@ -103,3 +103,7 @@ void GraphShield::save(byte saveType)
 	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE,1,new FunctionArg(1,&saveType));
 }
 
+void GraphShield::clear(byte _chartID)
+{
+	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_CLEAR,1,new FunctionArg(1,&_chartID));
+}
