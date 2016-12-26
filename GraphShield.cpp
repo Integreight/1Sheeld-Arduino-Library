@@ -107,3 +107,8 @@ void GraphShield::clear(byte _chartID)
 {
 	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_CLEAR,1,new FunctionArg(1,&_chartID));
 }
+
+void GraphShield::autoScroll(byte state)
+{
+	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_AUTO_SCROLL,1,new FunctionArg(1,&state));
+}

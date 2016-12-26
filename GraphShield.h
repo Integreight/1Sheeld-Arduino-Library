@@ -21,6 +21,7 @@
 #define GRAPH_PLOT            0x01
 #define GRAPH_SAVE            0x02
 #define GRAPH_CLEAR           0x03
+#define GRAPH_AUTO_SCROLL     0x04
 
 //Input Function ID
 
@@ -38,6 +39,7 @@ public:
   void add(const char *,float,byte =0);
   void plot();
   void save(byte);
+  void autoScroll(byte);
 private:
   byte keysCounter;
   char * key;
