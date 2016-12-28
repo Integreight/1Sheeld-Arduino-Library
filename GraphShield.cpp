@@ -72,8 +72,8 @@ void GraphShield::plot()
 		byte stepCounter =0;
 	  	for(int i=0 ;i<keysCounter*3;i+=3)
 	  	{
-	  		arguments[i]=new FunctionArg(strlen(namesArray[stepCounter]),(byte*)(namesArray[stepCounter]));
-	  		arguments[i+1]= new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(floatArray[stepCounter]));
+	  		arguments[i]=   new FunctionArg(strlen(namesArray[stepCounter]),(byte*)(namesArray[stepCounter]));
+	  		arguments[i+1]= new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(floatArray[stepCounter]),true);
 	  		arguments[i+2]= new FunctionArg(1,&chartIDArray[stepCounter]);
 	  		stepCounter++;
 	  	}
