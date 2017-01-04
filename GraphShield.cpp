@@ -98,17 +98,17 @@ void GraphShield::plot()
 	}
 }
 
-void GraphShield::saveCsv(const char * fileName,byte _chartID)
+void GraphShield::saveCsv(const char * fileName,byte _chartID, byte _saveType)
 {
 	if(_chartID <5)
 	{
-		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_CSV,2,new FunctionArg(strlen(fileName),(byte*)fileName),new FunctionArg(1,&_chartID));
+		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_CSV,3,new FunctionArg(strlen(fileName),(byte*)fileName),new FunctionArg(1,&_chartID),new FunctionArg(1,&_saveType));
 	}
 }
 
-void GraphShield::saveScreenShot()
+void GraphShield::saveScreenShot(byte _chartID)
 {
-	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_SCREENSHOT,0);
+	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_SCREENSHOT,1,new FunctionArg(1,&_chartID));
 }
 
 void GraphShield::clear(byte _chartID)

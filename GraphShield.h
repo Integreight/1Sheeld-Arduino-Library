@@ -26,6 +26,8 @@
 
 //Input Function ID
 
+//Literals
+#define AUTOMATIC_SAVE        0x01
 
 class GraphShield : public ShieldParent
 {
@@ -34,8 +36,8 @@ public:
   void clear(byte);
   void add(const char *,float,byte =0);
   void plot();
-  void saveCsv(const char *,byte);
-  void saveScreenShot();
+  void saveCsv(const char *,byte,byte=0);
+  void saveScreenShot(byte=0);
   void autoScroll(byte);
 private:
   byte keysCounter;
