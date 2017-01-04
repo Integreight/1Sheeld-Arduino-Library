@@ -30,6 +30,9 @@ GraphShield::GraphShield() : ShieldParent(GRAPH_ID)
 
 void GraphShield::add(const char * _key,float _value, byte _chartID)
 {
+	byte keyLength=strlen(_key);
+	if(!keyLength||keysCounter >= 5) return;	
+	
 	byte found = false;
 	if(_chartID>5)
 	{
@@ -47,9 +50,6 @@ void GraphShield::add(const char * _key,float _value, byte _chartID)
 
 	if(!found)
 	{
-		byte keyLength=strlen(_key);
-
-		if(!keyLength||keysCounter >= 5) return;
 		
 		key = (char*)malloc(sizeof(char)*(keyLength+1));
 		for (int j=0; j<keyLength; j++)
