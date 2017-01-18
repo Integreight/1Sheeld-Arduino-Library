@@ -34,9 +34,9 @@ void GraphShield::add(const char * _key,float _value, byte _chartID)
 	if(!keyLength||keysCounter >= 5) return;	
 	
 	byte found = false;
-	if(_chartID>5)
+	if(_chartID>=5)
 	{
-		_chartID=5;
+		_chartID=4;
 	}
 	
 	for(int i=0 ;i<keysCounter;i++)
