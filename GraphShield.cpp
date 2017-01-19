@@ -98,11 +98,11 @@ void GraphShield::plot()
 	}
 }
 
-void GraphShield::saveCsv(const char * fileName,byte _chartID, byte _saveType)
+void GraphShield::saveCsv(const char * fileName,byte _chartID)
 {
 	if(_chartID <5)
 	{
-		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_CSV,3,new FunctionArg(strlen(fileName),(byte*)fileName),new FunctionArg(1,&_chartID),new FunctionArg(1,&_saveType));
+		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_CSV,2,new FunctionArg(strlen(fileName),(byte*)fileName),new FunctionArg(1,&_chartID));
 	}
 }
 
