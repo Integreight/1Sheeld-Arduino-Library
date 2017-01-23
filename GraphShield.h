@@ -27,6 +27,11 @@
 //Input Function ID
 
 //Literals
+#define CHART_0     0x00
+#define CHART_1     0x01
+#define CHART_2     0x02
+#define CHART_3     0x03
+#define CHART_4     0x04
 
 
 class GraphShield : public ShieldParent
