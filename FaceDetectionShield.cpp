@@ -38,7 +38,7 @@ Face FaceDetectionShield::getFace(int _faceID)
 
 Face FaceDetectionShield::getVisibleFace(byte number)
 {
-	if(number >=0 && number <MAX_FACES && facesArray[number].faceID >=0)
+	if(number <MAX_FACES && facesArray[number].faceID >=0)
 	{
 		return facesArray[number];
 	}else
