@@ -29,14 +29,14 @@ void setup()
   OneSheeld.begin();
   /* Save a screenshot of CHART_0. */
   Chart.saveScreenShot(CHART_0);
-  /* Save a csv of CHART_0. */
+  /* Save a csv file of CHART_0. */
   Chart.saveCsv("MicValues",CHART_0);
   /* Clear Chart 0. */
   Chart.clear(CHART_0);
 }
 
 void loop() {
-  /* Add mic values to be ploted by chart. */
+  /* Add mic values to be ploted over chart. */
   Chart.add("Mic/db",Mic.getValue());
   /* Plot the values. */
   Chart.plot();
