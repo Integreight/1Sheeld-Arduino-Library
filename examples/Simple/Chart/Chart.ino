@@ -4,10 +4,11 @@ Chart Shield Example
 
 This example shows an application on 1Sheeld's chart shield.
 
-By using this example, you can plot and display noise data using mic over a line chart
-and save it as a CSV so you can use other tools to check the data.
-PS: Chart shield will automatically save 10000 plots then it will clear them from the app
-for more convenient performance.
+By using this example, you can plot and display noise data using mic
+over a line chart and save it as a CSV.
+
+Note: Chart shield will automatically save a CSV file after reaching
+10000 plots and will clear the screen for optimal app performance.
 
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -27,9 +28,9 @@ void setup()
 {
   /* Start communication. */
   OneSheeld.begin();
-  /* Save a screenshot of CHART_0. */
+  /* Save a screenshot for chart 0. */
   Chart.saveScreenshot(CHART_0);
-  /* Save a csv file of CHART_0. */
+  /* Save a csv file for chart 0. */
   Chart.saveCsv("MicValues",CHART_0);
   /* Clear Chart 0. */
   Chart.clear(CHART_0);

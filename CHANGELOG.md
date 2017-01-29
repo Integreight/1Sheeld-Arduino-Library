@@ -1,3 +1,7 @@
+## v1.12.0(016) (January 29, 2017)
+ - Supported the new chart shield.
+ - Fixed some bugs.
+
 ## v1.11.0(015) (December 19, 2016)
  - Supported the new fingerprint scanner and face detector shields.
  - Fixed a bug in the frames timeout that marks a correct frame faulty.
