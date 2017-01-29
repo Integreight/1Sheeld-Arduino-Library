@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          GraphShield.cpp
+  File:          ChartShield.cpp
                  
   Version:       1.12.0
 
@@ -14,11 +14,11 @@
 */
 #define FROM_ONESHEELD_LIBRARY
 #include "OneSheeld.h"
-#include "GraphShield.h"
+#include "ChartShield.h"
 
 
 
-GraphShield::GraphShield() : ShieldParent(GRAPH_ID)
+ChartShield::ChartShield() : ShieldParent(CHART_ID)
 {
 	for(int i=0;i<5;i++){
 		namesArray[i]=NULL;
@@ -28,10 +28,8 @@ GraphShield::GraphShield() : ShieldParent(GRAPH_ID)
 	keysCounter= 0 ;
 }
 
-void GraphShield::add(const char * _key,float _value, byte _chartID)
+void ChartShield::add(const char * _key,float _value, byte _chartID)
 {
-	byte keyLength=strlen(_key);
-	if(!keyLength||keysCounter >= 5) return;	
 	
 	byte found = false;
 	if(_chartID>=5)
@@ -47,6 +45,9 @@ void GraphShield::add(const char * _key,float _value, byte _chartID)
 			found=true;
 		}
 	}
+
+	byte keyLength=strlen(_key);
+	if(!keyLength||keysCounter >= 5) return;	
 
 	if(!found)
 	{
@@ -64,7 +65,7 @@ void GraphShield::add(const char * _key,float _value, byte _chartID)
 	}
 }
 
-void GraphShield::plot()
+void ChartShield::plot()
 {
 	if(keysCounter>0)
 	{
@@ -77,7 +78,7 @@ void GraphShield::plot()
 	  		arguments[i+2]= new FunctionArg(1,&chartIDArray[stepCounter]);
 	  		stepCounter++;
 	  	}
-		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_PLOT,keysCounter*3,arguments);
+		OneSheeld.sendShieldFrame(CHART_ID,0,CHART_PLOT,keysCounter*3,arguments);
 	    
 	    for(int i=0;i<keysCounter*3;i++)
 	    {
@@ -98,28 +99,28 @@ void GraphShield::plot()
 	}
 }
 
-void GraphShield::saveCsv(const char * fileName,byte _chartID)
+void ChartShield::saveCsv(const char * fileName,byte _chartID)
 {
 	if(_chartID <5)
 	{
-		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_CSV,2,new FunctionArg(strlen(fileName),(byte*)fileName),new FunctionArg(1,&_chartID));
+		OneSheeld.sendShieldFrame(CHART_ID,0,CHART_SAVE_CSV,2,new FunctionArg(strlen(fileName),(byte*)fileName),new FunctionArg(1,&_chartID));
 	}
 }
 
-void GraphShield::saveScreenShot(byte _chartID)
+void ChartShield::saveScreenShot(byte _chartID)
 {
-	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_SAVE_SCREENSHOT,1,new FunctionArg(1,&_chartID));
+	OneSheeld.sendShieldFrame(CHART_ID,0,CHART_SAVE_SCREENSHOT,1,new FunctionArg(1,&_chartID));
 }
 
-void GraphShield::clear(byte _chartID)
+void ChartShield::clear(byte _chartID)
 {
 	if(_chartID <5)
 	{
-		OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_CLEAR,1,new FunctionArg(1,&_chartID));
+		OneSheeld.sendShieldFrame(CHART_ID,0,CHART_CLEAR,1,new FunctionArg(1,&_chartID));
 	}
 }
 
-void GraphShield::autoScroll(byte state)
+void ChartShield::autoScroll(byte state)
 {
-	OneSheeld.sendShieldFrame(GRAPH_ID,0,GRAPH_AUTO_SCROLL,1,new FunctionArg(1,&state));
+	OneSheeld.sendShieldFrame(CHART_ID,0,CHART_AUTO_SCROLL,1,new FunctionArg(1,&state));
 }

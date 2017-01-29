@@ -1,7 +1,7 @@
 /*
 
   Project:       1Sheeld Library 
-  File:          GraphShield.h
+  File:          ChartShield.h
                  
   Version:       1.12.0
 
@@ -12,17 +12,17 @@
   Date:          2016.12
 
 */
-#ifndef GraphShield_h
-#define GraphShield_h
+#ifndef ChartShield_h
+#define ChartShield_h
 
 #include "ShieldParent.h"
 
 //Output Function ID
-#define GRAPH_PLOT            0x01
-#define GRAPH_CLEAR           0x02
-#define GRAPH_AUTO_SCROLL     0x03
-#define GRAPH_SAVE_CSV        0x04
-#define GRAPH_SAVE_SCREENSHOT 0x05
+#define CHART_PLOT            0x01
+#define CHART_CLEAR           0x02
+#define CHART_AUTO_SCROLL     0x03
+#define CHART_SAVE_CSV        0x04
+#define CHART_SAVE_SCREENSHOT 0x05
 
 //Input Function ID
 
@@ -34,10 +34,10 @@
 #define CHART_4     0x04
 
 
-class GraphShield : public ShieldParent
+class ChartShield : public ShieldParent
 {
 public:
-  GraphShield();
+  ChartShield();
   void clear(byte);
   void add(const char *,float,byte =0);
   void plot();
@@ -52,5 +52,5 @@ private:
   byte   chartIDArray[5];
 };
 
-extern GraphShield Graph;
+extern ChartShield Chart;
 #endif

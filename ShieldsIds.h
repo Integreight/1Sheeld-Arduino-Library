@@ -60,4 +60,4 @@
 #define BARCODE_ID			 0x2B
 #define FINGERPRINT_ID		 0x2C
 #define FACE_DETECTOR_ID	 0x2D
-#define GRAPH_ID			 0x2E
+#define CHART_ID			 0x2E

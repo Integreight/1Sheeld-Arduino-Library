@@ -1,12 +1,12 @@
 /*
 
-Graph Shield Example
+Chart Shield Example
 
-This example shows an application on 1Sheeld's graph shield.
+This example shows an application on 1Sheeld's chart shield.
 
 By using this example, you can plot and display noise data using mic over a line chart
 and save it as a CSV so you can use other tools to check the data.
-PS: Graph shield will automatically save 10000 plots then it will clear them from the app
+PS: Chart shield will automatically save 10000 plots then it will clear them from the app
 for more convenient performance.
 
 OPTIONAL:
@@ -18,7 +18,7 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 
 #define CUSTOM_SETTINGS
 #define INCLUDE_MIC_SHIELD
-#define INCLUDE_GRAPH_SHIELD
+#define INCLUDE_CHART_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
@@ -28,18 +28,18 @@ void setup()
   /* Start communication. */
   OneSheeld.begin();
   /* Save a screenshot of CHART_0. */
-  Graph.saveScreenShot(CHART_0);
+  Chart.saveScreenShot(CHART_0);
   /* Save a csv of CHART_0. */
-  Graph.saveCsv("MicValues",CHART_0);
+  Chart.saveCsv("MicValues",CHART_0);
   /* Clear Chart 0. */
-  Graph.clear(CHART_0);
+  Chart.clear(CHART_0);
 }
 
 void loop() {
   /* Add mic values to be ploted by chart. */
-  Graph.add("Mic/db",Mic.getValue());
+  Chart.add("Mic/db",Mic.getValue());
   /* Plot the values. */
-  Graph.plot();
+  Chart.plot();
   /* Delay for 1 second. */
   OneSheeld.delay(1000);
 }
