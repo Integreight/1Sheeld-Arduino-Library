@@ -330,7 +330,7 @@ getVisibleFace			KEYWORD2		RESERVED_WORD
 getVisibleFacesCount			KEYWORD2		RESERVED_WORD
 plot			KEYWORD2		RESERVED_WORD
 saveCsv			KEYWORD2		RESERVED_WORD
-saveScreenShot			KEYWORD2		RESERVED_WORD
+saveScreenshot			KEYWORD2		RESERVED_WORD
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################

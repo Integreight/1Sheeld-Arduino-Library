@@ -28,7 +28,7 @@ void setup()
   /* Start communication. */
   OneSheeld.begin();
   /* Save a screenshot of CHART_0. */
-  Chart.saveScreenShot(CHART_0);
+  Chart.saveScreenshot(CHART_0);
   /* Save a csv file of CHART_0. */
   Chart.saveCsv("MicValues",CHART_0);
   /* Clear Chart 0. */

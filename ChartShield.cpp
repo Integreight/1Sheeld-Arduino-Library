@@ -107,7 +107,7 @@ void ChartShield::saveCsv(const char * fileName,byte _chartID)
 	}
 }
 
-void ChartShield::saveScreenShot(byte _chartID)
+void ChartShield::saveScreenshot(byte _chartID)
 {
 	OneSheeld.sendShieldFrame(CHART_ID,0,CHART_SAVE_SCREENSHOT,1,new FunctionArg(1,&_chartID));
 }
