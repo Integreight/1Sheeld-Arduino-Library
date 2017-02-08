@@ -196,3 +196,7 @@ EXTERN FaceDetectionShield FaceDetector;
 #ifdef INCLUDE_CHART_SHIELD
 EXTERN ChartShield Chart;
 #endif
+
+#ifdef INCLUDE_IOT_SHIELD
+EXTERN IOTShield IOT;
+#endif

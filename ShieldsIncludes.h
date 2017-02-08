@@ -60,3 +60,4 @@
 #include "FingerprintScannerShield.h"
 #include "FaceDetectionShield.h"
 #include "ChartShield.h"
+#include "IOTShield.h"

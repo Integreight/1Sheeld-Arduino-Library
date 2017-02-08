@@ -61,3 +61,4 @@
 #define FINGERPRINT_ID		 0x2C
 #define FACE_DETECTOR_ID	 0x2D
 #define CHART_ID			 0x2E
+#define IOT_ID				 0x2F
