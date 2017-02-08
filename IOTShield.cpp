@@ -39,7 +39,7 @@ void IOTShield::setHost(const char * server)
 
 void IOTShield::setHost(String server)
 {
-	setHost(server.c_str());
+	setHost(&server[0]);
 }
 
 void IOTShield::setPort(int portNumber)
@@ -54,7 +54,7 @@ void IOTShield::setClientID(const char * clientID)
 
 void IOTShield::setClientID(String clientID)
 {
-	setClientID(clientID.c_str());
+	setClientID(&clientID[0]);
 }
 
 void IOTShield::setLastWillAndTestament(const char * willTopic,const char * willMessage,byte willQos,byte willRetained)
@@ -67,7 +67,7 @@ void IOTShield::setLastWillAndTestament(const char * willTopic,const char * will
 
 void IOTShield::setLastWillAndTestament(String willTopic,String willMessage,byte willQos,byte willRetained)
 {
-	setLastWillAndTestament(willTopic.c_str(),willMessage.c_str(),willQos,willRetained);
+	setLastWillAndTestament(&willTopic[0],&willMessage[0],willQos,willRetained);
 }
 
 void IOTShield::setCleanSession(bool cleanSession)
@@ -93,7 +93,7 @@ void IOTShield::setCredentials(const char * userName,const char * password)
 
 void IOTShield::setCredentials(String userName,String password)
 {
-	setCredentials(userName.c_str(),password.c_str());
+	setCredentials(&userName[0],&password[0]);
 }
 
 void IOTShield::setAutoReconnect(bool autoReconnect)
@@ -122,7 +122,7 @@ void IOTShield::publish(const char * topic,const char * payload,byte qos,byte re
 
 void IOTShield::publish(String topic, String payload,byte qos,byte retained)
 {
-	publish(topic.c_str(),payload.c_str(),qos,retained);
+	publish(&topic[0],&payload[0],qos,retained);
 }
 
 void IOTShield::publish(const char * topic,byte * payload,byte payloadLength,byte qos,byte retain)
@@ -135,7 +135,7 @@ void IOTShield::publish(const char * topic,byte * payload,byte payloadLength,byt
 
 void IOTShield::publish(String topic,byte * payload,byte payloadLength,byte qos,byte retain)
 {
-	publish(topic.c_str(),payload,payloadLength,qos,retain);
+	publish(&topic[0],payload,payloadLength,qos,retain);
 }
 
 void IOTShield::publish(const char * topic, int payload, byte qos,byte retain)
@@ -148,7 +148,7 @@ void IOTShield::publish(const char * topic, int payload, byte qos,byte retain)
 
 void IOTShield::publish(String topic, int payload, byte qos,byte retain)
 {
-	publish(topic.c_str(),payload,qos,retain);
+	publish(&topic[0],payload,qos,retain);
 }
 
 void IOTShield::publish(const char * topic, unsigned int payload,byte qos,byte retain)
@@ -161,7 +161,7 @@ void IOTShield::publish(const char * topic, unsigned int payload,byte qos,byte r
 
 void IOTShield::publish(String topic, unsigned int payload,byte qos,byte retain)
 {
-	publish(topic.c_str(),payload,qos,retain);
+	publish(&topic[0],payload,qos,retain);
 }
 
 void IOTShield::publish(const char *topic, float payload ,byte qos,byte retain)
@@ -174,7 +174,7 @@ void IOTShield::publish(const char *topic, float payload ,byte qos,byte retain)
 
 void IOTShield::publish(String topic, float payload ,byte qos,byte retain)
 {
-	publish(topic.c_str(),payload,qos,retain);
+	publish(&topic[0],payload,qos,retain);
 }
 
 void IOTShield::subscribe(const char * topic,byte qos)
@@ -185,7 +185,7 @@ void IOTShield::subscribe(const char * topic,byte qos)
 
 void IOTShield::subscribe(String topic,byte qos)
 {
-	subscribe(topic.c_str(),qos);
+	subscribe(&topic[0],qos);
 }
 
 void IOTShield::unsubscribe(const char *topic)
@@ -195,7 +195,7 @@ void IOTShield::unsubscribe(const char *topic)
 
 void IOTShield::unsubscribe(String topic)
 {
-	unsubscribe(topic.c_str());
+	unsubscribe(&topic[0]);
 }
 
 void IOTShield::setOnConnectionStatusChange(void (userFunction)(byte))
