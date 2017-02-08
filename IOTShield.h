@@ -75,7 +75,7 @@ public:
   void setKeepAlive(unsigned int );
   void setCredentials(const char *,const char * );
   void setCredentials(String,String);
-  void setAutoReconnect(bool =false);
+  void setAutoReconnect(bool =true);
   void connect();
   void disconnect();
   void publish(const char *,const char * ,byte=0,byte=0);
