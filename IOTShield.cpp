@@ -75,11 +75,6 @@ void IOTShield::setCleanSession(bool cleanSession)
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CLEAN_SESSION,1,new FunctionArg(sizeof(cleanSession),(byte*)&cleanSession));	
 }
 
-void IOTShield::setConnectionTimeout(unsigned int connectionTimeout)
-{
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONN_TIMEOUT,1,new FunctionArg(sizeof(unsigned int),(byte*)&connectionTimeout));	
-}
-
 void IOTShield::setKeepAlive(unsigned int keepAlive)
 {
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_KEEP_ALIVE,1,new FunctionArg(sizeof(unsigned int),(byte*)&keepAlive));		
@@ -104,6 +99,30 @@ void IOTShield::setAutoReconnect(bool autoReconnect)
 void IOTShield::connect()
 {
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,0);				
+}
+
+void IOTShield::connect(const char * host,int portNumber)
+{
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,2,new FunctionArg(strlen(host),(byte*)host)
+													,new FunctionArg(sizeof(int),(byte*)&portNumber));
+}
+
+void IOTShield::connect(String host,int portNumber)
+{
+	connect(&host[0],portNumber);
+}
+
+void IOTShield::connect(const char * host, const char * userName, const char *password,int portNumber)
+{
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,4,new FunctionArg(strlen(host),(byte*)host)
+													,new FunctionArg(strlen(userName),(byte*)userName)
+													,new FunctionArg(strlen(password),(byte*)password)
+													,new FunctionArg(sizeof(int),(byte*)&portNumber));	
+}
+
+void IOTShield::connect(String host,String userName,String password,int portNumber)
+{
+	connect(&host[0],&userName[0],&password[0],portNumber);
 }
 
 void IOTShield::disconnect()

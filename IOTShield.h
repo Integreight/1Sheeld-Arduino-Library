@@ -23,19 +23,18 @@
 #define IOT_SET_CLIENT_ID     0x03
 #define IOT_LAST_WILL         0x04
 #define IOT_CLEAN_SESSION     0x05
-#define IOT_CONN_TIMEOUT      0x06
-#define IOT_KEEP_ALIVE        0x07
-#define IOT_CREDENTIALS       0x08
-#define IOT_AUTO_RECON        0x09
-#define IOT_CONNECT           0x0A
-#define IOT_DISCONNECT        0x0B
-#define IOT_PUBLISH_STRING    0x0C
-#define IOT_PUBLISH_INT       0x0D
-#define IOT_PUBLISH_UINT      0x0E
-#define IOT_PUBLISH_FLOAT     0x0F
-#define IOT_PUBLISH_RAW       0x10
-#define IOT_SUBSCRIBE         0x11
-#define IOT_UNSUBSCRIBE       0x12
+#define IOT_KEEP_ALIVE        0x06
+#define IOT_CREDENTIALS       0x07
+#define IOT_AUTO_RECON        0x08
+#define IOT_CONNECT           0x09
+#define IOT_DISCONNECT        0x0A
+#define IOT_PUBLISH_STRING    0x0B
+#define IOT_PUBLISH_INT       0x0C
+#define IOT_PUBLISH_UINT      0x0D
+#define IOT_PUBLISH_FLOAT     0x0E
+#define IOT_PUBLISH_RAW       0x1F
+#define IOT_SUBSCRIBE         0x10
+#define IOT_UNSUBSCRIBE       0x11
 
 //Input Function ID
 #define IOT_GET_DATA        0x01
@@ -71,12 +70,15 @@ public:
   void setLastWillAndTestament(const char *,const char *,byte =0,byte =0);
   void setLastWillAndTestament(String,String,byte =0,byte =0);
   void setCleanSession(bool=true);
-  void setConnectionTimeout(unsigned int );
-  void setKeepAlive(unsigned int );
+  void setKeepAlive(unsigned int = 30);
   void setCredentials(const char *,const char * );
   void setCredentials(String,String);
   void setAutoReconnect(bool =true);
   void connect();
+  void connect(const char *,int=1883);
+  void connect(const char *, const char *, const char *,int=1883);
+  void connect(String,int=1883);
+  void connect(String,String,String,int=1883);
   void disconnect();
   void publish(const char *,const char * ,byte=0,byte=0);
   void publish(const char*, byte *,byte ,byte=0,byte=0);
