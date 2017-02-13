@@ -86,8 +86,8 @@ void OneSheeldClass::waitForAppConnection()
 
 void OneSheeldClass::init()
 {
-  sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   isInit=true;
+  sendShieldFrame(ONESHEELD_ID,0,CHECK_APP_CONNECTION,0);
   if(requestsArray!=0){
     for(int i=0;i<requestsCounter;i++)
       requestsArray[i]->sendInitFrame();
@@ -153,7 +153,7 @@ void OneSheeldClass::setOnNewSerialData(void (*userFunction)(byte))
 }
 void OneSheeldClass::oneSheeldWrite(byte data)
 {
-  OneSheeldSerial->write(data);
+  if(isInit)OneSheeldSerial->write(data);
   if(!dontDelay)
   {
     ::delay(2);
