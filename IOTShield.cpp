@@ -243,7 +243,7 @@ void IOTShield::setOnError(void (userFunction)(byte))
 	isErrorCallbackAssigned = true;
 }
 
-void IOTShield::setConnectionParametersToDefault()
+void IOTShield::resetConnectionParametersToDefault()
 {
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SET_TO_DEFAULT,0);
 }
