@@ -18,6 +18,7 @@
 #include "ShieldParent.h"
 
 //Output Function ID
+#define IOT_SET_TO_DEFAULT    0x00
 #define IOT_SET_HOST          0x01
 #define IOT_SET_PORT          0x02
 #define IOT_SET_CLIENT_ID     0x03
@@ -98,6 +99,7 @@ public:
   void setOnNewMessage(void (userFunction)(char * ,char * ));
   void setOnNewMessageAsString(void (userFunction)(String,String));
   void setOnError(void (userFunction)(byte));
+  void setConnectionParametersToDefault();
 private:
   bool isBrokerConnected;
   bool isConnStatCallbackAssigned;

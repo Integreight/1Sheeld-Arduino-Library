@@ -345,6 +345,7 @@ setAutoReconnect			KEYWORD2		RESERVED_WORD1
 setOnConnectionStatusChange			KEYWORD2		RESERVED_WORD1
 setOnNewMessage			KEYWORD2		RESERVED_WORD1
 setOnNewMessageAsString			KEYWORD2		RESERVED_WORD1
+setConnectionParametersToDefault			KEYWORD2		RESERVED_WORD1
 #######################################
 # Strcutures and Classes (KEYWORD3)
 #######################################
