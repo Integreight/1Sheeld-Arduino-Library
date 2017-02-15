@@ -245,7 +245,7 @@ void IOTShield::setOnError(void (userFunction)(byte))
 
 void IOTShield::resetConnectionParametersToDefault()
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SET_TO_DEFAULT,0);
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_RESET_TO_DEFAULT,0);
 }
 
 //Process Input Data
