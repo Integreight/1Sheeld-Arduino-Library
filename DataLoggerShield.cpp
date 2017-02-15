@@ -58,7 +58,10 @@ void DataLoggerShield::add(const char * key,float value)
 	// Check string is not empty
 	int  keyLength = strlen(key);
 	if(!keyLength) return ; 
-	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(keyLength,(byte *)key),new FunctionArg(4,(byte*)OneSheeld.convertFloatToBytes(value)));
+	byte floatBytes[4];
+	OneSheeld.convertFloatToBytes(value,floatBytes);
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_ADD_FLOAT,2,new FunctionArg(keyLength,(byte *)key)
+																 ,new FunctionArg(sizeof(float),floatBytes));
 }
 
 void DataLoggerShield::add(String key , float value)

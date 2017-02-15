@@ -185,8 +185,10 @@ void IOTShield::publish(String topic, unsigned int payload,byte qos,byte retain)
 
 void IOTShield::publish(const char *topic, float payload ,byte qos,byte retain)
 {
+	byte floatBytes[4];
+	OneSheeld.convertFloatToBytes(payload,floatBytes);
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_FLOAT,4,new FunctionArg(strlen(topic),(byte*)topic)
-													 ,new FunctionArg(sizeof(float),(byte*)OneSheeld.convertFloatToBytes(payload))
+													 ,new FunctionArg(sizeof(float),floatBytes)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),&retain));
 }

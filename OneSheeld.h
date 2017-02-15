@@ -121,7 +121,7 @@ public:
 	byte getArgumentNo();
 	byte getArgumentLength(byte );
 	byte * getArgumentData(byte );
-	byte * convertFloatToBytes(float );
+	void convertFloatToBytes(float , byte *);
 	float convertBytesToFloat(byte * );
 	//Processing Incomming Frames
 	void processInput();		
@@ -150,7 +150,6 @@ public:
 	static Stream * OneSheeldSerial;
 private:
 	//Reserve Variables
-	FloatUnion convertFloatUnion;
 	bool isArgumentsNumberMalloced;
 	bool isArgumentLengthMalloced;
 	bool isOneSheeldConnected;
