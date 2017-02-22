@@ -34,7 +34,11 @@ bool IOTShield::isConnected()
 
 void IOTShield::setHost(const char * server)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SET_HOST,1,new FunctionArg(strlen(server),(byte*)server));
+	byte serverNameLength = strlen(server);
+	if(serverNameLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SET_HOST,1,new FunctionArg(serverNameLength,(byte*)server));
+	}
 }
 
 void IOTShield::setHost(String server)
@@ -49,7 +53,11 @@ void IOTShield::setPort(int portNumber)
 
 void IOTShield::setClientID(const char * clientID)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SET_CLIENT_ID,1,new FunctionArg(strlen(clientID),(byte*)clientID));
+	byte clientIdLength = strlen(clientID);
+	if(clientIdLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SET_CLIENT_ID,1,new FunctionArg(clientIdLength,(byte*)clientID));
+	}
 }
 
 void IOTShield::setClientID(String clientID)
@@ -59,10 +67,15 @@ void IOTShield::setClientID(String clientID)
 
 void IOTShield::setLastWillAndTestament(const char * willTopic,const char * willMessage,byte willQos,byte willRetained)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_LAST_WILL,4,new FunctionArg(strlen(willTopic),(byte*)willTopic)
-													 ,new FunctionArg(strlen(willMessage),(byte*)willMessage)
+	byte willTopicLength = strlen(willTopic);
+	byte willMessageLength = strlen(willMessage);
+	if(willTopicLength && willMessageLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_LAST_WILL,4,new FunctionArg(willTopicLength,(byte*)willTopic)
+													 ,new FunctionArg(willMessageLength,(byte*)willMessage)
 													 ,new FunctionArg(sizeof(byte),&willQos)
 													 ,new FunctionArg(sizeof(byte),&willRetained));
+	}
 }
 
 void IOTShield::setLastWillAndTestament(String willTopic,String willMessage,byte willQos,byte willRetained)
@@ -82,8 +95,13 @@ void IOTShield::setKeepAlive(unsigned int keepAlive)
 
 void IOTShield::setCredentials(const char * userName,const char * password)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CREDENTIALS,2,new FunctionArg(strlen(userName),(byte*)userName)
-													 ,new FunctionArg(strlen(password),(byte*)password));
+	byte userNameLength = strlen(userName);
+	byte passwordLength = strlen(password);
+	if(userNameLength && passwordLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CREDENTIALS,2,new FunctionArg(userNameLength,(byte*)userName)
+													 ,new FunctionArg(passwordLength,(byte*)password));
+	}
 }
 
 void IOTShield::setCredentials(String userName,String password)
@@ -103,8 +121,13 @@ void IOTShield::connect()
 
 void IOTShield::connect(const char * host,int portNumber)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,2,new FunctionArg(strlen(host),(byte*)host)
-													,new FunctionArg(sizeof(int),(byte*)&portNumber));
+	byte hostLength = strlen(host);	
+	if(hostLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,2,new FunctionArg(hostLength,(byte*)host)
+												,new FunctionArg(sizeof(int),(byte*)&portNumber));	
+	}
+	
 }
 
 void IOTShield::connect(String host,int portNumber)
@@ -114,10 +137,16 @@ void IOTShield::connect(String host,int portNumber)
 
 void IOTShield::connect(const char * host, const char * userName, const char *password,int portNumber)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,4,new FunctionArg(strlen(host),(byte*)host)
-													,new FunctionArg(strlen(userName),(byte*)userName)
-													,new FunctionArg(strlen(password),(byte*)password)
-													,new FunctionArg(sizeof(int),(byte*)&portNumber));	
+	byte hostLength = strlen(host);	
+	byte userNameLength = strlen(userName);
+	byte passwordLength = strlen(password);
+	if(hostLength && userNameLength && passwordLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,4,new FunctionArg(hostLength,(byte*)host)
+													,new FunctionArg(userNameLength,(byte*)userName)
+													,new FunctionArg(passwordLength,(byte*)password)
+													,new FunctionArg(sizeof(int),(byte*)&portNumber));
+	}			
 }
 
 void IOTShield::connect(String host,String userName,String password,int portNumber)
