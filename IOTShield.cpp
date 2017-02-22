@@ -160,63 +160,63 @@ void IOTShield::disconnect()
 	isBrokerConnected=false;	
 }
 
-void IOTShield::publish(const char * topic,const char * payload,byte qos,byte retain)
+void IOTShield::publish(const char * topic,const char * payload,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_STRING,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(strlen(payload),(byte*)payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
-													 ,new FunctionArg(sizeof(byte),&retain));
+													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
 }
 
-void IOTShield::publish(String topic, String payload,byte qos,byte retained)
+void IOTShield::publish(String topic, String payload,byte qos,bool retain)
 {
-	publish(&topic[0],&payload[0],qos,retained);
+	publish(&topic[0],&payload[0],qos,retain);
 }
 
-void IOTShield::publish(const char * topic,byte * payload,byte payloadLength,byte qos,byte retain)
+void IOTShield::publish(const char * topic,byte * payload,byte payloadLength,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_RAW,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(payloadLength,payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
-													 ,new FunctionArg(sizeof(byte),&retain));
+													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
 }
 
-void IOTShield::publish(String topic,byte * payload,byte payloadLength,byte qos,byte retain)
+void IOTShield::publish(String topic,byte * payload,byte payloadLength,byte qos,bool retain)
 {
 	publish(&topic[0],payload,payloadLength,qos,retain);
 }
 
-void IOTShield::publish(const char * topic, int payload, byte qos,byte retain)
+void IOTShield::publish(const char * topic, int payload, byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_INT,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(sizeof(int),(byte*)&payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
-													 ,new FunctionArg(sizeof(byte),&retain));
+													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
 }
 
-void IOTShield::publish(String topic, int payload, byte qos,byte retain)
+void IOTShield::publish(String topic, int payload, byte qos,bool retain)
 {
 	publish(&topic[0],payload,qos,retain);
 }
 
-void IOTShield::publish(const char * topic, unsigned int payload,byte qos,byte retain)
+void IOTShield::publish(const char * topic, unsigned int payload,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_UINT,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(sizeof(int),(byte*)&payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
-													 ,new FunctionArg(sizeof(byte),&retain));
+													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
 }
 
-void IOTShield::publish(String topic, unsigned int payload,byte qos,byte retain)
+void IOTShield::publish(String topic, unsigned int payload,byte qos,bool retain)
 {
 	publish(&topic[0],payload,qos,retain);
 }
 
-void IOTShield::publish(const char *topic, float payload ,byte qos,byte retain)
+void IOTShield::publish(const char *topic, float payload ,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
 	byte floatBytes[4];
@@ -224,10 +224,10 @@ void IOTShield::publish(const char *topic, float payload ,byte qos,byte retain)
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_FLOAT,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(sizeof(float),floatBytes)
 													 ,new FunctionArg(sizeof(byte),&qos)
-													 ,new FunctionArg(sizeof(byte),&retain));
+													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
 }
 
-void IOTShield::publish(String topic, float payload ,byte qos,byte retain)
+void IOTShield::publish(String topic, float payload ,byte qos,bool retain)
 {
 	publish(&topic[0],payload,qos,retain);
 }
