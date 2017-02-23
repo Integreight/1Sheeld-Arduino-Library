@@ -67,15 +67,10 @@ void IOTShield::setClientID(String clientID)
 
 void IOTShield::setLastWillAndTestament(const char * willTopic,const char * willMessage,byte willQos,byte willRetained)
 {
-	byte willTopicLength = strlen(willTopic);
-	byte willMessageLength = strlen(willMessage);
-	if(willTopicLength && willMessageLength)
-	{
-		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_LAST_WILL,4,new FunctionArg(willTopicLength,(byte*)willTopic)
-													 ,new FunctionArg(willMessageLength,(byte*)willMessage)
-													 ,new FunctionArg(sizeof(byte),&willQos)
-													 ,new FunctionArg(sizeof(byte),&willRetained));
-	}
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_LAST_WILL,4,new FunctionArg(strlen(willTopic),(byte*)willTopic)
+												 ,new FunctionArg(strlen(willMessage),(byte*)willMessage)
+												 ,new FunctionArg(sizeof(byte),&willQos)
+												 ,new FunctionArg(sizeof(byte),&willRetained));
 }
 
 void IOTShield::setLastWillAndTestament(String willTopic,String willMessage,byte willQos,byte willRetained)
