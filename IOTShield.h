@@ -96,8 +96,8 @@ public:
   void unsubscribe(const char *);
   void unsubscribe(String);
   void setOnConnectionStatusChange(void (userFunction)(byte));
-  void setOnNewMessage(void (userFunction)(char * ,char * ));
-  void setOnNewMessageAsString(void (userFunction)(String,String));
+  void setOnNewMessage(void (userFunction)(char * ,char * ,bool));
+  void setOnNewMessageAsString(void (userFunction)(String,String,bool));
   void setOnError(void (userFunction)(byte));
   void resetConnectionParametersToDefault();
 private:
@@ -108,8 +108,8 @@ private:
   bool isErrorCallbackAssigned;
   void processData();
   void (*connectionStatusCallback)(byte);
-  void (*newMessageCallback)(char * ,char * );
-  void (*newMessageCallbackAsString)(String,String);
+  void (*newMessageCallback)(char * ,char *,bool );
+  void (*newMessageCallbackAsString)(String,String,bool);
   void (*errorCallback)(byte);
 };
 

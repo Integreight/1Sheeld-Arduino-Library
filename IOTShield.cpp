@@ -255,13 +255,13 @@ void IOTShield::setOnConnectionStatusChange(void (userFunction)(byte))
 	isConnStatCallbackAssigned = true;
 }
  
-void IOTShield::setOnNewMessage(void (userFunction)(char * ,char * ))
+void IOTShield::setOnNewMessage(void (userFunction)(char * ,char * ,bool))
 {
 	newMessageCallback = userFunction;
 	isMessageCallbackAssigned= true;
 }
 
-void IOTShield::setOnNewMessageAsString(void (userFunction)(String ,String ))
+void IOTShield::setOnNewMessageAsString(void (userFunction)(String ,String,bool ))
 {
 	newMessageCallbackAsString = userFunction;
 	isMessageStrCallbackAssigned= true;
@@ -287,18 +287,19 @@ void IOTShield::processData()
 	{
 		char * topic = (char *)getOneSheeldInstance().getArgumentData(0);
 		char * payload = (char *)getOneSheeldInstance().getArgumentData(1);
+		bool retain = (bool)getOneSheeldInstance().getArgumentData(2)[0];
 		//Invoke User Function
 		if(!isInACallback())
 		{
 			if(isMessageCallbackAssigned)
 			{
 				enteringACallback();
-				(*newMessageCallback)(topic,payload);
+				(*newMessageCallback)(topic,payload,retain);
 				exitingACallback();
 			}else if (isMessageStrCallbackAssigned)
 			{
 				enteringACallback();
-				(*newMessageCallbackAsString)(String(topic),String(payload));
+				(*newMessageCallbackAsString)(String(topic),String(payload),retain);
 				exitingACallback();
 			}
 		}
