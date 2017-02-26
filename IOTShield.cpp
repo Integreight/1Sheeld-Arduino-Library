@@ -65,15 +65,15 @@ void IOTShield::setClientID(String clientID)
 	setClientID(&clientID[0]);
 }
 
-void IOTShield::setLastWillAndTestament(const char * willTopic,const char * willMessage,byte willQos,byte willRetained)
+void IOTShield::setLastWillAndTestament(const char * willTopic,const char * willMessage,byte willQos,bool willRetained)
 {
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_LAST_WILL,4,new FunctionArg(strlen(willTopic),(byte*)willTopic)
 												 ,new FunctionArg(strlen(willMessage),(byte*)willMessage)
 												 ,new FunctionArg(sizeof(byte),&willQos)
-												 ,new FunctionArg(sizeof(byte),&willRetained));
+												 ,new FunctionArg(sizeof(byte),(byte*)&willRetained));
 }
 
-void IOTShield::setLastWillAndTestament(String willTopic,String willMessage,byte willQos,byte willRetained)
+void IOTShield::setLastWillAndTestament(String willTopic,String willMessage,byte willQos,bool willRetained)
 {
 	setLastWillAndTestament(&willTopic[0],&willMessage[0],willQos,willRetained);
 }
