@@ -5,7 +5,7 @@
                  
   Version:       1.13.0
 
-  Compiler:      Arduino avr#define gcc 4.3.2
+  Compiler:      Arduino avr-gcc 4.3.2
 
   Author:        Integreight
                  
