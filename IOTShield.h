@@ -29,13 +29,16 @@
 #define IOT_AUTO_RECON        0x08
 #define IOT_CONNECT           0x09
 #define IOT_DISCONNECT        0x0A
-#define IOT_PUBLISH_STRING    0x0B
-#define IOT_PUBLISH_INT       0x0C
-#define IOT_PUBLISH_UINT      0x0D
-#define IOT_PUBLISH_FLOAT     0x0E
-#define IOT_PUBLISH_RAW       0x1F
-#define IOT_SUBSCRIBE         0x10
-#define IOT_UNSUBSCRIBE       0x11
+#define IOT_PUBLISH           0x0B
+#define IOT_SUBSCRIBE         0x0C
+#define IOT_UNSUBSCRIBE       0x0D
+#define IOT_UNSUBSCRIBE_ALL   0x0E
+#define IOT_SSL_CONNECTION    0x0F
+
+
+// Exception until we support sending empty strings
+#define IOT_PUBLISH_EMPTY     0xFE
+ 
 
 //Input Function ID
 #define IOT_GET_DATA        0x01
@@ -56,7 +59,17 @@
 #define BAD_CREDENTIALS               0x06
 #define MISSING_CONNECTION_PARAMETERS 0x07
 
-
+// Callback assginments order in callbacksAssignments variable
+#define CHAR_CHAR       0
+#define CHAR_INT        1
+#define CHAR_UNINT      2
+#define CHAR_FLOAT      3
+#define CHAR_RAW        4
+#define STRING_STRING   5
+#define STRING_INT      6
+#define STRING_UNINT    7
+#define STRING_FLOAT    8
+#define STRING_RAW      9
 
 class IOTShield : public ShieldParent
 {
@@ -101,19 +114,34 @@ public:
   void unsubscribe(String);
   void setOnConnectionStatusChange(void (userFunction)(byte));
   void setOnNewMessage(void (userFunction)(char * ,char * ,byte,bool));
-  void setOnNewMessageAsString(void (userFunction)(String,String,byte,bool));
+  void setOnNewMessage(void (userFunction)(char * ,int ,byte,bool));
+  void setOnNewMessage(void (userFunction)(char * ,unsigned int ,byte,bool));
+  void setOnNewMessage(void (userFunction)(char * ,float ,byte,bool));
+  void setOnNewMessage(void (userFunction)(char * ,byte*,byte,byte,bool));
+  void setOnNewMessage(void (userFunction)(String,String,byte,bool));
+  void setOnNewMessage(void (userFunction)(String,int,byte,bool));
+  void setOnNewMessage(void (userFunction)(String,unsigned int,byte,bool));
+  void setOnNewMessage(void (userFunction)(String,float,byte,bool));
+  void setOnNewMessage(void (userFunction)(String,byte*,byte,byte,bool));
   void setOnError(void (userFunction)(byte));
   void resetConnectionParametersToDefaults();
 private:
+  int callbacksAssignments;
   bool isBrokerConnected;
   bool isConnStatCallbackAssigned;
-  bool isMessageCallbackAssigned;
-  bool isMessageStrCallbackAssigned;
   bool isErrorCallbackAssigned;
   void processData();
   void (*connectionStatusCallback)(byte);
-  void (*newMessageCallback)(char * ,char *,byte,bool );
-  void (*newMessageCallbackAsString)(String,String,byte,bool);
+  void (*newMessageCharCharCallback)(char * ,char *,byte,bool );
+  void (*newMessageCharIntCallback)(char * ,int,byte,bool );
+  void (*newMessageCharUnIntCallback)(char * ,unsigned int,byte,bool );
+  void (*newMessageCharFloatCallback)(char * ,float,byte,bool );
+  void (*newMessageCharRawCallback)(char * ,byte *,byte,byte,bool );
+  void (*newMessageStrStrCallback)(String,String,byte,bool);
+  void (*newMessageStrIntCallback)(String,int,byte,bool);
+  void (*newMessageStrUnIntCallback)(String,unsigned int,byte,bool);
+  void (*newMessageStrFloatCallback)(String,float,byte,bool);
+  void (*newMessageStrRawCallback)(String,byte*,byte,byte,bool);
   void (*errorCallback)(byte);
 };
 

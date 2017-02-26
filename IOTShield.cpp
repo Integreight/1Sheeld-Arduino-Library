@@ -20,11 +20,10 @@
 
 IOTShield::IOTShield() : ShieldParent(IOT_ID)
 {
+	callbacksAssignments=0;
 	isBrokerConnected = false;
     isConnStatCallbackAssigned = false;
-  	isMessageCallbackAssigned = false;
   	isErrorCallbackAssigned = false;
-  	isMessageStrCallbackAssigned = false;
 }
 
 bool IOTShield::isConnected()
@@ -190,7 +189,7 @@ void IOTShield::disconnect()
 void IOTShield::publish(const char * topic,const char * payload,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_STRING,4,new FunctionArg(strlen(topic),(byte*)topic)
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(strlen(payload),(byte*)payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
@@ -204,7 +203,7 @@ void IOTShield::publish(String topic, String payload,byte qos,bool retain)
 void IOTShield::publish(const char * topic,byte * payload,byte payloadLength,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_RAW,4,new FunctionArg(strlen(topic),(byte*)topic)
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(payloadLength,payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
@@ -218,7 +217,7 @@ void IOTShield::publish(String topic,byte * payload,byte payloadLength,byte qos,
 void IOTShield::publish(const char * topic, int payload, byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_INT,4,new FunctionArg(strlen(topic),(byte*)topic)
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(sizeof(int),(byte*)&payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
@@ -232,7 +231,7 @@ void IOTShield::publish(String topic, int payload, byte qos,bool retain)
 void IOTShield::publish(const char * topic, unsigned int payload,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_UINT,4,new FunctionArg(strlen(topic),(byte*)topic)
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(sizeof(int),(byte*)&payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
@@ -248,7 +247,7 @@ void IOTShield::publish(const char *topic, float payload ,byte qos,bool retain)
 	if(qos > 2)qos = 2;
 	byte floatBytes[4];
 	OneSheeld.convertFloatToBytes(payload,floatBytes);
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_FLOAT,4,new FunctionArg(strlen(topic),(byte*)topic)
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(sizeof(float),floatBytes)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
@@ -289,14 +288,62 @@ void IOTShield::setOnConnectionStatusChange(void (userFunction)(byte))
  
 void IOTShield::setOnNewMessage(void (userFunction)(char * ,char *,byte ,bool))
 {
-	newMessageCallback = userFunction;
-	isMessageCallbackAssigned= true;
+	newMessageCharCharCallback = userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<CHAR_CHAR);
 }
 
-void IOTShield::setOnNewMessageAsString(void (userFunction)(String ,String,byte,bool ))
+void IOTShield::setOnNewMessage(void (userFunction)(char * ,int,byte ,bool))
 {
-	newMessageCallbackAsString = userFunction;
-	isMessageStrCallbackAssigned= true;
+	newMessageCharIntCallback = userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<CHAR_INT);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(char * ,unsigned int,byte ,bool))
+{
+	newMessageCharUnIntCallback = userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<CHAR_UNINT);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(char * ,float,byte ,bool))
+{
+	newMessageCharFloatCallback = userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<CHAR_FLOAT);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(char * ,byte *,byte,byte ,bool))
+{
+	newMessageCharRawCallback = userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<CHAR_RAW);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(String ,String,byte,bool ))
+{
+	newMessageStrStrCallback= userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<STRING_STRING);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(String ,int ,byte,bool ))
+{
+	newMessageStrIntCallback= userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<STRING_INT);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(String ,unsigned int ,byte,bool ))
+{
+	newMessageStrUnIntCallback= userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<STRING_UNINT);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(String ,float ,byte,bool ))
+{
+	newMessageStrFloatCallback= userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<STRING_FLOAT);
+}
+
+void IOTShield::setOnNewMessage(void (userFunction)(String ,byte *,byte ,byte,bool ))
+{
+	newMessageStrRawCallback= userFunction;
+	callbacksAssignments= callbacksAssignments|(1<<STRING_RAW);
 }
 
 void IOTShield::setOnError(void (userFunction)(byte))
@@ -317,24 +364,85 @@ void IOTShield::processData()
 
 	if(functionID==IOT_GET_DATA)
 	{
-		char * topic = (char *)getOneSheeldInstance().getArgumentData(0);
-		char * payload = (char *)getOneSheeldInstance().getArgumentData(1);
+		byte topicLength = getOneSheeldInstance().getArgumentLength(0);
+		char topic[topicLength+1];
+		for(int i=0;i<topicLength;i++)
+		{
+			topic[i]=getOneSheeldInstance().getArgumentData(0)[i];
+		}
+		topic[topicLength]='\0';
 		byte qos = getOneSheeldInstance().getArgumentData(2)[0];
 		bool retain = (bool)getOneSheeldInstance().getArgumentData(3)[0];
 		//Invoke User Function
 		if(!isInACallback())
 		{
-			if(isMessageCallbackAssigned)
+			enteringACallback();
+
+			if(callbacksAssignments&(1<<CHAR_CHAR))
 			{
-				enteringACallback();
-				(*newMessageCallback)(topic,payload,qos,retain);
-				exitingACallback();
-			}else if (isMessageStrCallbackAssigned)
-			{
-				enteringACallback();
-				(*newMessageCallbackAsString)(String(topic),String(payload),qos,retain);
-				exitingACallback();
+				byte payloadLength = getOneSheeldInstance().getArgumentLength(1);
+				char payload[payloadLength+1];
+				for(int i=0;i<payloadLength;i++)
+				{
+					payload[i]=getOneSheeldInstance().getArgumentData(1)[i];
+				}
+				payload[payloadLength]='\0';
+				(*newMessageCharCharCallback)(topic,payload,qos,retain);
 			}
+			if(callbacksAssignments&(1<<CHAR_INT))
+			{
+				int payload = getOneSheeldInstance().getArgumentData(1)[0]|((getOneSheeldInstance().getArgumentData(1)[1])<<8);
+				(*newMessageCharIntCallback)(topic,payload,qos,retain);
+			}
+			if(callbacksAssignments&(1<<CHAR_UNINT))
+			{
+				unsigned int payload = getOneSheeldInstance().getArgumentData(1)[0]|((getOneSheeldInstance().getArgumentData(1)[1])<<8);
+				(*newMessageCharUnIntCallback)(topic,payload,qos,retain);
+			}
+			if(callbacksAssignments&(1<<CHAR_FLOAT))
+			{
+				float payload = OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
+				(*newMessageCharFloatCallback)(topic,payload,qos,retain);
+			}
+			if(callbacksAssignments&(1<<CHAR_RAW))
+			{
+				byte * payload = getOneSheeldInstance().getArgumentData(1);
+				byte payloadLength = getOneSheeldInstance().getArgumentLength(1);
+				(*newMessageCharRawCallback)(topic,payload,payloadLength,qos,retain);
+			}
+			if(callbacksAssignments&(1<<STRING_STRING))
+			{
+				byte payloadLength = getOneSheeldInstance().getArgumentLength(1);
+				char payload[payloadLength+1];
+				for(int i=0;i<payloadLength;i++)
+				{
+					payload[i]=getOneSheeldInstance().getArgumentData(1)[i];
+				}
+				payload[payloadLength]='\0';
+				(*newMessageStrStrCallback)(String(topic),String(payload),qos,retain);
+			}
+			if(callbacksAssignments&(1<<STRING_INT))
+			{
+				int payload = getOneSheeldInstance().getArgumentData(1)[0]|((getOneSheeldInstance().getArgumentData(1)[1])<<8);
+				(*newMessageStrIntCallback)(String(topic),payload,qos,retain);
+			}
+			if(callbacksAssignments&(1<<STRING_UNINT))
+			{
+				unsigned int payload = getOneSheeldInstance().getArgumentData(1)[0]|((getOneSheeldInstance().getArgumentData(1)[1])<<8);
+				(*newMessageStrUnIntCallback)(String(topic),payload,qos,retain);
+			}
+			if(callbacksAssignments&(1<<STRING_FLOAT))
+			{
+				float payload = OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
+				(*newMessageStrFloatCallback)(String(topic),payload,qos,retain);
+			}
+			if(callbacksAssignments&(1<<STRING_RAW))
+			{
+				byte * payload = getOneSheeldInstance().getArgumentData(1);
+				byte payloadLength = getOneSheeldInstance().getArgumentLength(1);
+				(*newMessageStrRawCallback)(String(topic),payload,payloadLength,qos,retain);
+			}
+			exitingACallback();
 		}
 	}else if(functionID==IOT_GET_CONNECTION)
 	{
