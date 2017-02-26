@@ -114,6 +114,21 @@ void IOTShield::connect()
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,0);				
 }
 
+void IOTShield::connect(const char * host)
+{
+	byte hostLength = strlen(host);	
+	if(hostLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,1,new FunctionArg(hostLength,(byte*)host));	
+	}
+	
+}
+
+void IOTShield::connect(String host)
+{
+	connect(&host[0]);
+}
+
 void IOTShield::connect(const char * host,int portNumber)
 {
 	byte hostLength = strlen(host);	
@@ -128,6 +143,23 @@ void IOTShield::connect(const char * host,int portNumber)
 void IOTShield::connect(String host,int portNumber)
 {
 	connect(&host[0],portNumber);
+}
+
+void IOTShield::connect(const char * host,int portNumber,bool connectSSL)
+{
+	byte hostLength = strlen(host);	
+	if(hostLength)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_CONNECT,3,new FunctionArg(hostLength,(byte*)host)
+												,new FunctionArg(sizeof(int),(byte*)&portNumber)
+												,new FunctionArg(sizeof(bool),(byte*)&connectSSL));	
+	}
+	
+}
+
+void IOTShield::connect(String host,int portNumber,bool connectSSL)
+{
+	connect(&host[0],portNumber,connectSSL);
 }
 
 void IOTShield::connect(const char * host, const char * userName, const char *password,int portNumber)

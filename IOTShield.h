@@ -76,9 +76,13 @@ public:
   void setCredentials(String,String);
   void setAutoReconnect(bool);
   void connect();
+  void connect(const char*);
   void connect(const char *,unsigned int);
+  void connect(const char *,unsigned int,bool);
   void connect(const char *, const char *, const char *,unsigned int);
+  void connect(String);
   void connect(String,unsigned int);
+  void connect(String,unsigned int,bool);
   void connect(String,String,String,unsigned int);
   void disconnect();
   void publish(const char *,const char * ,byte,bool);
