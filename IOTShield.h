@@ -88,6 +88,7 @@ public:
   void setCredentials(const char *,const char * );
   void setCredentials(String,String);
   void setAutoReconnect(bool);
+  void setSecureConnection();
   void connect();
   void connect(const char*);
   void connect(const char *,unsigned int);
