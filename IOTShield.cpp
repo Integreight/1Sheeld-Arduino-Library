@@ -194,10 +194,18 @@ void IOTShield::disconnect()
 void IOTShield::publish(const char * topic,byte * payload,byte payloadLength,byte qos,bool retain)
 {
 	if(qos > 2)qos = 2;
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
+	if(payloadLength==0)
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH_EMPTY,3,new FunctionArg(strlen(topic),(byte*)topic)
+															  ,new FunctionArg(sizeof(byte),&qos)
+													 		  ,new FunctionArg(sizeof(byte),(byte*)&retain));
+	}else
+	{
+		OneSheeld.sendShieldFrame(IOT_ID,0,IOT_PUBLISH,4,new FunctionArg(strlen(topic),(byte*)topic)
 													 ,new FunctionArg(payloadLength,payload)
 													 ,new FunctionArg(sizeof(byte),&qos)
 													 ,new FunctionArg(sizeof(byte),(byte*)&retain));
+	}
 }
 
 void IOTShield::publish(const char * topic,const char * payload,byte qos,bool retain)
