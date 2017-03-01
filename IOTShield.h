@@ -71,6 +71,20 @@
 #define STRING_FLOAT    8
 #define STRING_RAW      9
 
+// Error literals
+#define CONNECTION_REFUSED                    0x00
+#define ILLEGAL_MESSAGE_RECEIVED              0x01
+#define DROPPING_OUT_GOING_MESSAGE            0x02
+#define ENCODER_NOT_READY                     0x03
+#define INVALID_CONNACK_RECEIVED              0x04
+#define NO_CONNACK_RECEIVED                   0x05
+#define CONNACK_UNACCEPTABLEP_ROTOCOLVERSION  0x06
+#define CONNACK_IDENTIFIER_REJECTED           0x07
+#define CONNACK_SERVER_UNAVAILABLE            0x08
+#define CONNACK_AUTHENTICATION_FAILED         0x09
+#define CONNACK_NOT_AUTHORIZED                0x0A
+#define CONNACK_RESERVED                      0x0B
+
 class IOTShield : public ShieldParent
 {
 public:
