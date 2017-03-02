@@ -56,6 +56,7 @@
 #define CONNECTION_LOST               0x03
 #define CONNECTION_LOST_RECONNECTING  0x04
 #define NOT_CONNECTED_YET             0x05
+#define MISSING_HOST                  0x06
 
 // Callback assginments order in callbacksAssignments variable
 #define CHAR_CHAR       0
