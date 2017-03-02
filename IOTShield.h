@@ -56,8 +56,6 @@
 #define CONNECTION_LOST               0x03
 #define CONNECTION_LOST_RECONNECTING  0x04
 #define NOT_CONNECTED_YET             0x05
-#define BAD_CREDENTIALS               0x06
-#define MISSING_CONNECTION_PARAMETERS 0x07
 
 // Callback assginments order in callbacksAssignments variable
 #define CHAR_CHAR       0
