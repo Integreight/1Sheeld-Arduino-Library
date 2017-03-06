@@ -4,7 +4,8 @@ IOT Shield Example
 
 This example shows an application on 1Sheeld's iot shield.
 
-By using this example, you can connect to a broker with just 1 command.
+By using this example,you can connect to a public MQTT broker and turn on/off
+an led by subscribing to a topic.
  
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -16,6 +17,9 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 #define CUSTOM_SETTINGS
 #define INCLUDE_IOT_SHIELD
 #define INCLUDE_TERMINAL_SHIELD
+
+/* Set your host name */
+#define HOST_NAME "test.mosquitto.org"
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
@@ -30,7 +34,7 @@ void setup()
   /* Start communication. */
   OneSheeld.begin();
   /* Connect to mosquitto's public broker. */
-  IOT.connect("test.mosquitto.org");
+  IOT.connect(HOST_NAME);
   /* Subscribe to new messages. */
   IOT.setOnNewMessage(&newMessage);
   /* Subscribe to connnection status callback. */
