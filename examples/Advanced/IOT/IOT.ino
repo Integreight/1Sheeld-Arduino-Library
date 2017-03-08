@@ -26,13 +26,13 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 /* Set SSL port. */
 #define SSL_PORT  27700
 /* Set last will topic. */
-#define LAST_WILL_TOPIC "MyArdiuno/Board1"
+#define LAST_WILL_TOPIC "MyArduino/Board1"
 /* Set last will payload. */
 #define LAST_WILL_PAYLOAD "Disconnected"
 /* Set username. */
-#define USER_NAME "yglrgzit"
+#define USER_NAME "username"
 /* Set password. */
-#define PASSWORD  "UgEqvrFIcHAJ"
+#define PASSWORD  "password"
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
@@ -45,9 +45,9 @@ bool startedLogging = false;
 int sensorPin = A0;
 /* Counter for incoming sensor values. */
 int counter;
-/* Subscribe to topic "1Sheeld/MyArduino/led" . */
+/* Subscribe to topic "1Sheeld/MyArduino/RemoteSensor1" to get remote sensor values . */
 const char * subscribeTopic = "1Sheeld/MyArduino/RemoteSensor1";
-/* Pulish to topic "1Sheeld/Sensors/Mic" . */
+/* Pulish sesnor values to topic "1Sheeld/Sensors/AnalogSensor1" . */
 const char * publishTopic = "1Sheeld/Sensors/AnalogSensor1";
 
 void setup() 
@@ -66,7 +66,7 @@ void setup()
   IOT.setSecureConnection();
   /* Set keep alive interval. */
   IOT.setKeepAlive(KEEP_ALIVE_INTERVAL);
-  /* Set presistent session. */
+  /* Set persistent session. */
   IOT.setCleanSession(false);
   /* Set username & password. */
   IOT.setCredentials(USER_NAME,PASSWORD);
@@ -87,8 +87,8 @@ void setup()
 void loop()
 {
   /* Check if connected to broker. */
-  bool checkBrokerConnection = IOT.isConnected();
-  if(checkBrokerConnection)
+  bool connectedToBroker = IOT.isConnected();
+  if(connectedToBroker)
   {
     /* Check if already subscribed to topic
      * and don't subscribe again.
@@ -107,18 +107,24 @@ void loop()
 
 void newMessage(char * incomingTopic, float payload, byte qos, bool retained)
 {
+  /* Check if 1000 messages were logged stop logging
+   * and reset startLogging and counter variables.
+  */
   if(counter == 1000)
   {
     Logger.stop();
     startedLogging = false;
     counter=0;
   }
+  /* Check if data logging not started, then start 
+   * with a new file.
+  */ 
   if(!startedLogging)
   {
     Logger.start("SensorValues");
     startedLogging = true;
   }
-  
+  /* Log data to file. */
   if(startedLogging)
   {
     Logger.add("Value",payload);
