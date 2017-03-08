@@ -33,6 +33,10 @@ void setup()
 {
   /* Start communication. */
   OneSheeld.begin();
+  /* Disconnect from broker. */
+  IOT.disconnect();
+  /* Reset all connection variables to default */
+  IOT.resetConnectionParametersToDefaults();
   /* Connect to mosquitto's public broker. */
   IOT.connect(HOST_NAME);
   /* Subscribe to new messages. */
@@ -41,6 +45,8 @@ void setup()
   IOT.setOnConnectionStatusChange(&connectionStatus);
   /* Subscribe to error callback. */
   IOT.setOnError(&error);
+  /* Some time for app to connect. */
+  delay(3000);
   /* Subscribe to led topic. */
   IOT.subscribe(myTopic);
   /* LED pin mode output. */
