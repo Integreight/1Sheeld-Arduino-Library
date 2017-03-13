@@ -126,6 +126,7 @@ public:
   void subscribe(String,byte=0);
   void unsubscribe(const char *);
   void unsubscribe(String);
+  void unsubscribe();
   void setOnConnectionStatusChange(void (userFunction)(byte));
   void setOnNewMessage(void (userFunction)(char * ,char * ,byte,bool));
   void setOnNewMessage(void (userFunction)(char * ,int ,byte,bool));

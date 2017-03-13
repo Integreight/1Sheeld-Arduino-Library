@@ -269,6 +269,11 @@ void IOTShield::subscribe(String topic,byte qos)
 	subscribe(&topic[0],qos);
 }
 
+void IOTShield::unsubscribe()
+{
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_UNSUBSCRIBE,0);
+}
+
 void IOTShield::unsubscribe(const char *topic)
 {
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_UNSUBSCRIBE,1,new FunctionArg(strlen(topic),(byte*)topic));
