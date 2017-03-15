@@ -44,6 +44,7 @@ script:
   - arduino --verify $PWD/examples/Advanced/GPS/GPS.ino
   - arduino --verify $PWD/examples/Advanced/Gravity/Gravity.ino
   - arduino --verify $PWD/examples/Advanced/Internet/Internet.ino
+  - arduino --verify $PWD/examples/Advanced/IOT/IOT.ino
   - arduino --verify $PWD/examples/Advanced/Keypad/Keypad.ino
   - arduino --verify $PWD/examples/Advanced/LCD/LCD.ino
   - arduino --verify $PWD/examples/Advanced/Light/Light.ino
@@ -80,6 +81,7 @@ script:
   - arduino --verify $PWD/examples/Simple/Gravity/Gravity.ino
   - arduino --verify $PWD/examples/Simple/Gyroscope/Gyroscope.ino
   - arduino --verify $PWD/examples/Simple/Internet/Internet.ino
+  - arduino --verify $PWD/examples/Simple/IOT/IOT.ino
   - arduino --verify $PWD/examples/Simple/Keyboard/Keyboard.ino
   - arduino --verify $PWD/examples/Simple/Keypad/Keypad.ino
   - arduino --verify $PWD/examples/Simple/Led/Led.ino
