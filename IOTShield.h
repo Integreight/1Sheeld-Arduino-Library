@@ -101,7 +101,7 @@ public:
   void setCredentials(const char *,const char * );
   void setCredentials(String,String);
   void setAutoReconnect(bool);
-  void setSecureConnection();
+  void setSecureConnection(bool);
   void connect();
   void connect(const char*);
   void connect(const char *,unsigned int);

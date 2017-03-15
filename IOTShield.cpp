@@ -108,9 +108,9 @@ void IOTShield::setAutoReconnect(bool autoReconnect)
 	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_AUTO_RECON,1,new FunctionArg(sizeof(bool),(byte*)&autoReconnect));		
 }
 
-void IOTShield::setSecureConnection()
+void IOTShield::setSecureConnection(bool state)
 {
-	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SSL_CONNECTION,0);		
+	OneSheeld.sendShieldFrame(IOT_ID,0,IOT_SSL_CONNECTION,1,new FunctionArg(sizeof(bool),(byte*)&state));		
 }
 
 void IOTShield::connect()
