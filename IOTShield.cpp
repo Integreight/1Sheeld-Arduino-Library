@@ -380,7 +380,10 @@ void IOTShield::processData()
 		//Invoke User Function
 		if(!isInACallback())
 		{
-			enteringACallback();
+			if((bool)callbacksAssignments)
+			{
+				enteringACallback();
+			}
 
 			if(callbacksAssignments&(1<<CHAR_CHAR))
 			{
@@ -446,7 +449,11 @@ void IOTShield::processData()
 				byte payloadLength = getOneSheeldInstance().getArgumentLength(1);
 				(*newMessageStrRawCallback)(String(topic),payload,payloadLength,qos,retain);
 			}
-			exitingACallback();
+
+			if((bool)callbacksAssignments)
+			{
+				exitingACallback();
+			}
 		}
 	}else if(functionID==IOT_GET_CONNECTION)
 	{
