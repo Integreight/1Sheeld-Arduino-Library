@@ -63,7 +63,7 @@ void setup()
   /* Set port No .*/
   IOT.setPort(SSL_PORT);
   /* Set secure connection. */
-  IOT.setSecureConnection();
+  IOT.setSecureConnection(true);
   /* Set keep alive interval. */
   IOT.setKeepAlive(KEEP_ALIVE_INTERVAL);
   /* Set persistent session. */
