@@ -2,10 +2,11 @@
 
 IOT Shield Example
 
-This example shows an application on 1Sheeld's iot shield.
+This example shows an application on 1Sheeld's IoT shield.
 
-By using this example, you can securely connect to a broker with SSL connection
-and publish analog sensor values and subscribe for another remote sensor values.
+By using this example, you can securely connect to a MQTT broker with SSL connection,
+publish analog sensor values, subscribe for another remote sensor values and log
+them using the data logger shield.
  
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
@@ -20,13 +21,13 @@ defining CUSTOM_SETTINGS and the shields respective INCLUDE_ define.
 #define INCLUDE_DATA_LOGGER_SHIELD
 
 /* Set your host name. */
-#define HOST_NAME "m13.cloudmqtt.com"
+#define HOST_NAME "hostname"
 /* Set keep alive interval. */
 #define KEEP_ALIVE_INTERVAL   10
-/* Set SSL port. */
-#define SSL_PORT  27700
+/* Set port. */
+#define PORT  8883
 /* Set last will topic. */
-#define LAST_WILL_TOPIC "MyArduino/Board1"
+#define LAST_WILL_TOPIC "1Sheeld/MyArduino/Status"
 /* Set last will payload. */
 #define LAST_WILL_PAYLOAD "Disconnected"
 /* Set username. */
@@ -45,10 +46,10 @@ bool startedLogging = false;
 int sensorPin = A0;
 /* Counter for incoming sensor values. */
 int counter;
-/* Subscribe to topic "1Sheeld/MyArduino/RemoteSensor1" to get remote sensor values . */
-const char * subscribeTopic = "1Sheeld/MyArduino/RemoteSensor1";
-/* Pulish sesnor values to topic "1Sheeld/Sensors/AnalogSensor1" . */
-const char * publishTopic = "1Sheeld/Sensors/AnalogSensor1";
+/* Subscribe to topic "1Sheeld/MyArduino/RemoteSensor" to get remote sensor values . */
+const char * subscribeTopic = "1Sheeld/MyArduino/RemoteSensor";
+/* Pulish sesnor values to topic "1Sheeld/MyArduino/AnalogSensor" . */
+const char * publishTopic = "1Sheeld/MyArduino/AnalogSensor";
 
 void setup() 
 {
@@ -56,13 +57,13 @@ void setup()
   OneSheeld.begin();
   /* Disconnect from broker. */
   IOT.disconnect();
-  /* Reset all connection variables to default */
+  /* Reset all connection parameters to default */
   IOT.resetConnectionParametersToDefaults();
   /* Set host name. */
   IOT.setHost(HOST_NAME);
-  /* Set port No .*/
-  IOT.setPort(SSL_PORT);
-  /* Set secure connection. */
+  /* Set port no .*/
+  IOT.setPort(PORT);
+  /* Set the connection as SSL/TLS. */
   IOT.setSecureConnection(true);
   /* Set keep alive interval. */
   IOT.setKeepAlive(KEEP_ALIVE_INTERVAL);
