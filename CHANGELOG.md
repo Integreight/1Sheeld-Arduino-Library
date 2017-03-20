@@ -1,3 +1,7 @@
+## v1.13.0(017) (March 20, 2017)
+ - Supported the new IoT shield.
+ - Fixed some bugs.
+
 ## v1.12.0(016) (January 29, 2017)
  - Supported the new chart shield.
  - Fixed some bugs.

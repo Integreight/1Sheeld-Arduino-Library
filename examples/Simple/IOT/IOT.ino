@@ -4,8 +4,8 @@ IOT Shield Example
 
 This example shows an application on 1Sheeld's iot shield.
 
-By using this example,you can connect to a public MQTT broker and turn on/off
-an led by subscribing to a topic.
+By using this example, you can control the status of a LED by posting
+on/off messages to a MQTT topic.
  
 OPTIONAL:
 To reduce the library compiled size and limit its memory usage, you
