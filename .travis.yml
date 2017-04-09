@@ -4,14 +4,13 @@ env:
   global:
     - ARDUINO_VERSION="1.8.1"
   matrix:
-    - PLATFORM='arduino:avr'      BOARD='uno'
-    - PLATFORM='arduino:avr'      BOARD='mega:cpu=atmega2560'
-    - PLATFORM='arduino:avr'      BOARD='leonardo'
-    - PLATFORM='arduino:sam'      BOARD='arduino_due_x_dbg'
-    - PLATFORM='arduino:samd'     BOARD='arduino_zero_edbg'
-    - PLATFORM='Intel:i586'       BOARD='izmir_fd'
-    - PLATFORM='Intel:i586'       BOARD='izmir_fg'
-    - PLATFORM='esp8266:esp8266'  BOARD='generic'
+    - PLATFORM='arduino:avr'  BOARD='uno'
+    - PLATFORM='arduino:avr'  BOARD='mega:cpu=atmega2560'
+    - PLATFORM='arduino:avr'  BOARD='leonardo'
+    - PLATFORM='arduino:sam'  BOARD='arduino_due_x_dbg'
+    - PLATFORM='arduino:samd' BOARD='arduino_zero_edbg'
+    - PLATFORM='Intel:i586'   BOARD='izmir_fd'
+    - PLATFORM='Intel:i586'   BOARD='izmir_fg'
 
 before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
@@ -21,7 +20,6 @@ before_install:
   - tar xf arduino-$(eval echo $ARDUINO_VERSION)-linux64.tar.xz
   - sudo mv arduino-$(eval echo $ARDUINO_VERSION) /usr/local/share/arduino
   - sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
-  - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
   - mkdir build
 
 install:
