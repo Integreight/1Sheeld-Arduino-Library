@@ -31,6 +31,17 @@ void MusicPlayerShieldClass::pause()
 {
 	OneSheeld.sendShieldFrame(MUSIC_PLAYER_ID,0,MUSIC_PAUSE,0);
 }
+
+void MusicPlayerShieldClass::play(const char * fileName)
+{
+	OneSheeld.sendShieldFrame(MUSIC_PLAYER_ID,0,MUSIC_PLAY_FILE_NAME,1,new FunctionArg(strlen(fileName),(byte*)fileName));
+}
+
+void MusicPlayerShieldClass::play(int fileIndex)
+{
+	OneSheeld.sendShieldFrame(MUSIC_PLAYER_ID,0,MUSIC_PLAYD_FILE_INDEX,1,new FunctionArg(2,(byte*)&fileIndex));
+}
+
 //Previous Setter
 void MusicPlayerShieldClass::previous()
 {
