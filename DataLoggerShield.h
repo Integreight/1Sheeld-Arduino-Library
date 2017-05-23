@@ -31,8 +31,8 @@ public:
 	DataLoggerShield():ShieldParent(DATA_LOGGER_ID){};
 	//Starters
 	void start();
-	void start(const char *);
-	void start(String );
+	void start(const char *,bool);
+	void start(String ,bool);
 	//Stopper
 	void stop();
 	//Process 

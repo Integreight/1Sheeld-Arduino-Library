@@ -24,15 +24,15 @@ void DataLoggerShield::start()
 	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_START_LOG,0);
 }
 //Start Logging Data giving name to file created 
-void DataLoggerShield::start(const char * fileName)
+void DataLoggerShield::start(const char * fileName,bool saveOnOld)
 {
 	// Check string is not empty
 	int  fileNameLength = strlen(fileName);
 	if(!fileNameLength) return ; 
-	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_START_LOG,1,new FunctionArg(fileNameLength,(byte *)fileName));
+	OneSheeld.sendShieldFrame(DATA_LOGGER_ID,0,LOGGER_START_LOG,2,new FunctionArg(fileNameLength,(byte *)fileName),new FunctionArg(1,(byte*)&saveOnOld));
 }
 //Start Logging Data giving name to the file in strings
-void DataLoggerShield::start(String fileName)
+void DataLoggerShield::start(String fileName,bool saveOnOld)
 {
 	int fileNameStringLength = fileName.length();
 	char cTypeFileName [fileNameStringLength+1];
@@ -43,7 +43,7 @@ void DataLoggerShield::start(String fileName)
 	}
 
 	cTypeFileName [fileNameStringLength]='\0';	
-	start(cTypeFileName);
+	start(cTypeFileName,saveOnOld);
 }
 
 //Stop Logging Data
