@@ -27,17 +27,7 @@ void FacebookShieldClass::post(const char* status)
 
 void FacebookShieldClass::post(String status)
 {
-	int statusLength = status.length();
-
-	char cTypeStatus [statusLength+1];
-
-	for(int i=0; i<statusLength; i++)
-	{
-		cTypeStatus[i]=status[i];
-	} 
-	cTypeStatus[statusLength]='\0';
-
-	post(cTypeStatus);
+	post(&status[0]);
 }
 
 void FacebookShieldClass::postLastPicture(const char * pictureText, byte imageSource)
@@ -51,16 +41,6 @@ void FacebookShieldClass::postLastPicture(const char * pictureText, byte imageSo
 
 void FacebookShieldClass::postLastPicture(String pictureText , byte imageSource)
 {
-	int pictureTextLength = pictureText.length();
-
-	char cTypePictureText [pictureTextLength+1];
-
-	for(int i=0 ;i<pictureTextLength;i++)
-	{
-		cTypePictureText[i] = pictureText[i];
-	}
-	cTypePictureText[pictureTextLength]='\0';
-
-	postLastPicture(cTypePictureText,imageSource);
+	postLastPicture(&pictureText[0],imageSource);
 }
 

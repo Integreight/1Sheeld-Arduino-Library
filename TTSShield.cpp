@@ -27,16 +27,6 @@ void TTSShield::say(const char * text)
 
 void TTSShield::say(String text)
 {
-	int textLength = text.length();
-
-	char cTypeText[textLength+1];
-
-	for (int i = 0; i <textLength; i++)
-	{
-		cTypeText[i]=text[i];
-	}
-	cTypeText[textLength]='\0';
-
-	say(cTypeText);
+	say(&text[0]);
 }
 

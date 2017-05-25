@@ -27,16 +27,6 @@ void NotificationShieldClass::notifyPhone(const char* data)
 
 void NotificationShieldClass::notifyPhone(String data)
 {
-	int dataLength = data.length();
-
-	char cTypeData [dataLength+1];
-
-	for(int i=0 ;i<dataLength;i++)
-	{
-		cTypeData[i] = data[i];
-	}
-	cTypeData[dataLength]='\0';
-
-	notifyPhone(cTypeData);
+	notifyPhone(&data[0]);
 }
 
