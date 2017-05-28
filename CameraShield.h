@@ -23,11 +23,14 @@
 #define CAMERA_SET_FLASH 			  0x02
 #define CAMERA_FRONT_CAPTURE 		0x03
 #define CAMERA_SET_QUALITY 			0x04
+#define CAMERA_RECORD_VIDEO     0x05
+#define CAMERA_ZOOM             0x06
 
 //Setting Flash (Literals)
 #define OFF				  0x00
 #define ON    			0x01
 #define AUTO  			0x02
+#define TORCH       0x03
 //Literals used by users
 #define LOW_QUALITY  0x01
 #define MID_QUALITY  0x02
@@ -43,7 +46,8 @@ public:
 	void rearCapture ();
 	void setFlash(byte );
 	void setQuality(byte);
-
+  void record(unsigned long);
+  void zoom(byte,bool);
 private:
 
 };

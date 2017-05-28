@@ -38,3 +38,13 @@ void CameraShieldClass::setQuality(byte x)
 	OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_SET_QUALITY,1,new FunctionArg(1,&x));
 }
 
+void CameraShieldClass::record(unsigned long seconds)
+{
+  OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_RECORD_VIDEO,1,new FunctionArg(4,(byte*)&seconds));
+}
+
+void CameraShieldClass::zoom(byte zoomValue,bool smoothZoom)
+{
+  if(zoomValue>100){zoomValue=100;}
+  OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_ZOOM,2,new FunctionArg(1,&zoomValue),new FunctionArg(1,(byte*)&smoothZoom));
+}
