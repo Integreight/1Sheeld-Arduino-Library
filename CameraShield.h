@@ -32,9 +32,11 @@
 #define AUTO  			0x02
 #define TORCH       0x03
 //Literals used by users
-#define LOW_QUALITY  0x01
-#define MID_QUALITY  0x02
+#define LOW_QUALITY   0x01
+#define MID_QUALITY   0x02
 #define HIGH_QUALITY  0x03
+#define BACK_CAMERA   0x00
+#define FRONT_CAMERA  0x01
   
 class CameraShieldClass : public ShieldParent
 {
@@ -46,8 +48,8 @@ public:
 	void rearCapture ();
 	void setFlash(byte );
 	void setQuality(byte);
-  void record(unsigned long);
-  void zoom(byte,bool);
+  void record(unsigned long,byte);
+  void zoom(byte,bool=false);
 private:
 
 };
