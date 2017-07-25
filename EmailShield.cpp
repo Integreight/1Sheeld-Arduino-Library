@@ -37,50 +37,29 @@ void EmailShieldClass::send(String email, String subject , String message)
 //Attaching picture
 void EmailShieldClass::attachLastPicture(const char *email ,const char* subject,const char* message , byte imageSource)
 {
-	int emailLength = strlen(email);
-	int subjectLength = strlen(subject);
-	int messageLength = strlen(message);
-	if(!emailLength||!subjectLength||!messageLength) return;
-	attachFile(email,subject,message,imageSource);
+	attachFile(imageSource);
+	send(email,subject,message);
 }
 
 void EmailShieldClass::attachLastPicture(String email, String subject , String message , byte imageSource)
 {
-
-	attachLastPicture(&email[0],&subject[0],&message[0],imageSource);
+	attachFile(imageSource);
+	send(&email[0],&subject[0],&message[0]);
 }
 
-void EmailShieldClass::attachFile(const char *email ,const char* subject,const char* message , byte fileType)
+void EmailShieldClass::attachFile(byte fileType)
 {
-	int emailLength = strlen(email);
-	int subjectLength = strlen(subject);
-	int messageLength = strlen(message);
-	if(!emailLength||!subjectLength||!messageLength) return;
-	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE,4,new FunctionArg(emailLength,(byte*)email),
-														   new FunctionArg(subjectLength,(byte*)subject),
-														   new FunctionArg(messageLength,(byte*)message),
-														   new FunctionArg(1,&fileType));
+	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE,1,new FunctionArg(1,&fileType));
 }
 
-void EmailShieldClass::attachFile(String email, String subject , String message , byte fileType)
+void EmailShieldClass::attachFile(const char * filePath)
 {
-	attachFile(&email[0],&subject[0],&message[0],fileType);
-}
-
-void EmailShieldClass::attachFile(const char *email ,const char* subject,const char* message ,const char * filePath)
-{
-	int emailLength = strlen(email);
-	int subjectLength = strlen(subject);
-	int messageLength = strlen(message);
 	int filePathLength = strlen(filePath);
-	if(!emailLength||!subjectLength||!messageLength||!filePathLength) return;
-	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE_PATH,4,new FunctionArg(emailLength,(byte*)email),
-														   new FunctionArg(subjectLength,(byte*)subject),
-														   new FunctionArg(messageLength,(byte*)message),
-														   new FunctionArg(filePathLength,(byte*)filePath));
+	if(!filePathLength) return;
+	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE_PATH,1,new FunctionArg(filePathLength,(byte*)filePath));
 }
 
-void EmailShieldClass::attachFile(String email, String subject, String message,String filePath)
+void EmailShieldClass::attachFile(String filePath)
 {
-	attachFile(&email[0],&subject[0],&message[0],&filePath[0]);
+	attachFile(&filePath[0]);
 }

@@ -42,10 +42,9 @@ public:
 	void send(String , String ,String );
 	void attachLastPicture(const char* ,const char*,const char*,byte =0);
   void attachLastPicture(String , String , String , byte =0);
-  void attachFile(const char* ,const char*,const char*,byte);
-  void attachFile(String , String , String , byte);
-  void attachFile(const char* ,const char*,const char*,const char *);
-  void attachFile(String , String , String ,String);
+  void attachFile(byte);
+  void attachFile(const char *);
+  void attachFile(String);
 private:
   
 };
