@@ -37,14 +37,19 @@ void EmailShieldClass::send(String email, String subject , String message)
 //Attaching picture
 void EmailShieldClass::attachLastPicture(const char *email ,const char* subject,const char* message , byte imageSource)
 {
-	attachFile(imageSource);
-	send(email,subject,message);
+	int emailLength = strlen(email);
+	int subjectLength = strlen(subject);
+	int messageLength = strlen(message);
+	if(!emailLength||!subjectLength||!messageLength) return;
+	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE,4,new FunctionArg(emailLength,(byte*)email),
+												 new FunctionArg(subjectLength,(byte*)subject),
+												 new FunctionArg(messageLength,(byte*)message),
+												 new FunctionArg(1,&imageSource));
 }
 
 void EmailShieldClass::attachLastPicture(String email, String subject , String message , byte imageSource)
 {
-	attachFile(imageSource);
-	send(&email[0],&subject[0],&message[0]);
+	attachLastPicture(&email[0],&subject[0],&message[0],imageSource);
 }
 
 void EmailShieldClass::attachFile(byte fileType)
