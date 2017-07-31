@@ -17,6 +17,11 @@
 #include "CameraShield.h"
 
 
+void CameraShieldClass::reset()
+{
+  OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_RESET,0);
+}
+
 //Rear Capture   
 void CameraShieldClass::rearCapture()
 {

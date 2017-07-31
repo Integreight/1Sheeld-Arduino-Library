@@ -19,6 +19,7 @@
 #include "ShieldParent.h"
 
 //Output Functions ID's
+#define CAMERA_RESET            0x00
 #define CAMERA_REAR_CAPTURE 		0x01
 #define CAMERA_SET_FLASH 			  0x02
 #define CAMERA_FRONT_CAPTURE 		0x03
@@ -44,6 +45,7 @@ public:
   //Constructor
   CameraShieldClass():ShieldParent(CAMERA_ID){};
 	//Setters 
+  void reset();
 	void frontCapture();
 	void rearCapture ();
 	void setFlash(byte );
