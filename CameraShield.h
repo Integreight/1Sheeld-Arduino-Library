@@ -45,7 +45,7 @@ public:
   //Constructor
   CameraShieldClass():ShieldParent(CAMERA_ID){};
 	//Setters 
-  void reset();
+  void resetParameters();
 	void frontCapture();
 	void rearCapture ();
 	void setFlash(byte );

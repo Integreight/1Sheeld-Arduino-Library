@@ -17,7 +17,7 @@
 #include "CameraShield.h"
 
 
-void CameraShieldClass::reset()
+void CameraShieldClass::resetParameters()
 {
   OneSheeld.sendShieldFrame(CAMERA_ID,0,CAMERA_RESET,0);
 }
