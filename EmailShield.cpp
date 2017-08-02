@@ -52,9 +52,9 @@ void EmailShieldClass::attachLastPicture(String email, String subject , String m
 	attachLastPicture(&email[0],&subject[0],&message[0],imageSource);
 }
 
-void EmailShieldClass::attachFile(byte fileType)
+void EmailShieldClass::attachFile(int fileType)
 {
-	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE,1,new FunctionArg(1,&fileType));
+	OneSheeld.sendShieldFrame(EMAIL_ID,0,EMAIL_ATTACH_FILE,1,new FunctionArg(2,(byte*)&fileType));
 }
 
 void EmailShieldClass::attachFile(const char * filePath)
