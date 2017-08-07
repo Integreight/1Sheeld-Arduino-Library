@@ -1,3 +1,8 @@
+## v1.14.0(018) (August 7, 2017)
+ - Added new methods to append data to old logged files in data logger shield.
+ - Added new attach methods to the email shield.
+ - Added new methods to play tracks by name or index in the music player shield.
+
 ## v1.13.0(017) (March 20, 2017)
  - Supported the new IoT shield.
  - Fixed some bugs.
